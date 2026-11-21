@@ -6,10 +6,10 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-templates"><div className="appx-fit"><div className="appx" role="img" aria-label="The Recipes page: a typed line for any task above the recipes, among them a Support bot check for your own AI agent. A person picks Store sign-up and checkout, its setup sheet slides in with 2 client stores, a 4 step journey that stops before payment, weekly runs and the report, and Approve and run starts setting up 8 accounts.">
+    <div className="il appx-il app-templates"><div className="appx-fit"><div className="appx" role="img" aria-label="The Blueprints page: a typed line for any task above the blueprints, among them a Support bot check for your own AI agent. A person picks Store sign-up and checkout, its setup sheet slides in with 2 client stores, a 4 step journey that stops before payment, weekly runs and the report, and Approve and run starts setting up 8 accounts.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
-        <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Recipes</span>
+        <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Blueprints</span>
         <span className="ax-search"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="7" cy="7" r="4.25" /><path d="M10.2 10.2 13 13" /></svg>Search or type a task<span className="ax-kbd">⌘K</span></span>
         <span className="ax-team" aria-hidden="true"><span>AM</span><span>JO</span></span>
       </div>
@@ -19,7 +19,7 @@ export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
           <nav className="ax-nav">
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.75 7.25 8 3l5.25 4.25V13H2.75Z" /></svg>Home</a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Watches<em>24</em></a>
-            <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="2.75" y="8.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="8.75" width="4.5" height="4.5" rx="1" /></svg>Recipes</a>
+            <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="2.75" y="8.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="8.75" width="4.5" height="4.5" rx="1" /></svg>Blueprints</a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.5 9.5h3l1 2h3l1-2h3M2.5 9.5 4 3.5h8l1.5 6v3.25h-11Z" /></svg>Needs you<span className="ax-badge">3</span></a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M4 2.5h8v11l-2-1.25-2 1.25-2-1.25-2 1.25Z" /><path d="M6 6h4M6 8.75h4" strokeLinecap="round" /></svg>Event log</a>
           </nav>
@@ -32,13 +32,13 @@ export function TemplatesScreen({ workspace = 'agency' }: ScreenProps) {
         <div className="ax-main">
           {/* page head: the title and the declared agent */}
           <header className="ax-h tp-h ax-fade">
-            <h2>Recipes</h2>
+            <h2>Blueprints</h2>
             <span className="tp-idp"><span className="tp-ag"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span>Obsession agent for {ws.org}</span>
           </header>
           {/* the typed line: any task, in plain words */}
           <div className="tp-field ax-in" style={{ '--d': '.04s' }}>
             <span className="tp-gt">›</span>
-            <span className="tp-ph"><i className="tp-caret" />Type a task, or pick a recipe</span>
+            <span className="tp-ph"><i className="tp-caret" />Type a task, or pick a blueprint</span>
             <span className="tp-ico"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M10.6 5.2 6 9.8a1.35 1.35 0 0 0 1.9 1.9l4.7-4.7a2.7 2.7 0 0 0-3.8-3.8L4.1 7.9a4 4 0 0 0 5.7 5.7l3.4-3.4" /></svg></span>
             <span className="ax-kbd">↵</span>
           </div>

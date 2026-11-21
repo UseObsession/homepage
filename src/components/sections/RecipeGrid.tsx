@@ -54,7 +54,7 @@ export function RecipeGrid({ heading, ids, lines, id = 'recipes', className = ''
               <ul className="s-recipes__list" aria-labelledby={`${id}-j${gi}`}>
                 {g.items.map((r) => (
                   <li key={r.id}>
-                    <Link className="s-recipes__item" to={`/recipes/${r.slug}`}>
+                    <Link className="s-recipes__item" to={`/blueprints/${r.slug}`}>
                       <span className="s-recipes__name">
                         {r.name}
                         <svg className="s-recipes__arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false">

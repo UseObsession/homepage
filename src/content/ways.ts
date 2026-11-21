@@ -10,10 +10,10 @@ export type Way = { id: WayId; name: string; who: string; line: string; to: stri
 export const ways: Record<WayId, Way> = {
   recipe: {
     id: 'recipe',
-    name: 'Pick a recipe',
+    name: 'Pick a blueprint',
     who: 'For the jobs teams repeat',
-    line: 'A recipe sets the companies, the customer profile, the steps and how often each is checked.',
-    to: '/recipes',
+    line: 'A blueprint sets the companies, the customer profile, the steps and how often each is checked.',
+    to: '/blueprints',
   },
   task: {
     id: 'task',

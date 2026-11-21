@@ -274,7 +274,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'client-flows', text: '1. Every client’s flows, every week' },
     {
       kind: 'p',
-      text: '**The check:** a new customer signs up through the pop up, opts in to texts, leaves a basket and starts a checkout at each client store, every week and after each launch. **A pass:** each message arrives inside its deadline, with the code and the product filled in. **That week:** the strategist fixes a break before the client sees it, finds the cause with [an email marketing audit](/blog/email-marketing-audit), and logs when it was found, fixed and checked again. Obsession’s [Mystery shopper](/recipes/mystery-shopper) goes through a client’s business as a customer does, from the first click to the last email.',
+      text: '**The check:** a new customer signs up through the pop up, opts in to texts, leaves a basket and starts a checkout at each client store, every week and after each launch. **A pass:** each message arrives inside its deadline, with the code and the product filled in. **That week:** the strategist fixes a break before the client sees it, finds the cause with [an email marketing audit](/blog/email-marketing-audit), and logs when it was found, fixed and checked again. Obsession’s [Mystery shopper](/blueprints/mystery-shopper) goes through a client’s business as a customer does, from the first click to the last email.',
     },
     { kind: 'h3', id: 'report-page', text: '2. A page for the client report' },
     {
@@ -284,12 +284,12 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'competitors', text: '3. Every competitor, before Black Friday' },
     {
       kind: 'p',
-      text: '**The check:** an AI customer on the list of each competitor a client names, logging every email, text, offer and code from the day it joins. **A pass:** each competitor’s first Black Friday send is dated, with its offer. **That week:** the account lead collects 3 competitors per client before early November, and after Cyber Monday sends [a one page Black Friday competitor report](/blog/black-friday-competitor-email-report-template). [Email and SMS tracking](/recipes/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side.',
+      text: '**The check:** an AI customer on the list of each competitor a client names, logging every email, text, offer and code from the day it joins. **A pass:** each competitor’s first Black Friday send is dated, with its offer. **That week:** the account lead collects 3 competitors per client before early November, and after Cyber Monday sends [a one page Black Friday competitor report](/blog/black-friday-competitor-email-report-template). [Email and SMS tracking](/blueprints/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side.',
     },
     { kind: 'h3', id: 'prospects', text: '4. Every prospect, before the pitch' },
     {
       kind: 'p',
-      text: '**The check:** a sign up through the prospect’s public pop up, a text opt in and a basket left, with no login, then 48 hours of waiting. **A pass:** a dated finding the prospect can check in its own inbox. **That week:** the founder opens the first email with it and runs the full audit after the yes, as in [auditing a prospect’s email without a Klaviyo login](/blog/audit-prospect-email-without-klaviyo-login). [Prospect intelligence](/recipes/prospect-intelligence) becomes a customer of every prospect on a list and proves the gap the agency fixes.',
+      text: '**The check:** a sign up through the prospect’s public pop up, a text opt in and a basket left, with no login, then 48 hours of waiting. **A pass:** a dated finding the prospect can check in its own inbox. **That week:** the founder opens the first email with it and runs the full audit after the yes, as in [auditing a prospect’s email without a Klaviyo login](/blog/audit-prospect-email-without-klaviyo-login). [Prospect intelligence](/blueprints/prospect-intelligence) becomes a customer of every prospect on a list and proves the gap the agency fixes.',
     },
     { kind: 'h3', id: 'platform-ai', text: '5. What the platform’s AI sends and says' },
     {
@@ -379,7 +379,7 @@ export const post: BlogPost = {
           'One off checks of a form',
         ],
         [
-          'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Email and SMS tracking](/recipes/email-sms-tracking), [Competitor tracking](/recipes/competitor-tracking), [Prospect intelligence](/recipes/prospect-intelligence)',
+          'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Email and SMS tracking](/blueprints/email-sms-tracking), [Competitor tracking](/blueprints/competitor-tracking), [Prospect intelligence](/blueprints/prospect-intelligence)',
           'What clients, competitors and prospects send a new customer, every email and text kept as it arrived',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',

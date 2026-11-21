@@ -308,35 +308,35 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'The jobs AI customers do for a store, with the recipe that runs each one',
+      caption: 'The jobs AI customers do for a store, with the blueprint that runs each one',
       cols: ['Job', 'The check', 'A pass', 'That week'],
       rows: [
         [
-          'Your journeys after every change: [Website audit](/recipes/website-audit)',
+          'Your journeys after every change: [Website audit](/blueprints/website-audit)',
           'Sign up, use the code, leave a basket, stop at checkout',
           'Every email on time, with the right code and product',
           'The step’s owner fixes it, and the journey runs again',
         ],
         [
-          'Every journey end to end: [Mystery shopper](/recipes/mystery-shopper)',
+          'Every journey end to end: [Mystery shopper](/blueprints/mystery-shopper)',
           'From the first click to the last email, on a phone and a laptop',
           'Every promise kept, each step timed',
           'Fails ranked by revenue a day',
         ],
         [
-          'Competitors’ emails and offers: [Competitor tracking](/recipes/competitor-tracking)',
+          'Competitors’ emails and offers: [Competitor tracking](/blueprints/competitor-tracking)',
           'Subscribed to each competitor, every email and text logged',
           'Each competitor’s new offer dated the day it arrives',
           'Set or hold your own offer',
         ],
         [
-          'Competitors’ prices after codes: [Price watch](/recipes/price-watch)',
+          'Competitors’ prices after codes: [Price watch](/blueprints/price-watch)',
           'Prices, offers and delivery each morning, with subscriber codes',
           'Your price after codes, set against each competitor’s',
           'Choose where to match and where to hold',
         ],
         [
-          'What AI assistants say: [Listings and AI answers](/recipes/listings-ai-answers)',
+          'What AI assistants say: [Listings and AI answers](/blueprints/listings-ai-answers)',
           'Your customers’ questions, asked every week',
           'Price, stock and returns match your pages',
           'The source corrected, then the question asked again',
@@ -441,7 +441,7 @@ export const post: BlogPost = {
           'One off checks of a page or form',
         ],
         [
-          'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch), [Listings and AI answers](/recipes/listings-ai-answers)',
+          'Obsession (ours): [Website audit](/blueprints/website-audit), [Mystery shopper](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Listings and AI answers](/blueprints/listings-ai-answers)',
           'What your store and its competitors show new customers, every email, code and price dated with proof',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',

@@ -221,10 +221,10 @@ export const study: UseCaseStudy = {
 
   more: {
     recipe: {
-      label: 'The recipe',
+      label: 'The blueprint',
       title: 'Price watch',
       line: 'Prices, offers and terms as a customer sees them, on the schedule you set.',
-      cta: { label: 'Learn more', to: '/recipes/price-watch' },
+      cta: { label: 'Learn more', to: '/blueprints/price-watch' },
     },
     sample: {
       label: '1 real run',

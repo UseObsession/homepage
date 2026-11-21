@@ -237,10 +237,10 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Marketing teams** see every competitor’s emails, texts, offers and prices the day they land ([Competitor tracking](/recipes/competitor-tracking)).',
-        '**Sales teams** open each call on what the prospect does to its own customers ([Prospect intelligence](/recipes/prospect-intelligence)).',
+        '**Marketing teams** see every competitor’s emails, texts, offers and prices the day they land ([Competitor tracking](/blueprints/competitor-tracking)).',
+        '**Sales teams** open each call on what the prospect does to its own customers ([Prospect intelligence](/blueprints/prospect-intelligence)).',
         '**Agencies** bring a finding to every pitch and check every client’s store weekly ([Leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies)).',
-        '**Store and CX teams** shop their own journeys after every change ([Mystery shopper](/recipes/mystery-shopper)).',
+        '**Store and CX teams** shop their own journeys after every change ([Mystery shopper](/blueprints/mystery-shopper)).',
         '**Teams running AI agents** test their support bot, voice agent and AI SDR as a customer ([Check your AI agents](/verify)).',
         '**Developers** give their own agents a customer at any company ([AI customers for developers](/blog/ai-customers-for-developers)).',
       ],

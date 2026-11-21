@@ -25,7 +25,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/listings-ai-answers',
+    path: '/blueprints/listings-ai-answers',
     title: 'Listings and AI answers: what buyers are told · Obsession',
     description:
       'A persona asks AI assistants what your buyers ask and checks every map, directory and review site each Monday, tracing each wrong fact to its page.',
@@ -34,8 +34,8 @@ export const recipe: Recipe = {
     ogImage: '/og/listings-ai-answers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Listings and AI answers', path: '/recipes/listings-ai-answers' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Listings and AI answers', path: '/blueprints/listings-ai-answers' },
     ],
   },
 
@@ -50,6 +50,9 @@ export const recipe: Recipe = {
       interest: 'listings',
     },
   },
+
+  unit: 'listings and AI answers check',
+  per: 'brand',
 
   run: {
     tab: 'Leeds, 3 Mondays',

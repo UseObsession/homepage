@@ -347,7 +347,7 @@ const llmsSections = [
   ['Compare', ofKind('compare', 'comparison')],
   ['Alternatives', ofKind('alternatives-hub', 'alternatives')],
   ['Glossary', ofKind('glossary', 'term')],
-  ['Recipes', ofKind('recipe')],
+  ['Blueprints', ofKind('recipe')],
   ['Use cases', ofKind('use-cases', 'use-case')],
   ['Blog', ofKind('blog')],
   /* The guides, by the reader they serve (each post's hub), so an assistant reads the structure as well as the lines. */
@@ -355,7 +355,7 @@ const llmsSections = [
     `Guides: ${hub}`,
     entries.filter((e) => e.kind === 'post' && e.article?.section === hub).map(link),
   ]),
-  ['Trust', ofKind('agents', 'privacy')],
+  ['Trust', ofKind('agents', 'privacy', 'security')],
   ['Optional', [`- [Every page as plain text](${SITE}/llms-full.txt): the words on every page above, in 1 file.`]],
 ]
 /* The intro names every recipe, so it can't drift from the recipes the site has. */

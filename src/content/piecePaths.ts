@@ -11,4 +11,4 @@ export const piecePaths: Record<PieceId, string> = {
   personas: '/personas',
 }
 
-export const pieceOrder: PieceId[] = ['email', 'phone', 'messaging', 'browser', 'sandbox', 'personas']
+export const pieceOrder: PieceId[] = ['email', 'phone', 'browser', 'personas', 'messaging', 'sandbox']

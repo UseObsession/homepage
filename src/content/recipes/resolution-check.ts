@@ -27,7 +27,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/resolution-check',
+    path: '/blueprints/resolution-check',
     title: 'Resolution check: verify billed AI resolutions · Obsession',
     description:
       'Each resolution your AI support vendor bills, matched to the refund, cancellation or order change that followed, and a persona makes the same asks itself.',
@@ -36,8 +36,8 @@ export const recipe: Recipe = {
     ogImage: '/og/resolution-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Resolution check', path: '/recipes/resolution-check' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Resolution check', path: '/blueprints/resolution-check' },
     ],
   },
 
@@ -52,6 +52,9 @@ export const recipe: Recipe = {
       interest: 'resolution',
     },
   },
+
+  unit: 'resolution check',
+  per: 'AI agent',
 
   run: {
     tab: 'September’s bill, before you pay',

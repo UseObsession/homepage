@@ -26,7 +26,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/account-watch',
+    path: '/blueprints/account-watch',
     title: 'Account watch: what changes at each account you sell to',
     description:
       'A persona signs up at each company you sell to and dates what it sends: emails, offers and journeys, with news beside them, on each account in your CRM.',
@@ -35,8 +35,8 @@ export const recipe: Recipe = {
     ogImage: '/og/account-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Account watch', path: '/recipes/account-watch' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Account watch', path: '/blueprints/account-watch' },
     ],
   },
 
@@ -51,6 +51,9 @@ export const recipe: Recipe = {
       interest: 'account-watch',
     },
   },
+
+  unit: 'account check',
+  per: 'account',
 
   run: {
     tab: 'Renewals this quarter',

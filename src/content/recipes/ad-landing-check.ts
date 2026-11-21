@@ -26,7 +26,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/ad-landing-check',
+    path: '/blueprints/ad-landing-check',
     title: 'Ad landing check: each ad’s page, every morning · Obsession',
     description:
       'Each morning a persona opens every live ad’s landing page from its link, on phone and desktop, and checks it loads and the offer, price and stock match.',
@@ -35,8 +35,8 @@ export const recipe: Recipe = {
     ogImage: '/og/ad-landing-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Ad landing check', path: '/recipes/ad-landing-check' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Ad landing check', path: '/blueprints/ad-landing-check' },
     ],
   },
 
@@ -51,6 +51,9 @@ export const recipe: Recipe = {
       interest: 'adcheck',
     },
   },
+
+  unit: 'landing page check',
+  per: 'site',
 
   run: {
     tab: '6 live ads, each morning',

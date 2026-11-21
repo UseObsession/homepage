@@ -5,7 +5,9 @@ import type { Recipe } from '../types'
    account open for as long as they hold it. Everything it is sent, every email, text, offer, member price and public
    ad, comes back on 1 dated timeline with screenshots, by API, MCP, a table or Slack. Kept from James's page: the
    headline, the event log dated from a known sign up, the welcome series mapped, the week 1 timeline. Sold as designed:
-   no index, no "already covered", no caps. The run is an example on an invented skincare store and says so. */
+   no index, no "already covered", no caps. The run is an example on an invented skincare store and says so.
+   Its buyer (21 Nov 2026, James): CRO agencies and ecommerce marketers. Its pricing table counts competitor checks,
+   per competitor (`unit`, `per`). No competitor of ours is named on the page. */
 
 export const recipe: Recipe = {
   id: 'competitor',
@@ -24,7 +26,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/competitor-tracking',
+    path: '/blueprints/competitor-tracking',
     title: 'Competitor tracking: a persona on every competitor’s list',
     description:
       'A persona you define signs up at each competitor and keeps every email, text, offer and price it’s sent, on 1 dated timeline. By API, MCP, Clay or Slack.',
@@ -33,8 +35,8 @@ export const recipe: Recipe = {
     ogImage: '/og/competitor-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Competitor tracking', path: '/recipes/competitor-tracking' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Competitor tracking', path: '/blueprints/competitor-tracking' },
     ],
   },
 
@@ -49,6 +51,10 @@ export const recipe: Recipe = {
       interest: 'competitor',
     },
   },
+
+  buyer: 'For CRO agencies and ecommerce marketers.',
+  unit: 'competitor check',
+  per: 'competitor',
 
   run: {
     tab: 'A skincare competitor, week 1',
@@ -193,7 +199,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How is it different from a competitive intelligence tool?',
-        a: 'Tools like Klue and Crayon keep what competitors publish. Competitor tracking keeps what they send the people who sign up: the emails, texts, member prices and offers.',
+        a: 'Tools that read websites keep what competitors publish. Competitor tracking keeps what they send the people who sign up: the emails, texts, member prices and offers.',
       },
       {
         q: 'How many competitors can it follow?',

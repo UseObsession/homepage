@@ -241,7 +241,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Past a handful of companies, or a check every day, the hours grow faster than the team. At that point, use Obsession. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, for as long as your team follows it, and your team looks each company up in a table, through the API or over MCP. Its [competitor tracking](/recipes/competitor-tracking), [prospect intelligence](/recipes/prospect-intelligence), [mystery shopper](/recipes/mystery-shopper) and [support bot check](/recipes/support-bot-check) recipes run these checks across every company you name. The options, with prices, a brief and a payback sum, are in [hire AI customers](/blog/hire-ai-customers).',
+      text: 'Past a handful of companies, or a check every day, the hours grow faster than the team. At that point, use Obsession. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, for as long as your team follows it, and your team looks each company up in a table, through the API or over MCP. Its [competitor tracking](/blueprints/competitor-tracking), [prospect intelligence](/blueprints/prospect-intelligence), [mystery shopper](/blueprints/mystery-shopper) and [support bot check](/blueprints/support-bot-check) blueprints run these checks across every company you name. The options, with prices, a brief and a payback sum, are in [hire AI customers](/blog/hire-ai-customers).',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },

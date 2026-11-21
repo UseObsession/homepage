@@ -218,7 +218,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each is a dated fact a rep can show a buyer. “Their trial users get 30% off on day 12” is worth more in a deal than “they discount”. [Trial teardown](/recipes/trial-teardown) lays out a competitor’s whole trial by day, and [competitor tracking](/recipes/competitor-tracking) keeps every email, offer and price on 1 timeline. [Trial checks for software companies](/use-cases/trial-checks-for-software-companies) shows both at work on a company’s own trial and 5 competitors’.',
+      text: 'Each is a dated fact a rep can show a buyer. “Their trial users get 30% off on day 12” is worth more in a deal than “they discount”. [Trial teardown](/blueprints/trial-teardown) lays out a competitor’s whole trial by day, and [competitor tracking](/blueprints/competitor-tracking) keeps every email, offer and price on 1 timeline. [Trial checks for software companies](/use-cases/trial-checks-for-software-companies) shows both at work on a company’s own trial and 5 competitors’.',
     },
 
     { kind: 'h2', id: 'by-kind-of-vendor', text: 'Track competitor changes by what your company sells' },
@@ -398,7 +398,7 @@ export const post: BlogPost = {
         ['Kompyte', 'Websites, reviews, social, ads and job posts', 'Not listed on its home page', 'Public sources', 'Web tracking beside Semrush'],
         ['Exa', 'The public web in seconds, Monitors on a schedule', 'Monitors $2 per 1,000\nSearch from $4 per 1,000', 'Signing up to companies not described', 'Research on any competitor'],
         [
-          'Obsession (ours): [Competitor tracking](/recipes/competitor-tracking), [Trial teardown](/recipes/trial-teardown), [Email and SMS tracking](/recipes/email-sms-tracking)',
+          'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Trial teardown](/blueprints/trial-teardown), [Email and SMS tracking](/blueprints/email-sms-tracking)',
           'Trial limits, prompts, onboarding emails and save offers, each dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Every step short of paying, up to any identity check',
@@ -451,12 +451,12 @@ export const post: BlogPost = {
         {
           q: 'How do you track competitor changes?',
           a: 'Put each competitor’s pricing and changelog pages in a page monitor, and set a news alert on each name. Where the terms allow, sign up to each trial and newsletter with one inbox per competitor. Log every email, prompt and offer with its date, time and a screenshot, and post what changed each week to sales.',
-          link: { label: 'Competitor tracking', to: '/recipes/competitor-tracking' },
+          link: { label: 'Competitor tracking', to: '/blueprints/competitor-tracking' },
         },
         {
           q: 'How do you do a SaaS competitor analysis?',
           a: 'Compare each competitor on plans and prices, trial length and limits, and the claim it leads with. Then add when upgrade prompts appear, the onboarding emails, the offer before the trial ends and the save offer in the cancel flow. The pricing page covers plans and prices. The rest needs a trial account, with each fact dated from the day the trial starts.',
-          link: { label: 'Trial teardown', to: '/recipes/trial-teardown' },
+          link: { label: 'Trial teardown', to: '/blueprints/trial-teardown' },
         },
         {
           q: 'Is it legal to sign up for a competitor’s free trial?',

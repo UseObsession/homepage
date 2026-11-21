@@ -44,6 +44,7 @@ const Blog = page('Blog')
 const BlogPost = page<{ slug: string }>('BlogPost', 'BlogPostAt')
 const SampleOutput = page('SampleOutput')
 const Privacy = page('Privacy')
+const Security = page('Security')
 const Lookup = page('Lookup')
 const Pricing = page('Pricing')
 const PricingRates = page('PricingRates')
@@ -71,11 +72,12 @@ const PAGES: Record<string, LazyPage> = {
   '/marketing': Marketing,
   '/developers': Developers,
   '/verify': Verify,
-  '/recipes': Recipes,
+  '/blueprints': Recipes,
   '/resources': Resources,
   '/use-cases': UseCases,
   '/sample-output': SampleOutput,
   '/privacy': Privacy,
+  '/security': Security,
   '/lookup': Lookup,
   '/pricing': Pricing,
   '/pricing/rates': PricingRates,
@@ -98,7 +100,7 @@ function routeOf(path: string): { page: LazyPage; words?: { preload: () => Promi
   const [, first, slug] = p.split('/')
   if (PAGES[p]) return { page: PAGES[p] }
   if (PIECES.has(p)) return { page: Piece }
-  if (first === 'recipes' && slug && RECIPES.has(slug)) return { page: Recipe, words: recipeWords(slug) }
+  if (first === 'blueprints' && slug && RECIPES.has(slug)) return { page: Recipe, words: recipeWords(slug) }
   if (first === 'use-cases' && STUDIES.has(p)) return { page: UseCase, words: studyWords(p) }
   if (first === 'blog' && catalog.blogLive && slug && POSTS.has(slug)) return { page: BlogPost }
   if (REFERENCES.has(p)) return { page: Reference, words: refWords(p) }
@@ -245,7 +247,7 @@ function ctaAt(pathname: string) {
 
 /* The pages whose first view has no button of their own (their hero has no form), so the bar's call to action is the
    view's 1 primary from the first paint. Everywhere else it starts as the secondary beside the hero's own (Nav.tsx). */
-const NO_HERO_FORM = new Set(['/privacy', '/agents', '/pricing', '/pricing/rates', '/recipes', '/resources', '/use-cases', '/blog', ...Object.values(JAMES_PATHS)])
+const NO_HERO_FORM = new Set(['/privacy', '/security', '/agents', '/pricing', '/pricing/rates', '/blueprints', '/resources', '/use-cases', '/blog', ...Object.values(JAMES_PATHS)])
 /* A comparison, an alternatives page or a glossary term opens on the article's header, with no form (pages/Reference). */
 const REFERENCE_PREFIXES = ['/blog/', '/compare/', '/alternatives/', '/glossary/']
 const heroFormAt = (clean: string) => !NO_HERO_FORM.has(clean) && !REFERENCE_PREFIXES.some((p) => clean.startsWith(p))
@@ -369,7 +371,7 @@ function PostRoute() {
    followed inside the app. */
 function TemplatesRedirect() {
   const { '*': rest = '' } = useParams()
-  return <Navigate to={rest ? `/recipes/${rest}` : '/recipes'} replace />
+  return <Navigate to={rest ? `/blueprints/${rest}` : '/blueprints'} replace />
 }
 
 /* The route tree, shared by the browser (BrowserRouter) and the prerender (StaticRouter). Each route maps to 1 named
@@ -390,9 +392,11 @@ export function AppRoutes() {
         <Route path="marketing" element={<Marketing />} />
         <Route path="developers" element={<Developers />} />
         <Route path="verify" element={<Verify />} />
-        <Route path="recipes" element={<Recipes />} />
-        <Route path="recipes/prospect-research" element={<Navigate to="/recipes/prospect-intelligence" replace />} />
-        <Route path="recipes/:slug" element={<RecipeRoute />} />
+        <Route path="blueprints" element={<Recipes />} />
+        <Route path="blueprints/:slug" element={<RecipeRoute />} />
+        {/* Recipes were renamed blueprints (21 Nov 2026); the host answers the old addresses with a 301 first. */}
+        <Route path="recipes/prospect-research" element={<Navigate to="/blueprints/prospect-intelligence" replace />} />
+        <Route path="recipes/*" element={<TemplatesRedirect />} />
         <Route path="resources" element={<Resources />} />
         <Route path="use-cases" element={<UseCases />} />
         <Route path={JAMES_PATHS.prospect.slice(1)} element={<ProspectIntelligence />} />
@@ -406,6 +410,7 @@ export function AppRoutes() {
         {catalog.blogLive && <Route path="blog/:slug" element={<PostRoute />} />}
         <Route path="sample-output" element={<SampleOutput />} />
         <Route path="privacy" element={<Privacy />} />
+        <Route path="security" element={<Security />} />
         <Route path="lookup" element={<Lookup />} />
         <Route path="pricing" element={<Pricing />} />
         <Route path="pricing/rates" element={<PricingRates />} />
@@ -414,7 +419,7 @@ export function AppRoutes() {
         ))}
         <Route path="agents" element={<Agents />} />
         <Route path="sample-report" element={<Navigate to="/sample-output" replace />} />
-        <Route path="templates" element={<Navigate to="/recipes" replace />} />
+        <Route path="templates" element={<Navigate to="/blueprints" replace />} />
         <Route path="templates/*" element={<TemplatesRedirect />} />
         <Route path="*" element={<NotFound />} />
       </Route>

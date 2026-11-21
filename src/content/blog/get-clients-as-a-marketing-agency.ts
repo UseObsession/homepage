@@ -292,7 +292,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For an agency, Obsession’s [prospect intelligence](/recipes/prospect-intelligence) covers every brand on a pitch list:',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For an agency, Obsession’s [prospect intelligence](/blueprints/prospect-intelligence) covers every brand on a pitch list:',
     },
     {
       kind: 'list',
@@ -401,7 +401,7 @@ export const post: BlogPost = {
           'A one-off look at a page or a form',
         ],
         [
-          'Obsession (ours): [Prospect intelligence](/recipes/prospect-intelligence), [leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies), [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies)',
+          'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies), [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies)',
           'What every brand on the list sends a new customer, from the pop-up to checkout, each email dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Leaves the message and the call to the agency',

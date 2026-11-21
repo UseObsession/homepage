@@ -37,6 +37,22 @@ export function HomeDelivery({ delivery, id }: { delivery: Delivery; id?: string
           {delivery.line && <p className="s-bp-line">{delivery.line}</p>}
         </div>
 
+        {delivery.setup && (
+          <div className="s-hd-setup">
+            <div className="s-hd-setup-text">
+              <h3 className="s-hd-title">{delivery.setup.title}</h3>
+              <p className="s-hd-line">{delivery.setup.line}</p>
+            </div>
+            <ul className="s-hd-setup-rows">
+              {delivery.setup.rows.map((r) => (
+                <li className="s-hd-row" key={r}>
+                  {r}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <ol className="s-hd-flow">
           {delivery.steps.map((s, i) => (
             <li className="s-hd-step" key={s.title} data-step={i + 1}>
@@ -57,6 +73,24 @@ export function HomeDelivery({ delivery, id }: { delivery: Delivery; id?: string
             </li>
           ))}
         </ol>
+
+        {delivery.loop && (
+          <p className="s-hd-loop">
+            <span className="s-hd-down-icon">
+              <PersonaGlyph name="retry" />
+            </span>
+            {delivery.loop}
+          </p>
+        )}
+
+        {delivery.live && (
+          <p className="s-hd-live">
+            <span className="s-hd-down-icon">
+              <PersonaGlyph name="phone" />
+            </span>
+            {delivery.live}
+          </p>
+        )}
 
         <ol className="s-hd-cards">
           {delivery.channels.map((c, i) => (

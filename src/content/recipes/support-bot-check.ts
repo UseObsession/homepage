@@ -28,7 +28,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/support-bot-check',
+    path: '/blueprints/support-bot-check',
     title: 'Support bot check: every answer your AI chatbot gives, daily',
     description:
       'A persona you define asks your support bot what people ask, on chat, email and portals, every morning. Every answer comes back word for word, dated.',
@@ -37,8 +37,8 @@ export const recipe: Recipe = {
     ogImage: '/og/support-bot-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Support bot check', path: '/recipes/support-bot-check' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Support bot check', path: '/blueprints/support-bot-check' },
     ],
   },
 
@@ -53,6 +53,9 @@ export const recipe: Recipe = {
       interest: 'support-bot',
     },
   },
+
+  unit: 'round of test questions',
+  per: 'support bot',
 
   run: {
     tab: 'Your support bot, daily',

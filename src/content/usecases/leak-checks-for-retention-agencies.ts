@@ -235,13 +235,13 @@ export const study: UseCaseStudy = {
       label: 'Before the pitch',
       title: 'Prospect intelligence',
       line: 'What each store on your pitch list sends a new customer, and what never came.',
-      cta: { label: 'Learn more', to: '/recipes/prospect-intelligence' },
+      cta: { label: 'Learn more', to: '/blueprints/prospect-intelligence' },
     },
     second: {
       label: 'After you win',
       title: 'Client store checks',
       line: 'Your clients’ stores, step by step, every week and after every launch.',
-      cta: { label: 'Learn more', to: '/recipes/mystery-shopper' },
+      cta: { label: 'Learn more', to: '/blueprints/mystery-shopper' },
     },
     sample: {
       label: '1 real run',

@@ -28,7 +28,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/vendor-agent-check',
+    path: '/blueprints/vendor-agent-check',
     title: 'Vendor agent check: compare AI agents on your own cases',
     description:
       'Before you sign, a persona brings your real cases to every shortlisted vendor’s AI agent, and every answer and handoff comes back side by side, dated.',
@@ -37,8 +37,8 @@ export const recipe: Recipe = {
     ogImage: '/og/vendor-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Vendor agent check', path: '/recipes/vendor-agent-check' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Vendor agent check', path: '/blueprints/vendor-agent-check' },
     ],
   },
 
@@ -53,6 +53,9 @@ export const recipe: Recipe = {
       interest: 'vendor-agent',
     },
   },
+
+  unit: 'vendor test',
+  per: 'vendor',
 
   run: {
     tab: '2 vendors, your 20 cases',
@@ -156,11 +159,11 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Decide in 2 weeks, before an agent you’d turn down goes live.',
-    cols: ['A pilot', 'With Vendor agent check'],
+    cols: ['A vendor’s trial', 'With Vendor agent check'],
     rows: [
-      { label: 'Evidence', values: ['A demo, a deck and a live pilot', 'Your own cases, run on every agent'] },
-      { label: 'Time to decide', values: ['A 90 day pilot', '2 weeks'] },
-      { label: 'Who it’s tried on', values: ['Your customers, during the pilot', 'Your cases, asked by a persona'] },
+      { label: 'Evidence', values: ['A demo, a deck and a live trial', 'Your own cases, run on every agent'] },
+      { label: 'Time to decide', values: ['A 90 day trial', '2 weeks'] },
+      { label: 'Who it’s tried on', values: ['Your customers, during the trial', 'Your cases, asked by a persona'] },
       { label: 'A fair comparison', values: ['Each vendor in a different week, on different tickets','The same cases and channels on each'] },
       { label: 'A person when asked', values: ['Found from a complaint', 'Timed on every case'] },
     ],

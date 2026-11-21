@@ -309,7 +309,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A pass on these checks shows what a customer is told on each channel. Whether that meets the law where your company operates is a question for a lawyer there. Each step, with what a pass looks like on chat, email and phone, is set out in [how to test if a chatbot is AI](/recipes/ai-disclosure-check).',
+      text: 'A pass on these checks shows what a customer is told on each channel. Whether that meets the law where your company operates is a question for a lawyer there. Each step, with what a pass looks like on chat, email and phone, is set out in [how to test if a chatbot is AI](/blueprints/ai-disclosure-check).',
     },
 
     { kind: 'h2', id: 'ai-customers', text: 'Obsession’s agents say they’re AI too' },
@@ -323,7 +323,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s own agents keep the rule they check. Each one says it’s an AI when it talks to a person, with no fake payment details and no getting round a CAPTCHA or a bot block. The [Obsession agents page](/agents) sets out what each one will and won’t do, and [Voice agent check](/recipes/voice-agent-check) shows how the same agents call an AI receptionist.',
+      text: 'Obsession’s own agents keep the rule they check. Each one says it’s an AI when it talks to a person, with no fake payment details and no getting round a CAPTCHA or a bot block. The [Obsession agents page](/agents) sets out what each one will and won’t do, and [Voice agent check](/blueprints/voice-agent-check) shows how the same agents call an AI receptionist.',
     },
     {
       kind: 'p',

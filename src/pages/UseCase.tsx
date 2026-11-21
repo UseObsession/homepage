@@ -24,7 +24,7 @@ import './StoryPage.css'
    partner (content/partners.ts) sets that tool's mark in the hero's flow and in how it fits. */
 /* A link to a recipe takes the recipe's own name, so it never drifts from the recipe's page and the nav. */
 const named = (l: StudyLink): StudyLink => {
-  const r = l.cta.to.startsWith('/recipes/') ? catalog.recipes.find((x) => x.slug === l.cta.to.slice('/recipes/'.length)) : undefined
+  const r = l.cta.to.startsWith('/blueprints/') ? catalog.recipes.find((x) => x.slug === l.cta.to.slice('/blueprints/'.length)) : undefined
   return r ? { ...l, title: r.name } : l
 }
 

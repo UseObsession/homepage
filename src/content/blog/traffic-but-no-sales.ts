@@ -370,7 +370,7 @@ export const post: BlogPost = {
           'An alert the hour cart or checkout breaks',
         ],
         [
-          'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit), [Store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
+          'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Website audit](/blueprints/website-audit), [Store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
           'Every page and email a new customer meets from the ad to the basket, kept with its time. A step behind a CAPTCHA is named as untested',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops before payment, so the payment step needs a test order',

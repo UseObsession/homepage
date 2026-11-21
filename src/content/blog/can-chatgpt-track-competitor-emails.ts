@@ -360,7 +360,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 20 competitors, use Obsession. Its [email and SMS tracking](/recipes/email-sms-tracking) keeps every email each competitor sends, dated as it arrived, from the day the competitor is added. Its [developers page](/developers) covers the same job for teams building their own AI agents. For 1 to 3 competitors, a spare inbox and an assistant are enough.',
+      text: 'For 20 competitors, use Obsession. Its [email and SMS tracking](/blueprints/email-sms-tracking) keeps every email each competitor sends, dated as it arrived, from the day the competitor is added. Its [developers page](/developers) covers the same job for teams building their own AI agents. For 1 to 3 competitors, a spare inbox and an assistant are enough.',
     },
     {
       kind: 'cta',

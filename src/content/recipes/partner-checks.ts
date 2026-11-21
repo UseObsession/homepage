@@ -25,7 +25,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/partner-checks',
+    path: '/blueprints/partner-checks',
     title: 'Partner checks: every partner link and code, every week',
     description:
       'Each Monday a persona reads every partner page as a visitor, follows your link, tries the code in your basket and flags any that’s out of date.',
@@ -34,8 +34,8 @@ export const recipe: Recipe = {
     ogImage: '/og/partner-checks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Partner checks', path: '/recipes/partner-checks' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Partner checks', path: '/blueprints/partner-checks' },
     ],
   },
 
@@ -50,6 +50,9 @@ export const recipe: Recipe = {
       interest: 'partners',
     },
   },
+
+  unit: 'partner check',
+  per: 'partner',
 
   run: {
     tab: '6 partners, every Monday',

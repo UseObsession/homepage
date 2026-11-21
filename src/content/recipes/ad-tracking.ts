@@ -25,7 +25,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/ad-tracking',
+    path: '/blueprints/ad-tracking',
     title: 'Ad tracking: every competitor ad, followed to its offer',
     description:
       'A persona reads the ads your competitors run in public each morning and follows each one to its page, price and code. Every offer dated, with screenshots.',
@@ -34,8 +34,8 @@ export const recipe: Recipe = {
     ogImage: '/og/ad-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Ad tracking', path: '/recipes/ad-tracking' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Ad tracking', path: '/blueprints/ad-tracking' },
     ],
   },
 
@@ -50,6 +50,9 @@ export const recipe: Recipe = {
       interest: 'ads',
     },
   },
+
+  unit: 'ad check',
+  per: 'competitor',
 
   run: {
     tab: 'Friday’s new ads',

@@ -330,7 +330,7 @@ export const post: BlogPost = {
           'A free second view of a theme, with replays',
         ],
         [
-          'Obsession (ours): [Store leak checks](/use-cases/leak-checks-for-ecommerce-stores), [Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking)',
+          'Obsession (ours): [Store leak checks](/use-cases/leak-checks-for-ecommerce-stores), [Mystery shopper](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking)',
           'Every email, code and page any store you name shows a new customer, from sign-up to checkout, kept with its time',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Leaves the theme A/B decision to SimGym or a live A/B test, and payment to a test order',

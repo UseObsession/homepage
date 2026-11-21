@@ -416,7 +416,7 @@ export const post: BlogPost = {
           'CX and conduct reviews',
         ],
         [
-          'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit), [Lead leaks](/recipes/lead-leaks), [Support bot check](/recipes/support-bot-check)',
+          'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Website audit](/blueprints/website-audit), [Lead leaks](/blueprints/lead-leaks), [Support bot check](/blueprints/support-bot-check)',
           'Every email, text and reply a new customer gets, kept dated with its proof',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'The cause sits in your own tools',

@@ -108,7 +108,7 @@ export function RecipeGrid({ ids }: { ids: RecipeId[] }) {
         const t = recipes[id]
         return (
           <Reveal as="li" key={id}>
-            <Link to={`/recipes/${t.slug}`} className="tcard card">
+            <Link to={`/blueprints/${t.slug}`} className="tcard card">
               <h3 className="h3">{t.name}</h3>
               <p className="muted">{t.line}</p>
               <div className="tcard-spins">

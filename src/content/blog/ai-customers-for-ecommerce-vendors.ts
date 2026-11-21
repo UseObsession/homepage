@@ -281,12 +281,12 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'before-first-touch', text: '1. A fact for every store before the first touch' },
     {
       kind: 'p',
-      text: '**The check:** a sign up, a text opt in and, where the product needs it, a basket left at every store in the next sequence, then 48 hours of waiting. **A pass:** a dated verdict for each store against the gap the product closes, such as no text within 24 hours of the opt in, with the email or text as evidence. **That week:** SDRs write to the stores with the gap, opening with a fact the store can check in its own inbox, and drop the rest from the sequence. [Prospect intelligence](/recipes/prospect-intelligence) becomes a customer of every prospect on a list and proves the gap a company fixes.',
+      text: '**The check:** a sign up, a text opt in and, where the product needs it, a basket left at every store in the next sequence, then 48 hours of waiting. **A pass:** a dated verdict for each store against the gap the product closes, such as no text within 24 hours of the opt in, with the email or text as evidence. **That week:** SDRs write to the stores with the gap, opening with a fact the store can check in its own inbox, and drop the rest from the sequence. [Prospect intelligence](/blueprints/prospect-intelligence) becomes a customer of every prospect on a list and proves the gap a company fixes.',
     },
     { kind: 'h3', id: 'competitor-stores', text: '2. Stores on a competitor’s platform, sorted by what they send' },
     {
       kind: 'p',
-      text: '**The check:** an AI customer on the list of each store running a competitor’s email, SMS or loyalty tool, logging every email and text from the day it joins. **A pass:** each store’s sends dated, with how often it sends and what it offers. **That week:** RevOps sorts the territory by what stores do, the account executive brings a store’s own emails to discovery, and product marketing adds what a competitor’s customers send to the battlecard. [Email and SMS tracking](/recipes/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side. Archives of brands’ past emails are compared in [competitor email tracking tools](/blog/competitor-email-tracking-tools).',
+      text: '**The check:** an AI customer on the list of each store running a competitor’s email, SMS or loyalty tool, logging every email and text from the day it joins. **A pass:** each store’s sends dated, with how often it sends and what it offers. **That week:** RevOps sorts the territory by what stores do, the account executive brings a store’s own emails to discovery, and product marketing adds what a competitor’s customers send to the battlecard. [Email and SMS tracking](/blueprints/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side. Archives of brands’ past emails are compared in [competitor email tracking tools](/blog/competitor-email-tracking-tools).',
     },
     { kind: 'h3', id: 'placement', text: '3. Where a prospect’s mail lands' },
     {
@@ -296,12 +296,12 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'accounts', text: '4. Every customer account, every week' },
     {
       kind: 'p',
-      text: '**The check:** an AI customer on each customer’s store, receiving the welcome, texts, reminders or points emails the product sends for that store. **A pass:** every message the product powers arrives inside its deadline. **That week:** customer success fixes a break before the account’s shoppers notice, shows what they received at the quarterly review, and flags any account whose emails stop or texts go quiet ahead of its renewal. [Account watch](/recipes/account-watch) stays a customer of every account and flags churn and upsell with the play drafted.',
+      text: '**The check:** an AI customer on each customer’s store, receiving the welcome, texts, reminders or points emails the product sends for that store. **A pass:** every message the product powers arrives inside its deadline. **That week:** customer success fixes a break before the account’s shoppers notice, shows what they received at the quarterly review, and flags any account whose emails stop or texts go quiet ahead of its renewal. [Account watch](/blueprints/account-watch) stays a customer of every account and flags churn and upsell with the play drafted.',
     },
     { kind: 'h3', id: 'releases', text: '5. Your own product after every release' },
     {
       kind: 'p',
-      text: '**The check:** a test store your team runs on its own product, where AI customers sign up, opt in and wait after every release, as [Delivery monitoring](/recipes/delivery-monitoring) does for a company’s first 14 days. **A pass:** every email, text and code the product sends arrives inside its deadline. **That week:** engineering fixes or rolls back a release before merchants’ shoppers miss a message.',
+      text: '**The check:** a test store your team runs on its own product, where AI customers sign up, opt in and wait after every release, as [Delivery monitoring](/blueprints/delivery-monitoring) does for a company’s first 14 days. **A pass:** every email, text and code the product sends arrives inside its deadline. **That week:** engineering fixes or rolls back a release before merchants’ shoppers miss a message.',
     },
 
     { kind: 'h2', id: 'what-changes', text: 'What changes in 2026 and 2027' },
@@ -386,7 +386,7 @@ export const post: BlogPost = {
           'One off checks of a sign up form',
         ],
         [
-          'Obsession (ours): [Prospect intelligence](/recipes/prospect-intelligence), [Email and SMS tracking](/recipes/email-sms-tracking), [Delivery monitoring](/recipes/delivery-monitoring), [Account watch](/recipes/account-watch)',
+          'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking), [Delivery monitoring](/blueprints/delivery-monitoring), [Account watch](/blueprints/account-watch)',
           'What every store on the list and every account sends its customers, each email and text dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',

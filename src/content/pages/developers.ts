@@ -137,21 +137,21 @@ persona.on("email.received", async (email) => {
 const { events } = await obsession.events.list({ persona: persona.id })`
 
 const RECIPES = `// One of ours, ready to run
-await obsession.recipes.run("mystery-shopper", { site: "https://larkfield.example" })
+await obsession.blueprints.run("mystery-shopper", { site: "https://larkfield.example" })
 
 // Or your own job, on our runtime beside the pieces
-await obsession.recipes.create({
+await obsession.blueprints.create({
   name: "price-check",
   run: async ({ browser, events }) => {
     // Your task or computation. Nothing to host
   },
 })
 
-// Either way, each result lands in your event log as recipe.result`
+// Either way, each result lands in your event log as blueprint.result`
 
 /* The code for each way events reach you (#delivery), in the order content/delivery.ts gives. */
 const CHANNEL_CODE: Record<Channel['id'], string> = {
-  webhook: `// Every event from every piece and recipe, at 1 URL
+  webhook: `// Every event from every piece and blueprint, at 1 URL
 await obsession.events.subscribe({
   url: "https://your-app.example/hooks",
   events: ["*"],
@@ -190,7 +190,7 @@ persona.on("sms.received", async (sms) => {
 })`,
   listen: `npx obsession listen --forward "http://localhost:3000/hooks"`,
   nocode: `Trigger: New Obsession event
-Event: recipe.result
+Event: blueprint.result
 Action: Slack, post a message`,
 }
 
@@ -204,7 +204,7 @@ const EVENTS: EventName[] = [
   'message.received',
   'page.visited',
   'sandbox.finished',
-  'recipe.result',
+  'blueprint.result',
 ]
 
 /* Every price, grouped by piece in the nav's order, straight from content/prices.ts. */
@@ -237,20 +237,20 @@ export const api: ApiSections = {
   },
 
   recipes: {
-    heading: 'Run a recipe beside the pieces, ours or your own, with nothing to host.',
-    line: 'A recipe is a job that runs on Obsession beside the pieces and writes its results to your event log. Run one of ours, such as agentic mystery shopping, or create your own.',
+    heading: 'Run a blueprint beside the pieces, ours or your own, with nothing to host.',
+    line: 'A blueprint is a job that runs on Obsession beside the pieces and writes its results to your event log. Run one of ours, such as agentic mystery shopping, or create your own.',
     code: RECIPES,
     facts: [
       { term: 'Ours, ready to run', line: 'Mystery shopping, competitor trials, price watch and more. Name the site, and we run the job.' },
       { term: 'Your own job', line: 'A task or a computation that runs on our runtime next to the inbox, browser and sandbox.' },
-      { term: 'One event log', line: 'Each result lands as a recipe.result event, beside the events from your pieces and personas, and reaches you the same way.' },
+      { term: 'One event log', line: 'Each result lands as a blueprint.result event, beside the events from your pieces and personas, and reaches you the same way.' },
     ],
-    link: { label: 'Browse recipes', to: '/recipes' },
+    link: { label: 'Browse blueprints', to: '/blueprints' },
   },
 
   delivery: {
     heading: 'Every event is saved in your event log, then reaches you where you listen.',
-    line: 'Emails, texts, calls, pages, sandbox runs and recipe results all arrive the same way, in the same shape. Start with the webhook, and add a channel when you need one.',
+    line: 'Emails, texts, calls, pages, sandbox runs and blueprint results all arrive the same way, in the same shape. Start with the webhook, and add a channel when you need one.',
     channels: channels.map((c) => ({
       id: c.id,
       name: c.name,
@@ -275,7 +275,7 @@ export const api: ApiSections = {
       { name: 'messaging.connect', line: 'Connect iMessage, WhatsApp, Slack or Telegram.' },
       { name: 'browsers.create', line: 'Open a cloud browser that keeps its logins.' },
       { name: 'sandbox.run', line: 'Run code in a sandbox started for the task.' },
-      { name: 'recipes.run', line: 'Run a recipe, one of ours or your own.' },
+      { name: 'blueprints.run', line: 'Run a blueprint, one of ours or your own.' },
       { name: 'events.list', line: 'Read the events in your event log, for 1 persona or all of them.' },
       { name: 'events.subscribe', line: 'Hear about new events as they land, such as email.received.' },
     ],
@@ -368,7 +368,7 @@ export const page: Page = {
     items: [
       {
         q: 'What does the Obsession API do?',
-        a: 'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill. Use one piece on its own, or put them all under one persona that waits for free. Run our recipes or your own jobs beside them, and every event lands in your event log. Call it from TypeScript, Python or plain HTTP, or from your agent over MCP.',
+        a: 'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill. Use one piece on its own, or put them all under one persona that waits for free. Run our blueprints or your own jobs beside them, and every event lands in your event log. Call it from TypeScript, Python or plain HTTP, or from your agent over MCP.',
       },
       {
         q: 'Can I use only the email?',
@@ -386,12 +386,12 @@ export const page: Page = {
       },
       {
         q: 'Can I run my own job on Obsession?',
-        a: 'Yes. Create it as a recipe with obsession.recipes.create, and it runs on our runtime beside the inbox, browser and sandbox, so there is nothing to host. Its results land in your event log as recipe.result events, and reach you like every other event.',
-        link: { label: 'Browse recipes', to: '/recipes' },
+        a: 'Yes. Create it as a blueprint with obsession.blueprints.create, and it runs on our runtime beside the inbox, browser and sandbox, so there is nothing to host. Its results land in your event log as blueprint.result events, and reach you like every other event.',
+        link: { label: 'Browse blueprints', to: '/blueprints' },
       },
       {
         q: 'How do events reach my app, and what if my server is down?',
-        a: `Every event is saved in your event log, then sent to one signed webhook you subscribe once, for every piece and recipe. ${downLine} You can also read the event log by cursor with obsession.events.list, or let your agent subscribe over MCP. Or run a handler on our runtime, and forward events to your laptop with npx obsession listen while you build.`,
+        a: `Every event is saved in your event log, then sent to one signed webhook you subscribe once, for every piece and blueprint. ${downLine} You can also read the event log by cursor with obsession.events.list, or let your agent subscribe over MCP. Or run a handler on our runtime, and forward events to your laptop with npx obsession listen while you build.`,
       },
       {
         q: 'How is each piece priced?',

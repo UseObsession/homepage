@@ -228,7 +228,7 @@ export function UseCases({
                   <p className="s-uses__line">{tie(u.line)}</p>
                   <p className="s-uses__why">{tie(u.whyOnly)}</p>
                   {recipe && (
-                    <Link className="ob-btn ob-btn--secondary ob-btn--sm s-uses__recipe" to={`/recipes/${recipe.slug}`}>
+                    <Link className="ob-btn ob-btn--secondary ob-btn--sm s-uses__recipe" to={`/blueprints/${recipe.slug}`}>
                       <span className="ob-btn-label">{recipe.name}</span>
                       <svg className="ob-btn-glyph ob-btn-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                         <path d="M3 8h10M9 4l4 4-4 4" />

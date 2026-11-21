@@ -107,22 +107,23 @@ export const page: Page = {
     path: '/',
     title: 'Obsession: inboxes, phone numbers and browsers for AI agents',
     description:
-      'Inboxes, phone numbers, messaging, browsers and sandboxes for AI agents, through one API and one bill. Use one piece, or put them together as a persona.',
+      'The toolkit for AI agents: an inbox, a phone number and a browser for every agent, used alone or together, with one API, one bill and one event log.',
     /* The sentence AI assistants quote. Its first sentence opens the first answer below (scripts/prerender.mjs). */
     answer:
-      'Obsession gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes through one API and one bill. Use one piece, like email, or put them together as a persona. Run one of our recipes or your own job beside them, and every result lands in your event log.',
-    ogLine: 'Use one piece, or put them together as a persona.',
+      'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
+    ogLine: 'An inbox, a phone number and a browser for every agent.',
     ogImage: '/og/home.png',
   },
 
   hero: {
     pill: 'Early access',
     pillTo: '#join',
-    headline: 'Inboxes, phone numbers, browsers and sandboxes for AI agents. One API, one bill.',
-    sub: 'Use one piece, like email, or put them together as a persona. Run one of our recipes or your own job beside them, and every result lands in your event log.',
+    /* Locked by James, 21 Nov: "toolkit" leads, the sub names what is in the kit at once. */
+    headline: 'The toolkit for AI agents. One API, one bill.',
+    sub: 'An inbox, a phone number and a browser for every agent, used alone or together. Every email, text, call and page lands in your event log.',
     /* Not drawn on Home (its hero has buttons, not a form); the Hero contract asks for one. */
     capture: { ...access, source: 'home-hero' },
-    secondary: { label: 'Browse recipes', to: '/recipes' },
+    secondary: { label: 'Browse blueprints', to: '/blueprints' },
     /* 3 facts, true by design: no prices, no country. 50 ms is James's figure (20 Nov). */
     proof: [
       { value: '1 API', label: 'for every piece, on one bill' },
@@ -265,8 +266,8 @@ export const page: Page = {
      `status` says who it fits, and each tile's hue is that reader
      (styles/accents.css). */
   personaRecipes: {
-    heading: 'Teams who don’t write code pick a recipe, and we run the job.',
-    line: 'A recipe runs on Obsession beside the pieces and writes every result to your event log. Pick one and say where it goes. Developers can bring their own job to run the same way.',
+    heading: 'Teams who don’t write code pick a blueprint, and we run the job.',
+    line: 'A blueprint runs on Obsession beside the pieces and writes every result to your event log. Pick one and say where it goes. Developers can bring their own job to run the same way.',
     items: [
       {
         name: 'Agentic mystery shopping',
@@ -274,56 +275,56 @@ export const page: Page = {
         status: 'For online stores',
         live: true,
         reader: 'founders',
-        link: { label: 'See the recipe', to: '/recipes/mystery-shopper' },
+        link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
       },
       {
         name: 'QA on your own flows',
         line: 'Sign up to your own product as a new user, and find the step that breaks.',
         status: 'For product teams',
         reader: 'developers',
-        link: { label: 'See the recipe', to: '/recipes/website-audit' },
+        link: { label: 'See the blueprint', to: '/blueprints/website-audit' },
       },
       {
         name: 'Competitor trials',
         line: 'Start a competitor’s trial and keep every email it sends until the trial ends.',
         status: 'For marketing',
         reader: 'marketing',
-        link: { label: 'See the recipe', to: '/recipes/trial-teardown' },
+        link: { label: 'See the blueprint', to: '/blueprints/trial-teardown' },
       },
       {
         name: 'Agency prospect audits',
         line: 'Shop a prospect’s store before the pitch, and open with what a new shopper gets.',
         status: 'For agencies',
         reader: 'agencies',
-        link: { label: 'See the recipe', to: '/recipes/prospect-intelligence' },
+        link: { label: 'See the blueprint', to: '/blueprints/prospect-intelligence' },
       },
       {
         name: 'Lead response checks',
         line: 'Fill in a contact form as a new lead, and time the first reply by email, text or call.',
         status: 'For sales',
         reader: 'sales',
-        link: { label: 'See the recipe', to: '/recipes/lead-leaks' },
+        link: { label: 'See the blueprint', to: '/blueprints/lead-leaks' },
       },
       {
         name: 'AI agent checks',
         line: 'Chat with a support bot or call a voice line, and keep every answer word for word.',
         status: 'For teams running AI agents',
         reader: 'developers',
-        link: { label: 'See the recipe', to: '/recipes/support-bot-check' },
+        link: { label: 'See the blueprint', to: '/blueprints/support-bot-check' },
       },
       {
         name: 'Price watch',
         line: 'Sign in as a member and log the prices and offers only members see, every week.',
         status: 'For pricing teams',
         reader: 'marketing',
-        link: { label: 'See the recipe', to: '/recipes/price-watch' },
+        link: { label: 'See the blueprint', to: '/blueprints/price-watch' },
       },
       {
         name: 'Your own job',
         line: 'A task or a computation of your own, run on our runtime beside the inbox, browser and sandbox, with nothing to host.',
         status: 'For any job',
         reader: 'founders',
-        link: { label: 'Browse every recipe', to: '/recipes' },
+        link: { label: 'Browse every blueprint', to: '/blueprints' },
       },
     ],
   },
@@ -341,26 +342,36 @@ export const page: Page = {
      recipes). The 3 steps are the path every event takes; the plates' rows are the event names a developer subscribes
      to (content/delivery.ts), dated in the event log. The channels and the line on a server that's down are
      content/delivery.ts, the same words as the piece, recipe and developer pages. */
+  /* James, 21 Nov: set up once, then a loop. The agent may run on our runtime or the developer's own; the loop can start
+     from either side (a Slack message comes in, or the agent acts), and what the agent does next is a new event. Live
+     call audio doesn't take the loop: it streams straight to the voice agent, and the log keeps the call's events. */
   homeDelivery: {
-    heading: 'Every event is saved in your event log, then reaches you.',
-    line: 'Every piece and every recipe sends its events the same way, so one subscription hears all of them.',
+    heading: 'Every event is saved in your event log, then reaches your agent.',
+    line: 'Set it up once. After that, every piece and blueprint runs the same loop, and one subscription hears all of it.',
+    setup: {
+      title: 'Set up once',
+      line: 'Pick pieces, a persona or a blueprint, and say where your agent runs: in a handler on our runtime, or in your own code.',
+      rows: ['obsession.personas.create()', 'obsession.events.subscribe()', 'obsession.blueprints.run()'],
+    },
     steps: [
       {
-        title: 'It happens',
-        line: 'An email lands, a text or a call comes in, a page is visited, a sandbox finishes or a recipe brings back a result.',
-        rows: ['email.received', 'call.ended', 'page.visited', 'recipe.result'],
+        title: 'A message comes in, or your agent acts',
+        line: 'An email, text, call or Slack message arrives, or your agent sends one, opens a page or runs code. Either one starts the loop.',
+        rows: ['message.received', 'email.received', 'email.sent', 'page.visited'],
       },
       {
         title: 'It’s saved in your event log',
         line: 'In order and dated, with its proof: the email as it arrived, the page as a screenshot. Nothing in it is changed or deleted.',
-        rows: ['09:04:12 email.received', '09:04:13 page.visited', '09:05:40 call.ended', '09:07:02 recipe.result'],
+        rows: ['09:04:12 message.received', '09:04:13 email.sent', '09:05:40 page.visited', '09:07:02 blueprint.result'],
       },
       {
-        title: 'It reaches you',
-        line: 'At your webhook, in your code, in your own agent, in a handler on our runtime, or in Zapier, Make and n8n.',
-        rows: ['Webhook', 'API', 'MCP', 'Handler', 'CLI', 'No code'],
+        title: 'It reaches your agent, or you',
+        line: 'On our runtime or yours: in a handler, at your webhook, through the API or MCP, or in Zapier, Make and n8n.',
+        rows: ['Handler', 'Webhook', 'API', 'MCP', 'CLI', 'No code'],
       },
     ],
+    loop: 'Whatever your agent does next is a new event, so the loop goes round again.',
+    live: 'Live call audio streams straight to your voice agent, with no stop in the event log. The log keeps the call’s start, end and transcript.',
     channels: channels.map(({ name, line, eg }) => ({ name, line, eg })),
     down: downLine,
     link: { label: 'See the code for each channel', to: '/developers#delivery' },
@@ -380,7 +391,7 @@ export const page: Page = {
     items: [
       {
         q: 'What is Obsession?',
-        a: 'Obsession gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes through one API and one bill. Use one piece, like email, or put them together as a persona. Run one of our recipes or your own job beside them, and every result lands in your event log.',
+        a: 'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
       },
       {
         q: 'Can I use just one piece, like email?',
@@ -392,15 +403,15 @@ export const page: Page = {
       },
       {
         q: 'What is the event log?',
-        a: 'One place per account where every event lands, from every piece, persona and recipe: in order, each dated, with its proof, such as the email as it arrived or a screenshot of the page. Nothing in it is changed or deleted. Subscribe once, and your endpoint gets all of it.',
+        a: 'One place per account where every event lands, from every piece, persona and blueprint: in order, each dated, with its proof, such as the email as it arrived or a screenshot of the page. Nothing in it is changed or deleted. Subscribe once, and your endpoint gets all of it.',
       },
       {
         q: 'How do events reach my app?',
-        a: 'Each event is saved in your event log, then sent to one signed webhook that you subscribe once, for every piece and recipe. If your server is down, each event is retried for 27 hours and can be replayed. You can also read the event log by cursor, or let your own agent subscribe over MCP. Or run a handler on our runtime, stream events to your laptop, or use Zapier, Make and n8n.',
+        a: 'Each event is saved in your event log, then sent to one signed webhook that you subscribe once, for every piece and blueprint. If your server is down, each event is retried for 27 hours and can be replayed. You can also read the event log by cursor, or let your own agent subscribe over MCP. Or run a handler on our runtime, stream events to your laptop, or use Zapier, Make and n8n.',
       },
       {
         q: 'Do I need to write code?',
-        a: 'No. Run one of our recipes, such as agentic mystery shopping: say where it goes, and its results land in your event log. Developers can also write their own job, which runs on our runtime beside the pieces.',
+        a: 'No. Run one of our blueprints, such as agentic mystery shopping: say where it goes, and its results land in your event log. Developers can also write their own job, which runs on our runtime beside the pieces.',
       },
       {
         q: 'Which messaging channels can an agent use?',
@@ -427,7 +438,8 @@ export const page: Page = {
 
   final: {
     heading: 'What will your agent need first?',
-    sub: 'Tell us which pieces, or which recipe, and we’ll set you up.',
-    capture: { ...access, source: 'home-final' },
+    sub: 'Tell us which pieces, or which blueprint, and we’ll set you up.',
+    /* James's line (21 Nov), on this closing button only; the hero's main button still says what it does. */
+    capture: { ...access, button: 'Kit up your agent', source: 'home-final' },
   },
 }

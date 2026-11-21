@@ -17,7 +17,7 @@ export type EventName =
   | 'message.received'
   | 'page.visited'
   | 'sandbox.finished'
-  | 'recipe.result'
+  | 'blueprint.result'
 
 export const eventLines: Record<EventName, string> = {
   'email.received': 'An email lands in one of your inboxes, with its thread and attachments.',
@@ -28,7 +28,7 @@ export const eventLines: Record<EventName, string> = {
   'message.received': 'A message arrives on iMessage, WhatsApp, Slack or Telegram.',
   'page.visited': 'A browser opens a page, kept with its screenshot.',
   'sandbox.finished': 'A sandbox finishes its task, with its output.',
-  'recipe.result': 'A recipe, ours or your own, brings back a result.',
+  'blueprint.result': 'A blueprint, ours or your own, brings back a result.',
 }
 
 /* 1 way events reach you: its name, 1 line, and `eg`, the line of code (or the trigger) it takes, in mono. */
@@ -38,7 +38,7 @@ export const channels: Channel[] = [
   {
     id: 'webhook',
     name: 'One signed webhook',
-    line: 'Subscribe once for every piece and recipe. Each event is signed, retried for 27 hours if your server is down, and can be replayed.',
+    line: 'Subscribe once for every piece and blueprint. Each event is signed, retried for 27 hours if your server is down, and can be replayed.',
     eg: 'await obsession.events.subscribe({ url: "https://your-app.example/hooks", events: ["*"] })',
   },
   {
@@ -69,7 +69,7 @@ export const channels: Channel[] = [
     id: 'nocode',
     name: 'Zapier, Make and n8n',
     line: 'Each event starts a Zap, a scenario or a workflow, with no code.',
-    eg: 'recipe.result → Slack, Sheets or your CRM',
+    eg: 'blueprint.result → Slack, Sheets or your CRM',
   },
 ]
 

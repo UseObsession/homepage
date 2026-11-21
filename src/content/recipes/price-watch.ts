@@ -25,7 +25,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/price-watch',
+    path: '/blueprints/price-watch',
     title: 'Price watch: competitor prices, member prices and codes',
     description:
       'Price watch signs in at each competitor as a persona and reads public and member prices, delivery and subscriber codes each morning, every change dated.',
@@ -34,8 +34,8 @@ export const recipe: Recipe = {
     ogImage: '/og/price-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Price watch', path: '/recipes/price-watch' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Price watch', path: '/blueprints/price-watch' },
     ],
   },
 
@@ -50,6 +50,9 @@ export const recipe: Recipe = {
       interest: 'prices',
     },
   },
+
+  unit: 'price check',
+  per: 'competitor',
 
   run: {
     tab: 'Black Friday week',

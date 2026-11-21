@@ -31,7 +31,7 @@ export const bandRoles: BandRole[] = [
     reader: 'sales',
     bandName: 'Prospect with proof',
     bandLine: 'Before you pitch a company, pull what its new customers get, and open with the email or page that shows the problem.',
-    page: '/recipes/prospect-intelligence',
+    page: '/blueprints/prospect-intelligence',
     readers: [
       { name: 'Sales teams', page: '/sales' },
       { name: 'Agencies', page: '/agencies' },
@@ -43,7 +43,7 @@ export const bandRoles: BandRole[] = [
     reader: 'agencies',
     bandName: 'Find your revenue leaks',
     bandLine: 'A welcome link that opens a closed site, a chat quoting the wrong rate, a reminder that never came. Know the day it starts, at your company or a client’s.',
-    page: '/recipes/website-audit',
+    page: '/blueprints/website-audit',
     readers: [
       { name: 'Agencies', page: '/agencies' },
       { name: 'Marketing teams', page: '/marketing' },
@@ -56,7 +56,7 @@ export const bandRoles: BandRole[] = [
     reader: 'marketing',
     bandName: 'Watch your competitors',
     bandLine: 'Every email, offer and price your rivals give a new customer, including the ones never on their websites.',
-    page: '/recipes/competitor-tracking',
+    page: '/blueprints/competitor-tracking',
     readers: [
       { name: 'Marketing teams', page: '/marketing' },
       { name: 'Sales teams', page: '/sales' },

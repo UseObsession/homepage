@@ -372,7 +372,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 competitors each, it takes 50 new addresses and 14 days of reading inboxes, and the record lives only in your sheet. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its [delivery monitoring](/recipes/delivery-monitoring) watches the first 14 days at each client and flags anything that never comes, and its [email and SMS tracking](/recipes/email-sms-tracking) keeps every email each competitor sends, dated as it arrived.',
+      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 competitors each, it takes 50 new addresses and 14 days of reading inboxes, and the record lives only in your sheet. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its [delivery monitoring](/blueprints/delivery-monitoring) watches the first 14 days at each client and flags anything that never comes, and its [email and SMS tracking](/blueprints/email-sms-tracking) keeps every email each competitor sends, dated as it arrived.',
     },
     {
       kind: 'cta',
@@ -493,7 +493,7 @@ export const post: BlogPost = {
           'Brands without an agency',
         ],
         [
-          'Obsession (ours): [Delivery monitoring](/recipes/delivery-monitoring), [Email and SMS tracking](/recipes/email-sms-tracking), [Competitor tracking](/recipes/competitor-tracking)',
+          'Obsession (ours): [Delivery monitoring](/blueprints/delivery-monitoring), [Email and SMS tracking](/blueprints/email-sms-tracking), [Competitor tracking](/blueprints/competitor-tracking)',
           'The first 14 days at each client, with anything that never comes flagged\nEvery competitor email, offer and code on 1 timeline, dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Sees what a new customer receives\nThe account’s own reports stay in layers 1 and 2',

@@ -301,7 +301,7 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'What every live ad’s landing page shows a customer each morning: whether it loads, the offer, the price and the stock, opened from the ad’s own link so no click is paid for. Teams start in early access.',
-      to: '/recipes/ad-landing-check',
+      to: '/blueprints/ad-landing-check',
       label: 'Request early access',
     },
 

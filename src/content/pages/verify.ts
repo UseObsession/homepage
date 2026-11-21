@@ -385,7 +385,7 @@ export const page: Page = {
   },
 
   recipes: {
-    heading: 'Start from the recipe that fits the agent.',
+    heading: 'Start from the blueprint that fits the agent.',
     ids: ['support-bot', 'voice-agent', 'outbound-agent', 'sales-agent', 'vendor-agent', 'resolution', 'disclosure', 'drift'],
   },
 

@@ -51,7 +51,7 @@ const sectionOf = (path: string): MenuId | null => {
   if (solutionPaths.has(path)) return 'solutions'
   /* The comparisons, alternatives and glossary terms sit under Compare and Glossary (content/reference.ts). */
   if (resourcePaths.has(path) || ['/blog/', '/compare/', '/alternatives', '/glossary/'].some((p) => path.startsWith(p))) return 'resources'
-  if (path === '/recipes' || path.startsWith('/recipes/')) return 'products'
+  if (path === '/blueprints' || path.startsWith('/blueprints/')) return 'products'
   if (path.startsWith('/use-cases/')) return 'solutions'
   return null
 }

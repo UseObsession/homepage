@@ -358,7 +358,7 @@ export const post: BlogPost = {
           'A daily count across many prompts and products',
         ],
         [
-          'Obsession (ours): [Listings and AI answers](/recipes/listings-ai-answers), [store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
+          'Obsession (ours): [Listings and AI answers](/blueprints/listings-ai-answers), [store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
           'ChatGPT asked every week, each answer dated, then what your store sends a new customer',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'OpenAI decides what ChatGPT shows',

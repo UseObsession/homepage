@@ -25,7 +25,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/ai-disclosure-check',
+    path: '/blueprints/ai-disclosure-check',
     title: 'AI disclosure check: does your AI agent say it’s an AI?',
     description:
       'A persona asks your AI agents each morning on chat, phone, email and text, keeping the first line, the answer to “Am I talking to a person?” and the wait.',
@@ -34,8 +34,8 @@ export const recipe: Recipe = {
     ogImage: '/og/ai-disclosure-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'AI disclosure check', path: '/recipes/ai-disclosure-check' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'AI disclosure check', path: '/blueprints/ai-disclosure-check' },
     ],
   },
 
@@ -50,6 +50,9 @@ export const recipe: Recipe = {
       interest: 'disclosure',
     },
   },
+
+  unit: 'disclosure check',
+  per: 'AI agent',
 
   run: {
     tab: '4 channels, every morning',

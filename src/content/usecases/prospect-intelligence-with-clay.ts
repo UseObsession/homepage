@@ -66,18 +66,18 @@ export const study: UseCaseStudy = {
     steps: [
       {
         title: 'Set it up',
-        line: 'Pick the recipe, choose the facts and point it at a Clay view.',
+        line: 'Pick the blueprint, choose the facts and point it at a Clay view.',
         screen: 'claycols',
         chips: ['No text within 24 hours of opting in', 'No welcome email within 1 hour', 'No support reply within 24 hours', 'Every miss rechecked from a fresh number'],
         steps: [
           {
             title: 'Create a watch',
-            line: 'A watch is 1 list of companies, the facts to collect and how long to keep each account open. Start from a recipe, or describe what you want to know.',
+            line: 'A watch is 1 list of companies, the facts to collect and how long to keep each account open. Start from a blueprint, or describe what you want to know.',
             example: 'The agency starts a new watch on SMS app prospects.',
           },
           {
-            title: 'Pick a recipe',
-            line: 'A recipe sets up the facts for 1 job. Launch it as it is, change anything, or describe what you want to know in your own words.',
+            title: 'Pick a blueprint',
+            line: 'A blueprint sets up the facts for 1 job. Launch it as it is, change anything, or describe what you want to know in your own words.',
             example: 'The agency picks Prospect intelligence: a fact about each company you’re about to write to. Competitor tracking is for watching competitors over time.',
           },
           {
@@ -93,7 +93,7 @@ export const study: UseCaseStudy = {
           {
             title: 'Check and start',
             line: '1 summary of what will happen. A brand already covered returns its facts at once. The rest fill in as their emails and texts arrive, with each verdict at 48 hours.',
-            example: 'The agency saves it as a recipe, “SMS app client”, ready to rerun for the next SMS client it signs.',
+            example: 'The agency saves it as a blueprint, “SMS app client”, ready to rerun for the next SMS client it signs.',
           },
         ],
       },
@@ -233,10 +233,10 @@ export const study: UseCaseStudy = {
 
   more: {
     recipe: {
-      label: 'The recipe',
+      label: 'The blueprint',
       title: 'Prospect intelligence',
       line: 'Every check it can run, and everything you can change.',
-      cta: { label: 'Learn more', to: '/recipes/prospect-intelligence' },
+      cta: { label: 'Learn more', to: '/blueprints/prospect-intelligence' },
     },
     sample: {
       label: '1 real run',

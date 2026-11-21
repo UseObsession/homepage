@@ -412,7 +412,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A test by hand covers 1 person, 1 country and 1 day. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. For agentic commerce, its [Listings and AI answers](/recipes/listings-ai-answers) recipe asks the AI assistants your buyers use every Monday, and within a day of any price change, launch or rename, then asks again until each wrong answer changes. Its [Sales agent check](/recipes/sales-agent-check) asks a store’s own AI sales agent about prices, stock and delivery every day and follows each answer to checkout.',
+      text: 'A test by hand covers 1 person, 1 country and 1 day. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. For agentic commerce, its [Listings and AI answers](/blueprints/listings-ai-answers) blueprint asks the AI assistants your buyers use every Monday, and within a day of any price change, launch or rename, then asks again until each wrong answer changes. Its [Sales agent check](/blueprints/sales-agent-check) asks a store’s own AI sales agent about prices, stock and delivery every day and follows each answer to checkout.',
     },
     {
       kind: 'cta',
@@ -475,7 +475,7 @@ export const post: BlogPost = {
           'Stores without the time in house',
         ],
         [
-          'Obsession (ours): [Listings and AI answers](/recipes/listings-ai-answers), [Sales agent check](/recipes/sales-agent-check), [Mystery shopper](/recipes/mystery-shopper)',
+          'Obsession (ours): [Listings and AI answers](/blueprints/listings-ai-answers), [Sales agent check](/blueprints/sales-agent-check), [Mystery shopper](/blueprints/mystery-shopper)',
           'Listings and AI answers: assistants asked every Monday\nSales agent check: your agent asked daily, each answer followed to checkout\nMystery shopper: every email, text and reply timed',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Doesn’t change your settings or feeds\nNot needed while AI sessions are few',

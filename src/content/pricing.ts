@@ -1,12 +1,13 @@
 import { pieceOrder, piecePaths } from './piecePaths'
-import { plans, prices, type PieceId, type PlanId, type PriceKey } from './prices'
+import { blueprintPlans, freeNumber, personaCostLine as personaLine, plans, prices, type PieceId, type PlanId, type PriceKey } from './prices'
 import type { Cta, Faq, Meta } from './types'
 
 /* The words of /pricing (pages/Pricing.tsx) and /pricing/rates (pages/PricingRates.tsx), outside the Page glob
    (James, 21 Nov 2026: plans first, each piece's rate only as extra usage, the long rate list on its own page).
 
    /pricing: the hero, the 4 plans as cards read from `plans` in prices.ts (each card's monthly price and included
-   amounts come from there; who it's for, its gated features and its button are written here), the line that sends
+   amounts come from there; who it's for, its gated features and its button are written here; Startup is the recommended
+   plan and Enterprise leads with the reseller programme, James 21 Nov), the line that sends
    extra usage to the rates page, the calculator (a card per piece with an on/off switch, steppers and sliders; the
    summary picks the plan whose price plus extra usage costs least), the questions, the closing call.
    /pricing/rates: every rate grouped by piece, each group linking to its piece's page, then its own questions.
@@ -17,7 +18,7 @@ import type { Cta, Faq, Meta } from './types'
 const EVENT_LOG = {
   name: 'Event log',
   lower: 'event log',
-  line: 'Every event from every piece, persona and recipe, dated, with the message or screenshot behind it.',
+  line: 'Every event from every piece, persona and blueprint, dated, with the message or screenshot behind it.',
   events: 'events in your event log',
   event: 'event in your event log',
 }
@@ -54,13 +55,24 @@ const amountOf = (key: PriceKey, n: number) => `${quantity(n)} ${n === 1 ? count
 const keys = Object.keys(prices) as PriceKey[]
 const planOf = (id: PlanId) => plans.find((pl) => pl.id === id)
 const named = (id: PlanId) => planOf(id)?.name ?? id
+/* Free's number: what it receives a month, "50 texts and 30 call minutes" (prices.ts freeNumber). */
+const freeIn = `${amountOf('sms', freeNumber.texts)} and ${amountOf('voice', freeNumber.minutes)}`
+/* Words a plan adds after 1 of its lines (James, 21 Nov): Free's number only receives, up to freeNumber a month, and
+   each paid plan's US texting registration covers its own kind of campaign, its filing included. */
+const lineMore: Partial<Record<PlanId, Partial<Record<PriceKey, string>>>> = {
+  free: { number: `that receives up to ${freeIn} a month` },
+  developer: { register: 'for 1 low volume campaign, filing included' },
+  startup: { register: 'for 1 standard campaign, filing included' },
+}
 /* A plan's included amounts, in prices.ts order; a yes or no price by its name. */
 const includedOf = (id: PlanId) => {
   const included = planOf(id)?.included ?? {}
   return keys.flatMap((k) => {
     const n = included[k]
     if (!n) return []
-    return [counts[k] ? amountOf(k, n) : prices[k].name]
+    const line = counts[k] ? amountOf(k, n) : prices[k].name
+    const more = lineMore[id]?.[k]
+    return [more ? `${line} ${more}` : line]
   })
 }
 const priceWords = (id: PlanId) => {
@@ -111,10 +123,11 @@ const planWords: Record<PlanId, PlanWords> = {
     cta: { label: 'Get early access', to: JOIN },
     featured: true,
   },
+  /* The reseller programme first, large volume after it (James, 21 Nov). */
   enterprise: {
-    for: 'For committed volume, and for products that give agents to their own users.',
-    includes: ['Every piece, at the volume you commit to', 'Lower rates, set by contract'],
-    features: ['An account for each of your users, under your brand', `Events kept longer in your ${EVENT_LOG.lower}`, 'SSO and a support channel of your own'],
+    for: 'For agencies and software companies that resell Obsession to their own clients.',
+    includes: ['White label, with your brand in place of ours', 'An account for each client', 'Your brand on every report', 'Wholesale rates on every piece'],
+    features: ['Contract pricing for large volume', `Events kept longer in your ${EVENT_LOG.lower}`, 'SSO and a support channel of your own'],
     cta: { label: 'Talk to us', to: JOIN },
   },
 }
@@ -167,6 +180,8 @@ const calcPieces: CalcPiece[] = [
       { key: 'sms', label: 'Texts a month', start: 1000, step: 100, adds: 'register' },
       { key: 'voice', label: 'Call minutes a month', start: 200, step: 100 },
     ],
+    /* Free includes no texts or minutes it can send, so any here takes the summary to a paid plan. */
+    note: `${named('free')}’s number receives up to ${freeIn} a month. It sends no texts and makes no calls, so those need a paid plan.`,
   },
   {
     id: 'messaging',
@@ -254,12 +269,17 @@ export type PricingPage = {
 
 const openLine = `Obsession sells email, phone, messaging, a cloud browser and a code sandbox for AI agents on ${plans.length} plans, with one bill.`
 
+/* A blueprint's own plans past its free run (prices.ts blueprintPlans): "$19, $49 or $99" and "monthly, weekly or daily". */
+const orList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} or ${items[items.length - 1]}`)
+const blueprintPaid = blueprintPlans.filter((bp) => bp.monthly > 0)
+const blueprintCost = `${orList(blueprintPaid.map((bp) => dollars(bp.monthly)))} a month to run it ${orList(blueprintPaid.map((bp) => bp.name.toLowerCase()))}`
+
 export const pricingPage: PricingPage = {
   meta: {
     path: '/pricing',
     title: 'Obsession pricing: plans for agent email, phone and browser',
     description: `${andList(plans.map((pl) => pl.name))} plans for AI agent email, phone numbers, messaging, a cloud browser and a code sandbox, all on one bill.`,
-    answer: `${openLine} ${named('free')} costs nothing and includes ${andList(includedOf('free'))}. ${named('developer')} is ${priceWords('developer')}, ${named('startup')} is ${priceWords('startup')} and ${named('enterprise')} is ${priceWords('enterprise')}. Use past a plan is billed at each piece’s rate, such as ${email.amount} ${email.unit}.`,
+    answer: `${openLine} ${named('free')} costs nothing and includes ${andList(includedOf('free'))}. ${named('developer')} is ${priceWords('developer')}, ${named('startup')} is ${priceWords('startup')} and ${named('enterprise')} is ${priceWords('enterprise')}, with wholesale rates for resellers. Use past a plan is billed at each piece’s rate, such as ${email.amount} ${email.unit}.`,
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Pricing', path: '/pricing' },
@@ -297,7 +317,7 @@ export const pricingPage: PricingPage = {
       split: (included, extra) => `${included} included, ${extra} extra`,
       extra: (n) => `${n} extra`,
       free: 'Included',
-      inPlan: 'Part of the plan',
+      inPlan: 'Filing and monthly fee in the plan',
       rows: 'Your month, line by line',
       rest: 'WhatsApp messages and model tokens add to this at their own rates.',
       cta: { label: 'Get early access', to: JOIN },
@@ -320,28 +340,38 @@ export const pricingPage: PricingPage = {
       },
       {
         q: `What happens when ${named('free')} runs out?`,
-        a: `That piece pauses until the next month, or until you pick a paid plan. ${named('free')} needs no credit card, so it never bills you.`,
+        a: `That piece pauses until the next month, or until you pick a paid plan. On ${named('free')}’s number, messages past ${freeIn} a month still arrive and are kept, but your agent isn’t woken until you upgrade. ${named('free')} needs no credit card, so it never bills you.`,
       },
       {
         q: 'Can I change plans?',
         a: 'Yes, at any time from your account. The new plan’s amounts apply from the day you change.',
       },
       {
-        q: 'What does a recipe cost?',
-        a: 'A recipe is a job that runs on Obsession, one of ours or one you write. It’s billed on the pieces it uses, under your plan. A mystery shop uses a browser, an inbox and a phone number, so it counts browser hours, emails and texts.',
-        link: { label: 'See the mystery shopper recipe', to: '/recipes/mystery-shopper' },
+        q: 'What does a blueprint cost?',
+        a: `A blueprint is a job that runs on Obsession, one of ours or one you write. Each blueprint has its own plans, priced for each site, store or agent it checks. The first run is free. After that, it’s ${blueprintCost}. Developers who run a blueprint from their own code through the API pay for the pieces it uses, under their plan.`,
+        link: { label: 'See the mystery shopper blueprint', to: '/blueprints/mystery-shopper' },
       },
       {
-        q: 'Does a persona cost anything while it waits?',
-        a: `No. A persona is ${persona.amount.toLowerCase()} ${persona.unit}. ${persona.note} It answers a new message in about 50 ms without starting a machine, so days of waiting for a reply add nothing.`,
+        q: 'What does a persona cost?',
+        a: `${personaLine} That’s each piece at its own rate, and a plan’s included amounts cover them first. The persona itself is ${persona.amount.toLowerCase()} ${persona.unit}. ${persona.note} It answers a new message in about 50 ms without starting a machine, so days of waiting for a reply add nothing.`,
+      },
+      {
+        q: 'Can my agent send texts on every plan?',
+        a: `No. ${named('free')}’s number receives texts and calls, such as login codes, up to ${freeIn} a month. It sends no texts and makes no calls. Past those amounts, messages still arrive and are kept, but your agent isn’t woken until you upgrade. To send texts or call out, pick ${named('developer')} or ${named('startup')}. Texting from a US number needs the carriers’ registration, and both plans include your first campaign’s filing and monthly fee. ${named('developer')} covers 1 low volume campaign, the carriers’ tier for small senders. ${named('startup')} covers 1 standard campaign, which can send more. Each extra campaign is ${register.amount} ${register.unit}.`,
+        link: { label: 'See the phone rates', to: `${RATES}#phone` },
       },
       {
         q: `What’s in ${named('enterprise')}?`,
-        a: `Lower rates at committed volume, an account for each of your users under your brand, events kept longer in your ${EVENT_LOG.lower}, SSO and a support channel of your own. Talk to us and we’ll price it on your volume.`,
+        a: `${named('enterprise')} is for companies that resell Obsession to their own clients. Your clients see your brand and never ours, on every dashboard and report. Each client gets its own account, and you pay wholesale rates on every piece. ${named('enterprise')} also covers large volume at contract prices, events kept longer in your ${EVENT_LOG.lower}, SSO and a support channel of your own. Talk to us and we’ll price it on your volume.`,
       },
       {
         q: 'Can I cap what I spend?',
         a: 'Yes. Set a monthly spend cap on your account. When the month’s bill reaches it, billable work stops until you raise the cap or the next month starts.',
+      },
+      {
+        q: 'Where is my data kept, and who handles it?',
+        a: 'Results are stored encrypted in the EU, in a Postgres database in Ireland and, for files such as screenshots, in Cloudflare R2. Every connection to them is encrypted too, and only the 2 founders can reach them. The security page names every supplier that handles your data, how long we keep it and how to send us a security questionnaire.',
+        link: { label: 'Read about security', to: '/security' },
       },
     ],
   },
@@ -416,7 +446,7 @@ export const ratesPage: RatesPage = {
     items: [
       {
         q: 'Do the rates change with my plan?',
-        a: `No. ${named('developer')} and ${named('startup')} bill the same rates past what they include. ${named('enterprise')} sets lower rates by contract.`,
+        a: `No. ${named('developer')} and ${named('startup')} bill the same rates past what they include. ${named('enterprise')} gets wholesale rates, set by contract.`,
       },
       {
         q: 'How is WhatsApp priced?',
@@ -424,7 +454,7 @@ export const ratesPage: RatesPage = {
       },
       {
         q: 'Why does texting in the US cost a monthly fee?',
-        a: `${register.note} It’s ${register.amount} ${register.unit}.`,
+        a: `US carriers ask every business that texts to register its use, and each registration, called a campaign, carries a monthly fee. ${named('developer')} and ${named('startup')} include your first campaign’s filing and monthly fee. ${named('developer')} covers 1 low volume campaign, the carriers’ tier for small senders. ${named('startup')} covers 1 standard campaign, which can send more. Each extra campaign is ${register.amount} ${register.unit}, and we file every one for you. ${named('free')}’s number sends no texts, so it needs no registration.`,
       },
       {
         q: 'What does a phone number outside the US or UK cost?',

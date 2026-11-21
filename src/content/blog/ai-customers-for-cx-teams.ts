@@ -266,37 +266,37 @@ export const post: BlogPost = {
       cols: ['Job', 'The check', 'A pass', 'That week'],
       rows: [
         [
-          'Daily answers: [Support bot check](/recipes/support-bot-check)',
+          'Daily answers: [Support bot check](/blueprints/support-bot-check)',
           'Hardest questions asked on chat, email and portal',
           'Each answer matches that morning’s policy page',
           'Wrong answers go to the article’s owner',
         ],
         [
-          'After every update: [Drift watch](/recipes/drift-watch)',
+          'After every update: [Drift watch](/blueprints/drift-watch)',
           'The same cases within the hour of a change',
           'No case that passed at 07:00 fails',
           'Before and after sent to the vendor',
         ],
         [
-          'Phone: [Voice agent check](/recipes/voice-agent-check)',
+          'Phone: [Voice agent check](/blueprints/voice-agent-check)',
           'Calls that book a slot, ask a price and ask for a person',
           'Right price, real slot, a person within target',
           'Price list or call script corrected',
         ],
         [
-          'AI notice: [AI disclosure check](/recipes/ai-disclosure-check)',
+          'AI notice: [AI disclosure check](/blueprints/ai-disclosure-check)',
           '“Am I talking to a person?” on every channel',
           'An AI notice first, and a true answer',
           'Missing notices go to compliance',
         ],
         [
-          'Billed outcomes: [Resolution check](/recipes/resolution-check)',
+          'Billed outcomes: [Resolution check](/blueprints/resolution-check)',
           'Billed resolutions against payments and the help desk',
           'Every promised refund or change happened',
           'Outcomes that weren’t real disputed with proof',
         ],
         [
-          'Before signing: [Vendor agent check](/recipes/vendor-agent-check)',
+          'Before signing: [Vendor agent check](/blueprints/vendor-agent-check)',
           'Real cases on each shortlisted vendor’s agent',
           'Answers and handoffs within policy',
           'A side by side report for procurement',
@@ -404,7 +404,7 @@ export const post: BlogPost = {
           'Phone and in person service',
         ],
         [
-          'Obsession (ours): [Support bot check](/recipes/support-bot-check), [Voice agent check](/recipes/voice-agent-check), [Drift watch](/recipes/drift-watch), [AI disclosure check](/recipes/ai-disclosure-check), [Resolution check](/recipes/resolution-check), [Vendor agent check](/recipes/vendor-agent-check)',
+          'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check), [Drift watch](/blueprints/drift-watch), [AI disclosure check](/blueprints/ai-disclosure-check), [Resolution check](/blueprints/resolution-check), [Vendor agent check](/blueprints/vendor-agent-check)',
           'Asks on live channels daily and after updates, and keeps each answer as a dated transcript',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'The reason behind an answer sits in the agent’s own logs',

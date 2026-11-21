@@ -27,7 +27,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/sales-agent-check',
+    path: '/blueprints/sales-agent-check',
     title: 'Sales agent check: the prices AI sales agents quote shoppers',
     description:
       'A shopper persona asks AI sales agents on chat and WhatsApp for prices, stock and delivery, and follows each answer to checkout: yours and competitors’.',
@@ -36,8 +36,8 @@ export const recipe: Recipe = {
     ogImage: '/og/sales-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Sales agent check', path: '/recipes/sales-agent-check' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Sales agent check', path: '/blueprints/sales-agent-check' },
     ],
   },
 
@@ -52,6 +52,9 @@ export const recipe: Recipe = {
       interest: 'sales-agent',
     },
   },
+
+  unit: 'test shop',
+  per: 'sales agent',
 
   run: {
     tab: 'Your sales agent, daily',

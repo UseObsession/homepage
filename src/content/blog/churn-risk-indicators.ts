@@ -338,7 +338,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For customer success, it collects the [churn signals](/recipes/account-watch) outside your product for every account on your book. That covers each email and text an account sends its customers, its sign-up and basket walked daily, and the sending platform behind each email with the week it changes. Each fact lands dated on the account’s record in your CRM, so you can see what it does to your renewals, retention and net revenue retention.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For customer success, it collects the [churn signals](/blueprints/account-watch) outside your product for every account on your book. That covers each email and text an account sends its customers, its sign-up and basket walked daily, and the sending platform behind each email with the week it changes. Each fact lands dated on the account’s record in your CRM, so you can see what it does to your renewals, retention and net revenue retention.',
     },
     {
       kind: 'p',
@@ -396,7 +396,7 @@ export const post: BlogPost = {
           'Champion moves and hiring',
         ],
         [
-          'Obsession (ours): [Account watch](/recipes/account-watch), [Email and SMS tracking](/recipes/email-sms-tracking)',
+          'Obsession (ours): [Account watch](/blueprints/account-watch), [Email and SMS tracking](/blueprints/email-sms-tracking)',
           'Keeps what each account sends its own customers: emails, texts, sign-up, basket and the platform behind each email',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'An account not yet covered starts its history the day it is added\nEvery check stops short of paying',
@@ -461,7 +461,7 @@ export const post: BlogPost = {
         {
           q: 'Can the outside indicator be checked automatically?',
           a: 'Yes. Obsession’s Account watch keeps a customer account open at each company you sell to and lands each change, dated with its email or screenshot, on the account’s record in your CRM.',
-          link: { label: 'Account watch', to: '/recipes/account-watch' },
+          link: { label: 'Account watch', to: '/blueprints/account-watch' },
         },
       ],
     },

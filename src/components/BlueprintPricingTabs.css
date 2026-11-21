@@ -1,0 +1,48 @@
+/* /agencies' pricing tabs (components/BlueprintPricingTabs): the design system's pill tabs (navigation.css .ob-ptab) on
+   the pill rail's track, in both themes. Every class starts s-bpt. Under 900px the tabs wrap in a row above the panel,
+   so nothing scrolls sideways at 375px; from 900px they stand in a column beside it, each as wide as the column, its
+   label on the left. The panel's table lays itself out by its own width (BlueprintPricing.css). */
+
+.s-bpt {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-24);
+  align-items: start;
+}
+
+.s-bpt__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ob-space-4);
+  min-width: 0;
+  padding: var(--ob-space-4);
+  border-radius: var(--ob-radius-lg);
+  background-color: var(--ob-track-bg);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+}
+/* A label wider than the row wraps inside its pill rather than pushing the page sideways. */
+.s-bpt__tab.ob-ptab {
+  max-width: 100%;
+  height: auto;
+  min-height: var(--ob-control-md);
+  padding-block: var(--ob-space-8);
+  white-space: normal;
+  text-align: left;
+}
+
+.s-bpt__panel { min-width: 0; }
+.s-bpt__panel[hidden] { display: none; }
+
+@media (min-width: 900px) {
+  .s-bpt {
+    grid-template-columns: minmax(200px, 1fr) minmax(0, 3fr);
+    gap: var(--ob-space-40);
+  }
+  .s-bpt__list {
+    position: sticky;
+    top: calc(var(--ob-nav-h, 64px) + var(--ob-space-24));
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .s-bpt__tab.ob-ptab { justify-content: flex-start; width: 100%; }
+}

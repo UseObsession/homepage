@@ -12,7 +12,7 @@ export const footer = {
      engines read it (llms.txt, the Organization's JSON-LD, each page's meta answer) and in Home's "What is Obsession?",
      so a page never says the whole definition twice. */
   /* Since 5 Nov evening the index (James). Until then: Send an AI customer to any company. Keep the receipts. */
-  tagline: 'Inboxes, phone numbers, browsers and sandboxes for AI agents.',
+  tagline: 'The toolkit for AI agents. One API, one bill.',
   columns: [
     /* Products is the bar's Products menu (content/nav.ts): the 6 pieces, Recipes, API and MCP, Pricing (21 Nov). */
     { label: products.label, links: names(products.items) },
@@ -27,6 +27,7 @@ export const footer = {
         { label: 'LinkedIn', to: 'https://www.linkedin.com/company/useobsession/' },
         { label: 'YouTube', to: 'https://www.youtube.com/@useobsession' },
         { label: 'Privacy', to: '/privacy' },
+        { label: 'Security', to: '/security' },
         { label: 'Contact', to: `mailto:${catalog.contact}` },
       ],
     },

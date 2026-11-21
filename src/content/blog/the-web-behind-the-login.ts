@@ -364,7 +364,7 @@ export const post: BlogPost = {
           'A one-off look at a few companies',
         ],
         [
-          'Obsession (ours): lookup, facts, evidence, index and notify; recipes (ready-made collections) for competitor tracking, price watch and trial teardown',
+          'Obsession (ours): lookup, facts, evidence, index and notify; blueprints (ready-made collections) for competitor tracking, price watch and trial teardown',
           'What any company shows only to customers, from sign-up to cancel, each fact dated with its screenshot',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Every step short of paying',

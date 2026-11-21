@@ -339,7 +339,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For RevOps, a domain goes in and the behaviour fields come back on the same account record, each value dated with its email or screenshot. They arrive through the [API](/developers), MCP, a webhook (an address in your app that receives each fact as it lands) or a table such as Clay. Obsession shows the platform behind each email, with its sender checked, and the week that changes. A router can then act the week an account’s emails start coming from a new platform. [Account watch](/recipes/account-watch) puts each change on the account’s record in the CRM every morning. [Prospect intelligence](/recipes/prospect-intelligence) does the same for a list of target accounts, and [prospect intelligence with Clay](/use-cases/prospect-intelligence-with-clay) shows the facts landing as columns.',
+      text: 'For RevOps, a domain goes in and the behaviour fields come back on the same account record, each value dated with its email or screenshot. They arrive through the [API](/developers), MCP, a webhook (an address in your app that receives each fact as it lands) or a table such as Clay. Obsession shows the platform behind each email, with its sender checked, and the week that changes. A router can then act the week an account’s emails start coming from a new platform. [Account watch](/blueprints/account-watch) puts each change on the account’s record in the CRM every morning. [Prospect intelligence](/blueprints/prospect-intelligence) does the same for a list of target accounts, and [prospect intelligence with Clay](/use-cases/prospect-intelligence-with-clay) shows the facts landing as columns.',
     },
     {
       kind: 'p',
@@ -393,7 +393,7 @@ export const post: BlogPost = {
           'Company research and monitors at agent speed',
         ],
         [
-          'Obsession (ours): [Account watch](/recipes/account-watch), [Prospect intelligence](/recipes/prospect-intelligence); lookup, facts, notify',
+          'Obsession (ours): [Account watch](/blueprints/account-watch), [Prospect intelligence](/blueprints/prospect-intelligence); lookup, facts, notify',
           'What each account shows only to its customers, dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Every step short of paying, at any company you name',

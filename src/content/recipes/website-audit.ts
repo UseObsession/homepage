@@ -26,7 +26,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/website-audit',
+    path: '/blueprints/website-audit',
     title: 'QA on your own flows: a new user signs up after each release',
     description:
       'After every release a persona signs up to your product as a new user, enters each code, opens every email and link and goes to checkout, all dated.',
@@ -35,8 +35,8 @@ export const recipe: Recipe = {
     ogImage: '/og/website-audit.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'QA on your own flows', path: '/recipes/website-audit' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'QA on your own flows', path: '/blueprints/website-audit' },
     ],
   },
 
@@ -51,6 +51,9 @@ export const recipe: Recipe = {
       interest: 'audit',
     },
   },
+
+  unit: 'flow test',
+  per: 'product',
 
   run: {
     tab: 'Release v2.15',

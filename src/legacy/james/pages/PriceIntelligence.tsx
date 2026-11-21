@@ -678,8 +678,8 @@ export function PriceIntelligence() {
       <section className="section">
         <div className="wrap uc-more">
           <Reveal className="card">
-            <Link to="/recipes/price-watch">
-              <span className="kicker">The recipe</span>
+            <Link to="/blueprints/price-watch">
+              <span className="kicker">The blueprint</span>
               <span className="h3">Price watch</span>
               <span className="muted">Prices, offers and terms as a customer sees them, on the schedule you set.</span>
               <span className="uc-more-go">Learn more →</span>

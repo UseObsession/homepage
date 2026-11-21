@@ -26,7 +26,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/prospect-intelligence',
+    path: '/blueprints/prospect-intelligence',
     title: 'Prospect intelligence: open every pitch with a dated finding',
     description:
       'A persona signs up at each company on your list and keeps the emails, texts and chat answers it gets, as dated columns in Clay or Sheets, to pitch with.',
@@ -35,8 +35,8 @@ export const recipe: Recipe = {
     ogImage: '/og/prospect-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Prospect intelligence', path: '/recipes/prospect-intelligence' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Prospect intelligence', path: '/blueprints/prospect-intelligence' },
     ],
   },
 
@@ -51,6 +51,9 @@ export const recipe: Recipe = {
       interest: 'prospect',
     },
   },
+
+  unit: 'prospect check',
+  per: 'prospect',
 
   run: {
     tab: '142 brands, from Clay',

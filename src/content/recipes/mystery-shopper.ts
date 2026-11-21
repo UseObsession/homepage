@@ -7,7 +7,8 @@ import type { Recipe } from '../types'
    back every event to your event log. It carries the 1 real run, Brand G (sample.ts), stated exactly: 4 journeys from the UK, a £40 Body
    Care Gift Set left at 02:57 and a £21 deodorant left at checkout at 03:11 on Tue 22 Sep 2026, 48 hours watched, 0
    reminders, browse 3 messages, welcome 2 (too few to call), 15 screenshots and 5 messages kept. No signature claimed.
-   The comparison table is an example. */
+   The comparison table is an example. Its buyer (21 Nov 2026, James): CRO and retention agencies, and ecommerce
+   marketers. Its pricing table counts mystery shops, per store (`unit`, `per`). */
 
 export const recipe: Recipe = {
   id: 'mystery',
@@ -26,7 +27,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/mystery-shopper',
+    path: '/blueprints/mystery-shopper',
     title: 'Agentic mystery shopping: every email after a basket is left',
     description:
       'Personas you define sign up, browse, fill a basket and leave at checkout, then wait 48 hours and bring back every email and text your store sent.',
@@ -35,8 +36,8 @@ export const recipe: Recipe = {
     ogImage: '/og/mystery-shopper.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Agentic mystery shopping', path: '/recipes/mystery-shopper' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Agentic mystery shopping', path: '/blueprints/mystery-shopper' },
     ],
   },
 
@@ -51,6 +52,10 @@ export const recipe: Recipe = {
       interest: 'mystery',
     },
   },
+
+  buyer: 'For CRO and retention agencies, and ecommerce marketers.',
+  unit: 'mystery shop',
+  per: 'store',
 
   run: {
     tab: 'Real run, September 2026',
@@ -148,7 +153,7 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'agencies', line: 'Shop every client’s store with their OK, and show them the reminder that never came.' },
-    { audience: 'marketing', line: 'Your welcome, basket and checkout emails as a new shopper gets them, beside your rivals’.' },
+    { audience: 'marketing', line: 'Your welcome, basket and checkout emails as a new shopper gets them, beside your competitors’.' },
     { audience: 'founders', line: 'See what your store sends a new shopper, and what it never sends.' },
     { audience: 'sales', line: 'Shop an account’s store with their OK, and bring every dated event from your event log to your next review.' },
     { audience: 'developers', line: 'Spawn mystery shoppers from your code, and read every email and text as it lands.' },

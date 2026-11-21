@@ -1,5 +1,5 @@
 import { piecePaths } from '../piecePaths'
-import { prices } from '../prices'
+import { personaCostLine, prices } from '../prices'
 import type { PiecePage } from './types'
 
 /* Personas (/personas), 21 Nov 2026: the bundle, never the headline of the site. A persona puts the other pieces under one
@@ -115,7 +115,7 @@ export const personas: PiecePage = {
       },
       {
         q: 'What lands in the event log?',
-        a: `Every page the persona visited and every email, text and call it sent or got, each dated, with screenshots of the pages. Your event log holds the events from every other piece and recipe too, in order, and nothing in it is changed or deleted. Read them with obsession.events.list(), or subscribe once with obsession.events.subscribe() and get each one at your webhook. The event log costs ${prices.log.amount} ${prices.log.unit}. ${prices.log.note}`,
+        a: `Every page the persona visited and every email, text and call it sent or got, each dated, with screenshots of the pages. Your event log holds the events from every other piece and blueprint too, in order, and nothing in it is changed or deleted. Read them with obsession.events.list(), or subscribe once with obsession.events.subscribe() and get each one at your webhook. The event log costs ${prices.log.amount} ${prices.log.unit}. ${prices.log.note}`,
       },
       {
         q: 'Do I need a persona to use the other pieces?',
@@ -123,7 +123,7 @@ export const personas: PiecePage = {
       },
       {
         q: 'What does a persona cost?',
-        a: `${prices.persona.name}: ${prices.persona.amount} ${prices.persona.unit}. ${prices.persona.note} ${prices.tokens.name}: ${prices.tokens.amount} ${prices.tokens.unit}.`,
+        a: `${personaCostLine} ${prices.persona.name}: ${prices.persona.amount} ${prices.persona.unit}. ${prices.persona.note} ${prices.tokens.name}: ${prices.tokens.amount} ${prices.tokens.unit}.`,
       },
     ],
   },

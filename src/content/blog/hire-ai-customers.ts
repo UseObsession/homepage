@@ -222,7 +222,7 @@ export const post: BlogPost = {
           'Scored journeys at services with branches',
         ],
         [
-          'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking), [Prospect intelligence](/recipes/prospect-intelligence)',
+          'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking), [Prospect intelligence](/blueprints/prospect-intelligence)',
           'What any company shows only to customers, for months: every email, offer and price, dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',

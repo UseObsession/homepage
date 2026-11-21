@@ -3,6 +3,7 @@ import { LinkGroups } from '../components/sections/LinkGroups'
 import { connectionsFor } from '../lib/connections'
 import { Link } from 'react-router-dom'
 import { AppScreen } from '../components/AppScreen'
+import { BlueprintPricing } from '../components/BlueprintPricing'
 import { CaptureForm } from '../components/CaptureForm'
 import { Crumbs } from '../components/Crumbs'
 import { Mark } from '../components/Logo'
@@ -13,17 +14,18 @@ import { RecipeKit } from '../components/sections/RecipeKit'
 import { DeliveryLists } from '../components/piece/PieceDelivery'
 import { drawnFor, type Workspace } from '../components/workspace'
 import { nav } from '../content/nav'
-import { isRealRun, recipePage as ui } from '../content/recipe-page'
+import { blueprintPricing, isRealRun, recipePage as ui } from '../content/recipe-page'
 import type { AudienceId, Recipe } from '../content/types'
 import '../components/sections/Hero.css'
 import './RecipePage.css'
 
 /* A recipe's own page (/recipes/SLUG), James's structure on the design system, every word from the recipe's content
    file (src/content/recipes) and the shared claims in content/recipe-page.ts. In order:
-   the centred hero with the recipe's screen and capture > what choosing it sets up, landing 1 by 1 > the run in the
-   console > the steps > what it checks > what you get > how each result reaches you, as a recipe.result event through
-   the same channels as every piece (#delivery) > what you can change > who it's for > the optional table > questions >
-   the final call. Motion lives in the product only: the screen plays its story, the kit lands, the run
+   the centred hero with the recipe's screen and capture (on a recipe sold to 1 buyer, that buyer under the headline),
+   and a link to its pricing > what choosing it sets up, landing 1 by 1 > the run in the console > its pricing table
+   (#pricing, components/BlueprintPricing) > the steps > what it checks > what you get > how each result reaches you, as a
+   recipe.result event through the same channels as every piece (#delivery) > what you can change > who it's for >
+   the optional table > questions > the final call. Motion lives in the product only: the screen plays its story, the kit lands, the run
    plays. Sections never fade in. */
 
 /* A numeral never ends a line apart from its word ("48 hours", "4 test customers"). */
@@ -107,9 +109,14 @@ function Hero({ r, workspace }: { r: Recipe; workspace: Workspace }) {
           <h1 className="s-hero-h" id={`${id}-h`}>
             {r.hero.headline}
           </h1>
+          {r.buyer && <p className="s-rp-hero__for">{r.buyer}</p>}
           <p className="s-hero-sub s-rp-hero__sub">{r.hero.sub}</p>
           <div className="s-hero-act">
             <CaptureForm capture={r.hero.capture} className="s-hero-form" />
+            <a className="ob-btn ob-btn--link s-hero-secondary" href={ui.pricing.link.to}>
+              <span className="ob-btn-label">{ui.pricing.link.label}</span>
+              <Arrow />
+            </a>
           </div>
         </div>
         <div className="s-hero-console s-rp-hero__screen ob-anim-hero-object">
@@ -267,6 +274,10 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
         <Console label={r.run.tab} demos={[r.run]} workspace={workspace} tag={real ? ui.run.tag.real : undefined} />
       </Section>
 
+      <Section id="pricing" heading={ui.pricing.heading(r)} line={ui.pricing.line(r)}>
+        <BlueprintPricing pricing={blueprintPricing(r)} />
+      </Section>
+
       <Section id="steps" heading={ui.steps.heading} tone="ink">
         <Steps steps={r.steps} />
       </Section>
@@ -310,7 +321,7 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
         </Section>
       )}
 
-      <LinkGroups groups={connectionsFor(`/recipes/${r.slug}`, 'recipe')} />
+      <LinkGroups groups={connectionsFor(`/blueprints/${r.slug}`, 'recipe')} />
 
       <Faq faq={r.faq} id="questions" />
 

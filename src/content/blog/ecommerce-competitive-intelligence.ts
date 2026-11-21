@@ -396,7 +396,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, the programme holds for 1 to 3 competitors. Past that, it needs an inbox and phone number per competitor for months, with every original kept. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For competitors, [competitor tracking](/recipes/competitor-tracking) logs every email, text, offer, price change and public ad from each one you name on 1 timeline. [Price watch](/recipes/price-watch) checks competitors’ prices, offers and delivery each morning, plus the codes they only send subscribers.',
+      text: 'By hand, the programme holds for 1 to 3 competitors. Past that, it needs an inbox and phone number per competitor for months, with every original kept. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For competitors, [competitor tracking](/blueprints/competitor-tracking) logs every email, text, offer, price change and public ad from each one you name on 1 timeline. [Price watch](/blueprints/price-watch) checks competitors’ prices, offers and delivery each morning, plus the codes they only send subscribers.',
     },
     {
       kind: 'cta',
@@ -494,7 +494,7 @@ export const post: BlogPost = {
           '1 to 3 competitors',
         ],
         [
-          'Obsession (ours): [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch), [Email and SMS tracking](/recipes/email-sms-tracking), [Ad tracking](/recipes/ad-tracking), [Trial teardown](/recipes/trial-teardown)',
+          'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Email and SMS tracking](/blueprints/email-sms-tracking), [Ad tracking](/blueprints/ad-tracking), [Trial teardown](/blueprints/trial-teardown)',
           'Logs every email, text, offer, price change and public ad from each competitor on 1 timeline, each kept as it arrived',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'History starts the day each competitor is added\nNot needed for traffic, search or stack questions',

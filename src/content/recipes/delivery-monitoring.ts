@@ -26,7 +26,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/delivery-monitoring',
+    path: '/blueprints/delivery-monitoring',
     title: 'Delivery monitoring: prove every email, text and code lands',
     description:
       'Personas sign up to your product in each country you sell in and live its first 14 days, timing every email, text and login code that should arrive.',
@@ -35,8 +35,8 @@ export const recipe: Recipe = {
     ogImage: '/og/delivery-monitoring.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Delivery monitoring', path: '/recipes/delivery-monitoring' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Delivery monitoring', path: '/blueprints/delivery-monitoring' },
     ],
   },
 
@@ -51,6 +51,12 @@ export const recipe: Recipe = {
       interest: 'delivery',
     },
   },
+
+  /* Its buyer (21 Nov 2026, James): growth engineers and QA leads, sold as lifecycle testing of their own email and SMS
+     flows. The trigger is a broken sequence that reached customers before anyone noticed. */
+  buyer: 'For growth engineers and QA leads who ship email and SMS flows.',
+  unit: 'delivery check',
+  per: 'flow',
 
   run: {
     tab: 'Release 4.2',

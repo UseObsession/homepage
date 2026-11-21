@@ -234,7 +234,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'On your phone, open the link of each live ad in turn. **A pass:** the page loads, the product is in stock and the offer matches the ad. Ads can keep running after a product sells out, until your feed or catalogue catches up. If you run Google’s AI Max, [Final URL expansion is on by default](' +
         FINAL_URL +
-        ') and can send clicks to other pages on your site. [The landing pages report shows which pages Google chose](/blog/where-your-ads-land-morning-check), and URL exclusions limit them. An [ad landing check](/recipes/ad-landing-check) runs this test every morning.',
+        ') and can send clicks to other pages on your site. [The landing pages report shows which pages Google chose](/blog/where-your-ads-land-morning-check), and URL exclusions limit them. An [ad landing check](/blueprints/ad-landing-check) runs this test every morning.',
     },
     { kind: 'h3', id: 'test-order', text: '10. Place a test order' },
     {
@@ -248,7 +248,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Ask it 3 questions: the last day to order for delivery before Christmas, how long a customer has to return a sale item, and whether the welcome code works on sale prices. **A pass:** every answer matches this season’s policy pages. [A bot set up last year can still quote last year’s dates](/blog/test-store-chatbot-returns-policy). If your chat is an AI, it should say so: the EU AI Act’s [transparency duties for chatbots](' +
         AI_ACT_50 +
-        ') have applied since 2 August 2026. A [support bot check](/recipes/support-bot-check) asks these questions every day.',
+        ') have applied since 2 August 2026. A [support bot check](/blueprints/support-bot-check) asks these questions every day.',
     },
     { kind: 'h3', id: 'account', text: '12. Create an account and reset the password' },
     {

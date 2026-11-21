@@ -129,8 +129,8 @@ export const page: Page = {
       },
       {
         q: 'Do I have to write code?',
-        a: 'No. Pick one of our recipes, such as competitor tracking or price watch, and we run it on the same pieces at the same prices. Developers call the API, connect their own agent with MCP, or write their own job to run beside the pieces. Every result lands in your event log.',
-        link: { label: 'Browse recipes', to: '/recipes' },
+        a: 'No. Pick one of our blueprints, such as competitor tracking or price watch, and we run it on the same pieces at the same prices. Developers call the API, connect their own agent with MCP, or write their own job to run beside the pieces. Every result lands in your event log.',
+        link: { label: 'Browse blueprints', to: '/blueprints' },
       },
       {
         q: 'Where does the data come from?',

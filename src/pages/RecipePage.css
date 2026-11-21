@@ -7,6 +7,18 @@
 /* No typed line on a recipe: the sub follows the headline at the hero's own step. */
 .s-hero-sub.s-rp-hero__sub { margin-top: var(--ob-space-24); }
 
+/* Who it's for (a recipe with `buyer`), under the headline: the buyer named in full ink, with the sub closer under it. */
+.s-rp-hero__for {
+  max-width: 64ch;
+  margin: var(--ob-space-24) 0 0;
+  font: var(--ob-type-body-lg);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-rp-hero__for + .s-hero-sub.s-rp-hero__sub { margin-top: var(--ob-space-12); }
+
 /* The recipe's screen: the product object under the words, at a size where its text reads like the app's. */
 .s-rp-hero__screen { max-width: 960px; }
 .s-rp-hero__screen .ilwrap { cursor: pointer; }

@@ -567,7 +567,7 @@ export const post: BlogPost = {
           '1 to 25 named competitors, with analytics',
         ],
         [
-          'Obsession (ours): [Email tracking](/recipes/email-sms-tracking), [Competitor tracking](/recipes/competitor-tracking)',
+          'Obsession (ours): [Email tracking](/blueprints/email-sms-tracking), [Competitor tracking](/blueprints/competitor-tracking)',
           'Every email any competitor you name sends a new customer, basket reminders included, dated as it arrived',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'History from the day each competitor is added',
@@ -648,7 +648,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 1 to 3 competitors, this method needs no paid tool. At 20 competitors it needs 20 addresses, a phone number for each and about 20 hours a month at 15 minutes a competitor, and it still can’t recover older mail. Obsession does that work for any number of competitors. Its [competitor tracking](/recipes/competitor-tracking) keeps every email, offer and code each competitor sends a new subscriber on 1 timeline, dated the day it arrives, for as long as you follow them.',
+      text: 'For 1 to 3 competitors, this method needs no paid tool. At 20 competitors it needs 20 addresses, a phone number for each and about 20 hours a month at 15 minutes a competitor, and it still can’t recover older mail. Obsession does that work for any number of competitors. Its [competitor tracking](/blueprints/competitor-tracking) keeps every email, offer and code each competitor sends a new subscriber on 1 timeline, dated the day it arrives, for as long as you follow them.',
     },
     {
       kind: 'cta',

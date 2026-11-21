@@ -341,13 +341,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its [Ad tracking](/recipes/ad-tracking) checks read the ads competitors run in public every morning and follow each one to its page, price and code. Each page is opened directly on a phone and a desktop, so no click is paid for. Where an ad offers a code for signing up, Obsession signs up and keeps what arrives, and when. Each new offer lands dated beside the ad that led to it, in Slack, a table or from the API.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its [Ad tracking](/blueprints/ad-tracking) checks read the ads competitors run in public every morning and follow each one to its page, price and code. Each page is opened directly on a phone and a desktop, so no click is paid for. Where an ad offers a code for signing up, Obsession signs up and keeps what arrives, and when. Each new offer lands dated beside the ad that led to it, in Slack, a table or from the API.',
     },
 
     { kind: 'h2', id: 'own-ads-and-clients', text: 'How do you track your own ads, your category’s leaders and your clients’ competitors?' },
     {
       kind: 'p',
-      text: 'For your own company, Obsession’s [Ad landing check](/recipes/ad-landing-check) opens every live ad’s landing page each morning from the ad’s link, on a phone and a desktop. It records whether each page loads, whether the offer and price match the ad and whether the product is in stock, with the costliest failing ad first. It reads the ad accounts you connect and changes nothing in them. With [final URL expansion](/blog/where-your-ads-land-morning-check), Google can send a click to a page you never put in the ad, and that guide sets out a morning check for Google and Meta ads.',
+      text: 'For your own company, Obsession’s [Ad landing check](/blueprints/ad-landing-check) opens every live ad’s landing page each morning from the ad’s link, on a phone and a desktop. It records whether each page loads, whether the offer and price match the ad and whether the product is in stock, with the costliest failing ad first. It reads the ad accounts you connect and changes nothing in them. With [final URL expansion](/blog/where-your-ads-land-morning-check), Google can send a click to a page you never put in the ad, and that guide sets out a morning check for Google and Meta ads.',
     },
     {
       kind: 'p',
@@ -372,7 +372,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps running. Ads are read every morning, or more often in a sale week. Prices, stock and delivery are read every morning in [Price watch](/recipes/price-watch), and the guide to [competitor price tracking tools](/blog/best-competitor-price-tracking-tools) sets it beside the price tools. A fresh sign-up can run every step again each week in [leak checks](/use-cases/leak-checks-for-ecommerce-stores). It works the same for one company or a list of 3,000, on an index built for millions of companies. 1,500 sign-ups, baskets and checkouts run at real companies, and counting.',
+      text: 'It keeps running. Ads are read every morning, or more often in a sale week. Prices, stock and delivery are read every morning in [Price watch](/blueprints/price-watch), and the guide to [competitor price tracking tools](/blog/best-competitor-price-tracking-tools) sets it beside the price tools. A fresh sign-up can run every step again each week in [leak checks](/use-cases/leak-checks-for-ecommerce-stores). It works the same for one company or a list of 3,000, on an index built for millions of companies. 1,500 sign-ups, baskets and checkouts run at real companies, and counting.',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which competitor ad tracking tool to choose' },
@@ -397,8 +397,8 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'The ads your competitors run in public, each followed to its page, price and code, with every new offer dated beside the ad that led to it.',
-      to: '/recipes/ad-tracking',
-      label: 'See the recipe',
+      to: '/blueprints/ad-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'compared', text: 'Competitor ad tracking tools and Obsession, side by side', compare: true },
@@ -425,7 +425,7 @@ export const post: BlogPost = {
         ['Similarweb', 'Modelled spend, creatives and landing pages', '$542 a month, billed annually, 1 user', 'Spend and impressions are modelled', 'Channel mix against competitors'],
         ['Panoramata', 'Ads on 7 networks, with emails, texts and flows', '$99 to $399 a month', 'In beta, accounts opened on request', 'Many competitors in one place'],
         [
-          'Obsession (ours): [Ad tracking](/recipes/ad-tracking), [Ad landing check](/recipes/ad-landing-check)',
+          'Obsession (ours): [Ad tracking](/blueprints/ad-tracking), [Ad landing check](/blueprints/ad-landing-check)',
           'Each competitor ad followed to its page, price and code, then the sign-up and every email after it, dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Spend estimates left to panel tools',
@@ -454,7 +454,7 @@ export const post: BlogPost = {
         {
           q: 'How does competitor ad monitoring work?',
           a: 'Competitor ad monitoring checks each named competitor’s ads on a schedule and flags what is new. Foreplay’s Spyder tracks competitors’ Meta ads around the clock, and Panoramata archives ads on Meta, TikTok, YouTube, LinkedIn, Pinterest and Google Display. Obsession reads the ads competitors run in public every morning and follows each new one to its page, price and code.',
-          link: { label: 'Ad tracking', to: '/recipes/ad-tracking' },
+          link: { label: 'Ad tracking', to: '/blueprints/ad-tracking' },
         },
         {
           q: 'Can you see how much a competitor spends on ads?',

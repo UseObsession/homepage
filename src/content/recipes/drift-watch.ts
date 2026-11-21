@@ -25,7 +25,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/drift-watch',
+    path: '/blueprints/drift-watch',
     title: 'Drift watch: catch the answers an update breaks · Obsession',
     description:
       'A persona asks your AI agent your hardest cases every morning and within the hour of any update. Every answer is kept, every change shown before and after.',
@@ -34,8 +34,8 @@ export const recipe: Recipe = {
     ogImage: '/og/drift-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Drift watch', path: '/recipes/drift-watch' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Drift watch', path: '/blueprints/drift-watch' },
     ],
   },
 
@@ -50,6 +50,9 @@ export const recipe: Recipe = {
       interest: 'drift',
     },
   },
+
+  unit: 'drift check',
+  per: 'AI agent',
 
   run: {
     tab: 'The night of a vendor update',

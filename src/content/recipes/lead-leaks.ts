@@ -8,7 +8,9 @@ import type { Recipe } from '../types'
    first reply by email, text or call back from sales, keeps what was said, and tells anyone who talks to it that it's
    an AI. The run and the table tell the `inbound` screen's story (09:00, 13:00 and 17:00 runs against a 5 minute
    target, owners read from HubSpot; chat 38 seconds and assigned to JO; the form 4 hours 12 minutes and the sales line
-   rang out, both unassigned; a routing rule approved at 13:20; the form 3 minutes 40 seconds at 17:00). Example. */
+   rang out, both unassigned; a routing rule approved at 13:20; the form 3 minutes 40 seconds at 17:00). Example.
+   Its buyer (21 Nov, James): AI receptionist and front desk vendors, mystery shopping firms, dealer groups and RevOps
+   teams. Its pricing table counts lead response checks, per site (`unit`, `per`). */
 
 export const recipe: Recipe = {
   id: 'speed',
@@ -27,7 +29,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/lead-leaks',
+    path: '/blueprints/lead-leaks',
     title: 'Speed to lead test: time the first reply to every new lead',
     description:
       'A persona fills in your forms, opens your chat and calls your sales line as a new lead, then times every first reply by email, text or call back.',
@@ -36,8 +38,8 @@ export const recipe: Recipe = {
     ogImage: '/og/lead-leaks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Lead response checks', path: '/recipes/lead-leaks' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Lead response checks', path: '/blueprints/lead-leaks' },
     ],
   },
 
@@ -52,6 +54,10 @@ export const recipe: Recipe = {
       interest: 'speed',
     },
   },
+
+  buyer: 'For AI receptionist and front desk vendors, mystery shopping firms, dealer groups and RevOps teams.',
+  unit: 'lead response check',
+  per: 'site',
 
   run: {
     tab: '1 day, 3 new leads',

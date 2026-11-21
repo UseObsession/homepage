@@ -1,0 +1,106 @@
+/* A blueprint's pricing table (components/BlueprintPricing), on the design system's cards (surfaces.css .ob-card, Weekly
+   .ob-card--raised), badge and buttons, in both themes. Every class starts s-bpp. The cards follow the table's own width
+   (a named container, so the page's other container rules never meet it): 1 column, 2 from 560px, 4 from 960px, where
+   each card's 5 rows (name, who it's for, price, what's included, button) line up across the row. In 1 or 2 columns
+   the list takes the slack, so the buttons of a row sit on 1 line. Spacing sits on the 4px grid. */
+
+.s-bpp { container: s-bpp / inline-size; min-width: 0; }
+
+.s-bpp__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-16);
+}
+@container s-bpp (min-width: 560px) {
+  .s-bpp__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.s-bpp__plan.ob-card {
+  grid-template-rows: auto auto auto 1fr auto;
+  gap: 0;
+  padding: var(--ob-space-24) var(--ob-space-20);
+  border-radius: var(--ob-radius-lg);
+}
+@container s-bpp (min-width: 960px) {
+  .s-bpp__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(5, auto);
+    row-gap: 0;
+  }
+  .s-bpp__plan.ob-card { grid-row: span 5; grid-template-rows: subgrid; }
+}
+
+/* Weekly: the raised face and a control-weight edge, its tag and the row's 1 primary button. */
+.s-bpp__plan--featured.ob-card--raised {
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset, var(--ob-highlight), var(--ob-shadow-2);
+}
+
+.s-bpp__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-8);
+  min-height: 24px;
+}
+.s-bpp__name {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+}
+.s-bpp__for {
+  margin: var(--ob-space-8) 0 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+.s-bpp__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--ob-space-8);
+  margin: var(--ob-space-16) 0 0;
+  color: var(--ob-text);
+}
+.s-bpp__amount {
+  font: var(--ob-type-h2);
+  letter-spacing: var(--ob-type-h2-tracking);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.s-bpp__per {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+}
+
+.s-bpp__rows {
+  display: grid;
+  align-content: start;
+  margin: var(--ob-space-20) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.s-bpp__row {
+  padding-block: var(--ob-space-8);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+.s-bpp__row:last-child { padding-bottom: 0; }
+
+.s-bpp__cta { align-self: end; margin-top: var(--ob-space-24); }
+
+/* The line under the cards: more of them, white label or your own blueprint, and the link to every plan. */
+.s-bpp__more {
+  max-width: 64ch;
+  margin: var(--ob-space-24) 0 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}

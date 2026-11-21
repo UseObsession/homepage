@@ -9,6 +9,7 @@ import { SITE, absolute, cleanPath } from './paths'
 import { lookupPage } from './pages/lookup'
 import { pieces } from './pieces'
 import { pricingPage, ratesPage } from './pricing'
+import { securityPage } from './security'
 import type { Faq, Meta, ShareFindings } from './types'
 import { citedSources } from '../lib/sources'
 
@@ -29,6 +30,7 @@ export type PageKind =
   | 'blog'
   | 'post'
   | 'privacy'
+  | 'security'
   | 'agents'
   | 'comparison'
   | 'alternatives-hub'
@@ -358,6 +360,15 @@ export const entries: Entry[] = [
     headline: privacyPage.headline,
     line: privacyPage.sub,
     source: 'src/content/site.ts',
+  },
+  {
+    kind: 'security',
+    meta: ogFor(securityPage.meta),
+    name: crumbName(securityPage.meta, 'Security'),
+    headline: securityPage.headline,
+    /* The share card's line: the sub's first sentence is too long for it. */
+    line: securityPage.contact.line,
+    source: 'src/content/security.ts',
   },
 ]
 

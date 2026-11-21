@@ -386,13 +386,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same test works on a free trial, a booking or a checkout, which is [mystery shopping your own business](/recipes/mystery-shopper); our [sample output](/sample-output) shows one we ran on a real store in September 2026. We also compared the [AI mystery shopping tools](/blog/best-ai-mystery-shopping-tools) that run tests like these.',
+      text: 'The same test works on a free trial, a booking or a checkout, which is [mystery shopping your own business](/blueprints/mystery-shopper); our [sample output](/sample-output) shows one we ran on a real store in September 2026. We also compared the [AI mystery shopping tools](/blog/best-ai-mystery-shopping-tools) that run tests like these.',
     },
     {
       kind: 'cta',
-      text: 'Our Speed to lead recipe runs this test for you: a labelled test lead, declared as AI, with its own inbox and phone number, on your own form, chat and phone, or a client’s with their OK. Every reply is timed and signed.',
-      to: '/recipes/speed-to-lead',
-      label: 'See the Speed to lead recipe',
+      text: 'Our Speed to lead blueprint runs this test for you: a labelled test lead, declared as AI, with its own inbox and phone number, on your own form, chat and phone, or a client’s with their OK. Every reply is timed and signed.',
+      to: '/blueprints/speed-to-lead',
+      label: 'See the Speed to lead blueprint',
     },
 
     { kind: 'h2', id: 'good-lead-response-time', text: 'What is a good lead response time in 2026?' },
@@ -460,7 +460,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'Every figure here was read at its source between 1 and 3 October 2026',
-      text: 'We read each study on its own page, or an archived copy where the original has gone, and graded it on what it timed and whose leads it counted. Vendor data is marked as such. Obsession publishes this post and makes a recipe that times your own leads; it isn’t in the ledger. Marklinea’s results go in when they’re out.',
+      text: 'We read each study on its own page, or an archived copy where the original has gone, and graded it on what it timed and whose leads it counted. Vendor data is marked as such. Obsession publishes this post and makes a blueprint that times your own leads; it isn’t in the ledger. Marklinea’s results go in when they’re out.',
     },
   ],
 

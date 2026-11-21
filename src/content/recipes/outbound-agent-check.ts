@@ -26,7 +26,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/outbound-agent-check',
+    path: '/blueprints/outbound-agent-check',
     title: 'Outbound agent check: every message your AI SDR sends buyers',
     description:
       'Personas join an AI SDR’s lists as prospects, keep every email, text and call it sends, yours or a competitor’s, and flag each one that breaks your rules.',
@@ -35,8 +35,8 @@ export const recipe: Recipe = {
     ogImage: '/og/outbound-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Outbound agent check', path: '/recipes/outbound-agent-check' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Outbound agent check', path: '/blueprints/outbound-agent-check' },
     ],
   },
 
@@ -51,6 +51,9 @@ export const recipe: Recipe = {
       interest: 'outbound-agent',
     },
   },
+
+  unit: 'outbound check',
+  per: 'outbound agent',
 
   run: {
     tab: 'Your AI SDR, continuously',

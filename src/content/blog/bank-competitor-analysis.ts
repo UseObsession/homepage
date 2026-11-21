@@ -414,7 +414,7 @@ export const post: BlogPost = {
           'Banking, investing and insurance benchmarks',
         ],
         [
-          'Obsession (ours): [Competitor tracking](/recipes/competitor-tracking), [Support bot check](/recipes/support-bot-check)',
+          'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Support bot check](/blueprints/support-bot-check)',
           'Keeps what each bank and fintech you name shows only to its customers: offers after the form, every email and text, account opening up to the identity check, chat answers',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'A bank not yet covered starts its history the day it is added\nOffers priced from a credit file stay with panels',

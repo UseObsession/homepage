@@ -267,7 +267,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s [Voice agent check](/recipes/voice-agent-check) rings your AI receptionist each morning, books a slot, asks a price and asks for a person, then sets each answer beside your price list. Each call comes from its own phone number. At the start the caller says it’s an AI, who it works for and that the call is recorded, in a voice used with consent, with different voices and accents across the calls.',
+      text: 'Obsession’s [Voice agent check](/blueprints/voice-agent-check) rings your AI receptionist each morning, books a slot, asks a price and asks for a person, then sets each answer beside your price list. Each call comes from its own phone number. At the start the caller says it’s an AI, who it works for and that the call is recorded, in a voice used with consent, with different voices and accents across the calls.',
     },
     {
       kind: 'p',
@@ -275,7 +275,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same check can [test an AI receptionist before going live](/recipes/voice-agent-check), on the number it will answer. [AI disclosure check](/recipes/ai-disclosure-check) checks your AI agents say they’re AI on every channel, every day. [Resolution check](/recipes/resolution-check) checks every resolution your AI support vendor bills you for against what the customer got.',
+      text: 'The same check can [test an AI receptionist before going live](/blueprints/voice-agent-check), on the number it will answer. [AI disclosure check](/blueprints/ai-disclosure-check) checks your AI agents say they’re AI on every channel, every day. [Resolution check](/blueprints/resolution-check) checks every resolution your AI support vendor bills you for against what the customer got.',
     },
     {
       kind: 'p',
@@ -337,7 +337,7 @@ export const post: BlogPost = {
           'Teams building on Retell',
         ],
         [
-          'Obsession (ours): [Voice agent check](/recipes/voice-agent-check), [AI disclosure check](/recipes/ai-disclosure-check), [Resolution check](/recipes/resolution-check)',
+          'Obsession (ours): [Voice agent check](/blueprints/voice-agent-check), [AI disclosure check](/blueprints/ai-disclosure-check), [Resolution check](/blueprints/resolution-check)',
           'The live number rung every morning, every call recorded, transcribed and dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Calls the numbers your company gives it',
@@ -388,7 +388,7 @@ export const post: BlogPost = {
         {
           q: 'Do AI customers say they’re AI on a test call?',
           a: 'Yes. Every Obsession caller says at the start of every call that it’s an AI, who it works for and that the call is recorded. It speaks in a voice used with consent. Voice agent check also checks that the receptionist says it’s AI, and AI disclosure check does the same on every channel, every day.',
-          link: { label: 'AI disclosure check', to: '/recipes/ai-disclosure-check' },
+          link: { label: 'AI disclosure check', to: '/blueprints/ai-disclosure-check' },
         },
         {
           q: 'Can you test a voice agent you didn’t build?',

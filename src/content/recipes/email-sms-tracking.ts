@@ -25,7 +25,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/email-sms-tracking',
+    path: '/blueprints/email-sms-tracking',
     title: 'Email and SMS tracking: every competitor message, dated',
     description:
       'A persona subscribes to each competitor’s emails and texts and keeps every message, offer and code with its arrival time, on 1 timeline. By API or Slack.',
@@ -34,8 +34,8 @@ export const recipe: Recipe = {
     ogImage: '/og/email-sms-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Email and SMS tracking', path: '/recipes/email-sms-tracking' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Email and SMS tracking', path: '/blueprints/email-sms-tracking' },
     ],
   },
 
@@ -50,6 +50,9 @@ export const recipe: Recipe = {
       interest: 'email-sms',
     },
   },
+
+  unit: 'email and SMS check',
+  per: 'brand',
 
   run: {
     tab: '3 competitors, 30 days',

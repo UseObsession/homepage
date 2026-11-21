@@ -335,31 +335,31 @@ export const post: BlogPost = {
       cols: ['Job', 'The check', 'A pass', 'That week'],
       rows: [
         [
-          'Every deploy: [Website audit](/recipes/website-audit)',
+          'Every deploy: [Website audit](/blueprints/website-audit)',
           'A fresh customer signs up and enters the login code',
           'Code works, every email arrives',
           'A failing release held',
         ],
         [
-          'Competitor tracking: [Competitor tracking](/recipes/competitor-tracking)',
+          'Competitor tracking: [Competitor tracking](/blueprints/competitor-tracking)',
           'A customer of each competitor a user names',
           'Every change dated, with its evidence',
           'Changes posted to your app as JSON',
         ],
         [
-          'Prospect facts: [Prospect intelligence](/recipes/prospect-intelligence)',
+          'Prospect facts: [Prospect intelligence](/blueprints/prospect-intelligence)',
           'A sign up at each account a user adds',
           'A verdict with a proof link',
           'The gap on the account record',
         ],
         [
-          'Merchant checks: [Mystery shopper](/recipes/mystery-shopper)',
+          'Merchant checks: [Mystery shopper](/blueprints/mystery-shopper)',
           'A weekly basket at each opted in store',
           'The reminder arrives within 48 hours',
           'Merchants with a silent store contacted',
         ],
         [
-          'Your own bot: [Support bot check](/recipes/support-bot-check)',
+          'Your own bot: [Support bot check](/blueprints/support-bot-check)',
           'Customers’ questions on chat and email',
           'Answers match the policy page',
           'Wrong answers sent to the prompt’s owner',

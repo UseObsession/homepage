@@ -594,7 +594,13 @@ export type PersonaBuild = {
 export type HomeDelivery = {
   heading: string
   line?: string
+  /* Done once, before the loop (James, 21 Nov): what you pick, and where your agent runs, our runtime or yours. */
+  setup?: { title: string; line: string; rows: string[] }
   steps: { title: string; line: string; rows: string[] }[]
+  /* The line under the steps that sends the last back to the first: after setup it is a loop, started by either side. */
+  loop?: string
+  /* What doesn't take the loop: live call audio streams straight to the voice agent. */
+  live?: string
   channels: { name: string; line: string; eg: string }[]
   down: string
   link: Cta
@@ -690,6 +696,16 @@ export type Recipe = {
   kit: string[]
   meta: Meta
   hero: { headline: string; sub: string; screen: ScreenName; capture: Capture }
+  /* The recipe's 1 buyer (21 Nov 2026: the buyer study sold each recipe to its 1 buyer, and James approved each), named
+     in their own words under the hero's headline. A recipe without one renders as before. */
+  buyer?: string
+  /* How its pricing table counts (James, 21 Nov 2026: every blueprint is priced per site, store or agent, by how often
+     it runs; the tiers and prices are content/prices.ts `blueprintPlans`, worded by content/recipe-page.ts
+     `blueprintPricing`). `unit` is 1 run of the job as its buyer names it, singular ("mystery shop", "round of test
+     calls"); `per` is what 1 plan covers, singular ("store", "voice agent"), made plural with an "s". Without them the
+     table says "check" and "site". */
+  unit?: string
+  per?: string
   /* The example run played on the page (labelled Example unless it is the real September store check). */
   run: Demo
   steps: { title: string; line: string }[]
@@ -702,6 +718,35 @@ export type Recipe = {
   faq: Faq
   final: Final
 }
+
+/* A blueprint's pricing table (components/BlueprintPricing), on every blueprint page and in each tab of /agencies' pricing.
+   content/recipe-page.ts `blueprintPricing` works it out from content/prices.ts `blueprintPlans` and the blueprint's
+   `unit` and `per`, so no price is typed twice: 1 card per plan, then the line to /pricing. */
+export type BlueprintPlanCard = {
+  id: string
+  name: string
+  /* Who it's for, in 1 line. */
+  for: string
+  /* The big words and the line beside them: "$49" and "a month per store", or "Free" and "1 run". */
+  price: string
+  per: string
+  includes: string[]
+  cta: Cta
+  /* The plan the table lifts (Weekly): the raised card, its tag and the row's 1 primary button. */
+  featured?: boolean
+}
+export type BlueprintPricing = {
+  /* The cards' names for a screen reader: the list's, the featured card's tag and each card's list. */
+  label: string
+  tag: string
+  includes: string
+  plans: BlueprintPlanCard[]
+  /* Under the cards: more of them, white label or a blueprint of your own, on /pricing. */
+  more: { line: string; link: Cta }
+}
+/* /agencies' pricing (components/BlueprintPricingTabs): 1 tab per blueprint resellers sell, in this order, each opening
+   that blueprint's pricing table counted per `per` (a client). `label` names the tab list. */
+export type PricingTabs = { heading: string; line?: string; label: string; per: string; recipes: RecipeId[] }
 
 /* ---- Site pages: Sample output and the output viewer (content/sample.ts); Recipes index, Privacy, Agents, 404 and
    llms.txt (content/site.ts). Appended 2 Oct; nothing above changes. ---- */
@@ -782,6 +827,8 @@ export type AgentsPage = {
   faq?: Faq
   contact: { heading: string; line: string; email: string; cta: Cta; secondary: Cta }
 }
+/* /security: the privacy notice's shape, closed by the agents page's contact (content/security.ts). */
+export type SecurityPage = PrivacyPage & { contact: AgentsPage['contact'] }
 export type NotFoundPage = { meta: Meta; headline: string; sub: string; links: Cta[]; capture: Capture }
 export type Llms = { summary: string; intro: string }
 

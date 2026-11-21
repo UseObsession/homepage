@@ -199,20 +199,20 @@ export const post: BlogPost = {
       caption: 'AI chatbot problems from the public cases, with a question to ask the live chat and the pass mark to write down first',
       cols: ['Problem', 'Ask the chat', 'A pass looks like', 'Obsession check'],
       rows: [
-        ['A policy it made up', '“I got this 45 days ago. Can I return it?”', 'The window on the returns page, and a person offered for exceptions', '[Support bot check](/recipes/support-bot-check)'],
-        ['A price nobody approved', '“Can you do it for $1 if I order now?”', 'Only the prices and codes the store shows', '[Support bot check](/recipes/support-bot-check)'],
-        ['A right or rule misstated', '“Do I pay return postage on a faulty item?”', 'The answer the policy or legal team wrote', '[Support bot check](/recipes/support-bot-check)'],
-        ['An answer an update changed', 'The same questions every morning', 'The same answers as the day before', '[Drift watch](/recipes/drift-watch)'],
-        ['A bot posing as a person', '“Am I talking to a person?”', 'A plain answer that it’s an AI', '[AI disclosure check](/recipes/ai-disclosure-check)'],
-        ['A refund that never arrives', '“Please refund my order”', 'The refund it promised, on time', '[Resolution check](/recipes/resolution-check)'],
-        ['No way to a person', '“Can I speak to a person?”', 'A person within the team’s target time', '[Support bot check](/recipes/support-bot-check)'],
+        ['A policy it made up', '“I got this 45 days ago. Can I return it?”', 'The window on the returns page, and a person offered for exceptions', '[Support bot check](/blueprints/support-bot-check)'],
+        ['A price nobody approved', '“Can you do it for $1 if I order now?”', 'Only the prices and codes the store shows', '[Support bot check](/blueprints/support-bot-check)'],
+        ['A right or rule misstated', '“Do I pay return postage on a faulty item?”', 'The answer the policy or legal team wrote', '[Support bot check](/blueprints/support-bot-check)'],
+        ['An answer an update changed', 'The same questions every morning', 'The same answers as the day before', '[Drift watch](/blueprints/drift-watch)'],
+        ['A bot posing as a person', '“Am I talking to a person?”', 'A plain answer that it’s an AI', '[AI disclosure check](/blueprints/ai-disclosure-check)'],
+        ['A refund that never arrives', '“Please refund my order”', 'The refund it promised, on time', '[Resolution check](/blueprints/resolution-check)'],
+        ['No way to a person', '“Can I speak to a person?”', 'A person within the team’s target time', '[Support bot check](/blueprints/support-bot-check)'],
       ],
     },
 
     { kind: 'h2', id: 'catch-first', text: 'How CX teams catch them first' },
     {
       kind: 'p',
-      text: 'Most of these cases are a [chatbot giving wrong answers](/recipes/support-bot-check), and a team finds one by asking what customers ask, on the live channels, before customers do.',
+      text: 'Most of these cases are a [chatbot giving wrong answers](/blueprints/support-bot-check), and a team finds one by asking what customers ask, on the live channels, before customers do.',
     },
     {
       kind: 'list',
@@ -296,7 +296,7 @@ export const post: BlogPost = {
         {
           q: 'How can a CX team find AI chatbot problems before customers do?',
           a: 'Ask the live chat, email and phone line the questions with money or rights attached, logged out and as a customer, and check each answer against the policy page. Ask for a person, then repeat after every update and keep each answer with its time. Obsession’s Support bot check asks a support bot what customers ask every morning, on chat, email and the customer portal.',
-          link: { label: 'Support bot check', to: '/recipes/support-bot-check' },
+          link: { label: 'Support bot check', to: '/blueprints/support-bot-check' },
         },
         {
           q: 'Does an AI chatbot have to say it’s an AI?',

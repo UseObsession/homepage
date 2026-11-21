@@ -198,7 +198,7 @@ export function ProspectIntelligence() {
           <Step
             n={1}
             title="Create a watch"
-            line="A watch is 1 list of companies, the facts to collect and how long to keep each account open. Start from a recipe, or describe what you want to know."
+            line="A watch is 1 list of companies, the facts to collect and how long to keep each account open. Start from a blueprint, or describe what you want to know."
             pick="The agency starts a new watch on SMS app prospects."
           >
             <Win title="Obsession · Watches">
@@ -209,14 +209,14 @@ export function ProspectIntelligence() {
               <ul className="uc-list uc-seq">
                 <li style={at(0)}>
                   <b>
-                    Reviews app prospects<small>From the Prospect intelligence recipe</small>
+                    Reviews app prospects<small>From the Prospect intelligence blueprint</small>
                   </b>
                   <span>120 brands</span>
                   <span className="tag idle">Weekly</span>
                 </li>
                 <li style={at(1)}>
                   <b>
-                    Pitch: helpdesk prospect<small>From the Speed to lead recipe</small>
+                    Pitch: helpdesk prospect<small>From the Speed to lead blueprint</small>
                   </b>
                   <span>25 brands</span>
                   <span className="tag idle">Once</span>
@@ -234,8 +234,8 @@ export function ProspectIntelligence() {
 
           <Step
             n={2}
-            title="Pick a recipe"
-            line="A recipe sets up the facts for 1 job. Launch it as it is, change anything, or describe what you want to know in your own words."
+            title="Pick a blueprint"
+            line="A blueprint sets up the facts for 1 job. Launch it as it is, change anything, or describe what you want to know in your own words."
             pick={
               <>
                 <b>The agency picks Prospect intelligence:</b> a fact about each company you’re about to write to. Competitor tracking is for
@@ -243,8 +243,8 @@ export function ProspectIntelligence() {
               </>
             }
           >
-            <Win title="New watch · Choose a recipe">
-              <p className="uc-mh">Launch from a recipe, or describe what you want to know</p>
+            <Win title="New watch · Choose a blueprint">
+              <p className="uc-mh">Launch from a blueprint, or describe what you want to know</p>
               <ul className="uc-recipes uc-seq">
                 {allRecipeIds.map((id, i) => (
                   <li key={id} style={at(i)} className={`uc-rcard ${id === 'prospect' ? 'sel' : ''}`}>
@@ -430,14 +430,14 @@ export function ProspectIntelligence() {
             line="1 summary of what will happen. A brand already covered returns its facts at once. The rest fill in as their emails and texts arrive, with each verdict at 48 hours."
             pick={
               <>
-                <b>The agency saves it as a recipe,</b> “SMS app client”, ready to rerun for the next SMS client it signs.
+                <b>The agency saves it as a blueprint,</b> “SMS app client”, ready to rerun for the next SMS client it signs.
               </>
             }
           >
             <Win title="New watch · Review">
               <dl className="uc-sum uc-seq">
                 {[
-                  ['Recipe', 'Prospect intelligence'],
+                  ['Blueprint', 'Prospect intelligence'],
                   ['Watching', 'SMS app prospects'],
                   ['Brands', '300 now, plus new rows from the Clay view'],
                   ['Checks', 'Email sign-up, text opt in, 1 support question'],
@@ -452,7 +452,7 @@ export function ProspectIntelligence() {
                 ))}
               </dl>
               <div className="uc-row uc-end">
-                <span className="uc-btn alt">Save as a recipe</span>
+                <span className="uc-btn alt">Save as a blueprint</span>
                 <span className="uc-btn uc-pulse">Start watching 300 brands</span>
               </div>
             </Win>
@@ -540,7 +540,7 @@ export function ProspectIntelligence() {
               <div className="uc-row">
                 <span className="uc-mh">UK ecommerce TAM</span>
                 <span className="tag idle">Hour 30 of 48</span>
-                <span className="uc-small">From the Prospect intelligence recipe</span>
+                <span className="uc-small">From the Prospect intelligence blueprint</span>
               </div>
               <div className="uc-track">
                 <i style={{ width: '62.5%' }} />
@@ -865,8 +865,8 @@ export function ProspectIntelligence() {
       <section className="section">
         <div className="wrap uc-more">
           <Reveal className="card">
-            <Link to="/recipes/prospect-intelligence">
-              <span className="kicker">The recipe</span>
+            <Link to="/blueprints/prospect-intelligence">
+              <span className="kicker">The blueprint</span>
               <span className="h3">Prospect intelligence</span>
               <span className="muted">Every check it can run, and everything you can change.</span>
               <span className="uc-more-go">Learn more →</span>

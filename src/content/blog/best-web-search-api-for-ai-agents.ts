@@ -496,7 +496,7 @@ export const post: BlogPost = {
           'Teams on Gemini or Microsoft Foundry',
         ],
         [
-          'Obsession (ours): lookup, facts, evidence, index, notify; [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch), [Trial teardown](/recipes/trial-teardown)',
+          'Obsession (ours): lookup, facts, evidence, index, notify; [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Trial teardown](/blueprints/trial-teardown)',
           'What companies show only to customers, dated with a screenshot',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Every step short of paying, at any company your team names',

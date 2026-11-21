@@ -100,11 +100,11 @@ export const phone: PiecePage = {
       },
       {
         q: 'Do I need to register to text people in the US?',
-        a: 'Yes. US carriers ask every business that texts to register what it texts for, a step known as 10DLC. We file the registration for you when you add a US number.',
+        a: `Yes. US carriers ask every business that texts to register what it texts for, a step known as 10DLC. We file the registration for you when you add a US number. Developer and Startup include your first campaign’s filing and monthly fee; each extra campaign is ${prices.register.amount} ${prices.register.unit}.`,
       },
       {
         q: 'What does a number cost?',
-        a: `${prices.number.name}: ${prices.number.amount} ${prices.number.unit}. ${prices.sms.name}: ${prices.sms.amount} ${prices.sms.unit}. ${prices.sms.note} ${prices.voice.name}: ${prices.voice.amount} ${prices.voice.unit}. ${prices.register.name}: ${prices.register.amount} ${prices.register.unit}. ${prices.number.note}`,
+        a: `${prices.number.name}: ${prices.number.amount} ${prices.number.unit}. ${prices.sms.name}: ${prices.sms.amount} ${prices.sms.unit}. ${prices.sms.note} ${prices.voice.name}: ${prices.voice.amount} ${prices.voice.unit}. ${prices.register.name}: included on Developer and Startup, then ${prices.register.amount} ${prices.register.unit} for each extra campaign. ${prices.number.note}`,
       },
     ],
   },

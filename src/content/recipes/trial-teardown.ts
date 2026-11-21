@@ -26,7 +26,7 @@ export const recipe: Recipe = {
   ],
 
   meta: {
-    path: '/recipes/trial-teardown',
+    path: '/blueprints/trial-teardown',
     title: 'Trial teardown: every email in a competitor’s free trial',
     description:
       'Trial teardown starts a competitor’s free trial as a persona you define and keeps every email, prompt, plan limit and offer, by trial day, to the end.',
@@ -35,8 +35,8 @@ export const recipe: Recipe = {
     ogImage: '/og/trial-teardown.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Trial teardown', path: '/recipes/trial-teardown' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Trial teardown', path: '/blueprints/trial-teardown' },
     ],
   },
 
@@ -51,6 +51,9 @@ export const recipe: Recipe = {
       interest: 'trial',
     },
   },
+
+  unit: 'trial teardown',
+  per: 'competitor',
 
   run: {
     tab: 'Competitor A’s 14 day trial',

@@ -363,7 +363,7 @@ export const post: BlogPost = {
         ['Price2Spy', 'Says it monitors prices behind logins', 'Not listed\nPremium on request', 'No published prices', 'Retailer prices behind a login'],
         ['Lighthouse Rate Insight', 'Live rate shops of travel agents, brand sites and metasearch', 'Not listed\nFree trial', 'Rates after sign-in not described', 'Hotels’ public rates'],
         [
-          'Obsession (ours): [Price watch](/recipes/price-watch), [Member prices](/use-cases/member-prices-for-price-intelligence)',
+          'Obsession (ours): [Price watch](/blueprints/price-watch), [Member prices](/use-cases/member-prices-for-price-intelligence)',
           'Member and public prices side by side, per store and profile, with every later offer',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Product matching stays with your team',
@@ -386,7 +386,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Member prices behind a sign-in, with every offer that follows:** Obsession’s [Price watch](/recipes/price-watch) reads public and member prices each morning, plus the codes sent to subscribers, and each gap arrives with its screenshot.',
+        '**Member prices behind a sign-in, with every offer that follows:** Obsession’s [Price watch](/blueprints/price-watch) reads public and member prices each morning, plus the codes sent to subscribers, and each gap arrives with its screenshot.',
         '**Public and displayed loyalty prices across thousands of products:** a public price tracker such as Prisync. [The best competitor price tracking tools](/blog/best-competitor-price-tracking-tools) compares 14 of them by job.',
         '**A hotel’s public rates across travel agents and brand sites:** a rate shopper such as Lighthouse.',
         '**Prices behind a login at a set of retailers, collected by a vendor:** Price2Spy, after reading each competitor’s terms.',

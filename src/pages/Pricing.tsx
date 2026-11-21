@@ -40,7 +40,7 @@ function PlanItem({ plan }: { plan: PlanCard }) {
         <h2 className="s-pr-plan__name" id={`${id}-name`}>
           {plan.name}
         </h2>
-        {plan.featured && <span className="ob-badge ob-badge--solid s-pr-plan__tag">{p.plans.tag}</span>}
+        {plan.featured && <span className="ob-badge s-pr-plan__tag">{p.plans.tag}</span>}
       </div>
       <p className="s-pr-plan__price">
         <span className="s-pr-plan__amount">{plan.price}</span>

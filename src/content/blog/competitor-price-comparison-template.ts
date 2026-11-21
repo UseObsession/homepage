@@ -321,7 +321,7 @@ export const post: BlogPost = {
         ['Price2Spy', 'Cart and login prices, promo codes as a field', 'No prices listed\n14 days free', 'Extra details listed on Premium', 'Prices behind a cart or login step'],
         ['Visualping', 'Any page, behind a login your team holds', 'Free for 5 pages\n$14 a month for 10', 'Each page set up by hand', 'Pages your team picks one by one'],
         [
-          'Obsession (ours): [Price watch](/recipes/price-watch), [Member prices](/use-cases/member-prices-for-price-intelligence)',
+          'Obsession (ours): [Price watch](/blueprints/price-watch), [Member prices](/use-cases/member-prices-for-price-intelligence)',
           'The subscriber code, the member price and every emailed offer, at any competitor you name',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Reports each change, with repricing left to your own tools',
@@ -337,7 +337,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'keep-current', text: 'How do you keep the table current for your company, the leaders and your clients?' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For your company, [Price watch](/recipes/price-watch) reads each competitor’s public and member prices, delivery and subscriber codes every morning. It reads from an account and a subscriber inbox in your country, and sets every change beside your own price.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For your company, [Price watch](/blueprints/price-watch) reads each competitor’s public and member prices, delivery and subscriber codes every morning. It reads from an account and a subscriber inbox in your country, and sets every change beside your own price.',
     },
     {
       kind: 'p',
@@ -363,7 +363,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps going on its own. Prices, stock and delivery are read every morning through [Price watch](/recipes/price-watch), or every hour in a sale week. A fresh sign-up can run every step again each week through [leak checks for ecommerce stores](/use-cases/leak-checks-for-ecommerce-stores). It works the same for one company or a list of 3,000, on an index built for millions of companies. Each change lands as a row in your sheet, in Slack, in Clay or through the API.',
+      text: 'It keeps going on its own. Prices, stock and delivery are read every morning through [Price watch](/blueprints/price-watch), or every hour in a sale week. A fresh sign-up can run every step again each week through [leak checks for ecommerce stores](/use-cases/leak-checks-for-ecommerce-stores). It works the same for one company or a list of 3,000, on an index built for millions of companies. Each change lands as a row in your sheet, in Slack, in Clay or through the API.',
     },
     {
       kind: 'cta',
@@ -395,7 +395,7 @@ export const post: BlogPost = {
         {
           q: 'How do you see a competitor’s price after the welcome code?',
           a: 'Sign up through the competitor’s public form with a new email address, take the welcome code to checkout on the same product and record the total before delivery, then stop before payment. Obsession’s Price watch reads the codes each competitor sends its subscribers every morning, dated with screenshots. If you choose, it fills a basket to record the total with the code applied.',
-          link: { label: 'Price watch', to: '/recipes/price-watch' },
+          link: { label: 'Price watch', to: '/blueprints/price-watch' },
         },
         {
           q: 'How often should you update a competitor price comparison table?',

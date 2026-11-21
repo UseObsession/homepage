@@ -61,7 +61,7 @@ export function Kinds({ kinds, id }: { kinds: KindsContent; id?: string }) {
                     <ul className="s-kinds-recipes">
                       {recipes.map((r) => (
                         <li key={r.id}>
-                          <Link className="s-kinds-link" to={`/recipes/${r.slug}`}>
+                          <Link className="s-kinds-link" to={`/blueprints/${r.slug}`}>
                             <span>{r.name}</span>
                             <svg className="s-kinds-go" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                               <path d="M3 8h10M9 4l4 4-4 4" />

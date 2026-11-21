@@ -292,11 +292,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, the method holds for the 5 to 10 accounts renewing soonest. Past that, it needs an address and number per account, kept for months, with every original saved. A welcome email that stops and a new sending platform are both [churn signals](/recipes/account-watch) to see before the renewal. The guide to [churn risk indicators](/blog/churn-risk-indicators) shows how to score them.',
+      text: 'By hand, the method holds for the 5 to 10 accounts renewing soonest. Past that, it needs an address and number per account, kept for months, with every original saved. A welcome email that stops and a new sending platform are both [churn signals](/blueprints/account-watch) to see before the renewal. The guide to [churn risk indicators](/blog/churn-risk-indicators) shows how to score them.',
     },
     {
       kind: 'p',
-      text: `Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For account managers, [Account watch](/recipes/account-watch) keeps a customer account open at every account in the book, so slides 4 and 6 are ready before each QBR. It shows the platform behind each email too, so the week an account’s emails start coming from a new platform lands on its page in your CRM. Most customer success teams use similar data, from health scores to public web search from [Exa](${EXA}), “The world’s data for AI agents”. Obsession adds what each account sends the people who sign up with it, and an agent can call both ([how the two compare](/compare/obsession-vs-exa)). Start with the accounts renewing next quarter, so you can see what it does to renewals, retention and expansion.`,
+      text: `Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For account managers, [Account watch](/blueprints/account-watch) keeps a customer account open at every account in the book, so slides 4 and 6 are ready before each QBR. It shows the platform behind each email too, so the week an account’s emails start coming from a new platform lands on its page in your CRM. Most customer success teams use similar data, from health scores to public web search from [Exa](${EXA}), “The world’s data for AI agents”. Obsession adds what each account sends the people who sign up with it, and an agent can call both ([how the two compare](/compare/obsession-vs-exa)). Start with the accounts renewing next quarter, so you can see what it does to renewals, retention and expansion.`,
     },
     {
       kind: 'cta',
@@ -352,7 +352,7 @@ export const post: BlogPost = {
           'News, pages and company data about an account',
         ],
         [
-          'Obsession (ours): [Account watch](/recipes/account-watch), [Email and SMS tracking](/recipes/email-sms-tracking), [Delivery monitoring](/recipes/delivery-monitoring)',
+          'Obsession (ours): [Account watch](/blueprints/account-watch), [Email and SMS tracking](/blueprints/email-sms-tracking), [Delivery monitoring](/blueprints/delivery-monitoring)',
           'Keeps what each account shows only to its customers: emails, texts, support answers and codes, dated with screenshots',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'An account not yet covered starts its history the day it is added\nEvery journey stops short of paying',
@@ -403,7 +403,7 @@ export const post: BlogPost = {
         {
           q: 'How do I show a customer what its own customers received?',
           a: 'Agree it with your contact, then sign up at the account’s store or app as a new customer, with an address and number kept for that account. Log every email, text and answer with the time it arrived and a screenshot, and run it again before the next review to show the before and after.',
-          link: { label: 'Account watch', to: '/recipes/account-watch' },
+          link: { label: 'Account watch', to: '/blueprints/account-watch' },
         },
       ],
     },

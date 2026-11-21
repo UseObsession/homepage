@@ -27,16 +27,16 @@ type Offer = { ask: Ask; micro: string; done: string; none?: string; head?: stri
 export const offers: Record<OfferId, Offer> = {
   clients: {
     ask: {
-      title: 'Which client stores should we add first?',
-      help: 'Up to 5 stores you run or pitch, with the owner’s OK.',
-      placeholder: 'client-store.com',
-      add: 'Add another store',
+      title: 'Which clients should we add first?',
+      help: 'Up to 5 client websites you run or pitch, with the owner’s OK.',
+      placeholder: 'client-site.com',
+      add: 'Add another client',
     },
-    micro: 'Onboarding a limited number of teams. Name up to 5 client stores to start with.',
+    micro: 'Onboarding a limited number of teams. Name up to 5 clients to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
-      micro: 'Onboarding a limited number of teams. Early access adds up to 5 client stores for you.',
-      help: 'Up to 5 stores you run or pitch, with the owner’s OK. A persona joins each one and keeps everything it is sent.',
+      micro: 'Onboarding a limited number of teams. Early access adds up to 5 clients for you.',
+      help: 'Up to 5 client websites you run or pitch, with the owner’s OK. A persona joins each one and keeps everything it is sent.',
       done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
   },

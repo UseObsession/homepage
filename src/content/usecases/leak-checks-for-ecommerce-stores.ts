@@ -246,19 +246,19 @@ export const study: UseCaseStudy = {
       label: 'Your store',
       title: 'Store sign-up and checkout',
       line: 'What a store sends a new customer after a sign-up, a basket and a checkout, every email timed.',
-      cta: { label: 'Learn more', to: '/recipes/mystery-shopper' },
+      cta: { label: 'Learn more', to: '/blueprints/mystery-shopper' },
     },
     second: {
       label: 'Your competitors',
       title: 'Email and SMS tracking',
       line: 'Every store on your list, its emails and texts side by side: who sends most, and who discounts first.',
-      cta: { label: 'Learn more', to: '/recipes/email-sms-tracking' },
+      cta: { label: 'Learn more', to: '/blueprints/email-sms-tracking' },
     },
     third: {
       label: 'After every change',
       title: 'Website audit',
       line: 'Every step again after each release, with any break dated.',
-      cta: { label: 'Learn more', to: '/recipes/website-audit' },
+      cta: { label: 'Learn more', to: '/blueprints/website-audit' },
     },
     sample: {
       label: '1 real run',

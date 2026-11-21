@@ -34,7 +34,7 @@ const MORE: Partial<Record<RecipeGroup, NavPage>> = {
   'Check your AI agents': { label: 'See how it works', to: ways.verify.to },
 }
 
-const recipeLink = (r: Pick<CatalogRecipe, 'id' | 'name' | 'slug'>): NavRecipe => ({ id: r.id, label: r.name, to: `/recipes/${r.slug}` })
+const recipeLink = (r: Pick<CatalogRecipe, 'id' | 'name' | 'slug'>): NavRecipe => ({ id: r.id, label: r.name, to: `/blueprints/${r.slug}` })
 const recipeById = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
 
 /* Every recipe, by the job it does. Each recipe's job, name and address come from its own file (content/recipes/SLUG.ts),
@@ -63,7 +63,7 @@ export const recipeJobs: NavJob[] = JOBS.map((name) => {
   return {
     name: jobLabel(name),
     line: j.line,
-    to: j.to ?? `/recipes#${jobAnchor(name)}`,
+    to: j.to ?? `/blueprints#${jobAnchor(name)}`,
     examples: j.examples.map((id) => recipeLink(recipeById[id])),
   }
 })
@@ -117,11 +117,11 @@ const menus = {
     items: [
       { label: 'Email', line: 'Inboxes your agents send and receive from', to: '/email', icon: 'mail' },
       { label: 'Phone', line: 'Numbers, texts and calls for agents', to: '/phone', icon: 'phone' },
-      { label: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram', to: '/messaging', icon: 'chat' },
       { label: 'Browser', line: 'A cloud browser that keeps its logins', to: '/browser', icon: 'browser' },
-      { label: 'Sandbox', line: 'A computer to run code when a task needs one', to: '/sandbox', icon: 'sandbox' },
       { label: 'Personas', line: 'Every piece under one identity', to: '/personas', icon: 'users' },
-      { label: 'Recipes', line: 'Jobs ready to run, or your own, beside the pieces', to: '/recipes', icon: 'recipes' },
+      { label: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram', to: '/messaging', icon: 'chat' },
+      { label: 'Sandbox', line: 'A computer to run code when a task needs one', to: '/sandbox', icon: 'sandbox' },
+      { label: 'Blueprints', line: 'Jobs ready to run, or your own, beside the pieces', to: '/blueprints', icon: 'recipes' },
       { label: 'API and MCP', line: 'One API for every piece, and MCP for your agent', to: '/developers', icon: 'api' },
       { label: 'Pricing', line: 'Each piece priced on its own', to: '/pricing', icon: 'tag' },
     ] satisfies NavTool[],
@@ -143,12 +143,12 @@ const menus = {
       {
         label: 'Use cases',
         items: [
-          { label: 'Mystery shopping', line: 'Personas shop a store, and keep what follows', to: '/recipes/mystery-shopper', icon: 'cart' },
-          { label: 'QA on your own flows', line: 'Sign up to your product as a new user', to: '/recipes/website-audit', icon: 'software' },
-          { label: 'Competitor trials', line: 'Every email a rival’s trial sends', to: '/recipes/trial-teardown', icon: 'clock' },
-          { label: 'Lead response checks', line: 'Time the first email, text and call', to: '/recipes/lead-leaks', icon: 'mail' },
-          { label: 'Prospect audits', line: 'Shop a prospect’s store before the pitch', to: '/recipes/prospect-intelligence', icon: 'target' },
-          { label: 'Price watch', line: 'Member prices, every week', to: '/recipes/price-watch', icon: 'tag' },
+          { label: 'Mystery shopping', line: 'Personas shop a store, and keep what follows', to: '/blueprints/mystery-shopper', icon: 'cart' },
+          { label: 'QA on your own flows', line: 'Sign up to your product as a new user', to: '/blueprints/website-audit', icon: 'software' },
+          { label: 'Competitor trials', line: 'Every email a rival’s trial sends', to: '/blueprints/trial-teardown', icon: 'clock' },
+          { label: 'Lead response checks', line: 'Time the first email, text and call', to: '/blueprints/lead-leaks', icon: 'mail' },
+          { label: 'Prospect audits', line: 'Shop a prospect’s store before the pitch', to: '/blueprints/prospect-intelligence', icon: 'target' },
+          { label: 'Price watch', line: 'Member prices, every week', to: '/blueprints/price-watch', icon: 'tag' },
           { label: 'AI agent checks', line: 'What support bots and voice lines say', to: '/verify', icon: 'chat' },
           { label: 'The web behind the login', line: 'What companies show people only after sign up', to: '/use-cases/web-behind-the-login', icon: 'search' },
         ],
@@ -158,7 +158,7 @@ const menus = {
         items: [
           { label: 'Marketing', line: 'A persona on every competitor’s list', to: '/marketing', icon: 'megaphone' },
           { label: 'Sales', line: 'What each account sends a new sign up', to: '/sales', icon: 'briefcase' },
-          { label: 'Agencies', line: 'Pitch with a prospect’s own emails', to: '/agencies', icon: 'users' },
+          { label: 'Agencies and resellers', line: 'Sell our checks to clients under your brand', to: '/agencies', icon: 'users' },
           { label: 'Banks and fintechs', line: 'Apply as a persona, keep every step', to: '/use-cases/journey-checks-for-banks-and-fintechs', icon: 'bank' },
           { label: 'Online stores', line: 'The emails after every basket', to: '/use-cases/leak-checks-for-ecommerce-stores', icon: 'cart' },
           { label: 'B2B software', line: 'Trials, demos and onboarding, as a new user', to: '/use-cases/sales-intelligence-behind-the-login', icon: 'software' },
@@ -203,17 +203,17 @@ export const nav = {
   readers: [
     { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'A persona on every competitor’s list, keeping what they send.' },
     { id: 'sales', label: 'Sales', to: '/sales', line: 'What each account sends a new sign up.' },
-    { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Shop a prospect’s store before the pitch.' },
+    { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Sell our checks to your clients under your own brand.' },
     { id: 'developers', label: 'Developers', to: '/developers', line: 'Inboxes, numbers, browsers and sandboxes through one API.' },
   ] satisfies NavReader[],
   /* Where the readers fold into 1 menu, when the bar is too narrow for all 5 (Nav.css), and the phone sheet's question.
      `name` is the folded button's name for screen readers; it holds the word it shows. */
   readersMenu: { label: 'For', name: 'Who it’s for', ask: 'Who are you?' },
   recipes: {
-    label: 'Recipes',
-    to: '/recipes',
-    button: 'Recipes menu',
-    all: { label: 'Browse all recipes', to: '/recipes' } satisfies NavPage,
+    label: 'Blueprints',
+    to: '/blueprints',
+    button: 'Blueprints menu',
+    all: { label: 'Browse all blueprints', to: '/blueprints' } satisfies NavPage,
     /* The featured card: the 1 real run, the sample data. */
     feature: {
       label: 'See one real run',
@@ -287,6 +287,8 @@ export const pageCtas: Record<string, Cta> = {
   '/agents': catalog.agentsCta,
   /* Home (21 Nov): the bar's button matches the hero's, to the page's own early access form. */
   '/': { label: 'Start building', to: '#join', bar: 'Start building' },
+  /* The resellers page (21 Nov): the bar's button matches its forms' (early access), to its own form. */
+  '/agencies': { label: 'Get early access', to: '#join', bar: 'Get early access' },
 }
 
 export function ctaFor(path: string): Cta {

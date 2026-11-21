@@ -470,7 +470,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**What a real customer receives after signing up, leaving a basket or reaching checkout:** use Obsession when your company needs every email, offer, price and page kept as proof, at its own store or any company it names. Its [AI mystery shopper](/recipes/mystery-shopper) gives each journey its own new customer and inbox, and watches every inbox to the end of the wait.',
+        '**What a real customer receives after signing up, leaving a basket or reaching checkout:** use Obsession when your company needs every email, offer, price and page kept as proof, at its own store or any company it names. Its [AI mystery shopper](/blueprints/mystery-shopper) gives each journey its own new customer and inbox, and watches every inbox to the end of the wait.',
         '**Phone staff:** PressTwo SpotCheck for a listed monthly price, AdStack to have the programme run for you, Implement AI for multi-site gyms.',
         '**Competitors’ sales and phone teams:** Dealer Driven Data for car dealers, LocalSpy AI for local businesses.',
         '**How fast reps answer a new lead:** Qualified’s free test.',
@@ -530,7 +530,7 @@ export const post: BlogPost = {
         ['Intouch Insight', 'Human shoppers across websites and apps', 'Quoted for each programme', 'No published prices for online shops', 'Real purchases and members’ prices'],
         ['T-ROC', 'In-person visits, compliance checks and fast dashboards', '$40 to $150 a store visit', '4 to 6 visits per store per quarter suggested', 'Multi-location retail'],
         [
-          'Obsession (ours): [AI mystery shopper](/recipes/mystery-shopper), [store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
+          'Obsession (ours): [AI mystery shopper](/blueprints/mystery-shopper), [store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
           'What any company you name sends after a sign-up, a basket and a checkout, kept as it arrives',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Online journeys and inboxes, with a person for the shop floor',

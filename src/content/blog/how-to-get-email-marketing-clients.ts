@@ -280,7 +280,7 @@ export const post: BlogPost = {
           'Reaching the founder or head of ecommerce',
         ],
         [
-          'Obsession (ours): [Leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies), [Prospect intelligence](/recipes/prospect-intelligence), [Email and SMS tracking](/recipes/email-sms-tracking)',
+          'Obsession (ours): [Leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies), [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking)',
           'Leak checks: what each store sends a new customer after a sign-up, a text opt-in and a basket, dated\nProspect intelligence: a verdict and a proof link per company\nEmail and SMS tracking: each competitor’s emails and texts',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Doesn’t find contacts or email addresses',

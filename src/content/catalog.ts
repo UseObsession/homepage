@@ -6,8 +6,9 @@ import { agentsPage, blogLive, posts, recipeFileOf, recipes, refFileOf, referenc
 import { CONTACT_EMAIL } from './site'
 
 export const catalog = {
-  /* Every recipe, in the registry's order, and the file its words are in. */
-  recipes: recipes.map(({ id, slug, name, group, line }) => ({ id, slug, name, group, line, file: recipeFileOf[slug] })),
+  /* Every recipe, in the registry's order, and the file its words are in. `unit` and `per` word its pricing table where
+     another page shows it (/agencies' pricing tabs, content/recipe-page.ts blueprintPricing). */
+  recipes: recipes.map(({ id, slug, name, group, line, unit, per }) => ({ id, slug, name, group, line, unit, per, file: recipeFileOf[slug] })),
   studies: studies.map(({ name, line, meta }) => ({ name, line, path: meta.path, file: studyFileOf[meta.path] })),
   /* Every post, newest first: what a list of posts shows, and the hub and lead the Resources menu shows. */
   posts: posts.map(({ slug, title, dek, category, published, readingMinutes, featured }) => ({

@@ -354,7 +354,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For outbound, Obsession’s [prospect intelligence](/recipes/prospect-intelligence) signs up, opts in to texts and asks the chat at every company on your list. It writes each fact, its date and its screenshot back to the same rows in Clay, a sheet or the CRM, for as long as you set. It also shows the platform that sent each email, and the week an account’s emails start coming from a different one, as on [the page for sales teams](/sales). [Exa](' +
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For outbound, Obsession’s [prospect intelligence](/blueprints/prospect-intelligence) signs up, opts in to texts and asks the chat at every company on your list. It writes each fact, its date and its screenshot back to the same rows in Clay, a sheet or the CRM, for as long as you set. It also shows the platform that sent each email, and the week an account’s emails start coming from a different one, as on [the page for sales teams](/sales). [Exa](' +
         EXA +
         ') gives reps the public web in seconds; Obsession gives them what each account sends the people who sign up, and a team can use both. Run it on the accounts your SDRs open this month, so you can see what it does to reply rates, meetings booked and opportunities.',
     },
@@ -412,7 +412,7 @@ export const post: BlogPost = {
           'A short list of top accounts',
         ],
         [
-          'Obsession (ours): [Prospect intelligence](/recipes/prospect-intelligence), [Email and SMS tracking](/recipes/email-sms-tracking), [Trial teardown](/recipes/trial-teardown)',
+          'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking), [Trial teardown](/blueprints/trial-teardown)',
           'Keeps what each account shows only to its customers: emails, texts, chat answers, trial emails, the platform that sent each email',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'An account not yet covered starts its history the day it is added\nOrders and identity checks stay with your own team',
@@ -464,7 +464,7 @@ export const post: BlogPost = {
         {
           q: 'How do you personalize cold emails at scale?',
           a: 'Collect one fact per account from what it sends its own customers, then write each line from the template. By hand that takes about 15 minutes an account plus the waiting window. Obsession collects those facts for every account on a list and writes each one, with its date and screenshot, back to the same rows.',
-          link: { label: 'Prospect intelligence', to: '/recipes/prospect-intelligence' },
+          link: { label: 'Prospect intelligence', to: '/blueprints/prospect-intelligence' },
         },
         {
           q: 'Should a cold email open with a compliment?',

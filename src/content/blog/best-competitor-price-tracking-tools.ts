@@ -532,7 +532,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps going on its own. [Price watch](/recipes/price-watch) reads prices, stock and delivery every morning, so a changed member price shows up the next day. A fresh sign-up can run [every step again each week](/use-cases/leak-checks-for-ecommerce-stores), so a new welcome code shows up that week. It works the same for one company or a list of 3,000, on an index built for millions of companies.',
+      text: 'It keeps going on its own. [Price watch](/blueprints/price-watch) reads prices, stock and delivery every morning, so a changed member price shows up the next day. A fresh sign-up can run [every step again each week](/use-cases/leak-checks-for-ecommerce-stores), so a new welcome code shows up that week. It works the same for one company or a list of 3,000, on an index built for millions of companies.',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which competitor price comparison software fits each job?' },
@@ -594,7 +594,7 @@ export const post: BlogPost = {
         ['Skuuudle', 'Managed collection down to the zip code or store', '$10,000 to $1 million a year', 'No self-serve plan', 'A price data budget in the tens of thousands'],
         ['Wiser', 'Marketplace price and MAP monitoring, free snapshot', 'Not listed\nFree snapshot', 'Sold through its team', 'A free first look, then a quote'],
         [
-          'Obsession (ours): [Price watch](/recipes/price-watch), [Competitor tracking](/recipes/competitor-tracking), [Member prices](/use-cases/member-prices-for-price-intelligence)',
+          'Obsession (ours): [Price watch](/blueprints/price-watch), [Competitor tracking](/blueprints/competitor-tracking), [Member prices](/use-cases/member-prices-for-price-intelligence)',
           'Subscriber codes, member prices and emailed offers each morning, and the basket total with a code if you choose, at any competitor you name',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Reports each change, with repricing left to your own tools',
@@ -647,7 +647,7 @@ export const post: BlogPost = {
         {
           q: 'How does Obsession track competitor prices?',
           a: 'An Obsession agent, a customer that says it’s an AI, signs up to each competitor with its own inbox. It records the code each competitor sends new subscribers, each member price and every emailed offer, and, if you choose, fills a basket to record the total with delivery and the code applied, stopping before payment. Each is dated with a screenshot. Obsession’s Price watch checks every competitor’s prices, offers and delivery each morning and reports each change with a before and after screenshot. Teams start in early access, priced per call or per company watched.',
-          link: { label: 'Price watch', to: '/recipes/price-watch' },
+          link: { label: 'Price watch', to: '/blueprints/price-watch' },
         },
       ],
     },

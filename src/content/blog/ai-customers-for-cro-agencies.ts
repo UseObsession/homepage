@@ -303,15 +303,15 @@ export const post: BlogPost = {
       kind: 'list',
       ordered: true,
       items: [
-        '**Every live ad’s page, each morning** ([Ad landing check](/recipes/ad-landing-check)). The check: open each page from the ad’s own link, on a phone and a desktop. A pass: it loads, matches the ad and has stock. That week: the media buyer pauses or relinks each failing ad.',
-        '**Each client’s journey after the sign up, weekly and after every release** ([Website audit](/recipes/website-audit)). The check: sign up through the pop up behind a live ad, wait 48 hours and take the code to checkout. A pass: the promised code arrives within minutes and works. That week: each fail goes to its owner, and the before and after into the monthly report.',
+        '**Every live ad’s page, each morning** ([Ad landing check](/blueprints/ad-landing-check)). The check: open each page from the ad’s own link, on a phone and a desktop. A pass: it loads, matches the ad and has stock. That week: the media buyer pauses or relinks each failing ad.',
+        '**Each client’s journey after the sign up, weekly and after every release** ([Website audit](/blueprints/website-audit)). The check: sign up through the pop up behind a live ad, wait 48 hours and take the code to checkout. A pass: the promised code arrives within minutes and works. That week: each fail goes to its owner, and the before and after into the monthly report.',
         '**Every test variant past the sign up, each morning it runs.** The check, from step 5 of the [ecommerce CRO audit template](' +
           CRO_AUDIT +
           '): sign up through each variant’s preview link and try the code it sends. A pass: every variant sends its email and a working code. That week: hours when a variant failed come out of both arms before anyone calls the test.',
-        '**Each prospect before the pitch** ([Prospect intelligence](/recipes/prospect-intelligence)). The check: become a customer of each brand on the pipeline list, from the page behind its live ad. A pass: each step works as the brand promises, and every fail becomes a finding with its evidence. That week: the 3 strongest findings open the pitch, as [how to find ecommerce clients](' +
+        '**Each prospect before the pitch** ([Prospect intelligence](/blueprints/prospect-intelligence)). The check: become a customer of each brand on the pipeline list, from the page behind its live ad. A pass: each step works as the brand promises, and every fail becomes a finding with its evidence. That week: the 3 strongest findings open the pitch, as [how to find ecommerce clients](' +
           FIND_CLIENTS +
           ') describes.',
-        '**Competitors’ offers past the ad** ([Ad tracking](/recipes/ad-tracking)). The check: read the ads a client’s competitors run in public each morning, open each page and sign up where an ad offers a code. A pass: no competitor undercuts the client’s offer. That week: the creative strategist briefs against the competitor’s real offer ([ecommerce competitive intelligence](' +
+        '**Competitors’ offers past the ad** ([Ad tracking](/blueprints/ad-tracking)). The check: read the ads a client’s competitors run in public each morning, open each page and sign up where an ad offers a code. A pass: no competitor undercuts the client’s offer. That week: the creative strategist briefs against the competitor’s real offer ([ecommerce competitive intelligence](' +
           COMPETITIVE +
           ') compares other sources).',
       ],
@@ -415,7 +415,7 @@ export const post: BlogPost = {
           'One off checks of a page or form',
         ],
         [
-          'Obsession (ours): [Ad landing check](/recipes/ad-landing-check), [Website audit](/recipes/website-audit), [Prospect intelligence](/recipes/prospect-intelligence), [Ad tracking](/recipes/ad-tracking)',
+          'Obsession (ours): [Ad landing check](/blueprints/ad-landing-check), [Website audit](/blueprints/website-audit), [Prospect intelligence](/blueprints/prospect-intelligence), [Ad tracking](/blueprints/ad-tracking)',
           'What follows a live ad: the page, the pop up’s offer, every email and the code at checkout, each dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',

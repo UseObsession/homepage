@@ -291,7 +291,7 @@ export const post: BlogPost = {
         ['Public rate pages and comparison sites', 'Headline market rates, quick to scan', 'Free to read, plus staff time', 'Public rates; not what an existing customer is paid', 'A first scan of the market'],
         ['Mystery shopping by people', 'Branch, phone and adviser journeys', 'Per brief, quoted by the agency', 'Each visit is one moment in a sample', 'Journeys that need a person'],
         [
-          'Obsession (ours): [Support bot check](/recipes/support-bot-check), [Competitor tracking](/recipes/competitor-tracking)',
+          'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Competitor tracking](/blueprints/competitor-tracking)',
           'Each step customers are shown, every email after, signed-in rates and chat answers, at your firm and competitors, dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Never invents identity details',
