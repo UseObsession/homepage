@@ -6,10 +6,10 @@ import { wordsFor, type ScreenProps } from '../components/workspace'
 export function RunScreen({ workspace = 'agency' }: ScreenProps) {
   const ws = wordsFor(workspace)
   return (
-    <div className="il appx-il app-run"><div className="appx-fit"><div className="appx" role="img" aria-label="The signed record of an example store check for the Candles client: the run log lists each step the 4 personas took, with screenshots, and receipt 4 of 9, the checkout stopped before payment, is open. The account manager clicks Verify, the signature checks out with the chain intact, and a link to share the record with the client appears. 0 basket emails in 48 hours. All 9 receipts check out, chain intact.">
+    <div className="il appx-il app-run"><div className="appx-fit"><div className="appx" role="img" aria-label="The event log’s signed events from a store check for the Candles client: the run log lists each step the 4 personas took, with screenshots, and receipt 4 of 9, the checkout stopped before payment, is open. The account manager clicks Verify, the signature checks out with the chain intact, and a link to share these events with the client appears. 0 basket emails in 48 hours. All 9 receipts check out, chain intact.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
-        <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Records<span>/</span>Store sign-up and checkout</span>
+        <span className="ax-crumb"><b>{ws.org}</b><span>/</span>Event log<span>/</span>Store sign-up and checkout</span>
         <span className="ax-search"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="7" cy="7" r="4.25" /><path d="M10.2 10.2 13 13" /></svg>Search or type a task<span className="ax-kbd">⌘K</span></span>
         <span className="ax-team" aria-hidden="true"><span>AM</span><span>JO</span></span>
       </div>
@@ -21,7 +21,7 @@ export function RunScreen({ workspace = 'agency' }: ScreenProps) {
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M3 4.5h10M3 8h10M3 11.5h6" /></svg>Watches<em>24</em></a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="2.75" width="4.5" height="4.5" rx="1" /><rect x="2.75" y="8.75" width="4.5" height="4.5" rx="1" /><rect x="8.75" y="8.75" width="4.5" height="4.5" rx="1" /></svg>Recipes</a>
             <a role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M2.5 9.5h3l1 2h3l1-2h3M2.5 9.5 4 3.5h8l1.5 6v3.25h-11Z" /></svg>Needs you<span className="ax-badge">3</span></a>
-            <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M4 2.5h8v11l-2-1.25-2 1.25-2-1.25-2 1.25Z" /><path d="M6 6h4M6 8.75h4" strokeLinecap="round" /></svg>Records</a>
+            <a className="on" role="none"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"><path d="M4 2.5h8v11l-2-1.25-2 1.25-2-1.25-2 1.25Z" /><path d="M6 6h4M6 8.75h4" strokeLinecap="round" /></svg>Event log</a>
           </nav>
           <div className="ax-clients">
             <p className="ax-side-h">{ws.lists}</p>
@@ -32,7 +32,7 @@ export function RunScreen({ workspace = 'agency' }: ScreenProps) {
         <div className="ax-main">
           <header className="ax-h rn-h ax-fade">
             <h2>Store sign-up and checkout</h2>
-            <span className="ax-meta">Candles · Example</span>
+            <span className="ax-meta">Candles</span>
             <span className="rn-idp"><span className="rn-ag"><svg className="sig" viewBox="2 2 96 96" aria-hidden="true"><g className="sig-rot"><path className="sig-ring" d="M88.57 39.402A40 40 0 1 1 60.598 11.43V21.668A29.319 30.387 0 1 0 77.478 39.402Z" /><path className="sig-gap" d="M60.598 11.43A40 40 0 0 1 88.57 39.402H77.478A29.319 30.387 0 0 0 60.598 21.668Z" /><g className="sig-orb"><path className="sig-sq" d="M65.404 16.011h18.585v18.585h-18.585Z" /></g></g></svg></span>Obsession agent for {ws.org}</span>
             <span className="ax-btn ghost rn-sh" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 9.5v-7M5.25 5.25 8 2.5l2.75 2.75M3.5 8.5v4.75h9V8.5" /></svg></span>
           </header>
@@ -41,7 +41,7 @@ export function RunScreen({ workspace = 'agency' }: ScreenProps) {
               <div className="rn-hd"><b>Run log</b><span>Day 1 to 4 · signed</span></div>
               <ol>
                 <li className="rn-r r1 ax-in" style={{ '--d': '.3s' }}><time>21:02</time><i className="nd" /><div className="tx"><p>4 personas sign up</p></div></li>
-                <li className="rn-r r2 ax-in" style={{ '--d': '.5s' }}><time>21:09</time><i className="nd" /><div className="tx"><p>Customer 2 browses, leaves</p></div></li>
+                <li className="rn-r r2 ax-in" style={{ '--d': '.5s' }}><time>21:09</time><i className="nd" /><div className="tx"><p>Persona 2 browses, leaves</p></div></li>
                 <li className="rn-r r3 ax-in" style={{ '--d': '.7s' }}><time>21:14</time><i className="nd" /><div className="tx">
                   <p>Gift box £36 in basket</p>
                   <span className="ax-shot rn-cap cap-bag" aria-hidden="true"><span className="cb"><span className="pg"><i className="im" /><i className="t1" /><i className="t2" /></span><span className="dr"><i className="th" /><i className="ln" /><i className="ln s" /><i className="bt" /></span></span></span>

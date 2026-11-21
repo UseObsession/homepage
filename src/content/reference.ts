@@ -180,7 +180,6 @@ export const glossaryHub: ReferenceHub = {
   art: {
     kind: 'flow',
     title: 'northwind.example · terms',
-    status: { tone: 'info', text: 'Example' },
     steps: [
       { label: 'Pricing page', detail: 'Public: search reads it', tone: 'info' },
       { label: 'Login wall', detail: 'The sign-up form', tone: 'late' },

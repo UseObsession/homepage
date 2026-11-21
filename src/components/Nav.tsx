@@ -234,6 +234,9 @@ const ICONS: Record<NavIcon, string> = {
   cart: '<path d="M1.5 2.5h2l1.6 7.5h7l1.4-5.5H4.3"/><circle cx="6.5" cy="13" r=".9"/><circle cx="11.5" cy="13" r=".9"/>',
   shield: '<path d="M8 1.8 13 3.6v4c0 3-2.1 5.4-5 6.6-2.9-1.2-5-3.6-5-6.6v-4Z"/><path d="m5.8 8 1.6 1.6 2.9-3"/>',
   chart: '<path d="M2.5 2.5v11h11"/><path d="m4.5 10.5 3-3.5 2 2 4-5"/>',
+  phone: '<rect x="4.5" y="1.5" width="7" height="13" rx="1.5"/><path d="M7 12.2h2"/>',
+  browser: '<circle cx="8" cy="8" r="5.5"/><path d="M2.5 8h11M8 2.5c1.6 1.6 2.4 3.4 2.4 5.5S9.6 11.9 8 13.5C6.4 11.9 5.6 10.1 5.6 8S6.4 4.1 8 2.5Z"/>',
+  sandbox: '<rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="m4.8 6.5 2 1.5-2 1.5M8.2 10h3"/>',
 }
 function ToolIcon({ name }: { name: NavIcon }) {
   return (

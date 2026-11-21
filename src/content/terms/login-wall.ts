@@ -37,7 +37,6 @@ export const ref: ReferencePage = {
   art: {
     kind: 'flow',
     title: 'northwind.example · the wall',
-    status: { tone: 'info', text: 'Example' },
     steps: [
       { label: 'Pricing page', detail: 'Pro £29 a month. Anyone can open it, and search engines index it.', tone: 'info' },
       { label: 'The wall: sign up', detail: 'An email address and a password. Crawlers stop here.', tone: 'late' },

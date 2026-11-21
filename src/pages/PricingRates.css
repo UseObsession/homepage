@@ -1,0 +1,102 @@
+/* /pricing/rates (pages/PricingRates.tsx), on the design system's tokens and type scale, in both themes. Every class
+   starts s-rt. The hero is the plain pages' centred hero (Notice.css), the closing call is the final block
+   (FinalCta.css). The rate list is 1 ruled row per piece: its name, line and link, then its prices; from 860px the 2
+   sit side by side on the page's split. Spacing sits on the 4px grid. Nothing is wider than a phone's screen. */
+
+/* The hero above already closes with its block space, so the list takes no more. */
+.s-rt-list.s-section { padding-top: 0; }
+.s-rt-groups {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: var(--ob-border-hair) solid var(--s-rule, var(--ob-line));
+}
+.s-rt-group {
+  display: grid;
+  gap: var(--ob-space-16);
+  padding-block: var(--ob-space-24) var(--ob-space-28);
+  border-top: var(--ob-border-hair) solid var(--s-rule, var(--ob-line));
+  scroll-margin-top: calc(var(--ob-nav-h, 64px) + var(--ob-space-16));
+}
+.s-rt-group__head { display: grid; align-content: start; justify-items: start; gap: var(--ob-space-8); min-width: 0; }
+.s-rt-group__name {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+}
+.s-rt-group__line {
+  margin: 0;
+  max-width: 40ch;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+.s-rt-group__link { margin-top: var(--ob-space-4); }
+.s-rt-rows { display: grid; margin: 0; min-width: 0; }
+.s-rt-row {
+  display: grid;
+  gap: var(--ob-space-4);
+  padding-block: var(--ob-space-12);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-rt-row:first-child { border-top: 0; padding-top: 0; }
+.s-rt-row:last-child { padding-bottom: 0; }
+.s-rt-row__name {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  font-weight: var(--ob-weight-medium);
+  color: var(--ob-text);
+}
+.s-rt-row__price {
+  margin: 0;
+  min-width: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-rt-row__amount {
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  font-variant-numeric: tabular-nums;
+}
+.s-rt-row__note {
+  display: block;
+  margin-top: var(--ob-space-4);
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+}
+/* From 640px a price reads across: what is billed on the left, the price and its note on the right. */
+@media (min-width: 640px) {
+  .s-rt-row {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: baseline;
+    gap: var(--ob-space-16);
+  }
+}
+@media (min-width: 860px) {
+  .s-rt-group {
+    grid-template-columns: var(--s-split);
+    column-gap: var(--s-split-gap);
+    padding-block: var(--ob-space-32);
+  }
+  .s-rt-row:first-child { padding-top: var(--ob-space-4); }
+}
+
+/* ---- The closing call (FinalCta.css): the claim, its line, the button back to the plans and a quiet second path. ---- */
+.s-rt-final__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--ob-space-16) var(--ob-space-24);
+  margin-top: var(--ob-space-40);
+}
+@media (max-width: 860px) {
+  .s-rt-final__actions { margin-top: var(--ob-space-32); }
+}

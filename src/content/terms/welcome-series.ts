@@ -38,7 +38,6 @@ export const ref: ReferencePage = {
     kind: 'log',
     title: 'harbour.example · welcome series',
     who: 'New subscriber, signed up Mon 09:00',
-    status: { tone: 'info', text: 'Example' },
     rows: [
       { time: 'Mon 09:01', text: 'Welcome to Harbour', detail: '10% off your first order, code HELLO10', tone: 'ok' },
       { time: 'Tue 09:00', text: 'Why we started Harbour', detail: 'A letter from the founder, no code', tone: 'ok' },

@@ -1,46 +1,48 @@
 import type { Recipe } from '../types'
 
-/* Store sign-up and checkout (/recipes/mystery-shopper; the slug is kept, the page is retitled, 9 Nov). A ready-made
-   collection: what any store sends a new customer after a sign-up, a browse, a basket and a checkout left before
-   payment, every email and text timed, from the customer profile the reader picks. It carries the 1 real record,
-   Brand G (sample.ts), stated exactly: 4 journeys from the UK, a £40 Body Care Gift Set left at 02:57 and a £21
-   deodorant left at checkout at 03:11 on Tue 22 Sep 2026, 48 hours watched, 0 reminders, browse 3 messages, welcome 2
-   (too few to call), 15 screenshots and 5 messages kept. No signature claimed. The comparison table is an example. */
+/* Agentic mystery shopping (/recipes/mystery-shopper; the slug is kept, renamed from Store sign-up and checkout on
+   20 Nov 2026 to match Home's tile). The persona version (20 Nov, James): personas you define shop your store, or a
+   client's with their OK, as first-time shoppers. They sign up, browse, fill a basket and leave at checkout before
+   payment (or pay with your own card if you say so), wait 48 hours by default, wake on every email and text, and bring
+   back every event to your event log. It carries the 1 real run, Brand G (sample.ts), stated exactly: 4 journeys from the UK, a £40 Body
+   Care Gift Set left at 02:57 and a £21 deodorant left at checkout at 03:11 on Tue 22 Sep 2026, 48 hours watched, 0
+   reminders, browse 3 messages, welcome 2 (too few to call), 15 screenshots and 5 messages kept. No signature claimed.
+   The comparison table is an example. */
 
 export const recipe: Recipe = {
   id: 'mystery',
   slug: 'mystery-shopper',
-  name: 'Store sign-up and checkout',
+  name: 'Agentic mystery shopping',
   group: 'Check your own journeys',
-  line: 'What any store sends a new customer after a sign-up, a basket and a checkout, every email timed.',
-  gets: 'Every email and text a store sends a new customer, timed, and the reminders that never came.',
+  line: 'Personas shop your store as new shoppers and bring back every email, text and reminder that followed, or the silence.',
+  gets: 'Every email and text your store sends a new shopper, dated, and the reminders that never came.',
   kit: [
-    'An account at each store, as the profile you pick',
-    'An inbox and number for each journey',
-    'Sign-up, browse, basket and checkout',
-    'Every checkout stopped before payment',
-    'A screenshot of every step',
-    'Every email kept with its arrival time',
+    'A persona per journey, defined by you',
+    'Its own inbox, phone number and home connection',
+    'Sign up, browse, basket and checkout',
+    'Stops before payment by default',
+    '48 hours of waiting, waking on each email and text',
+    'A screenshot of every step, every message dated',
   ],
 
   meta: {
     path: '/recipes/mystery-shopper',
-    title: 'Basket and checkout emails at any store, timed · Obsession',
+    title: 'Agentic mystery shopping: every email after a basket is left',
     description:
-      'What any store sends a new customer after a sign-up, a basket and a checkout left before payment: every email and text, timed, with screenshots.',
+      'Personas you define sign up, browse, fill a basket and leave at checkout, then wait 48 hours and bring back every email and text your store sent.',
     answer:
-      'Store sign-up and checkout records what any store sends a new customer after a sign-up, a browse, a basket and a checkout left before payment. Every email and text is kept with the time it arrived and a screenshot of each step.',
+      'Agentic mystery shopping sends personas you define through your store as new shoppers. They sign up, browse, fill a basket and leave at checkout before payment, then wait 48 hours and bring back every email and text, each dated, with screenshots.',
     ogImage: '/og/mystery-shopper.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Recipes', path: '/recipes' },
-      { name: 'Store sign-up and checkout', path: '/recipes/mystery-shopper' },
+      { name: 'Agentic mystery shopping', path: '/recipes/mystery-shopper' },
     ],
   },
 
   hero: {
-    headline: 'The emails after the basket, at any store.',
-    sub: 'Store sign-up and checkout records what any store sends a new customer after a sign-up, a browse, a basket and a checkout left before payment. Every email and text is kept with the time it arrived and a screenshot of each step.',
+    headline: 'A persona leaves a basket. You see every email that follows, or the silence.',
+    sub: 'Agentic mystery shopping sends personas you define through your store as new shoppers. They sign up, browse, fill a basket and leave at checkout before payment, then wait 48 hours and bring back every email and text, each dated, with screenshots.',
     screen: 'shop',
     capture: {
       kind: 'waitlist',
@@ -53,12 +55,12 @@ export const recipe: Recipe = {
   run: {
     tab: 'Real run, September 2026',
     recipe: 'mystery',
-    task: 'Sign up to Brand G, a skincare store, 4 ways: welcome, browse, basket and checkout. Watch every inbox for 48 hours.',
+    task: 'Send 4 personas to Brand G, a skincare store, 1 for each journey: welcome, browse, basket and checkout. Watch every inbox for 48 hours.',
     targets: 'Brand G, a skincare store, name hidden',
     journey: ['Sign up for emails', 'Browse and leave', 'Leave a basket', 'Leave at checkout, before payment'],
     schedule: 'Once, 22 to 24 September 2026',
-    report: 'The record: every screenshot and message, timed',
-    kit: ['4 journeys', '4 inboxes, 1 per journey', 'From the UK', '48 hour watch'],
+    report: 'Every screenshot and message in your event log, timed',
+    kit: ['4 journeys, 1 persona each', '4 inboxes, 1 per journey', 'From the UK', '48 hour watch'],
     events: [
       { time: '22 Sep, 02:57', text: 'A £40 Body Care Gift Set left in the basket.' },
       { time: '22 Sep, 03:11', text: 'A £21 deodorant left at checkout, before payment.' },
@@ -67,32 +69,32 @@ export const recipe: Recipe = {
       { time: '24 Sep, 03:11', text: '48 hours on. No reminder for the £21 checkout.' },
     ],
     finding: 'A £40 basket and a £21 checkout, both left on 22 Sep. No reminder reached either in 48 hours.',
-    fix: 'Both silences in the record, each with its inbox, the hours it was watched and the screenshots.',
+    fix: 'Both silences in your event log, each with its inbox, the hours it was watched and the screenshots.',
     ledger: 'Real run, September 2026. Store name hidden. 15 screenshots and 5 messages kept.',
   },
 
   steps: [
     {
-      title: 'Name the stores',
-      line: 'A competitor, a prospect, a client or your own. Paste a list, upload a CSV or call the API.',
+      title: 'Name your store',
+      line: 'Yours, or a client’s with their OK. Paste the address, upload a list or call the API.',
     },
     {
-      title: 'Pick the profile',
-      line: 'A new customer in the UK, a returning one in the US, on a phone or a desktop.',
+      title: 'Define the persona',
+      line: 'A first-time shopper in Manchester on a phone, or a returning one in Texas on a desktop.',
     },
     {
-      title: 'Obsession takes each journey',
+      title: 'It signs up and fills a basket',
       line: 'It signs up, browses, fills a basket and leaves at checkout before payment, with a screenshot of every step.',
     },
     {
-      title: 'Every email lands, timed',
-      line: 'Each inbox is watched for the window you set, so a reminder that never comes is in the record too.',
+      title: 'It waits, and wakes on every email',
+      line: 'It sleeps 48 hours by default, or as long as you set, so a reminder that never comes is in your event log too.',
     },
   ],
 
   checks: [
     {
-      group: 'Sign-up',
+      group: 'Sign up',
       items: [
         { title: 'The pop up', line: 'Its offer, whether double opt in is needed, and the time to the welcome email.' },
         { title: 'The welcome series', line: 'Every step, the gap between each, and the code each one carries.' },
@@ -113,43 +115,48 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Before payment', line: 'Every checkout stops before payment.' },
-        { title: 'At a CAPTCHA', line: 'It stops, and the record says that step couldn’t be tested.' },
+        {
+          title: 'Before payment',
+          line: 'By default. Give it your own payment card and it completes the order, so the confirmation joins your event log.',
+        },
+        { title: 'At an ID check', line: 'It stops at that step, and the event log keeps what the check asked for.' },
+        { title: 'With a person', line: 'If anyone writes or calls, it says it’s an AI.' },
       ],
     },
   ],
 
   outputs: {
-    heading: 'Every store’s record, where you already work.',
+    heading: 'Every journey lands in your event log and the tools you already use.',
     items: [
-      { format: 'The timeline', line: 'Every step and message with its time, from the sign-up to the last email.' },
+      { format: 'The timeline', line: 'Every step and message with its time, from the sign up to the last email.' },
       { format: 'The receipts', line: 'Screenshots, each raw email with its sender checked, and texts as received.' },
       { format: 'The silences', line: 'A reminder that never came, with the inbox and the hours it was watched.' },
-      { format: 'API and MCP', line: 'Look up any store’s record from your code or your AI agent.' },
-      { format: 'A table', line: 'A row per store in Clay or Google Sheets.' },
-      { format: 'A webhook', line: 'Each new email the moment it lands.' },
+      { format: 'API and MCP', line: 'Your code, or your own agent, spawns shoppers and reads your event log as a tool.' },
+      { format: 'A table', line: 'A row per journey in Clay, Baserow or Supabase.' },
+      { format: 'A webhook', line: 'Each new email and text the moment it lands.' },
     ],
   },
 
   settings: [
-    { k: 'Stores', v: 'Any store you name: a competitor, a prospect, a client or your own' },
-    { k: 'Journeys', v: 'Sign-up, browse, basket, checkout and texts' },
-    { k: 'Profile', v: 'For example: a new customer in the UK, on a phone' },
-    { k: 'Window', v: '48 hours, 7 days, or as long as the account stays open' },
-    { k: 'How often', v: 'Once, weekly, or a new account every month' },
+    { k: 'Store', v: 'Yours, or a client’s with their OK' },
+    { k: 'Journeys', v: 'Sign up, browse, basket, checkout and texts' },
+    { k: 'Persona', v: 'For example: a first-time shopper in Manchester, on a phone' },
+    { k: 'Waiting', v: '48 hours by default, 7 days, or as long as you hold the persona' },
+    { k: 'Payment', v: 'Stops before payment, or pays with your own card' },
+    { k: 'How often', v: 'Once, weekly, or a new shopper every month' },
   ],
 
   forWho: [
-    { audience: 'agencies', line: 'Open a pitch with the prospect’s own emails, and the reminder that never came.' },
-    { audience: 'marketing', line: 'Every competitor’s welcome, basket and checkout emails, beside yours.' },
-    { audience: 'founders', line: 'See what your store, and the 3 you compete with, send a new customer.' },
-    { audience: 'sales', line: 'Know what an account’s customers get before the first call.' },
-    { audience: 'developers', line: 'Any store’s sign-up and checkout emails, from your code.' },
+    { audience: 'agencies', line: 'Shop every client’s store with their OK, and show them the reminder that never came.' },
+    { audience: 'marketing', line: 'Your welcome, basket and checkout emails as a new shopper gets them, beside your rivals’.' },
+    { audience: 'founders', line: 'See what your store sends a new shopper, and what it never sends.' },
+    { audience: 'sales', line: 'Shop an account’s store with their OK, and bring every dated event from your event log to your next review.' },
+    { audience: 'developers', line: 'Spawn mystery shoppers from your code, and read every email and text as it lands.' },
   ],
 
   table: {
-    heading: 'Competitor A welcomes new customers 5 minutes sooner, with a bigger offer.',
-    line: 'Example: the same journeys at each store, from the same customer profile.',
+    heading: 'Competitor A welcomes a new shopper 5 minutes sooner, with a bigger offer.',
+    line: 'The same journeys at each store, by the same persona.',
     cols: ['You', 'Competitor A', 'Competitor B'],
     rows: [
       { label: 'Time to welcome email', values: ['6 min', '1 min', 'None in 24 h'] },
@@ -164,36 +171,39 @@ export const recipe: Recipe = {
     heading: 'Every email kept as it arrived, with its time.',
     items: [
       {
-        q: 'How do I see what a store emails after a basket is left?',
-        a: 'Name the store. Obsession signs up, fills a basket and leaves before payment, as the customer profile you pick, and every email that follows is kept with the time it arrived.',
+        q: 'What is agentic mystery shopping?',
+        a: 'Mystery shopping done by AI agents. A persona with its own name, inbox, phone number and home connection shops your store the way a new shopper does, then brings back every page, email and text, each dated.',
       },
       {
-        q: 'Where does the data come from?',
-        a: 'From real accounts. Obsession’s agents sign up and shop the way any customer can, each journey with its own inbox and number, and stop before payment. They say they’re an AI when they talk to a person.',
+        q: 'How do I see what my store emails after a basket is left?',
+        a: 'Name the store and define the persona. It signs up, fills a basket and leaves before payment, then waits 48 hours and wakes on every email and text that follows, each kept with the time it arrived.',
       },
       {
-        q: 'Is the September record real?',
-        a: 'Yes. In September 2026 Obsession took 4 journeys at Brand G, a skincare store, name hidden, and watched every inbox for 48 hours. Its whole record is the sample data.',
+        q: 'Who are the personas?',
+        a: 'Whoever you define: a first-time shopper in Manchester, a returning one in Texas. Each has its own name, inbox, phone number and home connection, shops the way anyone can, and says it’s an AI when it talks to a person.',
       },
       {
-        q: 'Can I see a store’s past emails?',
-        a: 'If the store is already covered, its history comes back at once. If not, Watch it, and the record starts the day Obsession signs up.',
-      },
-      { q: 'Does it place real orders?', a: 'No. Every journey stops before payment.' },
-      {
-        q: 'Can I include my own store?',
-        a: 'Yes. Name it beside your competitors, and the records sit side by side.',
+        q: 'Is the September run real?',
+        a: 'Yes. In September 2026 personas took 4 journeys at Brand G, a skincare store, name hidden, and every inbox was watched for 48 hours. Every event from it is in the sample output.',
       },
       {
-        q: 'Can I watch a store for longer than 48 hours?',
-        a: 'Yes. The account stays open as long as you need, and every new email joins the record the day it arrives.',
+        q: 'Does it place real orders?',
+        a: 'Only if you say so. By default every journey stops before payment. Give a persona your own payment card and it completes the order, so the confirmation and every email after it join your event log.',
+      },
+      {
+        q: 'Can I compare my store with others?',
+        a: 'Yes. Send the same persona to the stores you compete with, and their events sit side by side in your event log.',
+      },
+      {
+        q: 'Can a persona watch for longer than 48 hours?',
+        a: 'Yes. It lives as long as you hold it, so it can come back months later as the same shopper, and every new email joins your event log the day it arrives.',
       },
     ],
   },
 
   final: {
-    heading: 'Which store should we look up first?',
-    sub: 'Early access includes every store already covered, and up to 5 added for you.',
+    heading: 'Which store should your first persona shop?',
+    sub: 'Tell us the store and the shopper. We’ll set up your first personas with you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-mystery-final',

@@ -3,22 +3,23 @@ import type { Recipe } from '../types'
 /* Partner checks (/recipes/partner-checks). Check your own journeys. For partnership and affiliate teams.
    Screen: partners (6 partners checked for link, code and offer on Mon 07:00; Deals site still shows SUMMER20, rejected
    in the basket; a note drafted in JO's thread, sent with your OK at 09:14). JO is always "your partnerships lead".
-   The 9 Nov story: the record of what every partner shows your customers, your link, code and banner, read each Monday
-   as any visitor would, with each code tried in a basket on your own store, stopped before payment. Results land in
-   Slack, a sheet or the API, and a note is drafted for any partner out of date. The run is an example. */
+   The persona version (20 Nov 2026, James): each Monday a persona you define reads every partner's page as a visitor,
+   and each partner newsletter in its own inbox, finds your link, code and banner, follows the link to your store and
+   tries the code in a basket there, stopped before payment. Results land in Slack, a sheet or the API, and a note is
+   drafted for any partner out of date. The run is an example. */
 
 export const recipe: Recipe = {
   id: 'partners',
   slug: 'partner-checks',
   name: 'Partner checks',
   group: 'Check your own journeys',
-  line: 'Every partner’s link, code and banner as a visitor sees them, collected each Monday, with each code tried in your basket.',
+  line: 'Each Monday a persona reads every partner’s page as a visitor, follows your link and tries the code in your basket.',
   gets: 'Every partner’s link, code and offer each Monday, with a screenshot, and the ones out of date flagged.',
   kit: [
     'Your partner list, codes and banners',
-    'A browser that visits each partner page',
+    'A persona that visits each partner page',
+    'Its own inbox, for partner newsletters',
     'A basket on your own store, stopped before payment',
-    'A screenshot of each partner page',
     'Notes drafted in your team’s own thread',
     'Results in Slack, a sheet or the API',
   ],
@@ -27,9 +28,9 @@ export const recipe: Recipe = {
     path: '/recipes/partner-checks',
     title: 'Partner checks: every partner link and code, every week',
     description:
-      'Each Monday, Partner checks reads every partner page as a visitor, follows your link, tries the code in your basket and flags any that’s out of date.',
+      'Each Monday a persona reads every partner page as a visitor, follows your link, tries the code in your basket and flags any that’s out of date.',
     answer:
-      'Partner checks is the record of what every partner shows your customers: your link, your code and your banner. Each Monday Obsession opens each partner page as a visitor, follows the link to your store, tries the code in your basket and flags any that’s out of date.',
+      'Partner checks sends a persona to every partner each Monday, as a visitor. It finds your link, code and banner, follows the link to your store, tries the code in your basket and flags any that’s out of date.',
     ogImage: '/og/partner-checks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -39,8 +40,8 @@ export const recipe: Recipe = {
   },
 
   hero: {
-    headline: 'What every partner shows your customers, each Monday.',
-    sub: 'Partner checks is the record of what every partner shows your customers: your link, your code and your banner. Each Monday Obsession opens each partner page as a visitor, follows the link to your store, tries the code in your basket and flags any that’s out of date.',
+    headline: 'What every partner shows its readers about you, each Monday.',
+    sub: 'Partner checks sends a persona to every partner each Monday, as a visitor. It finds your link, code and banner, follows the link to your store, tries the code in your basket and flags any that’s out of date.',
     screen: 'partners',
     capture: {
       kind: 'waitlist',
@@ -51,9 +52,9 @@ export const recipe: Recipe = {
   },
 
   run: {
-    tab: 'Example: 6 partners, every Monday',
+    tab: '6 partners, every Monday',
     recipe: 'partners',
-    task: 'Every Monday, open each partner page as a visitor, follow our link to the store and try their code in the basket. Flag any link, code or banner that’s out of date.',
+    task: 'Every Monday, send a persona to each partner page as a visitor, follow our link to the store and try their code in the basket. Flag any link, code or banner that’s out of date.',
     targets: 'Your 6 affiliates and partners, from a hiking blog to a newsletter',
     journey: ['Open each partner page', 'Follow the link to your store', 'Try the code in your basket', 'Flag what’s out of date'],
     schedule: 'Every Monday at 07:00',
@@ -70,9 +71,9 @@ export const recipe: Recipe = {
       },
       { time: 'Mon 09:14', text: 'Sent with your OK. Deals site is read again next Monday.' },
     ],
-    finding: 'Deals site still sends customers to SUMMER20, a code that ended on 31 Aug, under last season’s banner.',
+    finding: 'Deals site still sends shoppers to SUMMER20, a code that ended on 31 Aug, under last season’s banner.',
     fix: 'In Slack at 07:16 with the screenshot, and the note with DEALS15 sent from your partnerships lead’s thread at 09:14.',
-    ledger: 'Example run. Every visit and basket kept with its screenshot.',
+    ledger: 'Every visit and basket kept with its screenshot.',
   },
 
   steps: [
@@ -81,8 +82,8 @@ export const recipe: Recipe = {
       line: 'Each partner page, link and code, from a list, a CSV or the API, with your current codes and banners.',
     },
     {
-      title: 'Each Monday, read every page',
-      line: 'Obsession opens each partner page as any visitor would, finds your link, code and banner, and notes the offer.',
+      title: 'Each Monday, a persona reads every page',
+      line: 'As any visitor would, and as a subscriber to each partner newsletter: it finds your link, code and banner, and notes the offer.',
     },
     {
       title: 'Follow the link, try the code',
@@ -101,6 +102,7 @@ export const recipe: Recipe = {
         { title: 'Your link', line: 'It’s there, it works, and it points to the page you agreed.' },
         { title: 'Your code', line: 'The code they show is the code you gave them, and it’s still live.' },
         { title: 'Your offer and banner', line: 'This season’s offer and banner, not last season’s.' },
+        { title: 'Their newsletter', line: 'Your code and offer as each subscriber gets them, in the persona’s own inbox.' },
       ],
     },
     {
@@ -115,7 +117,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'At payment', line: 'Every basket stops before payment, so no partner earns a commission.' },
         { title: 'Before any note', line: 'Every note waits for your OK, then goes from your team’s own thread.' },
-        { title: 'At a block', line: 'A CAPTCHA or a bot block on a partner page ends that visit, and Monday’s results name it.' },
+        { title: 'With a person', line: 'If anyone writes back to the persona, it says it’s an AI.' },
       ],
     },
   ],
@@ -141,14 +143,14 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'marketing', line: 'Know every partner sends customers to a code that works and this season’s offer.' },
+    { audience: 'marketing', line: 'Know every partner sends shoppers to a code that works and this season’s offer.' },
     { audience: 'agencies', line: 'Every client’s affiliates and creators, read each week with their OK.' },
     { audience: 'founders', line: 'Every partner’s link and code tried each Monday, with nobody on the team checking by hand.' },
   ],
 
   table: {
     heading: 'The link, the code and the offer at every partner.',
-    line: 'Example run: 5 partners current, 1 showing a code that ended on 31 Aug. Read every Monday, a dead code is found within 7 days, or within a day when you read daily in a sale.',
+    line: '5 partners current, 1 showing a code that ended on 31 Aug. Read every Monday, a dead code is found within 7 days, or within a day when you read daily in a sale.',
     cols: ['Link', 'Code', 'Offer'],
     rows: [
       { label: 'Hiking blog', values: ['Lands', 'HIKE15 works', '15% off'] },
@@ -165,19 +167,19 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do I check my affiliates’ links and codes still work?',
-        a: 'Partner checks reads them every Monday: it follows each partner’s link to your store, tries their code in a basket on your store and flags any link, code or banner that’s out of date, with a screenshot.',
+        a: 'Send a persona to them every Monday. It follows each partner’s link to your store, tries their code in a basket on your store and flags any link, code or banner that’s out of date, with a screenshot.',
       },
       {
         q: 'Does Partner checks contact our partners?',
-        a: 'Through your team. Partner checks drafts each note in your team’s own thread, and it goes after your OK.',
+        a: 'Through your team. Each note is drafted in your team’s own thread, and it goes after your OK.',
       },
       {
         q: 'Does Partner checks buy anything?',
-        a: 'No. Partner checks tries each code in a basket on your own store and stops before payment, so no partner earns a commission.',
+        a: 'No. The persona tries each code in a basket on your own store and stops before payment, so no partner earns a commission.',
       },
       {
         q: 'Which partners can Partner checks cover?',
-        a: 'Partner checks covers any partner with a public page that links to you: affiliates, creators, newsletters, podcasts, review sites and gift guides, from the list you give it.',
+        a: 'Any partner with a public page or newsletter that links to you: affiliates, creators, newsletters, podcasts, review sites and gift guides, from the list you give it.',
       },
       {
         q: 'How is Partner checks different from Ad landing check?',
@@ -187,7 +189,7 @@ export const recipe: Recipe = {
   },
 
   final: {
-    heading: 'Know every partner sends customers to a code that works.',
+    heading: 'Know every partner sends shoppers to a code that works.',
     sub: 'Early access includes Partner checks on your partner list, read every Monday from the first week.',
     capture: {
       kind: 'waitlist',

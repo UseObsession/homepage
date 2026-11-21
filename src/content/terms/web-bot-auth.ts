@@ -41,7 +41,6 @@ export const ref: ReferencePage = {
     kind: 'log',
     title: 'A signed request at shop.example',
     who: 'The site’s edge, checking an agent',
-    status: { tone: 'info', text: 'Example' },
     rows: [
       { time: '10:42:07', text: 'Request for /pricing arrives', detail: 'Signature-Agent: agents.lanternhq.example', tone: 'info' },
       { time: '10:42:07', text: 'Key directory fetched', detail: '/.well-known/http-message-signatures-directory', tone: 'info' },

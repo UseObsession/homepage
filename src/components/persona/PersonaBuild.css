@@ -1,0 +1,16 @@
+/* For developers (PersonaBuild.tsx): the words in 5 of 12 columns, staying in view, the code in 7; stacked under 1080px. */
+
+.s-pb-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--ob-space-block);
+}
+.s-pb-words { display: grid; gap: var(--ob-space-16); align-content: start; justify-items: start; min-width: 0; }
+.s-pb-words > .s-bp-h { max-width: 16ch; }
+.s-pb-words > .ob-btn { margin-top: var(--ob-space-8); }
+@media (min-width: 1080px) {
+  .s-pb-grid { grid-template-columns: var(--s-split); column-gap: var(--s-split-gap); align-items: start; }
+  .s-pb-words { position: sticky; top: calc(var(--ob-nav-h, 64px) + var(--ob-space-32)); }
+}
+.s-pb-code { display: grid; gap: var(--ob-space-8); min-width: 0; }
+.s-pb-tag { justify-self: center; }

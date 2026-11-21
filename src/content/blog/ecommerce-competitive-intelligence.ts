@@ -623,6 +623,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/use-cases/web-behind-the-login',
     'recipe:competitor-tracking',
     'recipe:price-watch',
     'recipe:email-sms-tracking',

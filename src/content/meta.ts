@@ -7,6 +7,8 @@ import { alternativesHub, glossaryHub, type ReferenceHub, type ReferenceKind } f
 import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
 import { lookupPage } from './pages/lookup'
+import { pieces } from './pieces'
+import { pricingPage, ratesPage } from './pricing'
 import type { Faq, Meta, ShareFindings } from './types'
 import { citedSources } from '../lib/sources'
 
@@ -35,6 +37,8 @@ export type PageKind =
   | 'term'
   | 'not-found'
   | 'lookup'
+  | 'pricing'
+  | 'piece'
 
 /* A post's facts for its BlogPosting JSON-LD and the RSS feed. */
 export type Article = {
@@ -125,10 +129,23 @@ const home = pages.home
 const dev = pages.developers
 const verify = pages.verify
 const compare = pages.compare
+const behind = pages['web-behind-the-login']
 
 /* Every prerendered page, in the order the sitemap and llms.txt list them. */
 export const entries: Entry[] = [
   { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill, findings: home.shareFindings, faq: home.faq, source: 'src/content/pages/home.ts' },
+  /* Each piece's own page (content/pieces, 21 Nov): Email, Phone, Messaging, Browser, Sandbox, Personas. */
+  ...pieces.map(
+    (p): Entry => ({
+      kind: 'piece',
+      meta: ogFor(p.meta),
+      name: p.name,
+      headline: p.hero.headline,
+      line: firstSentence(p.hero.sub),
+      faq: p.faq,
+      source: `src/content/pieces/${p.id}.ts`,
+    }),
+  ),
   ...AUDIENCES.map(
     (a): Entry => ({
       kind: 'audience',
@@ -145,9 +162,31 @@ export const entries: Entry[] = [
     meta: ogFor(dev.meta),
     name: crumbName(dev.meta, 'Developers'),
     headline: dev.hero.headline,
-    line: dev.gapPair?.heading ?? (dev.hero.proof[0] ? `${dev.hero.proof[0].value} ${dev.hero.proof[0].label}` : dev.hero.pill),
+    line: firstSentence(dev.hero.sub),
     faq: dev.faq,
     source: 'src/content/pages/developers.ts',
+  },
+  /* What each piece costs (content/pricing.ts): its own words, not a Page, like the lookup. Its share card's line is
+     its own `line`, and its questions are FAQPage. */
+  {
+    kind: 'pricing',
+    meta: ogFor(pricingPage.meta),
+    name: crumbName(pricingPage.meta, 'Pricing'),
+    headline: pricingPage.headline,
+    line: pricingPage.line,
+    faq: pricingPage.faq,
+    source: 'src/content/pricing.ts',
+  },
+  /* Every per-piece rate, on its own page since 21 Nov so /pricing holds only the plans and the calculator. */
+  {
+    kind: 'pricing',
+    meta: ogFor(ratesPage.meta),
+    name: crumbName(ratesPage.meta, 'Every rate'),
+    headline: ratesPage.headline,
+    line: ratesPage.line,
+    faq: ratesPage.faq,
+    source: 'src/content/pricing.ts',
+    place: 'Pricing',
   },
   {
     kind: 'compare',
@@ -205,6 +244,17 @@ export const entries: Entry[] = [
     headline: useCasesPage.hero.headline,
     line: firstSentence(useCasesPage.hero.sub),
     source: 'src/content/resources.ts',
+  },
+  /* The old Home, a use case built on the pieces since 21 Nov (content/pages/web-behind-the-login.ts). */
+  {
+    kind: 'use-case',
+    meta: ogFor(behind.meta),
+    name: crumbName(behind.meta, 'The web behind the login'),
+    headline: behind.hero.headline,
+    line: firstSentence(behind.hero.sub),
+    faq: behind.faq,
+    source: 'src/content/pages/web-behind-the-login.ts',
+    place: 'Resources / Use cases',
   },
   ...studies.map(
     (st): Entry => ({

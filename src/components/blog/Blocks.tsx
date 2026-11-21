@@ -131,7 +131,6 @@ function Block({ b }: { b: BlogBlock }) {
         <figure className="s-art-fig s-art-fig--screen s-art-wide">
           <AppScreen name={b.screen} workspace={b.workspace ?? drawnFor(b.screen)} note="" />
           <figcaption className="s-art-cap">
-            <span className="s-art-cap__tag">Example</span>
             <Inline text={b.caption} />
           </figcaption>
         </figure>
@@ -215,7 +214,7 @@ function Block({ b }: { b: BlogBlock }) {
             <Art art={b.art} />
           </div>
           <figcaption className="s-art-cap">
-            <span className="s-art-cap__tag">{b.real ? 'Real data' : 'Example'}</span>
+            {b.real && <span className="s-art-cap__tag">Real data</span>}
             <Inline text={b.caption} />
           </figcaption>
         </figure>

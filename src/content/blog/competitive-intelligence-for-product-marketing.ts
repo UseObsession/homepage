@@ -462,6 +462,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/use-cases/web-behind-the-login',
     'battlecard-template',
     'win-loss-analysis',
     'competitor-monitoring',

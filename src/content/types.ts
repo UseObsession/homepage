@@ -538,6 +538,78 @@ export type CardGrid = {
   more?: { text: string; label: string; to: string }
 }
 
+/* ---- Home's sections (21 Nov 2026, components/persona) ---------------------------------------------------------------
+   One API for the pieces an AI agent needs (email, phone, messaging, browser, sandbox), the persona that puts them under
+   one identity, and recipes: jobs that run beside the pieces, ours or your own, with every result in your event log. Every
+   block is optional on a Page; only Home draws them. */
+
+/* The hero's first path and its copyable line of code (components/persona/PersonaHero). The rest of the hero is the
+   page's `hero`: its headline, sub, `note` (the small line under the buttons), `secondary` and `proof` (the 3 facts). */
+export type PersonaStart = {
+  primary: Cta
+  chip: { code: string; copy: string; copied: string }
+}
+/* The line drawings of Home's sections (components/persona/icons), on a 16px grid in the nav's style. */
+export type PersonaIcon =
+  | 'mail' | 'phone' | 'chat' | 'browser' | 'sandbox' | 'persona'
+  | 'sleep' | 'home' | 'person' | 'users' | 'cap' | 'stop' | 'webhook' | 'record' | 'clock' | 'code' | 'retry' | 'domain'
+/* The pieces as 1 ruled sheet (HomePieces): each its icon, name, 1 line, the call that starts it, and `to`, its page
+   (content/piecePaths.ts); the whole cell links there. `whole` draws the cell solid: the persona, every piece in one. */
+export type HomePieces = {
+  heading: string
+  line?: string
+  items: { icon: PersonaIcon; name: string; line: string; call: string; to: string; whole?: boolean }[]
+}
+/* The pieces under one identity, as a stacked slab diagram (PersonaAnatomy): each part a slab, its name, 1 line and a
+   value in mono. The first part is drawn solid. */
+export type PersonaAnatomy = {
+  heading: string
+  line?: string
+  parts: { name: string; line: string; eg: string }[]
+}
+/* The illustration card beside an "X, not Y" claim: loose parts beside the whole, or 1 wake in milliseconds. */
+export type PersonaArt =
+  | { kind: 'parts'; parts: { label: string; items: string[]; note: string }; whole: { label: string; items: string[]; note: string } }
+  | { kind: 'timeline'; title: string; rows: { at: string; text: string; state: 'act' | 'sleep' | 'wake' | 'done' }[] }
+/* 1 claim, its lines, 1 big true number (`value`, its `unit` beside it, `label` under) and its card. */
+export type PersonaContrast = { heading: string; line: string; value: string; unit: string; label: string; art: PersonaArt }
+/* Recipes as tiles (PersonaRecipes). `reader` gives a tile its hue (styles/accents.css); `live` makes the big tile;
+   `status` says who the recipe fits. */
+export type PersonaRecipes = {
+  heading: string
+  line?: string
+  items: { name: string; line: string; status: string; live?: boolean; reader: ReaderId; link: Cta }[]
+}
+/* For developers (PersonaBuild): the claim, its line and link beside the code. Where events go is HomeDelivery. */
+export type PersonaBuild = {
+  heading: string
+  line: string
+  cta: Cta
+  codeLabel: string
+  code: string
+}
+/* How events reach you (HomeDelivery): the 3 step picture (it happens, it's saved in your event log, it reaches you),
+   each step its title, 1 line and the mono rows its drawing shows; then the channels as short cards (content/delivery.ts),
+   the line on a server that's down, and the link to every channel's code. */
+export type HomeDelivery = {
+  heading: string
+  line?: string
+  steps: { title: string; line: string; rows: string[] }[]
+  channels: { name: string; line: string; eg: string }[]
+  down: string
+  link: Cta
+}
+/* 1 wide card to a use case page (HomeUseCase): the claim, its line and link, beside what sits behind a sign up: the
+   page anyone sees (`before`), the wall (`wall`), then what only people who signed up see (`after`). */
+export type HomeUseCase = {
+  heading: string
+  line: string
+  link: Cta
+  before: string
+  wall: string
+  after: string[]
+}
+
 export type Page = {
   meta: Meta
   hero: Hero
@@ -588,6 +660,15 @@ export type Page = {
   openSource?: OpenSource
   parity?: Parity
   scale?: Scale
+  /* Home only, since 21 Nov: its sections (components/persona), in the order pages/Home.tsx draws them. */
+  personaStart?: PersonaStart
+  homePieces?: HomePieces
+  personaAnatomy?: PersonaAnatomy
+  personaContrasts?: PersonaContrast[]
+  personaRecipes?: PersonaRecipes
+  personaBuild?: PersonaBuild
+  homeDelivery?: HomeDelivery
+  homeUseCase?: HomeUseCase
 }
 
 /* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.
@@ -855,9 +936,8 @@ export type BlogIndexPage = {
    Every block is optional on a Page; a page draws the ones it has, in the order its page component sets.
    --------------------------------------------------------------------------------------------------------------------- */
 
-/* Home's share image (scripts/og.mjs): what AI customers caught inside a few companies this month, the card drawn
-   beside the headline. Each row: the company, what was caught, the day. Invented companies only (Company 1, 2, 3, as in
-   the how it works lanes). */
+/* Home's share image (scripts/og.mjs): the card drawn beside the headline. Since 21 Nov, 1 persona's events in the event log: each
+   row the piece it came through (`company`), what came (`finding`) and when. Invented people and companies only. */
 export type ShareFindings = {
   title: string
   aside: string
