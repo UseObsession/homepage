@@ -341,6 +341,8 @@ const link = (e) => `- [${e.name}](${absolute(e.meta.path)}): ${e.meta.answer}`
 const ofKind = (...kinds) => entries.filter((e) => kinds.includes(e.kind)).map(link)
 const llmsSections = [
   ['Pages', ofKind('home', 'audience', 'developers', 'pricing', 'verify', 'recipes', 'sample', 'lookup', 'resources')],
+  /* Each piece an agent can take on its own (content/pieces). */
+  ['Pieces', ofKind('piece')],
   /* The comparisons, alternatives and glossary (content/reference.ts), each under its hub. */
   ['Compare', ofKind('compare', 'comparison')],
   ['Alternatives', ofKind('alternatives-hub', 'alternatives')],

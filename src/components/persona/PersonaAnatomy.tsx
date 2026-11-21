@@ -3,10 +3,10 @@ import type { PersonaAnatomy as Anatomy } from '../../content/types'
 import './blueprint.css'
 import './PersonaAnatomy.css'
 
-/* What is in a persona (#persona): the claim and its line on the left; on the right, an exploded stack of slabs, 1 per
-   part, each with its callout (the part's name, 1 line, and the example persona's value in mono). Each slab is a small
-   isometric drawing in its own row, so its callout always sits level with it at any width; the slabs overlap the row
-   under them, the upper one in front. The first slab, who it is, is drawn solid: it is the part you write. */
+/* The pieces under one identity (#personas): the claim and its line on the left; on the right, an exploded stack of
+   slabs, 1 per part, each with its callout (the part's name, 1 line, and the persona's value in mono). Each slab is a
+   small isometric drawing in its own row, so its callout always sits level with it at any width; the slabs overlap the
+   row under them, the upper one in front. The first slab, the identity every piece shares, is drawn solid. */
 
 /* 1 slab on a 220 x 120 grid: the top face, then the left and right sides, 16 units thick. Its right corner sits at
    (210, 52), where the callout's leader starts (PersonaAnatomy.css). */
@@ -23,7 +23,7 @@ function Slab() {
 export function PersonaAnatomy({ anatomy, id }: { anatomy: Anatomy; id?: string }) {
   const hid = useId()
   return (
-    <section className="s-section s-pa" id={id} aria-labelledby={`${hid}-h`}>
+    <section className="s-section s-bp-ruled s-pa" id={id} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap s-pa-grid">
         <div className="s-pa-words">
           <h2 className="s-bp-h" id={`${hid}-h`}>

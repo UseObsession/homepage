@@ -1,4 +1,4 @@
-/* What is in a persona (PersonaAnatomy.tsx). The words take 5 of 12 columns and stay in view; the stack takes 7. Under
+/* The pieces under one identity (PersonaAnatomy.tsx). The words take 5 of 12 columns and stay in view; the stack takes 7. Under
    1080px it stacks: the words, then the diagram.
 
    The geometry: a slab is drawn on a 220 x 120 grid, --s-pa-w wide, so its right corner sits 52/220 of the width
@@ -52,7 +52,7 @@
 .s-pa-top { fill: color-mix(in oklab, var(--ob-surface-raised), var(--ob-text) 5%); }
 .s-pa-side-l { fill: color-mix(in oklab, var(--ob-bg-sunken), var(--ob-line) 70%); }
 .s-pa-side-r { fill: color-mix(in oklab, var(--ob-bg-sunken), var(--ob-line) 35%); }
-/* Who it is: the part you write, drawn solid in the page's own ink. */
+/* The identity every piece shares, drawn solid in the page's own ink. */
 .s-pa-part.is-you .s-pa-top { fill: var(--ob-solid); stroke: var(--ob-solid); }
 .s-pa-part.is-you .s-pa-side-l { fill: color-mix(in oklab, var(--ob-solid), var(--ob-bg) 45%); stroke: var(--ob-solid); }
 .s-pa-part.is-you .s-pa-side-r { fill: color-mix(in oklab, var(--ob-solid), var(--ob-bg) 25%); stroke: var(--ob-solid); }

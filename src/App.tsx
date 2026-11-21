@@ -9,6 +9,7 @@ import { catalog } from './content/catalog'
 import { headFor } from './content/head'
 import { ctaFor, nav } from './content/nav'
 import { absolute, cleanPath } from './content/paths'
+import { pieceOrder, piecePaths } from './content/piecePaths'
 import { recipeWords, refWords, studyWords } from './content/words'
 import { JAMES_PATHS, isJamesPath } from './legacy/jamesPaths'
 import { lazyPage, type LazyPage } from './lib/lazy'
@@ -45,6 +46,9 @@ const SampleOutput = page('SampleOutput')
 const Privacy = page('Privacy')
 const Lookup = page('Lookup')
 const Pricing = page('Pricing')
+const WebBehindTheLogin = page('WebBehindTheLogin')
+/* Each piece's own page (content/pieces), one component for all 6. */
+const Piece = page<{ path: string }>('Piece', 'PieceAt')
 const Agents = page('Agents')
 const NotFound = page('NotFound')
 const Reference = page<{ path: string }>('Reference', 'ReferenceAt')
@@ -52,6 +56,7 @@ const AlternativesHub = page('ReferenceHub', 'AlternativesHub')
 const GlossaryHub = page('ReferenceHub', 'GlossaryHub')
 
 const RECIPES = new Set(catalog.recipes.map((r) => r.slug))
+const PIECES = new Set(Object.values(piecePaths))
 /* The worked examples the study system draws. The pages in James's format (legacy/jamesPaths) are their own pages at their own addresses. */
 const STUDIES = new Set(catalog.studies.map((s) => s.path).filter((p) => !isJamesPath(p)))
 const POSTS = new Set(catalog.posts.map((p) => p.slug))
@@ -72,6 +77,7 @@ const PAGES: Record<string, LazyPage> = {
   '/privacy': Privacy,
   '/lookup': Lookup,
   '/pricing': Pricing,
+  '/use-cases/web-behind-the-login': WebBehindTheLogin,
   '/agents': Agents,
   '/alternatives': AlternativesHub,
   '/glossary': GlossaryHub,
@@ -89,6 +95,7 @@ function routeOf(path: string): { page: LazyPage; words?: { preload: () => Promi
   const p = cleanPath(path)
   const [, first, slug] = p.split('/')
   if (PAGES[p]) return { page: PAGES[p] }
+  if (PIECES.has(p)) return { page: Piece }
   if (first === 'recipes' && slug && RECIPES.has(slug)) return { page: Recipe, words: recipeWords(slug) }
   if (first === 'use-cases' && STUDIES.has(p)) return { page: UseCase, words: studyWords(p) }
   if (first === 'blog' && catalog.blogLive && slug && POSTS.has(slug)) return { page: BlogPost }
@@ -391,6 +398,7 @@ export function AppRoutes() {
         <Route path={JAMES_PATHS.retention.slice(1)} element={<RetentionAgencies />} />
         <Route path={JAMES_PATHS.stores.slice(1)} element={<EcommerceStores />} />
         <Route path={JAMES_PATHS.cro.slice(1)} element={<CroAgencies />} />
+        <Route path="use-cases/web-behind-the-login" element={<WebBehindTheLogin />} />
         <Route path="use-cases/:slug" element={<UseCaseRoute />} />
         {catalog.blogLive && <Route path="blog" element={<Blog />} />}
         {catalog.blogLive && <Route path="blog/:slug" element={<PostRoute />} />}
@@ -398,6 +406,9 @@ export function AppRoutes() {
         <Route path="privacy" element={<Privacy />} />
         <Route path="lookup" element={<Lookup />} />
         <Route path="pricing" element={<Pricing />} />
+        {pieceOrder.map((id) => (
+          <Route key={id} path={piecePaths[id].slice(1)} element={<Piece key={id} path={piecePaths[id]} />} />
+        ))}
         <Route path="agents" element={<Agents />} />
         <Route path="sample-report" element={<Navigate to="/sample-output" replace />} />
         <Route path="templates" element={<Navigate to="/recipes" replace />} />

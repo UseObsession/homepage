@@ -1,18 +1,21 @@
-import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
 import type { Cta } from '../content/types'
-import { figure, pricingPage as p, type Plan } from '../content/pricing'
+import { allowance, figure, pricingPage as p, type Plan, type PriceGroup } from '../content/pricing'
+import { prices, type Price, type PriceKey } from '../content/prices'
 import { NoticeHero } from './Notice'
 import '../components/sections/FinalCta.css'
 import './Pricing.css'
 
-/* /pricing: what a persona costs (content/pricing.ts). The centred hero with 3 true numbers (no form of its own: the
-   bar's "Spawn a persona" is the view's call to action, App.tsx NO_HERO_FORM); the 4 plans, Team raised, their rows
-   lined up across the cards from 1080px; the rules behind every bill; the estimator (sliders in, the plan that fits and
-   the month's total out, drawn on the server at its defaults and live once the page runs); the questions; the closing
-   call, to the early access form on Home. */
+/* /pricing: each piece priced on its own (content/pricing.ts, every figure from content/prices.ts). The centred hero
+   with 3 of the prices (no form of its own: the bar's button is the view's call to action, App.tsx NO_HERO_FORM); the
+   price list, 1 row per piece (its name, line and page link on the left, its prices on the right), each row anchored at
+   the piece's id (/pricing#email); the 3 ways to pay, Pay as you go raised, their tops lined up across the cards from
+   960px; the estimator (a quantity per piece in; each line's cost after the free allowance, the US texting registration
+   once there are texts, and the month's total out; drawn on the server at its defaults and live once the page runs); the
+   questions; the closing call to early access. */
 
 /* A numeral never ends a line apart from its word. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1 ')
@@ -44,229 +47,167 @@ function Arrow() {
   )
 }
 
-/* ---- The plans ---- */
+const priceOf = (key: PriceKey): Price => prices[key]
 
-function PlanCard({ plan, headId }: { plan: Plan; headId: string }) {
+/* ---- The price list ---- */
+
+function Group({ group }: { group: PriceGroup }) {
+  return (
+    <li className="s-pr-group" id={group.piece}>
+      <div className="s-pr-group__head">
+        <h3 className="s-pr-group__name">{group.name}</h3>
+        <p className="s-pr-group__line">{tie(group.line)}</p>
+        <CtaLink cta={group.link} className="ob-btn ob-btn--link s-pr-group__link">
+          <Arrow />
+        </CtaLink>
+      </div>
+      <dl className="s-pr-rows">
+        {group.keys.map((key) => {
+          const price = priceOf(key)
+          return (
+            <div className="s-pr-row" key={key}>
+              <dt className="s-pr-row__name">{price.name}</dt>
+              <dd className="s-pr-row__price">
+                <span className="s-pr-row__amount">{price.amount}</span> <span className="s-pr-row__unit">{tie(price.unit)}</span>
+                {price.note && <span className="s-pr-row__note">{tie(price.note)}</span>}
+              </dd>
+            </div>
+          )
+        })}
+      </dl>
+    </li>
+  )
+}
+
+/* ---- The ways to pay ---- */
+
+function PlanCard({ plan }: { plan: Plan }) {
   return (
     <li className={plan.featured ? 'ob-card ob-card--raised s-pr-plan s-pr-plan--featured' : 'ob-card s-pr-plan'}>
-      <h3 className="s-pr-plan__name" id={headId}>
-        {plan.name}
-      </h3>
+      <h3 className="s-pr-plan__name">{plan.name}</h3>
       <p className="s-pr-plan__price">
-        {plan.from && <span className="s-pr-plan__from">{plan.from} </span>}
         <span className="s-pr-plan__amount">{plan.price}</span>
-        <span className="s-pr-plan__per"> {plan.per}</span>
+        <span className="s-pr-plan__per">{plan.per}</span>
       </p>
       <p className="s-pr-plan__line">{tie(plan.line)}</p>
       <div className="s-pr-plan__cta">
         <CtaLink cta={plan.cta} className={plan.featured ? 'ob-btn ob-btn--block' : 'ob-btn ob-btn--secondary ob-btn--block'} />
       </div>
-      <dl className="s-pr-plan__rows">
-        {p.plans.rows.map((label, i) => (
-          <div className="s-pr-plan__row" key={label}>
-            <dt>{label}</dt>
-            <dd>{tie(plan.values[i] ?? '')}</dd>
-          </div>
+      <ul className="s-pr-plan__rows">
+        {plan.includes.map((item) => (
+          <li className="s-pr-plan__row" key={item}>
+            {tie(item)}
+          </li>
         ))}
-      </dl>
+      </ul>
     </li>
   )
 }
 
 /* ---- The estimator ---- */
 
-/* Money in cents, so $0.10 a minute never drifts: "$59", "$10.50". */
-const RATE_CENTS = 10
-const money = (cents: number) => {
-  const rest = cents % 100
-  return `$${figure(Math.floor(cents / 100))}${rest ? `.${String(rest).padStart(2, '0')}` : ''}`
-}
+/* Money in whole cents, so the lines always add up to the total: "$45.00", "$1,204.50". */
+const money = (cents: number) => `$${figure(Math.floor(cents / 100))}.${String(cents % 100).padStart(2, '0')}`
+/* What a reader types, as a count: commas and spaces dropped, never below 0, never past a billion. */
+const count = (text: string) => Math.min(1e9, Number(text.replace(/\D/g, '')) || 0)
+const FREE = new Map(allowance.map((a) => [a.key, a.count]))
+/* A quantity at a price's `value`, rounded to the cent. */
+const cents = (key: PriceKey, quantity: number) => Math.round(quantity * (priceOf(key).value ?? 0) * 100)
 
-type Estimate = { plan: Plan; minutes: number; extra: number; cents: number | null }
+type Line = { key: PriceKey; label: string; sub?: string; cents: number }
 
-/* The plan that fits: of the plans that hold this many personas at once, the one whose month costs least (its price,
-   plus any minutes past its allowance at $0.10). On a tie the bigger plan wins: the same money holds more personas and
-   keeps records longer. A free allowance is never topped up in the estimate, so past 30 minutes Free gives way to Builder.
-   More personas than Team holds is Scale, by contract. */
-const PLANS = p.plans.items
-const SCALE = PLANS[PLANS.length - 1]
-function estimate(personas: number, runs: number, perRun: number): Estimate {
-  const minutes = runs * perRun
-  let best: Estimate | null = null
-  for (const plan of PLANS) {
-    if (plan.dollars === null || plan.minutes === null || plan.personas === null || personas > plan.personas) continue
-    if (plan.dollars === 0 && minutes > plan.minutes) continue
-    const extra = Math.max(0, minutes - plan.minutes)
-    const cents = plan.dollars * 100 + extra * RATE_CENTS
-    if (!best || best.cents === null || cents <= best.cents) best = { plan, minutes, extra, cents }
-  }
-  return best ?? { plan: SCALE, minutes, extra: 0, cents: null }
-}
-
-/* The stops that land on a power of 10 get a tick under the slider; the ends always do. */
-const isRound = (n: number) => /^10*$/.test(String(n))
-
-function Stops({
-  id,
-  label,
-  stops,
-  index,
-  onIndex,
-  value,
-}: {
-  id: string
-  label: string
-  stops: number[]
-  index: number
-  onIndex: (i: number) => void
-  value: (n: number) => string
-}) {
-  const last = stops.length - 1
-  const at = (i: number) => `${(i / last) * 100}%`
-  return (
-    <div className="ob-calc-input s-pr-input">
-      <div className="ob-calc-row">
-        <label htmlFor={id}>{label}</label>
-        <output htmlFor={id}>{value(stops[index])}</output>
-      </div>
-      <input
-        id={id}
-        className="ob-range"
-        type="range"
-        min={0}
-        max={last}
-        step={1}
-        value={index}
-        aria-valuetext={value(stops[index])}
-        onChange={(e) => onIndex(Number(e.target.value))}
-        style={{ '--ob-range-value': at(index) } as CSSProperties}
-      />
-      <div className="ob-calc-ticks" aria-hidden="true">
-        {stops.map((n, i) =>
-          i === 0 || i === last || isRound(n) ? (
-            <span key={n} className={i === 0 || i === last ? undefined : 'is-minor'} style={{ left: at(i) }}>
-              {figure(n)}
-            </span>
-          ) : null,
-        )}
-      </div>
-    </div>
-  )
+/* The month's lines: each field's quantity past the free allowance, and after a field in use, the monthly price it
+   brings with it (the US texting registration after texts). */
+function linesOf(values: string[]): Line[] {
+  const c = p.estimator.card
+  return p.estimator.inputs.flatMap((input, i) => {
+    const quantity = count(values[i])
+    const free = FREE.get(input.key) ?? 0
+    const own: Line = { key: input.key, label: input.label, sub: free ? c.free(figure(free)) : undefined, cents: cents(input.key, Math.max(0, quantity - free)) }
+    if (!input.adds || quantity === 0) return [own]
+    const added = priceOf(input.adds)
+    return [own, { key: input.adds, label: added.name, sub: `${added.amount} ${added.unit}`, cents: cents(input.adds, 1) }]
+  })
 }
 
 function Estimator({ headId }: { headId: string }) {
   const e = p.estimator
   const c = e.card
   const id = useId()
-  const [personasAt, setPersonasAt] = useState(() => Math.max(0, e.personas.stops.indexOf(e.personas.start)))
-  const [runsAt, setRunsAt] = useState(() => Math.max(0, e.runs.stops.indexOf(e.runs.start)))
-  const [perRun, setPerRun] = useState(e.minutes.start)
-  const personas = e.personas.stops[personasAt]
-  const runs = e.runs.stops[runsAt]
-  const est = estimate(personas, runs, perRun)
-  const scale = est.cents === null
-  const total = scale ? c.byContract : money(est.cents ?? 0)
-  const big = !scale && (est.cents ?? 0) >= 200000
+  const [values, setValues] = useState(() => e.inputs.map((input) => figure(input.start)))
+  const lines = linesOf(values)
+  const total = money(lines.reduce((sum, l) => sum + l.cents, 0))
+  const set = (i: number, text: string) => setValues((v) => v.map((old, j) => (j === i ? text : old)))
 
-  /* 1 polite announcement once the inputs settle, never on load and never on every step of a slider. */
+  /* 1 polite announcement once the inputs settle, never on load and never on every keystroke. */
   const [said, setSaid] = useState('')
   const first = useRef(true)
-  const line = c.announce(est.plan.name, total)
   useEffect(() => {
     if (first.current) {
       first.current = false
       return
     }
-    const t = window.setTimeout(() => setSaid(line), 500)
+    const t = window.setTimeout(() => setSaid(c.announce(total)), 600)
     return () => window.clearTimeout(t)
-  }, [line])
+  }, [total, c])
 
   return (
     <div className="s-pr-est__grid">
       <div className="s-pr-est__inputs" role="group" aria-labelledby={headId}>
-        <Stops
-          id={`${id}-personas`}
-          label={e.personas.label}
-          stops={e.personas.stops}
-          index={personasAt}
-          onIndex={setPersonasAt}
-          value={e.personas.value}
-        />
-        <Stops id={`${id}-runs`} label={e.runs.label} stops={e.runs.stops} index={runsAt} onIndex={setRunsAt} value={e.runs.value} />
-        <div className="ob-calc-input s-pr-input">
-          <div className="ob-calc-row">
-            <span className="s-pr-input__label" id={`${id}-per`}>
-              {e.minutes.label}
-            </span>
-            <output>{e.minutes.value(perRun)}</output>
-          </div>
-          <div
-            className="ob-segmented s-pr-seg"
-            role="radiogroup"
-            aria-labelledby={`${id}-per`}
-            style={{ '--ob-segmented-count': e.minutes.options.length } as CSSProperties}
-          >
-            <span className="ob-segmented-thumb" aria-hidden="true" />
-            {e.minutes.options.map((n) => (
-              <label className="ob-segmented-option" key={n}>
-                <input
-                  className="ob-segmented-input"
-                  type="radio"
-                  name={`${id}-per`}
-                  value={n}
-                  checked={perRun === n}
-                  aria-label={e.minutes.value(n)}
-                  onChange={() => setPerRun(n)}
-                />
-                <span className="ob-segmented-label">{n}</span>
-              </label>
-            ))}
-          </div>
-          <p className="s-pr-input__hint">{tie(e.minutes.hint)}</p>
-        </div>
+        {e.inputs.map((input, i) => {
+          const price = priceOf(input.key)
+          const fid = `${id}-${input.key}`
+          return (
+            <div className="ob-field s-pr-field" key={input.key}>
+              <div className="ob-field-head">
+                <label className="ob-label" htmlFor={fid}>
+                  {input.label}
+                </label>
+              </div>
+              <input
+                id={fid}
+                className="ob-input s-pr-field__input"
+                type="text"
+                inputMode="numeric"
+                autoComplete="off"
+                spellCheck={false}
+                value={values[i]}
+                aria-describedby={`${fid}-rate`}
+                onChange={(ev) => set(i, ev.target.value.replace(/[^\d,\s]/g, ''))}
+                onBlur={() => set(i, figure(count(values[i])))}
+              />
+              <p className="ob-field-help s-pr-field__rate" id={`${fid}-rate`}>
+                {price.amount} {tie(price.unit)}
+              </p>
+            </div>
+          )
+        })}
       </div>
 
       <div className="ob-calc ob-object s-pr-est__card">
         <p className="s-pr-est__title">{c.title}</p>
         <dl className="ob-calc-outs">
-          <div>
-            <dt>
-              {c.used}
-              <span className="s-pr-est__sub">{c.usedLine(e.runs.value(runs), perRun)}</span>
-            </dt>
-            <dd>{figure(est.minutes)}</dd>
-          </div>
-          <div>
-            <dt>
-              {c.plan(est.plan.name)}
-              <span className="s-pr-est__sub">{scale ? est.plan.values[0] : c.included(figure(est.plan.minutes ?? 0))}</span>
-            </dt>
-            <dd>{scale ? `${est.plan.from ?? ''} ${est.plan.price}`.trim() : money((est.plan.dollars ?? 0) * 100)}</dd>
-          </div>
-          {est.extra > 0 && (
-            <div>
+          {lines.map((l) => (
+            <div key={l.key}>
               <dt>
-                {c.extra}
-                <span className="s-pr-est__sub">{c.extraLine(figure(est.extra))}</span>
+                {l.label}
+                {l.sub && <span className="s-pr-est__sub">{tie(l.sub)}</span>}
               </dt>
-              <dd>{money(est.extra * RATE_CENTS)}</dd>
+              <dd>{money(l.cents)}</dd>
             </div>
-          )}
-          <div>
-            <dt>
-              {c.waiting}
-              <span className="s-pr-est__sub">{c.waitingLine}</span>
-            </dt>
-            <dd>{money(0)}</dd>
-          </div>
-          <div className={scale ? 'ob-calc-total s-pr-est__words' : 'ob-calc-total'}>
+          ))}
+          <div className="ob-calc-total">
             <dt>{c.total}</dt>
             <dd>{total}</dd>
           </div>
         </dl>
-        {(scale || big) && <p className="s-pr-est__note">{tie(scale ? c.scaleLine : c.bigLine)}</p>}
-        <p className="ob-calc-note">{tie(c.phones)}</p>
-        <CtaLink cta={scale || big ? c.scaleCta : c.cta} className="ob-btn ob-btn--block s-pr-est__cta" />
+        <p className="ob-calc-note">{tie(c.rest)}</p>
+        <div className="s-pr-est__actions">
+          <CtaLink cta={c.cta} className="ob-btn ob-btn--block" />
+          <CtaLink cta={c.secondary} className="ob-btn ob-btn--link">
+            <Arrow />
+          </CtaLink>
+        </div>
         <p className="s-sr" aria-live="polite">
           {said}
         </p>
@@ -293,6 +234,22 @@ export function Pricing() {
         </ul>
       </NoticeHero>
 
+      <section className="s-section s-pr-list" id="prices" aria-labelledby={`${id}-list`}>
+        <div className="s-wrap">
+          <header className="s-head s-pr-head">
+            <h2 className="ob-type-h2" id={`${id}-list`}>
+              {tie(p.list.heading)}
+            </h2>
+            <p>{tie(p.list.line)}</p>
+          </header>
+          <ul className="s-pr-groups">
+            {p.list.groups.map((group) => (
+              <Group group={group} key={group.piece} />
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="s-section s-pr-plans" id="plans" aria-labelledby={`${id}-plans`}>
         <div className="s-wrap">
           <header className="s-head s-head--center s-pr-head">
@@ -303,26 +260,7 @@ export function Pricing() {
           </header>
           <ul className="s-pr-grid">
             {p.plans.items.map((plan) => (
-              <PlanCard plan={plan} headId={`${id}-${plan.id}`} key={plan.id} />
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="s-section s-pr-rules" id="rules" aria-labelledby={`${id}-rules`}>
-        <div className="s-wrap s-pr-rules__grid">
-          <header className="s-pr-rules__head">
-            <h2 className="ob-type-h2 s-pr-rules__h" id={`${id}-rules`}>
-              {tie(p.rules.heading)}
-            </h2>
-            <p className="s-pr-rules__line">{tie(p.rules.line)}</p>
-          </header>
-          <ul className="s-pr-rules__list">
-            {p.rules.items.map((r) => (
-              <li className="s-pr-rule" key={r.title}>
-                <h3 className="s-pr-rule__title">{tie(r.title)}</h3>
-                <p className="s-pr-rule__line">{tie(r.line)}</p>
-              </li>
+              <PlanCard plan={plan} key={plan.id} />
             ))}
           </ul>
         </div>

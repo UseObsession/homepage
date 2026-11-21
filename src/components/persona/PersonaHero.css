@@ -1,4 +1,4 @@
-/* The persona hero (PersonaHero.tsx): 1 centred column, then the 3 facts on a ruled row at the container's width. */
+/* Home's hero (PersonaHero.tsx): 1 centred column, then the 3 facts on a ruled row at the container's width. */
 
 .s-ph {
   position: relative;
@@ -48,18 +48,16 @@
 .s-ph-tag:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
 .s-ph-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ob-text); }
 
-/* The headline: each sentence on its own line. The first (what the others do) is quieter; the second is ours. */
+/* The headline: each sentence on its own line, both in full ink. */
 .s-ph-h {
   margin: 0;
   max-width: 21ch;
-  font: 600 clamp(36px, 5.4vw, 70px) / 1.04 var(--ob-font-sans);
+  font: 600 clamp(36px, 5vw, 66px) / 1.04 var(--ob-font-sans);
   letter-spacing: -0.045em;
   color: var(--ob-text);
   text-wrap: balance;
 }
-.s-ph-h-them,
-.s-ph-h-us { display: block; text-wrap: balance; }
-.s-ph-h-them { color: var(--ob-text-3); }
+.s-ph-h-line { display: block; text-wrap: balance; }
 
 .s-ph-sub {
   margin: 0;

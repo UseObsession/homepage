@@ -1,5 +1,5 @@
-/* Everything else a fleet needs (PersonaFleet.tsx): 1 ruled grid, its cells split by 1px of the line colour showing
-   between them (the grid's own ground), so it reads as 1 sheet, not 12 cards. */
+/* What's built in (PersonaFleet.tsx): 1 ruled grid, its cells split by 1px of the line colour showing between them (the
+   grid's own ground), so it reads as 1 sheet, not 8 cards. */
 
 .s-pf-grid {
   list-style: none;

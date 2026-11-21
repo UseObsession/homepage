@@ -4,10 +4,10 @@ import type { Cta, Hero, PersonaStart } from '../../content/types'
 import './blueprint.css'
 import './PersonaHero.css'
 
-/* Home's hero for the persona direction (20 Nov 2026, after rivet.dev's centred hero): the tag, the headline (its 2
-   sentences on their own lines, the first quieter, so the contrast reads at a glance), the sub, the 2 buttons with the
-   copyable example line of code beside them, the small line, then 3 facts on a ruled row. No object under it: the
-   persona diagram follows straight after. Words come from content/pages/home.ts (hero and personaStart). */
+/* Home's hero (21 Nov 2026, after rivet.dev's centred hero): the tag, the headline (each sentence on its own line: what
+   we sell, then "One API, one bill."), the sub, the 2 buttons with the copyable line of code beside them, then 3 facts
+   on a ruled row. No object under it: the pieces follow straight after. Words come from content/pages/home.ts (hero and
+   personaStart). */
 
 /* A link inside the site goes through the router; an anchor on this page or another site stays a plain link. */
 function CtaButton({ cta, className }: { cta: Cta; className: string }) {
@@ -23,7 +23,7 @@ function CtaButton({ cta, className }: { cta: Cta; className: string }) {
   )
 }
 
-/* The example line of code in a mono chip, with a copy button. The clipboard is touched only on click. */
+/* The line of code in a mono chip, with a copy button. The clipboard is touched only on click. */
 function CodeChip({ chip }: { chip: PersonaStart['chip'] }) {
   const [copied, setCopied] = useState(false)
   const timer = useRef(0)
@@ -62,7 +62,7 @@ function CodeChip({ chip }: { chip: PersonaStart['chip'] }) {
 
 export function PersonaHero({ hero, start }: { hero: Hero; start: PersonaStart }) {
   const id = useId()
-  const [first, ...rest] = hero.headline.split(/(?<=\.)\s+/)
+  const lines = hero.headline.split(/(?<=\.)\s+/)
   return (
     <section className="s-ph" aria-labelledby={`${id}-h`}>
       <div className="s-wrap s-ph-wrap">
@@ -74,8 +74,12 @@ export function PersonaHero({ hero, start }: { hero: Hero; start: PersonaStart }
             </a>
           )}
           <h1 className="s-ph-h" id={`${id}-h`}>
-            <span className="s-ph-h-them">{first}</span>
-            {rest.length > 0 && <span className="s-ph-h-us"> {rest.join(' ')}</span>}
+            {lines.map((l, i) => (
+              <span className="s-ph-h-line" key={l}>
+                {i > 0 && ' '}
+                {l}
+              </span>
+            ))}
           </h1>
           <p className="s-ph-sub">{hero.sub}</p>
           <div className="s-ph-act">

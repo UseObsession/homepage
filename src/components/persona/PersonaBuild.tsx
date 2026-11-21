@@ -4,9 +4,9 @@ import { CodeWindow, SectionHead } from '../sections/DevSection'
 import './blueprint.css'
 import './PersonaBuild.css'
 
-/* For developers (#build): the shared section head (the claim, its line, the link to /developers), then the example
-   code in the site's code well (sections/DevSection CodeWindow) beside where the event log goes. The code is the point,
-   so it takes 7 of 12 columns. */
+/* For developers (#build): the shared section head (the claim, its line, the link to /developers), then the code in the
+   site's code well (sections/DevSection CodeWindow), its file name under it, beside where events go. The code is the
+   point, so it takes 7 of 12 columns. */
 export function PersonaBuild({ build, id }: { build: Build; id?: string }) {
   const hid = useId()
   return (

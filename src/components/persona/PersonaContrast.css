@@ -44,31 +44,6 @@
   color: var(--ob-text-2);
 }
 
-/* ---- versus: 2 columns, the persona's in full ink on a faint fill. */
-.s-pc-vs { width: 100%; border-collapse: collapse; table-layout: fixed; font: 400 14.5px / 1.45 var(--ob-font-sans); }
-.s-pc-vs th,
-.s-pc-vs td { padding: var(--ob-space-12); text-align: left; vertical-align: top; overflow-wrap: anywhere; }
-.s-pc-vs thead td { width: 22%; }
-/* The persona's column is the widest: its cells hold the longest words. */
-.s-pc-vs thead th:not(.is-ours) { width: 32%; }
-.s-pc-vs thead th { padding-top: var(--ob-space-8); font: 500 12.5px / 1.4 var(--ob-font-mono); color: var(--ob-text-2); }
-.s-pc-vs thead th.is-ours { color: var(--ob-text); border-radius: var(--ob-radius-xs) var(--ob-radius-xs) 0 0; }
-.s-pc-vs tbody th { font: 500 12.5px / 1.6 var(--ob-font-mono); color: var(--ob-text-3); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
-.s-pc-vs tbody td { color: var(--ob-text-2); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
-.s-pc-vs tbody td.is-ours { color: var(--ob-text); font-weight: 500; }
-.s-pc-vs .is-ours { background: var(--ob-fill); }
-.s-pc-vs tbody tr:last-child td.is-ours { border-radius: 0 0 var(--ob-radius-xs) var(--ob-radius-xs); }
-/* A key is 1 word: it never breaks inside itself. */
-.s-pc-vs tbody th { overflow-wrap: normal; }
-@media (max-width: 560px) {
-  .s-pc-vs { font-size: 14px; }
-  .s-pc-vs th,
-  .s-pc-vs td { padding: var(--ob-space-8); }
-  .s-pc-vs thead td { width: 26%; }
-  .s-pc-vs thead th:not(.is-ours) { width: 27%; }
-  .s-pc-vs tbody th { font-size: 11.5px; }
-}
-
 /* ---- parts: loose parts in dashed outline beside the finished persona, drawn solid. */
 .s-pc-parts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: var(--ob-space-16); }
 .s-pc-parts-loose,
@@ -91,6 +66,8 @@
 /* Loose: each part sits a little off the line of the one before. */
 .s-pc-parts-list > li:nth-child(2) { margin-left: var(--ob-space-16); }
 .s-pc-parts-list > li:nth-child(3) { margin-left: var(--ob-space-6); }
+.s-pc-parts-list > li:nth-child(4) { margin-left: var(--ob-space-20); }
+.s-pc-parts-list > li:nth-child(5) { margin-left: var(--ob-space-2); }
 .s-pc-whole-list > li { display: flex; align-items: baseline; gap: var(--ob-space-8); font: 500 14.5px / 1.35 var(--ob-font-sans); }
 .s-pc-whole-list > li::before {
   content: "";
@@ -107,7 +84,7 @@
   .s-pc-parts { grid-template-columns: minmax(0, 1fr); }
 }
 
-/* ---- timeline: 1 persona's 48 hours. Solid where it works, dashed where it sleeps; the wakes ringed. */
+/* ---- timeline: 1 persona's wake, to the millisecond. Solid where it works, dashed where it sleeps; the wakes ringed. */
 .s-pc-tl-list { list-style: none; margin: 0; padding: 0; display: grid; }
 .s-pc-tl-row {
   position: relative;
@@ -149,58 +126,13 @@
   .s-pc-tl-text { grid-column: 2; }
 }
 
-/* ---- meter: the 48 hours as 1 bar, hatched where it waits (free), the 3 active stretches marked. */
-.s-pc-bar {
-  position: relative;
-  height: 44px;
-  border-radius: var(--ob-radius-xs);
-  background: repeating-linear-gradient(135deg, var(--ob-line) 0 1px, transparent 1px 8px);
-  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
-}
-.s-pc-bar-mark {
-  position: absolute;
-  top: 6px;
-  bottom: 6px;
-  left: calc(6px + (100% - 17px) * var(--m, 0));
-  width: 5px;
-  border-radius: 2px;
-  background: var(--ob-text);
-  transform-origin: 50% 100%;
-}
-.s-pc-bar-ends {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--ob-space-12);
-  margin: var(--ob-space-8) 0 var(--ob-space-20);
-  font: 500 12px / 1.4 var(--ob-font-mono);
-  color: var(--ob-text-3);
-}
-.s-pc-ledger { margin: 0; display: grid; }
-.s-pc-ledger-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--ob-space-16);
-  padding: var(--ob-space-12) 0;
-  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
-  font: 400 14.5px / 1.4 var(--ob-font-sans);
-}
-.s-pc-ledger-row > dt { color: var(--ob-text-2); }
-.s-pc-ledger-row > dd { margin: 0; flex: none; font: 500 13.5px / 1.4 var(--ob-font-mono); font-variant-numeric: tabular-nums; color: var(--ob-text); }
-.s-pc-ledger-row.is-total { border-top: var(--ob-border-hair) solid var(--ob-line-strong); }
-.s-pc-ledger-row.is-total > dt { color: var(--ob-text); font-weight: 600; }
-.s-pc-ledger-row.is-total > dd { font-size: 15px; }
-
-/* ---- The cards play once in view (the boot script and useInView set data-on): the timeline's rows land in turn, the
-   meter's marks rise. Only with script (.v5-js), so a page without it shows every card whole. */
+/* ---- The cards play once in view (the boot script and useInView set data-on): the timeline's rows land in turn. Only
+   with script (.v5-js), so a page without it shows every card whole. */
 @media (prefers-reduced-motion: no-preference) {
-  .s-pc-tl-row,
-  .s-pc-bar-mark {
+  .s-pc-tl-row {
     transition:
       opacity var(--ob-dur-slow, 0.4s) var(--ob-ease-out) calc(var(--n, 0) * 140ms),
-      translate var(--ob-dur-slow, 0.4s) var(--ob-ease-out) calc(var(--n, 0) * 140ms),
-      scale var(--ob-dur-slow, 0.4s) var(--ob-ease-out) calc(var(--n, 0) * 180ms + 120ms);
+      translate var(--ob-dur-slow, 0.4s) var(--ob-ease-out) calc(var(--n, 0) * 140ms);
   }
   .v5-js .s-pc-card:not([data-on]) .s-pc-tl-row { opacity: 0.18; translate: 0 6px; }
-  .v5-js .s-pc-card:not([data-on]) .s-pc-bar-mark { scale: 1 0; }
 }

@@ -1,0 +1,50 @@
+/* What an agent can do with the piece (PieceCan.tsx): 1 ruled grid, its cells split by 1px of the line colour showing
+   between them (the grid's own ground). Each cell opens with a short rule in the reading ink, so the claims line up. */
+
+.s-pk-can__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ob-border-hair);
+  border-radius: var(--ob-radius-lg);
+  overflow: hidden;
+  background: var(--ob-line);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line);
+}
+.s-pk-can__item {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-8);
+  min-width: 0;
+  padding: var(--ob-space-28) var(--ob-space-24) var(--ob-space-32);
+  background: var(--ob-bg);
+}
+.s-pk-can__item::before {
+  content: "";
+  width: var(--ob-space-24);
+  margin-bottom: var(--ob-space-12);
+  border-top: 2px solid var(--s-rule, var(--ob-text));
+}
+.s-pk-can__title {
+  margin: 0;
+  font: 600 17px / 1.3 var(--ob-font-sans);
+  letter-spacing: -0.014em;
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-pk-can__line {
+  margin: 0;
+  font: 400 15px / 1.55 var(--ob-font-sans);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+
+@media (max-width: 1000px) {
+  .s-pk-can__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .s-pk-can__grid { grid-template-columns: minmax(0, 1fr); }
+  .s-pk-can__item { padding: var(--ob-space-20) var(--ob-space-16) var(--ob-space-24); }
+}

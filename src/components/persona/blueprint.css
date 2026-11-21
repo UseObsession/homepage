@@ -1,6 +1,6 @@
-/* The persona Home's shared primitives (components/persona), after rivet.dev's blueprint: a hairline at the container's
-   width with a small "+" at each end, the section head every persona section opens with, and the quiet Example tag.
-   Tokens only, so both themes work. */
+/* Home's shared primitives (components/persona), after rivet.dev's blueprint: a hairline at the container's width with
+   a small "+" at each end, the section head every Home section opens with, the quiet caption under a code well, and a
+   text link. Tokens only, so both themes work. */
 
 /* The "+" at each end of a hairline: 2 short strokes per mark, drawn as gradients in the line's strong ink. */
 .s-bp-cross { position: relative; border-top: var(--ob-border-hair) solid var(--ob-line); }
@@ -38,7 +38,7 @@
 .s-bp-h { margin: 0; max-width: 22ch; font: var(--ob-type-h2); letter-spacing: var(--ob-type-h2-tracking); color: var(--ob-text); text-wrap: balance; }
 .s-bp-line { margin: 0; max-width: 58ch; font: var(--ob-type-body-lg); letter-spacing: var(--ob-type-body-lg-tracking); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
 
-/* The quiet Example tag (site.css .s-screen-note): sentence case, the caption type, never a badge. */
+/* The quiet caption (site.css .s-screen-note): sentence case, the caption type, never a badge. */
 .s-bp-tag { margin: 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-2); }
 
 /* A quiet text link with a drawn arrow, the site's own (styles/v5.css .v5-link), for links inside cards. */

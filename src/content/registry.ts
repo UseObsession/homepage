@@ -24,9 +24,9 @@ const refFiles = import.meta.glob<ReferencePage>(['./compare/*.ts', './alternati
 
 const nameOf = (file: string) => file.slice(file.lastIndexOf('/') + 1, -'.ts'.length)
 
-/* The pages built on the Page contract, by file name: home, agencies, sales, marketing, developers, compare, and
-   verify (/verify, Check your AI agents). */
-export type PageName = 'home' | 'agencies' | 'sales' | 'marketing' | 'developers' | 'verify' | 'compare'
+/* The pages built on the Page contract, by file name: home, agencies, sales, marketing, developers, compare, verify
+   (/verify, Check your AI agents) and web-behind-the-login (the old Home, a use case since 21 Nov). */
+export type PageName = 'home' | 'agencies' | 'sales' | 'marketing' | 'developers' | 'verify' | 'compare' | 'web-behind-the-login'
 export const pages = Object.fromEntries(Object.entries(pageFiles).map(([file, p]) => [nameOf(file), p])) as Record<PageName, Page>
 
 /* Every recipe, in the order the nav menu, the phone sheet, the footer and the Recipes index list them within their job.

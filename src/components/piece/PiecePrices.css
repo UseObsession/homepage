@@ -1,0 +1,48 @@
+/* The piece's prices (PiecePrices.tsx): the claim beside the rows from 1080px (5 columns to 7), stacked below. Each row is
+   what is billed on the left and the amount on the right, its note under the amount, split by hairlines under a ruled
+   line with a "+" at each end (persona/blueprint.css). */
+
+.s-pk-price__in {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-block);
+}
+.s-pk-price__head { display: grid; justify-items: start; gap: var(--ob-space-16); align-content: start; }
+.s-pk-price__all { margin-top: var(--ob-space-8); }
+@media (min-width: 1080px) {
+  .s-pk-price__in { grid-template-columns: var(--s-split); column-gap: var(--s-split-gap); align-items: start; }
+}
+
+.s-pk-price__rows { margin: 0; min-width: 0; }
+.s-pk-price__row {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  column-gap: var(--ob-space-24);
+  row-gap: var(--ob-space-6);
+  align-items: baseline;
+  padding-block: var(--ob-space-24);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line);
+}
+.s-pk-price__name {
+  font: 600 16px / 1.4 var(--ob-font-sans);
+  letter-spacing: -0.012em;
+  color: var(--ob-text);
+}
+.s-pk-price__cost,
+.s-pk-price__note { grid-column: 2; margin: 0; min-width: 0; }
+.s-pk-price__amount {
+  font: var(--ob-type-stat);
+  font-size: clamp(24px, 2.4vw, 32px);
+  letter-spacing: var(--ob-type-stat-tracking);
+  font-variant-numeric: tabular-nums;
+  color: var(--ob-text);
+}
+.s-pk-price__unit { font: 400 15px / 1.5 var(--ob-font-sans); color: var(--ob-text-2); }
+.s-pk-price__note { font: 400 14px / 1.5 var(--ob-font-sans); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
+
+/* A phone: what is billed over its amount. */
+@media (max-width: 560px) {
+  .s-pk-price__row { grid-template-columns: minmax(0, 1fr); padding-block: var(--ob-space-20); }
+  .s-pk-price__cost,
+  .s-pk-price__note { grid-column: 1; }
+}

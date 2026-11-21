@@ -6,46 +6,14 @@ import './PersonaContrast.css'
 
 /* The "X, not Y" sections (after rivet.dev's "Start in milliseconds, not seconds."): each 1 screen, its claim, 2 or 3
    lines and 1 big true number on one side, its card on the other, the sides flipping from section to section. Each
-   opens on the ruled line. The cards are product objects (.ob-object). */
+   opens on the ruled line. The cards are product objects (.ob-object): loose parts beside the whole (1 API, not 5
+   vendors), or 1 wake in milliseconds. */
 
 /* A numeral stays on the line of the word it counts. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
-/* An address may break after its @ on a narrow card, never inside the name. */
-const breakAt = (s: string) => {
-  const at = s.indexOf('@')
-  return at < 0 ? s : [s.slice(0, at + 1), <wbr key="b" />, s.slice(at + 1)]
-}
-
 function Card({ art }: { art: PersonaArt }) {
   switch (art.kind) {
-    case 'versus':
-      return (
-        <table className="s-pc-vs">
-          <thead>
-            <tr>
-              <td />
-              {art.cols.map((c) => (
-                <th key={c.label} scope="col" className={c.ours ? 'is-ours' : undefined}>
-                  {c.label}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {art.keys.map((k, r) => (
-              <tr key={k}>
-                <th scope="row">{k}</th>
-                {art.cols.map((c) => (
-                  <td key={c.label} className={c.ours ? 'is-ours' : undefined}>
-                    {breakAt(c.cells[r])}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )
     case 'parts':
       return (
         <div className="s-pc-parts">
@@ -82,33 +50,6 @@ function Card({ art }: { art: PersonaArt }) {
               </li>
             ))}
           </ol>
-        </div>
-      )
-    case 'meter':
-      return (
-        <div className="s-pc-meter">
-          <p className="s-pc-card-label">{art.title}</p>
-          <div className="s-pc-bar" aria-hidden="true">
-            {art.marks.map((m, i) => (
-              <span key={m} className="s-pc-bar-mark" style={{ ['--m' as string]: m, ['--n' as string]: i }} />
-            ))}
-          </div>
-          <p className="s-pc-bar-ends" aria-hidden="true">
-            <span>{art.span.start}</span>
-            <span>{art.span.end}</span>
-          </p>
-          <dl className="s-pc-ledger">
-            {art.rows.map((r) => (
-              <div className="s-pc-ledger-row" key={r.label}>
-                <dt>{r.label}</dt>
-                <dd>{r.value}</dd>
-              </div>
-            ))}
-            <div className="s-pc-ledger-row is-total">
-              <dt>{art.total.label}</dt>
-              <dd>{art.total.value}</dd>
-            </div>
-          </dl>
         </div>
       )
   }
