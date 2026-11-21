@@ -265,8 +265,8 @@ export const page: Page = {
      `status` says who it fits, and each tile's hue is that reader
      (styles/accents.css). */
   personaRecipes: {
-    heading: 'Run one of our recipes, or bring your own job.',
-    line: 'A recipe is a job that runs on Obsession beside the pieces and writes its results to your event log. Pick one of ours and say where it goes, or write your own.',
+    heading: 'Teams who don’t write code pick a recipe, and we run the job.',
+    line: 'A recipe runs on Obsession beside the pieces and writes every result to your event log. Pick one and say where it goes. Developers can bring their own job to run the same way.',
     items: [
       {
         name: 'Agentic mystery shopping',

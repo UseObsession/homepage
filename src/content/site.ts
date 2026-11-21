@@ -29,7 +29,7 @@ const SENTENCE =
    WebSite JSON-LD, docs/SEARCH.md 2). Since 21 Nov the pieces an agent needs through one API, plus recipes; never AI
    customers. */
 export const ENTITY =
-  'Obsession gives AI agents the pieces they need on the web through one API and one bill: email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Recipes run our jobs, or your own, beside the pieces, and every event and result lands in one event log developers subscribe to.'
+  'Obsession gives AI agents the pieces they need on the web through one API and one bill: email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams who don’t write code pick a recipe, and Obsession runs the job. Every event and result lands in one event log developers subscribe to.'
 
 /* /recipes. Since 20 Nov (the persona rewrite) each recipe is a job personas already know how to do: who the persona
    is, where it goes, what it brings back and how it reaches your event log. Grouped by job as in the nav; the groups render the
