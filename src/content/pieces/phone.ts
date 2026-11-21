@@ -35,9 +35,9 @@ export const phone: PiecePage = {
   name: 'Phone',
   meta: {
     path: piecePaths.phone,
-    title: 'Phone numbers for AI agents: texts and calls · Obsession',
+    title: 'Phone number for AI agents: texts, calls, codes · Obsession',
     description:
-      'Give each AI agent its own phone number. It sends and receives texts, gets verification codes, and makes and takes calls through your own voice agent.',
+      'A phone number for AI agents in one call. Your agent sends and receives texts, gets verification codes, and makes and takes calls through your voice agent.',
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -87,8 +87,13 @@ export const phone: PiecePage = {
     heading: 'A number your agent keeps for as long as the job runs.',
     items: [
       {
-        q: 'Can an AI agent have its own phone number?',
-        a: 'Yes. One call gives your agent a number. It sends and receives texts and makes and takes calls, and everything that comes in reaches your app through a webhook.',
+        q: 'How do I get a phone number for an AI agent?',
+        a: 'One call gives your agent a number of its own. It sends and receives texts and makes and takes calls, and everything that comes in reaches your app through a webhook.',
+      },
+      {
+        q: 'Can I get a free phone number for my AI agent?',
+        a: 'Yes. The Free plan includes a number that receives texts and calls, such as verification codes, up to a monthly amount, with no credit card. To send texts or call out, pick Developer or Startup.',
+        link: { label: 'See what each plan includes', to: '/pricing' },
       },
       {
         q: 'Will verification codes reach my agent?',

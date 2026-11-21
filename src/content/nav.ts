@@ -78,7 +78,8 @@ const blogLead = catalog.blogLive
 
 /* The bar's menus since 9 Nov (James, after Exa's): tool first. Products (the 3 ways to get the data, the API, the
    recipes) with the integrations under them; Solutions (use cases beside the teams and industries they serve);
-   Resources (the proof and the reading, with the rest of the company in a side column); Developers as a plain link.
+   Resources (the proof and the reading, with the rest of the company in a side column); Developers and, since 21 Nov
+   (James), Pricing as plain links after the menus.
    Each row is a name, 1 line and an icon (components/Nav draws the icons). */
 export type NavIcon =
   | 'search'
@@ -112,18 +113,19 @@ const menus = {
   products: {
     label: 'Products',
     button: 'Products menu',
-    /* Since 21 Nov (James: one API for the pieces an agent needs, plus recipes): each piece's own page, then the recipes,
-       the API and what each piece costs. The footer's Products column is this list. */
+    /* Since 21 Nov (James: one API for the pieces an agent needs, plus recipes): each piece's own page, then the
+       blueprints and the API. Pricing left this menu for the bar (James, 21 Nov). The footer's Products column is this
+       list, then Pricing (content/footer.ts). The pieces are in the founders' order (piecePaths.ts pieceOrder): Email,
+       Personas, Browser, Phone, Sandbox, Messaging. */
     items: [
       { label: 'Email', line: 'Inboxes your agents send and receive from', to: '/email', icon: 'mail' },
-      { label: 'Phone', line: 'Numbers, texts and calls for agents', to: '/phone', icon: 'phone' },
-      { label: 'Browser', line: 'A cloud browser that keeps its logins', to: '/browser', icon: 'browser' },
       { label: 'Personas', line: 'Every piece under one identity', to: '/personas', icon: 'users' },
-      { label: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram', to: '/messaging', icon: 'chat' },
+      { label: 'Browser', line: 'A cloud browser that keeps its logins', to: '/browser', icon: 'browser' },
+      { label: 'Phone', line: 'Numbers, texts and calls for agents', to: '/phone', icon: 'phone' },
       { label: 'Sandbox', line: 'A computer to run code when a task needs one', to: '/sandbox', icon: 'sandbox' },
-      { label: 'Blueprints', line: 'Jobs ready to run, or your own, beside the pieces', to: '/blueprints', icon: 'recipes' },
+      { label: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram', to: '/messaging', icon: 'chat' },
+      { label: 'Blueprints', line: 'Ready-made AI agent templates, or your own job', to: '/blueprints', icon: 'recipes' },
       { label: 'API and MCP', line: 'One API for every piece, and MCP for your agent', to: '/developers', icon: 'api' },
-      { label: 'Pricing', line: 'Each piece priced on its own', to: '/pricing', icon: 'tag' },
     ] satisfies NavTool[],
     integrations: {
       label: 'Integrations',
@@ -143,9 +145,9 @@ const menus = {
       {
         label: 'Use cases',
         items: [
-          { label: 'Mystery shopping', line: 'Personas shop a store, and keep what follows', to: '/blueprints/mystery-shopper', icon: 'cart' },
+          { label: 'Mystery shopping', line: 'Shop every client store, and keep what follows', to: '/blueprints/mystery-shopper', icon: 'cart' },
           { label: 'QA on your own flows', line: 'Sign up to your product as a new user', to: '/blueprints/website-audit', icon: 'software' },
-          { label: 'Competitor trials', line: 'Every email a rival’s trial sends', to: '/blueprints/trial-teardown', icon: 'clock' },
+          { label: 'Competitor trials', line: 'Every email a competitor’s trial sends', to: '/blueprints/trial-teardown', icon: 'clock' },
           { label: 'Lead response checks', line: 'Time the first email, text and call', to: '/blueprints/lead-leaks', icon: 'mail' },
           { label: 'Prospect audits', line: 'Shop a prospect’s store before the pitch', to: '/blueprints/prospect-intelligence', icon: 'target' },
           { label: 'Price watch', line: 'Member prices, every week', to: '/blueprints/price-watch', icon: 'tag' },
@@ -192,6 +194,7 @@ const menus = {
     },
   },
   developers: { label: 'Developers', to: '/developers' } satisfies NavPage,
+  pricing: { label: 'Pricing', to: '/pricing' } satisfies NavPage,
 }
 
 export const nav = {

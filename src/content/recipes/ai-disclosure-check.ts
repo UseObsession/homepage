@@ -26,7 +26,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/ai-disclosure-check',
-    title: 'AI disclosure check: does your AI agent say it’s an AI?',
+    title: 'Check your AI agents say they’re AI on chat, phone and email',
     description:
       'A persona asks your AI agents each morning on chat, phone, email and text, keeping the first line, the answer to “Am I talking to a person?” and the wait.',
     answer:
@@ -53,6 +53,43 @@ export const recipe: Recipe = {
 
   unit: 'disclosure check',
   per: 'AI agent',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'Its first line on chat, phone, email and text',
+        'Its answer to “Am I talking to a person?”',
+        'The wait for a person, timed',
+        'The call recorded, with its transcript',
+      ],
+    },
+    {
+      name: 'Weekly',
+      includes: [
+        'Checks written from the rules where you sell, approved by you',
+        'First line, answer and wait on each channel',
+        'Every call recorded, and every chat, email and text kept',
+        'Every check in your event log',
+      ],
+    },
+    {
+      name: 'Daily',
+      includes: [
+        'Everything in Weekly, every morning at 07:00',
+        'A flag the morning a channel stops saying it’s AI',
+        'A PDF for legal, compliance, your insurer or a client',
+      ],
+    },
+    {
+      name: 'Team',
+      includes: [
+        'Everything in Daily, for each agent',
+        'A calendar of every day’s checks, per agent',
+        'Each day’s events in Slack, a table or the API',
+      ],
+    },
+  ],
 
   run: {
     tab: '4 channels, every morning',

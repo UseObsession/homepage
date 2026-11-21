@@ -29,7 +29,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/vendor-agent-check',
-    title: 'Vendor agent check: compare AI agents on your own cases',
+    title: 'Compare AI agent vendors on your hardest cases, side by side',
     description:
       'Before you sign, a persona brings your real cases to every shortlisted vendor’s AI agent, and every answer and handoff comes back side by side, dated.',
     answer:
@@ -56,6 +56,43 @@ export const recipe: Recipe = {
 
   unit: 'vendor test',
   per: 'vendor',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'A persona with its own inbox and number',
+        'Each case beside the policy that decides it',
+        'Every answer kept word for word',
+      ],
+    },
+    {
+      name: 'Monthly',
+      includes: [
+        'The same persona and cases each month',
+        'Every answer that changed, before and after',
+        'Handoffs to a person, timed',
+      ],
+    },
+    {
+      name: 'Shortlist',
+      includes: [
+        'Your current agent on the same cases, as the bar',
+        'Each case asked again every week',
+        'The sales deck’s claims beside what each agent did',
+        'A side by side report, with every transcript',
+      ],
+    },
+    {
+      name: 'Large shortlist',
+      includes: [
+        'Everything in Shortlist',
+        '40 cases from your own tickets, the hardest included',
+        'Every test tagged on every vendor',
+        'Every answer in your event log, by webhook or API',
+      ],
+    },
+  ],
 
   run: {
     tab: '2 vendors, your 20 cases',

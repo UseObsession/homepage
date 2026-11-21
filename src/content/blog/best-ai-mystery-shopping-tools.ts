@@ -2,8 +2,9 @@ import type { BlogPost } from './types'
 
 /* Best X guide 1 (_research/seo/recommend/best-x/PLAN.md, row 1; agreed by Seun 28 Oct 2026): the best AI mystery
    shopping tools, sorted by what they test. Primary "ai mystery shopping tools"; secondaries from Google autocomplete
-   (US and UK, 28 Oct): ai mystery shopping, mystery shopping software, ai secret shopper. /recipes/mystery-shopper keeps
-   "ai mystery shopper" and is linked with that anchor. Readers: store founders, CX leads and agencies choosing a tool.
+   (US and UK, 28 Oct): ai mystery shopping, ai secret shopper. /blueprints/mystery-shopper keeps "ai mystery shopper"
+   and, since the 22 Nov search plan, "mystery shopping software" and "mystery shopper software": it is linked with both
+   anchors. Readers: store founders, CX leads and agencies choosing a tool.
    Every fact about another tool comes from research_mystery_shopping.json (each tool read on its own pages on
    28 Oct 2026). 20 tools in 4 groups, alphabetical inside each, no stars, ranking or Review markup. Left out: Mystery
    Agent (a published study, not a product), mocktomer (site down on 28 Oct), DeepCall (empty page), SignalSprint
@@ -59,10 +60,8 @@ export const post: BlogPost = {
   primaryKeyword: 'ai mystery shopping tools',
   keywords: [
     'ai mystery shopping',
-    'mystery shopping software',
     'ai secret shopper',
     'best ai mystery shopping tools',
-    'ai mystery shopping software',
     'mystery shopping tools',
   ],
   category: 'Check your own journeys',
@@ -550,6 +549,7 @@ export const post: BlogPost = {
         {
           q: 'Is an AI secret shopper the same as an AI mystery shopper?',
           a: 'Yes. “AI secret shopper”, “AI mystery shopper” and “mystery shopping software” name the same practice: software that plays a customer and reports what it got. AdStack calls its service AI Secret Shopping, and UndercoverAgent describes itself as a secret shopper for AI agents.',
+          link: { label: 'Mystery shopping software for agencies', to: '/blueprints/mystery-shopper' },
         },
         {
           q: 'How much do AI mystery shopping tools cost?',

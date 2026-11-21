@@ -27,7 +27,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/competitor-tracking',
-    title: 'Competitor tracking: a persona on every competitor’s list',
+    title: 'Track competitors as a customer: emails, offers and prices',
     description:
       'A persona you define signs up at each competitor and keeps every email, text, offer and price it’s sent, on 1 dated timeline. By API, MCP, Clay or Slack.',
     answer:
@@ -55,6 +55,45 @@ export const recipe: Recipe = {
   buyer: 'For CRO agencies and ecommerce marketers.',
   unit: 'competitor check',
   per: 'competitor',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'A persona signs up with its own inbox and number',
+        'Every email and text, with the time it arrived',
+        'The welcome series mapped, step by step',
+        'A screenshot of every page and message',
+      ],
+    },
+    {
+      name: 'Starter',
+      includes: [
+        'Every email and text as it lands',
+        'Prices, offers and pages checked each week',
+        '1 dated timeline per competitor',
+        'A weekly summary by email or Slack',
+        'Results by API, MCP, Google Sheets or a webhook',
+      ],
+    },
+    {
+      name: 'Growth',
+      includes: [
+        'Everything in Starter',
+        'Member prices beside the public ones',
+        'Their public ads beside their pages',
+      ],
+    },
+    {
+      name: 'Daily',
+      includes: [
+        'Everything in Growth',
+        'Every price, offer and page change, the day it happens',
+        'History and trends for each competitor',
+        'A report you can share each month',
+      ],
+    },
+  ],
 
   run: {
     tab: 'A skincare competitor, week 1',

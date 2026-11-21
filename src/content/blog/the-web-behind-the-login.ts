@@ -300,7 +300,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An Obsession agent signs up the way any customer can, with its own inbox, phone number and browser, and says it’s an AI when it talks to a person. It never gets round a CAPTCHA or a bot block, and it never invents identity details ([who visits a site, and the lines every agent keeps](/agents)). Each new email, price and offer is added on the day it arrives, so a company’s history builds from the first day it is followed. One question can be asked across many companies at once, a row each. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'An Obsession agent signs up the way any customer can, with its own [inbox](/email), [phone number](/phone) and [browser that keeps its logins](/browser), and says it’s an AI when it talks to a person. It never gets round a CAPTCHA or a bot block, and it never invents identity details ([who visits a site, and the lines every agent keeps](/agents)). Each new email, price and offer is added on the day it arrives, so a company’s history builds from the first day it is followed. One question can be asked across many companies at once, a row each. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
     },
     {
       kind: 'cta',
@@ -481,6 +481,8 @@ export const post: BlogPost = {
     { title: 'The AI platform for competitive intelligence and win-loss', publisher: 'Klue', url: KLUE },
   ],
   related: [
+    '/browser',
+    '/email',
     'exa-vs-tavily-vs-firecrawl',
     'scrape-data-behind-login',
     'can-ai-agents-log-in-to-websites',

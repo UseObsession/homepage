@@ -1,4 +1,3 @@
-import { blueprintPlans } from '../prices'
 import type { CardGrid, Page, PricingTabs } from '../types'
 
 /* Agencies (/agencies), the resellers rewrite (21 Nov 2026, James): one page for every business that resells our recipes
@@ -11,7 +10,7 @@ import type { CardGrid, Page, PricingTabs } from '../types'
    The page reads, in order (pages/Agencies.tsx): the hero, beside every client's checks on one board > the gap: checks
    done by hand eat the margin (its claim is also the share image's line) > #resell: the 6 kinds of reseller, each with
    the recipes it would sell (sections/Kinds) > #white-label: the white label terms, from the Enterprise plan on /pricing
-   (v5/CardGrid) > #pricing: the blueprints resellers sell, each a tab with its pricing table counted per client
+   (v5/CardGrid) > #pricing: the blueprints resellers sell, each a tab with that blueprint's own pricing table
    (`pricing` below, components/BlueprintPricingTabs; James, 21 Nov, in place of the fixed price pilot) > questions >
    #join: the early access form. Sold as designed (white label, an account per client, branded reports and the dashboard are the
    offer). No customers, logos, quotes or results are claimed, and no price comes from a single deal. The old lifecycle
@@ -19,15 +18,10 @@ import type { CardGrid, Page, PricingTabs } from '../types'
 
 const access = { kind: 'waitlist', button: 'Get early access', interest: 'any' } as const
 
-/* What a client costs, from the blueprints' plans (content/prices.ts `blueprintPlans`), never typed here: where the prices
-   start, and each paid plan's price ("A monthly run is $19 a month, weekly is $49 and daily is $99"). */
-const paid = blueprintPlans.filter((p) => p.monthly > 0)
-const FROM = `$${Math.min(...paid.map((p) => p.monthly))}`
-const PRICED = `Start with a free run, then pay from ${FROM} a month per client, by how often each check runs.`
-const andList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`)
-const RATES = andList(
-  paid.map((p, i) => (i === 0 ? `A ${p.name.toLowerCase()} run is $${p.monthly} a month` : `${p.name.toLowerCase()} is $${p.monthly}`)),
-)
+/* What a client costs (James, 21 Nov 2026, second pass): each blueprint has its own tiers, in its recipe file, shown in
+   the #pricing tabs. A page's words can't import them (registry.ts globs every page and recipe), so no price is typed
+   here: the lines say how the plans work and send the reader to the tabs. */
+const PRICED = 'Every blueprint starts with a free run, then has 3 plans priced by what it checks, such as sites, voice agents or competitors.'
 
 const SUB =
   'Obsession’s AI agents shop, call and fill in forms as new customers of your clients. Every result lands in a dashboard and a report with your name on it.'
@@ -137,7 +131,7 @@ export const page: Page = {
       },
       {
         q: 'What does each client cost?',
-        a: `Each blueprint is priced per client, by how often it runs. ${RATES}. The first run is free.`,
+        a: 'It depends on the blueprint. Each starts with a free run, then has 3 plans priced in its own terms: sites for lead response checks, voice agents for voice agent checks and competitors for competitor tracking.',
         link: { label: 'See the plans', to: '#pricing' },
       },
       {
@@ -150,7 +144,7 @@ export const page: Page = {
       },
       {
         q: 'What do we pay, and what do we charge?',
-        a: 'You pay each blueprint’s price per client and set your own price to clients. White label is part of the Enterprise plan, with lower rates set by contract on the volume you commit to.',
+        a: 'You pay for each blueprint’s plan and set your own price to clients. White label is part of the Enterprise plan, with lower rates set by contract on the volume you commit to.',
         link: { label: 'See the Enterprise plan', to: '/pricing' },
       },
       {
@@ -180,12 +174,11 @@ export const page: Page = {
 }
 
 /* #pricing (James, 21 Nov 2026), in place of the pilot: 1 tab per blueprint resellers sell, each opening that blueprint's
-   pricing table counted per client (components/BlueprintPricingTabs; the prices are content/prices.ts `blueprintPlans`). */
+   own pricing table (components/BlueprintPricingTabs, from content/catalog: the blueprint's `tiers`). */
 export const pricing: PricingTabs = {
-  heading: 'Pay per client, by how often each blueprint runs.',
-  line: 'Pick a blueprint to see what each client costs you. You charge your clients what you choose.',
+  heading: 'Every blueprint you resell starts with a free run.',
+  line: 'Pick a blueprint to see its plans, each priced by what it checks. You charge your clients what you choose.',
   label: 'Blueprints you can resell',
-  per: 'client',
   recipes: ['mystery', 'speed', 'voice-agent', 'competitor', 'delivery', 'audit'],
 }
 

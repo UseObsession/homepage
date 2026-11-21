@@ -534,6 +534,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/browser',
     'exa-vs-tavily-vs-firecrawl',
     'best-web-search-api-for-ai-agents',
     'the-web-behind-the-login',

@@ -731,6 +731,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/blueprints',
     'agentic-ai-use-cases-in-ecommerce',
     'why-ai-customers-matter',
     '/use-cases/leak-checks-for-ecommerce-stores',

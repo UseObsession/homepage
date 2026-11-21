@@ -1,12 +1,7 @@
-import { blueprintPlans, type BlueprintPlan, type BlueprintPlanId } from './prices'
-import type { BlueprintPlanCard, BlueprintPricing, Cta, Recipe, RecipeGroup } from './types'
+import type { BlueprintPlanCard, BlueprintPricing, BlueprintTier, Cta, Recipe } from './types'
 
-/* What 1 run is called, and what 1 plan covers, for a recipe whose file doesn't say (types.ts Recipe `unit`, `per`). */
-const UNIT = 'check'
+/* What 1 tier counts, for a recipe whose file doesn't say (types.ts Recipe `per`). */
 const PER = 'site'
-/* The paid plans, in order, and "a, b or c". */
-const paid = blueprintPlans.filter((p) => p.monthly > 0)
-const orList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} or ${items[items.length - 1]}`)
 
 /* The words every recipe page shares (pages/RecipePage), around each recipe's own content (src/content/recipes).
    Since 21 Nov a recipe is a job that runs on Obsession beside the pieces and writes its results to the account's event
@@ -52,81 +47,55 @@ export const recipePage = {
   forWho: { heading: 'The same blueprint, different teams.' },
 
   /* The pricing section, after the run (#pricing), on every recipe page: its claim and line, from the recipe's name and
-     what it counts (blueprintPricing below). */
+     its free tier (blueprintPricing below). Tiers may scale by how often a blueprint runs, by stores or locations, or by
+     volume, so the words assume none of those: the line says what the free tier covers. Every blueprint's first tier is
+     free (content/blueprint-tiers.ts fails the build otherwise). */
   pricing: {
-    heading: (r: Pick<Recipe, 'name' | 'per'>) => `${r.name}, priced per ${r.per ?? PER} by how often it runs.`,
-    line: (r: Pick<Recipe, 'unit'>) => `Your first ${r.unit ?? UNIT} is free. After that, pick a ${orList(paid.map((p) => p.name.toLowerCase()))} run.`,
+    heading: (r: Pick<Recipe, 'name'>) => `${r.name}: start free, then pick the plan that fits.`,
+    line: (tiers: BlueprintTier[]) => {
+      const covers = tiers.find((t) => t.price === 0)?.covers ?? ''
+      return `The free plan covers ${covers.charAt(0).toLowerCase()}${covers.slice(1)}. Every paid plan starts with a free run too.`
+    },
     /* The hero's second path, under its form, to the section (its anchor). */
     link: { label: 'See pricing', to: '#pricing' } satisfies Cta,
   },
 }
 
 /* ---- Each blueprint's pricing table (components/BlueprintPricing; James, 21 Nov 2026) ----
-   The 4 tiers and their prices are content/prices.ts `blueprintPlans`, never typed here. Each card says them in the
-   buyer's own terms: what 1 run is (`unit`) and what 1 plan covers (`per`; a client on /agencies). Weekly is the plan
-   the table lifts. Under the cards, 1 line sends more of them, white label and a blueprint of your own to /pricing. */
+   A blueprint's tiers (content/catalog.ts, priced by the pricing engine in content/blueprint-tiers.ts) as cards: each
+   card its name, who it's for, its price, what it covers, what's included and its button, the featured tier raised with
+   the row's 1 primary button. A tier priced above the Enterprise cap shows Enterprise and sends the reader to /pricing.
+   No price is typed here or in a blueprint's file. Under the cards, 1 line sends more of them, white label and a
+   blueprint of your own to /pricing. */
 
 const JOIN = '#join'
-const named = (id: BlueprintPlanId) => blueprintPlans.find((p) => p.id === id)?.name ?? id
-/* What a team that runs it more often hears about sooner: a competitor's change, or a step of its own that breaks. */
-const moves: Record<RecipeGroup, string> = {
-  'Watch other companies': 'changes',
-  'Check your own journeys': 'breaks',
-  'Check your AI agents': 'breaks',
-}
-/* How often a plan runs, from its `every`. */
-const EVERY = { once: 'once', month: 'every month', week: 'every week', day: 'every day' } as const
-const RESULTS = 'Every result in your dashboard, with the screenshot, email or recording behind it'
+const PRICING = '/pricing'
 
-function wordsOf(plan: BlueprintPlan, unit: string, per: string, move: string): Pick<BlueprintPlanCard, 'for' | 'includes' | 'cta'> {
-  const every = EVERY[plan.every]
-  const start = { label: 'Start with a free run', to: JOIN }
-  switch (plan.id) {
-    case 'free':
-      return {
-        for: `Try it on 1 ${per}.`,
-        includes: [`1 full ${unit}, when you ask for it`, RESULTS, 'The report for that run'],
-        cta: { label: 'Run it free', to: JOIN },
-      }
-    case 'monthly':
-      return {
-        for: `Keep an eye on 1 ${per}.`,
-        includes: [
-          `A full ${unit} ${every}`,
-          RESULTS,
-          'Email and Slack alerts',
-          'A report you can share',
-          'Every result in your event log, to read by webhook, API or MCP',
-        ],
-        cta: start,
-      }
-    case 'weekly':
-      return { for: `Know the week something ${move}.`, includes: [`A full ${unit} ${every}`, `Everything in ${named('monthly')}`], cta: start }
-    case 'daily':
-      return {
-        for: `Know the day something ${move}.`,
-        includes: [`A full ${unit} ${every}`, `Everything in ${named('weekly')}`, `History and trends for each ${per}`],
-        cta: start,
-      }
-  }
-}
+/* 1 tier as its card: "Free", "$49" and "a month", or "Enterprise", with what it covers under the price. */
+const tierCard = (t: BlueprintTier, i: number): BlueprintPlanCard => ({
+  id: `tier-${i}`,
+  name: t.name,
+  for: t.for,
+  price: t.enterprise ? 'Enterprise' : t.price === 0 ? 'Free' : `$${t.price.toLocaleString('en-GB')}`,
+  per: t.enterprise || t.price === 0 ? '' : 'a month',
+  covers: t.covers,
+  includes: t.includes,
+  featured: t.featured,
+  cta: t.enterprise
+    ? { label: 'Talk to us', to: PRICING }
+    : t.price === 0
+      ? { label: 'Run it free', to: JOIN }
+      : { label: 'Start with a free run', to: JOIN },
+})
 
-/* A blueprint's 4 cards and the line under them. `per` replaces the recipe's own (on /agencies: 'client'). */
-export function blueprintPricing(r: Pick<Recipe, 'group' | 'unit' | 'per'>, per = r.per ?? PER): BlueprintPricing {
-  const unit = r.unit ?? UNIT
+/* A blueprint's 4 cards and the line under them, counted in the blueprint's own terms (`per`). */
+export function blueprintPricing(r: { per?: string; tiers: BlueprintTier[] }): BlueprintPricing {
   return {
     label: 'Plans',
     tag: 'Recommended',
     includes: 'What’s included',
-    plans: blueprintPlans.map((p) => ({
-      id: p.id,
-      name: p.name,
-      price: p.monthly === 0 ? 'Free' : `$${p.monthly}`,
-      per: p.monthly === 0 ? '1 run' : `a month per ${per}`,
-      featured: p.id === 'weekly',
-      ...wordsOf(p, unit, per, moves[r.group]),
-    })),
-    more: { line: `More ${per}s, white label, or a blueprint of your own?`, link: { label: 'See every plan', to: '/pricing' } },
+    plans: r.tiers.map(tierCard),
+    more: { line: `More ${r.per ?? PER}s, white label, or a blueprint of your own?`, link: { label: 'See every plan', to: PRICING } },
   }
 }
 

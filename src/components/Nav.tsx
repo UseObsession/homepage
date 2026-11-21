@@ -22,10 +22,11 @@ import './Nav.css'
 /* The site navigation, on the design system's .ob-nav, .ob-menu and .ob-mnav (docs/REBUILD.md, section 7; the spec is
    _research/nav/NAV.md in the workspace).
    Bar, since 9 Nov (James, after Exa's): the lockup; Products, Solutions and Resources, each a button that opens its
-   menu; Developers as a plain link; the theme switch, Sample data and the page's 1 call to action. Products lists the
-   ways to get the data with the integrations under them; Solutions puts the use cases beside the teams and industries;
-   Resources keeps the proof and the reading, with the rest of the company in a side column. Each tool row has an icon,
-   a name and 1 line. Under 860px the menu button opens the phone sheet, which lists the same 3 menus.
+   menu; Developers and Pricing (since 21 Nov, James) as plain links; the theme switch, Sample data and the page's 1
+   call to action. Products lists the ways to get the data with the integrations under them; Solutions puts the use
+   cases beside the teams and industries; Resources keeps the proof and the reading, with the rest of the company in a
+   side column. Each tool row has an icon, a name and 1 line. Under 860px the menu button opens the phone sheet, which
+   lists the same 3 menus, with Developers and Pricing under Resources.
    The menus are disclosures (a button with aria-expanded and aria-controls over a panel of links), not ARIA menus. They
    open on click and keys, and on a fine pointer also on hover after a short pause; Escape closes and returns focus.
    The sheet holds focus inside the nav and locks the page behind it. */
@@ -734,11 +735,13 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
             </>,
           )}
 
-          <li className="s-nav__plain">
-            <NavLink className="ob-nav__link" to={nav.menus.developers.to} end onClick={close}>
-              {nav.menus.developers.label}
-            </NavLink>
-          </li>
+          {[nav.menus.developers, nav.menus.pricing].map((p) => (
+            <li className="s-nav__plain" key={p.to}>
+              <NavLink className="ob-nav__link" to={p.to} end onClick={close}>
+                {p.label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
 
         <div className="ob-nav__end">
@@ -801,7 +804,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
             {resources.label}
           </p>
           <ul className="ob-mnav__list s-mnav__tools">
-            {[...resources.items, nav.menus.developers, ...resources.more.items].map((p) => (
+            {[...resources.items, nav.menus.developers, nav.menus.pricing, ...resources.more.items].map((p) => (
               <li key={p.to}>{pageRow(p, ' s-page--sheet')}</li>
             ))}
           </ul>

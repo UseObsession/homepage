@@ -8,9 +8,11 @@ const root = fileURLToPath(new URL('.', import.meta.url))
 
 /* The app's index of every page (content/catalog.ts, content/heads.ts) is worked out from all the content: the browser
    gets the values those 2 modules export, and none of the words they read them from (each page's own words load with
-   the page, App.tsx). The prerender's server build does not read this config, so it runs the 2 modules themselves. */
+   the page, App.tsx). Every price (content/prices.ts, and each blueprint's tiers in content/catalog.ts) is worked out
+   the same way from the pricing JSON and engine (src/lib/pricing), so neither ships to the browser. The prerender's
+   server build does not read this config, so it runs the 3 modules themselves. */
 function contentIndex(): Plugin {
-  const index = new Set(['src/content/catalog.ts', 'src/content/heads.ts'].map((f) => root + f))
+  const index = new Set(['src/content/catalog.ts', 'src/content/heads.ts', 'src/content/prices.ts'].map((f) => root + f))
   return {
     name: 'obsession-content-index',
     async load(id) {

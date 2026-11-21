@@ -332,5 +332,5 @@ export const post: BlogPost = {
     { title: 'Frequently asked questions', publisher: 'Secret View', url: SECRET_VIEW },
     { title: 'Market research analysts: Occupational Outlook Handbook', publisher: 'US Bureau of Labor Statistics', url: BLS },
   ],
-  related: ['ai-customers', 'how-ai-customers-work', 'hire-ai-customers', 'ai-customers-for-developers', 'recipe:mystery-shopper', 'recipe:competitor-tracking'],
+  related: ['/pricing', 'ai-customers', 'how-ai-customers-work', 'hire-ai-customers', 'ai-customers-for-developers', 'recipe:mystery-shopper', 'recipe:competitor-tracking'],
 }

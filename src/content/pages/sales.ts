@@ -1,6 +1,6 @@
 import { askShared } from '../shared5'
 import { consoleHeading } from '../console'
-import type { Page } from '../types'
+import type { Page, PricingTabs } from '../types'
 
 /* Sales (/sales), the 9 Nov rewrite to Home's story: sales teams, RevOps and GTM engineers get what each account and
    competitor sends its own customers, ready before the call, with a domain as the only input. Their words: battlecards,
@@ -189,4 +189,14 @@ export const page: Page = {
     heading: 'Which account is your next call with?',
     capture: { ...access, source: 'sales-final' },
   },
+}
+
+/* #pricing (James, 21 Nov 2026): 1 tab per blueprint a sales team runs, from the page's own jobs (briefs, battlecards,
+   outbound, win back) to the accounts it sells to and its own lead response (each opening that blueprint's own pricing
+   table, components/BlueprintPricingTabs, from content/catalog). */
+export const pricing: PricingTabs = {
+  heading: 'Start each blueprint free, then pay for what it checks.',
+  line: 'Pick a blueprint to see what each plan covers in a month.',
+  label: 'Blueprints for sales teams',
+  recipes: ['prospect', 'trial', 'account-watch', 'speed', 'email-sms'],
 }

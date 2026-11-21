@@ -27,7 +27,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/ad-landing-check',
-    title: 'Ad landing check: each ad’s page, every morning · Obsession',
+    title: 'Check every ad’s landing page loads and sells, each morning',
     description:
       'Each morning a persona opens every live ad’s landing page from its link, on phone and desktop, and checks it loads and the offer, price and stock match.',
     answer:
@@ -54,6 +54,43 @@ export const recipe: Recipe = {
 
   unit: 'landing page check',
   per: 'site',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'Each page opened from its ad’s link, on phone and desktop',
+        'Whether it loads, and whether the offer, price and stock match the ad',
+        'A screenshot of every page that can’t sell',
+      ],
+    },
+    {
+      name: 'Weekly',
+      includes: [
+        'Opened from the country each ad targets',
+        'Loads, offer, price and stock, with screenshots',
+        'Each ad’s daily spend beside its page, the costliest failure first',
+        'Slack or email only when an ad fails',
+      ],
+    },
+    {
+      name: 'Daily',
+      includes: [
+        'Everything in Weekly, every morning at 07:00',
+        'Ads that went live yesterday, in the next morning’s check',
+        'A weekly summary: pages that failed and how long each took to fix',
+        'Every check in your event log, by webhook or API',
+      ],
+    },
+    {
+      name: 'Scale',
+      includes: [
+        'Everything in Daily',
+        'Your own checks beside the 4 standard ones',
+        'A report you can share',
+      ],
+    },
+  ],
 
   run: {
     tab: '6 live ads, each morning',

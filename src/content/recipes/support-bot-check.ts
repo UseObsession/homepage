@@ -29,7 +29,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/support-bot-check',
-    title: 'Support bot check: every answer your AI chatbot gives, daily',
+    title: 'Test your support bot each morning against your own policy',
     description:
       'A persona you define asks your support bot what people ask, on chat, email and portals, every morning. Every answer comes back word for word, dated.',
     answer:
@@ -56,6 +56,42 @@ export const recipe: Recipe = {
 
   unit: 'round of test questions',
   per: 'support bot',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'Every answer kept word for word',
+        'Each answer beside your policy page',
+        'A person requested, and the wait timed',
+      ],
+    },
+    {
+      name: 'Weekly',
+      includes: [
+        'The questions your support team hears most',
+        'Promised emails waited for in the persona’s own inbox',
+        'Every test tagged, so your vendor doesn’t bill it',
+        'Answers in Slack or a sheet',
+      ],
+    },
+    {
+      name: 'Team',
+      includes: [
+        'Everything in Weekly',
+        'Every channel’s answers side by side',
+        'Every transcript in your event log',
+      ],
+    },
+    {
+      name: 'Daily',
+      includes: [
+        'Everything in Team, every morning',
+        'A flag the morning an answer breaks your policy',
+        'Every transcript by webhook or API',
+      ],
+    },
+  ],
 
   run: {
     tab: 'Your support bot, daily',

@@ -15,7 +15,12 @@ export type { PiecePage } from './types'
 
 const byId: Record<PieceId, PiecePage> = { email, phone, messaging, browser, sandbox, personas }
 
-export const pieces: PiecePage[] = pieceOrder.map((id) => byId[id])
+/* Each page's other pieces follow pieceOrder too, whatever order its file lists them in. */
+const rank = (id: PieceId) => pieceOrder.indexOf(id)
+export const pieces: PiecePage[] = pieceOrder.map((id) => {
+  const p = byId[id]
+  return { ...p, together: { ...p.together, items: [...p.together.items].sort((a, b) => rank(a.piece) - rank(b.piece)) } }
+})
 
 export const pieceAt = (path: string): PiecePage | undefined => pieces.find((p) => p.meta.path === path)
 

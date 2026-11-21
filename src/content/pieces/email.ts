@@ -8,7 +8,7 @@ import type { PiecePage } from './types'
    read from prices.ts, never retyped. */
 
 const sub =
-  'Obsession’s email API gives each AI agent its own inbox in one call. The agent sends and receives email, keeps every thread and attachment, and your app hears about each new message the moment it lands.'
+  'Obsession’s email API for AI agents gives each agent its own inbox in one call. The agent sends and receives email, keeps every thread and attachment, and your app hears about each new message the moment it lands.'
 
 const code = `import { Obsession } from "obsession"
 
@@ -35,9 +35,9 @@ export const email: PiecePage = {
   name: 'Email',
   meta: {
     path: piecePaths.email,
-    title: 'Email API for AI agents: an inbox for each agent · Obsession',
+    title: 'Email for AI agents: an inbox per agent, by API · Obsession',
     description:
-      'Give each AI agent its own inbox with one API call. It sends and receives email, keeps threads and attachments, and calls your webhook on each new message.',
+      'Email for AI agents: one API call gives each agent its own inbox. It sends and receives, keeps threads and files, and calls your webhook on each new email.',
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -52,7 +52,7 @@ export const email: PiecePage = {
   },
 
   can: {
-    heading: 'Your agent reads, writes and files its own mail.',
+    heading: 'An email inbox for AI agents, with every thread kept.',
     line: 'Everything a person does with an inbox, done through code.',
     items: [
       { title: 'An inbox in one call', line: 'A new address for each agent, user or task, ready to send and receive as soon as the call returns.' },

@@ -27,7 +27,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/delivery-monitoring',
-    title: 'Delivery monitoring: prove every email, text and code lands',
+    title: 'Check that every sign-up email, text and login code arrives',
     description:
       'Personas sign up to your product in each country you sell in and live its first 14 days, timing every email, text and login code that should arrive.',
     answer:
@@ -57,6 +57,46 @@ export const recipe: Recipe = {
   buyer: 'For growth engineers and QA leads who ship email and SMS flows.',
   unit: 'delivery check',
   per: 'flow',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'A sign up with its own inbox and phone number',
+        'Every email, text and login code, timed against when it was due',
+        'Codes tried at checkout, stopping before payment',
+        'Anything missing, flagged the day it was due',
+      ],
+    },
+    {
+      name: 'Launch',
+      includes: [
+        'A new user after each release, or twice a week',
+        '1 country, with a local number',
+        'iPhone, Android or desktop',
+        'Email and Slack alerts the day a message goes missing',
+        'Results by webhook, API or MCP',
+      ],
+    },
+    {
+      name: 'Growth',
+      includes: [
+        'Everything in Launch',
+        'Started by your release pipeline, by webhook or API',
+        'iPhone, Android and desktop',
+        'A ticket drafted for your OK when a message goes missing',
+      ],
+    },
+    {
+      name: 'Global',
+      includes: [
+        'Everything in Growth',
+        'A local number and home connection in each country',
+        'Every message compared across releases',
+        'A report you can share after each release',
+      ],
+    },
+  ],
 
   run: {
     tab: 'Release 4.2',

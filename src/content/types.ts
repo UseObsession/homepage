@@ -7,12 +7,14 @@ export type ScreenName = string
    delivery-monitoring, account-watch, business-case, get-paid, supplier-quotes, listings-ai-answers, ai-checkout-test
    ('checkout', retired 22 Oct 2026), inbound-quotes ('quotes'), renewal-negotiation ('renewal'), cancellation-saves ('saves'),
    account-handover ('handover'), software-renewals ('spend'), expansion-offers ('expansion'), client-upsells
-   ('upsells'), review-requests ('reviews'), ad-landing-check ('adcheck'), partner-checks ('partners').
+   ('upsells'), review-requests ('reviews'), ad-landing-check ('adcheck'), partner-checks ('partners'),
+   store-mystery-shopper ('store-mystery', split from mystery-shopper on 21 Nov 2026: a brand's own store, while
+   mystery-shopper is for agencies).
    Check your AI agents (3 Oct, _research/verify/VERIFY.md): support-bot-check ('support-bot'), voice-agent-check
    ('voice-agent'), outbound-agent-check ('outbound-agent'), sales-agent-check ('sales-agent'), vendor-agent-check
    ('vendor-agent'), resolution-check ('resolution'), ai-disclosure-check ('disclosure'), drift-watch ('drift'). */
 export type RecipeId =
-  | 'competitor' | 'prospect' | 'mystery' | 'speed' | 'prices' | 'ads' | 'trial'
+  | 'competitor' | 'prospect' | 'mystery' | 'store-mystery' | 'speed' | 'prices' | 'ads' | 'trial'
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'listings'
   | 'adcheck' | 'partners'
   | 'support-bot' | 'voice-agent' | 'outbound-agent' | 'sales-agent' | 'vendor-agent' | 'resolution' | 'disclosure' | 'drift'
@@ -580,7 +582,7 @@ export type PersonaRecipes = {
   line?: string
   items: { name: string; line: string; status: string; live?: boolean; reader: ReaderId; link: Cta }[]
 }
-/* For developers (PersonaBuild): the claim, its line and link beside the code. Where events go is HomeDelivery. */
+/* For developers (PersonaBuild): the claim, its line and link beside the code. Where events go is HomeHow. */
 export type PersonaBuild = {
   heading: string
   line: string
@@ -588,19 +590,34 @@ export type PersonaBuild = {
   codeLabel: string
   code: string
 }
-/* How events reach you (HomeDelivery): the 3 step picture (it happens, it's saved in your event log, it reaches you),
-   each step its title, 1 line and the mono rows its drawing shows; then the channels as short cards (content/delivery.ts),
-   the line on a server that's down, and the link to every channel's code. */
-export type HomeDelivery = {
+/* A box or a label in Home's loop picture: its name, then its line. */
+type HowLabel = { name: string; line: string }
+/* How it works on Home (HomeHowItWorks, #how): the claim and its line, then the loop as 1 picture, wide on a desktop and
+   tall on a phone. Set up once, then 3 stops round a ring: something happens, it's saved in your event log, it reaches
+   your agent (on our runtime or your servers) or a person; what the agent does next goes round again. Live call audio
+   crosses the ring straight to the voice agent and never touches the log. `loop` holds the picture's words, each line
+   wrapped to its box, and `label` says the whole picture in words (screen readers, llms-full.txt). Under it, the
+   channels as short cards (content/delivery.ts, #delivery) under `waysHeading`, the line on a server that's down, and
+   the link to every channel's code. */
+export type HomeHow = {
   heading: string
-  line?: string
-  /* Done once, before the loop (James, 21 Nov): what you pick, and where your agent runs, our runtime or yours. */
-  setup?: { title: string; line: string; rows: string[] }
-  steps: { title: string; line: string; rows: string[] }[]
-  /* The line under the steps that sends the last back to the first: after setup it is a loop, started by either side. */
-  loop?: string
-  /* What doesn't take the loop: live call audio streams straight to the voice agent. */
-  live?: string
+  line: string
+  loop: {
+    label: string
+    setup: HowLabel
+    then: string
+    happens: HowLabel
+    saved: string
+    log: HowLabel
+    reaches: string
+    agent: HowLabel
+    /* Where the agent runs, or the person it reaches: `name` over `line` on the wide picture, `short` on the tall one. */
+    places: { name: string; line: string; short: string }[]
+    acts: HowLabel
+    /* Live call audio: `name` over `line` on the wave, `log` under the event log; the tall picture says `note`, then `log`. */
+    audio: { name: string; line: string; note: string; log: string }
+  }
+  waysHeading: string
   channels: { name: string; line: string; eg: string }[]
   down: string
   link: Cta
@@ -673,7 +690,7 @@ export type Page = {
   personaContrasts?: PersonaContrast[]
   personaRecipes?: PersonaRecipes
   personaBuild?: PersonaBuild
-  homeDelivery?: HomeDelivery
+  homeHow?: HomeHow
   homeUseCase?: HomeUseCase
 }
 
@@ -699,13 +716,15 @@ export type Recipe = {
   /* The recipe's 1 buyer (21 Nov 2026: the buyer study sold each recipe to its 1 buyer, and James approved each), named
      in their own words under the hero's headline. A recipe without one renders as before. */
   buyer?: string
-  /* How its pricing table counts (James, 21 Nov 2026: every blueprint is priced per site, store or agent, by how often
-     it runs; the tiers and prices are content/prices.ts `blueprintPlans`, worded by content/recipe-page.ts
-     `blueprintPricing`). `unit` is 1 run of the job as its buyer names it, singular ("mystery shop", "round of test
-     calls"); `per` is what 1 plan covers, singular ("store", "voice agent"), made plural with an "s". Without them the
-     table says "check" and "site". */
+  /* What 1 run of the job is, as its buyer names it, singular ("mystery shop", "round of test calls"), and what 1 tier
+     counts, singular ("store", "voice agent"), made plural with an "s" in the line under its pricing table. */
   unit?: string
   per?: string
+  /* What comes with each of the blueprint's 4 tiers, keyed by the tier's name. Each tier's name, who it's for, its price,
+     what it covers and the recommended tier come from the pricing JSON (src/lib/pricing/pricing.json) through the
+     pricing engine (content/blueprint-tiers.ts), so no price is typed in a blueprint's file. The names must match the
+     JSON's tiers in order, or the build fails. */
+  tiers: BlueprintTierWords[]
   /* The example run played on the page (labelled Example unless it is the real September store check). */
   run: Demo
   steps: { title: string; line: string }[]
@@ -719,20 +738,23 @@ export type Recipe = {
   final: Final
 }
 
-/* A blueprint's pricing table (components/BlueprintPricing), on every blueprint page and in each tab of /agencies' pricing.
-   content/recipe-page.ts `blueprintPricing` works it out from content/prices.ts `blueprintPlans` and the blueprint's
-   `unit` and `per`, so no price is typed twice: 1 card per plan, then the line to /pricing. */
+/* A blueprint's pricing table (components/BlueprintPricing), on every blueprint page and in each tab of the audience
+   pages' pricing (/agencies, /marketing, /sales). content/recipe-page.ts `blueprintPricing` works it out from the
+   blueprint's priced tiers (content/catalog.ts, from content/blueprint-tiers.ts), so no price is typed twice: 1 card per
+   tier, then the line to /pricing. */
 export type BlueprintPlanCard = {
   id: string
   name: string
   /* Who it's for, in 1 line. */
   for: string
-  /* The big words and the line beside them: "$49" and "a month per store", or "Free" and "1 run". */
+  /* The big words and the line beside them: "$49" and "a month", "Free" and nothing, or "Enterprise" and nothing. */
   price: string
   per: string
+  /* What the tier buys, under the price (BlueprintTier `covers`). */
+  covers?: string
   includes: string[]
   cta: Cta
-  /* The plan the table lifts (Weekly): the raised card, its tag and the row's 1 primary button. */
+  /* The tier the table lifts: the raised card, its tag and the row's 1 primary button. */
   featured?: boolean
 }
 export type BlueprintPricing = {
@@ -744,9 +766,9 @@ export type BlueprintPricing = {
   /* Under the cards: more of them, white label or a blueprint of your own, on /pricing. */
   more: { line: string; link: Cta }
 }
-/* /agencies' pricing (components/BlueprintPricingTabs): 1 tab per blueprint resellers sell, in this order, each opening
-   that blueprint's pricing table counted per `per` (a client). `label` names the tab list. */
-export type PricingTabs = { heading: string; line?: string; label: string; per: string; recipes: RecipeId[] }
+/* An audience page's pricing (components/BlueprintPricingTabs: /agencies, /marketing, /sales): 1 tab per blueprint the
+   page sells, in this order, each opening that blueprint's own pricing table. `label` names the tab list. */
+export type PricingTabs = { heading: string; line?: string; label: string; recipes: RecipeId[] }
 
 /* ---- Site pages: Sample output and the output viewer (content/sample.ts); Recipes index, Privacy, Agents, 404 and
    llms.txt (content/site.ts). Appended 2 Oct; nothing above changes. ---- */
@@ -1121,4 +1143,24 @@ export type Scale = {
   program: { kinds: Record<ScaleKind, string>; steps: { kind: ScaleKind; label: string }[]; routes: { heading: string; items: { label: string; share: number; line: string }[] } }
   run: { total: number; unit: string; call: string; covered: string; square: string; toast: string }
   principles: { title: string; line: string }[]
+}
+
+/* What a blueprint's file writes for 1 of its tiers (Recipe.tiers): the tier's name, as the pricing JSON names it
+   (src/lib/pricing/pricing.json), and what comes with it, 3 to 6 short lines, each a thing the buyer gets. Everything
+   else about the tier comes from the pricing engine (content/blueprint-tiers.ts). */
+export type BlueprintTierWords = { name: string; includes: string[] }
+
+/* One tier of a blueprint's pricing as its table shows it, worked out at build time by content/blueprint-tiers.ts:
+   its name, who it's for, its price in dollars a month (0 for the free tier), what it covers in the blueprint's own
+   units ("Up to 150 client stores, each shopped every month") and whether it is the 1 recommended tier, all from the
+   pricing engine; `enterprise` when its price works out above the Enterprise cap (shown as Enterprise, linking
+   /pricing); `includes` from the blueprint's own file. */
+export type BlueprintTier = {
+  name: string
+  for: string
+  price: number
+  enterprise: boolean
+  covers: string
+  includes: string[]
+  featured: boolean
 }

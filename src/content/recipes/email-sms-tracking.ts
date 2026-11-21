@@ -26,7 +26,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/email-sms-tracking',
-    title: 'Email and SMS tracking: every competitor message, dated',
+    title: 'Track competitors’ emails and texts, timed to the minute',
     description:
       'A persona subscribes to each competitor’s emails and texts and keeps every message, offer and code with its arrival time, on 1 timeline. By API or Slack.',
     answer:
@@ -53,6 +53,43 @@ export const recipe: Recipe = {
 
   unit: 'email and SMS check',
   per: 'brand',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'A persona with its own inbox and texting number',
+        'Every email and text kept with the time it arrived',
+        'The welcome series mapped from the first email',
+      ],
+    },
+    {
+      name: 'Starter',
+      includes: [
+        'Every email and text, kept as long as you watch',
+        'Each offer and code pulled out, with a screenshot',
+        'STOP texted, and checked, when a watch ends',
+        'A weekly summary',
+      ],
+    },
+    {
+      name: 'Growth',
+      includes: [
+        'Everything in Starter',
+        'Who sends most, who discounts first, and whose offer beats yours',
+        'Alerts on a new offer, a busier schedule or a new sender',
+        'Every message in your event log, by webhook or API',
+      ],
+    },
+    {
+      name: 'Scale',
+      includes: [
+        'Everything in Growth',
+        'Every message as a row in Clay or a sheet',
+        'A monthly report you can share',
+      ],
+    },
+  ],
 
   run: {
     tab: '3 competitors, 30 days',

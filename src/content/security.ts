@@ -13,7 +13,7 @@ import type { SecurityPage } from './types'
    - the site on Cloudflare, served over HTTPS only (README, Hosting);
    - who can reach customer data: only the 2 founders, each signing in with two-step verification (James);
    - results deleted when the time the customer sets runs out; the event log's 30 days, read from content/prices.ts log,
-     and model tokens at cost plus 30% or free with your own key (prices.ts tokens);
+     and model tokens at their markup or free with your own key (prices.ts tokens);
    - the early access form's 12 months and deletion on request (/privacy, content/site.ts);
    - agents stop at any identity check, and no person completes one for them.
    The suppliers are listed by name (James approved a public list, 21 Nov): only those live today, with where each runs
@@ -88,7 +88,7 @@ export const securityPage: SecurityPage = {
       id: 'own-key',
       heading: 'You can bring your own model key.',
       lines: [
-        'Model tokens are billed at cost plus 30%, or free when you use your own key.',
+        `Model tokens are billed at ${prices.tokens.amount.toLowerCase()}, or free when you use your own key.`,
         'With your own key, the model runs on your own account, and your provider bills you directly.',
       ],
     },

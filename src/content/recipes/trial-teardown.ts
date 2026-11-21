@@ -27,7 +27,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/trial-teardown',
-    title: 'Trial teardown: every email in a competitor’s free trial',
+    title: 'Tear down a competitor’s free trial, day by day · Obsession',
     description:
       'Trial teardown starts a competitor’s free trial as a persona you define and keeps every email, prompt, plan limit and offer, by trial day, to the end.',
     answer:
@@ -54,6 +54,44 @@ export const recipe: Recipe = {
 
   unit: 'trial teardown',
   per: 'competitor',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'A persona signs up as a new user',
+        'Every onboarding email, prompt and offer, by trial day',
+        'Plan limits and upgrade prompts, screenshotted',
+      ],
+    },
+    {
+      name: 'Starter',
+      includes: [
+        'Trials of up to 14 days, signed in daily',
+        'What sign up asks, and whether a card is needed',
+        'The offer at the end, and any message from a rep',
+        'The whole trial on 1 page',
+      ],
+    },
+    {
+      name: 'Team',
+      includes: [
+        'Everything in Starter',
+        'A persona in any country, with a local number',
+        'Each trial day in your CRM, Slack or a table',
+        'Your own trial too, after a release',
+      ],
+    },
+    {
+      name: 'Scale',
+      includes: [
+        'Everything in Team',
+        'Every competitor’s trial compared side by side',
+        'Every event in your event log, by webhook or API',
+        'A report you can share',
+      ],
+    },
+  ],
 
   run: {
     tab: 'Competitor A’s 14 day trial',

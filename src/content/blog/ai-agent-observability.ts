@@ -546,6 +546,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/developers',
     'recipe:support-bot-check',
     'recipe:drift-watch',
     'recipe:resolution-check',

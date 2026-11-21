@@ -32,9 +32,9 @@ export const messaging: PiecePage = {
   name: 'Messaging',
   meta: {
     path: piecePaths.messaging,
-    title: 'iMessage and WhatsApp for AI agents, plus Slack · Obsession',
+    title: 'WhatsApp API for AI agents, plus iMessage lines · Obsession',
     description:
-      'Connect AI agents to iMessage, WhatsApp, Slack and Telegram through one API. Every message from every app reaches the same webhook, in the same shape.',
+      'A WhatsApp API for AI agents, plus iMessage, Slack and Telegram, through one call each. Every message from every app reaches one webhook, in one shape.',
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -84,11 +84,11 @@ export const messaging: PiecePage = {
     heading: 'Your agent answers where people already are.',
     items: [
       {
-        q: 'Can an AI agent send iMessages?',
-        a: 'Yes. Each iMessage line is a line of its own that your agent sends and receives on. People see an ordinary iMessage conversation, blue bubbles included.',
+        q: 'Is there an iMessage API for AI agents?',
+        a: 'Yes. Each iMessage line is a line of its own that your agent sends and receives on through the API. People see an ordinary iMessage conversation, blue bubbles included.',
       },
       {
-        q: 'What can my agent do on WhatsApp?',
+        q: 'What can an AI agent do with the WhatsApp API?',
         a: 'Support, sales, bookings and notifications, the uses WhatsApp sets for businesses. Your agent replies any time within 24 hours of a person’s last message, and opens a new conversation with a template WhatsApp has approved.',
       },
       {

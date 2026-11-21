@@ -607,6 +607,7 @@ export const post: BlogPost = {
     { title: 'pydantic/pydantic-ai', publisher: 'GitHub', url: PYDANTIC_REPO },
   ],
   related: [
+    '/personas',
     'ai-customers-for-developers',
     'how-ai-customers-work',
     'ai-customers-at-scale',

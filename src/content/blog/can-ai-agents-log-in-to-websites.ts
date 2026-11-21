@@ -468,7 +468,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each Obsession agent signs up with its own inbox, phone number and browser, says it’s an AI when it talks to a person, and keeps the account open for months ([Obsession agents](/agents)). The account is its own, so nobody lends it a password and no colleague waits up for a code. Every email and text the company sends lands in its inbox, dated, for as long as anyone follows that company.',
+      text: 'Each Obsession agent signs up with its own [inbox](/email), [phone number](/phone) and [browser that keeps its logins](/browser), says it’s an AI when it talks to a person, and keeps the account open for months ([Obsession agents](/agents)). The account is its own, so nobody lends it a password and no colleague waits up for a code. Every email and text the company sends lands in its inbox, dated, for as long as anyone follows that company.',
     },
     {
       kind: 'p',
@@ -572,6 +572,8 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/browser',
+    '/email',
     'scrape-data-behind-login',
     'the-web-behind-the-login',
     'best-web-search-api-for-ai-agents',

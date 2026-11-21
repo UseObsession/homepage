@@ -267,7 +267,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s [Voice agent check](/blueprints/voice-agent-check) rings your AI receptionist each morning, books a slot, asks a price and asks for a person, then sets each answer beside your price list. Each call comes from its own phone number. At the start the caller says it’s an AI, who it works for and that the call is recorded, in a voice used with consent, with different voices and accents across the calls.',
+      text: 'Obsession’s [Voice agent check](/blueprints/voice-agent-check) rings your AI receptionist each morning, books a slot, asks a price and asks for a person, then sets each answer beside your price list. Each call comes from its own [phone number](/phone). At the start the caller says it’s an AI, who it works for and that the call is recorded, in a voice used with consent, with different voices and accents across the calls.',
     },
     {
       kind: 'p',
@@ -429,5 +429,5 @@ export const post: BlogPost = {
     { title: 'Testing pricing', publisher: 'Retell AI Docs', url: RETELL_PRICING },
   ],
 
-  related: ['recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'recipe:resolution-check', 'best-ai-chatbot-testing-tools'],
+  related: ['/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'recipe:resolution-check', 'best-ai-chatbot-testing-tools'],
 }

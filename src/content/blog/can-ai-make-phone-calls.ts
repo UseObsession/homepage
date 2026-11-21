@@ -417,5 +417,5 @@ export const post: BlogPost = {
     { title: 'The Privacy and Electronic Communications (EC Directive) Regulations 2003, regulation 19', publisher: 'legislation.gov.uk', url: PECR_19, date: '2016-05-16' },
   ],
 
-  related: ['recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'agent-ready-website', 'how-ai-customers-work'],
+  related: ['/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'agent-ready-website', 'how-ai-customers-work'],
 }

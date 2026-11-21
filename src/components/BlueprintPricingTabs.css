@@ -1,4 +1,4 @@
-/* /agencies' pricing tabs (components/BlueprintPricingTabs): the design system's pill tabs (navigation.css .ob-ptab) on
+/* The audience pages' pricing tabs (components/BlueprintPricingTabs: /agencies, /marketing, /sales): the design system's pill tabs (navigation.css .ob-ptab) on
    the pill rail's track, in both themes. Every class starts s-bpt. Under 900px the tabs wrap in a row above the panel,
    so nothing scrolls sideways at 375px; from 900px they stand in a column beside it, each as wide as the column, its
    label on the left. The panel's table lays itself out by its own width (BlueprintPricing.css). */

@@ -1,16 +1,42 @@
 import { useId, useRef, useState, type KeyboardEvent } from 'react'
-import type { BlueprintPricing as Pricing } from '../content/types'
+import { catalog } from '../content/catalog'
+import { blueprintPricing } from '../content/recipe-page'
+import type { BlueprintPricing as Pricing, PricingTabs } from '../content/types'
 import { BlueprintPricing } from './BlueprintPricing'
 import './BlueprintPricingTabs.css'
 
-/* /agencies' pricing (James, 21 Nov 2026): 1 tab per blueprint resellers sell, and the chosen blueprint's pricing table
-   (BlueprintPricing) beside the list. The ARIA tabs pattern: a vertical tab list, the design system's pill tabs
-   (navigation.css .ob-ptab), the arrow keys, Home and End move between tabs and choose them, and only the chosen tab
-   is in the tab order. The first tab is chosen in the prerendered page. Every panel is in the page, the others hidden,
-   so each tab's aria-controls points at its panel; only the chosen one is read into llms-full.txt, since every table
-   carries the same 4 prices. From 900px the list stands beside the panel; under it the tabs wrap in a row above it. */
+/* The audience pages' pricing (James, 21 Nov 2026: /agencies, /marketing, /sales): 1 tab per blueprint the page sells,
+   and the chosen blueprint's own pricing table (BlueprintPricing) beside the list. The ARIA tabs pattern: a vertical tab
+   list, the design system's pill tabs (navigation.css .ob-ptab), the arrow keys, Home and End move between tabs and
+   choose them, and only the chosen tab is in the tab order. The first tab is chosen in the prerendered page. Every panel
+   is in the page, the others hidden, so each tab's aria-controls points at its panel; every panel is read into
+   llms-full.txt (data-llms="keep"), since each blueprint has its own tiers. From 900px the list stands beside the
+   panel; under it the tabs wrap in a row above it. */
 
 export type PricingTab = { id: string; label: string; pricing: Pricing }
+
+/* An audience page's #pricing section: its h2 and line, then the tabs, each blueprint's table made from content/catalog
+   (its tiers, priced by the pricing engine at build time), so the page never imports a recipe's words. A blueprint not
+   in the catalog is left out. */
+export function BlueprintPricingSection({ pricing, id = 'pricing' }: { pricing: PricingTabs; id?: string }) {
+  const tabs: PricingTab[] = pricing.recipes.flatMap((rid) => {
+    const r = catalog.recipes.find((x) => x.id === rid)
+    return r ? [{ id: r.id, label: r.name, pricing: blueprintPricing(r) }] : []
+  })
+  return (
+    <section className="s-section" id={id} aria-labelledby={`${id}-h`}>
+      <div className="s-wrap">
+        <header className="s-head s-head--wide">
+          <h2 className="ob-type-h2" id={`${id}-h`}>
+            {pricing.heading}
+          </h2>
+          {pricing.line && <p>{pricing.line}</p>}
+        </header>
+        <BlueprintPricingTabs tabs={tabs} label={pricing.label} />
+      </div>
+    </section>
+  )
+}
 
 export function BlueprintPricingTabs({ tabs, label }: { tabs: PricingTab[]; label: string }) {
   const uid = useId()
@@ -59,6 +85,7 @@ export function BlueprintPricingTabs({ tabs, label }: { tabs: PricingTab[]; labe
           id={`${uid}-p${i}`}
           aria-labelledby={`${uid}-t${i}`}
           hidden={i !== cur}
+          data-llms="keep"
           className="s-bpt__panel"
         >
           <BlueprintPricing pricing={t.pricing} />

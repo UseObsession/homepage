@@ -28,7 +28,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/sales-agent-check',
-    title: 'Sales agent check: the prices AI sales agents quote shoppers',
+    title: 'Check the prices and stock your AI sales agent quotes buyers',
     description:
       'A shopper persona asks AI sales agents on chat and WhatsApp for prices, stock and delivery, and follows each answer to checkout: yours and competitors’.',
     answer:
@@ -55,6 +55,44 @@ export const recipe: Recipe = {
 
   unit: 'test shop',
   per: 'sales agent',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'A shopper persona asks for prices, stock and delivery',
+        'Each answer followed to checkout, stopped before payment',
+        'Every quote beside your price list',
+      ],
+    },
+    {
+      name: 'Weekly',
+      includes: [
+        'Your site chat or WhatsApp, asked as a shopper',
+        'Prices, codes, stock and delivery checked',
+        'The checkout total beside the quote',
+        'Answers in Slack or a sheet',
+      ],
+    },
+    {
+      name: 'Daily',
+      includes: [
+        'Everything in Weekly, every morning',
+        'Your price list and stock page captured each run',
+        'How many chats asked about the same product, from your chat history',
+        'Every test shop in your event log',
+      ],
+    },
+    {
+      name: 'Scale',
+      includes: [
+        'Everything in Daily',
+        'Competitors’ shopping assistants asked the same questions',
+        'A weekly report you can share',
+        'Every answer by webhook or API',
+      ],
+    },
+  ],
 
   run: {
     tab: 'Your sales agent, daily',

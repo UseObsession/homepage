@@ -27,7 +27,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/outbound-agent-check',
-    title: 'Outbound agent check: every message your AI SDR sends buyers',
+    title: 'Check what your AI SDR sends, from a prospect’s own inbox',
     description:
       'Personas join an AI SDR’s lists as prospects, keep every email, text and call it sends, yours or a competitor’s, and flag each one that breaks your rules.',
     answer:
@@ -54,6 +54,42 @@ export const recipe: Recipe = {
 
   unit: 'outbound check',
   per: 'outbound agent',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'Prospect personas, each with its own inbox and number',
+        'Every email, text and call kept as it arrived',
+        'Each message checked against your rules',
+      ],
+    },
+    {
+      name: 'Starter',
+      includes: [
+        'Personas reply as prospects do: yes, not now, no or STOP',
+        'Claims, prices and discounts beside your approved list',
+        'Send times beside your quiet hours and contact limits',
+        'Flags in Slack or a sheet, with the quote and the rule',
+      ],
+    },
+    {
+      name: 'Team',
+      includes: [
+        'Everything in Starter',
+        'The next message after no or STOP, timed',
+        'A pause on a flag, if you switch it on',
+      ],
+    },
+    {
+      name: 'Scale',
+      includes: [
+        'Everything in Team',
+        'Personas added to your lists from your code',
+        'Every message in your event log, by webhook or API',
+      ],
+    },
+  ],
 
   run: {
     tab: 'Your AI SDR, continuously',

@@ -434,6 +434,7 @@ export const post: BlogPost = {
     'how-to-test-your-shopify-store-as-a-customer',
     'best-ai-mystery-shopping-tools',
     'ai-customers',
+    'recipe:store-mystery-shopper',
     'recipe:mystery-shopper',
     '/use-cases/leak-checks-for-ecommerce-stores',
   ],

@@ -26,7 +26,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/drift-watch',
-    title: 'Drift watch: catch the answers an update breaks · Obsession',
+    title: 'Catch changes in your AI agent’s answers after every update',
     description:
       'A persona asks your AI agent your hardest cases every morning and within the hour of any update. Every answer is kept, every change shown before and after.',
     answer:
@@ -53,6 +53,41 @@ export const recipe: Recipe = {
 
   unit: 'drift check',
   per: 'AI agent',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'The same persona asks every case',
+        'Every answer kept word for word',
+        'Each case passed or failed against its rule',
+      ],
+    },
+    {
+      name: 'Starter',
+      includes: [
+        'Your baseline pass rate, approved by you',
+        'Every changed answer, before and after',
+        'Slack or email when a replay drops below baseline',
+      ],
+    },
+    {
+      name: 'Team',
+      includes: [
+        'Vendor releases, model updates and prompt edits watched',
+        'The pass rate over time, with each update marked',
+        'Every replay tagged, so your vendor doesn’t bill it',
+      ],
+    },
+    {
+      name: 'Daily',
+      includes: [
+        'Everything in Team',
+        'A dated PDF of each replay for your vendor, client or insurer',
+        'Every answer in your event log, by webhook or API',
+      ],
+    },
+  ],
 
   run: {
     tab: 'The night of a vendor update',

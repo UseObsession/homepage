@@ -13,6 +13,7 @@ import { FinalCta } from '../components/sections/FinalCta'
 import { RecipeKit } from '../components/sections/RecipeKit'
 import { DeliveryLists } from '../components/piece/PieceDelivery'
 import { drawnFor, type Workspace } from '../components/workspace'
+import { catalog } from '../content/catalog'
 import { nav } from '../content/nav'
 import { blueprintPricing, isRealRun, recipePage as ui } from '../content/recipe-page'
 import type { AudienceId, Recipe } from '../content/types'
@@ -261,6 +262,8 @@ function Table({ table }: { table: NonNullable<Recipe['table']> }) {
 export function RecipePage({ recipe: r }: { recipe: Recipe }) {
   const workspace = workspaceOf(r)
   const real = isRealRun(r.run.tab)
+  /* Its tiers as the pricing engine priced them at build time (content/catalog.ts), with its includes. */
+  const tiers = catalog.recipes.find((x) => x.id === r.id)?.tiers ?? []
 
   return (
     <>
@@ -274,8 +277,8 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
         <Console label={r.run.tab} demos={[r.run]} workspace={workspace} tag={real ? ui.run.tag.real : undefined} />
       </Section>
 
-      <Section id="pricing" heading={ui.pricing.heading(r)} line={ui.pricing.line(r)}>
-        <BlueprintPricing pricing={blueprintPricing(r)} />
+      <Section id="pricing" heading={ui.pricing.heading(r)} line={ui.pricing.line(tiers)}>
+        <BlueprintPricing pricing={blueprintPricing({ per: r.per, tiers })} />
       </Section>
 
       <Section id="steps" heading={ui.steps.heading} tone="ink">

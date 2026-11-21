@@ -32,7 +32,7 @@ export const browser: PiecePage = {
     path: piecePaths.browser,
     title: 'A browser for AI agents that stays signed in · Obsession',
     description:
-      'A cloud browser for AI agents that keeps its logins between sessions and can connect through a home connection. Drive it with Playwright or Puppeteer.',
+      'A headless cloud browser for AI agents that keeps its logins between sessions and can use a home connection. Drive it with Playwright or Puppeteer.',
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -94,7 +94,7 @@ export const browser: PiecePage = {
         a: 'An internet connection from a home rather than a data centre. Pages load the way they do for a person at home, which matters on sites that show different content to data centre traffic. Pick the country when you create the browser.',
       },
       {
-        q: 'Is it a headless browser?',
+        q: 'Is it a headless browser for AI agents?',
         a: 'The standard browser runs headless, the cheapest way to run many sessions at once. The stealth browser runs with a full screen, for sites that turn a headless browser away.',
       },
       {

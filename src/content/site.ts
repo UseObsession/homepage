@@ -1,4 +1,4 @@
-import { prices } from './prices'
+import { plans, prices } from './prices'
 import { keepArrivedFrom } from './signupFlags'
 import type { AgentsPage, Llms, NotFoundPage, PrivacyPage, RecipesIndexPage } from './types'
 
@@ -23,13 +23,13 @@ export const CONTROLLER: string | null = null
    the Organization JSON-LD, Home's hero, its "What is Obsession?" and /agents). The footer carries its core in 1 short
    line (content/footer.ts). */
 const SENTENCE =
-  'Obsession gives AI agents the pieces they need on the web through one API and one bill: email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. Use one piece, put them together as a persona, or pick a blueprint and Obsession runs the job.'
+  'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. Use one piece, put them together as a persona, or pick a blueprint and Obsession runs the job.'
 
 /* What Obsession is, as an entity: the line every engine and profile repeats (llms.txt's summary, the Organization and
    WebSite JSON-LD, docs/SEARCH.md 2). Since 21 Nov the pieces an agent needs through one API, plus recipes; never AI
    customers. */
 export const ENTITY =
-  'Obsession gives AI agents the pieces they need on the web through one API and one bill: email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams who don’t write code pick a blueprint, and Obsession runs the job. Every event and result lands in one event log developers subscribe to.'
+  'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams who don’t maintain code pick a blueprint, and Obsession runs the job. Every event and result lands in one event log developers subscribe to.'
 
 /* /recipes. Since 20 Nov (the persona rewrite) each recipe is a job personas already know how to do: who the persona
    is, where it goes, what it brings back and how it reaches your event log. Grouped by job as in the nav; the groups render the
@@ -37,11 +37,11 @@ export const ENTITY =
 export const recipesPage: RecipesIndexPage = {
   meta: {
     path: '/blueprints',
-    title: 'Obsession blueprints: jobs your personas know how to do',
+    title: 'Blueprints: ready-made AI agent templates we run for you',
     description:
-      'Each Obsession blueprint is a job that runs beside the pieces: who the persona is, where it goes, what it brings back and how results reach your event log.',
+      'Ready-made AI agent templates, called blueprints: pick one, say where results go, and Obsession runs it, from mystery shopping to competitor tracking.',
     answer:
-      'Obsession blueprints are jobs that run beside the pieces: pick one of ours or bring your own. Each says who the persona is, where it goes, what it brings back and how results reach your event log.',
+      'Obsession blueprints are ready-made AI agent templates that we run for you, or jobs you bring yourself. Each says who the persona is, where it goes, what it brings back and how results reach your event log.',
     ogImage: '/og/recipes.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -51,7 +51,7 @@ export const recipesPage: RecipesIndexPage = {
 
   hero: {
     headline: 'Pick a blueprint. Say where your personas go.',
-    sub: 'Obsession blueprints are jobs that run beside the pieces: pick one of ours or bring your own. Each says who the persona is, where it goes, what it brings back and how results reach your event log.',
+    sub: 'Obsession blueprints are ready-made AI agent templates that we run for you, or jobs you bring yourself. Each says who the persona is, where it goes, what it brings back and how results reach your event log.',
   },
 
   groups: [
@@ -78,11 +78,11 @@ export const recipesPage: RecipesIndexPage = {
   },
 
   faq: {
-    heading: 'Questions about blueprints.',
+    heading: 'Questions about blueprints, our AI agent templates.',
     items: [
       {
         q: 'What’s an Obsession blueprint?',
-        a: 'A job that runs on Obsession beside the pieces: who the persona is, where it goes, what it does and what it brings back. Every result lands in your event log, where your code or your team picks it up.',
+        a: 'A ready-made AI agent template that runs on Obsession beside the pieces: who the persona is, where it goes, what it does and what it brings back. Every result lands in your event log, where your code or your team picks it up.',
       },
       {
         q: 'Can I bring my own job?',
@@ -94,7 +94,11 @@ export const recipesPage: RecipesIndexPage = {
       },
       {
         q: 'What does a blueprint cost?',
-        a: 'A blueprint is billed on the pieces it uses, at the same prices as the API, so there’s no separate fee for running one.',
+        a: 'Each blueprint has its own plans, priced for the job it does, such as per store, location, competitor or voice agent. Its page shows what each plan covers and costs. Developers who run a blueprint from their own code through the API pay for the pieces it uses, under their plan.',
+      },
+      {
+        q: 'Can I try an AI agent template for free?',
+        a: 'Yes. Every blueprint starts with a free run, such as 1 store shopped or 3 test calls to 1 voice agent, with every result in your event log. Pick a paid plan only when you want it to run on a schedule.',
       },
       {
         q: 'Can I run a blueprint from my own code?',
@@ -381,9 +385,9 @@ export const agentsPage: AgentsPage = {
 export const notFoundPage: NotFoundPage = {
   meta: {
     path: '/404',
-    title: 'Page not found · Obsession, the web behind the login',
+    title: 'Page not found · Obsession, the toolkit for AI agents',
     description:
-      'There’s no page at this address. Obsession collects what companies show only to customers, by API or MCP.',
+      'There’s no page at this address. Obsession is the toolkit for AI agents: inboxes, phone numbers, browsers and sandboxes, through one API and one bill.',
     answer: `There’s no page at this address on useobsession.com. ${SENTENCE}`,
   },
   headline: 'There’s no page at this address.',
@@ -411,8 +415,8 @@ export const llms: Llms = {
   intro: [
     'Obsession gives AI agents the pieces they need on the web, through one API and one bill. Email: inboxes agents send and receive from. Phone: numbers, texts and calls. Messaging: iMessage lines, WhatsApp for support, sales, bookings and notifications, Slack and Telegram. Browser: a cloud browser whose sessions keep their logins, with a home connection. Sandbox: a computer to run code, started only when a task needs one. A company can take one piece, such as email, or all of them.',
     'A persona puts the pieces under one identity: an inbox, a number, its channels, a browser profile and a sandbox when needed. It lives on an actor runtime, so it costs nothing while it waits, answers a new message in about 50 ms without starting a machine, runs on a schedule, stops at any identity check, stops before payment unless you give it your own payment card, and every page, email, text and call it sees lands in your event log, each dated, with screenshots. It says it’s an AI when it talks to a person.',
-    `Developers use the pieces through the API, SDKs and MCP, so their own agents call them as tools. Events reach webhooks, Clay, Zapier, HubSpot, Baserow and Supabase. Each piece is priced on its own (useobsession.com/pricing): an inbox costs ${prices.inbox.amount} a month and the first 3 are free, a US number ${prices.number.amount} a month, a browser ${prices.browser.amount} an hour and a sandbox ${prices.sandbox.amount} a vCPU hour, and an idle persona costs nothing.`,
-    'Blueprints are jobs that run on Obsession beside the pieces, at the same prices: ours, ready to run for teams who don’t write code, or your own task or computation, with nothing to host. Every result lands in the same event log developers subscribe to. They cover other companies (competitor tracking, ad tracking, email and SMS tracking, price watch, trial teardown, prospect intelligence, account watch), your own flows (agentic mystery shopping, QA on your own flows, lead response checks, ad landing check, partner checks, delivery monitoring, listings and AI answers), and the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
+    `Developers use the pieces through the API, SDKs and MCP, so their own agents call them as tools. Events reach webhooks, Clay, Zapier, HubSpot, Baserow and Supabase. Each piece is priced on its own (useobsession.com/pricing): an inbox costs ${prices.inbox.amount} a month and the first ${plans.find((pl) => pl.id === 'free')?.included.inbox} are free, a US number ${prices.number.amount} a month, a browser ${prices.browser.amount} an hour and a sandbox ${prices.sandbox.amount} a vCPU hour, and an idle persona costs nothing.`,
+    'Blueprints are jobs that run on Obsession beside the pieces, at the same prices: ours, ready to run for teams who don’t maintain code, or your own task or computation, with nothing to host. Every result lands in the same event log developers subscribe to. They cover other companies (competitor tracking, ad tracking, email and SMS tracking, price watch, trial teardown, prospect intelligence, account watch), your own flows (mystery shopping for agencies, mystery shopping for your store, QA on your own flows, lead response checks, ad landing check, partner checks, delivery monitoring, listings and AI answers), and the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
     `Every persona says it’s an AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, and never clicks paid ads at volume. Any company can write to ${CONTACT_EMAIL} to keep personas off its site.`,
     'The sample data at useobsession.com/sample-output is a real run from September 2026: a UK skincare store, 4 personas with 1 inbox each, every inbox watched for 48 hours. A £40 basket left at 02:57 on 22 September and a checkout left at 03:11 got no reminder.',
     'Obsession is in early access, onboarding a limited number of teams.',

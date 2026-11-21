@@ -30,7 +30,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/lead-leaks',
-    title: 'Speed to lead test: time the first reply to every new lead',
+    title: 'Test speed to lead: how fast companies answer an enquiry',
     description:
       'A persona fills in your forms, opens your chat and calls your sales line as a new lead, then times every first reply by email, text or call back.',
     answer:
@@ -58,6 +58,45 @@ export const recipe: Recipe = {
   buyer: 'For AI receptionist and front desk vendors, mystery shopping firms, dealer groups and RevOps teams.',
   unit: 'lead response check',
   per: 'site',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'The lead tries your form, chat and phone line',
+        'Replies by email, text or call back, tracked for 48 hours',
+        'Time to first reply on each channel',
+        'Every reply kept: emails, texts, transcripts and recordings',
+      ],
+    },
+    {
+      name: 'Single site',
+      includes: [
+        'Test leads in business hours, evenings and weekends',
+        'Every lead tries your form, chat and phone line',
+        'An alert when a lead waits past your target',
+        'A scorecard for the site each month',
+        'Results by webhook, API or MCP',
+      ],
+    },
+    {
+      name: 'Group',
+      includes: [
+        'Everything in Single site',
+        'A scorecard per location, side by side',
+        'The locations and hours that leave leads waiting',
+        'A report you can share with each location’s manager',
+      ],
+    },
+    {
+      name: 'Agency',
+      includes: [
+        'Everything in Group',
+        'Out of hours checks on a prospect’s line before you pitch',
+        'Each client’s leads kept apart in your event log',
+      ],
+    },
+  ],
 
   run: {
     tab: '1 day, 3 new leads',

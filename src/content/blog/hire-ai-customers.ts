@@ -424,5 +424,5 @@ export const post: BlogPost = {
     { title: 'Using cloud browser in ChatGPT', publisher: 'OpenAI Help Center', url: CLOUD_BROWSER },
     { title: 'Market research analysts: Occupational Outlook Handbook', publisher: 'US Bureau of Labor Statistics', url: BLS },
   ],
-  related: ['ai-customers', 'ai-customers-at-scale', 'ai-customers-for-commercial-teams', 'recipe:mystery-shopper', 'recipe:competitor-tracking', '/sample-output'],
+  related: ['/blueprints', 'ai-customers', 'ai-customers-at-scale', 'ai-customers-for-commercial-teams', 'recipe:mystery-shopper', 'recipe:competitor-tracking', '/sample-output'],
 }

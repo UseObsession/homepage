@@ -26,7 +26,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/partner-checks',
-    title: 'Partner checks: every partner link and code, every week',
+    title: 'Check every partner’s link, code and banner each Monday',
     description:
       'Each Monday a persona reads every partner page as a visitor, follows your link, tries the code in your basket and flags any that’s out of date.',
     answer:
@@ -53,6 +53,43 @@ export const recipe: Recipe = {
 
   unit: 'partner check',
   per: 'partner',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'Each partner page read as a visitor',
+        'Your link followed and the code tried in your basket',
+        'A screenshot of each, stopped before payment',
+      ],
+    },
+    {
+      name: 'Starter',
+      includes: [
+        'Your link, code, offer and banner on each page',
+        'Partner newsletters read in the persona’s own inbox',
+        'The partner’s tag checked on your landing page',
+        'Results in Slack or a sheet',
+      ],
+    },
+    {
+      name: 'Growth',
+      includes: [
+        'Everything in Starter',
+        'A note drafted in your team’s thread for each partner out of date',
+        'Each note sent only after your OK',
+        'Every check in your event log, by webhook or API',
+      ],
+    },
+    {
+      name: 'Scale',
+      includes: [
+        'Everything in Growth',
+        'Your partner list kept in sync from a CSV or the API',
+        'A monthly report you can share',
+      ],
+    },
+  ],
 
   run: {
     tab: '6 partners, every Monday',

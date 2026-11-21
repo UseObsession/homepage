@@ -11,4 +11,7 @@ export const piecePaths: Record<PieceId, string> = {
   personas: '/personas',
 }
 
-export const pieceOrder: PieceId[] = ['email', 'phone', 'browser', 'personas', 'messaging', 'sandbox']
+/* The founders' order since 21 Nov, from the buyer panel's ranking: email inboxes first, the persona bundle second, then
+   the browser, then the phone. Home's pieces sheet, /pricing/rates, /developers' prices and each piece page's other
+   pieces follow it; the nav's Products menu (content/nav.ts) and the /pricing calculator list the same order by hand. */
+export const pieceOrder: PieceId[] = ['email', 'personas', 'browser', 'phone', 'sandbox', 'messaging']

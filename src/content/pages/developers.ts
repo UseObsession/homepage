@@ -6,7 +6,7 @@ import type { Cta, OpenSource, Page } from '../types'
 /* Developers (/developers, "API and MCP" in the nav), the pieces rewrite (21 Nov 2026, James): one API for every piece an
    AI agent needs, with one key and one bill. A developer takes one piece (only the email, the way people use an email
    API for agents) or many, and can put them under one persona. The story (pages/Developers.tsx): the hero with the
-   quickstart beside it > #pieces: 1 short code block per piece (email, phone, messaging, browser, sandbox), each linking
+   quickstart beside it > #pieces: 1 short code block per piece (email, browser, phone, sandbox, messaging), each linking
    to its own page > #personas: the pieces under one identity, its handler running on our runtime about 50 ms after a
    message lands, free while it waits, its events read from the event log > #recipes: run one of ours, or create your
    own job on our runtime, its results landing in the event log > #delivery: how events reach you (James, 21 Nov):
@@ -83,25 +83,6 @@ await inbox.send({
     link: { label: 'Email API for AI agents', to: piecePaths.email },
   },
   {
-    id: 'phone',
-    name: pieceNames.phone,
-    line: 'Phone numbers that send and receive texts and take calls. Bring your own voice agent, or connect one.',
-    code: `const number = await obsession.numbers.create({ country: "US" })
-
-await number.sms({ to: "+12025550143", text: "Your parcel arrives at 14:00." })
-// Texts back reach your webhook as sms.received, calls as call.received`,
-    link: { label: 'Phone numbers for AI agents', to: piecePaths.phone },
-  },
-  {
-    id: 'messaging',
-    name: pieceNames.messaging,
-    line: 'iMessage lines, WhatsApp for support, sales, bookings and notifications, and Slack and Telegram.',
-    code: `// "imessage" | "whatsapp" | "slack" | "telegram"
-await obsession.messaging.connect({ channel: "imessage" })
-await obsession.messaging.connect({ channel: "whatsapp" })`,
-    link: { label: 'iMessage and WhatsApp for AI agents', to: piecePaths.messaging },
-  },
-  {
     id: 'browser',
     name: pieceNames.browser,
     line: 'A cloud browser on a home connection. Its sessions keep their logins, so your agent signs in once.',
@@ -113,6 +94,16 @@ const session = await chromium.connectOverCDP(browser.cdpUrl)
     link: { label: 'Headless browser for AI agents', to: piecePaths.browser },
   },
   {
+    id: 'phone',
+    name: pieceNames.phone,
+    line: 'Phone numbers that send and receive texts and take calls. Bring your own voice agent, or connect one.',
+    code: `const number = await obsession.numbers.create({ country: "US" })
+
+await number.sms({ to: "+12025550143", text: "Your parcel arrives at 14:00." })
+// Texts back reach your webhook as sms.received, calls as call.received`,
+    link: { label: 'Phone number for AI agents', to: piecePaths.phone },
+  },
+  {
     id: 'sandbox',
     name: pieceNames.sandbox,
     line: 'A computer to run code in, started only when a task needs it.',
@@ -120,6 +111,15 @@ const session = await chromium.connectOverCDP(browser.cdpUrl)
 
 await sandbox.run("python report.py")`,
     link: { label: 'Code sandbox for AI agents', to: piecePaths.sandbox },
+  },
+  {
+    id: 'messaging',
+    name: pieceNames.messaging,
+    line: 'iMessage lines, WhatsApp for support, sales, bookings and notifications, and Slack and Telegram.',
+    code: `// "imessage" | "whatsapp" | "slack" | "telegram"
+await obsession.messaging.connect({ channel: "imessage" })
+await obsession.messaging.connect({ channel: "whatsapp" })`,
+    link: { label: 'WhatsApp API for AI agents', to: piecePaths.messaging },
   },
 ]
 
@@ -263,7 +263,7 @@ export const api: ApiSections = {
   },
 
   mcp: {
-    heading: 'Your agent creates inboxes, numbers and browsers as tools.',
+    heading: 'An MCP server gives your agent inboxes, numbers and browsers as tools.',
     line: 'Add the MCP server once to Claude Code, Cursor, Codex or any MCP client. Your agent gets the same calls as the API, and reads and subscribes to your event log as a tool.',
     setup: 'claude mcp add obsession',
     note: 'Claude Code takes 1 line. In Cursor, Codex or any other MCP client, add the same server in its settings.',
@@ -313,9 +313,9 @@ const openSource: OpenSource = {
 export const page: Page = {
   meta: {
     path: '/developers',
-    title: 'The API for AI agents: inboxes, phone numbers and browsers',
+    title: 'API for AI agents, with MCP: inbox, phone, browser, sandbox',
     description:
-      'One API for AI agents: email inboxes, phone numbers and texts, iMessage and WhatsApp, cloud browsers and code sandboxes, with one key and one bill.',
+      'The API for AI agents, with an SDK and an MCP server. Give your agent inboxes, phone numbers, messaging, browsers and sandboxes on one key and one bill.',
     answer:
       'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill. Use one piece, such as the email, or put them all under one persona, with every event in your event log. Call it from code, or from your agent over MCP.',
     ogImage: '/og/developers.png',
@@ -371,6 +371,10 @@ export const page: Page = {
         a: 'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill. Use one piece on its own, or put them all under one persona that waits for free. Run our blueprints or your own jobs beside them, and every event lands in your event log. Call it from TypeScript, Python or plain HTTP, or from your agent over MCP.',
       },
       {
+        q: 'Is there an SDK for AI agents, or only the API?',
+        a: 'Both. Install the TypeScript SDK with npm install obsession, or call the same API from Python or plain HTTP. The MCP server gives your agent the same calls as tools.',
+      },
+      {
         q: 'Can I use only the email?',
         a: 'Yes. Each piece works on its own. Create an inbox in 1 call, send and receive, and get each reply at your webhook. Add a number, a browser or a sandbox later, on the same key.',
         link: { label: 'Email API for AI agents', to: piecePaths.email },
@@ -398,13 +402,22 @@ export const page: Page = {
         a: `On its own, all on one bill. Inboxes: ${prices.inbox.amount} ${prices.inbox.unit}. Phone numbers: ${prices.number.amount} ${prices.number.unit}. Browsers: ${prices.browser.amount} ${prices.browser.unit}. A persona is ${prices.persona.amount.toLowerCase()} ${prices.persona.unit}.`,
         link: { label: 'See pricing', to: '/pricing' },
       },
+      /* The channels and voice agent questions came from Home (21 Nov), as did the data centre line below. */
+      {
+        q: 'Which messaging channels can an agent use?',
+        a: 'iMessage, WhatsApp, Slack and Telegram, each on the same identity as its inbox and number.',
+      },
       {
         q: 'Can my agent message anyone on WhatsApp?',
         a: 'WhatsApp is for support, sales, bookings and notifications. People who write to your number get answers at once, and messages your agent starts use templates Meta approves.',
       },
       {
+        q: 'Can I bring my own voice agent?',
+        a: 'Yes. Connect your own voice agent to a number, or connect one we run. Calls come in and go out on the same number your agent texts from.',
+      },
+      {
         q: 'Does the browser stay signed in?',
-        a: 'Yes. Each browser keeps its cookies and logins from one session to the next, so your agent signs in once. It connects from a home connection, and your code drives it with Playwright or Puppeteer.',
+        a: 'Yes. Each browser keeps its cookies and logins from one session to the next, so your agent signs in once. It connects from a home connection, so a site sees a person at home, not a data centre. Your code drives it with Playwright or Puppeteer.',
       },
       {
         q: 'What stops my agents from running up a bill?',

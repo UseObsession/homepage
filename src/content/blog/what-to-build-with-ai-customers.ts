@@ -410,6 +410,7 @@ export const post: BlogPost = {
     { title: 'Browserbase Pricing: Free, $20, $99, or Custom', publisher: 'Browserbase', url: BB_PRICING },
   ],
   related: [
+    '/developers',
     'long-running-ai-agents',
     'ai-customers-for-developers',
     'how-ai-customers-work',

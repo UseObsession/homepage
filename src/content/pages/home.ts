@@ -13,11 +13,13 @@ import type { HomePieces, Page, PersonaIcon } from '../types'
    2 #pieces: the 6 pieces as 1 sheet, each linking to its page (content/piecePaths.ts) with the call that starts it >
    3 #personas: the pieces under one identity, as a stacked slab diagram >
    4 2 claims in the form "X, not Y": 1 API, not 5 vendors; wakes in milliseconds, not minutes >
-   5 #how: from the first call to months of messages, for a fleet (components/v5/AgentLife) >
-   6 #recipes: ours or your own job, beside the pieces > 7 #build: the code >
-   9 #delivery: how events reach you, as 3 steps (it happens, it's saved in your event log, it reaches you), the 6
-   channels in their order (content/delivery.ts) and the line on a server that's down >
-   10 the web behind the login, 1 card to its use case page > 11 questions > 12 #join: the early access form.
+   5 #how: how it works, 1 section in place of the fleet timeline and the delivery plates (James, 21 Nov): set up
+   once, then the loop through your event log as 1 picture, then the 6 channels in their order (#delivery,
+   content/delivery.ts) and the line on a server that's down (components/persona/HomeHowItWorks) >
+   6 #recipes: blueprints, ours or your own job, beside the pieces, with the web behind the login as 1 tile to its use
+   case page (James, 21 Nov: it took Price watch's tile and its own section went) > 7 #build: the code >
+   8 #questions: 7 for a first-time reader (James, 21 Nov; the developer ones live on /developers) >
+   9 #join: the early access form.
    Home shows no prices and no pricing link (James, 20 Nov): prices live in content/prices.ts, on /pricing and the piece
    pages. Nothing here bills by the minute. The product is described as designed (50 ms, free while a persona waits),
    never with build-state caveats; country is a feature, never the pitch. People and companies are invented, at .example
@@ -107,7 +109,7 @@ export const page: Page = {
     path: '/',
     title: 'Obsession: inboxes, phone numbers and browsers for AI agents',
     description:
-      'The toolkit for AI agents: an inbox, a phone number and a browser for every agent, used alone or together, with one API, one bill and one event log.',
+      'Tools for AI agents, through one API and one bill: an inbox, a phone number, a browser and a sandbox for every agent. Use one piece or all of them.',
     /* The sentence AI assistants quote. Its first sentence opens the first answer below (scripts/prerender.mjs). */
     answer:
       'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
@@ -208,74 +210,60 @@ export const page: Page = {
     },
   ],
 
-  /* How it works, as the 2 ends of 1 range: a fleet starts at once, each persona does its first job in minutes, then
-     waits and wakes on what follows, for months. The 3 lanes are personas doing 3 kinds of job, each wake a real kind
-     of message; the faded lane is the rest of the fleet (components/v5/AgentLife). */
-  life: {
-    heading: 'From the first call to months of messages, for every persona.',
-    line: 'Create 1 persona or a fleet. Each one does its first job in minutes, then waits, and wakes on every email, text and call that follows.',
-    list: 'agents.csv · 10,000 personas',
-    axis: {
-      start: 'Monday 09:00',
-      ticks: [
-        { day: 1, label: 'Day 1' },
-        { day: 7, label: 'Day 7' },
-        { day: 30, label: 'Day 30' },
+  /* How it works (James, 21 Nov: variation B's loop with variation A's words, in place of the fleet timeline and the
+     delivery plates; components/persona/HomeHowItWorks). Set up once, then a loop either side can start: a message
+     comes in or the agent acts, it's saved in the event log, then reaches the agent, on our runtime or the developer's
+     own servers, or a person. What the agent does next is a new event. Live call audio doesn't take the loop: it streams
+     straight to the voice agent, and the log keeps the call's events. `loop` is the picture's words; `label` says the
+     whole picture for screen readers and llms-full.txt. Under it, the channels and the line on a server that's down
+     come from content/delivery.ts, the same words as the piece, recipe and developer pages. */
+  homeHow: {
+    heading: 'From the first call to months of messages, every event reaches your agent.',
+    line: 'Set it up once. Each persona waits for free, and every email, text or call is saved in your event log, then reaches your agent. Its reply is the next event.',
+    loop: {
+      label:
+        'Set up once, by picking pieces, a persona or a blueprint and saying where your agent runs. Then a loop of 3 stops. Something happens: a message comes in, or your agent acts. It is saved in your event log, which keeps every event in order. Then it reaches your agent, on our runtime as a handler in about 50 ms or on your servers through a webhook, the API or MCP, or it reaches a person in Slack, Zapier, Make or n8n. Whatever your agent does next is a new event, so the loop goes round again. Live call audio crosses the loop straight to your voice agent without touching the log, and the log keeps each call’s start, end and transcript.',
+      setup: { name: 'Set up once', line: 'Pick pieces, a persona or a blueprint, and say where your agent runs.' },
+      then: 'then',
+      happens: { name: 'Something happens', line: 'A message comes in, or your agent acts.' },
+      saved: 'is saved in',
+      log: { name: 'Your event log', line: 'saves every event, in order' },
+      reaches: 'reaches',
+      agent: { name: 'Your agent', line: 'or a person' },
+      places: [
+        { name: 'Runs on our runtime', line: 'a handler, in about 50 ms', short: 'On our runtime: a handler' },
+        { name: 'Runs on your servers', line: 'a webhook, the API or MCP', short: 'On your servers: webhook, API, MCP' },
+        { name: 'Or reaches a person', line: 'Slack, Zapier, Make, n8n', short: 'A person: Slack, Zapier, Make, n8n' },
       ],
-      end: 'Day 90: every email, text and call to all 10,000, in your event log',
+      acts: { name: 'acts', line: 'whatever your agent does next is a new event' },
+      audio: {
+        name: 'Live call audio streams',
+        line: 'straight to your voice agent',
+        note: 'Live call audio streams straight to your voice agent and skips the log.',
+        log: 'The log keeps each call’s start, end and transcript.',
+      },
     },
-    lanes: [
-      {
-        name: 'A support agent',
-        wakes: [
-          { day: 0.003, label: '09:04 · order email' },
-          { day: 3, label: 'Day 3 · WhatsApp question' },
-          { day: 21, label: 'Day 21 · returns call' },
-        ],
-      },
-      {
-        name: 'A bookings agent',
-        wakes: [
-          { day: 0.008, label: '09:12 · text: table for 4' },
-          { day: 9, label: 'Day 9 · email: move to Friday' },
-        ],
-      },
-      {
-        name: 'A QA tester',
-        wakes: [
-          { day: 0.02, label: '09:29 · sign up code' },
-          { day: 3, label: 'Day 3 · onboarding email' },
-          { day: 30, label: 'Day 30 · renewal notice' },
-        ],
-      },
-    ],
-    more: {
-      name: '+ 9,997 more',
-      days: [0.004, 0.005, 0.007, 0.008, 0.01, 0.012, 0.3, 0.5, 0.8, 1, 1.2, 2, 2.5, 3, 4, 5, 6, 7, 9, 11, 13, 14, 16, 19, 22, 24, 27, 29, 31, 34, 38, 41, 44, 49, 53, 58, 61, 66, 70, 75, 79, 84, 88],
-    },
-    phases: [
-      { title: 'Create them', lead: 'Any input:', line: '1 API call, a list, or a tool call from your own agent through MCP.' },
-      { title: 'Each one acts', line: 'It signs up, gets verified by email, text or call, and does its first job.' },
-      { title: 'It waits and wakes', line: 'It waits 48 hours by default, or as long as you set, and wakes on each new email, text or call.' },
-      { title: 'Every event in your event log', line: 'Each page, email, text and call, dated, with screenshots, at your webhook, by API or through MCP.' },
-    ],
+    waysHeading: '6 ways an event reaches your agent, or you',
+    channels: channels.map(({ name, line, eg }) => ({ name, line, eg })),
+    down: downLine,
+    link: { label: 'See the code for each channel', to: '/developers#delivery' },
   },
 
-  /* A recipe is a job that runs on Obsession beside the pieces and writes its results to the event log: one of ours, ready
-     to run, or your own. Mystery shopping is the big tile; every tile links to its recipe page (content/recipes).
-     `status` says who it fits, and each tile's hue is that reader
-     (styles/accents.css). */
+  /* A blueprint is a job that runs on Obsession beside the pieces and writes its results to the event log: one of ours,
+     ready to run, or your own. Mystery shopping is the big tile; every tile links to its blueprint page (content/recipes),
+     except the web behind the login, which links to its use case page. `status` says who it fits, and each tile's hue is
+     that reader (styles/accents.css). The heading is James's (21 Nov), its comma included: it speaks to the reader. */
   personaRecipes: {
-    heading: 'Teams who don’t write code pick a blueprint, and we run the job.',
+    heading: 'Teams who don’t maintain code, pick a blueprint, and we run the job.',
     line: 'A blueprint runs on Obsession beside the pieces and writes every result to your event log. Pick one and say where it goes. Developers can bring their own job to run the same way.',
     items: [
       {
-        name: 'Agentic mystery shopping',
+        name: 'Mystery shopping for your store',
         line: 'Personas shop a store and bring back every email, text and reminder that followed, or the silence.',
         status: 'For online stores',
         live: true,
         reader: 'founders',
-        link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
+        link: { label: 'See the blueprint', to: '/blueprints/store-mystery-shopper' },
       },
       {
         name: 'QA on your own flows',
@@ -313,11 +301,11 @@ export const page: Page = {
         link: { label: 'See the blueprint', to: '/blueprints/support-bot-check' },
       },
       {
-        name: 'Price watch',
-        line: 'Sign in as a member and log the prices and offers only members see, every week.',
-        status: 'For pricing teams',
-        reader: 'marketing',
-        link: { label: 'See the blueprint', to: '/blueprints/price-watch' },
+        name: 'The web behind the login, as data',
+        line: 'Prices, emails and offers that companies show people only after they sign up. Personas sign up, wait, and bring every page, email and text back as data.',
+        status: 'For data teams',
+        reader: 'developers',
+        link: { label: 'See the use case', to: '/use-cases/web-behind-the-login' },
       },
       {
         name: 'Your own job',
@@ -338,54 +326,8 @@ export const page: Page = {
     code: BUILD_CODE,
   },
 
-  /* How events reach you (James, 21 Nov: the site must say how traffic reaches the developer, from the pieces and from
-     recipes). The 3 steps are the path every event takes; the plates' rows are the event names a developer subscribes
-     to (content/delivery.ts), dated in the event log. The channels and the line on a server that's down are
-     content/delivery.ts, the same words as the piece, recipe and developer pages. */
-  /* James, 21 Nov: set up once, then a loop. The agent may run on our runtime or the developer's own; the loop can start
-     from either side (a Slack message comes in, or the agent acts), and what the agent does next is a new event. Live
-     call audio doesn't take the loop: it streams straight to the voice agent, and the log keeps the call's events. */
-  homeDelivery: {
-    heading: 'Every event is saved in your event log, then reaches your agent.',
-    line: 'Set it up once. After that, every piece and blueprint runs the same loop, and one subscription hears all of it.',
-    setup: {
-      title: 'Set up once',
-      line: 'Pick pieces, a persona or a blueprint, and say where your agent runs: in a handler on our runtime, or in your own code.',
-      rows: ['obsession.personas.create()', 'obsession.events.subscribe()', 'obsession.blueprints.run()'],
-    },
-    steps: [
-      {
-        title: 'A message comes in, or your agent acts',
-        line: 'An email, text, call or Slack message arrives, or your agent sends one, opens a page or runs code. Either one starts the loop.',
-        rows: ['message.received', 'email.received', 'email.sent', 'page.visited'],
-      },
-      {
-        title: 'It’s saved in your event log',
-        line: 'In order and dated, with its proof: the email as it arrived, the page as a screenshot. Nothing in it is changed or deleted.',
-        rows: ['09:04:12 message.received', '09:04:13 email.sent', '09:05:40 page.visited', '09:07:02 blueprint.result'],
-      },
-      {
-        title: 'It reaches your agent, or you',
-        line: 'On our runtime or yours: in a handler, at your webhook, through the API or MCP, or in Zapier, Make and n8n.',
-        rows: ['Handler', 'Webhook', 'API', 'MCP', 'CLI', 'No code'],
-      },
-    ],
-    loop: 'Whatever your agent does next is a new event, so the loop goes round again.',
-    live: 'Live call audio streams straight to your voice agent, with no stop in the event log. The log keeps the call’s start, end and transcript.',
-    channels: channels.map(({ name, line, eg }) => ({ name, line, eg })),
-    down: downLine,
-    link: { label: 'See the code for each channel', to: '/developers#delivery' },
-  },
-
-  homeUseCase: {
-    heading: 'The web behind the login, as data.',
-    line: 'Prices, emails and offers that companies show people only after they sign up. Personas sign up, wait, and bring every page, email and text back as data.',
-    link: { label: 'See the web behind the login', to: '/use-cases/web-behind-the-login' },
-    before: 'The public page everyone sees',
-    wall: 'Sign up',
-    after: ['Member prices', 'Welcome emails and offers', 'Texts after a visit', 'Onboarding, step by step'],
-  },
-
+  /* 7 questions for a first-time reader (James, 21 Nov). The channels and voice agent questions moved to /developers;
+     the browser one was already there, and checkout is the mystery shopping blueprint's "Does it place real orders?". */
   faq: {
     heading: 'Before your agent sends its first email.',
     items: [
@@ -396,6 +338,7 @@ export const page: Page = {
       {
         q: 'Can I use just one piece, like email?',
         a: 'Yes. Every piece works on its own. Start with inboxes for your agent and add a number, a browser or a sandbox later, on the same key and the same bill.',
+        link: { label: 'Email for AI agents', to: '/email' },
       },
       {
         q: 'What is a persona?',
@@ -412,22 +355,6 @@ export const page: Page = {
       {
         q: 'Do I need to write code?',
         a: 'No. Run one of our blueprints, such as agentic mystery shopping: say where it goes, and its results land in your event log. Developers can also write their own job, which runs on our runtime beside the pieces.',
-      },
-      {
-        q: 'Which messaging channels can an agent use?',
-        a: 'iMessage, WhatsApp, Slack and Telegram, each on the same identity as its inbox and number. WhatsApp is for support, sales, bookings and notifications.',
-      },
-      {
-        q: 'Can I bring my own voice agent?',
-        a: 'Yes. Connect your own voice agent to a number, or connect one we run. Calls come in and go out on the same number your agent texts from.',
-      },
-      {
-        q: 'Does the browser stay signed in?',
-        a: 'Yes. A browser keeps its logins from one session to the next. It connects through a home connection, so a site sees a person at home, not a data centre.',
-      },
-      {
-        q: 'What happens at checkout?',
-        a: 'Agents stop before payment, so nothing is bought. Give one a payment card of your own and it completes the order, so you also see the confirmation and every email after it.',
       },
       {
         q: 'Does a persona say it’s an AI?',

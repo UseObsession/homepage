@@ -1,6 +1,5 @@
-import { HomeDelivery } from '../components/persona/HomeDelivery'
+import { HomeHowItWorks } from '../components/persona/HomeHowItWorks'
 import { HomePieces } from '../components/persona/HomePieces'
-import { HomeUseCase } from '../components/persona/HomeUseCase'
 import { PersonaAnatomy } from '../components/persona/PersonaAnatomy'
 import { PersonaBuild } from '../components/persona/PersonaBuild'
 import { PersonaContrasts } from '../components/persona/PersonaContrast'
@@ -8,16 +7,15 @@ import { PersonaHero } from '../components/persona/PersonaHero'
 import { PersonaRecipes } from '../components/persona/PersonaRecipes'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
-import { AgentLife } from '../components/v5/AgentLife'
 import { page } from '../content/pages/home'
 
 /* Home (/), composed from content/pages/home.ts in the order its comment gives (21 Nov, the pieces rewrite): the hero;
    the 6 pieces, each linking to its page (#pieces); the pieces under one identity, the persona (#personas); 2 claims in
-   the form "X, not Y"; from the first call to months of messages (#how, v5/AgentLife); recipes, ours or your own job,
-   with every result in the event log (#recipes); for developers, the code (#build); how events
-   reach you: it happens, it's saved in your event log, it reaches you, through 6 channels (#delivery); the web behind
-   the login, 1 card to its use case page (#behind-the-login); questions (#questions); the early access form (#join). No pricing section and no
-   pricing link: prices live on /pricing and the piece pages. The nav links to these ids, so they stay. */
+   the form "X, not Y"; how it works (#how, persona/HomeHowItWorks): set up once, the loop through your event log as 1
+   picture, then the 6 channels (#delivery, inside it); blueprints, ours or your own job, with every result in the event
+   log, and the web behind the login as 1 tile to its use case page (#recipes); for developers, the code (#build); 7
+   questions (#questions); the early access form (#join). No pricing section and no pricing link: prices live on
+   /pricing and the piece pages. The nav links to these ids, so they stay. */
 export function Home() {
   return (
     <>
@@ -25,11 +23,9 @@ export function Home() {
       {page.homePieces && <HomePieces pieces={page.homePieces} id="pieces" />}
       {page.personaAnatomy && <PersonaAnatomy anatomy={page.personaAnatomy} id="personas" />}
       {page.personaContrasts && <PersonaContrasts items={page.personaContrasts} />}
-      {page.life && <AgentLife life={page.life} id="how" />}
+      {page.homeHow && <HomeHowItWorks how={page.homeHow} id="how" />}
       {page.personaRecipes && <PersonaRecipes recipes={page.personaRecipes} id="recipes" />}
       {page.personaBuild && <PersonaBuild build={page.personaBuild} id="build" />}
-      {page.homeDelivery && <HomeDelivery delivery={page.homeDelivery} id="delivery" />}
-      {page.homeUseCase && <HomeUseCase useCase={page.homeUseCase} id="behind-the-login" />}
       <Faq faq={page.faq} id="questions" className="s-faq--ruled" />
       <FinalCta final={page.final} id="join" />
     </>

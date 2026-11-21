@@ -28,7 +28,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/resolution-check',
-    title: 'Resolution check: verify billed AI resolutions · Obsession',
+    title: 'Check what your support bot promised, and what followed',
     description:
       'Each resolution your AI support vendor bills, matched to the refund, cancellation or order change that followed, and a persona makes the same asks itself.',
     answer:
@@ -55,6 +55,43 @@ export const recipe: Recipe = {
 
   unit: 'resolution check',
   per: 'AI agent',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    {
+      name: 'Free',
+      includes: [
+        'Each matched to your payments and helpdesk',
+        'Silence, handoffs and repeat contacts counted',
+        'The ones that weren’t real, with their cases',
+      ],
+    },
+    {
+      name: 'Starter',
+      includes: [
+        'Each one beside your vendor’s own billing rule',
+        '4 test asks and 2 test orders a month on your live channels',
+        'Every test tagged, so none is billed',
+        'A dispute pack under your vendor’s terms',
+      ],
+    },
+    {
+      name: 'Team',
+      includes: [
+        'Everything in Starter',
+        'Test asks on refunds, cancellations and order changes',
+        'Refunds the bot promised and nobody made, flagged',
+        'Results in a sheet, Slack or the API',
+      ],
+    },
+    {
+      name: 'Scale',
+      includes: [
+        'Everything in Team',
+        'Each client’s bot kept apart in your event log',
+        'Every case in your event log, by webhook or API',
+      ],
+    },
+  ],
 
   run: {
     tab: 'September’s bill, before you pay',

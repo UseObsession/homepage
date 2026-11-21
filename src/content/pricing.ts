@@ -1,5 +1,5 @@
 import { pieceOrder, piecePaths } from './piecePaths'
-import { blueprintPlans, freeNumber, personaCostLine as personaLine, plans, prices, type PieceId, type PlanId, type PriceKey } from './prices'
+import { freeNumber, personaCostLine as personaLine, plans, prices, type PieceId, type PlanId, type PriceKey } from './prices'
 import type { Cta, Faq, Meta } from './types'
 
 /* The words of /pricing (pages/Pricing.tsx) and /pricing/rates (pages/PricingRates.tsx), outside the Page glob
@@ -114,7 +114,7 @@ const planWords: Record<PlanId, PlanWords> = {
   },
   developer: {
     for: 'For your first agent in production.',
-    features: [`Everything in ${named('free')}`, 'Use past the plan at each piece’s rate', 'A monthly spend cap you set'],
+    features: [`Everything in ${named('free')}`, 'A monthly spend cap you set'],
     cta: { label: 'Get early access', to: JOIN },
   },
   startup: {
@@ -132,6 +132,10 @@ const planWords: Record<PlanId, PlanWords> = {
   },
 }
 
+/* The last line under every paid plan's included amounts (buyer panel, 21 Nov: readers took Startup's amounts for hard
+   caps): past them the plan keeps working at each piece's rate, and growing never needs Enterprise. */
+const payAsYouGo = `Past these amounts, pay as you go at each piece’s rate, with no limit and no ${named('enterprise')} contract`
+
 const planCards: PlanCard[] = plans.map((pl) => {
   const w = planWords[pl.id]
   return {
@@ -140,7 +144,7 @@ const planCards: PlanCard[] = plans.map((pl) => {
     price: pl.monthly == null ? 'Custom' : dollars(pl.monthly),
     per: pl.monthly == null ? 'by contract' : 'a month',
     for: w.for,
-    includes: w.includes ?? includedOf(pl.id),
+    includes: w.includes ?? (pl.monthly ? [...includedOf(pl.id), payAsYouGo] : includedOf(pl.id)),
     features: w.features,
     cta: w.cta,
     featured: w.featured,
@@ -159,6 +163,8 @@ export type CalcPiece = { id: string; name: string; line: string; on: boolean; q
 
 const { whatsapp, chat, register, email, inbox, sms, voice, number, browser, sandbox, log, tokens, persona } = prices
 
+/* The cards in the founders' order (piecePaths.ts pieceOrder). Personas has no card: a persona costs nothing while it
+   waits. The event log, which holds every piece's events, comes last. */
 const calcPieces: CalcPiece[] = [
   {
     id: 'email',
@@ -171,27 +177,6 @@ const calcPieces: CalcPiece[] = [
     ],
   },
   {
-    id: 'phone',
-    name: 'Phone',
-    line: 'Numbers your agents text and call from.',
-    on: true,
-    quantities: [
-      { key: 'number', label: 'Phone numbers', start: 2, step: 1 },
-      { key: 'sms', label: 'Texts a month', start: 1000, step: 100, adds: 'register' },
-      { key: 'voice', label: 'Call minutes a month', start: 200, step: 100 },
-    ],
-    /* Free includes no texts or minutes it can send, so any here takes the summary to a paid plan. */
-    note: `${named('free')}’s number receives up to ${freeIn} a month. It sends no texts and makes no calls, so those need a paid plan.`,
-  },
-  {
-    id: 'messaging',
-    name: 'Messaging',
-    line: 'iMessage lines, WhatsApp, Slack and Telegram.',
-    on: false,
-    quantities: [{ key: 'imessage', label: 'iMessage lines', start: 1, step: 1 }],
-    note: `${whatsapp.name}: ${whatsapp.amount} ${whatsapp.unit}. ${chat.name}: ${chat.amount.toLowerCase()} ${chat.unit}.`,
-  },
-  {
     id: 'browser',
     name: 'Browser',
     line: 'A cloud browser with a home connection.',
@@ -202,6 +187,20 @@ const calcPieces: CalcPiece[] = [
     ],
   },
   {
+    id: 'phone',
+    name: 'Phone',
+    line: 'Numbers your agents text and call from.',
+    /* Off until the reader turns it on (James, 21 Nov). */
+    on: false,
+    quantities: [
+      { key: 'number', label: 'Phone numbers', start: 2, step: 1 },
+      { key: 'sms', label: 'Texts a month', start: 1000, step: 100, adds: 'register' },
+      { key: 'voice', label: 'Call minutes a month', start: 200, step: 100 },
+    ],
+    /* Free includes no texts or minutes it can send, so any here takes the summary to a paid plan. */
+    note: `${named('free')}’s number receives up to ${freeIn} a month. It sends no texts and makes no calls, so those need a paid plan.`,
+  },
+  {
     id: 'sandbox',
     name: 'Sandbox',
     line: 'A computer to run code in, started only when a task needs it.',
@@ -210,6 +209,14 @@ const calcPieces: CalcPiece[] = [
       { key: 'sandbox', label: 'vCPU hours a month', start: 40, step: 10 },
       { key: 'memory', label: 'GiB hours of memory a month', start: 80, step: 10 },
     ],
+  },
+  {
+    id: 'messaging',
+    name: 'Messaging',
+    line: 'iMessage lines, WhatsApp, Slack and Telegram.',
+    on: false,
+    quantities: [{ key: 'imessage', label: 'iMessage lines', start: 1, step: 1 }],
+    note: `${whatsapp.name}: ${whatsapp.amount} ${whatsapp.unit}. ${chat.name}: ${chat.amount.toLowerCase()} ${chat.unit}.`,
   },
   {
     id: 'event log',
@@ -269,10 +276,6 @@ export type PricingPage = {
 
 const openLine = `Obsession sells email, phone, messaging, a cloud browser and a code sandbox for AI agents on ${plans.length} plans, with one bill.`
 
-/* A blueprint's own plans past its free run (prices.ts blueprintPlans): "$19, $49 or $99" and "monthly, weekly or daily". */
-const orList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} or ${items[items.length - 1]}`)
-const blueprintPaid = blueprintPlans.filter((bp) => bp.monthly > 0)
-const blueprintCost = `${orList(blueprintPaid.map((bp) => dollars(bp.monthly)))} a month to run it ${orList(blueprintPaid.map((bp) => bp.name.toLowerCase()))}`
 
 export const pricingPage: PricingPage = {
   meta: {
@@ -335,7 +338,7 @@ export const pricingPage: PricingPage = {
       },
       {
         q: 'What happens when I use more than my plan includes?',
-        a: 'Each piece past its amount is billed at its own rate, on the same bill. Nothing stops, and a monthly spend cap you set keeps the bill where you want it.',
+        a: `You pay as you go. On ${named('developer')} and ${named('startup')}, each piece past its included amount is billed at its own rate. For email, that’s ${email.amount} ${email.unit}. Nothing stops and we set no limit, so ${named('startup')} keeps working as your agents grow. You don’t need ${named('enterprise')} to grow. ${named('enterprise')} is for companies that resell Obsession to their own clients, and for contract prices on large volume. To keep the bill where you want it, set a monthly spend cap.`,
         link: { label: 'See every rate', to: RATES },
       },
       {
@@ -348,7 +351,7 @@ export const pricingPage: PricingPage = {
       },
       {
         q: 'What does a blueprint cost?',
-        a: `A blueprint is a job that runs on Obsession, one of ours or one you write. Each blueprint has its own plans, priced for each site, store or agent it checks. The first run is free. After that, it’s ${blueprintCost}. Developers who run a blueprint from their own code through the API pay for the pieces it uses, under their plan.`,
+        a: `A blueprint is a job that runs on Obsession, one of ours or one you write. Each blueprint has its own plans, priced for the job it does, such as per store, location, competitor or voice agent. Every one starts with a free run, and its page shows what each plan covers. Developers who run a blueprint from their own code through the API pay for the pieces it uses, under their plan.`,
         link: { label: 'See the mystery shopper blueprint', to: '/blueprints/mystery-shopper' },
       },
       {

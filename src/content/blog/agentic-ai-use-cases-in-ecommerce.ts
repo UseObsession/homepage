@@ -669,6 +669,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/blueprints',
     'ai-agent-use-cases-for-business',
     'ai-customers-for-ecommerce-brands',
     '/use-cases/leak-checks-for-ecommerce-stores',

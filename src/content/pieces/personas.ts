@@ -38,7 +38,7 @@ export const personas: PiecePage = {
   name: 'Personas',
   meta: {
     path: piecePaths.personas,
-    title: 'Personas for AI agents: every piece, one name · Obsession',
+    title: 'Personas: one identity for each AI agent, on every piece',
     description:
       'A persona puts an inbox, a phone number, messaging and a browser under one identity for your AI agent. It’s free while it waits and logs every event.',
     answer: sub,

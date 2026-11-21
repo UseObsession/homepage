@@ -254,6 +254,10 @@ export function jsonLd(e: Entry): Node {
     ...(e.kind === 'agents' ? { about: agentTerms() } : {}),
     ...(e.kind === 'term' && e.term ? { about: { '@id': termId(e.meta.path) } } : {}),
     ...(e.kind === 'glossary' ? { about: { '@id': GLOSSARY_SET } } : {}),
+    /* A piece's own page and the API page describe the product itself, so they are about it, as Home is. */
+    ...(e.kind === 'piece' || e.kind === 'developers'
+      ? { about: { '@type': 'SoftwareApplication', '@id': APP, name: 'Obsession', url: `${SITE}/` } }
+      : {}),
     ...(e.kind === 'comparison' || e.kind === 'alternatives' || e.kind === 'lookup'
       ? {
           mentions: [

@@ -4,12 +4,13 @@ import type { BlueprintPlanCard, BlueprintPricing as Pricing } from '../content/
 import './BlueprintPricing.css'
 
 /* A blueprint's pricing table (James, 21 Nov 2026), on every blueprint page (pages/RecipePage, #pricing) and in each tab
-   of /agencies' pricing (BlueprintPricingTabs). Every word and price comes in `pricing` (content/recipe-page.ts
-   `blueprintPricing`, from content/prices.ts `blueprintPlans`). The section around it holds the h2, so each card is an
-   article named by its h3, in a list (an h2 inside a list item fails the prerender): its name, who it's for, its price,
-   what's included and its button, Weekly raised with the row's 1 primary button. Under the cards, the line to /pricing.
-   The cards follow their own width, not the screen's: 1 column, 2 from 560px, 4 from 960px, where each card's rows
-   line up across the row. */
+   of the audience pages' pricing (BlueprintPricingTabs: /agencies, /marketing, /sales). Every word and price comes in
+   `pricing` (content/recipe-page.ts `blueprintPricing`, from the blueprint's tiers as the pricing engine priced them,
+   content/blueprint-tiers.ts). The section around it holds the h2, so each card is an article named by its h3,
+   in a list (an h2 inside a list item fails the prerender): its name, who it's for, its price with what it covers under
+   it, what's included and its button, the featured tier raised with the row's 1 primary button. Under the cards, the
+   line to /pricing. The cards follow their own width, not the screen's: 1 column, 2 from 560px, 4 from 960px, where
+   each card's rows line up across the row. */
 
 /* A numeral never ends a line apart from its word. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1 ')
@@ -31,10 +32,13 @@ function Plan({ plan, tag, includes }: { plan: BlueprintPlanCard; tag: string; i
         {plan.featured && <span className="ob-badge s-bpp__tag">{tag}</span>}
       </div>
       <p className="s-bpp__for">{tie(plan.for)}</p>
-      <p className="s-bpp__price">
-        <span className="s-bpp__amount">{plan.price}</span>
-        <span className="s-bpp__per">{tie(plan.per)}</span>
-      </p>
+      <div className="s-bpp__price">
+        <p className="s-bpp__cost">
+          <span className="s-bpp__amount">{plan.price}</span>
+          {plan.per && <span className="s-bpp__per">{tie(plan.per)}</span>}
+        </p>
+        {plan.covers && <p className="s-bpp__covers">{tie(plan.covers)}</p>}
+      </div>
       <ul className="s-bpp__rows" aria-label={includes}>
         {plan.includes.map((item) => (
           <li className="s-bpp__row" key={item}>

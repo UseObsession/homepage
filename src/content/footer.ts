@@ -14,8 +14,9 @@ export const footer = {
   /* Since 5 Nov evening the index (James). Until then: Send an AI customer to any company. Keep the receipts. */
   tagline: 'The toolkit for AI agents. One API, one bill.',
   columns: [
-    /* Products is the bar's Products menu (content/nav.ts): the 6 pieces, Recipes, API and MCP, Pricing (21 Nov). */
-    { label: products.label, links: names(products.items) },
+    /* Products is the bar's Products menu (content/nav.ts): the 6 pieces, Blueprints, API and MCP; then Pricing, which
+       left that menu for the bar (21 Nov). */
+    { label: products.label, links: [...names(products.items), nav.menus.pricing] },
     { label: products.integrations.label, links: [...names(products.integrations.items), products.integrations.all] },
     ...solutions.columns.map((c) => ({ label: c.label, links: names(c.items) })),
     /* Then the menu's first 2 More links: Look up your site, Every resource. */

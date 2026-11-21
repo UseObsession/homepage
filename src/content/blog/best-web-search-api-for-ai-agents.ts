@@ -705,6 +705,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/browser',
     'exa-vs-tavily-vs-firecrawl',
     'exa-alternatives',
     'can-ai-agents-log-in-to-websites',
