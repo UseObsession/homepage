@@ -580,8 +580,6 @@ export type PersonaRecipes = {
   line?: string
   items: { name: string; line: string; status: string; live?: boolean; reader: ReaderId; link: Cta }[]
 }
-/* What's built in (PersonaFleet): a ruled grid of short items, each with its icon. */
-export type PersonaFleet = { heading: string; line?: string; items: { icon: PersonaIcon; title: string; line: string }[] }
 /* For developers (PersonaBuild): the claim, its line and link beside the code. Where events go is HomeDelivery. */
 export type PersonaBuild = {
   heading: string
@@ -668,7 +666,6 @@ export type Page = {
   personaAnatomy?: PersonaAnatomy
   personaContrasts?: PersonaContrast[]
   personaRecipes?: PersonaRecipes
-  personaFleet?: PersonaFleet
   personaBuild?: PersonaBuild
   homeDelivery?: HomeDelivery
   homeUseCase?: HomeUseCase

@@ -14,7 +14,7 @@ import type { HomePieces, Page, PersonaIcon } from '../types'
    3 #personas: the pieces under one identity, as a stacked slab diagram >
    4 2 claims in the form "X, not Y": 1 API, not 5 vendors; wakes in milliseconds, not minutes >
    5 #how: from the first call to months of messages, for a fleet (components/v5/AgentLife) >
-   6 #recipes: ours or your own job, beside the pieces > 7 #fleet: what's built in > 8 #build: the code >
+   6 #recipes: ours or your own job, beside the pieces > 7 #build: the code >
    9 #delivery: how events reach you, as 3 steps (it happens, it's saved in your event log, it reaches you), the 6
    channels in their order (content/delivery.ts) and the line on a server that's down >
    10 the web behind the login, 1 card to its use case page > 11 questions > 12 #join: the early access form.
@@ -328,19 +328,6 @@ export const page: Page = {
     ],
   },
 
-  personaFleet: {
-    heading: 'Everything a fleet of agents needs, already built.',
-    items: [
-      { icon: 'domain', title: 'Your own domain', line: 'Add your domain once, and every inbox sends from it, signed so mail reaches the inbox.' },
-      { icon: 'code', title: 'MCP', line: 'Run claude mcp add obsession, and your own agent uses every piece as a tool.' },
-      { icon: 'cap', title: 'Spend caps', line: 'A cap on every key and a monthly limit, so no agent runs up a bill.' },
-      { icon: 'users', title: 'Accounts for your users', line: 'Give each of your users their own inboxes, numbers and limits, all on your bill.' },
-      { icon: 'clock', title: 'Schedules', line: 'A job every day, week or month, with no one there to start it.' },
-      { icon: 'person', title: 'A person at ID checks', line: 'When a site asks for ID, the agent hands that step to a person.' },
-      { icon: 'stop', title: 'Pays only if you say so', line: 'Agents stop before payment. Give one your own payment card and it completes the order.' },
-      { icon: 'record', title: 'One event log', line: 'Every event from every piece, persona and recipe, in order, dated, with its proof.' },
-    ],
-  },
 
   personaBuild: {
     heading: 'One key, from the first inbox to a fleet of personas.',

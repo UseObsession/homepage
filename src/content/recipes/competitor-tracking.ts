@@ -199,7 +199,7 @@ export const recipe: Recipe = {
         q: 'How many competitors can it follow?',
         a: 'As many as you name, each with its own persona, inbox and number. Run one, or a fleet of thousands.',
       },
-      { q: 'What if a competitor asks for ID?', a: 'The persona hands that step to a person, then carries on.' },
+      { q: 'What if a competitor asks for ID?', a: 'The persona stops at that step, and your event log keeps what the check asked for.' },
     ],
   },
 

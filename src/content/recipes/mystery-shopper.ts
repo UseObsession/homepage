@@ -119,7 +119,7 @@ export const recipe: Recipe = {
           title: 'Before payment',
           line: 'By default. Give it your own payment card and it completes the order, so the confirmation joins your event log.',
         },
-        { title: 'At an ID check', line: 'It hands the step to a person, then carries on.' },
+        { title: 'At an ID check', line: 'It stops at that step, and the event log keeps what the check asked for.' },
         { title: 'With a person', line: 'If anyone writes or calls, it says it’s an AI.' },
       ],
     },

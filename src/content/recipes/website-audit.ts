@@ -167,7 +167,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What if it meets an ID check?',
-        a: 'The persona hands that step to a person, then carries on.',
+        a: 'The persona stops at that step, and your event log keeps what the check asked for, so you see where a new user would have to prove who they are.',
       },
       {
         q: 'Can an agency run it on client sites?',
