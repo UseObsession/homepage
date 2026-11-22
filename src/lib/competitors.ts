@@ -6,6 +6,15 @@
 const COMPETITOR_HOSTS = new Set([
   // The pieces' neighbours (the bundle and piece comparisons, 22 Nov 2026)
   'agentmail.to', 'agentphone.ai', 'twilio.com', 'browserbase.com', 'e2b.dev', 'goodcall.com', 'smith.ai', 'ruby.com',
+  // The agent-native cloud (James found it, 23 Nov 2026; _research/positioning/corespeed-23nov.md)
+  'corespeed.io',
+  // SEO wave 2 best-of lists (23 Nov 2026): email APIs, cloud browsers and sandboxes for agents. AWS, Vercel, Cloudflare and
+  // GitHub stay plain links: the site cites them as sources elsewhere.
+  'resend.com', 'postmarkapp.com', 'mailgun.com', 'nylas.com', 'mailslurp.com', 'kernel.sh', 'notte.cc', 'daytona.io',
+  'modal.com', 'northflank.com', 'runloop.ai',
+  // SEO wave 2 alternatives and comparisons (23 Nov 2026): inbox, browser and email testing tools
+  'stalw.art', 'browserless.io', 'mailosaur.com', 'mailtrap.io', 'testmail.app', 'mailinator.com', 'mailpit.axllent.org',
+  'ethereal.email',
   // AI mystery shopping and store checks
   'adstack.com', 'aistoreshopper.com', 'competitive-compass.com', 'convertica.org', 'cresta.com', 'customeroptix.com',
   'dealerdrivendata.com', 'gen.qa', 'implementai.io', 'intouchinsight.com', 'liveperson.com', 'localspyai.com',

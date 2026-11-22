@@ -72,8 +72,8 @@ export const refUi = {
     alternatives: {
       id: 'alternatives',
       name: 'Alternatives, by job',
-      line: 'For teams leaving an email archive or a competitive intelligence tool, every option sorted by the job it does.',
-      all: { label: 'Every alternatives page', to: '/alternatives', line: 'MailCharts, Panoramata, Klue, Crayon and Competiscan, each beside the tools that do the same job.' },
+      line: 'For teams leaving an agent inbox, a cloud browser, a sandbox, a testing tool or a competitor tracker, every option sorted by the job it does.',
+      all: { label: 'Every alternatives page', to: '/alternatives', line: 'AgentMail, Browserbase, E2B, Mailosaur, MailCharts, Panoramata, Klue, Crayon and Competiscan, each beside the tools that do the same job.' },
     },
     glossary: { label: 'The glossary', to: '/glossary', line: 'The words of this work, from login wall to save offer, each defined in a sentence.' },
   },
@@ -102,11 +102,11 @@ export type ReferenceHub = {
 export const alternativesHub: ReferenceHub = {
   meta: {
     path: '/alternatives',
-    title: 'Alternatives to MailCharts, Panoramata, Klue and Crayon',
+    title: 'Alternatives to AgentMail, Browserbase, E2B and Klue',
     description:
-      'Alternatives to MailCharts, Panoramata, Klue, Crayon and Competiscan, sorted by job from each tool’s own pages, with Obsession’s blueprints last.',
+      'Alternatives to AgentMail, Browserbase, E2B, Mailosaur, MailCharts, Klue and Crayon, sorted by job from each tool’s own pages, with Obsession last.',
     answer:
-      'Each page sorts the tools that do the same job as MailCharts, Panoramata, Klue, Crayon or Competiscan, from each tool’s own pages with its price as listed. Obsession sits last, with the blueprint that runs the job on your own list.',
+      'Each page sorts the tools that do the same job as AgentMail, Browserbase, E2B, Mailosaur, MailCharts, Panoramata, Klue, Crayon or Competiscan, from each tool’s own pages with its price as listed. Obsession sits last, with the piece or blueprint that does the job.',
     ogImage: '/og/alternatives.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -116,21 +116,25 @@ export const alternativesHub: ReferenceHub = {
   },
   reader: 'marketing',
   hero: {
-    headline: 'Alternatives to the tools teams use to watch competitors.',
-    sub: 'Each page sorts the tools that do the same job as MailCharts, Panoramata, Klue, Crayon or Competiscan, from each tool’s own pages with its price as listed. Obsession sits last, with the blueprint that runs the job on your own list.',
+    headline: 'Alternatives to AgentMail, Browserbase, E2B and the tools teams use to watch competitors.',
+    sub: 'Each page sorts the tools that do the same job as AgentMail, Browserbase, E2B, Mailosaur, MailCharts, Panoramata, Klue, Crayon or Competiscan, from each tool’s own pages with its price as listed. Obsession sits last, with the piece or blueprint that does the job.',
     capture: access('alternatives-hero'),
     secondary: { label: 'Browse blueprints', to: '/blueprints' },
   },
   art: {
     kind: 'report',
-    title: 'What each tool keeps',
-    period: 'From each tool’s own pages, read 11 Nov 2026',
-    cols: ['Type of tool', 'For example', 'Whose companies'],
+    title: 'What each tool does',
+    period: 'From each tool’s own pages, read 11 and 23 Nov 2026',
+    cols: ['Type of tool', 'For example', 'What it covers'],
     rows: [
-      { name: 'Email archives', cells: ['MailCharts, Panoramata', 'Brands on their index or your plan'] },
-      { name: 'Competitive intelligence', cells: ['Klue, Crayon', 'What competitors publish and your team hears'] },
-      { name: 'Consumer panels', cells: ['Competiscan', 'The sectors the panel covers'] },
-      { name: 'Blueprints on personas', cells: ['Obsession', 'Any competitor you name'], tone: 'ok' },
+      { name: 'Agent inboxes', cells: ['AgentMail, Nylas, Resend', 'Email for an agent'] },
+      { name: 'Cloud browsers', cells: ['Browserbase, Steel, Browser Use', 'A browser an agent drives'] },
+      { name: 'Code sandboxes', cells: ['E2B, Daytona, Modal', 'A computer to run an agent’s code'] },
+      { name: 'Email and SMS testing', cells: ['Mailosaur, MailSlurp, Mailtrap', 'Test inboxes and numbers'] },
+      { name: 'Email archives', cells: ['MailCharts, Panoramata', 'Competitors’ emails'] },
+      { name: 'Competitive intelligence', cells: ['Klue, Crayon', 'What competitors publish'] },
+      { name: 'Consumer panels', cells: ['Competiscan', 'The sectors a panel covers'] },
+      { name: 'Obsession', cells: ['Every piece under one identity, and blueprints', 'Your agents, and any company you name'], tone: 'ok' },
     ],
     notes: ['Each page sorts the alternatives by the job they do, with the price each tool lists.'],
   },
@@ -139,15 +143,15 @@ export const alternativesHub: ReferenceHub = {
     items: [
       {
         q: 'How were the alternatives chosen?',
-        a: 'Each page lists the tools whose own pages describe the same job, read on 11 November 2026, with the price each page lists. A tool whose page shows no price says so.',
+        a: 'Each page lists the tools whose own pages describe the same job, read on 11 or 23 November 2026, with the price each page lists. A tool whose page shows no price says so.',
       },
       {
         q: 'Why is Obsession on every page?',
-        a: 'Because its blueprints run the same jobs on your own list: personas sign up to each competitor, stay subscribed, and keep every email, price and offer in the event log. It sits last on every page, beside the tools rather than instead of them.',
+        a: 'Because it does the same jobs: an inbox, a phone number, a browser and a sandbox for an agent, under one identity, and blueprints that sign up to each competitor and keep every email, price and offer in the event log. It sits last on every page, beside the tools rather than instead of them.',
       },
       {
         q: 'Is there an Exa, Tavily or Firecrawl alternatives page?',
-        a: 'Our guides cover the web search and scraping tools. These pages stay with the tools that watch competitors’ emails, offers and positioning.',
+        a: 'Our guides cover the web search and scraping tools. These pages cover agent inboxes, cloud browsers, sandboxes and testing tools, and the tools that watch competitors.',
       },
     ],
   },
