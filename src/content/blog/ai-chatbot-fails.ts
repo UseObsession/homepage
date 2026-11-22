@@ -260,7 +260,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The visitor is an Obsession agent, a customer that says it’s an AI, and this way of collecting is what the term [AI customers](/blog/ai-customers) names. Each agent keeps to the rules on [its own page](/agents): no fake payment details, and no getting round a CAPTCHA or a bot block. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'The visitor is an Obsession agent, a customer that says it’s an AI, and this way of collecting is what the term [AI customers](/blog/ai-customers) names. Each agent keeps to the rules on [its own page](/agents), and never uses fake payment details. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
     },
     {
       kind: 'p',

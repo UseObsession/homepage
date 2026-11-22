@@ -312,7 +312,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs as many agents as a prospect list needs, each with its own inbox, phone number and browser, and each doing one thing. One signs up, one browses, one leaves a basket and one starts a checkout, each shopping from the US or the UK to match the brand’s market. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test, so you know exactly what to check by hand. It runs at 300 brands a month, 1,000 or 5,000. It’s built for millions of companies, each looked up in one call.',
+      text: 'Obsession runs as many agents as a prospect list needs, each with its own inbox, phone number and browser, and each doing one thing. One signs up, one browses, one leaves a basket and one starts a checkout, each shopping from the US or the UK to match the brand’s market. It runs at 300 brands a month, 1,000 or 5,000. It’s built for millions of companies, each looked up in one call.',
     },
     {
       kind: 'p',

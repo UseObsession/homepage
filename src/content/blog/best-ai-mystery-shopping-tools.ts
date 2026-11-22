@@ -343,7 +343,7 @@ export const post: BlogPost = {
           CONVERTICA +
           '). Enter a website and watch an AI shopping agent try to buy in a real browser, step by step, with a screenshot of each problem. It never pays or orders, and it identifies itself as Convertica’s audit.',
         '**Price as listed:** free, up to 3 runs a day.',
-        '**Where it stops:** a run ends at checkout, after 25 steps or 4 minutes, or at a login page or a CAPTCHA, a puzzle that blocks automated visitors. It doesn’t test payments or order emails.',
+        '**Where it stops:** a run ends at checkout, after 25 steps or 4 minutes, or at a login page. It doesn’t test payments or order emails.',
         '**Best for:** a quick free look at where an AI shopper gets stuck.',
       ],
     },
@@ -441,7 +441,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-a-customer-got', text: 'What a customer actually got' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Each journey gets its own new customer and inbox, so every email after a sign-up, a basket or a checkout is kept, dated, and so is the reminder that never comes. A tool that ends its run at the checkout page records the checkout and nothing that follows. Where a store puts a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the record names the step it couldn’t reach.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Each journey gets its own new customer and inbox, so every email after a sign-up, a basket or a checkout is kept, dated, and so is the reminder that never comes. A tool that ends its run at the checkout page records the checkout and nothing that follows.',
     },
 
     { kind: 'h3', id: 'client-stores', text: 'Stores agencies show as clients, walked on a phone' },
@@ -521,7 +521,7 @@ export const post: BlogPost = {
         ['UndercoverAgent', '200+ hard customer scenarios and a weekly brief', '$500 a week for 1 live agent', '1 live agent per retainer', 'A weekly brief on 1 live bot'],
         ['AI Store Shopper', 'Grades whether an AI shopping agent can find, read and buy', 'Free scan\n$149 full check\n$29.99 a month weekly', 'US merchants, no sign-up or order', 'US stores checking AI shopper access'],
         ['Checkout UX Analyst (StoreSpark)', 'An AI first-time shopper scores checkout, with screenshots', '$5 or $15 a month', 'Shopify checkout, 1 or 10 analyses a month', 'Small Shopify stores'],
-        ['Convertica AI Agent Checkout Test', 'Watch an AI agent try to buy, step by step', 'Free, 3 runs a day', 'Ends at checkout, a login page or a CAPTCHA', 'A quick free look'],
+        ['Convertica AI Agent Checkout Test', 'Watch an AI agent try to buy, step by step', 'Free, 3 runs a day', 'Ends at checkout or a login page', 'A quick free look'],
         ['Gen.QA', 'Generated personas test a site or app, with a fix per finding', 'Free plan\nPaid: not listed', 'Nothing on inboxes', 'Product teams before a release'],
         ['S-PRO Mystery Shopper AI Suite', 'Persona agents across many channels, with competitor benchmarks', 'Not listed', 'First phase covers public surfaces', 'Large banking, insurance and retail programmes'],
         ['Shoptest', 'Scheduled cart and checkout journeys, with alerts', '$99, $249 or $499 a month\n30 days free', 'Shopify only, stops before payment', 'Alerts when a Shopify checkout breaks'],
@@ -567,10 +567,6 @@ export const post: BlogPost = {
         {
           q: 'Can AI mystery shopping tools test the emails a store sends?',
           a: 'Only a tool with its own inbox that waits can. AI Store Shopper and Convertica never sign up or order, and Shoptest’s pages don’t say it checks emails. S-PRO lists email among its channels. Obsession gives each journey its own inbox and keeps every email that arrives, dated, to the end of the wait, so a reminder that never comes shows as a gap.',
-        },
-        {
-          q: 'Can an AI mystery shopper get past a CAPTCHA?',
-          a: 'None of these tools’ pages says it solves one. Convertica’s runs end at a CAPTCHA, and AI Store Shopper can’t check stores behind Cloudflare’s bot protection. An Obsession agent never gets round a CAPTCHA or a bot block either. Where a store puts one in front of a step, the record names the step it couldn’t reach.',
         },
       ],
     },

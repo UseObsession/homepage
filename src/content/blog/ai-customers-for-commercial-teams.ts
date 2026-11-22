@@ -250,7 +250,6 @@ export const post: BlogPost = {
       items: [
         '**A new customer sees what new customers get.** Engaged subscribers and past buyers may receive other emails.',
         '**It records what arrived, and not why.** The cause sits in the company’s own tools.',
-        '**It stops at a bot wall or a CAPTCHA,** and names the step it couldn’t test.',
         '**Some teams can wait.** A team with few competitors, no paid traffic and rare changes covers its questions by hand once a month.',
         '**Client stores need the client’s OK, and prospects get only the public sign up.** This is not legal advice.',
       ],

@@ -502,7 +502,6 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Bot checks.** A CAPTCHA is a puzzle that blocks automated visitors. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test.',
         '**Payment.** It never uses fake payment details. It spends only on a card capped at a budget the brand sets, for a job it approved, like a test order on its own store that the AI customer refunds. With no budget, every checkout stops before payment.',
         '**People.** It says it’s an AI whenever it talks to a person, by chat, email or phone.',
         '**The cause.** It sees what any shopper sees. Why a store sent something sits in the store’s own tools: the Klaviyo flow, the Shopify settings, the app.',

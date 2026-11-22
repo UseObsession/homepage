@@ -174,7 +174,6 @@ export const post: BlogPost = {
         '**Read at 4, 8, 12, 24 and 48 hours.** Every store runs its reminders on its own clock, so an email counts as missing only once its 48 hours have passed.',
         '**Stops before payment.** The accounts never place an order, and every email counted went to one of the index’s own accounts, never to a store’s customers.',
         '**Kept as it arrived.** Each email is kept with the minute it arrived and its subject, with links, tracking images and the account’s name and address taken out.',
-        '**Blocked steps are named.** The accounts never get round a CAPTCHA or a bot check, and the store’s entry, the page the index keeps for it, names the step they couldn’t reach.',
         '**Still subscribed after 48 hours.** The accounts stay on each store’s list, and a fresh sign-up can run [every step again each week](/use-cases/leak-checks-for-ecommerce-stores), so a flow that stops sending shows up that week.',
       ],
     },

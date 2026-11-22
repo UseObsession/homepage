@@ -88,7 +88,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'An Obsession agent never gets round a CAPTCHA or a bot block. Where a site puts one in front of a step, the record of that visit names the step it couldn’t reach. The full set of lines is on [the page for companies an Obsession agent visits](/agents).',
+      text: 'The full set of lines every Obsession agent keeps is on [the page for companies an Obsession agent visits](/agents).',
     },
     {
       kind: 'faq',

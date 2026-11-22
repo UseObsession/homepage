@@ -328,7 +328,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Every agent says it’s an AI when it talks to a person, and none gets round a CAPTCHA or a bot block, as the [agents page](/agents) sets out. Collecting as a customer this way is what the term [AI customers](/blog/ai-customers) names. The wider case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
+      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Every agent says it’s an AI when it talks to a person, as the [agents page](/agents) sets out. Collecting as a customer this way is what the term [AI customers](/blog/ai-customers) names. The wider case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
     },
     {
       kind: 'cta',

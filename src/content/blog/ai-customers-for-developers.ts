@@ -163,7 +163,7 @@ export const post: BlogPost = {
         BOT_AUTH +
         ') lets bots and agents sign their requests with HTTP message signatures, and [Shopify’s Storefront API](' +
         SHOPIFY_STOREFRONT +
-        ') gives signed traffic higher rate limits than unsigned bots. An AI customer never gets round a CAPTCHA or a bot wall. The report names the step it couldn’t test.',
+        ') gives signed traffic higher rate limits than unsigned bots.',
     },
 
     { kind: 'h3', id: 'waiting', text: 'Durable waiting' },
@@ -285,7 +285,7 @@ export const post: BlogPost = {
           'Obsession (ours): 5 verbs over MCP, the API and SDKs',
           'Customer agents with an inbox, number and browser\nShared history from day one\nEvidence with its DKIM result',
           'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
+          'Stops before payment and at any identity check',
           'Agents that need to be a real customer at many companies',
         ],
       ],
@@ -362,7 +362,6 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A bot wall or a CAPTCHA stops it,** and the report names the step it couldn’t test.',
         '**A new customer sees what new customers get.** Long standing customers may receive other emails and other inbox placement.',
         '**It records outputs.** Why a company sent something sits in that company’s own systems.',
         '**Some journeys need a real purchase,** on a card its owner funds.',

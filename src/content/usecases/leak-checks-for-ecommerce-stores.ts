@@ -312,10 +312,6 @@ export const study: UseCaseStudy = {
         a: 'Only you. Anyone can see that a store is covered, and since when, but never who asked.',
       },
       {
-        q: 'What if a CAPTCHA or a bot wall stops it?',
-        a: 'It stops too, and the check names the step it couldn’t reach. It never gets round one.',
-      },
-      {
         q: 'Do we have to be on Shopify?',
         a: 'No. It works on any store a customer can reach. On Shopify, connecting it lets a theme publish start a check by itself.',
       },

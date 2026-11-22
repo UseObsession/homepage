@@ -83,7 +83,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'An Obsession agent never gets round a CAPTCHA or a bot block, and never goes past an identity check. Where a site puts one in front of a step, the record names the step it couldn’t reach. The lines every agent keeps are on [the page for companies an agent visits](/agents).',
+      text: 'An Obsession agent never goes past an identity check. Where a site puts one in front of a step, the record names the step it couldn’t reach. The lines every agent keeps are on [the page for companies an agent visits](/agents).',
     },
     {
       kind: 'faq',

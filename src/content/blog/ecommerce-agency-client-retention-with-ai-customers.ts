@@ -159,7 +159,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. At each client’s store they run up to 4 journeys: sign up, browse, leave a basket and start a checkout. Each journey has its own inbox, so a reminder that never came, came 10 hours late or dropped the price shows up with its time. Where a store puts a CAPTCHA or bot check in front of a step, the record names the step it couldn’t reach.',
+      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. At each client’s store they run up to 4 journeys: sign up, browse, leave a basket and start a checkout. Each journey has its own inbox, so a reminder that never came, came 10 hours late or dropped the price shows up with its time.',
     },
     {
       kind: 'p',
@@ -331,7 +331,6 @@ export const post: BlogPost = {
       items: [
         '**An Obsession agent for each job at each store.** Each has its own inbox, phone number and browser, so every email traces back to the one action that triggered it.',
         '**Everything a customer meets.** The emails, the page behind each ad, prices and offers, the basket, checkout and codes, the store’s chat and AI agent, and what AI assistants say about the brand.',
-        '**Bot checks.** Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test, so the agency knows exactly what to check by hand.',
         '**Scale.** It runs at 300, 1,000 or 5,000 brands a month. It is built for millions of companies, each looked up in one call, and every store stays followed for as long as the agency wants.',
         '**Pricing.** Priced per call or per company watched, never per token, with a spending cap on every key.',
       ],

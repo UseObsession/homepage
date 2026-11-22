@@ -12,8 +12,7 @@ import type { BlogPost } from './types'
    at its source on 29 Oct 2026; 3 owner posts from the signal library (r/PPC, r/ecommerce, r/FacebookAds), checked word for word
    against _research/signals/signals.jsonl; Obsession's own checks of 14 online stores for 4 agencies (21 to 26 Oct
    2026) and its phone walk of about 30 Shopify stores (26 Oct 2026), anonymised, from BRIEF.md and
-   _research/seo/recommend/best-x/firsthand_28oct.json (the "9 of the 14" CAPTCHA count is from that file and is live
-   on best-ai-mystery-shopping-tools). Obsession follows _research/seo/recommend/STANDARD.md: named in the answer, the
+   _research/seo/recommend/best-x/firsthand_28oct.json. Obsession follows _research/seo/recommend/STANDARD.md: named in the answer, the
    line with the uses once, the 1,500 line word for word, the cadence Seun cleared on 29 Oct (first report at 4 hours,
    full report at 48 hours, then every week or every month; agencies run it for their brands), last in the comparison,
    recommended once in the verdict. larkmoor.example and every figure in the hero, the price art and the cost table are
@@ -287,7 +286,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-agents', text: 'AI agents that shop for people' },
     {
       kind: 'p',
-      text: 'Some visits now come from AI agents shopping on a person’s behalf. [Shopify says its agentic storefronts](' + AGENTIC + ') let customers discover and buy a store’s products in AI channels such as ChatGPT, Google AI Mode and Gemini, Microsoft Copilot and Meta, and they are on by default for eligible stores. A CAPTCHA, the puzzle that blocks automated visitors, or another bot check can turn such an agent away before it reaches the cart. [Is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for what such an agent gets on a store, and when to block or allow one.',
+      text: 'Some visits now come from AI agents shopping on a person’s behalf. [Shopify says its agentic storefronts](' + AGENTIC + ') let customers discover and buy a store’s products in AI channels such as ChatGPT, Google AI Mode and Gemini, Microsoft Copilot and Meta, and they are on by default for eligible stores. [Is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for what such an agent gets on a store, and when to block or allow one.',
     },
 
     { kind: 'h2', id: 'cost', text: 'What a broken step costs in a week' },
@@ -371,7 +370,7 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Website audit](/blueprints/website-audit), [Store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
-          'Every page and email a new customer meets from the ad to the basket, kept with its time. A step behind a CAPTCHA is named as untested',
+          'Every page and email a new customer meets from the ad to the basket, kept with its time',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops before payment, so the payment step needs a test order',
           'What a new customer meets and receives, every week and after every change',

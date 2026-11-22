@@ -321,7 +321,7 @@ export const post: BlogPost = {
           'Obsession (ours): Prospect intelligence, Account watch, API and MCP',
           'What each account sends and shows its customers, dated with screenshots',
           'Early access, onboarding teams now\nPriced per call or per company watched',
-          'Stops at an identity check or a CAPTCHA, and names the step',
+          'Stops at an identity check, and names the step',
           'A dated page 1 for every open deal',
         ],
       ],

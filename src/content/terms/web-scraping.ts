@@ -82,7 +82,7 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Can a scraper read pages behind a login?',
-          a: 'When someone gives it an account and writes the steps to sign in, and the site doesn’t stop it with a CAPTCHA or a bot check. It still reads only what that account shows on the day it runs.',
+          a: 'When someone gives it an account and writes the steps to sign in. It still reads only what that account shows on the day it runs.',
           link: { label: 'Login wall, defined', to: '/glossary/login-wall' },
         },
         {

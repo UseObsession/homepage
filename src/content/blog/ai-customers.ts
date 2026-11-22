@@ -28,7 +28,6 @@ const MILLED = 'https://milled.com/'
 const AI_ACT = 'https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50'
 const AI_ACT_113 = 'https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-113'
 const INVALID_CLICKS = 'https://support.google.com/google-ads/answer/42995?hl=en'
-const BOT_AUTH = 'https://blog.cloudflare.com/signed-agents/'
 const GMAIL_SENDERS = 'https://support.google.com/a/answer/81126?hl=en'
 
 export const post: BlogPost = {
@@ -223,9 +222,6 @@ export const post: BlogPost = {
           AI_ACT_113 +
           ').',
         '**It never uses fake payment details or places a fraudulent order.** A real order on a card its owner funds is a real purchase.',
-        '**It never gets round a CAPTCHA or a bot wall,** and never disguises itself to pass one. The report names the step it couldn’t test. Standards for AI agents to identify themselves to websites, such as [Cloudflare’s Web Bot Auth](' +
-          BOT_AUTH +
-          '), point the same way.',
         '**It never clicks a competitor’s paid ads at volume.** [Google’s Ads policy](' +
           INVALID_CLICKS +
           ') counts clicks from automated tools as invalid traffic.',
@@ -326,7 +322,6 @@ export const post: BlogPost = {
     { title: 'Milled', publisher: 'Milled', url: MILLED },
     { title: 'Article 50: transparency obligations', publisher: 'European Commission, AI Act Service Desk', url: AI_ACT },
     { title: 'Article 113: entry into force and application', publisher: 'European Commission, AI Act Service Desk', url: AI_ACT_113 },
-    { title: 'The age of agents: cryptographically recognizing agent traffic', publisher: 'Cloudflare Blog', url: BOT_AUTH, date: '2025-08-28' },
     { title: 'Invalid clicks: definition', publisher: 'Google Ads Help', url: INVALID_CLICKS },
   ],
   related: ['how-ai-customers-work', 'why-ai-customers-matter', 'hire-ai-customers', 'recipe:mystery-shopper', 'recipe:competitor-tracking', '/sample-output'],

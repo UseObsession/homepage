@@ -118,7 +118,7 @@ export const ref: ReferencePage = {
     {
       kind: 'note',
       title: 'How Obsession’s agents behave',
-      text: 'An Obsession agent signs up the way any customer can, says it’s an AI when it talks to a person, and never gets round a CAPTCHA or a bot block. Where a site puts one in front of a step, the record names the step it couldn’t reach. The full lines are on [the page for companies an agent visits](/agents).',
+      text: 'An Obsession agent signs up the way any customer can and says it’s an AI when it talks to a person. The full lines are on [the page for companies an agent visits](/agents).',
     },
 
     {

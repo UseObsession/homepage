@@ -389,7 +389,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking), [Delivery monitoring](/blueprints/delivery-monitoring), [Account watch](/blueprints/account-watch)',
           'What every store on the list and every account sends its customers, each email and text dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
+          'Stops before payment and at any identity check',
           'What each store’s customers receive, as proof for the first email',
         ],
       ],

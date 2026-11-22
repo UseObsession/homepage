@@ -418,7 +418,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Ad landing check](/blueprints/ad-landing-check), [Website audit](/blueprints/website-audit), [Prospect intelligence](/blueprints/prospect-intelligence), [Ad tracking](/blueprints/ad-tracking)',
           'What follows a live ad: the page, the pop up’s offer, every email and the code at checkout, each dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
+          'Stops before payment and at any identity check',
           'What shoppers get after the click, sign up and checkout, kept as proof',
         ],
       ],

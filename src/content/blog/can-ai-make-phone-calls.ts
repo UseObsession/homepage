@@ -331,7 +331,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every Obsession agent says it’s an AI when it talks to a person. Each keeps to the rules on [its own page](/agents): no fake payment details, and no getting round a CAPTCHA or a bot block.',
+      text: 'Every Obsession agent says it’s an AI when it talks to a person. Each keeps to the rules on [its own page](/agents), and never uses fake payment details.',
     },
     {
       kind: 'p',

@@ -230,7 +230,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The outside world sets its own pace. Cap concurrency per domain so sign ups arrive at a customer’s pace, and record a CAPTCHA or bot wall as a step the AI customer couldn’t test, because it never gets round one. Where 2 users watch the same company, 1 shared AI customer gives the second user the history the first one built.',
+      text: 'The outside world sets its own pace. Cap concurrency per domain so sign ups arrive at a customer’s pace. Where 2 users watch the same company, 1 shared AI customer gives the second user the history the first one built.',
     },
 
     { kind: 'h3', id: 'learn-once', text: '5. Learning a site once and running it as code' },
@@ -474,7 +474,7 @@ export const post: BlogPost = {
           'Obsession (ours): 5 verbs over MCP, the API and SDKs',
           'Accounts kept open at any company, for months\nShared history from day one\nEvidence with its DKIM result',
           'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
+          'Stops before payment and at any identity check',
           'Agents that must stay a customer of many companies, with proof',
         ],
       ],

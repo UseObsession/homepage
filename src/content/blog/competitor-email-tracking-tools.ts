@@ -433,7 +433,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The inbox can be read at 4, 12, 24 or 48 hours, or watched for as long as you want, and an email is called missing only once the window you chose has closed. Where a store puts a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the record names the step it couldn’t reach.',
+      text: 'The inbox can be read at 4, 12, 24 or 48 hours, or watched for as long as you want, and an email is called missing only once the window you chose has closed.',
     },
     {
       kind: 'p',

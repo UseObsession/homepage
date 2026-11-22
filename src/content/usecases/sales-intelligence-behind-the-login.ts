@@ -122,7 +122,7 @@ export const study: UseCaseStudy = {
       { title: 'A broken release', line: 'A step that worked last week fails: a sign-up button, a verify email, a payment page.' },
       { title: 'A new programme', line: 'An account launches texts, loyalty, an AI chat or a new market.' },
       { title: 'A competitor’s price change', line: 'A competitor emails its customers a price rise, a retired plan or a new limit.' },
-      { title: 'A new step at the door', line: 'An account adds a CAPTCHA, an identity check or a longer form to its sign-up.' },
+      { title: 'A new step at the door', line: 'An account adds an identity check or a longer form to its sign-up.' },
     ],
     answer: 'Each signal arrives dated, with the email or screenshot behind it. It covers every account on your list, every day, for as long as you sell to them.',
   },
