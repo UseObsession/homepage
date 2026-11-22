@@ -1,4 +1,4 @@
-import type { BlueprintPlanCard, BlueprintPricing, BlueprintTier, Cta, Recipe } from './types'
+import type { BlueprintPlanCard, BlueprintPricing, BlueprintPricingOption, BlueprintTier, BlueprintVariant, Cta, Recipe } from './types'
 
 /* What 1 tier counts, for a recipe whose file doesn't say (types.ts Recipe `per`). */
 const PER = 'site'
@@ -49,11 +49,13 @@ export const recipePage = {
   /* The pricing section, after the run (#pricing), on every recipe page (founders, 22 Nov 2026): what a typical month of
      the blueprint costs. A blueprint run is paid from the plan's credit at the piece rates, like any piece, so the
      section shows months, never plans to buy (blueprintPricing below). Every blueprint's first run is free
-     (content/blueprint-tiers.ts fails the build otherwise). */
+     (content/blueprint-tiers.ts fails the build otherwise). The 1 line under the heading says, for every card, how its
+     price is worked out and paid (founders, 22 Nov 2026: no such line on each card). `switch` names the switch of a
+     blueprint whose table changes with the buyer (mystery shopping: Agencies or Ecommerce brands), read aloud. */
   pricing: {
     heading: (r: Pick<Recipe, 'name'>) => `What a typical month of ${lowerFirst(r.name)} costs.`,
-    line: (_tiers: BlueprintTier[]) =>
-      'Three months, small to large, worked out from what each run uses at the piece rates. Every run is paid from your plan’s monthly credit, then as you go, and your first run is free.',
+    line: 'Prices are worked out from what each run uses and paid from your plan’s credit.',
+    switch: 'Prices for',
     /* The hero's second path, under its form, to the section (its anchor). */
     link: { label: 'See pricing', to: '#pricing' } satisfies Cta,
   },
@@ -61,40 +63,25 @@ export const recipePage = {
 
 /* ---- What a typical month of each blueprint costs (components/BlueprintPricing; founders, 22 Nov 2026) ----
    A blueprint's typical months (content/catalog.ts, worked out by the pricing engine in content/blueprint-tiers.ts) as
-   cards: each card the month it describes, who it's for, "About $N a month", the line on how it's worked out and paid,
-   what a month like it brings and its button. The free run comes first; the featured month is raised with the row's 1
-   primary button. No figure is typed here or in a blueprint's file, and no card is a plan to buy. Under the cards, 1
-   line sends the reader to every rate. */
+   cards: each card the month it describes and its price ("$214 a month"), what a month like it brings and its button;
+   the free run is "Your first run" and "Free". The featured month is raised with the row's 1 primary button. No figure
+   is typed here or in a blueprint's file, and no card is a plan to buy. Under the cards, 1 line sends the reader to
+   every rate. */
 
 const JOIN = '#join'
 const RATES = '/pricing/rates'
 
-/* "Mystery shopping for agencies" inside a sentence: "mystery shopping for agencies", but "QA ..." and "AI ..." stay. */
+/* "Mystery shopping" inside a sentence: "mystery shopping", but "QA ..." and "AI ..." stay. */
 const lowerFirst = (s: string) => (/^[A-Z][a-z]/.test(s) ? s.charAt(0).toLowerCase() + s.slice(1) : s)
 /* "$206", "$5.50". */
 const dollars = (n: number) => `$${n.toLocaleString('en-GB', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 })}`
 
-/* What the month costs when paid from a plan's credit, said only where the whole month fits inside that credit (a plan's
-   lower rates apply only to usage paid from its credit; past it, list rates; founders 22 Nov 2026). */
-const fromCredit = (t: BlueprintTier) =>
-  t.startupFits && t.scaleFits
-    ? `About ${dollars(t.startup)} when paid from Startup’s credit, ${dollars(t.scale)} from Scale’s.`
-    : t.scaleFits
-      ? `About ${dollars(t.scale)} when paid from Scale’s credit.`
-      : 'More than a plan’s credit covers: past it, usage is billed at list rates.'
-
-/* 1 month as its card: the free run ("Free", what it covers, on us, and what it would cost at the piece rates), or a
-   typical month ("About", "$206", "a month", and how that's worked out and paid). */
+/* 1 month as its card: "Your first run" and "Free", or the month it describes and "$214" "a month". */
 const tierCard = (t: BlueprintTier, i: number): BlueprintPlanCard => ({
   id: `month-${i}`,
   name: t.free ? 'Your first run' : t.covers,
-  for: t.for,
-  lead: t.free ? undefined : 'About',
   price: t.free ? 'Free' : dollars(t.estimate),
-  per: t.free ? '' : 'a month at list rates',
-  note: t.free
-    ? `${t.covers}, on us. At the piece rates it would cost about ${dollars(t.estimate)}.`
-    : `${fromCredit(t)} Worked out from what each run uses at the piece rates and paid from your plan’s credit, then at list rates, so you pay only for what runs.`,
+  per: t.free ? '' : 'a month',
   includes: t.includes,
   featured: t.featured,
   cta: { label: 'Start with a free run', to: JOIN },
@@ -107,8 +94,14 @@ export function blueprintPricing(r: { per?: string; tiers: BlueprintTier[] }): B
     tag: '',
     includes: 'In a month like this',
     plans: r.tiers.map(tierCard),
-    more: { line: `More ${r.per ?? PER}s? Each one adds what its runs use, at the same piece rates.`, link: { label: 'See every rate', to: RATES } },
+    more: { line: `More ${r.per ?? PER}s? Each adds what its runs use.`, link: { label: 'See every rate', to: RATES } },
   }
+}
+
+/* A blueprint's tables as its pricing section shows them: 1, or 1 per variant behind the switch, its own first. */
+export function blueprintPricings(r: { per?: string; tiers: BlueprintTier[]; variants: BlueprintVariant[] }): BlueprintPricingOption[] {
+  if (!r.variants.length) return [{ id: '', label: '', pricing: blueprintPricing(r) }]
+  return r.variants.map((v) => ({ id: v.id, label: v.label, pricing: blueprintPricing(v) }))
 }
 
 /* Whether a run is the real September run rather than an example (content/recipes/mystery-shopper.ts). */

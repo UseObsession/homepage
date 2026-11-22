@@ -187,12 +187,13 @@ export const page: Page = {
   },
 }
 
-/* #pricing (James, 21 Nov 2026): 1 tab per blueprint a brand's marketing team runs, its own store first, then the
-   page's own jobs (each opening that blueprint's own pricing table, components/BlueprintPricingTabs, from
-   content/catalog). */
+/* #pricing (James, 21 Nov 2026): 1 tab per blueprint a brand's marketing team runs, its own store first (mystery
+   shopping, opening on its Ecommerce brands months: founders, 22 Nov 2026), then the page's own jobs (each opening that
+   blueprint's own pricing table, components/BlueprintPricingTabs, from content/catalog). */
 export const pricing: PricingTabs = {
   heading: 'What a typical month of each blueprint costs.',
-  line: 'Pick a blueprint to see a small, medium and large month, worked out at the piece rates and paid from your plan’s credit. Every blueprint starts with a free run.',
+  line: 'Prices are worked out from what each run uses and paid from your plan’s credit.',
   label: 'Blueprints for marketing teams',
-  recipes: ['store-mystery', 'competitor', 'email-sms', 'prices', 'ads', 'delivery'],
+  recipes: ['mystery', 'competitor', 'email-sms', 'prices', 'ads', 'delivery'],
+  variant: 'mystery-shopper-brands',
 }

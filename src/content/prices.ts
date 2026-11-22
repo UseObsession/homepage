@@ -26,7 +26,7 @@ export type Price = {
   per?: string
   note?: string
   /* The rate on Startup and on Scale, where it is lower than `amount` (the rate ladder, founders 22 Nov 2026: Startup
-     10% off, Scale 20% off), or, for a fixed price, the same price written out: its amount and, where it differs, its
+     10% off, Scale 15% off since 22 Nov 2026, was 20%), or, for a fixed price, the same price written out: its amount and, where it differs, its
      unit. */
   startup?: { amount: string; unit?: string }
   scale?: { amount: string; unit?: string }
@@ -94,7 +94,7 @@ export type Plan = {
   support: string | null
   seats: boolean
   spendCap: boolean
-  /* Rates lower than list (Startup 10% off, Scale 20% off): the share off every piece but model tokens, and what the
+  /* Rates lower than list (Startup 10% off, Scale 15% off): the share off every piece but model tokens, and what the
      credit is worth at list rates. */
   lowerRates: boolean
   off: number
@@ -129,7 +129,7 @@ const scalePlan = planOf('scale')
 
 /* ---- The rates on each plan ---- */
 
-/* Each piece's rate on a plan, from the engine: list on Free and Developer, 10% off on Startup, 20% off on Scale. */
+/* Each piece's rate on a plan, from the engine: list on Free and Developer, 10% off on Startup, 15% off on Scale. */
 const ratesOf = (id: PlanId) => Object.fromEntries(planRates(planOf(id), source).map((r) => [r.id, r]))
 const startupRate = ratesOf('startup')
 const scaleRate = ratesOf('scale')
@@ -190,7 +190,7 @@ export const prices = {
     value: retail('register'),
     per: 'month',
     fixed: !!register.fixed,
-    note: `Taken from your account. US carriers require it for business texting, and no plan includes it. We file it for you, and if the carriers reject a filing, sending it again costs ${money(source.primitives.phone.registration.reviewOnce.value)}.`,
+    note: `US carriers require it, and no plan includes it. We file it for you, and a rejected filing costs ${money(source.primitives.phone.registration.reviewOnce.value)} to send again.`,
     startup: register.fixed || startupRate.register?.discounted ? registerOn(startupRate.register) : undefined,
     scale: register.fixed || scaleRate.register?.discounted ? registerOn(scaleRate.register) : undefined,
   },
@@ -209,7 +209,7 @@ export const prices = {
   },
   chat: { piece: 'messaging', name: 'Slack and Telegram', amount: amountOf('chat'), unit: 'on every plan' },
   persona: { piece: 'personas', name: 'Persona', amount: amountOf('persona'), unit: 'while it waits', note: 'You pay only for the pieces it uses.' },
-  log: { piece: 'personas', name: 'Event log', amount: amountOf('log'), unit: `per ${perWord(displayPer('log'))} events`, value: retail('log'), per: 'event', note: `Every event kept at no extra charge for ${eventLogKeptWords}, and longer on ${planNames.enterprise}.`, ...ladder('log') },
+  log: { piece: 'personas', name: 'Event log', amount: amountOf('log'), unit: `per ${perWord(displayPer('log'))} events`, value: retail('log'), per: 'event', note: `Kept for ${eventLogKeptWords}, and longer on ${planNames.enterprise}.`, ...ladder('log') },
   tokens: {
     piece: 'personas',
     name: 'Model tokens',
@@ -280,9 +280,9 @@ export const ladderRule = {
 }
 
 /* Where Scale starts to cost no more than Startup, in usage at list rates (model tokens aside). A credit spent at its
-   plan's rates covers credit / (1 - off) of usage at list (Startup's $100 about $111, Scale's $500 $625), and usage past
+   plan's rates covers credit / (1 - off) of usage at list (Startup's $100 about $111, Scale's $500 about $588), and usage past
    it is billed at list rates. So Startup bills its fee plus usage at list past $111, and Scale stays at its fee until
-   $625: Scale costs no more once usage at list passes Scale's fee less Startup's plus Startup's credit at list
+   about $588: Scale costs no more once usage at list passes Scale's fee less Startup's plus Startup's credit at list
    ($499 - $99 + $111 = about $511). */
 export const scaleFrom = Math.round((scalePlan.monthly ?? 0) - (startupPlan.monthly ?? 0) + creditWorth(startupPlan, source))
 

@@ -59,41 +59,10 @@ export const recipe: Recipe = {
   per: 'flow',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'A sign up with its own inbox and phone number',
-        'Every email, text and login code, timed against when it was due',
-        'Codes tried at checkout, stopping before payment',
-        'Anything missing, flagged the day it was due',
-      ],
-    },
-    {
-      name: 'Launch',
-      includes: [
-        'A new user after each release, or twice a week',
-        '1 country, with a local number',
-        'iPhone, Android or desktop',
-        'Email and Slack alerts the day a message goes missing',
-        'Results by webhook, API or MCP',
-      ],
-    },
-    {
-      name: 'Growth',
-      includes: [
-        'Started by your release pipeline, by webhook or API',
-        'iPhone, Android and desktop',
-        'A ticket drafted for your OK when a message goes missing',
-      ],
-    },
-    {
-      name: 'Global',
-      includes: [
-        'A local number and home connection in each country',
-        'Every message compared across releases',
-        'A report you can share after each release',
-      ],
-    },
+    { name: 'Free', includes: ['A sign up with its own inbox and phone number', 'Every email, text and login code, timed against when it was due', 'Anything missing, flagged the day it was due'] },
+    { name: 'Launch', includes: ['A new user after each release, or twice a week', 'iPhone, Android or desktop', 'Alerts the day a message goes missing'] },
+    { name: 'Growth', includes: ['Started by your release pipeline', 'A ticket drafted for your OK when a message goes missing'] },
+    { name: 'Global', includes: ['A local number and home connection in each country', 'Every message compared across releases'] },
   ],
 
   run: {

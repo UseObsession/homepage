@@ -1,100 +1,89 @@
 import type { Recipe } from '../types'
 
-/* Mystery shopping for agencies (/blueprints/mystery-shopper; the slug is kept because many pages link here). Renamed
-   from Agentic mystery shopping on 21 Nov 2026, when James split mystery shopping in 2: this one is for agencies (CRO,
-   retention, and email and SMS agencies) who check many client stores, each with its owner's OK; a brand checking its
-   own store has content/recipes/store-mystery-shopper.ts. Personas sign up, browse, fill a basket and leave at checkout
-   before payment (or pay with a card the client provides), wait as long as the agency chooses (48 hours by default;
-   James, 22 Nov: agencies want different lengths, so the page never fixes one), wake on every email and text, and
-   bring back every event to the event log, client by client. Its screen is the agency's typed task (15 client stores).
-   It keeps the 1 real run, Brand G (sample.ts), stated exactly: 4 journeys from the UK, a £40 Body Care Gift Set left
-   at 02:57 and a £21 deodorant left at checkout at 03:11 on Tue 22 Sep 2026, 48 hours watched, 0 reminders, browse 3
-   messages, welcome 2 (too few to call), 15 screenshots and 5 messages kept. No signature claimed. The clients in the
-   comparison table are invented. Its forms name agencies in their source, so the card asks for client stores
-   (lib/join.ts offerOf).
-   Tiers (James, 21 Nov 2026) scale by how many client stores it covers, each shopped in full once a month; their sizes,
-   prices and cost are in the pricing JSON (content/blueprint-tiers.ts), whose Agency tier is the founders' anchor.
-   Buyer hints (directional): a CRO agency founder named $300 a month for mystery shopping. */
+/* Mystery shopping (/blueprints/mystery-shopper; the slug owns the search phrase "mystery shopping software" and most
+   links). One page for ecommerce brands and the agencies that look after their stores (founders, 22 Nov 2026): James
+   split it in 2 on 21 Nov (this page for agencies, store-mystery-shopper for a brand's own store) and the founders
+   merged them back the next day, because Home linked one and the nav the other. store-mystery-shopper now redirects
+   here (public/_redirects). The page keeps the agency page's structure and its 1 real run; the store page's useful
+   words joined it (how often to run, what a shop checks, how it differs from a shopper simulation, week on week).
+   Its pricing table switches between Agencies (client stores, each shopped every month) and Ecommerce brands (1 store,
+   shopped monthly, weekly or daily): 2 variants of 1 blueprint in the pricing JSON (mystery-shopper and
+   mystery-shopper-brands), whose tiers' words are `tiers` and `variants` below.
+   Personas sign up, browse, fill a basket and leave at checkout before payment (or pay with a card the buyer or the
+   client provides), wait as long as the buyer chooses (48 hours by default; James, 22 Nov: never a fixed length on the
+   page), wake on every email and text, and bring back every event to the event log, store by store. Its screen is the
+   agency's typed task (15 client stores). It keeps the 1 real run, Brand G (sample.ts), stated exactly: 4 journeys from
+   the UK, a £40 Body Care Gift Set left at 02:57 and a £21 deodorant left at checkout at 03:11 on Tue 22 Sep 2026,
+   48 hours watched, 0 reminders, browse 3 messages, welcome 2 (too few to call), 15 screenshots and 5 messages kept.
+   No signature claimed. The clients in the comparison table are invented. A shopper simulation
+   (content/blog/shopify-simgym-review-ai-shoppers-vs-ai-customers.ts) is never named here. Its forms name no audience
+   in their source, so the card asks for a site, "yours, or a client's with their OK" (lib/join.ts offerOf: own).
+   Buyer hints (directional): a CRO agency founder named $300 a month for mystery shopping; a store monitor on the
+   market charges $19 to $199 a store a month by how often it runs (unnamed). */
 
 export const recipe: Recipe = {
   id: 'mystery',
   slug: 'mystery-shopper',
-  name: 'Mystery shopping for agencies',
+  name: 'Mystery shopping',
   group: 'Check your own journeys',
-  line: 'Personas shop every client store as new shoppers and bring back every email, text and reminder that followed, or the silence.',
-  gets: 'Every email and text each client store sends a new shopper, dated, and the reminders that never came.',
+  line: 'Personas shop a store as new shoppers and bring back every email, text and reminder that followed, or the silence.',
+  gets: 'Every email and text a store sends a new shopper, dated, and the reminders that never came.',
   kit: [
-    'A persona per journey, at every client store',
+    'A persona per journey, at your store or each client store',
     'Its own inbox, phone number and home connection',
     'Sign up, browse, basket and checkout',
     'Stops before payment and at any identity check',
     'Waiting as long as you choose, waking on each email and text',
-    'A report per client, every message dated',
+    'A report per store, every message dated',
   ],
 
   meta: {
     path: '/blueprints/mystery-shopper',
-    title: 'Mystery shopping software for agencies: every client store',
+    title: 'Mystery shopping software for ecommerce brands and agencies',
     description:
-      'Mystery shopping software for agencies: personas shop each client store as new shoppers, leave a basket before payment and keep every email and text.',
+      'Mystery shopping software for brands and agencies: personas shop each store as new shoppers, leave a basket before payment and keep every email and text.',
     answer:
-      'Mystery shopping for agencies sends personas through every client store you look after, as new shoppers, with each client’s OK. They sign up, browse, fill a basket and leave at checkout before payment. Then they wait as long as you choose and bring back every email and text, dated, client by client.',
+      'Mystery shopping sends personas through your store, or each client store with its owner’s OK, as new shoppers. They sign up, browse, fill a basket and leave at checkout before payment. Then they wait as long as you choose and bring back every email and text, dated, store by store.',
     ogImage: '/og/mystery-shopper.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Blueprints', path: '/blueprints' },
-      { name: 'Mystery shopping for agencies', path: '/blueprints/mystery-shopper' },
+      { name: 'Mystery shopping', path: '/blueprints/mystery-shopper' },
     ],
   },
 
   hero: {
-    headline: 'Personas shop every client store and show you whose reminder never came.',
-    sub: 'Mystery shopping for agencies sends personas through every client store you look after, as new shoppers, with each client’s OK. They sign up, browse, fill a basket and leave at checkout before payment. Then they wait as long as you choose and bring back every email and text, dated, client by client.',
+    headline: 'Personas shop your store, or every client store, and show you which reminder never came.',
+    sub: 'Mystery shopping sends personas through your store, or each client store with its owner’s OK, as new shoppers. They sign up, browse, fill a basket and leave at checkout before payment. Then they wait as long as you choose and bring back every email and text, dated, store by store.',
     screen: 'agencytask',
     capture: {
       kind: 'waitlist',
-      source: 'recipe-mystery-agencies-hero',
+      source: 'recipe-mystery-hero',
       button: 'Request early access',
       interest: 'mystery',
     },
   },
 
-  buyer: 'For CRO, retention, and email and SMS agencies with many client stores.',
+  buyer: 'For ecommerce brands, and the agencies that look after their stores.',
   unit: 'mystery shop',
   per: 'client store',
-  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  /* What each tier includes, by its name, at most 3 short lines (founders, 22 Nov 2026), never repeating what the card's
+     month already says. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). `tiers` are the
+     Agencies months; `variants` the Ecommerce brands months, under their id in the JSON. */
   tiers: [
+    { name: 'Free', includes: ['A full shop, from sign up to checkout', 'Every email, text and screenshot in your event log'] },
+    { name: 'Starter', includes: ['A report for each client', 'Alerts when a reminder goes missing', 'Every result by webhook, API or MCP'] },
+    { name: 'Agency', includes: ['Every client in one table', 'A row per store in Clay, Baserow or Supabase', 'Competitors shopped too, counted as stores'] },
+    { name: 'Scale', includes: ['Stores added from a list or by API', 'History and trends for each store'] },
+  ],
+  variants: [
     {
-      name: 'Free',
-      includes: [
-        'A full mystery shop: sign up, browse, basket and checkout',
-        'Waiting as long as you choose, waking on each email and text',
-        'Every email, text and screenshot in your event log',
-      ],
-    },
-    {
-      name: 'Starter',
-      includes: [
-        'A full mystery shop of each store, every month',
-        'Waiting as long as you choose after every shop, waking on each email and text',
-        'A report for each client, ready to share',
-        'Email and Slack alerts when a reminder goes missing',
-        'Every result by webhook, API or MCP',
-      ],
-    },
-    {
-      name: 'Agency',
-      includes: [
-        'Every client in one table, so you see who needs a call first',
-        'A row per store in Clay, Baserow or Supabase',
-        'A client’s competitors shopped too, counted as stores',
-      ],
-    },
-    {
-      name: 'Scale',
-      includes: [
-        'Client stores added from a list or by API',
-        'History and trends for each client store',
+      id: 'mystery-shopper-brands',
+      tiers: [
+        { name: 'Free', includes: ['A full shop, from sign up to checkout', 'Every email, text and screenshot in your event log'] },
+        { name: 'Monthly', includes: ['Alerts when an email or text goes missing', 'Every result by webhook, API or MCP'] },
+        { name: 'Weekly', includes: ['Each week beside the last', 'Alerts when an email or text goes missing'] },
+        { name: 'Daily', includes: ['Alerts the day a reminder stops', 'History and trends for your store'] },
       ],
     },
   ],
@@ -122,12 +111,12 @@ export const recipe: Recipe = {
 
   steps: [
     {
-      title: 'Add your client stores',
-      line: 'Paste the addresses, upload your client list or call the API. Each store is shopped with its owner’s OK.',
+      title: 'Add your stores',
+      line: 'Paste your store’s address, upload your client list or call the API. Each client store is shopped with its owner’s OK.',
     },
     {
       title: 'Define the personas',
-      line: 'A first-time shopper in Manchester on a phone, or a returning one in Texas on a desktop. The same personas can shop every client.',
+      line: 'A first-time shopper in Manchester on a phone, or a returning one in Texas on a desktop. The same personas can shop every store.',
     },
     {
       title: 'They sign up and fill a basket',
@@ -135,7 +124,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'They wait, and wake on every email',
-      line: 'They wait as long as you choose, so a reminder that never comes is in your event log too, filed under its client.',
+      line: 'They wait as long as you choose, so a reminder that never comes is in your event log too, filed under its store.',
     },
   ],
 
@@ -164,7 +153,7 @@ export const recipe: Recipe = {
       items: [
         {
           title: 'Before payment',
-          line: 'By default. Give it a payment card from the client and it completes the order, so the confirmation joins your event log.',
+          line: 'By default. Give it your own payment card, or one from the client, and it completes the order, so the confirmation joins your event log.',
         },
         { title: 'At an ID check', line: 'It stops at that step, and the event log keeps what the check asked for.' },
         { title: 'With a person', line: 'If anyone writes or calls, it says it’s an AI.' },
@@ -173,31 +162,31 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every client’s journeys land in your event log and the tools you already use.',
+    heading: 'Every store’s journeys land in your event log and the tools you already use.',
     items: [
-      { format: 'A report per client', line: 'Every step and message with its time, from the sign up to the last email, ready to share.' },
+      { format: 'A report per store', line: 'Every step and message with its time, from the sign up to the last email, ready to share with a client.' },
       { format: 'The receipts', line: 'Screenshots, each raw email with its sender checked, and texts as received.' },
       { format: 'The silences', line: 'A reminder that never came, with the inbox and the hours it was watched.' },
-      { format: 'One table', line: 'A row per client store in Clay, Baserow or Supabase.' },
-      { format: 'A webhook', line: 'Each new email and text the moment it lands.' },
-      { format: 'API and MCP', line: 'Add client stores from your own code, and read every event as a tool.' },
+      { format: 'Week on week', line: 'Each run beside the one before, so a change stands out.' },
+      { format: 'One table', line: 'A row per store in Clay, Baserow or Supabase.' },
+      { format: 'API, MCP and webhooks', line: 'Add stores from your own code, and read each email and text the moment it lands.' },
     ],
   },
 
   settings: [
-    { k: 'Stores', v: 'Every client store, each with its owner’s OK' },
+    { k: 'Stores', v: 'Your own, or every client store with its owner’s OK' },
     { k: 'Journeys', v: 'Sign up, browse, basket, checkout and texts' },
     { k: 'Persona', v: 'A first-time shopper in Manchester on a phone, or your own' },
     { k: 'Waiting', v: 'As long as you choose, 48 hours by default' },
-    { k: 'Payment', v: 'Stops before payment, or pays with a card the client provides' },
-    { k: 'How often', v: 'Each client store, once a month' },
+    { k: 'Payment', v: 'Stops before payment, or pays with a card you provide' },
+    { k: 'How often', v: 'Monthly, weekly, or a checkout left every day' },
   ],
 
   forWho: [
     { audience: 'agencies', line: 'Shop every client store each month with the client’s OK, and show each one the reminder that never came.' },
-    { audience: 'marketing', line: 'A team that runs several brands shops every store in the same week and compares them in one table.' },
+    { audience: 'marketing', line: 'Your welcome, basket and checkout emails as a new shopper gets them, week after week.' },
     { audience: 'sales', line: 'Bring each client’s dated events to the monthly review, beside what changed since the last shop.' },
-    { audience: 'developers', line: 'Add client stores from your own code, and read every email and text as it lands.' },
+    { audience: 'developers', line: 'Start a shop from your code after each release, and read every email and text as it lands.' },
   ],
 
   table: {
@@ -214,27 +203,35 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Every client’s emails, kept as they arrived, with their times.',
+    heading: 'Every email a store sends, kept as it arrived, with its time.',
     items: [
       {
         q: 'What is an AI mystery shopper?',
-        a: 'A persona run by AI agents that shops a store the way a new shopper does. It has its own name, inbox, phone number and home connection, and brings back every page, email and text, each dated. Here it shops every client store you look after.',
+        a: 'A persona run by AI agents that shops a store the way a new shopper does. It has its own name, inbox, phone number and home connection, and brings back every page, email and text, each dated. Here it shops your store, or every client store you look after.',
       },
       {
         q: 'Is this mystery shopping software or a service?',
-        a: 'Both. Developers run it as software, adding client stores from their own code through the API or MCP. Teams who don’t maintain code pick the blueprint, and we set up the personas and run every shop for them.',
+        a: 'Both. Developers run it as software, adding stores from their own code through the API or MCP. Teams who don’t maintain code pick the blueprint, and we set up the personas and run every shop for them.',
       },
       {
-        q: 'How many client stores can I check?',
-        a: 'As many as you look after. Each store’s shops are paid from your plan’s credit at the piece rates, so a store costs what its runs use, and the months above show what 30, 150 and 500 stores cost. For reports in your own brand, see the Enterprise plan on the pricing page.',
+        q: 'What does a mystery shop of a store check?',
+        a: 'The 4 journeys a new shopper takes: signing up for emails and texts, browsing, leaving a basket and leaving at checkout. Then every email and text the store sends while the persona waits, each dated, and any reminder that never came.',
+      },
+      {
+        q: 'How many stores can I check?',
+        a: 'As many as you like. Each shop is paid from your plan’s credit at the piece rates, so a store costs what its runs use. The months above show 30, 150 and 500 client stores, or 1 store shopped monthly, weekly or daily. For reports in your own brand, see the Enterprise plan on the pricing page.',
+      },
+      {
+        q: 'How often should it run?',
+        a: 'Agencies usually shop each client store once a month, before the client review. For your own store, weekly catches a flow that stops after a theme change or a new app within days, and daily adds a checkout left every day.',
       },
       {
         q: 'Do my clients need to agree?',
-        a: 'Yes. Each store is shopped with its owner’s OK. The personas shop the way anyone can, stop before payment and at any identity check, and say they’re an AI when they talk to a person.',
+        a: 'Yes. Each client store is shopped with its owner’s OK. The personas shop the way anyone can, stop before payment and at any identity check, and say they’re an AI when they talk to a person.',
       },
       {
-        q: 'What does each client get?',
-        a: 'A report on their own store: every step and message with its time, the screenshots, and any reminder that never came, with the hours it was watched.',
+        q: 'How is this different from a shopper simulation?',
+        a: 'A simulation predicts how shoppers would browse your pages and what they’d add to the basket. Here a persona signs up with its own inbox and phone number, waits, and keeps every email and text the store sends afterwards, each dated.',
       },
       {
         q: 'Is the September run real?',
@@ -242,11 +239,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does it place real orders?',
-        a: 'Only if you say so. By default every journey stops before payment. Give a persona a payment card from the client and it completes the order, so the confirmation and every email after it join your event log.',
+        a: 'Only if you say so. By default every journey stops before payment. Give a persona a payment card, yours or a client’s, and it completes the order, so the confirmation and every email after it join your event log.',
       },
       {
-        q: 'Can I compare a client with its competitors?',
-        a: 'Yes. Send the same persona to the stores a client competes with, and their events sit side by side in your event log. Each store it shops is paid for like a client store, from your plan’s credit.',
+        q: 'Can I compare a store with its competitors?',
+        a: 'Yes. Send the same persona to the stores you or a client compete with, and their events sit side by side in your event log. Each store it shops is paid for from your plan’s credit.',
       },
       {
         q: 'How long does a persona wait after a shop?',
@@ -256,11 +253,11 @@ export const recipe: Recipe = {
   },
 
   final: {
-    heading: 'Which client stores should your first personas shop?',
-    sub: 'Tell us the stores and the shopper. We’ll set up your first personas with you, client by client.',
+    heading: 'Which stores should your first personas shop?',
+    sub: 'Tell us your store, or your client stores, and the shopper. We’ll set up your first personas with you.',
     capture: {
       kind: 'waitlist',
-      source: 'recipe-mystery-agencies-final',
+      source: 'recipe-mystery-final',
       button: 'Request early access',
       interest: 'mystery',
     },

@@ -55,38 +55,10 @@ export const recipe: Recipe = {
   per: 'brand',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'Each question asked on 4 AI assistants, from a clean history',
-        'Your map, directory and review site listings checked',
-        'Each wrong fact traced to the page it came from',
-      ],
-    },
-    {
-      name: 'Starter',
-      includes: [
-        'Asked from your buyers’ town, on 4 AI assistants',
-        'Hours, prices and contact details on every listing',
-        'Each wrong fact traced to its page, and asked again until it changes',
-      ],
-    },
-    {
-      name: 'Growth',
-      includes: [
-        'Each location checked the same way',
-        '10 questions per location',
-        'Who AI assistants name instead of you',
-        'Places buyers look where you don’t appear',
-      ],
-    },
-    {
-      name: 'Scale',
-      includes: [
-        'Every answer and its source as a row in a sheet, or by API',
-        'A report you can share, with the before and after',
-      ],
-    },
+    { name: 'Free', includes: ['Each question asked on 4 AI assistants, from a clean history', 'Your map, directory and review listings checked', 'Each wrong fact traced to the page it came from'] },
+    { name: 'Starter', includes: ['Asked from your buyers’ town', 'Hours, prices and contact details on every listing', 'Each wrong fact asked again until it changes'] },
+    { name: 'Growth', includes: ['Who AI assistants name instead of you', 'Places buyers look where you don’t appear'] },
+    { name: 'Scale', includes: ['Every answer and its source in a sheet, or by API', 'A report you can share, with the before and after'] },
   ],
 
   run: {

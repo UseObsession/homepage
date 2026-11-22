@@ -74,14 +74,6 @@
 }
 .s-pr-plan__cta { align-self: start; margin-top: var(--ob-space-20); }
 .s-pr-plan__lists { display: grid; align-content: start; margin-top: var(--ob-space-24); }
-.s-pr-plan__k {
-  margin: 0;
-  font: var(--ob-type-caption);
-  letter-spacing: var(--ob-type-caption-tracking);
-  color: var(--ob-text-3);
-}
-.s-pr-plan__k + .s-pr-plan__rows { margin-top: var(--ob-space-4); }
-.s-pr-plan__rows + .s-pr-plan__k { margin-top: var(--ob-space-20); }
 .s-pr-plan__rows { display: grid; margin: 0; padding: 0; list-style: none; }
 .s-pr-plan__row {
   padding-block: var(--ob-space-8);

@@ -55,38 +55,10 @@ export const recipe: Recipe = {
   per: 'partner',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'Each partner page read as a visitor',
-        'Your link followed and the code tried in your basket',
-        'A screenshot of each, stopped before payment',
-      ],
-    },
-    {
-      name: 'Starter',
-      includes: [
-        'Your link, code, offer and banner on each page',
-        'Partner newsletters read in the persona’s own inbox',
-        'The partner’s tag checked on your landing page',
-        'Results in Slack or a sheet',
-      ],
-    },
-    {
-      name: 'Growth',
-      includes: [
-        'A note drafted in your team’s thread for each partner out of date',
-        'Each note sent only after your OK',
-        'Every check in your event log, by webhook or API',
-      ],
-    },
-    {
-      name: 'Scale',
-      includes: [
-        'Your partner list kept in sync from a CSV or the API',
-        'A monthly report you can share',
-      ],
-    },
+    { name: 'Free', includes: ['Each partner page read as a visitor', 'Your link followed and the code tried in your basket', 'A screenshot of each, stopped before payment'] },
+    { name: 'Starter', includes: ['Your link, code, offer and banner on each page', 'Partner newsletters read in the persona’s own inbox', 'Results in Slack or a sheet'] },
+    { name: 'Growth', includes: ['A note drafted for each partner out of date', 'Each note sent only after your OK'] },
+    { name: 'Scale', includes: ['Your partner list synced from a CSV or the API', 'A monthly report you can share'] },
   ],
 
   run: {

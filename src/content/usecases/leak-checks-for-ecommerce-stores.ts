@@ -57,7 +57,7 @@ export const study: UseCaseStudy = {
       kind: 'waitlist',
       source: 'usecase-store-leaks-hero',
       button: 'Request early access',
-      interest: 'store-mystery',
+      interest: 'mystery',
     },
   },
 
@@ -329,7 +329,7 @@ export const study: UseCaseStudy = {
       kind: 'waitlist',
       source: 'usecase-store-leaks-final',
       button: 'Request early access',
-      interest: 'store-mystery',
+      interest: 'mystery',
     },
     link: { label: 'See what marketing teams look up', to: '/marketing' },
   },

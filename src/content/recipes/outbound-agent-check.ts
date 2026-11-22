@@ -56,37 +56,10 @@ export const recipe: Recipe = {
   per: 'outbound agent',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'Prospect personas, each with its own inbox and number',
-        'Every email, text and call kept as it arrived',
-        'Each message checked against your rules',
-      ],
-    },
-    {
-      name: 'Starter',
-      includes: [
-        'Personas reply as prospects do: yes, not now, no or STOP',
-        'Claims, prices and discounts beside your approved list',
-        'Send times beside your quiet hours and contact limits',
-        'Flags in Slack or a sheet, with the quote and the rule',
-      ],
-    },
-    {
-      name: 'Team',
-      includes: [
-        'The next message after no or STOP, timed',
-        'A pause on a flag, if you switch it on',
-      ],
-    },
-    {
-      name: 'Scale',
-      includes: [
-        'Personas added to your lists from your code',
-        'Every message in your event log, by webhook or API',
-      ],
-    },
+    { name: 'Free', includes: ['Prospect personas, each with its own inbox and number', 'Every email, text and call kept as it arrived', 'Each message checked against your rules'] },
+    { name: 'Starter', includes: ['Personas reply as prospects do: yes, not now, no or STOP', 'Claims, prices and send times checked against your rules', 'Flags in Slack or a sheet, with the quote and the rule'] },
+    { name: 'Team', includes: ['The next message after no or STOP, timed', 'A pause on a flag, if you switch it on'] },
+    { name: 'Scale', includes: ['Personas added to your lists from your code', 'Every message in your event log, by webhook or API'] },
   ],
 
   run: {

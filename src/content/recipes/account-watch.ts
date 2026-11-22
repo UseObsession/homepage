@@ -56,39 +56,10 @@ export const recipe: Recipe = {
   per: 'account',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'A persona signs up with its own inbox and number',
-        'Every email and text kept, with the time it arrived',
-        'Their sign up, basket or booking walked each morning',
-        'Their news and job posts beside them',
-      ],
-    },
-    {
-      name: 'Starter',
-      includes: [
-        'Every email and text kept as it arrives',
-        'Each account’s sign up, basket or booking walked every morning',
-        'News and job posts read twice a week',
-        'A 07:00 Slack post when something changes',
-      ],
-    },
-    {
-      name: 'Team',
-      includes: [
-        'Each change on the account’s record in your CRM, with screenshots',
-        'A table of every account and change, day by day',
-        'Every change in your event log, by webhook or API',
-      ],
-    },
-    {
-      name: 'Scale',
-      includes: [
-        'Each account’s history of changes, month by month',
-        'Ask your AI agent what changed before a call',
-      ],
-    },
+    { name: 'Free', includes: ['A persona signs up with its own inbox and number', 'Every email and text, with the time it arrived', 'Their sign up, basket or booking walked each morning'] },
+    { name: 'Starter', includes: ['News and job posts read twice a week', 'A 07:00 Slack post when something changes'] },
+    { name: 'Team', includes: ['Each change on the account’s record in your CRM', 'A table of every account and change, day by day'] },
+    { name: 'Scale', includes: ['Each account’s history of changes', 'Ask your AI agent what changed before a call'] },
   ],
 
   run: {

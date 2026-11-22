@@ -63,41 +63,10 @@ export const recipe: Recipe = {
   per: 'voice agent',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        '3 callers, each with its own number and inbox',
-        'A booking, a price question and a request for a person',
-        'The text, email or callback it promised, tracked for 48 hours',
-        'Every call recorded and transcribed',
-      ],
-    },
-    {
-      name: 'Starter',
-      includes: [
-        'Calls after each update, or once a week',
-        'Each answer checked against your price list and hours',
-        'Follow ups tracked for 48 hours, or 2 working days',
-        'Recordings and transcripts of every call',
-        'Email and Slack alerts on a wrong answer or a missed callback',
-        'Results by webhook, API or MCP',
-      ],
-    },
-    {
-      name: 'Daily',
-      includes: [
-        '3 callers every morning, in different voices and accents',
-        'Calls out of hours and at weekends, if you want them',
-        'Trends for each question over time',
-      ],
-    },
-    {
-      name: 'Agency',
-      includes: [
-        'A report you can share for each client',
-        'Each client’s calls kept apart in your event log',
-      ],
-    },
+    { name: 'Free', includes: ['A booking, a price question and a request for a person', 'The text, email or callback it promised, tracked for 48 hours', 'Every call recorded and transcribed'] },
+    { name: 'Starter', includes: ['Calls after each update, or once a week', 'Each answer checked against your price list and hours', 'Alerts on a wrong answer or a missed callback'] },
+    { name: 'Daily', includes: ['Callers in different voices and accents', 'Calls out of hours and at weekends, if you want them', 'Trends for each question over time'] },
+    { name: 'Agency', includes: ['A report you can share for each client', 'Each client’s calls kept apart in your event log'] },
   ],
 
   run: {

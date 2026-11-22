@@ -242,12 +242,12 @@ export const page: Page = {
     line: 'Every result arrives where you already work: in your spreadsheet, in Clay, through your own Claude agent or on our dashboard. Developers can bring their own job to run the same way.',
     items: [
       {
-        name: 'Mystery shopping for your store',
+        name: 'Mystery shopping',
         line: 'Personas shop a store and bring back every email, text and reminder that followed, or the silence.',
         status: 'For online stores',
         live: true,
         reader: 'founders',
-        link: { label: 'See the blueprint', to: '/blueprints/store-mystery-shopper' },
+        link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
       },
       {
         name: 'QA on your own flows',

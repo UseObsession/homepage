@@ -1,8 +1,8 @@
 import { useId, useRef, useState, type KeyboardEvent } from 'react'
 import { catalog } from '../content/catalog'
-import { blueprintPricing } from '../content/recipe-page'
-import type { BlueprintPricing as Pricing, PricingTabs } from '../content/types'
-import { BlueprintPricing } from './BlueprintPricing'
+import { blueprintPricings, recipePage } from '../content/recipe-page'
+import type { BlueprintPricingOption, PricingTabs } from '../content/types'
+import { BlueprintPrices } from './BlueprintPricing'
 import './BlueprintPricingTabs.css'
 
 /* The audience pages' pricing (James, 21 Nov 2026: /agencies, /marketing, /sales): 1 tab per blueprint the page sells,
@@ -11,9 +11,11 @@ import './BlueprintPricingTabs.css'
    choose them, and only the chosen tab is in the tab order. The first tab is chosen in the prerendered page. Every panel
    is in the page, the others hidden, so each tab's aria-controls points at its panel; every panel is read into
    llms-full.txt (data-llms="keep"), since each blueprint has its own tiers. From 900px the list stands beside the
-   panel; under it the tabs wrap in a row above it. */
+   panel; under it the tabs wrap in a row above it. A blueprint whose months change with the buyer (mystery shopping)
+   opens with its switch (BlueprintPrices) on the page's own buyer (PricingTabs `variant`: Agencies on /agencies,
+   Ecommerce brands on /marketing). */
 
-export type PricingTab = { id: string; label: string; pricing: Pricing }
+export type PricingTab = { id: string; label: string; options: BlueprintPricingOption[] }
 
 /* An audience page's #pricing section: its h2 and line, then the tabs, each blueprint's table made from content/catalog
    (its tiers, priced by the pricing engine at build time), so the page never imports a recipe's words. A blueprint not
@@ -21,7 +23,7 @@ export type PricingTab = { id: string; label: string; pricing: Pricing }
 export function BlueprintPricingSection({ pricing, id = 'pricing' }: { pricing: PricingTabs; id?: string }) {
   const tabs: PricingTab[] = pricing.recipes.flatMap((rid) => {
     const r = catalog.recipes.find((x) => x.id === rid)
-    return r ? [{ id: r.id, label: r.name, pricing: blueprintPricing(r) }] : []
+    return r ? [{ id: r.id, label: r.name, options: blueprintPricings(r) }] : []
   })
   return (
     <section className="s-section" id={id} aria-labelledby={`${id}-h`}>
@@ -32,13 +34,13 @@ export function BlueprintPricingSection({ pricing, id = 'pricing' }: { pricing: 
           </h2>
           {pricing.line && <p>{pricing.line}</p>}
         </header>
-        <BlueprintPricingTabs tabs={tabs} label={pricing.label} />
+        <BlueprintPricingTabs tabs={tabs} label={pricing.label} variant={pricing.variant} />
       </div>
     </section>
   )
 }
 
-export function BlueprintPricingTabs({ tabs, label }: { tabs: PricingTab[]; label: string }) {
+export function BlueprintPricingTabs({ tabs, label, variant }: { tabs: PricingTab[]; label: string; variant?: string }) {
   const uid = useId()
   const [cur, setCur] = useState(0)
   const refs = useRef<(HTMLButtonElement | null)[]>([])
@@ -88,7 +90,7 @@ export function BlueprintPricingTabs({ tabs, label }: { tabs: PricingTab[]; labe
           data-llms="keep"
           className="s-bpt__panel"
         >
-          <BlueprintPricing pricing={t.pricing} />
+          <BlueprintPrices options={t.options} label={recipePage.pricing.switch} initial={variant} />
         </div>
       ))}
     </div>

@@ -162,7 +162,7 @@
     { "id": "free", "name": "Free", "monthly": 0, "credit": 0, "billing": ["monthly"], "allowances": { "inbox": 3, "email": 3000, "number": 1, "browser": 10, "sandbox": 10, "log": 100000 }, "freeNumber": { "textsIn": 50, "callMinutesIn": 30 }, "features": { "eventLogDays": 30, "spendCap": false }, "note": "Fixed free allowances and no credit card. Free's number receives up to 50 texts and 30 call minutes a month; it sends no texts and makes no calls. Past an allowance the piece pauses until the next month. Paid plans do not carry these allowances: their credit pays from the first unit, and Developer's $20 covers Free's allowances (worth $7.40 at list rates) more than twice." },
     { "id": "developer", "name": "Developer", "monthly": 20, "credit": 20, "billing": ["monthly"], "features": { "eventLogDays": 30, "support": "email", "spendCap": true }, "note": "$20 of usage a month at list rates." },
     { "id": "startup", "name": "Startup", "monthly": 99, "credit": 100, "billing": ["monthly"], "featured": true, "discount": { "off": 0.1, "except": ["tokens"], "rule": "10% off every piece's list rate, on usage paid from the credit; past the credit, list rates. Model tokens and the fixed-price US texting registration are never discounted." }, "features": { "eventLogDays": 90, "support": "email", "seats": true, "spendCap": true }, "note": "$100 of usage a month at 10% off list rates for $99, worth about $111 at list rates." },
-    { "id": "scale", "name": "Scale", "monthly": 499, "credit": 500, "billing": ["monthly"], "discount": { "off": 0.2, "except": ["tokens"], "rule": "20% off every piece's list rate, on usage paid from the credit; past the credit, list rates. A pass-through piece (WhatsApp) takes the 20% off the fee we add on top of Meta's. Model tokens and the fixed-price US texting registration are never discounted." }, "features": { "eventLogDays": 365, "support": "priority", "seats": true, "spendCap": true }, "note": "$500 of usage a month at 20% off list rates for $499, worth $625 at list rates, monthly, no contract, with a 1-year event log (founders, 22 Nov 2026)." },
+    { "id": "scale", "name": "Scale", "monthly": 499, "credit": 500, "billing": ["monthly"], "discount": { "off": 0.15, "except": ["tokens"], "rule": "15% off every piece's list rate, on usage paid from the credit; past the credit, list rates (founders, 22 Nov 2026: 15%, was 20%). A pass-through piece (WhatsApp) takes the 15% off the fee we add on top of Meta's. Model tokens and the fixed-price US texting registration are never discounted." }, "features": { "eventLogDays": 365, "support": "priority", "seats": true, "spendCap": true }, "note": "$500 of usage a month at 15% off list rates for $499, worth about $588 at list rates, monthly, no contract, with a 1-year event log (founders, 22 Nov 2026)." },
     { "id": "enterprise", "name": "Enterprise", "monthly": null, "from": 1500, "fromRule": "first month", "credit": null, "billing": ["monthly", "yearly"], "billingDefault": "monthly", "upfront": false, "commitment": null, "yearly": { "monthsPaid": 10, "monthsCovered": 12, "words": "2 months free when paid yearly" }, "billingRule": "From $1,500 a month: the floor on the first month's bill (founders, 22 Nov 2026). Starts monthly, with no yearly commitment and nothing paid up front, and grows with usage. Yearly billing is optional and earns 2 months free: pay for 10 months, get 12 (16.7% off).", "features": { "reseller": true, "whiteLabel": true, "accountPerClient": true, "wholesaleRates": true, "volumeRates": true, "eventLogDays": null, "sso": true, "support": "own channel", "spendCap": true }, "note": "Led by the reseller offer: white label, an account per client and wholesale rates on every piece, lower again than Scale's by contract. Also lower rates as volume grows, a longer event log, SSO and a support channel of its own. From $1,500 a month as a first-month floor, billed monthly with nothing up front; 2 months free when paid yearly." }
   ],
 
@@ -175,10 +175,10 @@
     "blueprints": "A blueprint run draws on the plan's credit at the plan's piece rates, then at list rates once the credit is used, like any piece (founders, 22 Nov 2026). There is one price list, the pieces: a blueprint has no prices or margins of its own. Each blueprint page shows what a typical month of it costs, worked out from what each run uses at the piece rates. The first run of every blueprint is free.",
     "marginExcludes": ["tokens"],
     "ladder": {
-      "about": "The plan rate ladder (founders, 22 Nov 2026), in place of the Scale-only discount: Free and Developer pay list rates, Startup 10% off every piece and Scale 20% off every piece on usage paid from their credit (past the credit, list rates), Enterprise lower again by contract. Model tokens and fixed-price pieces (the US texting registration, fixed: true) are never discounted. Each plan's credit is worth credit / (1 - off) at list rates: Startup's $100 about $111, Scale's $500 $625.",
+      "about": "The plan rate ladder (founders, 22 Nov 2026), in place of the Scale-only discount: Free and Developer pay list rates, Startup 10% off every piece and Scale 15% off every piece on usage paid from their credit (past the credit, list rates; Scale was 20% until the founders cut it to 15% on 22 Nov 2026), Enterprise lower again by contract. Model tokens and fixed-price pieces (the US texting registration, fixed: true) are never discounted. Each plan's credit is worth credit / (1 - off) at list rates: Startup's $100 about $111, Scale's $500 about $588.",
       "floor": 0.25,
       "floorPlan": "scale",
-      "floorRule": "Every piece on the ladder keeps at least a 25% margin at Scale's 20% off over what a unit costs us at the margin (wholesale). The browser plan fee is fixed overhead, like the server bill, and never counts toward the floor (founders, 22 Nov 2026): the browser is $0.10 an hour at list, $0.08 on Scale over $0.06 (25%), and the stealth browser $0.85, $0.68 on Scale over $0.48 (29%). A fixed-price piece (fixed: true) is off the ladder and outside the floor. List prices were raised on 22 Nov 2026 to meet it, rounded to clean figures.",
+      "floorRule": "Every piece on the ladder keeps at least a 25% margin at Scale's 15% off over what a unit costs us at the margin (wholesale). The browser plan fee is fixed overhead, like the server bill, and never counts toward the floor (founders, 22 Nov 2026): the browser is $0.10 an hour at list, $0.085 on Scale over $0.06 (29%), and the stealth browser $0.85, $0.7225 on Scale over $0.48 (34%). A fixed-price piece (fixed: true) is off the ladder and outside the floor. List prices were raised on 22 Nov 2026 to meet it at 20% off, rounded to clean figures, and stay as they are at 15% off.",
       "raised": { "number": [1.5, 2], "voice": [0.01, 0.012], "imessage": [140, 170], "browser": [0.08, 0.1], "stealth": [0.65, 0.85], "sandbox": [0.1, 0.12] }
     },
     "marginRule": "Plan margins are judged on the pieces, without model tokens: tokens are taken straight from the credit at cost plus 10%.",
@@ -203,7 +203,8 @@
     {
       "id": "mystery-shopper",
       "siteId": "mystery",
-      "name": "Mystery shopping for agencies",
+      "name": "Mystery shopping",
+      "variantLabel": "Agencies",
       "job": "Mystery shopping",
       "buyer": "For CRO, retention, and email and SMS agencies with many client stores.",
       "unit": "mystery shop",
@@ -223,16 +224,17 @@
       ]
     },
     {
-      "id": "store-mystery-shopper",
-      "siteId": "store-mystery",
-      "name": "Mystery shopping for your store",
+      "id": "mystery-shopper-brands",
+      "variantOf": "mystery-shopper",
+      "variantLabel": "Ecommerce brands",
+      "name": "Mystery shopping for ecommerce brands",
       "job": "Mystery shopping",
       "buyer": "For ecommerce brands and their retention teams, checking their own store.",
       "unit": "mystery shop",
       "per": "store",
       "noun": ["store", "stores"],
       "run": "One full shop of your store, the same as the agency shop: a sign-up visit and a checkout visit, then a wait that wakes on each email and text (48 hours assumed; the buyer chooses its length). The Daily month adds a checkout left on its own every day.",
-      "note": "One persona is held for the store; each shop signs up with a fresh free inbox address. The wait after each shop is the buyer's to choose; these estimates assume 48 hours, the default.",
+      "note": "A variant of mystery-shopper (founders, 22 Nov 2026): one blueprint and one page, /blueprints/mystery-shopper, whose pricing table switches between Agencies (that blueprint's scenarios, in client stores) and Ecommerce brands (these, for 1 store). It was its own page, store-mystery-shopper, from 21 to 22 Nov 2026. One persona is held for the store; each shop signs up with a fresh free inbox address. The wait after each shop is the buyer's to choose; these estimates assume 48 hours, the default.",
       "usage": {
         "run": { "visits": [{ "type": "signup" }, { "type": "checkout" }], "wakes": 4, "emailsIn": 3, "textsIn": 1, "textsOut": 1, "events": 40 },
         "runs": {

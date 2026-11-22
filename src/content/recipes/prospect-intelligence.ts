@@ -56,37 +56,10 @@ export const recipe: Recipe = {
   per: 'prospect',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'A persona signs up, opts in to texts and asks the chat',
-        'Every email and text kept, timed from the sign up',
-        'A finding for each, with a link to its events',
-      ],
-    },
-    {
-      name: 'Starter',
-      includes: [
-        'Watched for 14 days from the sign up',
-        'Welcome email, texts and chat checked',
-        'A gap counted only after the spam folder is checked',
-        'Findings back on your rows in Clay or a sheet',
-      ],
-    },
-    {
-      name: 'Growth',
-      includes: [
-        'A persona in each prospect’s country',
-        'A link the prospect can open, for each finding',
-      ],
-    },
-    {
-      name: 'Scale',
-      includes: [
-        'Subscriber, trial user or buyer personas, mixed across your list',
-        'Every finding in your event log, by webhook or API',
-      ],
-    },
+    { name: 'Free', includes: ['A persona signs up, opts in to texts and asks the chat', 'Every email and text kept, timed from the sign up', 'A finding for each, with a link to its events'] },
+    { name: 'Starter', includes: ['Watched for 14 days from the sign up', 'A gap counted only after the spam folder is checked', 'Findings back on your rows in Clay or a sheet'] },
+    { name: 'Growth', includes: ['A persona in each prospect’s country', 'A link the prospect can open, for each finding'] },
+    { name: 'Scale', includes: ['Subscriber, trial user or buyer personas across your list', 'Every finding in your event log, by webhook or API'] },
   ],
 
   run: {

@@ -57,38 +57,10 @@ export const recipe: Recipe = {
   per: 'AI agent',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'Each matched to your payments and helpdesk',
-        'Silence, handoffs and repeat contacts counted',
-        'The ones that weren’t real, with their cases',
-      ],
-    },
-    {
-      name: 'Starter',
-      includes: [
-        'Each one beside your vendor’s own billing rule',
-        '4 test asks and 2 test orders a month on your live channels',
-        'Every test tagged, so none is billed',
-        'A dispute pack under your vendor’s terms',
-      ],
-    },
-    {
-      name: 'Team',
-      includes: [
-        'Test asks on refunds, cancellations and order changes',
-        'Refunds the bot promised and nobody made, flagged',
-        'Results in a sheet, Slack or the API',
-      ],
-    },
-    {
-      name: 'Scale',
-      includes: [
-        'Each client’s bot kept apart in your event log',
-        'Every case in your event log, by webhook or API',
-      ],
-    },
+    { name: 'Free', includes: ['Each matched to your payments and helpdesk', 'Silence, handoffs and repeat contacts counted', 'The ones that weren’t real, with their cases'] },
+    { name: 'Starter', includes: ['Each one beside your vendor’s billing rule', '4 test asks and 2 test orders a month, tagged so none is billed', 'A dispute pack under your vendor’s terms'] },
+    { name: 'Team', includes: ['Test asks on refunds, cancellations and order changes', 'Refunds the bot promised and nobody made, flagged'] },
+    { name: 'Scale', includes: ['Each client’s bot kept apart in your event log', 'Every case by webhook or API'] },
   ],
 
   run: {

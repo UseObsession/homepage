@@ -176,12 +176,14 @@ export const page: Page = {
 
 /* #pricing (James, 21 Nov 2026; founders, 22 Nov), in place of the pilot: 1 tab per blueprint resellers sell, each
    opening what a typical month of that blueprint costs (components/BlueprintPricingTabs, from content/catalog: the
-   blueprint's `tiers`, its months at the piece rates). */
+   blueprint's `tiers`, its months at the piece rates). Mystery shopping opens on its Agencies months (founders,
+   22 Nov 2026). */
 export const pricing: PricingTabs = {
   heading: 'What a typical month of each blueprint costs.',
-  line: 'Pick a blueprint to see a small, medium and large month, worked out at the piece rates and paid from your plan’s credit. Every blueprint starts with a free run, and you charge your clients what you choose.',
+  line: 'Prices are worked out from what each run uses and paid from your plan’s credit. You charge your clients what you choose.',
   label: 'Blueprints you can resell',
   recipes: ['mystery', 'speed', 'voice-agent', 'competitor', 'delivery', 'audit'],
+  variant: 'mystery-shopper',
 }
 
 /* #white-label: the 3 things every reseller asked for, as the Enterprise plan on /pricing gives them (content/pricing.ts:

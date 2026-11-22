@@ -185,7 +185,7 @@ export const suggested: Record<string, string[]> = {
   'agency:Shopify build': ['audit', 'delivery', 'partners'],
   'agency:Full service': ['mystery', 'email-sms', 'adcheck'],
   agency: ['mystery', 'email-sms', 'competitor'],
-  brand: ['store-mystery', 'competitor', 'prices'],
+  brand: ['mystery', 'competitor', 'prices'],
   marketing: ['competitor', 'email-sms', 'ads'],
   sales: ['prospect', 'account-watch', 'speed'],
   developer: ['competitor', 'support-bot', 'prospect'],

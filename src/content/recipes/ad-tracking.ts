@@ -55,40 +55,10 @@ export const recipe: Recipe = {
   per: 'competitor',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'Their live ads in public: words, image or video, and start date',
-        'Their newest ad followed to its page, on phone and desktop',
-        'The offer behind it, with a screenshot',
-      ],
-    },
-    {
-      name: 'Weekly',
-      includes: [
-        'New and stopped ads each week',
-        'Each week’s newest ad followed to its page',
-        'Sign up codes kept in the persona’s own inbox',
-        'A weekly email of every new offer',
-      ],
-    },
-    {
-      name: 'Daily',
-      includes: [
-        'New and stopped ads every morning',
-        'Slack alerts with the ad and its page side by side',
-        'An ad timeline: what each competitor starts, stops and keeps running',
-        'A weekly PDF of what each competitor is pushing',
-      ],
-    },
-    {
-      name: 'Scale',
-      includes: [
-        'Every ad, page and offer as a row in Clay or a sheet',
-        'Every event in your event log, by webhook or API',
-        'A report you can share',
-      ],
-    },
+    { name: 'Free', includes: ['Their live ads: words, image or video, and start date', 'Their newest ad followed to its page', 'The offer behind it, with a screenshot'] },
+    { name: 'Weekly', includes: ['New and stopped ads each week', 'Sign up codes kept in the persona’s own inbox', 'A weekly email of every new offer'] },
+    { name: 'Daily', includes: ['Slack alerts with the ad and its page side by side', 'What each competitor starts, stops and keeps running'] },
+    { name: 'Scale', includes: ['Every ad, page and offer as a row in Clay or a sheet', 'A report you can share'] },
   ],
 
   run: {

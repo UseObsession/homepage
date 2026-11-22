@@ -19,7 +19,7 @@ import './PricingRates.css'
    Startup (the recommended plan) is chosen in the prerendered page, so it reads right before the script runs; each
    row carries both plans' rates in data-startup and data-scale, and Enterprise shows "Contact us" with the link its
    plan card uses. A plan's rate is for usage paid from its credit; past the credit, every plan pays list (the note
-   under the toggle, founders 22 Nov 2026). Every rate is the engine's (content/prices.ts): 10% off on Startup, 20% on Scale, model tokens the
+   under the toggle, founders 22 Nov 2026). Every rate is the engine's (content/prices.ts): 10% off on Startup, 15% on Scale, model tokens the
    same on every plan. A fixed price (the US texting registration) shows the same price in every column, Enterprise's
    included. */
 

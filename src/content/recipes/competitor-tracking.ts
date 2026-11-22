@@ -57,40 +57,10 @@ export const recipe: Recipe = {
   per: 'competitor',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'A persona signs up with its own inbox and number',
-        'Every email and text, with the time it arrived',
-        'The welcome series mapped, step by step',
-        'A screenshot of every page and message',
-      ],
-    },
-    {
-      name: 'Starter',
-      includes: [
-        'Every email and text as it lands',
-        'Prices, offers and pages checked each week',
-        '1 dated timeline per competitor',
-        'A weekly summary by email or Slack',
-        'Results by API, MCP, Google Sheets or a webhook',
-      ],
-    },
-    {
-      name: 'Growth',
-      includes: [
-        'Member prices beside the public ones',
-        'Their public ads beside their pages',
-      ],
-    },
-    {
-      name: 'Daily',
-      includes: [
-        'Every price, offer and page change, the day it happens',
-        'History and trends for each competitor',
-        'A report you can share each month',
-      ],
-    },
+    { name: 'Free', includes: ['A persona signs up with its own inbox and number', 'Every email and text, with the time it arrived', 'The welcome series mapped, step by step'] },
+    { name: 'Starter', includes: ['Every email and text as it lands', '1 dated timeline per competitor', 'A weekly summary by email or Slack'] },
+    { name: 'Growth', includes: ['Member prices beside the public ones', 'Their public ads beside their pages'] },
+    { name: 'Daily', includes: ['History and trends for each competitor', 'A report you can share each month'] },
   ],
 
   run: {

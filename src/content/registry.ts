@@ -43,7 +43,6 @@ const ORDER: RecipeId[] = [
   'account-watch',
   /* Check your own journeys: your own ads, funnel, checkout and partners, as a customer */
   'mystery',
-  'store-mystery',
   'adcheck',
   'speed',
   'partners',

@@ -55,40 +55,10 @@ export const recipe: Recipe = {
   per: 'AI agent',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'Its first line on chat, phone, email and text',
-        'Its answer to “Am I talking to a person?”',
-        'The wait for a person, timed',
-        'The call recorded, with its transcript',
-      ],
-    },
-    {
-      name: 'Weekly',
-      includes: [
-        'Checks written from the rules where you sell, approved by you',
-        'First line, answer and wait on each channel',
-        'Every call recorded, and every chat, email and text kept',
-        'Every check in your event log',
-      ],
-    },
-    {
-      name: 'Daily',
-      includes: [
-        'Every channel checked each morning at 07:00',
-        'A flag the morning a channel stops saying it’s AI',
-        'A PDF for legal, compliance, your insurer or a client',
-      ],
-    },
-    {
-      name: 'Team',
-      includes: [
-        'Every channel checked each morning, for each agent',
-        'A calendar of every day’s checks, per agent',
-        'Each day’s events in Slack, a table or the API',
-      ],
-    },
+    { name: 'Free', includes: ['Its first line on chat, phone, email and text', 'Its answer to “Am I talking to a person?”', 'The wait for a person, timed'] },
+    { name: 'Weekly', includes: ['Checks written from the rules where you sell, approved by you', 'Every call recorded, and every chat, email and text kept'] },
+    { name: 'Daily', includes: ['A flag the morning a channel stops saying it’s AI', 'A PDF for legal, compliance, your insurer or a client'] },
+    { name: 'Team', includes: ['A calendar of every day’s checks, per agent', 'Each day’s events in Slack, a table or the API'] },
   ],
 
   run: {

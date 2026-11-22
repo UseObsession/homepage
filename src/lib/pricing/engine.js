@@ -48,8 +48,11 @@
  *   days?:number, free?:boolean, featured?:boolean, extra?:ExtraRun[]}} Tier
  */
 /**
- * @typedef {{id:string, siteId?:string, name:string, job:string, buyer?:string, unit:string, per:string,
- *   noun:[string,string], itemNoun?:[string,string], run:string, setupMonths?:number,
+ * A variant (`variantOf`, the id of the blueprint it belongs to) is a second set of scenarios on that blueprint's page,
+ * picked with a switch labelled by each one's `variantLabel` (founders, 22 Nov 2026: mystery shopping for agencies and
+ * for ecommerce brands); it has no page or siteId of its own.
+ * @typedef {{id:string, siteId?:string, variantOf?:string, variantLabel?:string, name:string, job:string, buyer?:string,
+ *   unit:string, per:string, noun:[string,string], itemNoun?:[string,string], run:string, setupMonths?:number,
  *   usage:{run:Usage, runs?:Record<string,Usage>, monthly?:Usage, account?:Usage, setup?:Usage},
  *   tiers:Tier[], note?:string}} Blueprint
  */
@@ -144,6 +147,16 @@ export function findBrowser(pricing, id) {
 /** @param {Pricing} pricing @param {string} id @returns {Blueprint} */
 export function findBlueprint(pricing, id) {
   return pricing.blueprints.find((/** @type {Blueprint} */ b) => b.id === id);
+}
+
+/**
+ * A blueprint and its variants, in the JSON's order: the blueprint first, then each blueprint whose `variantOf` is its
+ * id. A blueprint with no variants is a list of 1.
+ * @param {Pricing} pricing @param {string} id @returns {Blueprint[]}
+ */
+export function blueprintVariants(pricing, id) {
+  const bp = findBlueprint(pricing, id);
+  return bp ? [bp, ...pricing.blueprints.filter((/** @type {Blueprint} */ b) => b.variantOf === id)] : [];
 }
 
 /**
@@ -703,7 +716,7 @@ export function pieceMargins(pricing, o = {}) {
  * The plan's lower rates apply only to usage paid from its credit: past the credit, usage is billed at list rates on every
  * plan, up to any spend cap the buyer sets (founders, 22 Nov 2026). Unused credit resets each month. Plans
  * differ by features and by the rate ladder (founders, 22 Nov 2026): Free and Developer pay list rates, Startup 10% off
- * every piece and Scale 20% off (each plan's `discount`), model tokens and fixed-price pieces (the US texting
+ * every piece and Scale 15% off (each plan's `discount`), model tokens and fixed-price pieces (the US texting
  * registration, `fixed: true`) never discounted; no plan includes any piece; Free keeps fixed allowances;
  * Enterprise is set with the buyer, from a first-month floor, monthly, with a yearly discount as an option. A blueprint
  * run draws on the credit at the piece rates like any piece (blueprintMonth).
@@ -730,7 +743,7 @@ export function findPlan(pricing, id) {
 
 /**
  * Each piece's rate on a plan, in dollars per the piece's unit, beside its list rate, wholesale and margin. A plan with
- * no `discount` bills list rates (each piece's retail). Under a discount (Startup 10%, Scale 20%) every piece is its
+ * no `discount` bills list rates (each piece's retail). Under a discount (Startup 10%, Scale 15%) every piece is its
  * list rate less `off`, its one-off fee too; a pass-through piece (retailPlus: WhatsApp) takes the discount off the fee
  * we add, never off Meta's. A piece in `discount.except` (model tokens) and a fixed-price piece (`fixed: true`, the US
  * texting registration, its one-off fee too) stay at list on every plan. `margin` is over wholesale, what a unit costs us

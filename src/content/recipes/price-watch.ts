@@ -55,39 +55,10 @@ export const recipe: Recipe = {
   per: 'competitor',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'An account and an email sign up, as a persona in your country',
-        'Public and member prices, on up to 50 products',
-        'Delivery costs and the codes on show',
-      ],
-    },
-    {
-      name: 'Weekly',
-      includes: [
-        'Public and member prices, up to 50 products each',
-        'Subscriber codes from each email list',
-        'Every change with its before and after screenshot',
-        'Changes in Slack or a sheet',
-      ],
-    },
-    {
-      name: 'Daily',
-      includes: [
-        'Public and member prices read every morning',
-        'Sitewide sales and codes the day they appear',
-        'Each change beside your own price',
-        'Alerts only above an amount you set',
-      ],
-    },
-    {
-      name: 'Scale',
-      includes: [
-        'Changes in Clay, a webhook or the API',
-        'A weekly report you can share',
-      ],
-    },
+    { name: 'Free', includes: ['An account and an email sign up, as a persona in your country', 'Public and member prices, on up to 50 products', 'Delivery costs and the codes on show'] },
+    { name: 'Weekly', includes: ['Subscriber codes from each email list', 'Every change with its before and after screenshot', 'Changes in Slack or a sheet'] },
+    { name: 'Daily', includes: ['Sitewide sales and codes the day they appear', 'Each change beside your own price', 'Alerts only above an amount you set'] },
+    { name: 'Scale', includes: ['Changes in Clay, a webhook or the API', 'A weekly report you can share'] },
   ],
 
   run: {

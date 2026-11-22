@@ -145,7 +145,7 @@ const menus = {
       {
         label: 'Use cases',
         items: [
-          { label: 'Mystery shopping', line: 'Shop every client store, and keep what follows', to: '/blueprints/mystery-shopper', icon: 'cart' },
+          { label: 'Mystery shopping', line: 'Shop a store as a new shopper, and keep what follows', to: '/blueprints/mystery-shopper', icon: 'cart' },
           { label: 'QA on your own flows', line: 'Sign up to your product as a new user', to: '/blueprints/website-audit', icon: 'software' },
           { label: 'Competitor trials', line: 'Every email a competitor’s trial sends', to: '/blueprints/trial-teardown', icon: 'clock' },
           { label: 'Lead response checks', line: 'Time the first email, text and call', to: '/blueprints/lead-leaks', icon: 'mail' },

@@ -56,21 +56,8 @@ function PlanItem({ plan }: { plan: PlanCard }) {
         </Link>
       </div>
       <div className="s-pr-plan__lists">
-        <p className="s-pr-plan__k" id={`${id}-inc`}>
-          {p.plans.includes}
-        </p>
-        <ul className="s-pr-plan__rows" aria-labelledby={`${id}-inc`}>
+        <ul className="s-pr-plan__rows" aria-label={p.plans.includes}>
           {plan.includes.map((item) => (
-            <li className="s-pr-plan__row" key={item}>
-              {tie(item)}
-            </li>
-          ))}
-        </ul>
-        <p className="s-pr-plan__k" id={`${id}-also`}>
-          {p.plans.features}
-        </p>
-        <ul className="s-pr-plan__rows" aria-labelledby={`${id}-also`}>
-          {plan.features.map((item) => (
             <li className="s-pr-plan__row" key={item}>
               {tie(item)}
             </li>

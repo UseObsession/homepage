@@ -1,9 +1,9 @@
 /* A blueprint's pricing table (components/BlueprintPricing), on the design system's cards (surfaces.css .ob-card, Weekly
    .ob-card--raised), badge and buttons, in both themes. Every class starts s-bpp. The cards follow the table's own width
    (a named container, so the page's other container rules never meet it): 1 column, 2 from 560px, 4 from 960px, where
-   each card's 5 rows (the month, who it's for, "About $N a month" with its line, what a month like it brings, button)
-   line up across the row. In 1 or 2 columns
-   the list takes the slack, so the buttons of a row sit on 1 line. Spacing sits on the 4px grid. */
+   each card's 4 rows (the month, "$N a month", what a month like it brings, button) line up across the row. In 1 or 2
+   columns the list takes the slack, so the buttons of a row sit on 1 line. The switch above a blueprint's tables (mystery
+   shopping: Agencies or Ecommerce brands) is the design system's pill tabs (.ob-ptabs). Spacing sits on the 4px grid. */
 
 .s-bpp { container: s-bpp / inline-size; min-width: 0; }
 
@@ -17,7 +17,7 @@
 }
 
 .s-bpp__plan.ob-card {
-  grid-template-rows: auto auto auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
   gap: 0;
   padding: var(--ob-space-24) var(--ob-space-20);
   border-radius: var(--ob-radius-lg);
@@ -25,10 +25,10 @@
 @container s-bpp (min-width: 960px) {
   .s-bpp__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: repeat(5, auto);
+    grid-template-rows: repeat(4, auto);
     row-gap: 0;
   }
-  .s-bpp__plan.ob-card { grid-row: span 5; grid-template-rows: subgrid; }
+  .s-bpp__plan.ob-card { grid-row: span 4; grid-template-rows: subgrid; }
 }
 
 /* Weekly: the raised face and a control-weight edge, its tag and the row's 1 primary button. */
@@ -49,35 +49,16 @@
   font: var(--ob-type-title);
   letter-spacing: var(--ob-type-title-tracking);
   color: var(--ob-text);
-}
-.s-bpp__for {
-  margin: var(--ob-space-8) 0 0;
-  font: var(--ob-type-small);
-  letter-spacing: var(--ob-type-small-tracking);
-  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
-/* The price row: "About", the figure and "a month", then the line on how it's worked out and paid. */
-.s-bpp__price { margin: var(--ob-space-16) 0 0; }
+/* The price row: the figure and "a month". */
 .s-bpp__cost {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0 var(--ob-space-8);
-  margin: 0;
+  margin: var(--ob-space-12) 0 0;
   color: var(--ob-text);
-}
-.s-bpp__note {
-  margin: var(--ob-space-4) 0 0;
-  font: var(--ob-type-small);
-  letter-spacing: var(--ob-type-small-tracking);
-  color: var(--s-read, var(--ob-text-2));
-  text-wrap: pretty;
-}
-.s-bpp__lead {
-  font: var(--ob-type-small);
-  letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
 }
 .s-bpp__amount {
   font: var(--ob-type-h2);
@@ -119,3 +100,8 @@
   color: var(--ob-text-2);
   text-wrap: pretty;
 }
+
+/* The switch above a blueprint's tables: the pill rail on its own line, the chosen table under it. */
+.s-bpp-switch { min-width: 0; }
+.s-bpp-switch__rail { margin: 0 0 var(--ob-space-24); }
+.s-bpp-switch__panel[hidden] { display: none; }

@@ -58,39 +58,10 @@ export const recipe: Recipe = {
   per: 'vendor',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'A persona with its own inbox and number',
-        'Each case beside the policy that decides it',
-        'Every answer kept word for word',
-      ],
-    },
-    {
-      name: 'Monthly',
-      includes: [
-        'The same persona and cases each month',
-        'Every answer that changed, before and after',
-        'Handoffs to a person, timed',
-      ],
-    },
-    {
-      name: 'Shortlist',
-      includes: [
-        'Your current agent on the same cases, as the bar',
-        'Each case asked again every week',
-        'The sales deck’s claims beside what each agent did',
-        'A side by side report, with every transcript',
-      ],
-    },
-    {
-      name: 'Large shortlist',
-      includes: [
-        '40 cases from your own tickets, the hardest included',
-        'Every test tagged on every vendor',
-        'Every answer in your event log, by webhook or API',
-      ],
-    },
+    { name: 'Free', includes: ['A persona with its own inbox and number', 'Each case beside the policy that decides it', 'Every answer kept word for word'] },
+    { name: 'Monthly', includes: ['The same persona and cases each month', 'Every answer that changed, before and after', 'Handoffs to a person, timed'] },
+    { name: 'Shortlist', includes: ['Your current agent on the same cases, as the bar', 'The sales deck’s claims beside what each agent did', 'A side by side report, with every transcript'] },
+    { name: 'Large shortlist', includes: ['40 cases from your own tickets, the hardest included', 'Every test tagged on every vendor', 'Every answer by webhook or API'] },
   ],
 
   run: {

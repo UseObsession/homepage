@@ -3,7 +3,7 @@ import { LinkGroups } from '../components/sections/LinkGroups'
 import { connectionsFor } from '../lib/connections'
 import { Link } from 'react-router-dom'
 import { AppScreen } from '../components/AppScreen'
-import { BlueprintPricing } from '../components/BlueprintPricing'
+import { BlueprintPrices } from '../components/BlueprintPricing'
 import { CaptureForm } from '../components/CaptureForm'
 import { Crumbs } from '../components/Crumbs'
 import { Mark } from '../components/Logo'
@@ -15,7 +15,7 @@ import { DeliveryLists } from '../components/piece/PieceDelivery'
 import { drawnFor, type Workspace } from '../components/workspace'
 import { catalog } from '../content/catalog'
 import { nav } from '../content/nav'
-import { blueprintPricing, isRealRun, recipePage as ui } from '../content/recipe-page'
+import { blueprintPricings, isRealRun, recipePage as ui } from '../content/recipe-page'
 import type { AudienceId, Recipe } from '../content/types'
 import '../components/sections/Hero.css'
 import './RecipePage.css'
@@ -262,8 +262,10 @@ function Table({ table }: { table: NonNullable<Recipe['table']> }) {
 export function RecipePage({ recipe: r }: { recipe: Recipe }) {
   const workspace = workspaceOf(r)
   const real = isRealRun(r.run.tab)
-  /* Its tiers as the pricing engine priced them at build time (content/catalog.ts), with its includes. */
-  const tiers = catalog.recipes.find((x) => x.id === r.id)?.tiers ?? []
+  /* Its months as the pricing engine priced them at build time (content/catalog.ts), with its includes: 1 table, or 1
+     per variant behind the switch (mystery shopping), Agencies first. */
+  const priced = catalog.recipes.find((x) => x.id === r.id)
+  const pricings = priced ? blueprintPricings(priced) : []
 
   return (
     <>
@@ -277,8 +279,8 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
         <Console label={r.run.tab} demos={[r.run]} workspace={workspace} tag={real ? ui.run.tag.real : undefined} />
       </Section>
 
-      <Section id="pricing" heading={ui.pricing.heading(r)} line={ui.pricing.line(tiers)}>
-        <BlueprintPricing pricing={blueprintPricing({ per: r.per, tiers })} />
+      <Section id="pricing" heading={ui.pricing.heading(r)} line={ui.pricing.line}>
+        <BlueprintPrices options={pricings} label={ui.pricing.switch} />
       </Section>
 
       <Section id="steps" heading={ui.steps.heading} tone="ink">

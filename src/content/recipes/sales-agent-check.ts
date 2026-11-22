@@ -57,40 +57,10 @@ export const recipe: Recipe = {
   per: 'sales agent',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'A shopper persona asks for prices, stock and delivery',
-        'Each answer followed to checkout, stopped before payment',
-        'Every quote beside your price list',
-      ],
-    },
-    {
-      name: 'Weekly',
-      includes: [
-        'Your site chat or WhatsApp, asked as a shopper',
-        'Prices, codes, stock and delivery checked',
-        'The checkout total beside the quote',
-        'Answers in Slack or a sheet',
-      ],
-    },
-    {
-      name: 'Daily',
-      includes: [
-        'A test shop every morning',
-        'Your price list and stock page captured each run',
-        'How many chats asked about the same product, from your chat history',
-        'Every test shop in your event log',
-      ],
-    },
-    {
-      name: 'Scale',
-      includes: [
-        'Competitors’ shopping assistants asked the same questions',
-        'A weekly report you can share',
-        'Every answer by webhook or API',
-      ],
-    },
+    { name: 'Free', includes: ['A shopper persona asks for prices, stock and delivery', 'Each answer followed to checkout, stopped before payment', 'Every quote beside your price list'] },
+    { name: 'Weekly', includes: ['Your site chat or WhatsApp, asked as a shopper', 'The checkout total beside the quote', 'Answers in Slack or a sheet'] },
+    { name: 'Daily', includes: ['Your price list and stock page captured each run', 'How many chats asked about the same product'] },
+    { name: 'Scale', includes: ['Competitors’ shopping assistants asked the same questions', 'A weekly report you can share'] },
   ],
 
   run: {

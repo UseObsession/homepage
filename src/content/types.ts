@@ -7,14 +7,15 @@ export type ScreenName = string
    delivery-monitoring, account-watch, business-case, get-paid, supplier-quotes, listings-ai-answers, ai-checkout-test
    ('checkout', retired 22 Oct 2026), inbound-quotes ('quotes'), renewal-negotiation ('renewal'), cancellation-saves ('saves'),
    account-handover ('handover'), software-renewals ('spend'), expansion-offers ('expansion'), client-upsells
-   ('upsells'), review-requests ('reviews'), ad-landing-check ('adcheck'), partner-checks ('partners'),
-   store-mystery-shopper ('store-mystery', split from mystery-shopper on 21 Nov 2026: a brand's own store, while
-   mystery-shopper is for agencies).
+   ('upsells'), review-requests ('reviews'), ad-landing-check ('adcheck'), partner-checks ('partners'). Mystery shopping
+   is 1 page for brands and agencies since 22 Nov 2026 (founders): store-mystery-shopper ('store-mystery', split off on
+   21 Nov) was merged back into mystery-shopper, whose pricing table switches between the 2 (Recipe.variants), and its
+   address redirects there (public/_redirects).
    Check your AI agents (3 Oct, _research/verify/VERIFY.md): support-bot-check ('support-bot'), voice-agent-check
    ('voice-agent'), outbound-agent-check ('outbound-agent'), sales-agent-check ('sales-agent'), vendor-agent-check
    ('vendor-agent'), resolution-check ('resolution'), ai-disclosure-check ('disclosure'), drift-watch ('drift'). */
 export type RecipeId =
-  | 'competitor' | 'prospect' | 'mystery' | 'store-mystery' | 'speed' | 'prices' | 'ads' | 'trial'
+  | 'competitor' | 'prospect' | 'mystery' | 'speed' | 'prices' | 'ads' | 'trial'
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'listings'
   | 'adcheck' | 'partners'
   | 'support-bot' | 'voice-agent' | 'outbound-agent' | 'sales-agent' | 'vendor-agent' | 'resolution' | 'disclosure' | 'drift'
@@ -724,6 +725,11 @@ export type Recipe = {
      pricing engine (content/blueprint-tiers.ts), so no price is typed in a blueprint's file. The names must match the
      JSON's tiers in order, or the build fails. */
   tiers: BlueprintTierWords[]
+  /* A blueprint whose pricing table switches between buyers (founders, 22 Nov 2026: mystery shopping, for agencies and
+     for ecommerce brands): what each other set of scenarios includes, under its id in the pricing JSON (a blueprint
+     there with `variantOf` naming this one). `tiers` above are the first set's. The build fails if the file and the
+     JSON name different variants or tiers. */
+  variants?: BlueprintVariantWords[]
   /* The example run played on the page (labelled Example unless it is the real September store check). */
   run: Demo
   steps: { title: string; line: string }[]
@@ -740,19 +746,15 @@ export type Recipe = {
 /* A blueprint's pricing table (components/BlueprintPricing), on every blueprint page and in each tab of the audience
    pages' pricing (/agencies, /marketing, /sales). content/recipe-page.ts `blueprintPricing` works it out from the
    blueprint's typical months (content/catalog.ts, from content/blueprint-tiers.ts), so no figure is typed twice: 1 card
-   per typical month, the free run first, then the line to the rates. */
+   per typical month, the free run first, then the line to the rates. A card is the month and its price (founders,
+   22 Nov 2026: less text); the section's line says once how every price is worked out and paid. */
 export type BlueprintPlanCard = {
   id: string
+  /* The month it describes ("150 client stores, each shopped every month"), or "Your first run". */
   name: string
-  /* Who it's for, in 1 line. */
-  for: string
-  /* A word before the price ("About"), the big words and the line beside them: "$206" and "a month", or "Free" and
-     "your first run". */
-  lead?: string
+  /* The big words and the line beside them: "$214" and "a month", or "Free". */
   price: string
   per: string
-  /* The line under the price: how the month is worked out and paid, or what the free run would have cost. */
-  note?: string
   includes: string[]
   cta: Cta
   /* The tier the table lifts: the raised card, its tag and the row's 1 primary button. */
@@ -767,9 +769,15 @@ export type BlueprintPricing = {
   /* Under the cards: more of them, white label or a blueprint of your own, on /pricing. */
   more: { line: string; link: Cta }
 }
+/* A blueprint's pricing as its section shows it (components/BlueprintPricing BlueprintPrices): 1 table, or for a
+   blueprint with variants 1 per variant behind the switch, each named by its label ("Agencies", "Ecommerce brands")
+   and keyed by its id in the pricing JSON. */
+export type BlueprintPricingOption = { id: string; label: string; pricing: BlueprintPricing }
 /* An audience page's pricing (components/BlueprintPricingTabs: /agencies, /marketing, /sales): 1 tab per blueprint the
-   page sells, in this order, each opening that blueprint's own pricing table. `label` names the tab list. */
-export type PricingTabs = { heading: string; line?: string; label: string; recipes: RecipeId[] }
+   page sells, in this order, each opening that blueprint's own pricing table. `label` names the tab list. `variant` is
+   the variant a tab with a switch opens on, by its id in the pricing JSON (mystery shopping: "mystery-shopper" for
+   agencies, "mystery-shopper-brands" for ecommerce brands); else its first. */
+export type PricingTabs = { heading: string; line?: string; label: string; recipes: RecipeId[]; variant?: string }
 
 /* ---- Site pages: Sample output and the output viewer (content/sample.ts); Recipes index, Privacy, Agents, 404 and
    llms.txt (content/site.ts). Appended 2 Oct; nothing above changes. ---- */
@@ -1147,30 +1155,24 @@ export type Scale = {
 }
 
 /* What a blueprint's file writes for 1 of its tiers (Recipe.tiers): the tier's name, as the pricing JSON names it
-   (src/lib/pricing/pricing.json), and what comes with it, 3 to 6 short lines, each a thing the buyer gets. Everything
-   else about the tier comes from the pricing engine (content/blueprint-tiers.ts). */
+   (src/lib/pricing/pricing.json), and what comes with it, at most 3 short lines (founders, 22 Nov 2026: less text),
+   each a thing the buyer gets. Everything else about the tier comes from the pricing engine (content/blueprint-tiers.ts). */
 export type BlueprintTierWords = { name: string; includes: string[] }
+/* What a blueprint's file writes for 1 of its variants (Recipe.variants): the variant's id in the pricing JSON and its
+   tiers' words. */
+export type BlueprintVariantWords = { id: string; tiers: BlueprintTierWords[] }
 
-/* One tier of a blueprint's pricing as its table shows it, worked out at build time by content/blueprint-tiers.ts:
-   its name, who it's for, its price in dollars a month (0 for the free tier), what it covers in the blueprint's own
-   units ("Up to 150 client stores, each shopped every month") and whether it is the 1 recommended tier, all from the
-   pricing engine; `enterprise` when its price works out above the Enterprise cap (shown as Enterprise, linking
-   /pricing); `includes` from the blueprint's own file. */
 /* A typical month of a blueprint as the pricing engine works it out (content/blueprint-tiers.ts): its name (matched to
-   the file's), who it's for, whether it's the free run, what it costs at the list piece rates (dollars, rounded), what it
-   covers, what a month like it brings and whether it's the featured month. */
+   the file's), whether it's the free run, what it costs at the list piece rates (dollars, rounded), what it covers,
+   what a month like it brings and whether it's the featured month. */
 export type BlueprintTier = {
   name: string
-  for: string
   free: boolean
   estimate: number
-  /* The same month paid from Startup's and Scale's credit, at their rates (10% and 20% off every piece but model tokens
-     and the texting registration), and whether the whole month fits inside that plan's credit (past it, list rates). */
-  startup: number
-  scale: number
-  startupFits: boolean
-  scaleFits: boolean
   covers: string
   includes: string[]
   featured: boolean
 }
+/* 1 set of a blueprint's scenarios behind its pricing switch (content/blueprint-tiers.ts pricedVariants): its id in the
+   pricing JSON, the switch's label for it, what it counts ("client store", "store") and its typical months. */
+export type BlueprintVariant = { id: string; label: string; per: string; tiers: BlueprintTier[] }

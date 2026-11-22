@@ -55,38 +55,10 @@ export const recipe: Recipe = {
   per: 'brand',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'A persona with its own inbox and texting number',
-        'Every email and text kept with the time it arrived',
-        'The welcome series mapped from the first email',
-      ],
-    },
-    {
-      name: 'Starter',
-      includes: [
-        'Every email and text, kept as long as you watch',
-        'Each offer and code pulled out, with a screenshot',
-        'STOP texted, and checked, when a watch ends',
-        'A weekly summary',
-      ],
-    },
-    {
-      name: 'Growth',
-      includes: [
-        'Who sends most, who discounts first, and whose offer beats yours',
-        'Alerts on a new offer, a busier schedule or a new sender',
-        'Every message in your event log, by webhook or API',
-      ],
-    },
-    {
-      name: 'Scale',
-      includes: [
-        'Every message as a row in Clay or a sheet',
-        'A monthly report you can share',
-      ],
-    },
+    { name: 'Free', includes: ['A persona with its own inbox and texting number', 'Every email and text, with the time it arrived', 'The welcome series mapped from the first email'] },
+    { name: 'Starter', includes: ['Each offer and code pulled out, with a screenshot', 'STOP texted, and checked, when a watch ends', 'A weekly summary'] },
+    { name: 'Growth', includes: ['Who sends most, who discounts first, and whose offer beats yours', 'Alerts on a new offer, a busier schedule or a new sender'] },
+    { name: 'Scale', includes: ['Every message as a row in Clay or a sheet', 'A monthly report you can share'] },
   ],
 
   run: {

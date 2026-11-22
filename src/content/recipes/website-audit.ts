@@ -56,41 +56,10 @@ export const recipe: Recipe = {
   per: 'product',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'A sign up, onboarding or checkout, run end to end',
-        'Its own inbox and number, for every login code',
-        'Each step dated, with its screenshot',
-        'The step that broke, and what it showed',
-      ],
-    },
-    {
-      name: 'Indie',
-      includes: [
-        'A flow test each week, or when you press run',
-        'A phone or desktop browser',
-        'Slack or email when a step breaks',
-        'Results by webhook, API or MCP',
-      ],
-    },
-    {
-      name: 'Every release',
-      includes: [
-        'Started by every deploy, or each morning',
-        'Phone and desktop browsers',
-        'A persona in the country you choose',
-        'A ticket or webhook your pipeline reads',
-      ],
-    },
-    {
-      name: 'Agency',
-      includes: [
-        'Flow tests spread across products as you choose',
-        'A report you can share after each release',
-        'Each product’s results kept apart in your event log',
-      ],
-    },
+    { name: 'Free', includes: ['A sign up, onboarding or checkout, run end to end', 'Its own inbox and number, for every login code', 'The step that broke, with its screenshot'] },
+    { name: 'Indie', includes: ['A flow test each week, or when you press run', 'Slack or email when a step breaks', 'Results by webhook, API or MCP'] },
+    { name: 'Every release', includes: ['Started by every deploy, or each morning', 'Phone and desktop browsers, in the country you choose', 'A ticket or webhook your pipeline reads'] },
+    { name: 'Agency', includes: ['Flow tests spread across products as you choose', 'A report you can share after each release', 'Each product’s results kept apart in your event log'] },
   ],
 
   run: {

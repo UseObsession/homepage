@@ -58,38 +58,10 @@ export const recipe: Recipe = {
   per: 'support bot',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'Every answer kept word for word',
-        'Each answer beside your policy page',
-        'A person requested, and the wait timed',
-      ],
-    },
-    {
-      name: 'Weekly',
-      includes: [
-        'The questions your support team hears most',
-        'Promised emails waited for in the persona’s own inbox',
-        'Every test tagged, so your vendor doesn’t bill it',
-        'Answers in Slack or a sheet',
-      ],
-    },
-    {
-      name: 'Team',
-      includes: [
-        'Every channel’s answers side by side',
-        'Every transcript in your event log',
-      ],
-    },
-    {
-      name: 'Daily',
-      includes: [
-        'Every channel asked each morning',
-        'A flag the morning an answer breaks your policy',
-        'Every transcript by webhook or API',
-      ],
-    },
+    { name: 'Free', includes: ['Every answer kept word for word', 'Each answer beside your policy page', 'A person requested, and the wait timed'] },
+    { name: 'Weekly', includes: ['The questions your support team hears most', 'Every test tagged, so your vendor doesn’t bill it', 'Answers in Slack or a sheet'] },
+    { name: 'Team', includes: ['Every channel’s answers side by side', 'Every transcript in your event log'] },
+    { name: 'Daily', includes: ['A flag the morning an answer breaks your policy', 'Every transcript by webhook or API'] },
   ],
 
   run: {

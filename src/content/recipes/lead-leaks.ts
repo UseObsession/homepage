@@ -60,40 +60,10 @@ export const recipe: Recipe = {
   per: 'site',
   /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
   tiers: [
-    {
-      name: 'Free',
-      includes: [
-        'The lead tries your form, chat and phone line',
-        'Replies by email, text or call back, tracked for 48 hours',
-        'Time to first reply on each channel',
-        'Every reply kept: emails, texts, transcripts and recordings',
-      ],
-    },
-    {
-      name: 'Single site',
-      includes: [
-        'Test leads in business hours, evenings and weekends',
-        'Every lead tries your form, chat and phone line',
-        'An alert when a lead waits past your target',
-        'A scorecard for the site each month',
-        'Results by webhook, API or MCP',
-      ],
-    },
-    {
-      name: 'Group',
-      includes: [
-        'A scorecard per location, side by side',
-        'The locations and hours that leave leads waiting',
-        'A report you can share with each location’s manager',
-      ],
-    },
-    {
-      name: 'Agency',
-      includes: [
-        'Out of hours checks on a prospect’s line before you pitch',
-        'Each client’s leads kept apart in your event log',
-      ],
-    },
+    { name: 'Free', includes: ['The lead tries your form, chat and phone line', 'Time to first reply on each channel', 'Every reply kept, calls recorded'] },
+    { name: 'Single site', includes: ['Test leads in business hours, evenings and weekends', 'An alert when a lead waits past your target', 'A scorecard each month'] },
+    { name: 'Group', includes: ['A scorecard per location, side by side', 'A report for each location’s manager'] },
+    { name: 'Agency', includes: ['Out of hours checks on a prospect’s line before you pitch', 'Each client’s leads kept apart in your event log'] },
   ],
 
   run: {
