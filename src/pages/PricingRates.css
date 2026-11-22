@@ -64,6 +64,15 @@
   color: var(--ob-text);
   font-variant-numeric: tabular-nums;
 }
+/* Scale's lower rate, under the rate every other plan bills. */
+.s-rt-row__scale {
+  display: block;
+  margin-top: var(--ob-space-4);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+}
+.s-rt-row__scale-amount { color: var(--ob-text); font-weight: var(--ob-weight-medium); font-variant-numeric: tabular-nums; }
 .s-rt-row__note {
   display: block;
   margin-top: var(--ob-space-4);

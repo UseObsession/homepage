@@ -1,6 +1,15 @@
 import { piecePaths } from '../piecePaths'
-import { prices } from '../prices'
+import { plans, prices } from '../prices'
 import type { PiecePage } from './types'
+
+/* The paid plans and the US texting campaigns each includes the monthly fee of, from prices.ts. */
+const andList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`)
+const paid = plans.filter((pl) => (pl.monthly ?? 0) > 0)
+const paidNames = paid.map((pl) => pl.name)
+const campaignsLine = andList(
+  paid.flatMap((pl) => (pl.campaigns ? [`${pl.name} ${pl.campaigns.count} ${pl.campaigns.kind} campaign${pl.campaigns.count === 1 ? '' : 's'}`] : [])),
+)
+const extraCampaign = prices.register.unit.replace(/^once, then /, '')
 
 /* Phone (/phone), 21 Nov 2026: phone numbers for AI agents. One call makes a number; the agent sends and receives texts,
    gets verification codes, and makes and takes calls through the voice agent the developer brings or connects. US numbers
@@ -92,7 +101,7 @@ export const phone: PiecePage = {
       },
       {
         q: 'Can I get a free phone number for my AI agent?',
-        a: 'Yes. The Free plan includes a number that receives texts and calls, such as verification codes, up to a monthly amount, with no credit card. To send texts or call out, pick Developer or Startup.',
+        a: `Yes. The Free plan includes a number that receives texts and calls, such as verification codes, up to a monthly amount, with no credit card. To send texts or call out, pick a paid plan: ${andList(paidNames)}.`,
         link: { label: 'See what each plan includes', to: '/pricing' },
       },
       {
@@ -105,11 +114,11 @@ export const phone: PiecePage = {
       },
       {
         q: 'Do I need to register to text people in the US?',
-        a: `Yes. US carriers ask every business that texts to register what it texts for, a step known as 10DLC. We file the registration for you when you add a US number. Developer and Startup include your first campaign’s filing and monthly fee; each extra campaign is ${prices.register.amount} ${prices.register.unit}.`,
+        a: `Yes. US carriers ask every business that texts to register what it texts for, a step known as 10DLC. We file the registration for you when you add a US number. Each paid plan includes the monthly fee of its campaigns: ${campaignsLine}. Filing a campaign is ${prices.register.amount} once, paid from your plan’s monthly usage, and each extra campaign is ${extraCampaign}.`,
       },
       {
         q: 'What does a number cost?',
-        a: `${prices.number.name}: ${prices.number.amount} ${prices.number.unit}. ${prices.sms.name}: ${prices.sms.amount} ${prices.sms.unit}. ${prices.sms.note} ${prices.voice.name}: ${prices.voice.amount} ${prices.voice.unit}. ${prices.register.name}: included on Developer and Startup, then ${prices.register.amount} ${prices.register.unit} for each extra campaign. ${prices.number.note}`,
+        a: `${prices.number.name}: ${prices.number.amount} ${prices.number.unit}. ${prices.sms.name}: ${prices.sms.amount} ${prices.sms.unit}. ${prices.sms.note} ${prices.voice.name}: ${prices.voice.amount} ${prices.voice.unit}. ${prices.register.name}: each paid plan includes its campaigns’ monthly fee; filing one is ${prices.register.amount} once, and each extra campaign is ${extraCampaign}. ${prices.number.note}`,
       },
     ],
   },

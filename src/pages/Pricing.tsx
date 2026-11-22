@@ -2,20 +2,22 @@ import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
-import { counts, figure, pricingPage as p, quantity, type CalcPiece, type CalcQuantity, type PlanCard } from '../content/pricing'
-import { plans, prices, type Plan, type Price, type PriceKey } from '../content/prices'
+import { counts, figure, pricingPage as p, quantity, ratePer, type CalcPiece, type CalcQuantity, type PlanCard } from '../content/pricing'
+import { billing, plans, prices, rateAmounts, tokenUnitCost, type PlanId, type Price, type PriceKey } from '../content/prices'
+import { cheapestPlan } from '../lib/pricing/engine.js'
 import { NoticeHero } from './Notice'
 import '../components/sections/FinalCta.css'
 import './Pricing.css'
 
 /* /pricing: plans first (content/pricing.ts; every figure from content/prices.ts). The centred hero (no form of its
-   own: the bar's button is the view's call to action, App.tsx NO_HERO_FORM); the 4 plans as cards (#plans), Startup
-   raised with the row's 1 primary button, their top rows lined up from 1080px, and the line that sends extra usage to
-   /pricing/rates; the calculator (#estimate): a card per piece with an on/off switch, its quantities as steppers and,
-   where the range is large, a slider, in 1 column; beside it the summary (the plan whose price plus extra usage costs
-   least, each line included or extra, the month's total), held in view on desktop and a bar pinned to the foot of the
-   screen on a phone. It renders at its defaults on the server and goes live once the page runs. Then the questions and
-   the closing call. */
+   own: the bar's button is the view's call to action, App.tsx NO_HERO_FORM); the 5 plans as cards (#plans), Startup
+   raised with the row's 1 primary button, their top rows lined up when all 5 sit in 1 row (from 1180px), and the line
+   on how a plan's monthly usage works, with the link to /pricing/rates; the calculator (#estimate): a card per piece
+   with an on/off switch, its quantities as steppers and, where the range is large, a slider, in 1 column; beside it the
+   summary: the pricing engine's cheapestPlan bills the month on every plan (each plan as prices.ts `billing`, plain
+   data, so the JSON never ships), shows the cheapest line by line with its fee and what its monthly usage covers, and
+   lists the month on every plan. Held in view on desktop and a bar pinned to the foot of the screen on a phone. It
+   renders at its defaults on the server and goes live once the page runs. Then the questions and the closing call. */
 
 /* A numeral never ends a line apart from its word. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1 ')
@@ -35,7 +37,7 @@ const priceOf = (key: PriceKey): Price => prices[key]
 function PlanItem({ plan }: { plan: PlanCard }) {
   const id = useId()
   return (
-    <article role="listitem" className={plan.featured ? 'ob-card ob-card--raised s-pr-plan s-pr-plan--featured' : 'ob-card s-pr-plan'} aria-labelledby={`${id}-name`}>
+    <article role="listitem" className={plan.featured ? 'ob-card ob-card--raised s-pr-plan s-pr-plan--featured' : `ob-card s-pr-plan s-pr-plan--${plan.id}`} aria-labelledby={`${id}-name`}>
       <div className="s-pr-plan__top">
         <h2 className="s-pr-plan__name" id={`${id}-name`}>
           {plan.name}
@@ -43,6 +45,7 @@ function PlanItem({ plan }: { plan: PlanCard }) {
         {plan.featured && <span className="ob-badge s-pr-plan__tag">{p.plans.tag}</span>}
       </div>
       <p className="s-pr-plan__price">
+        {plan.lead && <span className="s-pr-plan__lead">{plan.lead}</span>}
         <span className="s-pr-plan__amount">{plan.price}</span>
         <span className="s-pr-plan__per">{plan.per}</span>
       </p>
@@ -81,47 +84,47 @@ function PlanItem({ plan }: { plan: PlanCard }) {
 /* ---- The calculator ---- */
 
 /* Money in whole cents, so the lines always add up to the total: "$45.00", "$1,204.50". */
-const money = (cents: number) => `$${figure(Math.floor(cents / 100))}.${String(cents % 100).padStart(2, '0')}`
+const money = (cents: number) => `${cents < 0 ? '-' : ''}$${figure(Math.floor(Math.abs(cents) / 100))}.${String(Math.abs(cents) % 100).padStart(2, '0')}`
+/* Dollars to whole cents. */
+const toCents = (dollars: number) => Math.round(dollars * 100)
 /* What a reader types, as a count: commas and spaces dropped, never below 0, never past a billion. */
 const MAX = 1e9
 const count = (text = '') => Math.min(MAX, Number(text.replace(/\D/g, '')) || 0)
-/* A quantity at a price's `value`, rounded to the cent. */
-const cents = (key: PriceKey, n: number) => Math.round(n * (priceOf(key).value ?? 0) * 100)
-/* The slider's stops: 0, the quantity's own stops and every plan's included amount, in order. */
-const stopsOf = (q: CalcQuantity) => [...new Set([0, ...(q.stops ?? []), ...plans.map((pl) => pl.included[q.key] ?? 0)])].sort((a, b) => a - b)
+/* The slider's stops: 0, the quantity's own stops and Free's allowance, in order, so the slider lands on Free's edge. */
+const freeAllowance = plans.find((pl) => pl.id === 'free')?.allowances ?? {}
+const stopsOf = (q: CalcQuantity) => [...new Set([0, ...(q.stops ?? []), freeAllowance[q.key] ?? 0])].sort((a, b) => a - b)
 
 type Used = { q: CalcQuantity; n: number }
-type Row = { key: string; label: string; sub: string; cents: number; included: boolean }
-type Bill = { plan: Plan; rows: Row[]; extra: number; total: number }
+type Bills = ReturnType<typeof cheapestPlan>
+type Bill = Bills['bills'][number]
+type Line = Bill['lines'][number]
 
-/* A plan's month for what is used: each quantity past the plan's amount at its rate, and after a quantity in use, the
-   monthly price it brings with it (the US texting registration after texts), unless the plan includes it. */
-function billOf(plan: Plan, used: Used[]): Bill {
-  const s = p.calc.summary
-  const rows: Row[] = used.flatMap(({ q, n }) => {
-    if (n === 0) return []
-    const inc = plan.included[q.key] ?? 0
-    const extra = Math.max(0, n - inc)
-    const sub = inc === 0 ? s.extra(quantity(n)) : extra === 0 ? s.included(quantity(n)) : s.split(quantity(inc), quantity(extra))
-    const own: Row = { key: q.key, label: q.label, sub, cents: cents(q.key, extra), included: extra === 0 }
-    if (!q.adds) return [own]
-    const added = priceOf(q.adds)
-    const inPlan = (plan.included[q.adds] ?? 0) > 0
-    const addedSub = inPlan ? s.inPlan : `${added.amount} ${added.unit}`
-    return [own, { key: q.adds, label: added.name, sub: addedSub, cents: inPlan ? 0 : cents(q.adds, 1), included: inPlan }]
-  })
-  const extra = rows.reduce((sum, r) => sum + r.cents, 0)
-  return { plan, rows, extra, total: (plan.monthly ?? 0) * 100 + extra }
+/* The month as the engine counts it: each piece in its own unit. Model spend is typed in dollars at cost, so it is
+   turned into the model tokens piece's unit; a quantity that brings another price with it (texts bring the US texting
+   registration) adds 1 of it. */
+function usageOf(used: Used[]): Record<string, number> {
+  const usage: Record<string, number> = {}
+  for (const { q, n } of used) {
+    if (!n) continue
+    usage[q.key] = (usage[q.key] ?? 0) + (q.key === 'tokens' ? n / tokenUnitCost : n)
+    if (q.adds) usage[q.adds] = Math.max(usage[q.adds] ?? 0, 1)
+  }
+  return usage
 }
 
-/* The plan that costs least for this month. Enterprise is priced by contract, so it never comes out of the sum; a free
-   plan has no card on file, so it fits only when nothing goes past it. Ties go to the cheaper plan. */
-function bestOf(used: Used[]): Bill {
-  const bills = plans
-    .filter((pl) => pl.monthly !== null)
-    .map((pl) => billOf(pl, used))
-    .filter((b) => b.plan.monthly !== 0 || b.extra === 0)
-  return bills.reduce((best, b) => (b.total < best.total ? b : best), bills[0])
+/* Each line's label: the quantity's own, or the price's name for one added with it. */
+const labels: Record<string, string> = Object.fromEntries(p.calc.pieces.flatMap((piece) => piece.quantities.map((q) => [q.key, q.label])))
+const labelOf = (key: string) => labels[key] ?? (key in prices ? priceOf(key as PriceKey).name : key)
+
+/* What a line counts, at what rate on the bill's plan: "20,000 at $0.32 per 1,000", "10 in Free", the fee in the plan. */
+function subOf(bill: Bill, l: Line, spend: number): string {
+  const s = p.calc.summary
+  if (l.billable === 0) return l.piece === 'register' ? s.inPlan : s.allowance(quantity(l.n))
+  if (l.piece === 'tokens') {
+    const t = prices.tokens
+    return s.at(`$${figure(spend)}`, ((bill.plan === 'scale' && t.scale?.amount) || t.amount).toLowerCase())
+  }
+  return s.at(quantity(l.billable), `${rateAmounts[bill.plan as PlanId][l.piece]} ${ratePer[l.piece as PriceKey] ?? ''}`.trim())
 }
 
 function Glyph({ d }: { d: string }) {
@@ -234,10 +237,11 @@ function PieceCard({ piece, on, toggle, texts, set }: CardProps) {
   )
 }
 
-function Summary({ bill }: { bill: Bill }) {
+function Summary({ bill, bills, spend }: { bill: Bill; bills: Bill[]; spend: number }) {
   const s = p.calc.summary
-  const total = money(bill.total)
-  const name = bill.plan.name
+  const total = money(toCents(bill.total ?? 0))
+  const name = bill.name
+  const credit = bill.credit ?? 0
 
   /* 1 polite announcement once the inputs settle, never on load and never on every keystroke. */
   const [said, setSaid] = useState('')
@@ -267,18 +271,39 @@ function Summary({ bill }: { bill: Bill }) {
         <dl className="ob-calc-outs s-pr-sum__rows" aria-label={s.rows}>
           <div>
             <dt>{s.plan(name)}</dt>
-            <dd>{money((bill.plan.monthly ?? 0) * 100)}</dd>
+            <dd>{money(toCents(bill.fee ?? 0))}</dd>
           </div>
-          {bill.rows.map((r) => (
-            <div key={r.key}>
-              <dt>
-                {r.label}
-                <span className="s-pr-sum__sub">{tie(r.sub)}</span>
-              </dt>
-              <dd className={r.included ? 's-pr-sum__in' : undefined}>{r.included ? s.free : money(r.cents)}</dd>
+          {bill.lines.map((l) => {
+            const covered = l.billable === 0
+            return (
+              <div key={l.piece}>
+                <dt>
+                  {labelOf(l.piece)}
+                  <span className="s-pr-sum__sub">{tie(subOf(bill, l, spend))}</span>
+                </dt>
+                <dd className={covered ? 's-pr-sum__in' : undefined}>{covered ? s.free : money(l.cents)}</dd>
+              </div>
+            )
+          })}
+          {credit > 0 && bill.creditUsed > 0 && (
+            <div>
+              <dt>{s.covered(`$${figure(credit)}`)}</dt>
+              <dd className="s-pr-sum__in">{money(-toCents(bill.creditUsed))}</dd>
             </div>
-          ))}
+          )}
         </dl>
+        {credit > 0 && bill.unused > 0 && <p className="ob-calc-note s-pr-sum__rest">{tie(s.unused(money(toCents(bill.unused))))}</p>}
+        <div className="s-pr-sum__each">
+          <p className="s-pr-sum__k">{s.each}</p>
+          <dl className="s-pr-sum__plans">
+            {bills.map((b) => (
+              <div key={b.plan} className={b.plan === bill.plan ? 'is-best' : undefined}>
+                <dt>{b.name}</dt>
+                <dd>{b.fits ? money(toCents(b.total ?? 0)) : s.over}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
         <p className="ob-calc-note s-pr-sum__rest">{tie(s.rest)}</p>
         <div className="s-pr-sum__actions">
           <Link className="ob-btn ob-btn--block" to={s.cta.to}>
@@ -305,6 +330,9 @@ function Calculator({ headId }: { headId: string }) {
   )
   const used: Used[] = c.pieces.flatMap((piece) => (on[piece.id] ? piece.quantities.map((q) => ({ q, n: count(texts[q.key]) })) : []))
   const set = (key: PriceKey, text: string) => setTexts((t) => ({ ...t, [key]: text }))
+  /* The month on every self-serve plan, and the cheapest (the engine; Free only when the month fits its allowances). */
+  const { best, bills } = cheapestPlan(usageOf(used), billing)
+  const spend = used.find((u) => u.q.key === 'tokens')?.n ?? 0
 
   return (
     <div className="s-pr-calc">
@@ -320,7 +348,7 @@ function Calculator({ headId }: { headId: string }) {
           />
         ))}
       </ul>
-      <Summary bill={bestOf(used)} />
+      {best && <Summary bill={best} bills={bills} spend={spend} />}
     </div>
   )
 }
@@ -335,7 +363,7 @@ export function Pricing() {
       <NoticeHero pill={p.pill} headline={p.headline} sub={p.sub} />
 
       <section className="s-section s-pr-plans" id="plans" aria-label={p.plans.label}>
-        <div className="s-wrap">
+        <div className="s-wrap s-wrap--wide">
           <div className="s-pr-grid" role="list">
             {p.plans.items.map((plan) => (
               <PlanItem plan={plan} key={plan.id} />

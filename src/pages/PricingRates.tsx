@@ -8,9 +8,10 @@ import { NoticeHero } from './Notice'
 import '../components/sections/FinalCta.css'
 import './PricingRates.css'
 
-/* /pricing/rates: every rate Obsession bills, past what a plan includes (content/pricing.ts `ratesPage`; every figure
-   from content/prices.ts). The centred hero; the rate list, 1 ruled row per piece in the nav's order (its name, line
-   and page link on the left, its prices on the right, each with its amount, unit and note), each row anchored at the
+/* /pricing/rates: every rate Obsession bills, from a plan's monthly usage and past it (content/pricing.ts `ratesPage`;
+   every figure from content/prices.ts). The centred hero; the rate list, 1 ruled row per piece in the nav's order (its
+   name, line and page link on the left, its prices on the right, each with its amount, unit, Scale's lower rate where
+   there is one, and note), each row anchored at the
    piece's id (/pricing/rates#email); the questions; the closing call back to the plans. */
 
 /* A numeral never ends a line apart from its word. */
@@ -45,6 +46,12 @@ function Group({ group }: { group: PriceGroup }) {
               <dt className="s-rt-row__name">{price.name}</dt>
               <dd className="s-rt-row__price">
                 <span className="s-rt-row__amount">{price.amount}</span> <span className="s-rt-row__unit">{tie(price.unit)}</span>
+                {price.scale && (
+                  <span className="s-rt-row__scale">
+                    {r.list.scale}: <span className="s-rt-row__scale-amount">{price.scale.amount}</span>
+                    {price.scale.unit && <> {tie(price.scale.unit)}</>}
+                  </span>
+                )}
                 {price.note && <span className="s-rt-row__note">{tie(price.note)}</span>}
               </dd>
             </div>

@@ -1,4 +1,4 @@
-import { prices } from './prices'
+import { eventLogKept, prices } from './prices'
 import { CONTACT_EMAIL } from './site'
 import type { SecurityPage } from './types'
 
@@ -12,7 +12,7 @@ import type { SecurityPage } from './types'
      encrypts every object at rest with AES-256 (Cloudflare's R2 data security page);
    - the site on Cloudflare, served over HTTPS only (README, Hosting);
    - who can reach customer data: only the 2 founders, each signing in with two-step verification (James);
-   - results deleted when the time the customer sets runs out; the event log's 30 days, read from content/prices.ts log,
+   - results deleted when the time the customer sets runs out; the event log's days on each plan, read from prices.ts,
      and model tokens at their markup or free with your own key (prices.ts tokens);
    - the early access form's 12 months and deletion on request (/privacy, content/site.ts);
    - agents stop at any identity check, and no person completes one for them.
@@ -20,8 +20,8 @@ import type { SecurityPage } from './types'
    only when known. No telecom carrier, iMessage or outbound email provider until one is live. The data processing
    agreement is being drafted, so the page offers it on request and links no document. */
 
-/* How long the event log keeps events at no charge, from its price's note ("30 days"). */
-const keptFor = /\d+ days/.exec(prices.log.note)?.[0] ?? ''
+/* How long the event log keeps events at no charge on each plan (prices.ts eventLogKept). */
+const keptFor = eventLogKept
 
 export const securityPage: SecurityPage = {
   meta: {
@@ -97,7 +97,7 @@ export const securityPage: SecurityPage = {
       heading: 'You set how long we keep your results.',
       lines: [
         'Your results are deleted when the time you set runs out.',
-        `By default, your event log keeps every event for ${keptFor} at no extra charge. Enterprise plans keep events for longer.`,
+        `Your event log keeps every event at no extra charge for ${keptFor}. Enterprise plans keep events for longer.`,
         'We keep what you type into our early access form for 12 months after you sign up.',
       ],
     },

@@ -7,6 +7,8 @@
  * Nothing here holds a price. Change a number in pricing.json, or pass an override (the model, the browser,
  * the cache share, the fleet volume), and every cost and tier follows.
  *
+ * Plans sell a monthly credit in dollars, spent at the plan's rates on any piece (planRates, monthlyBill, cheapestPlan).
+ *
  * Plain ES module, no dependencies. Works in a browser (`import('./engine.js')`), in Node
  * (`import * as engine from './engine.js'`), and from TypeScript (the JSDoc types below).
  */
@@ -576,28 +578,257 @@ export function pieceMargins(pricing, o = {}) {
   });
 }
 
+/* ------------------------------------------------------------------ plans: a monthly credit */
+
+/*
+ * A paid plan's fee buys a monthly credit in dollars, spent at the plan's rates on any piece, model tokens included.
+ * Past the credit, usage is billed at the same rates (pay as you go, no limit). Unused credit resets each month. Plans
+ * differ by features and, on Scale, by lower rates (its `discount` rule); Free keeps fixed allowances; Enterprise is
+ * set with the buyer. Blueprint plans are separate products and never draw on the credit.
+ */
+
 /**
- * Each plan's cost to us when every included amount is used, and its margin.
+ * @typedef {{off:number, marginFloor:number, roundUpSignificant?:number, pieces?:Record<string, {retailMarkup?:number}>}} Discount
+ * @typedef {{id:string, name:string, monthly:number|null, from?:number, credit:number|null, billing?:string[],
+ *   featured?:boolean, allowances?:Record<string, number>, freeNumber?:{textsIn:number, callMinutesIn:number},
+ *   discount?:Discount, features?:{register?:{kind:string, campaigns:number, wholesale:string}} & Record<string, any>,
+ *   note?:string}} Plan
+ * @typedef {{id:string, name:string, monthly:number|null, from:number|null, credit:number, billing:string[],
+ *   featured:boolean, allowances:Record<string, number>, freeNumber:{textsIn:number, callMinutesIn:number}|null,
+ *   features:Record<string, any>, rates:Record<string, number>, once:Record<string, number>}} BillingPlan
+ * @typedef {{id:string, name:string, unit:string, displayPer:number, displayUnit:string, wholesale:number, list:number,
+ *   rate:number, margin:number|null, listMargin:number|null, floor:number|null, rule:string, discounted:boolean, off:number,
+ *   plus:number|null, markup:number|null,
+ *   once:{list:number, rate:number, wholesale:number, margin:number|null}|null}} PlanRate
+ */
+
+/** @param {Pricing} pricing @param {string} id @returns {Plan} */
+export function findPlan(pricing, id) {
+  return pricing.plans.find((/** @type {Plan} */ p) => p.id === id);
+}
+
+/**
+ * Round up to n significant figures, so a rate raised to its floor never drops back under it.
+ * @param {number} x
+ * @param {number} n
+ */
+export function roundUpSig(x, n) {
+  if (!(x > 0) || !n) return x;
+  const k = 10 ** (n - 1 - Math.floor(Math.log10(x)));
+  return Math.ceil(x * k - 1e-9) / k;
+}
+
+/**
+ * One rate under a discount: list less `off`, never below wholesale / (1 - floor), never above list, rounded up.
+ * @param {number} list
+ * @param {number} wholesale
+ * @param {Discount} d
+ */
+function discountedRate(list, wholesale, d) {
+  if (!(list > 0)) return list;
+  const r = roundUpSig(Math.max(list * (1 - d.off), wholesale / (1 - d.marginFloor)), d.roundUpSignificant ?? 3);
+  return Math.min(r, list);
+}
+
+/**
+ * Each piece's rate on a plan, in dollars per the piece's unit, beside its list rate, wholesale and margin. A plan with
+ * no `discount` bills list rates (each piece's retail). Under a discount (Scale): list less `off`, never below the rate
+ * that keeps `marginFloor` over wholesale and never above list, rounded up to `roundUpSignificant` figures; a piece
+ * already under the floor at list stays at list. A pass-through piece (retailPlus: WhatsApp) takes the discount off the
+ * fee we add. A piece named in `discount.pieces` follows its own rule (model tokens: cost plus 20%).
+ * @param {Plan|string} plan a plan from pricing.plans, or its id
+ * @param {Pricing} pricing
+ * @param {Overrides} [o]
+ * @returns {PlanRate[]}
+ */
+export function planRates(plan, pricing, o = {}) {
+  const pl = typeof plan === 'string' ? findPlan(pricing, plan) : plan;
+  const d = pl?.discount;
+  return pieceMargins(pricing, o).map((/** @type {any} */ p) => {
+    const w = p.wholesaleValue;
+    const list = p.retailValue;
+    let rate = list, floor = /** @type {number|null} */ (null), rule = 'list';
+    if (d) {
+      const own = d.pieces?.[p.id] ?? {};
+      if (own.retailMarkup != null) {
+        rate = w * (1 + own.retailMarkup);
+        floor = 1 - 1 / (1 + own.retailMarkup);
+        rule = 'markup';
+      } else if (p.retailPlus != null) {
+        floor = d.marginFloor;
+        const plus = roundUpSig(p.retailPlus * (1 - d.off), d.roundUpSignificant ?? 3);
+        rate = Math.min(list, Math.max(w + plus, w / (1 - floor)));
+        rule = 'plus';
+      } else {
+        floor = d.marginFloor;
+        rate = discountedRate(list, w, d);
+        rule = rate < list - 1e-12 ? 'discount' : 'list';
+      }
+    }
+    let once = null;
+    if (p.onceValue) {
+      const r1 = d ? discountedRate(p.onceValue.retail, p.onceValue.wholesale, d) : p.onceValue.retail;
+      once = { list: p.onceValue.retail, rate: r1, wholesale: p.onceValue.wholesale, margin: r1 > 0 ? (r1 - p.onceValue.wholesale) / r1 : null };
+    }
+    return {
+      id: p.id, name: p.name, unit: p.unit, displayPer: p.displayPer ?? 1, displayUnit: p.displayUnit ?? p.unit,
+      wholesale: w, list, rate, margin: rate > 0 ? (rate - w) / rate : null, listMargin: p.margin,
+      floor, rule, discounted: rate < list - 1e-12, off: list > 0 ? 1 - rate / list : 0,
+      plus: p.retailPlus != null ? rate - w : null, markup: p.retailMarkup != null ? (d?.pieces?.[p.id]?.retailMarkup ?? p.retailMarkup) : null,
+      once,
+    };
+  });
+}
+
+/**
+ * A plan made ready to bill: its fee, credit, allowances, features and the rate of every piece, as plain data (it
+ * survives JSON), so a page can work out bills with monthlyBill() without the rest of pricing.json.
+ * @param {Plan|string} plan
+ * @param {Pricing} pricing
+ * @param {Overrides} [o]
+ * @returns {BillingPlan}
+ */
+export function billingPlan(plan, pricing, o = {}) {
+  const pl = typeof plan === 'string' ? findPlan(pricing, plan) : plan;
+  /** @type {Record<string, number>} */ const rates = {};
+  /** @type {Record<string, number>} */ const once = {};
+  for (const r of planRates(pl, pricing, o)) {
+    rates[r.id] = r.rate;
+    if (r.once) once[r.id] = r.once.rate;
+  }
+  return {
+    id: pl.id, name: pl.name, monthly: pl.monthly, from: pl.from ?? null, credit: pl.credit ?? 0,
+    billing: pl.billing ?? ['monthly'], featured: !!pl.featured, allowances: pl.allowances ?? {},
+    freeNumber: pl.freeNumber ?? null, features: pl.features ?? {}, rates, once,
+  };
+}
+
+/**
+ * Every plan made ready to bill.
+ * @param {Pricing} pricing
+ * @param {Overrides} [o]
+ * @returns {BillingPlan[]}
+ */
+export function billingPlans(pricing, o = {}) {
+  return pricing.plans.map((/** @type {Plan} */ pl) => billingPlan(pl, pricing, o));
+}
+
+/**
+ * A month's bill on one plan. `usage` counts each piece in its own unit, keyed by piece id
+ * ({ inbox: 10, email: 20000, browser: 100, register: 1 }); `register` counts the US texting campaigns held.
+ * Free's allowances and a plan's included campaigns come off first; the rest is priced at the plan's rates; the credit
+ * pays for it up to its size and anything past it is pay as you go, at the same rates. Unused credit is lost at the
+ * month's end. Each line is rounded to the cent, as a bill is. Free fits only when nothing goes past its allowances
+ * (it holds no card). `plan` is a plan id, a plan from pricing.plans, or an entry of billingPlans() (then `pricing`
+ * is not needed). Enterprise comes back as `contract`, with no total.
+ * @param {Record<string, number>} usage
+ * @param {Plan|BillingPlan|string} plan
+ * @param {Pricing} [pricing]
+ * @param {Overrides} [o]
+ */
+export function monthlyBill(usage, plan, pricing, o = {}) {
+  const bp = plan && typeof plan === 'object' && 'rates' in plan
+    ? /** @type {BillingPlan} */ (plan)
+    : billingPlan(/** @type {Plan|string} */ (plan), /** @type {Pricing} */ (pricing), o);
+  /** @type {{piece:string, n:number, free:number, billable:number, rate:number, cents:number, amount:number}[]} */
+  const lines = [];
+  if (bp.monthly == null) {
+    return { plan: bp.id, name: bp.name, contract: true, fee: null, credit: null, lines, used: 0, creditUsed: 0, unused: 0, payg: 0, total: null, fits: false };
+  }
+  for (const [id, raw] of Object.entries(usage || {})) {
+    const n = Math.max(Number(raw) || 0, 0);
+    if (!n) continue;
+    if (!(id in bp.rates)) throw new Error(`monthlyBill: unknown piece "${id}"`);
+    const free = (bp.allowances[id] ?? 0) + (id === 'register' ? bp.features.register?.campaigns ?? 0 : 0);
+    const billable = Math.max(n - free, 0);
+    const cents = Math.round(billable * bp.rates[id] * 100);
+    lines.push({ piece: id, n, free: Math.min(n, free), billable, rate: bp.rates[id], cents, amount: cents / 100 });
+  }
+  const usedC = lines.reduce((s, l) => s + l.cents, 0);
+  const creditC = Math.round(bp.credit * 100);
+  const creditUsedC = Math.min(usedC, creditC);
+  const paygC = usedC - creditUsedC;
+  return {
+    plan: bp.id, name: bp.name, contract: false, fee: bp.monthly, credit: bp.credit, lines,
+    used: usedC / 100, creditUsed: creditUsedC / 100, unused: (creditC - creditUsedC) / 100, payg: paygC / 100,
+    total: (Math.round(bp.monthly * 100) + paygC) / 100,
+    fits: bp.monthly > 0 || lines.every((l) => l.billable === 0 || l.rate === 0),
+  };
+}
+
+/**
+ * The plan whose bill is lowest for a month's usage, and every plan's bill. Enterprise is set with the buyer, so it is
+ * never in the sum; Free counts only when the usage fits its allowances. Ties go to the plan listed first.
+ * `plans` is pricing.json or the output of billingPlans().
+ * @param {Record<string, number>} usage
+ * @param {Pricing|BillingPlan[]} plans
+ * @param {Overrides} [o]
+ */
+export function cheapestPlan(usage, plans, o = {}) {
+  /** @type {BillingPlan[]} */
+  const list = Array.isArray(plans) ? plans : billingPlans(plans, o);
+  const bills = list.filter((p) => p.monthly != null).map((p) => monthlyBill(usage, p));
+  /** @type {ReturnType<typeof monthlyBill> | null} */
+  let best = null;
+  for (const b of bills) if (b.fits && (best == null || /** @type {number} */ (b.total) < /** @type {number} */ (best.total) - 1e-9)) best = b;
+  return { best, bills };
+}
+
+/**
+ * Each plan's margin. Free: its fixed allowances at full use. A paid plan, when its whole credit is spent:
+ *   worst case: the credit spent on the lowest-margin piece at the plan's rates (model tokens), plus the monthly fees
+ *     of its included US texting campaigns;
+ *   typical: the credit spent on pricing.credit.typicalMonth's mix, scaled to fill the credit, plus the same fees.
+ * `creditOnly` leaves the campaign fees out. Pay as you go past the credit earns the typical mix's margin at the
+ * plan's rates (`typical.mixMargin`). Unused credit (lost at the month's end) only adds margin and is not counted.
+ * Enterprise is set with the buyer: no margin here.
  * @param {Pricing} pricing
  * @param {Overrides} [o]
  */
 export function planMargins(pricing, o = {}) {
   const ctx = context(pricing, o);
+  const P = pricing.primitives;
   const pieces = Object.fromEntries(pieceMargins(pricing, o).map((/** @type {any} */ p) => [p.id, p]));
-  return pricing.plans.map((/** @type {any} */ plan) => {
-    if (plan.monthly == null) return { ...plan, cost: null, margin: null, lines: [] };
-    const lines = Object.entries(plan.included || {}).map(([k, n]) => {
-      const path = plan.wholesaleOverride?.[k];
-      const unit = path ? val(getPath(pricing.primitives, path)) : pieces[k]?.wholesaleValue ?? 0;
-      return { piece: k, name: pieces[k]?.name ?? k, n: Number(n), unit, amount: Number(n) * unit };
-    });
-    if (plan.freeNumber) {
-      const ph = pricing.primitives.phone;
-      lines.push({ piece: 'freeNumber', name: 'Texts and call minutes received on the free number', n: 1, unit: 0,
-        amount: plan.freeNumber.textsIn * val(ph.textIn) + plan.freeNumber.callMinutesIn * val(ph.callMinuteIn) });
+  /** @type {Record<string, number>} */
+  const mix = pricing.credit?.typicalMonth?.usage ?? {};
+  return pricing.plans.map((/** @type {Plan} */ plan) => {
+    if (plan.monthly == null) return { ...plan, contract: true, cost: null, margin: null, lines: [], worst: null, typical: null, featureCost: 0 };
+    if (!(Number(plan.credit) > 0)) {
+      const lines = Object.entries(plan.allowances || {}).map(([k, n]) => {
+        const unit = pieces[k]?.wholesaleValue ?? 0;
+        return { piece: k, name: pieces[k]?.name ?? k, n: Number(n), unit, amount: Number(n) * unit };
+      });
+      if (plan.freeNumber) {
+        const ph = P.phone;
+        lines.push({ piece: 'freeNumber', name: 'Texts and call minutes received on the free number', n: 1, unit: 0,
+          amount: plan.freeNumber.textsIn * val(ph.textIn) + plan.freeNumber.callMinutesIn * val(ph.callMinuteIn) });
+      }
+      const cost = lines.reduce((s, l) => s + l.amount, 0);
+      return { ...plan, contract: false, cost, margin: null, lines, worst: null, typical: null, featureCost: 0, ctxModel: ctx.mr.model.id };
     }
-    const cost = lines.reduce((s, l) => s + l.amount, 0);
-    return { ...plan, cost, margin: plan.monthly > 0 ? (plan.monthly - cost) / plan.monthly : null, lines, ctxModel: ctx.mr.model.id };
+    const fee = /** @type {number} */ (plan.monthly);
+    const credit = /** @type {number} */ (plan.credit);
+    const rates = planRates(plan, pricing, o);
+    const reg = plan.features?.register;
+    const featureCost = reg ? reg.campaigns * val(getPath(P, reg.wholesale)) : 0;
+    const lines = reg ? [{ piece: 'register', name: `${reg.campaigns} ${reg.kind} US texting campaign${reg.campaigns === 1 ? '' : 's'}, monthly fee`, n: reg.campaigns, unit: val(getPath(P, reg.wholesale)), amount: featureCost }] : [];
+    const margin = (/** @type {number} */ cost) => (fee - cost) / fee;
+
+    const low = rates.filter((r) => r.rate > 0 && r.margin != null).reduce((a, r) => (/** @type {number} */ (r.margin) < /** @type {number} */ (a.margin) ? r : a));
+    const worstCredit = credit * (1 - /** @type {number} */ (low.margin));
+    const worst = { piece: low.id, name: low.name, pieceMargin: low.margin, cost: worstCredit + featureCost, margin: margin(worstCredit + featureCost), creditOnly: margin(worstCredit) };
+
+    let revenue = 0, wholesale = 0;
+    for (const [id, n] of Object.entries(mix)) {
+      const r = rates.find((x) => x.id === id);
+      if (!r || id === 'register') continue;
+      revenue += Number(n) * r.rate;
+      wholesale += Number(n) * r.wholesale;
+    }
+    const typCredit = revenue > 0 ? credit * (wholesale / revenue) : 0;
+    const typical = { mixMargin: revenue > 0 ? 1 - wholesale / revenue : null, cost: typCredit + featureCost, margin: margin(typCredit + featureCost), creditOnly: margin(typCredit) };
+
+    return { ...plan, contract: false, cost: worst.cost, margin: worst.margin, lines, worst, typical, featureCost, ctxModel: ctx.mr.model.id };
   });
 }
 

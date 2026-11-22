@@ -144,7 +144,7 @@ export const page: Page = {
       },
       {
         q: 'What do we pay, and what do we charge?',
-        a: 'You pay for each blueprint’s plan and set your own price to clients. White label is part of the Enterprise plan, with lower rates set by contract on the volume you commit to.',
+        a: 'You pay for each blueprint’s plan and set your own price to clients. White label is part of the Enterprise plan, which starts monthly with nothing paid up front, and its rates drop as your volume grows.',
         link: { label: 'See the Enterprise plan', to: '/pricing' },
       },
       {
@@ -183,7 +183,8 @@ export const pricing: PricingTabs = {
 }
 
 /* #white-label: the 3 things every reseller asked for, as the Enterprise plan on /pricing gives them (content/pricing.ts:
-   an account for each of your users under your brand, lower rates set by contract). */
+   an account for each of your users under your brand, wholesale rates that drop with volume, monthly with nothing up
+   front, founder 21 Nov). */
 export const whiteLabel: CardGrid = {
   heading: 'Your clients see your brand, not ours.',
   line: 'White label comes with the Enterprise plan: a dashboard, reports under your brand, an account per client and wholesale rates.',
@@ -202,7 +203,7 @@ export const whiteLabel: CardGrid = {
     },
     {
       title: 'Wholesale rates',
-      line: 'You pay lower rates, set by contract on your volume, and charge your clients what you choose.',
+      line: 'You pay wholesale rates that drop as your volume grows, and charge your clients what you choose. It starts monthly, with nothing paid up front.',
       link: { label: 'See the Enterprise plan', to: '/pricing' },
     },
   ],

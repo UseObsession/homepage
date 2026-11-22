@@ -254,8 +254,9 @@ export const page: Page = {
      except the web behind the login, which links to its use case page. `status` says who it fits, and each tile's hue is
      that reader (styles/accents.css). The heading is James's (21 Nov), its comma included: it speaks to the reader. */
   personaRecipes: {
-    heading: 'Teams who don’t maintain code, pick a blueprint, and we run the job.',
-    line: 'A blueprint runs on Obsession beside the pieces and writes every result to your event log. Pick one and say where it goes. Developers can bring their own job to run the same way.',
+    /* James, 21 Nov: the heading speaks to teams with no engineers; the line says where the results arrive. */
+    heading: 'No engineers? Pick a blueprint. We run the job and send you the results.',
+    line: 'Every result arrives where you already work: in your spreadsheet, in Clay, through your own Claude agent or on our dashboard. Developers can bring their own job to run the same way.',
     items: [
       {
         name: 'Mystery shopping for your store',

@@ -5,8 +5,9 @@
    (surfaces.css .ob-range); the summary takes the calculator's face and rows (.ob-calc-outs). Spacing sits on the 4px
    grid. Nothing is wider than a phone's screen. */
 
-/* ---- The plans. The hero above closes with its block space, so the cards take no more. 1 column on a phone, 2 from
-   640px, 4 from 1080px, where each card's top rows (name, price, who it's for, button) line up across the row. ---- */
+/* ---- The plans. The hero above closes with its block space, so the cards take no more. 1 column on a phone; 2 from
+   640px, with Enterprise across both; all 5 in 1 row from 1180px (on the wide wrap), where each card's top rows (name,
+   price, who it's for, button) line up across the row and the price takes the h3 size to fit. ---- */
 .s-pr-plans.s-section { padding-top: 0; }
 .s-pr-grid {
   display: grid;
@@ -18,6 +19,7 @@
 }
 @media (min-width: 640px) {
   .s-pr-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .s-pr-plan--enterprise.ob-card { grid-column: 1 / -1; }
 }
 .s-pr-plan.ob-card {
   gap: 0;
@@ -57,6 +59,7 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+.s-pr-plan__lead,
 .s-pr-plan__per {
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
@@ -90,13 +93,16 @@
   text-wrap: pretty;
 }
 .s-pr-plan__row:last-child { padding-bottom: 0; }
-@media (min-width: 1080px) {
+@media (min-width: 1180px) {
   .s-pr-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     grid-template-rows: repeat(5, auto);
     row-gap: 0;
+    column-gap: var(--ob-space-12);
   }
-  .s-pr-plan.ob-card { grid-row: span 5; grid-template-rows: subgrid; }
+  .s-pr-plan.ob-card { grid-row: span 5; grid-template-rows: subgrid; padding-inline: var(--ob-space-16); }
+  .s-pr-plan--enterprise.ob-card { grid-column: auto; }
+  .s-pr-plan__amount { font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); }
 }
 
 /* The line under the cards: extra usage, and the link to every rate. */
@@ -244,6 +250,21 @@
   font-variant-numeric: tabular-nums;
 }
 .s-pr-sum__rest { margin: 0; }
+/* The month on every plan: 1 row each, the best one in the text colour. */
+.s-pr-sum__each { display: grid; gap: var(--ob-space-4); }
+.s-pr-sum__plans { display: grid; margin: 0; }
+.s-pr-sum__plans > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  padding-block: var(--ob-space-4);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  font-variant-numeric: tabular-nums;
+}
+.s-pr-sum__plans dd { margin: 0; text-align: right; }
+.s-pr-sum__plans > .is-best { color: var(--ob-text); font-weight: var(--ob-weight-medium); }
 .s-pr-sum__actions { display: grid; justify-items: center; gap: var(--ob-space-12); }
 
 /* From 960px: 1 card beside the pieces, held under the nav; a long month scrolls inside it. */
