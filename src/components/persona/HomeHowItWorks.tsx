@@ -1,15 +1,19 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { kitLinks } from '../../content/kitPaths'
 import type { HomeHow } from '../../content/types'
 import './HomeHowItWorks.css'
 
 /* How it works on Home (#how). James's loop of 21 Nov (set up once; something happens; it's saved in your event log; it
    reaches your agent or a person; whatever the agent does next is a new event), redrawn on 22 Nov so any reader, and each
-   buyer, sees it work: one real-looking example per buyer plays through the three stops. An event card arrives at
+   buyer, sees it work: one real-looking example per buyer plays through the three stops. Since 23 Nov there is one example
+   for each of the six types of blueprints, each at the volume a real team runs it: the team and its company, how much
+   comes in (a stack of cards behind the one that plays), the events just before it in the log, and the week's total,
+   which links that type of blueprint. An event card arrives at
    "Something happens", travels the wire into the log as a dated row, travels on and lights the place it reaches (the
    agent on our runtime, on your servers, or a person), shows what happens there, and, when an agent acts, comes back
-   round the return path as the next row in the log. The tabs pick the buyer: support and sales, QA and product, teams
-   without engineers. Live call audio is the figure's caption.
+   round the return path as the next row in the log. The tabs pick the team: front desks, product and QA, AI startups,
+   operations, pricing teams and AI labs. Live call audio is the figure's caption.
 
    Motion explains the order of things and nothing else. The tour plays only in view, moves to the next buyer every 7.5 s,
    and stops on Pause or after a tab the reader picks. Under prefers-reduced-motion nothing moves and nothing advances by
@@ -144,6 +148,7 @@ export function HomeHowItWorks({ how, id }: { how: HomeHow; id?: string }) {
   }
 
   const e = L.examples[ex]
+  const kit = kitLinks.find((k) => k.id === e.kit)
   const reached = step >= 2
   const from = (n: number) => ({ 'data-from': n }) as Record<string, number>
 
@@ -203,10 +208,16 @@ export function HomeHowItWorks({ how, id }: { how: HomeHow; id?: string }) {
                 <b>{L.happens.name}</b>
               </p>
               <p className="h-how__station-line">{L.happens.line}</p>
-              <div className="h-how__card h-how__card--in" {...from(0)}>
-                <span className="h-how__from">{e.from}</span>
-                <span className="h-how__text">{e.in.text}</span>
-                <span className="h-how__kind">{e.in.kind}</span>
+              <p className="h-how__src">
+                <b>{e.org}</b>
+                <span className="h-how__scale">{e.scale}</span>
+              </p>
+              <div className="h-how__stack" {...from(0)}>
+                <div className="h-how__card h-how__card--in">
+                  <span className="h-how__from">{e.from}</span>
+                  <span className="h-how__text">{e.in.text}</span>
+                  <span className="h-how__kind">{e.in.kind}</span>
+                </div>
               </div>
             </div>
 
@@ -225,7 +236,7 @@ export function HomeHowItWorks({ how, id }: { how: HomeHow; id?: string }) {
               </p>
               <p className="h-how__station-line">{L.log.line}</p>
               <ol className="h-how__log">
-                {L.log.rows.map((r) => (
+                {e.before.map((r) => (
                   <li key={r.at} className="h-how__row h-how__row--old">
                     <span className="h-how__at">{r.at}</span>
                     <span className="h-how__ev">{r.kind}</span>
@@ -289,6 +300,18 @@ export function HomeHowItWorks({ how, id }: { how: HomeHow; id?: string }) {
               </span>
               <span className="h-how__next">{L.next}</span>
             </div>
+
+            {/* The total at this team's volume, and the type of blueprint the example is. */}
+            <p className="h-how__tally" {...from(4)}>
+              <span className="h-how__tag">{L.exampleTag}</span>
+              <span className="h-how__total">{e.tally}</span>
+              {kit && (
+                <Link className="h-how__kit" to={kit.path}>
+                  {kit.name}
+                  <Chev className="h-how__chev" />
+                </Link>
+              )}
+            </p>
           </div>
 
           <figcaption className="h-how__audio">

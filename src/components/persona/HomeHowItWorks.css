@@ -7,7 +7,7 @@
 .h-how__fig { margin: var(--ob-space-40) 0 0; display: grid; gap: var(--ob-space-12); }
 
 /* ---- The setup strip and the buyer tabs ---- */
-.h-how__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-16); flex-wrap: wrap; }
+.h-how__bar { display: grid; justify-items: start; gap: var(--ob-space-12); }
 .h-how__setup { display: flex; align-items: center; gap: var(--ob-space-8); flex-wrap: wrap; margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); }
 .h-how__setup b { font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
 .h-how__n {
@@ -92,6 +92,43 @@
 .h-how__card--does { grid-template-columns: 16px minmax(0, 1fr); align-items: start; gap: var(--ob-space-8); font: var(--ob-type-small); color: var(--ob-text); }
 .h-how__does-ic { width: 16px; height: 16px; margin-top: 2px; fill: none; stroke: var(--ob-success); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
+/* Who it is and how much comes in: the team's company, then its volume as a mono chip in the example's colour. */
+.h-how__src { display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--ob-space-6) var(--ob-space-8); margin: 0; }
+.h-how__src b { font: var(--ob-type-caption); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.h-how__scale {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  padding: 1px var(--ob-space-8);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-pill);
+  background: var(--ob-bg);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  color: var(--ob-text-2);
+  white-space: nowrap;
+}
+.h-how__scale::before { content: ''; width: 6px; height: 6px; border-radius: 2px; background: var(--s-accent, var(--ob-text-3)); }
+
+/* The stack: the card that plays sits on the ones still to come, so the eye reads volume before it reads the words. */
+.h-how__stack { position: relative; isolation: isolate; padding-bottom: 12px; }
+.h-how__stack::before,
+.h-how__stack::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: var(--ob-space-8);
+  right: var(--ob-space-8);
+  height: 24px;
+  bottom: 6px;
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-top: 0;
+  border-radius: 0 0 var(--ob-radius-lg) var(--ob-radius-lg);
+  background: var(--ob-surface-raised, var(--ob-surface));
+  opacity: 0.8;
+}
+.h-how__stack::after { left: var(--ob-space-16); right: var(--ob-space-16); bottom: 0; opacity: 0.5; }
+
 /* The event log: a sunken well, older rows quiet, the new row lit as it lands. */
 .h-how__log { list-style: none; margin: 0; padding: var(--ob-space-8); display: grid; gap: var(--ob-space-4); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-lg); background: var(--ob-bg-sunken, var(--ob-bg)); }
 .h-how__row {
@@ -106,7 +143,7 @@
 }
 .h-how__at { grid-area: at; font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); padding-top: 1px; }
 .h-how__ev { grid-area: ev; font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text); }
-.h-how__txt { grid-area: txt; min-width: 0; font: var(--ob-type-caption); color: var(--ob-text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.h-how__txt { grid-area: txt; min-width: 0; font: var(--ob-type-caption); color: var(--ob-text-2); overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; text-wrap: pretty; }
 .h-how__row--old { opacity: 0.55; }
 .h-how__row--new { background: var(--ob-surface); border-left-color: var(--ob-success); }
 
@@ -155,6 +192,25 @@
 .h-how__next { font: var(--ob-type-caption); color: var(--ob-text-2); }
 .h-how__stage:not(.has-out) .h-how__arc { opacity: 0.5; }
 
+/* The total at this team's volume, under the stage, with the type of blueprint it is. */
+.h-how__tally {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--ob-space-8) var(--ob-space-12);
+  margin: var(--ob-space-16) 0 0;
+  padding-top: var(--ob-space-16);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+}
+.h-how__tag { padding: 1px var(--ob-space-8); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-pill); font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); }
+.h-how__total { flex: 1 1 22rem; min-width: 0; font: var(--ob-type-small); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); text-wrap: pretty; }
+.h-how__kit { display: inline-flex; align-items: center; gap: var(--ob-space-4); font: var(--ob-type-caption); color: var(--ob-text-2); text-decoration: none; white-space: nowrap; }
+.h-how__kit::before { content: ''; width: 7px; height: 7px; margin-right: var(--ob-space-4); border-radius: 2px; background: var(--s-accent, var(--ob-text-3)); }
+.h-how__kit:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; border-radius: var(--ob-radius-sm); }
+@media (hover: hover) and (pointer: fine) { .h-how__kit:hover { color: var(--ob-text); } .h-how__kit:hover .h-how__chev { translate: 3px 0; } }
+
 /* What each step shows: an element appears once the stage reaches its data-from. */
 .h-how__stage[data-step='0'] [data-from='1'],
 .h-how__stage[data-step='0'] [data-from='2'],
@@ -182,6 +238,8 @@
   .h-how__wire .h-how__line::after { right: -3px; top: auto; bottom: -1px; transform: rotate(135deg); }
   .h-how__wire .h-how__dot { left: -3px; top: 0; }
   .h-how__return { grid-column: auto; grid-row: auto; }
+  .h-how__tally { grid-column: auto; grid-row: auto; }
+  .h-how__who { border-radius: var(--ob-radius-lg); }
   .h-how__arc { width: 100%; height: 20px; }
   .h-how__bar { align-items: flex-start; }
 }
@@ -199,6 +257,10 @@
   88% { opacity: 1; }
   100% { opacity: 0; top: calc(100% - 7px); }
 }
+@keyframes h-how-deal {
+  0% { opacity: 0; translate: 0 10px; }
+  100% { opacity: 1; translate: 0 0; }
+}
 @keyframes h-how-back {
   0% { opacity: 0; right: 0; }
   12% { opacity: 1; }
@@ -214,6 +276,7 @@
   .h-how__stage.is-running[data-step='0'] .h-how__wire--a .h-how__dot,
   .h-how__stage.is-running[data-step='1'] .h-how__wire--b .h-how__dot { animation: h-how-across 640ms var(--ob-ease-out) 120ms both; }
   .h-how__stage.is-running.has-out[data-step='3'] .h-how__dot--back { animation: h-how-back 820ms var(--ob-ease-out) 100ms both; }
+  .h-how__stage.is-running[data-step='0'] .h-how__card--in { animation: h-how-deal 460ms var(--ob-ease-out) both; }
 }
 @media (prefers-reduced-motion: no-preference) and (max-width: 960px) {
   .h-how__stage.is-running[data-step='0'] .h-how__wire--a .h-how__dot,

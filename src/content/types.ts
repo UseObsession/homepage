@@ -601,7 +601,7 @@ export type HomeHow = {
     setup: { name: string; line: string }
     /* The three stops, in order, and the verbs on the wires between them. */
     happens: { name: string; line: string }
-    log: { name: string; line: string; rows: { at: string; kind: string; text: string }[] }
+    log: { name: string; line: string }
     reach: { name: string; line: string }
     saved: string
     sent: string
@@ -609,19 +609,27 @@ export type HomeHow = {
     places: { id: 'runtime' | 'servers' | 'person'; name: string; line: string }[]
     next: string
     audio: string
-    /* One example per buyer, played through the loop: what comes in, the place it reaches, what happens there, and the
-       event it adds next (none when a person decides). Event names are delivery.ts's. */
+    /* One example per type of blueprint (23 Nov 2026: the six jobs, each at the volume a real team runs it), played
+       through the loop: the team and its company, how much comes in, what comes in, the events just before it (the
+       stream it sits in), the place it reaches, what happens there, the event it adds next (none when a person
+       decides), and the week's total. Event names are delivery.ts's; every company and number is an example. */
     examplesLabel: string
+    exampleTag: string
     pause: string
     play: string
     examples: {
       who: string
+      kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train'
       reader: 'sales' | 'agencies' | 'developers' | 'founders' | 'marketing'
+      org: string
+      scale: string
       from: string
+      before: { at: string; kind: string; text: string }[]
       in: { at: string; kind: string; text: string }
       place: 'runtime' | 'servers' | 'person'
       does: string
       out?: { at: string; kind: string; text: string }
+      tally: string
     }[]
   }
   link: Cta
@@ -698,6 +706,7 @@ export type Page = {
   /* Home's blueprints (components/persona/HomeBlueprints, 22 Nov 2026): the six types of blueprints as cards; each card's
      words come from content/kitPaths and content/kits. */
   homeBlueprints?: HomeBlueprints
+  homeTeams?: HomeTeams
   homeUseCase?: HomeUseCase
 }
 
@@ -1227,6 +1236,34 @@ export type PieceIdLite = 'email' | 'phone' | 'messaging' | 'browser' | 'sandbox
 
 /* Home's blueprints (components/persona/HomeBlueprints): the heading, line, the unit after each type's count, the word
    after how many more a type holds, and the link to every blueprint. */
+/* Home's section for teams that don't write code (HomeTeams, #teams, 23 Nov 2026): a team picks its job and sees one
+   blueprint's window teach the three steps (pick it, fill in the blanks, results where you work), with the KPIs it
+   moves; then what every blueprint comes with. The blueprint's name and line come from its own file, by slug. */
+export type HomeTeamsTone = 'ok' | 'warn' | 'fail' | 'info'
+export type HomeTeams = {
+  heading: string
+  line: string
+  teamsLabel: string
+  steps: { pick: string; fill: string; get: string }
+  open: string
+  kpisLabel: string
+  exampleTag: string
+  teams: {
+    id: string
+    name: string
+    reader: 'sales' | 'agencies' | 'developers' | 'founders' | 'marketing'
+    slug: string
+    /* The job in one sentence: plain words, and the blanks the team fills in ({ v }). */
+    sentence: (string | { v: string })[]
+    note?: string
+    result: { where: string; app: string; at: string; title: string; lines: { tone: HomeTeamsTone; text: string }[] }
+    kpis: string[]
+  }[]
+  includes: { heading: string; items: { icon: PersonaIcon; name: string; line: string }[] }
+  primary: Cta
+  secondary: Cta
+  free: string
+}
 export type HomeBlueprints = {
   heading: string
   line: string
