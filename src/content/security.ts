@@ -88,7 +88,7 @@ export const securityPage: SecurityPage = {
       id: 'own-key',
       heading: 'You can bring your own model key.',
       lines: [
-        `Model tokens are billed per million, from ${prices.tokensIn.amount} for input on our default model, or not at all when you use your own key.`,
+        `Model tokens are billed per million, from ${prices.tokensIn.amount} for input on Auto, or not at all when you use your own key.`,
         'With your own key, the model runs on your own account, and your provider bills you directly.',
       ],
     },

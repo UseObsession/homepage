@@ -123,7 +123,7 @@ export const personas: PiecePage = {
       },
       {
         q: 'What does a persona cost?',
-        a: `${personaCostLine} ${prices.persona.name}: ${prices.persona.amount} ${prices.persona.unit}. ${prices.persona.note} Model tokens: ${prices.tokensIn.amount} per million input tokens and ${prices.tokensOut.amount} per million output on our default model, or nothing with your own key.`,
+        a: `${personaCostLine} ${prices.persona.name}: ${prices.persona.amount} ${prices.persona.unit}. ${prices.persona.note} Model tokens: ${prices.tokensIn.amount} per million input tokens and ${prices.tokensOut.amount} per million output on Auto, or nothing with your own key.`,
       },
     ],
   },

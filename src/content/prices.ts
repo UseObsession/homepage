@@ -118,8 +118,6 @@ const scalePlan = planOf('scale')
 
 /* Every piece's list rate from the engine, the one price list. */
 const listRates = pieceRates(source).rates
-/* The default model's short name, for the token rates ("Gemini 3.8 Flash"). */
-const defaultModel = source.primitives.models.list.find((m) => m.id === source.primitives.models.default)?.short ?? 'our default model'
 
 /* The US texting registration (founders, 22 Nov 2026): fixed prices, the same for everyone, in no plan: its filing
    (`once`) and its monthly fee for each active campaign. */
@@ -181,11 +179,11 @@ export const prices = {
   chat: { piece: 'messaging', name: 'Slack and Telegram', amount: amountOf('chat'), unit: 'on every plan' },
   persona: { piece: 'personas', name: 'Persona', amount: amountOf('persona'), unit: 'while it waits', note: 'You pay only for the pieces it uses.' },
   log: { piece: 'personas', name: 'Event log', amount: amountOf('log'), unit: `per ${perWord(displayPer('log'))} events`, value: retail('log'), per: 'event', note: `Kept for ${eventLogKeptWords}, and longer on ${planNames.enterprise}.` },
-  /* Model tokens (founders, 22 Nov 2026): pieces like any other, per million on our default model, counted toward what a
+  /* Model tokens (founders, 22 Nov 2026): pieces like any other, per million on Auto, counted toward what a
      plan covers. Other models have their own rates; with the buyer's own key there is no token charge. */
-  tokensIn: { piece: 'personas', name: 'Input tokens', amount: listAmount('tokensIn'), unit: 'per million, on our default model', value: listRates.tokensIn?.rate, per: 'million input tokens', note: `Our default model is ${defaultModel}. Other models are priced at their own rates, and with your own key there is no token charge.` },
+  tokensIn: { piece: 'personas', name: 'Input tokens', amount: listAmount('tokensIn'), unit: 'per million, on Auto', value: listRates.tokensIn?.rate, per: 'million input tokens', note: 'Auto picks the model for each task. Other models are priced at their own rates, and with your own key there is no token charge.' },
   tokensCached: { piece: 'personas', name: 'Cached input tokens', amount: listAmount('tokensCached'), unit: 'per million, read from the model’s cache', value: listRates.tokensCached?.rate, per: 'million cached input tokens' },
-  tokensOut: { piece: 'personas', name: 'Output tokens', amount: listAmount('tokensOut'), unit: 'per million, on our default model', value: listRates.tokensOut?.rate, per: 'million output tokens' },
+  tokensOut: { piece: 'personas', name: 'Output tokens', amount: listAmount('tokensOut'), unit: 'per million, on Auto', value: listRates.tokensOut?.rate, per: 'million output tokens' },
 } satisfies Record<string, Price>
 
 export type PriceKey = keyof typeof prices

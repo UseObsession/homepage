@@ -21,7 +21,7 @@ import type { Cta, Faq, Meta } from './types'
    The plans (founders, 22 Nov 2026): one price list, the pieces at list rates, on every plan. A paid plan's fee covers a
    set amount of usage at those rates (Startup's $99 covers $111); past it, pay as you go at the same list rates, with a
    spend cap if the buyer sets one. What isn't used resets each month and never carries over. Model tokens are pieces
-   too, per million on our default model. Free keeps fixed allowances. Enterprise leads with the reseller offer, is from
+   too, per million on Auto. Free keeps fixed allowances. Enterprise leads with the reseller offer, is from
    $1,500 as a first-month floor, starts monthly with nothing paid up front and earns 2 months free when paid yearly. A
    blueprint run counts toward the plan's usage like any piece, its tokens included, and each blueprint page shows what
    a typical month costs. The US texting registration has fixed prices, the same for everyone, and no plan includes it.
@@ -214,8 +214,8 @@ export type CalcQuantity = { key: PriceKey; label: string; start: number; step: 
 export type CalcPiece = { id: string; name: string; line: string; on: boolean; quantities: CalcQuantity[]; note?: string }
 
 const { whatsapp, chat, register, email, inbox, number, browser, sandbox, log, tokensIn, tokensCached, tokensOut } = prices
-/* "$0.975 per million input tokens, $0.0975 cached and $4.875 output, on our default model". */
-const tokenRates = `${tokensIn.amount} per million input tokens, ${tokensCached.amount} cached and ${tokensOut.amount} output, on our default model`
+/* "$0.975 per million input tokens, $0.0975 cached and $4.875 output on Auto, which picks the model for you". */
+const tokenRates = `${tokensIn.amount} per million input tokens, ${tokensCached.amount} cached and ${tokensOut.amount} output on Auto, which picks the model for you`
 
 /* The cards in the founders' order (piecePaths.ts pieceOrder). Personas has no card: a persona costs nothing while it
    waits. The event log, which holds every piece's events, and model tokens come last. */
