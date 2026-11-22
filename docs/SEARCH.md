@@ -74,6 +74,7 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | how to evaluate ai agent performance | `/blog/how-to-evaluate-ai-agent-performance` | Title, H1, answer (22 Nov) |
 | how to build an ai agent from scratch | `/blog/how-to-build-an-ai-agent-from-scratch` | Title, H1, answer (22 Nov) |
 | no code ai agents | `/blog/no-code-ai-agents` | Title, H1, answer (22 Nov) |
+| ai agents without coding, building ai agents without coding, ai agents for non technical people, ai agents that can interact with websites | `/no-code` | Title, H1, description (23 Nov; no code ai agents stays with `/blog/no-code-ai-agents`, can ai agents make phone calls with `/blog/can-ai-make-phone-calls`) |
 | browser automation tools for ai agents | `/blog/browser-automation-tools-for-ai-agents` | Title, H1, answer (22 Nov) |
 | rpa vs ai agents | `/blog/rpa-vs-ai-agents` | Title, H1, answer (22 Nov) |
 | rl environments for llms | `/blog/rl-environments-for-llms` | Title, H1, answer (22 Nov; rl environments for ai agents stays with the train kit) |

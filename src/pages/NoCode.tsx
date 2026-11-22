@@ -52,6 +52,19 @@ export function NoCode() {
                 <span className="ob-btn-label">{p.hero.secondary.label}</span>
               </a>
             </div>
+            <div className="nc-examples">
+              <p className="nc-examples__label">{p.hero.examples.label}</p>
+              <ul className="nc-examples__list">
+                {p.hero.examples.items.map((x) => (
+                  <li key={x.slug}>
+                    <Link className="nc-example" to={`/blueprints/${x.slug}`}>
+                      {x.label}
+                      <Chev />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <p className="nc-note">{p.hero.note}</p>
           </div>
           <NoCodeWeek week={p.week} />

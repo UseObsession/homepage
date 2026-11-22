@@ -15,7 +15,8 @@ export type NoCodeFormat = 'slack' | 'email' | 'crm' | 'sheet' | 'pdf' | 'assist
 
 export type NoCodePage = {
   meta: Meta
-  hero: { pill: string; headline: string; sub: string; primary: Cta; secondary: Cta; note: string }
+  /* `examples`: blueprints a reader recognises as work they've already tried to hand off, each linking its page. */
+  hero: { pill: string; headline: string; sub: string; primary: Cta; secondary: Cta; note: string; examples: { label: string; items: { slug: string; label: string }[] } }
   /* The hero's picture: a working week at one invented company, each day's results from different teams, each in the
      format that team works in. */
   week: {
@@ -46,16 +47,18 @@ export type NoCodePage = {
   final: Final
 }
 
+const headline = 'AI agents that make calls, answer email and work in websites, with no code.'
 const sub =
-  'Choose a ready-made job, configure it in plain language, and an AI agent with its own phone number, inbox and browser runs it every day, for one location or hundreds. Results are delivered in any format, in the tools your team already uses.'
+  'The calls your team misses after hours, the documents it chases by email, the supplier portals someone checks each morning. Each becomes a blueprint, run end to end by an AI agent with its own phone number, inbox and browser, and the results land in the tools your team already uses.'
 
 export const noCodePage: NoCodePage = {
   meta: {
     path: '/no-code',
-    title: 'AI agents for non-technical teams: ready-made jobs, no code',
+    title: 'AI agents that make calls and use websites, without coding',
     description:
-      'AI agents for non-technical teams: choose a ready-made job, configure it in plain language and get results in Slack, email or your CRM. Free to start.',
-    answer: sub,
+      'AI agents that make calls, answer email and work in websites for your team, without coding. Pick a blueprint and get results in the tools you use.',
+    answer:
+      'AI agents that make calls, answer email and work in websites, with no code. A blueprint hands each job, from missed calls to supplier portals, to an agent with its own phone number, inbox and browser, and delivers the results to the tools your team already uses.',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'No code', path: '/no-code' },
@@ -64,11 +67,22 @@ export const noCodePage: NoCodePage = {
 
   hero: {
     pill: 'No code',
-    headline: 'AI agents for non-technical teams, with no code to write.',
+    headline,
     sub,
     primary: { label: 'Browse blueprints', to: '/blueprints' },
     secondary: { label: 'Start free', to: '#join' },
     note: 'Free plan, no credit card.',
+    examples: {
+      label: 'Teams start with',
+      items: [
+        { slug: 'missed-call-text-back', label: 'Text back every missed call' },
+        { slug: 'speed-to-lead-callback', label: 'Call every new lead within a minute' },
+        { slug: 'document-chaser', label: 'Chase missing documents' },
+        { slug: 'invoice-collector', label: 'Download invoices from vendor portals' },
+        { slug: 'competitor-tracking', label: 'Track competitors’ emails and prices' },
+        { slug: 'agent-checkout-test', label: 'Test your checkout as an AI shopper' },
+      ],
+    },
   },
 
   week: {
@@ -116,7 +130,7 @@ export const noCodePage: NoCodePage = {
   },
 
   teams: {
-    heading: 'Whatever your team does, an agent can take on part of the work.',
+    heading: 'The work your team can now hand to an AI agent.',
     line: 'Each job below is a blueprint that runs today. Pick one, set it up for your business, and it keeps running on your schedule.',
     kpisLabel: 'Measured in',
     items: [
@@ -301,7 +315,7 @@ export const noCodePage: NoCodePage = {
   },
 
   final: {
-    heading: 'Put your team’s first job on autopilot, free.',
+    heading: 'Hand Obsession your team’s first job, free.',
     capture: { kind: 'waitlist', source: 'no-code', button: 'Start free', interest: 'any' },
   },
 }
