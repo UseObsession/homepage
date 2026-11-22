@@ -90,7 +90,7 @@ export const post: BlogPost = {
     'best price monitoring software',
     'price tracking software',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-10-28',
   updated: '2026-11-22',
   readingMinutes: 24,

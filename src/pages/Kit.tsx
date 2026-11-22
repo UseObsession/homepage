@@ -9,6 +9,7 @@ import { FinalCta } from '../components/sections/FinalCta'
 import { catalog } from '../content/catalog'
 import { kitAt, kitUi as ui, type KitPage } from '../content/kits'
 import { pieces } from '../content/pieces'
+import { cases, teams } from '../content/teams'
 import { prices, type PriceKey } from '../content/prices'
 import type { PieceId } from '../content/prices'
 import '../components/persona/blueprint.css'
@@ -23,7 +24,12 @@ import './Kit.css'
 
 const named = Object.fromEntries(pieces.map((p) => [p.id, { name: p.name, path: p.meta.path }])) as Record<PieceId, { name: string; path: string }>
 const blueprintBySlug = Object.fromEntries(catalog.recipes.map((r) => [r.slug, r]))
-const studyByPath = Object.fromEntries(catalog.studies.map((s) => [s.path, s]))
+/* Every page a worked example can point at, by address: the older studies, the team pages and the use case pages in
+   the team template (content/teams), so a chip never drops because a page moved template. */
+const studyByPath: Record<string, { name: string; path: string }> = {
+  ...Object.fromEntries(catalog.studies.map((s) => [s.path, { name: s.name, path: s.path }])),
+  ...Object.fromEntries([...teams, ...cases].map((t) => [t.meta.path, { name: t.name, path: t.meta.path }])),
+}
 /* A numeral never ends a line apart from its word. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1 ')
 
@@ -126,7 +132,7 @@ export function BlueprintGrid({ b }: { b?: { heading: string; line: string; slug
                   <span className="k-bps__name">
                     {r.name}
                     <svg className="k-bps__arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                      <path d="M3 8h10M9 4l4 4-4 4" />
+                      <path d="M6 3.5 10.5 8 6 12.5" />
                     </svg>
                   </span>
                   <span className="k-bps__line">{r.line}</span>

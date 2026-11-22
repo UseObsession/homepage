@@ -216,7 +216,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does Voice agent check cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses a number for calls and texts, and an inbox. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: a number for calls and texts, and an inbox. Calls are billed by the minute, and the days spent waiting for a callback cost nothing.',
         link: { label: 'See phone numbers for AI agents', to: '/phone' },
       },
     ],

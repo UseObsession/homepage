@@ -5,7 +5,7 @@ import type { KitPage } from './types'
    waits days for every code and email, and talks to the reader's own AI agents. Product Marketing book, job 2. */
 
 const sub =
-  'A persona signs up to your product, waits days for the day-7 email and chats with your own AI agents. What arrived, and what never did, lands in one event log.'
+  'A persona, an AI agent with its own inbox, number and browser, signs up to your product. It waits days for the day-7 email and chats with your own AI agents. What arrived, and what never did, lands in one event log.'
 
 export const test: KitPage = {
   id: 'test',
@@ -71,6 +71,8 @@ export const test: KitPage = {
       'resolution-check',
       'ai-disclosure-check',
       'drift-watch',
+      'vendor-agent-check',
+      'partner-checks',
     ],
   },
 
@@ -108,7 +110,7 @@ export const test: KitPage = {
   },
 
   final: {
-    heading: 'Which journey should a persona test first?',
+    heading: 'Test your next release as a new customer would.',
     capture: { kind: 'waitlist', source: 'kit-test', button: 'Start free', interest: 'audit' },
   },
 }

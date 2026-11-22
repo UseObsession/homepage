@@ -136,7 +136,7 @@ export const page: Page = {
   },
 
   faq: {
-    kicker: 'What else would I ask?',
+    kicker: 'Accounts, rules and price',
     heading: 'Real accounts, opened the way anyone opens one.',
     items: [
       {
@@ -197,7 +197,7 @@ export const sections: {
   explorer,
 
   data: {
-    kicker: 'What’s behind the login?',
+    kicker: 'Behind the login',
     heading: 'No search engine reaches these 6 kinds of data.',
     items: [
       { title: 'Emails, texts and flows', line: 'Every screen and message after a sign up, a basket or a trial, each one timed.', eg: 'Day 3 · “Invite your team”' },
@@ -213,7 +213,7 @@ export const sections: {
      hours; a £40 basket left at 02:57 and a £21 checkout left at 03:11 on Tuesday 22 September 2026, neither reminded;
      5 messages, all on welcome and browse; 15 screenshots. */
   found: {
-    kicker: 'Is this real?',
+    kicker: 'A real run, September 2026',
     value: '0',
     heading: 'reminders after a £40 basket and a £21 checkout were left at a real UK store.',
     also: [
@@ -228,7 +228,7 @@ export const sections: {
   /* How it works: a list fans out to every company at once, each persona signs up in minutes, then sleeps and wakes on
      what follows, for months. The 3 lanes are invented companies; the faded lane is the rest of the list. */
   how: {
-    kicker: 'How does it work?',
+    kicker: 'From sign-up to day 90',
     heading: 'A sign up in minutes, then months of emails, at every company you name.',
     line: 'Name the companies. A persona signs up at each one, then sleeps, and wakes on every email, text and offer that follows, for as long as you keep it.',
     list: 'companies.csv · 1,000 companies',
@@ -260,7 +260,7 @@ export const sections: {
 
   /* What it is built from: each piece, what it does in this job, its call, and its page. */
   pieces: {
-    kicker: 'What is it built from?',
+    kicker: 'The 6 pieces',
     heading: 'Built from 6 pieces, on one API and one bill.',
     line: 'Use all 6, or only the ones this job needs. Each piece has its own page and its own price.',
     more: { text: 'The pieces and blueprints for portals, quotes and sign-ups sit together in one kit.', label: 'See the Work behind logins kit', to: kitPathOf.portals },
@@ -306,7 +306,7 @@ export const sections: {
 
   /* Where the data goes: your AI agent first, then Clay, your code and a webhook. */
   formats: {
-    kicker: 'How do I use it?',
+    kicker: 'Where it lands',
     heading: 'Use it where you already work.',
     node: { title: 'Your event log', line: 'Every company your personas watch' },
     label: 'Ways to use it',

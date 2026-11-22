@@ -21,7 +21,7 @@ export const ref: ReferencePage = {
   kind: 'alternatives',
   name: 'MailCharts alternatives',
   company: 'MailCharts',
-  line: 'Campaign libraries, inboxes for the competitors you name, and a persona that signs up at each one, each with its price.',
+  line: 'Email campaign libraries, inbox tools and a persona that joins each competitor’s list, each with its price.',
   meta: {
     path: '/alternatives/mailcharts',
     title: 'MailCharts alternatives (2026): 7 options for email tracking',
@@ -189,7 +189,7 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Which alternative works with an AI agent?',
-          a: 'Panoramata and Reyo list MCP servers. Obsession connects to your agent over MCP and one API, and every event arrives with its screenshot or the original email.',
+          a: 'Panoramata and Reyo list MCP servers, the standard way AI agents call tools. Obsession connects to your agent over MCP and one API, and every event arrives with its screenshot or the original email.',
           link: { label: 'See the API and MCP', to: '/developers' },
         },
       ],

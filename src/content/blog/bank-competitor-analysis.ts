@@ -65,7 +65,7 @@ export const post: BlogPost = {
     'credit card promotion comparison',
     'bank mystery shopping',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   order: 3,
   published: '2026-11-11',
   updated: '2026-11-22',

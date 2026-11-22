@@ -58,7 +58,7 @@ export const post: BlogPost = {
     'Competitor ad tracking means recording the ads other companies run, when each started and how long it runs, so a team sees what each competitor is pushing. The free ad libraries and tools such as Foreplay, SpyFu, Semrush and Pathmatics record each ad, its search ad history or its estimated spend. On Obsession, the toolkit for AI agents, a persona follows each competitor ad past the click to its page, price and code, then signs up where the ad offers a code and keeps what arrives, dated.',
   primaryKeyword: 'competitor ad tracking',
   keywords: ['competitive ad tracking', 'competitor ad tracker', 'competitor ad monitoring', 'competitor ad tracking tools', 'best competitor ad tracking tools'],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-14',
   updated: '2026-11-22',
   readingMinutes: 17,

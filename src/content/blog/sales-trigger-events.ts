@@ -57,7 +57,7 @@ export const post: BlogPost = {
     'trigger events for target accounts',
     'sales trigger event tools',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-11',
   updated: '2026-11-22',
   readingMinutes: 16,

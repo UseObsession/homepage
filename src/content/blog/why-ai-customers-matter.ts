@@ -28,7 +28,7 @@ export const post: BlogPost = {
     'one identity for ai agents',
     'browser that stays signed in for ai agents',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-10-24',
   updated: '2026-11-22',
   readingMinutes: 7,

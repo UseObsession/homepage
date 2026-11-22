@@ -197,7 +197,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does Vendor agent check cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours for chat and portals, an inbox, and a number for calls. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours for chat and portals, an inbox, and a number for calls. The month grows with the vendors on your shortlist and the cases you give each one.',
         link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],

@@ -14,7 +14,7 @@ export const ref: ReferencePage = {
   kind: 'compare',
   name: 'Obsession vs Parallel',
   company: 'Parallel',
-  line: 'Parallel searches, extracts and monitors the public web for AI. Obsession gives an agent a signed-in browser, an inbox and a number.',
+  line: 'Parallel researches and monitors public pages for AI agents. Obsession posts what an agent sees after it signs up: emails, texts and pages.',
   meta: {
     path: '/compare/obsession-vs-parallel',
     title: 'Obsession vs Parallel (2026): search or a signed-in browser',

@@ -11,22 +11,26 @@ import { Console } from '../components/sections/Console'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { RecipeKit } from '../components/sections/RecipeKit'
+import { KitBadge, KitCards, KitLinkAction, kitOfBlueprint, type BlueprintKitOf } from '../components/blueprint/BlueprintKit'
+import { RunsOn } from '../components/blueprint/RunsOn'
 import { drawnFor, type Workspace } from '../components/workspace'
+import { blueprintUi } from '../content/blueprint-ui'
 import { catalog } from '../content/catalog'
 import { blueprintPricings, isRealRun, recipePage as ui } from '../content/recipe-page'
 import type { Recipe } from '../content/types'
 import '../components/sections/Hero.css'
 import './RecipePage.css'
 
-/* A recipe's own page (/recipes/SLUG), James's structure on the design system, every word from the recipe's content
-   file (src/content/recipes) and the shared claims in content/recipe-page.ts. In order:
-   the centred hero with the recipe's screen and capture (on a recipe sold to 1 buyer, that buyer under the headline),
-   and a link to its pricing > what choosing it sets up, landing 1 by 1 > the run in the console > its pricing table
-   (#pricing, components/BlueprintPricing) > the steps, with what you can change under them > what the personas do and
-   what you get, under the recipe's outputs heading, with 1 line on how each result reaches you and links to the sample
-   data and every channel's code > the optional table > guides > questions > the final call (founder, 22 Nov 2026: 10
-   sections, not 15; who it's for and the channel list left the page). Motion lives in the product only: the screen
-   plays its story, the kit lands, the run plays. Sections never fade in. */
+/* A blueprint's own page (/blueprints/SLUG), James's structure on the design system, every word from the blueprint's
+   content file (src/content/recipes), the shared claims in content/recipe-page.ts and the kit and piece words in
+   content/blueprint-ui.ts. In order (22 Nov 2026: concise, tied to its kit, at most 10 sections):
+   the centred hero with the blueprint's screen and capture, its kit's badge beside the pill (on a blueprint sold to 1
+   buyer, that buyer under the headline) and a link to its pricing > how it runs: the claim, the pieces it runs on, the
+   steps beside what choosing it sets up (landing 1 by 1), and what you can change > the run in the console > its pricing
+   table (#pricing, components/BlueprintPricing) > what the personas check and what you get, with 1 line on how each
+   result reaches you and links to the sample data and every channel's code > the optional table > the kit's other
+   blueprints (#kit) > guides > questions > the final call. Motion lives in the product only: the screen plays its
+   story, the kit lands, the pieces switch on, the run plays. Sections never fade in. */
 
 /* A numeral never ends a line apart from its word ("48 hours", "4 test customers"). */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
@@ -90,17 +94,27 @@ function Section({
   )
 }
 
-function Hero({ r, workspace }: { r: Recipe; workspace: Workspace }) {
+function Hero({ r, workspace, kit }: { r: Recipe; workspace: Workspace; kit?: BlueprintKitOf }) {
   const id = useId()
   return (
     <section className="s-hero s-rp-hero" aria-labelledby={`${id}-h`}>
       <div className="s-wrap s-hero-wrap">
         <Crumbs />
         <div className="s-hero-head ob-anim-hero">
-          <p className="ob-layout-eyebrow s-hero-pill">
-            <Mark size={16} />
-            {ui.pill}
-          </p>
+          {kit ? (
+            <div className="s-hero-pill bp-tags">
+              <p className="ob-layout-eyebrow">
+                <Mark size={16} />
+                {ui.pill}
+              </p>
+              <KitBadge link={kit.link} />
+            </div>
+          ) : (
+            <p className="ob-layout-eyebrow s-hero-pill">
+              <Mark size={16} />
+              {ui.pill}
+            </p>
+          )}
           <h1 className="s-hero-h" id={`${id}-h`}>
             {r.hero.headline}
           </h1>
@@ -222,6 +236,8 @@ function Table({ table }: { table: NonNullable<Recipe['table']> }) {
 export function RecipePage({ recipe: r }: { recipe: Recipe }) {
   const workspace = workspaceOf(r)
   const real = isRealRun(r.run.tab)
+  /* The kit that lists it (content/kits), for the hero's badge and the kit's other blueprints near the end. */
+  const kit = kitOfBlueprint(r.slug)
   /* Its months as the pricing engine priced them at build time (content/catalog.ts), with its includes: 1 table, or 1
      per variant behind the switch (mystery shopping), Agencies first. */
   const priced = catalog.recipes.find((x) => x.id === r.id)
@@ -231,10 +247,14 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
 
   return (
     <>
-      <Hero r={r} workspace={workspace} />
+      <Hero r={r} workspace={workspace} kit={kit} />
 
-      <Section id="kit" heading={ui.kit.heading} line={ui.kit.line} split className="s-rp-kit">
-        <RecipeKit name={r.name} items={r.kit} ui={ui.kit} />
+      <Section id="steps" heading={ui.kit.heading} line={ui.kit.line} action={<RunsOn slug={r.slug} />} className="s-rp-how">
+        <div className="s-rp-how__grid">
+          <Steps steps={r.steps} />
+          <RecipeKit name={r.name} items={r.kit} ui={ui.kit} className="s-rp-how__kit" />
+        </div>
+        {r.settings && r.settings.length > 0 && <Settings settings={r.settings} />}
       </Section>
 
       <Section id="run" heading={ui.run.heading} line={r.gets} tone="paper" className="s-rp-run">
@@ -245,15 +265,11 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
         <BlueprintPrices options={pricings} label={ui.pricing.switch} journeys />
       </Section>
 
-      <Section id="steps" heading={ui.steps.heading} tone="ink">
-        <Steps steps={r.steps} />
-        {r.settings && r.settings.length > 0 && <Settings settings={r.settings} />}
-      </Section>
-
       <Section
         id="checks"
         heading={r.outputs.heading}
         line={ui.checks.line}
+        tone="ink"
         action={
           <div className="s-rp__actions">
             {[ui.outputs.cta, ui.checks.channels].map((c) => (
@@ -271,6 +287,18 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
       {r.table && (
         <Section id="compare" heading={r.table.heading} line={r.table.line} tone="alt" className="s-rp-compare">
           <Table table={r.table} />
+        </Section>
+      )}
+
+      {kit && kit.others.length > 0 && (
+        <Section
+          id="kit"
+          heading={blueprintUi.kit.heading(kit.link.name)}
+          line={blueprintUi.kit.line}
+          action={<KitLinkAction link={kit.link} />}
+          className="s-rp-inkit"
+        >
+          <KitCards kit={kit} />
         </Section>
       )}
 

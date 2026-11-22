@@ -206,7 +206,7 @@ export const recipe: Recipe = {
       { q: 'What if a competitor asks for ID?', a: 'The persona stops at that step, and your event log keeps what the check asked for.' },
       {
         q: 'What does Competitor tracking cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox, a number and browser hours for prices and pages. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: an inbox and a number for each competitor’s persona, and browser hours for prices and pages. The persona waits at no charge between messages, so the month grows with the competitors you name and how often pages are read.',
         link: { label: 'See inboxes for AI agents', to: '/email' },
       },
     ],

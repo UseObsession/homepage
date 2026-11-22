@@ -76,7 +76,7 @@ export const post: BlogPost = {
     'shopify app marketing strategy',
     'email deliverability tools',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-10-24',
   updated: '2026-11-22',
   readingMinutes: 13,

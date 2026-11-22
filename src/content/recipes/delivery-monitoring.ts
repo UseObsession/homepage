@@ -119,6 +119,14 @@ export const recipe: Recipe = {
         { title: 'Phone and desktop', line: 'iPhone and Android, and desktop browsers.' },
       ],
     },
+    {
+      group: 'When a user leaves',
+      items: [
+        { title: 'Unsubscribe', line: 'The one-click link and its headers, and any email that still arrives after it.' },
+        { title: 'STOP', line: 'The confirmation text, and any text that still arrives after it.' },
+        { title: 'Cancel', line: 'Every screen from the cancel button to the confirmation, the offer made on the way and the email after.' },
+      ],
+    },
   ],
 
   outputs: {
@@ -178,7 +186,7 @@ export const recipe: Recipe = {
       { q: 'Can agencies run it for clients?', a: 'Yes, with each client’s OK, each with its own log to forward.' },
       {
         q: 'What does Delivery monitoring cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox, a local number and browser hours. A persona is free while it waits. Try it on the Free plan.',
+        a: 'Each new persona uses an inbox, a local number and browser hours, billed at list rates. Over its 14 days the persona mostly waits for the next message, and waiting costs nothing.',
         link: { label: 'See inboxes for AI agents', to: '/email' },
       },
     ],

@@ -73,7 +73,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: '[Trial teardown](/blueprints/trial-teardown), a ready-made collection, gathers every email, prompt, limit and offer in a competitor’s free trial, and [trial checks for software companies](/use-cases/trial-checks-for-software-companies) shows it at work.',
+      text: 'One persona per competitor starts each trial on the same day, so every free plan’s limits sit side by side. [Trial checks for software companies](/use-cases/trial-checks-for-software-companies) shows it at work.',
     },
     {
       kind: 'faq',

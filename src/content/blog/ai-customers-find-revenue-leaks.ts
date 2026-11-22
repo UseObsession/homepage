@@ -70,7 +70,7 @@ export const post: BlogPost = {
     'shopify abandoned cart email not sending',
     'customer experience testing',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-10-24',
   updated: '2026-11-22',
   readingMinutes: 11,

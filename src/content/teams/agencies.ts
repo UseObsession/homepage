@@ -152,7 +152,7 @@ export const team: TeamPage = {
   },
 
   final: {
-    heading: 'Which client should a persona shop first?',
+    heading: 'Shop every client’s store under your own brand.',
     capture: { kind: 'waitlist', source: 'team-agencies', button: 'Start free', interest: 'mystery' },
   },
 }

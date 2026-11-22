@@ -40,7 +40,7 @@ export const post: BlogPost = {
     'welcome email series for new subscribers',
     'welcome series email template',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-11-14',
   updated: '2026-11-22',
   readingMinutes: 11,

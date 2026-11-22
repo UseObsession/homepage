@@ -69,7 +69,7 @@ export const post: BlogPost = {
     'ai agent traffic',
     'ai shopping agent verification',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-10-27',
   updated: '2026-11-22',
   readingMinutes: 16,

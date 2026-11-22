@@ -194,7 +194,7 @@ export const recipe: Recipe = {
       { q: 'Is a passed check a guarantee?', a: 'No. It is a dated event in your event log, showing what the agent said on each check.' },
       {
         q: 'What does AI disclosure check cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses a number for calls and texts, an inbox, and browser hours for chat. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: a number for calls and texts, an inbox, and browser hours for chat. Calls are billed by the minute, so the wait for a person is part of the month.',
         link: { label: 'See phone numbers for AI agents', to: '/phone' },
       },
     ],

@@ -64,7 +64,7 @@ export const post: BlogPost = {
     'best ai mystery shopping tools',
     'mystery shopping tools',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-10-28',
   updated: '2026-11-22',
   readingMinutes: 19,

@@ -164,17 +164,17 @@ const planWords: Record<PlanId, Omit<PlanCard, 'id' | 'name' | 'price' | 'per' |
   developer: {
     for: 'For your first agent in production.',
     includes: paidCard(developer),
-    cta: { label: 'Get early access', to: JOIN },
+    cta: { label: 'Start free', to: JOIN },
   },
   startup: {
     for: 'For agents that work every day.',
     includes: paidCard(startup),
-    cta: { label: 'Get early access', to: JOIN },
+    cta: { label: 'Start free', to: JOIN },
   },
   scale: {
     for: 'For agents that run at volume.',
     includes: paidCard(scale),
-    cta: { label: 'Get early access', to: JOIN },
+    cta: { label: 'Start free', to: JOIN },
   },
   /* The reseller programme first, volume after it (James, 21 Nov); monthly with nothing up front (founder, 21 Nov). */
   enterprise: {
@@ -282,7 +282,7 @@ const calcPieces: CalcPiece[] = [
   {
     id: 'tokens',
     name: 'Model tokens',
-    line: 'Our model for your agents, counted like any piece.',
+    line: 'The models your agents run on Auto, counted like any piece.',
     on: false,
     quantities: [
       { key: 'tokensIn', label: 'Input tokens, millions a month', start: 40, step: 5 },
@@ -394,7 +394,7 @@ export const pricingPage: PricingPage = {
   },
   line: 'Every piece an AI agent needs, at one list rate each, on one bill.',
 
-  pill: 'Early access pricing',
+  pill: 'Free plan, no credit card',
   headline: 'Start free. A paid plan covers a month of usage, on any piece.',
   sub: `${openLine} A paid plan’s fee covers a set amount of usage at list rates. Past it, you pay as you go at the same rates.`,
 
@@ -413,7 +413,7 @@ export const pricingPage: PricingPage = {
 
   calc: {
     heading: 'What each plan gets you.',
-    line: `A paid plan’s fee covers a set amount of usage at list rates: ${extraLine}. Turn on what your agents use to see your month on each plan.`,
+    line: `${extraLine ? `${extraLine} of usage at list rates. ` : ''}Turn on what your agents use to see your month on each plan.`,
     pieces: calcPieces,
     less: (many) => `Fewer ${many}`,
     more: (many) => `More ${many}`,
@@ -433,7 +433,7 @@ export const pricingPage: PricingPage = {
       over: 'Past its allowances',
       rows: 'Your month, line by line',
       rest: `WhatsApp messages and the ${registration.once} filing of each new US texting campaign count toward what your plan covers, at their own rates.`,
-      cta: { label: 'Get early access', to: JOIN },
+      cta: { label: 'Start free', to: JOIN },
       secondary: { label: `Talk to us about ${named('enterprise')}`, to: JOIN },
       announce: (plan, total) => `${plan}, ${total} a month.`,
     },
@@ -473,7 +473,7 @@ export const pricingPage: PricingPage = {
       },
       {
         q: 'What does a blueprint cost?',
-        a: `Its runs count toward what your plan covers at list rates, model tokens included, then as you go. Each blueprint’s page shows what a typical month costs, and every blueprint starts with a free run.`,
+        a: `Its runs count toward what your plan covers at list rates, model tokens included, then as you go. Each blueprint’s page shows what a typical month costs, and you can try any blueprint on the Free plan.`,
         link: { label: 'See the mystery shopping blueprint', to: '/blueprints/mystery-shopper' },
       },
       {
@@ -500,7 +500,7 @@ export const pricingPage: PricingPage = {
   final: {
     heading: 'Your agent’s first inbox is free.',
     line: `Start on ${named('free')}, with no credit card. Pick a plan when your agents need more.`,
-    cta: { label: 'Get early access', to: JOIN },
+    cta: { label: 'Start free', to: JOIN },
     secondary: { label: 'See every rate', to: RATES },
   },
 }
@@ -561,7 +561,7 @@ export const ratesPage: RatesPage = {
   },
   line: 'Every rate Obsession bills, piece by piece, in US dollars.',
 
-  pill: 'Early access pricing',
+  pill: 'Free plan, no credit card',
   headline: 'One list rate per piece, on every plan.',
   sub: `${ratesOpen} In US dollars, on one bill. A paid plan’s fee covers a set amount of this usage each month.`,
 
@@ -605,9 +605,9 @@ export const ratesPage: RatesPage = {
   },
 
   final: {
-    heading: 'A plan covers a month of usage at these rates.',
-    line: 'Its fee covers a set amount each month. Past it, you pay the same list rates.',
+    heading: 'Turn these rates into a monthly bill.',
+    line: 'The calculator on the pricing page prices your month on every plan and picks the cheapest.',
     cta: { label: 'See the plans', to: '/pricing#plans' },
-    secondary: { label: 'Get early access', to: JOIN },
+    secondary: { label: 'Start free', to: JOIN },
   },
 }

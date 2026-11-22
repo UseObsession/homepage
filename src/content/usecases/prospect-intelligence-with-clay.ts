@@ -13,7 +13,7 @@ const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}
 const planWords = `the Free plan, then ${fees.slice(0, -1).join(', ')} or ${fees[fees.length - 1]} a month`
 
 const answer =
-  'Obsession puts a column of facts on the Clay rows you already have. A persona signs up at each company on your list and brings back what it emails and texts a new customer, and what never came, each dated with a screenshot. The Prospect intelligence blueprint runs it, and the facts land back on the same rows.'
+  'Obsession, the toolkit for AI agents, puts a column of facts on the Clay rows you already have. A persona, an AI agent with its own inbox, number and browser, signs up at each company on your list and brings back what it emails and texts a new customer, and what never came, each dated with a screenshot. The Prospect intelligence blueprint runs it, and the facts land back on the same rows.'
 
 export const study: UseCaseStudy = {
   name: 'Prospect intelligence with Clay',

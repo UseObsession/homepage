@@ -1,8 +1,8 @@
 import type { SamplePage, ViewerFormat } from './types'
 
 /* The Sample output page (/sample-output) and the output viewer. Since 9 Nov it is the sample data Home points to:
-   every event from Brand G's run on the web behind the login, the 1 real run (a UK skincare store, September 2026, name
-   hidden). The 4 shoppers are "test customers", never AI customers; the close is early access, not a free shop.
+   every event from Brand G's run, the 1 real run (a UK skincare store, September 2026, name hidden). The 4 shoppers
+   are personas (the report images say "test customer"), never AI customers; the close is the Free plan, not a free shop.
    State only what happened, from the report itself (public/report, Website/sample-report.html):
    - 4 labelled test customers, 1 inbox each (welcome, browse, basket, checkout); no phone number was used.
    - Every inbox watched for 48 hours. On Tuesday 22 September 2026 the basket was left at 02:57 and the checkout at 03:11
@@ -14,15 +14,15 @@ import type { SamplePage, ViewerFormat } from './types'
    BST, so the webhook window carries +01:00. Every other run or row on the page says it is an example.
    The report images still say "cart"; the site says "basket". "James" in the drafts is a placeholder name.
    The page reads in the order it renders (pages/SampleOutput): the finding > all 4 journeys > the basket gap > the
-   checkout gap, which builds on it ("heard nothing either") > every kind of data, as it arrived and as data (12 Nov:
-   it replaced the format viewer and its PDF) > the questions > early access. The drafts' words stay as the images show them. */
+   checkout gap, which builds on it ("heard nothing either") > the screens, emails, texts and calls, as they arrived and as rows (12 Nov:
+   it replaced the format viewer and its PDF) > the questions > the Free plan. The drafts' words stay as the images show them. */
 
 /* The same run in every format it can arrive in. Home imports this too, and opens it on its own format. */
 export const outputFormats: ViewerFormat[] = [
   {
     id: 'pdf',
     label: 'PDF report',
-    line: 'A report to forward to anyone: the facts first, then the evidence behind each one.',
+    line: 'A report to forward to anyone: the findings first, then the screenshots and emails behind each one.',
     view: {
       kind: 'pdf',
       to: '/sample-output#report',
@@ -47,7 +47,7 @@ export const outputFormats: ViewerFormat[] = [
   {
     id: 'email',
     label: 'Email',
-    line: 'Each new fact the moment it lands, or 1 digest on the schedule you set.',
+    line: 'Each new result the moment it lands, or 1 digest on the schedule you set.',
     view: {
       kind: 'email',
       from: 'Obsession',
@@ -64,7 +64,7 @@ export const outputFormats: ViewerFormat[] = [
   {
     id: 'slack',
     label: 'Slack',
-    line: 'A message in the channel you choose, with the fact and a link to its evidence.',
+    line: 'A message in the channel you choose, with the result and a link to its screenshots.',
     view: {
       kind: 'slack',
       channel: '#store-checks',
@@ -78,11 +78,11 @@ export const outputFormats: ViewerFormat[] = [
   {
     id: 'clay',
     label: 'Sheet or Clay',
-    line: 'New columns on the rows you already have: the fact, the day it was seen and its screenshot.',
+    line: 'New columns on the rows you already have: the result, the day it was seen and its screenshot.',
     view: {
       kind: 'clay',
-      cols: ['Company', 'Fact', 'Seen on', 'Screenshot'],
-      added: ['Fact', 'Seen on', 'Screenshot'],
+      cols: ['Company', 'Result', 'Seen on', 'Screenshot'],
+      added: ['Result', 'Seen on', 'Screenshot'],
       rows: [
         { cells: ['Brand G', 'No basket reminder', '24 Sep', 'link'], gap: true, example: false },
         { cells: ['Candle store', 'No gap', '24 Sep', 'link'], gap: false, example: true },
@@ -95,20 +95,21 @@ export const outputFormats: ViewerFormat[] = [
   {
     id: 'webhook',
     label: 'JSON webhook',
-    line: 'Every fact as JSON, posted to your endpoint, with its receipt.',
+    line: 'Every result as JSON, posted to your endpoint as a blueprint.result event.',
     view: {
       kind: 'webhook',
       request: 'POST https://your-app.example/hooks/obsession',
       body: `{
-  "event": "fact.created",
-  "company": "brand-g.example",
-  "sentence": "A basket left at 02:57 got no reminder in 48 hours.",
-  "seen_at": "2026-09-24T02:57:00+01:00",
-  "verdict": "silent",
-  "receipt": {
+  "id": "evt_g3_0924",
+  "type": "blueprint.result",
+  "created_at": "2026-09-24T02:57:00+01:00",
+  "data": {
+    "blueprint": "mystery-shopper",
+    "company": "brand-g.example",
     "journey": "basket",
+    "verdict": "silent",
     "messages_in_window": 0,
-    "url": "/v1/evidence/run_g3_0922"
+    "sentence": "A basket left at 02:57 got no reminder in 48 hours."
   }
 }`,
     },
@@ -116,7 +117,7 @@ export const outputFormats: ViewerFormat[] = [
   {
     id: 'workflow',
     label: 'Workflow',
-    line: 'A new fact can start anything: the steps you set, then whatever you build next.',
+    line: 'A new result can start anything: the steps you set, then whatever you build next.',
     view: {
       kind: 'workflow',
       steps: [
@@ -136,9 +137,9 @@ export const sample: SamplePage = {
     path: '/sample-output',
     title: 'Sample data: a real store’s whole run, 0 basket reminders',
     description:
-      'A real UK store’s whole run, September 2026: 1 basket and 1 checkout left, 0 reminders in 48 hours. Then every kind of data, as it arrived and as rows.',
+      'A real UK store’s whole run, September 2026: 1 basket and 1 checkout left, 0 reminders in 48 hours. Then example screens, emails, texts and calls, as rows.',
     answer:
-      'Sample data from a real UK skincare store in September 2026: 4 test customers, 1 inbox each, every inbox watched for 48 hours. A £40 basket left at 02:57 and a checkout left at 03:11 got no reminder. Below it, every kind of data Obsession keeps (screens, emails, texts, push, prices, ads, chat, calls and receipts) is shown as it arrived and as the rows an API returns.',
+      'Sample data from a real UK skincare store in September 2026: 4 personas, 1 inbox each, every inbox watched for 48 hours. A £40 basket left at 02:57 and a checkout left at 03:11 got no reminder. Below it, the screens, emails, texts, prices, ads, chat answers and calls a persona keeps are shown as they arrived and as the rows the API returns.',
     ogImage: '/og/sample-output.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -150,9 +151,9 @@ export const sample: SamplePage = {
   hero: {
     pill: 'Real run · September 2026 · name hidden',
     headline: 'A £40 basket left at 02:57. 48 hours later, still no reminder.',
-    sub: 'Sample data from a real UK skincare store in September 2026: 4 test customers, 1 inbox each, every inbox watched for 48 hours. Below is every event from Brand G’s run, then every other kind of data we keep.',
+    sub: 'Sample data from a real UK skincare store in September 2026: 4 personas, 1 inbox each, every inbox watched for 48 hours. Below is every event from Brand G’s run, then example screens, emails, texts and calls from other personas.',
     figures: [
-      { value: '4', label: 'test customers, 1 inbox each' },
+      { value: '4', label: 'personas, 1 inbox each' },
       { value: '5', label: 'messages, all on welcome and browse' },
       { value: '15', label: 'screenshots kept with the events' },
     ],
@@ -161,22 +162,19 @@ export const sample: SamplePage = {
 
   /* Every kind, as it arrived and as data (12 Nov, James). Home's console with the same data, and tabs on top: each tab
      picks a company, who asks, a wall (null is every wall) and the kinds (as the console's events name them), and
-     opens Evidence. Prices are facts read off screens, texts and emails, and comparing them is Insights' job, so they
+     opens the console's screenshot view. Prices are facts read off screens, texts and emails, and comparing them is Insights' job, so they
      have no tab of their own. */
   kinds: {
     heading: 'Everything a customer sees, kept as data.',
-    line: 'Screens, emails, texts, prices, ads and answers from behind the login. See each one the way it arrived, then as the row your tools get.',
+    line: 'Screens, emails, texts, prices, ads and chat answers, as a persona received them. See each one the way it arrived, then as the row your tools get.',
     tabsLabel: 'Kinds of data',
     tabs: [
       { label: 'Screens', company: 'sportswear-brand.example', persona: 'New customer · US', wall: 'Purchase', kinds: ['Page'] },
       { label: 'Emails', company: 'sportswear-brand.example', persona: 'New customer · US', wall: null, kinds: ['Email'] },
       { label: 'Texts', company: 'sim-network.example', persona: 'Leaving customer · UK', wall: null, kinds: ['Text'] },
-      { label: 'Push and in-app', company: 'reading-app.example', persona: 'Trial user · UK', wall: 'Device', kinds: ['Push', 'In-app'] },
       { label: 'Ads', company: 'sportswear-brand.example', persona: 'New customer · US', wall: 'Open', kinds: ['Ad'] },
       { label: 'Chat answers', company: 'online-bank.example', persona: 'New saver · UK', wall: null, kinds: ['Chat'] },
       { label: 'Calls', company: 'self-storage.example', persona: 'Renter · UK', wall: 'Call', kinds: ['Call', 'No answer'] },
-      { label: 'Post and receipts', company: 'sportswear-brand.example', persona: 'New customer · US', wall: null, kinds: ['Receipt', 'Statement', 'Parcel'] },
-      { label: 'Quotes and in store', company: 'self-storage.example', persona: 'Renter · UK', wall: null, kinds: ['Document', 'Display'] },
     ],
     arrivesLabel: 'Arrives in',
     arrives: ['API', 'MCP', 'Clay', 'Google Sheets', 'Webhook', 'Slack'],
@@ -216,10 +214,10 @@ export const sample: SamplePage = {
       alt: 'The store’s checkout page with the test customer’s inbox address filled in and the marketing box ticked',
       width: 760,
       height: 475,
-      caption: 'The checkout session: the test customer’s inbox filled in, the marketing box ticked. 1 of 4 frames it recorded. Payment buttons and product photo blurred.',
+      caption: 'The checkout session: the persona’s inbox filled in, the marketing box ticked. A frame from the session’s screenshots, with payment buttons and product photo blurred.',
     },
     setup: {
-      heading: 'Test customer set up',
+      heading: 'Persona set up',
       tag: 'Verified',
       rows: [
         { k: 'Journeys', v: 'Welcome, browse, basket and checkout' },
@@ -248,8 +246,8 @@ export const sample: SamplePage = {
       n: 1,
       journey: 'Basket',
       heading: 'Nothing followed up a £40 basket left at 02:57.',
-      finding: 'No email arrived in the 48 hours after our test customer put a Body Care Gift Set in the basket and left.',
-      consent: 'Our test customer subscribed with the marketing box ticked before this journey, so Brand G had permission to write.',
+      finding: 'No email arrived in the 48 hours after our persona put a Body Care Gift Set in the basket and left.',
+      consent: 'Our persona subscribed with the marketing box ticked before this journey, so Brand G had permission to write.',
       nothing: {
         heading: 'Nothing arrived',
         line: 'We watched cart.g3@test.useobsession.com from 22 Sep 2026, 02:57 to 24 Sep 2026, 02:57 UK time. No message from Brand G reached it.',
@@ -273,15 +271,15 @@ export const sample: SamplePage = {
           height: 1594,
         },
         text: 'Still in your bag. James, your Body Care Gift Set is still in your bag. You added it late on Monday night and left before checking out. We’ve kept it exactly as you left it. Resume your order. Nothing has been charged. If something made you stop, reply and tell us what it was.',
-        note: 'James is a placeholder name. The test customer gave the store none.',
+        note: 'James is a placeholder name. The persona gave the store none.',
       },
     },
     {
       n: 2,
       journey: 'Checkout',
       heading: 'The customer who stopped at checkout heard nothing either.',
-      finding: 'No email arrived in the 48 hours after our test customer started checkout and left without paying.',
-      consent: 'Our test customer subscribed with the marketing box ticked before this journey, so Brand G had permission to write.',
+      finding: 'No email arrived in the 48 hours after our persona started checkout and left without paying.',
+      consent: 'Our persona subscribed with the marketing box ticked before this journey, so Brand G had permission to write.',
       nothing: {
         heading: 'Nothing arrived',
         line: 'We watched checkout.g7@test.useobsession.com from 22 Sep 2026, 03:11 to 24 Sep 2026, 03:11 UK time. No message from Brand G reached it.',
@@ -305,13 +303,13 @@ export const sample: SamplePage = {
           height: 1644,
         },
         text: 'One step left. James, your order is one step from done. You filled in your details late on Monday night and stopped at payment. The Deodorant is still in your order, and nothing has been charged. Finish your order. If something at payment put you off, reply and tell us. We’d rather fix it than lose the order.',
-        note: 'James is a placeholder name. The test customer gave the store none.',
+        note: 'James is a placeholder name. The persona gave the store none.',
       },
     },
   ],
 
   faq: {
-    heading: 'Nothing was bought. The checkout stopped before payment.',
+    heading: 'Questions about Brand G’s run.',
     items: [
       {
         q: 'What does an abandoned cart test report show?',
@@ -323,25 +321,26 @@ export const sample: SamplePage = {
       },
       {
         q: 'Why does silence count as a gap?',
-        a: 'Because both journeys completed on the storefront, both test customers had ticked the marketing box, and Obsession watched each inbox for the full 48 hours. Nothing arrived.',
+        a: 'Because both journeys completed on the storefront, both personas had ticked the marketing box, and Obsession watched each inbox for the full 48 hours. Nothing arrived.',
       },
       {
         q: 'Did Obsession buy anything?',
         a: 'No. This run stopped before payment, so the checkout customer left at the last step.',
       },
       {
-        q: 'How do I get a run like this for another company?',
-        a: 'Look it up. A company already covered returns its history at once. For one that isn’t, click Watch: Obsession signs up as the customer profile and country you pick, keeps the account open, and each email, price and offer joins your event log the day it arrives.',
+        q: 'How do I get a run like this for another store?',
+        a: 'Pick the mystery shopping blueprint and name the store. Personas sign up, leave a basket and a checkout, and wait as long as you set. Each email and text lands in your event log the day it arrives.',
+        link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
       },
       {
-        q: 'Who sees what I look up?',
-        a: 'Only you. Anyone can see that a company is covered, and since when, but never who asked.',
+        q: 'Who sees our results?',
+        a: 'Your team. Every result lands in your own event log, and the store is never told who asked.',
       },
     ],
   },
 
   final: {
-    heading: 'Get a run like this for any company you name.',
+    heading: 'Run the same check on your store and every competitor’s.',
     capture: {
       kind: 'waitlist',
       source: 'sample-output-final',

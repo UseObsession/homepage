@@ -198,7 +198,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does Resolution check cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours for test orders and chat, and an inbox. Test orders spend only your own test budget. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours for test orders and chat, and an inbox. Test orders spend only your own test budget, and the month grows with the asks you test.',
         link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],

@@ -49,7 +49,7 @@ export const post: BlogPost = {
     'cold email first lines',
     'sdr personalization',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   order: 5,
   published: '2026-11-11',
   updated: '2026-11-22',
@@ -501,7 +501,7 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'Exa', url: EXA_PRICING },
   ],
 
-  related: [
+  related: ['/use-cases/ai-sdr', 
     'buying-signals-examples',
     'sales-business-case-template',
     'clay-custom-signals',

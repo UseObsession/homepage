@@ -64,7 +64,7 @@ export const post: BlogPost = {
     'lead response time statistics',
     '5 minute rule lead response',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-11-01',
   updated: '2026-11-22',
   readingMinutes: 14,
@@ -523,5 +523,5 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'Checkly', url: CHECKLY },
   ],
 
-  related: ['recipe:lead-leaks', 'recipe:sales-agent-check', 'recipe:outbound-agent-check', 'ai-customers-for-b2b-sales-teams'],
+  related: ['/use-cases/ai-sdr', 'recipe:lead-leaks', 'recipe:sales-agent-check', 'recipe:outbound-agent-check', 'ai-customers-for-b2b-sales-teams'],
 }

@@ -62,6 +62,9 @@ export function Kits() {
                       <PersonaGlyph name={k.icon} />
                     </span>
                     <span className="k-hub__name">{k.name}</span>
+                    <svg className="k-hub__chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                      <path d="M6 3.5 10.5 8 6 12.5" />
+                    </svg>
                     <span className="k-hub__line">{kit?.hero.sub.split('. ')[0]}.</span>
                     <span className="k-hub__pieces">
                       {kit?.pieces.items.map((p) => (

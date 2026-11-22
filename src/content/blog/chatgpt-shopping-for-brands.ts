@@ -65,7 +65,7 @@ export const post: BlogPost = {
     'chatgpt shopping mode',
     'how to get your product recommended by chatgpt',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-11-01',
   updated: '2026-11-22',
   readingMinutes: 13,

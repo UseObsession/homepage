@@ -34,7 +34,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'what-it-means', text: 'What makes an agent declared' },
     {
       kind: 'p',
-      text: 'An AI agent is software that acts on its own: it fills in forms, reads emails, chats with support or makes a call. It is declared when it is open about two things wherever it meets people: that it is an AI, and which company it acts for. In a chat it says so in its first message. By phone it says so when the call connects. On a site, the signal can travel with every request.',
+      text: 'An AI agent is software that acts on its own: it fills in forms, reads emails, chats with support or makes a call. It is declared when it is open about two facts wherever it meets people: that it is an AI, and which company it acts for. In a chat it says so in its first message. By phone it says so when the call connects. On a site, the signal can travel with every request.',
     },
     {
       kind: 'p',

@@ -174,7 +174,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does Prospect intelligence cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox, a number and browser hours for sign up and chat. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: an inbox, a number and browser hours for each prospect’s persona. The month grows with the rows on your list and the steps you choose at each company.',
         link: { label: 'See inboxes for AI agents', to: '/email' },
       },
     ],

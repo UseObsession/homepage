@@ -69,7 +69,7 @@ export const post: BlogPost = {
     'how to scrape a website that requires login',
     'can web scraping be detected',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-11-11',
   updated: '2026-11-22',
   readingMinutes: 16,
@@ -527,7 +527,7 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'n8n', url: N8N_PRICING },
   ],
 
-  related: [
+  related: ['/use-cases/prior-authorization-ai-agent', 
     '/browser',
     'can-ai-agents-log-in-to-websites',
     'the-web-behind-the-login',

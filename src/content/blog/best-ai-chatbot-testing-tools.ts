@@ -67,7 +67,7 @@ export const post: BlogPost = {
     'ai chatbot testing',
     'bot testing tools',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-10-28',
   updated: '2026-11-22',
   readingMinutes: 17,
@@ -607,7 +607,7 @@ export const post: BlogPost = {
     { title: 'TokenSurf home page', publisher: 'TokenSurf', url: TOKENSURF },
   ],
 
-  related: [
+  related: ['/use-cases/ai-agent-for-customer-support', '/use-cases/ai-agent-evaluation', 
     'recipe:support-bot-check',
     '/verify',
     'ai-customers-for-cx-teams',

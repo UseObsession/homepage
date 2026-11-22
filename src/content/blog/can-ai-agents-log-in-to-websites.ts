@@ -61,7 +61,7 @@ export const post: BlogPost = {
     'ai agent internet access',
     'can ai agents log in to websites',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   order: 8,
   published: '2026-11-11',
   updated: '2026-11-22',
@@ -575,7 +575,7 @@ export const post: BlogPost = {
     { title: 'Exa: search API for AI agents', publisher: 'Exa', url: EXA },
   ],
 
-  related: [
+  related: ['/use-cases/otp-testing', '/use-cases/prior-authorization-ai-agent', '/use-cases/ai-agent-for-property-management', 
     '/browser',
     '/email',
     'scrape-data-behind-login',

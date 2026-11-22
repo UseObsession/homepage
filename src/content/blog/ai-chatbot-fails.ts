@@ -40,7 +40,7 @@ export const post: BlogPost = {
     'AI chatbot fails are public cases where a business’s chatbot or voice agent misbehaved or gave a false policy, price or promise, like the refund rule Air Canada had to honour. A customer or reporter found each one first, and some followed an update, so CX teams catch them by asking the live chat what customers ask and checking each answer against policy. On Obsession the support bot check blueprint asks your chat what customers ask every morning and after every update, and keeps each answer word for word, dated, beside the policy page.',
   primaryKeyword: 'ai chatbot fails',
   keywords: ['ai bot fails', 'ai chatbot error', 'ai chatbot problems'],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-11-01',
   updated: '2026-11-22',
   readingMinutes: 11,
@@ -325,7 +325,7 @@ export const post: BlogPost = {
     { title: 'Utah Code section 13-77-102: liability for violation of consumer protection law', publisher: 'Utah State Legislature', url: UTAH_102, date: '2026-05-06' },
   ],
 
-  related: [
+  related: ['/use-cases/ai-agent-for-customer-support', 
     'recipe:support-bot-check',
     'recipe:drift-watch',
     'recipe:ai-disclosure-check',

@@ -13,7 +13,7 @@ const orList = (items: string[]) => (items.length < 2 ? items.join('') : `${item
 const path = '/use-cases/opt-out-and-cancel-checks-for-compliance-teams'
 
 const sub =
-  'Opt-out compliance means proving that cancel, unsubscribe and STOP work the way the law and your terms say. Obsession, the toolkit for AI agents, sends an AI agent with its own inbox, number and browser to do each one. This persona keeps every step, and every message sent after it, in one event log, dated.'
+  'Opt-out compliance means proving that cancel, unsubscribe and STOP work the way the law and your terms say. Obsession, the toolkit for AI agents, sends a persona, an AI agent with its own inbox, number and browser, to do each one. It keeps every step, and every message sent after it, in one event log, dated.'
 
 export const team: TeamPage = {
   id: 'compliance',

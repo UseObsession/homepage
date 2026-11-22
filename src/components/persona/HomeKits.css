@@ -1,0 +1,14 @@
+/* Home's kits (HomeKits.tsx): the kits hub's cards (pages/Kit.css .k-hub__card) on Home, with an entrance in order. */
+
+.h-kits__head { max-width: 46rem; }
+.h-kits__cards { margin-top: var(--ob-space-40); }
+.h-kits__all { display: inline-block; margin-top: var(--ob-space-32); }
+
+@keyframes h-kits-rise {
+  from { opacity: 0; translate: 0 var(--ob-shift-sm, 6px); }
+  to { opacity: 1; translate: 0 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .h-kits__cards[data-armed] > li { opacity: 0; }
+  .h-kits__cards.is-in > li { animation: h-kits-rise var(--ob-dur-slow, 0.5s) var(--ob-ease-out) both calc(var(--i) * 90ms); }
+}

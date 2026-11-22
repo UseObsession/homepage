@@ -63,7 +63,7 @@ export const post: BlogPost = {
     'tavily alternatives open source',
     'tavily alternatives self hosted',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-11-11',
   updated: '2026-11-22',
   readingMinutes: 18,

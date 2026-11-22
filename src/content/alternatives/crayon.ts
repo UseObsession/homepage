@@ -197,7 +197,7 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Can I use Obsession with Crayon?',
-          a: 'Yes. Obsession’s events reach your tools over the API, MCP or a webhook, each with its screenshot or email, so a CI team can add them to the battlecards it keeps in Crayon.',
+          a: 'Yes. Obsession’s events reach your tools over the API, MCP (the standard way AI agents call tools) or a webhook, each with its screenshot or email, so a CI team can add them to the battlecards it keeps in Crayon.',
           link: { label: 'See the API and MCP', to: '/developers' },
         },
       ],

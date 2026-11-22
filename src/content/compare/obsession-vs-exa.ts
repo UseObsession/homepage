@@ -15,7 +15,7 @@ export const ref: ReferencePage = {
   kind: 'compare',
   name: 'Obsession vs Exa',
   company: 'Exa',
-  line: 'Exa searches the public web for AI agents. Obsession gives an agent a browser that stays signed in, an inbox and a number.',
+  line: 'Exa searches the public web for AI agents. Obsession lets the agent sign up where search stops, with its own inbox and number.',
   meta: {
     path: '/compare/obsession-vs-exa',
     title: 'Obsession vs Exa (2026): search or a signed-in browser',

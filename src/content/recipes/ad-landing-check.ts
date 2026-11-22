@@ -158,7 +158,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'Every ad you pay for, checked every morning.',
-    line: 'By hand, 6 ads’ pages at 5 minutes each is 3.5 hours a week.',
+    line: 'By hand, 6 ads at 5 minutes each, every morning, is 3.5 hours a week. 300 live ads would keep more than 4 people busy all week.',
     cols: ['By hand', 'Ad landing check'],
     rows: [
       { label: 'Which ads', values: ['The few someone opens when there’s time', 'Every live ad, every morning'] },
@@ -193,7 +193,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does Ad landing check cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours on a phone and a desktop, from each ad’s country. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It runs on browser hours, billed at list rates, on a phone and a desktop from each ad’s country. The month grows with the live ads you connect and how often each page is opened.',
         link: { label: 'See how a persona works', to: '/personas' },
       },
     ],

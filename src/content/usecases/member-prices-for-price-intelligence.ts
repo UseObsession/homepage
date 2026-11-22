@@ -100,11 +100,11 @@ export const study: UseCaseStudy = {
         title: 'A persona does the collecting',
         line: '30 days in this example, and each account stays open after. Every reading has its screenshot.',
         screen: 'members',
-        chips: ['Member · Milano', 'Its own inbox', 'An Italian mobile number', 'Says it’s AI'],
+        chips: ['Member · Milano', 'Its own inbox', 'An Italian mobile number', 'Says it’s an AI'],
         steps: [
           {
             title: 'Each retailer gets its own member',
-            line: 'A persona with its own inbox, an Italian mobile number and a browser set to the city you chose. It joins the way any customer can and, in this example, buys nothing. It says it’s AI when it talks to a person.',
+            line: 'A persona with its own inbox, an Italian mobile number and a browser set to the city you chose. It joins the way any customer can and, in this example, buys nothing. It says it’s an AI when it talks to a person.',
             example:
               'Corvalle, Milano Centro: joined with the newsletter and texts ticked at 09:03, the welcome email and its coupon came at 09:04, and all 40 basket items were read signed out and in by 09:06.',
           },
@@ -261,7 +261,7 @@ export const study: UseCaseStudy = {
       {
         q: 'Which pieces does it use?',
         a: 'The browser for the readings, and an inbox and a mobile number for the welcome codes and offers, under 1 persona per retailer and city. Price watch runs it on the same key and bill.',
-        link: { label: 'Watch the market', to: '/kits/watch-the-market' },
+        link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
       },
       {
         q: 'How many retailers can it cover?',
@@ -296,6 +296,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'prices',
     },
-    link: { label: 'See the kit', to: '/kits/watch-the-market' },
+    link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
   },
 }

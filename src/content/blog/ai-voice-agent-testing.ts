@@ -43,7 +43,7 @@ export const post: BlogPost = {
     'AI voice agent testing checks what a voice agent says and does on a call: whether it picks up, understands the caller, gives the right answer and hands over to a person. Coval, Hamming and Cekura put the agent through simulated callers before launch and score its live calls once it launches, and Vapi and Retell test agents built on their own platforms. Obsession’s Voice agent check rings your live number each morning as an AI caller with its own phone number, and keeps every call recorded and dated beside your price list.',
   primaryKeyword: 'ai voice agent testing',
   keywords: ['ai voice agent testing platform', 'automated ai voice agent testing', 'voice agent testing'],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-11-01',
   updated: '2026-11-22',
   readingMinutes: 12,
@@ -429,5 +429,5 @@ export const post: BlogPost = {
     { title: 'Testing pricing', publisher: 'Retell AI Docs', url: RETELL_PRICING },
   ],
 
-  related: ['/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'recipe:resolution-check', 'best-ai-chatbot-testing-tools'],
+  related: ['/use-cases/ai-receptionist', '/use-cases/ai-agent-evaluation', '/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'recipe:resolution-check', 'best-ai-chatbot-testing-tools'],
 }

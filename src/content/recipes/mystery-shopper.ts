@@ -153,7 +153,7 @@ export const recipe: Recipe = {
       items: [
         {
           title: 'Before payment',
-          line: 'By default. Give it your card, or a client’s, and it completes the order.',
+          line: 'By default. Give it your own card, or a client’s with their OK, and it completes the order.',
         },
         { title: 'At an ID check', line: 'It stops there, and the event log keeps what the check asked for.' },
         { title: 'With a person', line: 'If anyone writes or calls, it says it’s an AI.' },
@@ -178,7 +178,7 @@ export const recipe: Recipe = {
     { k: 'Journeys', v: 'Sign up, browse, basket, checkout and texts' },
     { k: 'Persona', v: 'A first-time shopper in Manchester on a phone, or your own' },
     { k: 'Waiting', v: 'As long as you choose, 48 hours by default' },
-    { k: 'Payment', v: 'Stops before payment, or pays with a card you provide' },
+    { k: 'Payment', v: 'Stops before payment, or pays with your own card' },
     { k: 'How often', v: 'Monthly, weekly or daily, for every journey you tick' },
   ],
 
@@ -234,7 +234,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does it place real orders?',
-        a: 'Only if you say so. By default every journey stops before payment. Give a persona a payment card, yours or a client’s, and it completes the order, so the confirmation and every email after it join your event log.',
+        a: 'Only if you say so. By default every journey stops before payment. Give a persona your own payment card, or a client’s with their OK, and it completes the order, so the confirmation and every email after it join your event log.',
       },
       {
         q: 'Can I compare a store with its competitors?',
@@ -246,7 +246,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does mystery shopping cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox, a number and browser hours to shop with. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: an inbox, a number and browser hours for each persona that shops. After the basket, the persona waits for every email at no charge, so you can watch as long as you choose.',
         link: { label: 'See inboxes for AI agents', to: '/email' },
       },
     ],

@@ -63,7 +63,7 @@ export const post: BlogPost = {
     'view competitor emails',
     'milled alternative',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-10-23',
   updated: '2026-11-22',
   readingMinutes: 11,

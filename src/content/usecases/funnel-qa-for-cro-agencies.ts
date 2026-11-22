@@ -285,7 +285,7 @@ export const study: UseCaseStudy = {
       {
         q: 'Which pieces does it use?',
         a: 'Email, phone and the browser, under 1 persona per brand. Mystery shopping runs the pitch, QA on your own flows runs every variant and Ad landing check runs every ad, on the same key and bill.',
-        link: { label: 'Check your own sign-up and AI agents', to: '/kits/test-sign-up-and-agents' },
+        link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
       },
       {
         q: 'Can’t we sign up with a spare inbox?',
@@ -329,6 +329,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'mystery',
     },
-    link: { label: 'See the kit', to: '/kits/test-sign-up-and-agents' },
+    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
   },
 }

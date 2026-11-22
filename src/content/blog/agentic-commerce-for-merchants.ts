@@ -89,7 +89,7 @@ export const post: BlogPost = {
     'google ai mode shopping',
     'agentic commerce shopify',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-10-23',
   updated: '2026-11-22',
   readingMinutes: 13,

@@ -14,7 +14,7 @@ export const ref: ReferencePage = {
   kind: 'compare',
   name: 'Obsession vs Panoramata',
   company: 'Panoramata',
-  line: 'Panoramata tracks competitors’ campaigns across channels. Obsession puts a persona at each one and keeps what it’s sent.',
+  line: 'Panoramata tracks the competitors on your plan across channels. Obsession signs a persona up at any competitor you name.',
   meta: {
     path: '/compare/obsession-vs-panoramata',
     title: 'Obsession vs Panoramata (2026): a library or your own list',
@@ -100,7 +100,7 @@ export const ref: ReferencePage = {
       items: [
         '**Use Panoramata** for a marketing team that wants competitors’ campaigns on one screen: what they emailed, texted, advertised and launched this week, with alerts and a swipe file of examples.',
         '**Use Obsession** when the question goes past the campaign: the signed-in [member price](/glossary/member-price), where a free plan stops and the [upgrade prompt](/glossary/upgrade-prompt) appears, and the [save offer](/glossary/save-offer) in the cancel flow. A persona sees each one behind the [login wall](/glossary/login-wall), next to the emails.',
-        '**Use Obsession when an agent or a table needs the facts.** Each event reaches your agent over MCP, a webhook or a sheet, with its screenshot or the original email.',
+        '**Use Obsession when an agent or a table needs the facts.** Each event reaches your agent over MCP (the standard way AI agents call tools), a webhook or a sheet, with its screenshot or the original email.',
       ],
     },
     {

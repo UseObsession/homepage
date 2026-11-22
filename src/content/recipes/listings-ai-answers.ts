@@ -186,7 +186,7 @@ export const recipe: Recipe = {
       { q: 'What does it need from us?', a: 'Your details, approved once, and the questions your buyers ask.' },
       {
         q: 'What does Listings and AI answers cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours from its own town. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It runs on browser hours, billed at list rates, each from the town it asks from. The month grows with your locations and the assistants and listings you check.',
         link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],

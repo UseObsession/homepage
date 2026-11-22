@@ -182,7 +182,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does QA on your own flows cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours on phone and desktop, an inbox, and a number for each login code. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours on phone and desktop, an inbox, and a number for each login code. Each release starts a run, so the month grows with how often you ship.',
         link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],

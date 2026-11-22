@@ -178,7 +178,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does Ad tracking cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours, and an inbox where an ad offers a code. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours to read each ad and follow it to its page, and an inbox where an ad offers a code. The month grows with the competitors you name and the new ads they start.',
         link: { label: 'See how a persona works', to: '/personas' },
       },
     ],

@@ -51,7 +51,7 @@ export const post: BlogPost = {
     'consumer duty price and fair value',
     'consumer duty manufacturer fair value assessment',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   order: 9,
   published: '2026-11-11',
   updated: '2026-11-22',

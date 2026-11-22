@@ -69,7 +69,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: '[Trial teardown](/blueprints/trial-teardown), a ready-made collection, gathers every email, prompt, limit and offer in a competitor’s trial by trial day.',
+      text: 'A 14-day trial still takes 14 days to see in full, but every competitor’s trial runs at once, and nobody on your team has to log in each morning.',
     },
     {
       kind: 'faq',

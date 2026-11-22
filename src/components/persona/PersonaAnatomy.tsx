@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { Link } from 'react-router-dom'
 import type { PersonaAnatomy as Anatomy } from '../../content/types'
 import './blueprint.css'
 import './PersonaAnatomy.css'
@@ -30,6 +31,11 @@ export function PersonaAnatomy({ anatomy, id }: { anatomy: Anatomy; id?: string 
             {anatomy.heading}
           </h2>
           {anatomy.line && <p className="s-bp-line">{anatomy.line}</p>}
+          {anatomy.link && (
+            <Link className="s-bp-link" to={anatomy.link.to}>
+              {anatomy.link.label}
+            </Link>
+          )}
         </div>
         <figure className="s-pa-fig">
           <ol className="s-pa-stack">

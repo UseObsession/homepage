@@ -187,7 +187,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does Email and SMS tracking cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox and a texting number. A persona is free while it waits. Try it on the Free plan.',
+        a: 'Each brand’s persona uses an inbox and a texting number, billed at list rates with every email and text it receives. Waiting costs nothing, so a brand that sends daily costs more than one that sends weekly.',
         link: { label: 'See phone numbers for AI agents', to: '/phone' },
       },
     ],

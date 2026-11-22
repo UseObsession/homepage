@@ -1,5 +1,5 @@
-/* The footer's words (components/Footer). Since 9 Nov it follows the bar's menus (content/nav menus), so the two never
-   name different things: Products, Integrations, the 2 Solutions columns, Resources, then the company. Names only,
+/* The footer's words (components/Footer). Since 9 Nov it follows the bar's menus (content/nav menus), so the two always
+   match: Products, Integrations, the 2 Solutions columns, Resources, then the company. Names only,
    no lines; then the logo and 1 short line. */
 import { catalog } from './catalog'
 import { nav, type NavPage } from './nav'
@@ -11,7 +11,7 @@ export const footer = {
   /* 1 short line under the logo, the 1 sentence's core (docs/SEARCH.md 2). The full sentence stays word for word where
      engines read it (llms.txt, the Organization's JSON-LD, each page's meta answer) and in Home's "What is Obsession?",
      so a page never says the whole definition twice. */
-  /* Since 5 Nov evening the index (James). Until then: Send an AI customer to any company. Keep the receipts. */
+  /* Since 22 Nov, Home's H1 (James). */
   tagline: 'The toolkit for AI agents. One API, one bill.',
   columns: [
     /* Products is the bar's Products menu (content/nav.ts): the 6 pieces, Blueprints, API and MCP; then Pricing, which
@@ -19,8 +19,8 @@ export const footer = {
     { label: products.label, links: [...names(products.items), ...names(products.ways), nav.menus.pricing] },
     { label: products.integrations.label, links: [...names(products.integrations.items), products.integrations.all] },
     { label: solutions.kitsLabel, links: [...names(solutions.kits), solutions.kitsAll] },
-    { label: solutions.teamsLabel, links: [...solutions.teams, solutions.teamsAll] },
-    /* Then the menu's first 2 More links: Look up your site, Every resource. */
+    { label: solutions.teamsLabel, links: [...solutions.teams, solutions.useCasesAll] },
+    /* Then the menu's first 2 More links. */
     { label: resources.label, links: [...names(resources.items), ...resources.more.items.slice(0, 2)] },
     {
       label: 'Company',

@@ -48,7 +48,7 @@ export const post: BlogPost = {
     'browse abandonment email subject lines',
     'browse abandonment email template',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-11-14',
   updated: '2026-11-22',
   readingMinutes: 12,

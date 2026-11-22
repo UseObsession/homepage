@@ -10,7 +10,7 @@ import { headFor } from './content/head'
 import { ctaFor, nav } from './content/nav'
 import { absolute, cleanPath } from './content/paths'
 import { kitLinks, kitsPath } from './content/kitPaths'
-import { teamPathList, teamPathSet } from './content/teamPaths'
+import { casePathList, teamPathList, teamPathSet } from './content/teamPaths'
 import { pieceOrder, piecePaths } from './content/piecePaths'
 import { recipeWords, refWords, studyWords } from './content/words'
 import { JAMES_PATHS, isJamesPath } from './legacy/jamesPaths'
@@ -423,7 +423,7 @@ export function AppRoutes() {
         {pieceOrder.map((id) => (
           <Route key={id} path={piecePaths[id].slice(1)} element={<Piece key={id} path={piecePaths[id]} />} />
         ))}
-        {teamPathList.map((p) => (
+        {[...teamPathList, ...casePathList].map((p) => (
           <Route key={p} path={p.slice(1)} element={<Team key={p} path={p} />} />
         ))}
         <Route path="kits" element={<Kits />} />

@@ -88,7 +88,7 @@ export const post: BlogPost = {
     'ai agent memory',
     'pydantic ai durable agents',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-10-24',
   updated: '2026-11-22',
   readingMinutes: 13,
@@ -605,7 +605,7 @@ export const post: BlogPost = {
     { title: 'langchain-ai/langgraph', publisher: 'GitHub', url: LG_REPO },
     { title: 'pydantic/pydantic-ai', publisher: 'GitHub', url: PYDANTIC_REPO },
   ],
-  related: [
+  related: ['/use-cases/ai-recruiter', '/use-cases/imessage-ai-assistant', '/use-cases/ai-agent-for-freight-brokers', 
     '/personas',
     'ai-customers-for-developers',
     'how-ai-customers-work',

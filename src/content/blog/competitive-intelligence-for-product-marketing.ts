@@ -52,7 +52,7 @@ export const post: BlogPost = {
     'competitor analysis positioning map',
     'what is competitive marketing intelligence',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   order: 10,
   published: '2026-11-11',
   updated: '2026-11-22',

@@ -40,7 +40,7 @@ export const post: BlogPost = {
     'Ecommerce email marketing benchmarks from the customer’s side, 13 November 2026: 89% of stores send a welcome email, but about half send no reminder after an abandoned basket or checkout. Half the welcome emails arrive within a minute, and half the basket and checkout reminders that come arrive within about an hour. The figures come from Obsession’s mystery shopping runs, where personas with their own inboxes took each step at every store and kept every email, dated.',
   primaryKeyword: 'ecommerce email marketing benchmarks',
   keywords: ['ecommerce email marketing benchmarks'],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-11-14',
   updated: '2026-11-22',
   readingMinutes: 13,

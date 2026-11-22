@@ -8,7 +8,7 @@ import { SITE, absolute, cleanPath } from './paths'
 import { lookupPage } from './pages/lookup'
 import { pieces } from './pieces'
 import { kits, kitsHub } from './kits'
-import { teams } from './teams'
+import { cases, teams } from './teams'
 import { pricingPage, ratesPage } from './pricing'
 import { securityPage } from './security'
 import type { Faq, Meta, ShareFindings } from './types'
@@ -222,6 +222,19 @@ export const entries: Entry[] = [
       line: firstSentence(t.hero.sub),
       faq: t.faq,
       source: `src/content/teams/${t.id}.ts`,
+    }),
+  ),
+  /* The use case pages in the team template (content/teams/cases, 22 Nov): one job in one industry each. */
+  ...cases.map(
+    (c): Entry => ({
+      kind: 'use-case',
+      meta: ogFor(c.meta),
+      name: c.name,
+      headline: c.hero.headline,
+      line: firstSentence(c.hero.sub),
+      faq: c.faq,
+      source: `src/content/teams/cases/${c.meta.path.split('/').pop()}.ts`,
+      place: 'Resources / Use cases',
     }),
   ),
   {

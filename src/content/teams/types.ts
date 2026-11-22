@@ -9,7 +9,8 @@ import type { Faq, Final, Meta } from '../types'
    blueprints for the team > prices from content/prices.ts > who in the team uses it, in their own measures, with worked
    examples > questions > the form (#join). The use cases come from the Product Marketing book's six jobs (22 Nov). */
 
-export type TeamId = 'sales' | 'marketing' | 'support' | 'agencies' | 'stores' | 'software' | 'banks' | 'compliance'
+/* A team (the nav's Teams column) or, since 22 Nov, a use case page in the same template (content/teams/cases). */
+export type TeamId = string
 
 /* 1 use case: what the team gets done, in their words, the kit it belongs to, and what runs it: a blueprint (by slug,
    content/recipes) for teams who don't code, and the pieces it uses. */
@@ -17,6 +18,8 @@ export type TeamUse = { kit: KitId; name: string; line: string; blueprint?: stri
 
 export type TeamPage = {
   id: TeamId
+  /* 'case' for a use case page (one job in one industry); a team page otherwise. */
+  kind?: 'case'
   /* The team as the nav names it. */
   name: string
   meta: Meta

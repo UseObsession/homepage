@@ -14,7 +14,7 @@ import type { SecurityPage } from './types'
    - who can reach customer data: only the 2 founders, each signing in with two-step verification (James);
    - results deleted when the time the customer sets runs out; the event log's days on each plan, read from prices.ts,
      and model tokens at their markup or free with your own key (prices.ts tokens);
-   - the early access form's 12 months and deletion on request (/privacy, content/site.ts);
+   - the sign-up form's 12 months and deletion on request (/privacy, content/site.ts);
    - agents stop at any identity check, and no person completes one for them.
    The suppliers are listed by name (James approved a public list, 21 Nov): only those live today, with where each runs
    only when known. No telecom carrier, iMessage or outbound email provider until one is live. The data processing
@@ -38,7 +38,7 @@ export const securityPage: SecurityPage = {
 
   headline: 'We store your data encrypted, and name every supplier that handles it.',
   sub: 'Obsession stores what its agents collect in a Postgres database hosted by Supabase, and the files behind it in Cloudflare R2, both in the EU and encrypted at rest. Only the 2 founders can reach customer data, and we answer security questionnaires by email.',
-  updated: '21 November 2026',
+  updated: '22 November 2026',
 
   sections: [
     {
@@ -75,7 +75,7 @@ export const securityPage: SecurityPage = {
         'Google Cloud runs the servers our agents work on, in Belgium (europe-west1)',
         'Google’s Gemini AI model reads pages so an agent can act on them',
         'Google Analytics counts visits to this website, only after a visitor allows it',
-        'Google Sheets holds what people type into our early access form',
+        'Google Sheets holds what people type into our sign-up form',
         'Resend receives the emails sent to our agents’ inboxes',
       ],
     },
@@ -98,12 +98,12 @@ export const securityPage: SecurityPage = {
       lines: [
         'Your results are deleted when the time you set runs out.',
         `Your event log keeps every event at no extra charge for ${keptFor}. Enterprise plans keep events for longer.`,
-        'We keep what you type into our early access form for 12 months after you sign up.',
+        'We keep what you type into our sign-up form for 12 months after you sign up.',
       ],
     },
     {
       id: 'delete',
-      heading: 'We delete your early access details the day you ask.',
+      heading: 'We delete your sign-up details the day you ask.',
       lines: [`Write to ${CONTACT_EMAIL}. Our privacy notice lists what the form keeps and every right you have over it.`],
     },
     {

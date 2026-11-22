@@ -15,7 +15,7 @@ export const ref: ReferencePage = {
   kind: 'compare',
   name: 'Obsession vs Tavily',
   company: 'Tavily',
-  line: 'Tavily connects AI agents to the live public web. Obsession gives an agent a browser that stays signed in, an inbox and a number.',
+  line: 'Tavily answers an agent’s question from the live public web. Obsession lets the agent act on the answer: email, text and sign in.',
   meta: {
     path: '/compare/obsession-vs-tavily',
     title: 'Obsession vs Tavily (2026): search or a signed-in browser',

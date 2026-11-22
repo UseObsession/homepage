@@ -52,7 +52,7 @@ export const post: BlogPost = {
     'intelligent agents in ecommerce',
     'agentic ai in ecommerce',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-10-31',
   updated: '2026-11-22',
   readingMinutes: 10,

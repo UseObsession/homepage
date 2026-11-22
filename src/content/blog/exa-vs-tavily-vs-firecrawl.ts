@@ -65,7 +65,7 @@ export const post: BlogPost = {
     'tavily vs exa pricing',
     'exa vs firecrawl vs parallel',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-11-11',
   updated: '2026-11-22',
   readingMinutes: 16,

@@ -58,7 +58,7 @@ export const post: BlogPost = {
     'competitive pricing analysis',
     'competitor price comparison and analysis excel template',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-14',
   updated: '2026-11-22',
   readingMinutes: 12,

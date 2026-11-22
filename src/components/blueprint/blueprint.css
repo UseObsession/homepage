@@ -1,0 +1,101 @@
+/* What a blueprint page (pages/RecipePage) adds to tie it to its kit and its pieces (22 Nov 2026): the hero's kit badge,
+   the "Runs on" chips and the "In the kit" section's link. The section's cards are the kit page's (pages/Kit.css .k-bps).
+   Design system tokens only, on the 8px grid; classes start bp-. */
+
+/* ---- The hero's tags: the "Blueprint" pill and the kit badge on 1 centred line, wrapping on a phone ------------ */
+
+.bp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ob-space-8);
+}
+.bp-tags > .ob-layout-eyebrow { margin: 0; }
+
+/* The badge: the team pages' kit tag (pages/Team.css .t-use__kit) at the pill's height. */
+.bp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  height: var(--ob-control-sm);
+  max-width: 100%;
+  padding: 0 var(--ob-space-12) 0 var(--ob-space-4);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color var(--ob-dur-fast) var(--ob-ease-out), color var(--ob-dur-fast) var(--ob-ease-out);
+}
+.bp-badge__ic { display: grid; flex: none; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--ob-fill-subtle); color: var(--ob-text); }
+.bp-badge__ic svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.bp-badge__arrow { flex: none; width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-fast) var(--ob-ease-out); }
+.bp-badge:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) {
+  .bp-badge:hover { border-color: var(--ob-line-strong); color: var(--ob-text); }
+  .bp-badge:hover .bp-badge__arrow { translate: var(--ob-space-2) 0; }
+}
+
+/* ---- Runs on: a quiet label, then 1 chip per piece, each linking its page ------------------------------------- */
+
+.bp-runs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ob-space-12) var(--ob-space-16);
+  margin-top: var(--ob-space-8);
+}
+.bp-runs__label {
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  color: var(--ob-text-3);
+  text-transform: uppercase;
+}
+.bp-runs__list { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin: 0; padding: 0; list-style: none; }
+.bp-runs__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  min-height: 32px;
+  padding: 0 var(--ob-space-12) 0 var(--ob-space-8);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text);
+  text-decoration: none;
+  transition: border-color var(--ob-dur-fast) var(--ob-ease-out), background-color var(--ob-dur-fast) var(--ob-ease-out);
+}
+.bp-runs__chip svg { flex: none; width: 16px; height: 16px; fill: none; stroke: var(--ob-text-2); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.bp-runs__chip:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) {
+  .bp-runs__chip:hover { border-color: var(--ob-text); background-color: rgba(var(--ob-tint-rgb), 0.05); }
+  .bp-runs__chip:hover svg { stroke: var(--ob-text); }
+}
+
+/* Once, as the row scrolls into view: the chips switch on in turn. Armed (below the fold) they wait at quiet ink, still
+   readable; nothing moves under reduced motion, and the prerendered row is finished. */
+@media (prefers-reduced-motion: no-preference) {
+  .bp-runs[data-armed]:not([data-play]) .bp-runs__chip { opacity: 0.4; }
+  .bp-runs[data-play] .bp-runs__chip { animation: bp-chip-on 480ms var(--ob-ease-out) calc(var(--bp-i, 0) * 120ms) backwards; }
+}
+@keyframes bp-chip-on {
+  from { opacity: 0.4; translate: 0 var(--ob-space-4); }
+  to { opacity: 1; translate: 0 0; }
+}
+
+/* ---- In the kit: the link to the kit's page, its icon in a tile ----------------------------------------------- */
+
+.bp-kit__to { justify-self: start; gap: var(--ob-space-12); margin-top: var(--ob-space-4); }
+.bp-kit__ic { display: grid; flex: none; place-items: center; width: 32px; height: 32px; border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: var(--ob-radius-md); background: var(--ob-bg); color: var(--ob-text); }
+.bp-kit__ic svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+@media (hover: hover) and (pointer: fine) {
+  .bp-kit__to:hover .ob-btn-arrow { translate: var(--ob-space-2) 0; }
+}
+
+@media (forced-colors: active) {
+  .bp-badge, .bp-runs__chip { border-color: CanvasText; }
+}

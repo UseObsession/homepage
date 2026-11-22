@@ -58,7 +58,7 @@ export const post: BlogPost = {
     'abandoned cart email series',
     'do abandoned cart emails work',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-11-14',
   updated: '2026-11-22',
   readingMinutes: 11,

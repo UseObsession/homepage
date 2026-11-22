@@ -27,7 +27,7 @@ export const recipe: Recipe = {
 
   meta: {
     path: '/blueprints/trial-teardown',
-    title: 'Tear down a competitor’s free trial, day by day · Obsession',
+    title: 'Tear down a competitor’s free trial: every email, day by day',
     description:
       'Trial teardown starts a competitor’s free trial as a persona you define and keeps every email, prompt, plan limit and offer, by trial day, to the end.',
     answer:
@@ -185,7 +185,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does Trial teardown cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours, an inbox, and a local number where a trial asks for one. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours, an inbox, and a local number where a trial asks for one. Through the trial the persona mostly waits for the next email, and waiting costs nothing.',
         link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],

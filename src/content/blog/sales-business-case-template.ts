@@ -49,7 +49,7 @@ export const post: BlogPost = {
     'discovery call prep',
     'account executive business case',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   order: 4,
   published: '2026-11-11',
   updated: '2026-11-22',

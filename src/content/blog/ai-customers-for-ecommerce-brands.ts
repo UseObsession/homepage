@@ -79,7 +79,7 @@ export const post: BlogPost = {
     'shopify flow not working',
     'ai for ecommerce brands',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-10-24',
   updated: '2026-11-22',
   readingMinutes: 12,

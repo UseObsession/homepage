@@ -7,7 +7,7 @@ import type { TeamPage } from './types'
    Commercial View personas `cx` and `voice` (22 Nov 2026). Every company is invented, at a .example address. */
 
 const sub =
-  'Obsession gives every AI agent its own inbox, phone number and browser, on one API and one bill. A persona chats with your support bot, calls your voice line and emails your sales agent as a customer, and keeps every answer word for word.'
+  'Obsession gives every AI agent its own inbox, phone number and browser, on one API and one bill. A persona, an AI agent with all three under one name, chats with your support bot, calls your voice line and emails your sales agent as a customer would. It keeps every answer word for word.'
 
 export const team: TeamPage = {
   id: 'support',
@@ -152,7 +152,7 @@ export const team: TeamPage = {
   },
 
   final: {
-    heading: 'Which AI agent should a persona check first?',
+    heading: 'See what your AI agents told customers this morning.',
     capture: { kind: 'waitlist', source: 'team-support', button: 'Start free', interest: 'support-bot' },
   },
 }

@@ -193,7 +193,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does Partner checks cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours to read each page and try each code, and an inbox for newsletters. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours to read each partner page and try each code, and an inbox for partner newsletters. The month grows with your partner list, read once a week.',
         link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],

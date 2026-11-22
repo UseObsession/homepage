@@ -63,7 +63,7 @@ export const personas: PiecePage = {
       { title: 'Free while it waits', line: 'Waiting days for a reply costs nothing. Pieces are billed only when used.' },
       { title: 'Awake in 50 ms', line: 'A new email, text or call wakes it in 50 ms, without starting a machine.' },
       { title: 'A sandbox when a task needs one', line: 'It starts a sandbox for a task that runs code, and stops it when done.' },
-      { title: 'Signed in for months', line: 'Its browser keeps its logins, so it returns to the same sites as the same person, week after week.' },
+      { title: 'Signed in for months', line: 'Its browser keeps its logins, so it returns to the same sites under the same name, week after week.' },
     ],
   },
 

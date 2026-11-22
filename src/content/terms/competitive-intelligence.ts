@@ -62,7 +62,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'the-customer-source', text: 'How what competitors show customers is collected' },
     {
       kind: 'p',
-      text: 'Obsession’s [Competitor tracking](/blueprints/competitor-tracking) blueprint makes the third source a standing feed for every competitor at once.',
+      text: 'Obsession’s [Competitor tracking](/blueprints/competitor-tracking) blueprint does the third job for every competitor at once: a persona signs up at each one, the way any customer can, and keeps the account open.',
     },
     {
       kind: 'p',

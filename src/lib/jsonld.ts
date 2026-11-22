@@ -16,11 +16,13 @@
      which lists every term; each /glossary/SLUG is a WebPage about its own DefinedTerm, in that set. The 2 older terms
      (AI customer, customer-side observability) stay on the posts that define them, in the same set.
    - A comparison or an alternatives page mentions the Obsession app, as every guide does.
-   No prices, ratings or offers: the site states none. Nothing here is invented: every fact is on the site or in
+   The SoftwareApplication carries the plans as offers, read from content/prices.ts (the prices /pricing shows); no
+   ratings or reviews, since the site has none. Nothing here is invented: every fact is on the site or in
    docs/REBUILD.md, and a profile link goes in only when a founder supplies it (SAME_AS below). */
 import { absolute, entries, SITE, type Entry } from '../content/meta'
 import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../content/glossary'
 import { agentsPage, CONTACT_EMAIL, llms } from '../content/site'
+import { plans } from '../content/prices'
 
 const ORG = `${SITE}/#organization`
 const WEBSITE = `${SITE}/#website`
@@ -67,7 +69,7 @@ const organization: Node = {
   logo: { '@type': 'ImageObject', url: `${SITE}/logo/obsession-app-icon-1024.png`, width: 1024, height: 1024 },
   alternateName: 'useobsession',
   description: llms.summary,
-  slogan: 'A persona on the web for every agent you run.',
+  slogan: 'Kit up your AI agents.',
   knowsAbout: ['Competitor emails and texts', 'Member and signed-in prices', 'Trial plans and limits', 'Quotes behind forms'],
   email: CONTACT_EMAIL,
   founder: FOUNDERS.map(person),
@@ -210,11 +212,16 @@ function blog(e: Entry): Node {
   }
 }
 
-/* Says what Obsession is as a product, for meaning only. Google's Software App rich result also needs offers.price and a
-   rating or review; the site states no prices and has no reviews, so Search Console lists this item as "invalid" with
-   "Missing field offers". That is expected and only means no rich result (Google's Software App guide, updated 8 Sep
-   2026): never add a price, a free offer, a rating or a review to clear it (docs/REBUILD.md 3: no Obsession prices,
-   nothing invented). */
+/* Says what Obsession is as a product, with its plans as offers (22 Nov 2026: the site publishes them on /pricing, from
+   content/prices.ts, so the numbers here are the same numbers). Free, Developer, Startup and Scale are a monthly price;
+   Enterprise is "from" its first-month floor. No rating or review: the site has none, so Google shows no rich result,
+   and none is ever invented to get one. */
+const MONTH = { '@type': 'UnitPriceSpecification', priceCurrency: 'USD', unitText: 'MONTH' }
+const offers = plans.map((p) =>
+  p.monthly != null
+    ? { '@type': 'Offer', name: `${p.name} plan`, price: String(p.monthly), priceCurrency: 'USD', url: `${SITE}/pricing`, priceSpecification: { ...MONTH, price: p.monthly } }
+    : { '@type': 'Offer', name: `${p.name} plan`, priceCurrency: 'USD', url: `${SITE}/pricing`, priceSpecification: { ...MONTH, minPrice: p.from } },
+)
 function software(e: Entry): Node {
   return {
     '@type': 'SoftwareApplication',
@@ -224,6 +231,7 @@ function software(e: Entry): Node {
     description: e.meta.answer,
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
+    offers,
     image: absolute(e.meta.ogImage),
     publisher: { '@id': ORG },
   }

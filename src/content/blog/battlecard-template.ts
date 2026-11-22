@@ -53,7 +53,7 @@ export const post: BlogPost = {
     'competitive battlecard template',
     'battle card template',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-11',
   updated: '2026-11-22',
   readingMinutes: 13,

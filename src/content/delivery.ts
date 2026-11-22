@@ -1,7 +1,7 @@
 /* How events reach you (21 Nov 2026, James): every event (an email lands, a text, a call, a page visited, a sandbox
-   finishing, a recipe result) is saved in the account's event log (1 per account; its entries are events), then
-   delivered through 6 channels, in this order: 1 signed webhook for every piece and recipe, the event log read by
-   cursor, MCP, a handler on our runtime, a live stream for local work, and Zapier, Make and n8n. Recipes deliver their
+   finishing, a blueprint result) is saved in the account's event log (1 per account; its entries are events), then
+   delivered through 6 channels, in this order: 1 signed webhook for every piece and blueprint, the event log read by
+   cursor, MCP, a handler on our runtime, a live stream for local work, and Zapier, Make and n8n. Blueprints deliver their
    results the same way, as blueprint.result events. Every piece page (#delivery) and /developers (#delivery, its
    #webhooks inside) read these words, so the site describes one system the same way everywhere; Home and the blueprint
    pages link to /developers#delivery instead of listing them (James, 22 Nov 2026). Described as designed, with no build state. API names: obsession.events.subscribe and

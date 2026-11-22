@@ -60,3 +60,10 @@
   .s-pk-tog__link,
   .s-pk-tog__arrow { transition: none; }
 }
+
+/* The kits that use the piece (22 Nov 2026): a quiet row of chips under the links. */
+.s-pk-tog__kits { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-8); margin-top: var(--ob-space-40); padding-top: var(--ob-space-20); border-top: var(--ob-border-hair) solid var(--ob-line); }
+.s-pk-tog__kits-label { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); text-transform: uppercase; margin-right: var(--ob-space-4); }
+.s-pk-tog__kit { display: inline-flex; align-items: center; min-height: 30px; padding: 0 var(--ob-space-12); border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: var(--ob-radius-pill); font: var(--ob-type-small); color: var(--ob-text); text-decoration: none; transition: border-color var(--ob-dur-fast) var(--ob-ease-out); }
+.s-pk-tog__kit:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .s-pk-tog__kit:hover { border-color: var(--ob-text); } }

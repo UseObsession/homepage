@@ -37,7 +37,7 @@ export const post: BlogPost = {
     'B2B mystery shopping tests a sales funnel as a buyer meets it: a test buyer asks for a demo and records who replies, how fast, the questions and the price quoted. Run it on your company’s own form, chat and sales line, because a test lead sent to a competitor’s sales team spends their staff’s time on a lead that isn’t real. Obsession’s lead response checks blueprint sends that test buyer and keeps every reply your demo form, chat and sales line give, dated, after every routing change.',
   primaryKeyword: 'b2b mystery shopping',
   keywords: ['b2b mystery shopper', 'saas mystery shopping'],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-11-01',
   updated: '2026-11-22',
   readingMinutes: 12,

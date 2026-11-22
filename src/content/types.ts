@@ -569,6 +569,8 @@ export type HomePieces = {
 export type PersonaAnatomy = {
   heading: string
   line?: string
+  /* The page that tells more (22 Nov 2026: every Home section ends on a way to learn more). */
+  link?: Cta
   parts: { name: string; line: string; eg: string }[]
 }
 /* Recipes as tiles (PersonaRecipes). `reader` gives a tile its hue (styles/accents.css); `live` makes the big tile;
@@ -576,6 +578,7 @@ export type PersonaAnatomy = {
 export type PersonaRecipes = {
   heading: string
   line?: string
+  link?: Cta
   items: { name: string; line: string; status: string; live?: boolean; reader: ReaderId; link: Cta }[]
 }
 /* For developers (PersonaBuild): the claim, its line and link beside the code. Where events go is HomeHow. */
@@ -683,6 +686,8 @@ export type Page = {
   personaBuild?: PersonaBuild
   homeHow?: HomeHow
   homeFit?: HomeFit
+  /* Home's kits band (components/persona/HomeKits, 22 Nov 2026): the six jobs as cards; the cards' words come from the kits. */
+  homeKits?: { heading: string; line: string; all: { label: string; to: string } }
   homeUseCase?: HomeUseCase
 }
 
@@ -989,6 +994,9 @@ export type ResourcesPage = {
 export type UseCasesIndexPage = {
   meta: Meta
   hero: IndexHero
+  /* Since 22 Nov: every use case and team page under the kit whose job it does (pages/UseCases.tsx), in kitLinks' order. */
+  byKit: { kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train'; paths: string[] }[]
+  orbit: { label: string; caption: string }
   group: LinkGroup
   /* The two guides that set out every job an AI customer does, each row linking the guide. */
   guides: LinkGroup & { rows: { label: string; to: string; line: string }[] }
@@ -1180,15 +1188,13 @@ export type BlueprintJourneys = {
   round: { step: number; smallStep: number; wholeFrom: number }
 }
 
-/* Home's "how it fits" (22 Nov 2026, components/persona/HomeFit): pieces make an agent, a persona gives it one name,
-   blueprints give it a job, kits group the jobs; every event from all of them lands in one event log under them. Each
-   stage is a name, 1 line and chips that link to the pages behind it; the log is 3 to 5 events as they land; the 2 doors
-   are the developer's and the non-coder's. */
+/* Home's day one (22 Nov 2026, components/persona/HomeFit): what an AI agent can't do on its own beside the piece that
+   does it, a row per need, so any reader sees what Obsession is before the pieces sheet names them. */
 export type HomeFit = {
   heading: string
   line: string
-  stages: { name: string; line: string; chips: { label: string; to?: string }[] }[]
-  log: { label: string; rows: { at: string; kind: string; text: string }[] }
-  doors: { dev: Cta; team: Cta }
+  cols: { need: string; without: string; with: string }
+  rows: { need: string; without: string; with: string; piece: { label: string; to: string } }[]
   caption: string
+  link: Cta
 }

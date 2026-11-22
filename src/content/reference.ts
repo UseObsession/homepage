@@ -62,8 +62,8 @@ export const refUi = {
     terms: { name: 'Related terms', line: 'Each defined in a sentence, with where it shows up.' },
     compare: { name: 'Compare and choose', line: 'Obsession beside the tools teams already use, from each tool’s own pages.' },
     guides: { name: 'Guides that use it', line: 'Step-by-step guides, each with every source linked.' },
-    recipes: { name: 'Blueprints for this', line: 'Ready-made collections that keep it dated, company by company.' },
-    pages: { name: 'Where to go next', line: 'The pages that explain Obsession in depth.' },
+    recipes: { name: 'Blueprints for this', line: 'Ready jobs Obsession runs on the pieces, with every result in your event log.' },
+    pages: { name: 'Where to go next', line: 'The pieces, use cases and rules this page draws on, each on its own page.' },
     usedOn: { name: 'Where this term is used', line: 'The comparisons, alternatives and terms that lean on it.' },
   },
   /* /compare's list of the comparison pages and the alternatives hub (pages/Compare). */
@@ -81,9 +81,9 @@ export const refUi = {
 
 const access = (source: string): Capture => ({ kind: 'waitlist', source, button: 'Start free', interest: 'competitor' })
 
-/* The close every reference page shares: early access, and the sample data as the quiet second path. */
+/* The close every reference page shares: Start free, and the blueprints as the quiet second path. */
 export const refFinal = (source: string): Final => ({
-  heading: 'What will your agent need first?',
+  heading: 'Start with the piece your agent needs first.',
   capture: access(source),
   link: { label: 'Browse blueprints', to: '/blueprints' },
 })
@@ -125,7 +125,7 @@ export const alternativesHub: ReferenceHub = {
     kind: 'report',
     title: 'What each tool keeps',
     period: 'From each tool’s own pages, read 11 Nov 2026',
-    cols: ['Kind of tool', 'For example', 'Whose companies'],
+    cols: ['Type of tool', 'For example', 'Whose companies'],
     rows: [
       { name: 'Email archives', cells: ['MailCharts, Panoramata', 'Brands on their index or your plan'] },
       { name: 'Competitive intelligence', cells: ['Klue, Crayon', 'What competitors publish and your team hears'] },

@@ -8,13 +8,13 @@ import type { Cta, OpenSource, Page } from '../types'
    API for agents) or many, and can put them under one persona. The story (pages/Developers.tsx): the hero with the
    quickstart beside it > #pieces: 1 short code block per piece (email, browser, phone, sandbox, messaging), each linking
    to its own page > #personas: the pieces under one identity, its handler running on our runtime about 50 ms after a
-   message lands, free while it waits, its events read from the event log > #recipes: run one of ours, or create your
+   message lands, free while it waits, its events read from the event log > #recipes (blueprints): run one of ours, or create your
    own job on our runtime, its results landing in the event log > #delivery: how events reach you (James, 21 Nov):
-   every event from every piece, persona and recipe is saved in the event log (1 per account), then delivered through 6
+   every event from every piece, persona and blueprint is saved in the event log (1 per account), then delivered through 6
    channels in this order, each with its code: 1 signed webhook (#webhooks, the nav's Webhooks link, with every event
    name), the event log read by cursor, MCP, a handler on our runtime, a live stream for local work, and Zapier, Make
    and n8n; then the line on a server that's down. Names, lines and that line are content/delivery.ts, shared with Home,
-   the piece pages and the recipe pages > #mcp: claude mcp add obsession, the same calls as tools > #integrations (the
+   the piece pages and the blueprint pages > #mcp: claude mcp add obsession, the same calls as tools > #integrations (the
    nav links #integrations, #baserow, #supabase and #webhooks; the rest are cards) > #prices: every price rendered from
    content/prices.ts, linked to /pricing > #open-source > questions > #join: API access. The code uses only the API
    names the founders gave (obsession.events.subscribe, obsession.events.list). Invented companies use .example
@@ -23,7 +23,7 @@ import type { Cta, OpenSource, Page } from '../types'
 
 const access = {
   kind: 'waitlist',
-  button: 'Get API access',
+  button: 'Start free',
   interest: 'any',
 } as const
 
@@ -241,7 +241,7 @@ export const api: ApiSections = {
     line: 'A blueprint is a job that runs beside the pieces and writes its results to your event log.',
     code: RECIPES,
     facts: [
-      { term: 'Ours, ready to run', line: 'Mystery shopping, competitor trials, price watch and more. Name the site, and we run the job.' },
+      { term: 'Ours, ready to run', line: '22 ready jobs, from mystery shopping and trial teardown to price watch. Name the site, and Obsession runs it.' },
       { term: 'Your own job', line: 'Your own task, on our runtime next to the inbox, browser and sandbox.' },
       { term: 'One event log', line: 'Each result lands as a blueprint.result event and reaches you like any other.' },
     ],
@@ -417,7 +417,7 @@ export const page: Page = {
       },
       {
         q: 'Does the browser stay signed in?',
-        a: 'Yes. Each browser keeps its cookies and logins between sessions, so your agent signs in once. It connects from a home, so a site sees a person, not a data centre. Drive it with Playwright or Puppeteer.',
+        a: 'Yes. Each browser keeps its cookies and logins between sessions, so your agent signs in once. It connects through a home connection, so sites load as they do for people at home. Drive it with Playwright or Puppeteer.',
       },
       {
         q: 'What stops my agents from running up a bill?',
@@ -428,7 +428,7 @@ export const page: Page = {
 
   final: {
     heading: 'Give your agent an inbox in 1 call.',
-    sub: 'Early access includes API and MCP keys. Tell us which piece you need first, and we’ll set it up with you.',
+    sub: 'The Free plan includes API and MCP keys, with no credit card. Tell us which piece you need first, and we’ll set it up with you.',
     capture: { ...access, source: 'developers-final' },
   },
 }

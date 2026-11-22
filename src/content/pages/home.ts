@@ -154,68 +154,40 @@ export const page: Page = {
 
   homePieces: pieces,
 
-  /* How it fits (#fit, 22 Nov 2026, components/persona/HomeFit): pieces, the persona, blueprints and kits left to right,
-     over the event log they all write to, with the 2 doors under it. */
+  /* The kits (#kits, 22 Nov 2026): the six jobs AI agents do, after the persona and before the blueprints. */
+  homeKits: {
+    heading: 'Pick the kit for your agent’s job.',
+    line: 'Each kit is the pieces and blueprints one job needs, on the same key and bill. One agent can use more than one.',
+    all: { label: 'See every kit', to: '/kits' },
+  },
+
+  /* Day one (#act, 22 Nov 2026, components/persona/HomeFit): what an agent can't do on its own, and the piece that does
+     each, right after the hero, so any reader knows what Obsession is before the pieces sheet. */
   homeFit: {
-    heading: 'Pieces make an agent. Blueprints give it a job.',
-    line: 'Use one piece through the API, put them together as a persona, or pick a blueprint and Obsession runs it. Kits group all of it by the job.',
-    stages: [
-      {
-        name: 'Pieces',
-        line: 'An inbox, a phone number, messaging, a browser and a computer to run code. Each works alone.',
-        chips: [
-          { label: 'Email', to: '/email' },
-          { label: 'Phone', to: '/phone' },
-          { label: 'Messaging', to: '/messaging' },
-          { label: 'Browser', to: '/browser' },
-          { label: 'Sandbox', to: '/sandbox' },
-        ],
-      },
-      {
-        name: 'Persona',
-        line: 'The pieces under one name: one AI agent, free while it waits for the next message.',
-        chips: [{ label: 'juno@larkfield.example' }, { label: '+1 415 555 0142' }, { label: 'Personas', to: '/personas' }],
-      },
-      {
-        name: 'Blueprints',
-        line: 'A ready job Obsession runs on a persona, for teams who don’t write code.',
-        chips: [
-          { label: 'Mystery shopping', to: '/blueprints/mystery-shopper' },
-          { label: 'Competitor tracking', to: '/blueprints/competitor-tracking' },
-          { label: 'Voice agent check', to: '/blueprints/voice-agent-check' },
-        ],
-      },
-      {
-        name: 'Kits',
-        line: 'The pieces and blueprints one job needs, grouped by the job.',
-        chips: [
-          { label: 'Talk to customers', to: '/kits/talk-to-customers' },
-          { label: 'Watch the market', to: '/kits/watch-the-market' },
-          { label: 'All kits', to: '/kits' },
-        ],
-      },
+    heading: 'Your agent can think. Obsession lets it act.',
+    line: 'A new hire gets an email address, a phone and a laptop on day one. Obsession gives your AI agent the same, through one API and one bill.',
+    cols: { need: 'To do its job, an agent needs to', without: 'On its own', with: 'With Obsession' },
+    rows: [
+      { need: 'Get a login code', without: 'Stuck at the sign-in screen', with: 'Its own inbox and number catch the code', piece: { label: 'Email', to: '/email' } },
+      { need: 'Take a customer’s call', without: 'No number to ring', with: 'A US or UK number, with your voice agent', piece: { label: 'Phone', to: '/phone' } },
+      { need: 'Reply on WhatsApp or iMessage', without: 'Can’t reach people where they message', with: 'Its own lines, under the same name', piece: { label: 'Messaging', to: '/messaging' } },
+      { need: 'Stay signed in to a portal', without: 'Signs in again every time', with: 'A browser that keeps its logins for weeks', piece: { label: 'Browser', to: '/browser' } },
+      { need: 'Run the code it wrote', without: 'Nowhere safe to run it', with: 'A sandbox, billed only while it runs', piece: { label: 'Sandbox', to: '/sandbox' } },
+      { need: 'Show what it did', without: 'Scattered across five vendors', with: 'Every email, text, call and page in one log', piece: { label: 'Event log', to: '/personas' } },
     ],
-    log: {
-      label: 'Event log',
-      rows: [
-        { at: '09:04', kind: 'email.received', text: '“Can we move to Friday?”' },
-        { at: '09:04', kind: 'sms.received', text: 'Your code is 482913' },
-        { at: '09:05', kind: 'page.visited', text: 'Booking page · screenshot saved' },
-        { at: '09:06', kind: 'blueprint.result', text: 'Weekly report sent to Slack' },
-      ],
-    },
-    doors: { dev: { label: 'Start building', to: '/developers' }, team: { label: 'Browse blueprints', to: '/blueprints' } },
-    caption: 'Every piece, persona, blueprint and kit writes to the same event log, on one bill. Larkfield is an invented example.',
+    caption: 'What an AI agent can’t do on its own, and the piece that does it.',
+    link: { label: 'See all six pieces', to: '#pieces' },
   },
 
   personaAnatomy: {
     heading: 'A persona is one AI agent with its own inbox, number and browser.',
     line: 'Every piece shares one name, and the persona waits on our runtime for free until something arrives.',
+    link: { label: 'See how personas work', to: '/personas' },
     parts: [
       { name: 'One identity', line: 'Each email, text and page belongs to the same agent.', eg: 'Juno, bookings at Larkfield' },
-      { name: 'An inbox and/or a phone number', line: 'Its own address and number, for email, texts and calls.', eg: 'juno@larkfield.example · +1 415 555 0142' },
+      { name: 'An inbox and a phone number', line: 'Its own address and number, for email, texts and calls.', eg: 'juno@larkfield.example · +1 415 555 0142' },
       { name: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram, on the same identity.', eg: 'iMessage · WhatsApp · Slack' },
-      { name: 'A browser and/or a sandbox', line: 'A browser that stays signed in, and a computer for code when a task needs one.', eg: 'US home connection, signed in · python report.py' },
+      { name: 'A browser and a sandbox', line: 'A browser that stays signed in, and a computer for code when a task needs one.', eg: 'US home connection, signed in · python report.py' },
       { name: 'Its events in your event log', line: 'Every page, email, text and call it saw, dated, with screenshots.', eg: '14 pages · 4 emails · 2 texts · 1 call' },
     ],
   },
@@ -266,6 +238,7 @@ export const page: Page = {
     /* James, 22 Nov. The part before the colon shows as a quiet first line (components/persona/PersonaRecipes). */
     heading: 'For teams without engineers: Pick a blueprint, we run the job, you get the report.',
     line: 'Results arrive where you already work: your spreadsheet, Clay, your own Claude agent or our dashboard.',
+    link: { label: 'Browse all 22 blueprints', to: '/blueprints' },
     items: [
       {
         name: 'Mystery shopping',
@@ -276,14 +249,14 @@ export const page: Page = {
         link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
       },
       {
-        name: 'Competitor trials',
+        name: 'Trial teardown',
         line: 'Start a competitor’s trial and keep every email it sends until the trial ends.',
         status: 'For marketing',
         reader: 'marketing',
         link: { label: 'See the blueprint', to: '/blueprints/trial-teardown' },
       },
       {
-        name: 'Agency prospect audits',
+        name: 'Prospect intelligence',
         line: 'Shop a prospect’s store before the pitch, and open with what a new shopper gets.',
         status: 'For agencies',
         reader: 'agencies',
@@ -351,8 +324,8 @@ export const page: Page = {
   },
 
   final: {
-    heading: 'What will your agent need first?',
-    sub: 'Tell us which pieces, or which blueprint, and we’ll set you up.',
+    heading: 'Start with the piece your agent needs first.',
+    sub: 'Tell us which pieces, or which blueprint, and we’ll set you up on the Free plan.',
     /* James's line (21 Nov), on this closing button only; the hero's main button still says what it does. */
     capture: { ...access, button: 'Kit up your agent', source: 'home-final' },
   },

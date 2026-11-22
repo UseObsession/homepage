@@ -35,8 +35,32 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | ai agent sign up | `/blog/how-ai-customers-work` | Retitled 22 Nov ("How an AI agent signs up as a customer") |
 | why ai agents need their own inbox | `/blog/why-ai-customers-matter` | Retitled 22 Nov ("Why AI agents need their own inbox, phone number and browser") |
 | customer-side observability | `/blog/customer-side-observability` | Retitled 22 Nov ("test your own journeys the way customers meet them"); same primary |
+| ai receptionist, ai receptionist for small business | `/use-cases/ai-receptionist` | Title, H1, first sentence, a question (22 Nov) |
+| ai agent for insurance agency, ai voice agent for insurance | `/use-cases/ai-agent-for-insurance` | Title, H1, first sentence, a question |
+| ai agent for dental practices, ai voice agent for dental | `/use-cases/ai-agent-for-dental-practices` | Title, H1, first sentence, a question |
+| ai agent for property management | `/use-cases/ai-agent-for-property-management` | Title, H1, first sentence, a question |
+| ai recruiter, ai recruiter phone call | `/use-cases/ai-recruiter` | Title, H1, first sentence, a question |
+| ai agent for customer support, ai voice agent for customer support | `/use-cases/ai-agent-for-customer-support` | Title, H1, first sentence, a question |
+| otp testing, otp testing phone number, otp testing tool | `/use-cases/otp-testing` | Title, H1, first sentence, a question (the planned OTP guide links here instead) |
+| ai sdr agent, ai sdr tools | `/use-cases/ai-sdr` | Title, H1, first sentence, a question |
+| imessage ai assistant, best imessage ai assistant | `/use-cases/imessage-ai-assistant` | Title, H1, first sentence, a question (imessage api stays with `/messaging`) |
+| prior authorization ai agent, prior authorization ai automation | `/use-cases/prior-authorization-ai-agent` | Title, H1, first sentence, a question |
+| ai agent for freight broker, ai agents for trucking | `/use-cases/ai-agent-for-freight-brokers` | Title, H1, first sentence, a question |
+| ai agent evaluation, ai agent evaluation tools | `/use-cases/ai-agent-evaluation` | Title, H1, first sentence, a question |
+| ai agent use cases (by job) | `/use-cases` | The hub, sorted by kit |
+| what can ai agents do for my business | `/blog/what-can-ai-agents-do-for-business` | Title, H1, answer (a kit guide, 22 Nov; moved from `/blog/ai-agent-use-cases-for-business`) |
+| ai agent templates free | `/blog/ai-agent-templates-free` | Title, H1, answer (22 Nov) |
+| how to test ai agents | `/blog/how-to-test-ai-agents` | Title, H1, answer (22 Nov) |
+| how to evaluate ai agent performance | `/blog/how-to-evaluate-ai-agent-performance` | Title, H1, answer (22 Nov) |
+| how to build an ai agent from scratch | `/blog/how-to-build-an-ai-agent-from-scratch` | Title, H1, answer (22 Nov) |
+| no code ai agents | `/blog/no-code-ai-agents` | Title, H1, answer (22 Nov) |
+| browser automation tools for ai agents | `/blog/browser-automation-tools-for-ai-agents` | Title, H1, answer (22 Nov) |
+| rpa vs ai agents | `/blog/rpa-vs-ai-agents` | Title, H1, answer (22 Nov) |
+| rl environments for llms | `/blog/rl-environments-for-llms` | Title, H1, answer (22 Nov; rl environments for ai agents stays with the train kit) |
+| ai agent infrastructure stack, ai agent infrastructure, ai agent infrastructure companies, ai agent infrastructure market map, ai agent tech stack, agent infrastructure as a service | `/blog/ai-agent-infrastructure-stack` | Title, H1, answer (the pillar, 22 Nov) |
+| ai agent tools vs mcp, mcp vs function calling, tool calling vs mcp, agent skills vs mcp, ai agent tools vs skills, mcp vs api | `/blog/ai-agent-tools-vs-mcp` | Title, H1, answer (22 Nov; api for ai agents mcp stays with `/developers`) |
 
-Blueprint titles own the job as a verb ("Track competitors’ emails and texts"); guides keep the noun phrase ("competitor email tracking tools"). Not worth a title: persona for ai agent, event log, ai agent blueprint, ai agent identity. Not built yet (the plan's waves): alternatives pages for AgentMail, Browserbase, E2B and Mailosaur, the AI agent infrastructure guide, best email API, browser and sandbox for AI agents, and an OTP testing guide.
+Blueprint titles own the job as a verb ("Track competitors’ emails and texts"); guides keep the noun phrase ("competitor email tracking tools"). Not worth a title: persona for ai agent, event log, ai agent blueprint, ai agent identity. Not built yet (the plan's waves): alternatives pages for AgentMail, Browserbase, E2B and Mailosaur, best email API, browser and sandbox for AI agents, and an OTP testing guide.
 
 ---
 
@@ -194,7 +218,7 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/blog/speed-to-lead-statistics` | speed to lead statistics, speed to lead data, speed to lead facts, speed to lead harvard study, lead response time study, lead response time statistics, 5 minute rule lead response (speed to lead and what is speed to lead stay with `/blog/ai-customers-for-b2b-sales-teams`; the speed to lead test with `/recipes/lead-leaks`). Added 1 Nov 2026 (Google autocomplete, US and UK, 31 Oct) |
 | `/blog/long-running-ai-agents` | long running AI agents, durable AI agents, building durable AI agents, durable execution AI agents, open source AI agent framework |
 | `/blog/what-to-build-with-ai-customers` | what to build with AI agents, what can you build with AI agents, AI agents in production examples, MCP server ideas |
-| `/blog/ai-agent-use-cases-for-business` | ai agent use cases for business, ai agent use cases, ai agent examples in real life, what can ai agents do for my business, what can ai agents do and not do, ai agent ideas for business, ai agent use cases for small businesses, AI customer use cases (the ecommerce phrases stay with `/blog/agentic-ai-use-cases-in-ecommerce`; what to build with AI agents and AI agents in production examples with `/blog/what-to-build-with-ai-customers`; AI agents for marketing teams with `/blog/ai-customers-for-commercial-teams`). Added 31 Oct 2026 (Google autocomplete, US and UK, the same day) |
+| `/blog/ai-agent-use-cases-for-business` | ai agent use cases for business, ai agent use cases, ai agent examples in real life, what can ai agents do and not do, ai agent ideas for business, ai agent use cases for small businesses, AI customer use cases (the ecommerce phrases stay with `/blog/agentic-ai-use-cases-in-ecommerce`; what to build with AI agents and AI agents in production examples with `/blog/what-to-build-with-ai-customers`; AI agents for marketing teams with `/blog/ai-customers-for-commercial-teams`). Added 31 Oct 2026 (Google autocomplete, US and UK, the same day) |
 | `/blog/agentic-ai-use-cases-in-ecommerce` | agentic ai use cases in ecommerce, ai use cases in ecommerce, ai in ecommerce examples, how to use ai in ecommerce, intelligent agents in ecommerce, AI customer use cases in ecommerce (AI agents for ecommerce stays with `/blog/ai-customers-for-ecommerce-brands`; agentic commerce with `/blog/agentic-commerce-for-merchants`; AI agents for agencies with `/agencies`; the general phrases with `/blog/ai-agent-use-cases-for-business`). Added 31 Oct 2026 (Google autocomplete, US and UK, the same day) |
 | `/blog/is-it-legal-to-mystery-shop-competitors` | is it legal to mystery shop competitors, is mystery shopping legal, is mystery shopping competitors legal, is mystery shopper legal, is competitive intelligence legal, is mystery shopping legal in the UK, is it legal to sign up for a competitor's free trial ("is mystery shopping worth it" and "legit" are job seekers' searches, left alone; AI mystery shopping tools stay with `/blog/best-ai-mystery-shopping-tools`; ecommerce competitive intelligence with `/blog/ecommerce-competitive-intelligence`). Added 1 Nov 2026 (Google autocomplete, US and UK, 31 Oct) |
 | `/blog/chatgpt-shopping-for-brands` | chatgpt shopping, chatgpt shopping research, chatgpt shopping agent, chatgpt shopping assistant, chatgpt shopping feed, chatgpt shopping ads, chatgpt shopping mode, how to get your product recommended by chatgpt (what ChatGPT says about my brand stays with `/blog/what-chatgpt-says-about-your-store`; agentic commerce with `/blog/agentic-commerce-for-merchants`; agent ready website with `/blog/agent-ready-website`). Added 1 Nov 2026 (Google autocomplete, US and UK, 31 Oct); "chatgpt shopping" moved here the same day from the keywords of `/blog/what-chatgpt-says-about-your-store`, which keeps its brand and store phrases |

@@ -15,7 +15,7 @@ export const ref: ReferencePage = {
   kind: 'compare',
   name: 'Obsession vs Firecrawl',
   company: 'Firecrawl',
-  line: 'Firecrawl turns web pages into clean data for AI agents. Obsession gives an agent a browser that stays signed in, an inbox and a number.',
+  line: 'Firecrawl turns public pages into clean data for AI agents. Obsession keeps an agent signed in to the portals it works in, for weeks.',
   meta: {
     path: '/compare/obsession-vs-firecrawl',
     title: 'Obsession vs Firecrawl (2026): scrape or stay signed in',

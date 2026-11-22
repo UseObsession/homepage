@@ -52,7 +52,7 @@ export const post: BlogPost = {
     'high traffic low conversion',
     'why is no one buying from my shopify store',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-10-29',
   updated: '2026-11-22',
   readingMinutes: 15,

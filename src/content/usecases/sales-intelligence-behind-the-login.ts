@@ -236,8 +236,8 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'Seat prices beside the public page',
-        line: 'The price a signed-up buyer is quoted for a team, at each competitor.',
-        example: 'The yearly price for 40 seats at all 3 competitors, side by side, as each quotes it to a signed-up buyer.',
+        line: 'The price each competitor shows a signed-up buyer for a team.',
+        example: 'The yearly price for 40 seats at all 3 competitors, side by side, as each shows it to a signed-up buyer.',
       },
       {
         title: 'A talk track, then your CRM',
@@ -278,8 +278,8 @@ export const study: UseCaseStudy = {
         link: { label: 'How Obsession compares', to: '/compare' },
       },
       {
-        q: 'Does it cover mobile apps, texts and chat?',
-        a: 'Yes. It signs up on the web, iOS or Android. Texts are kept beside emails, and chat and support answers are kept word for word, each dated.',
+        q: 'Does it cover mobile, texts and chat?',
+        a: 'Yes. It signs up in phone and desktop browsers, with its own mobile number. Texts are kept beside emails, and chat and support answers are kept word for word, each dated.',
       },
       {
         q: 'Does an account know we’re watching?',

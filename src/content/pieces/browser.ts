@@ -55,7 +55,7 @@ export const browser: PiecePage = {
       { title: 'Your own tools', line: 'Playwright, Puppeteer and browser agents connect with one URL, over the Chrome DevTools Protocol.' },
       { title: 'Watch it live', line: 'Watch any session from your own browser, or take over a step.' },
       { title: 'A screenshot of every page', line: 'Each page can be kept as a dated screenshot of what your agent saw.' },
-      { title: 'A full screen when a site needs one', line: 'The stealth browser runs with a real screen, for sites that turn a headless browser away.' },
+      { title: 'A full screen when a site needs one', line: 'The stealth browser runs a full desktop browser, for sites built to work only in one.' },
     ],
   },
 
@@ -70,7 +70,7 @@ export const browser: PiecePage = {
     heading: 'The browser finishes what a site starts in email and text.',
     line: 'One API key and one bill cover every piece.',
     items: [
-      { piece: 'email', line: 'Confirm a sign up from the browser with a link in the agent’s own inbox.' },
+      { piece: 'email', line: 'Confirm a sign-up from the browser with a link in the agent’s own inbox.' },
       { piece: 'phone', line: 'Finish a text check on the agent’s own number.' },
       { piece: 'messaging', line: 'Tell someone on WhatsApp or iMessage what the browser found.' },
       { piece: 'sandbox', line: 'Work through what the browser downloads, such as a CSV export, in a sandbox.' },
@@ -95,7 +95,7 @@ export const browser: PiecePage = {
       },
       {
         q: 'Is it a headless browser for AI agents?',
-        a: 'The standard browser runs headless, the cheapest way to run many sessions. The stealth browser runs with a full screen, for sites that turn headless browsers away.',
+        a: 'The standard browser runs headless, the cheapest way to run many sessions. The stealth browser runs a full desktop browser, for sites built to work only in one. Neither gets round a CAPTCHA or a bot block.',
       },
       {
         q: 'What does a browser cost?',

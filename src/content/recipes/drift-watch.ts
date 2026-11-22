@@ -196,7 +196,7 @@ export const recipe: Recipe = {
       { q: 'Is a passed replay a guarantee?', a: 'No. It is a dated event in your event log, showing what your agent said on each case that day.' },
       {
         q: 'What does Drift watch cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours for chat and your portal, an inbox, and calls if you add a phone line. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours for chat and your portal, an inbox, and call minutes if you add a phone line. The month grows with the cases you replay and how often your vendor ships updates.',
         link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],

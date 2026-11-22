@@ -59,7 +59,7 @@ export const post: BlogPost = {
     'ai agent observability and evaluation',
     'ai agent observability opentelemetry',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-11-01',
   updated: '2026-11-22',
   readingMinutes: 16,
@@ -544,7 +544,7 @@ export const post: BlogPost = {
     { title: 'What is the Model Context Protocol (MCP)?', publisher: 'Model Context Protocol', url: MCP_INTRO },
   ],
 
-  related: [
+  related: ['/use-cases/ai-agent-evaluation', 
     '/developers',
     'recipe:support-bot-check',
     'recipe:drift-watch',

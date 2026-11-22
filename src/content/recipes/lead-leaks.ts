@@ -198,7 +198,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What do lead response checks cost?',
-        a: 'They’re billed on the pieces they use, at list rates. Each lead uses browser hours for your forms and chat, an inbox, and a number for texts and calls. A persona is free while it waits. Try it on the Free plan.',
+        a: 'They’re billed on the pieces they use, at list rates: browser hours for your forms and chat, an inbox, and a number for texts and calls. A rep’s call back is billed by the minute, like any call, and the month grows with the forms and hours you test.',
         link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],

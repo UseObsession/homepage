@@ -76,7 +76,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'why', text: 'Why teams look for a Competiscan alternative' },
     {
       kind: 'p',
-      text: `[Competiscan](${COMPETISCAN}) calls itself “Your Single Source for Market and Competitive Insights”. It draws on what it calls “the largest longitudinal, omni-channel panels of consumers, business owners” and others, with “200M+ omnichannel competitor communications” across direct mail, email, digital, social media and print, for banking, insurance, cards, mortgages, investments, telecom and more. Its own pages, read on 11 November 2026, show where teams look elsewhere:`,
+      text: `[Competiscan](${COMPETISCAN}) calls itself “Your Single Source for Market and Competitive Insights”. It draws on what it calls “the largest longitudinal, omni-channel panels of consumers, business owners” and others, with “200M+ omnichannel competitor communications” across direct mail, email, digital, social media and print, for sectors including banking, insurance, cards, mortgages, investments and telecom. Its own pages, read on 11 November 2026, show where teams look elsewhere:`,
     },
     {
       kind: 'list',

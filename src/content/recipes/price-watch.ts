@@ -181,7 +181,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does Price watch cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours to read each price, and an inbox for each email list. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours to read each price, and an inbox for each competitor’s email list. The month grows with the products you watch and how often prices are read.',
         link: { label: 'See how a persona works', to: '/personas' },
       },
     ],

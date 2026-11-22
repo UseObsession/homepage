@@ -56,7 +56,7 @@ export const post: BlogPost = {
     'surface web',
     'hidden web',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-11-11',
   updated: '2026-11-22',
   readingMinutes: 14,

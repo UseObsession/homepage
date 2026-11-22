@@ -6,7 +6,7 @@ import type { KitPage } from './types'
    is the site's one real run: Brand G, a UK skincare store, September 2026 (/sample-output). */
 
 const sub =
-  'Personas sign up to your competitors and stay subscribed, start their trials and check member prices every morning. Pick a blueprint, and results land in Slack, a sheet or your CRM.'
+  'Personas, AI agents with their own inbox, number and browser, sign up to your competitors and stay subscribed. They start trials and check member prices every morning. Pick a blueprint, and results land in Slack, a sheet or your CRM.'
 
 export const watch: KitPage = {
   id: 'watch',
@@ -39,12 +39,12 @@ export const watch: KitPage = {
       { at: '03:11', kind: 'page.visited', text: 'Checkout started, stopped before payment' },
       { at: '48 hours', kind: 'blueprint.result', text: 'No basket or checkout reminder arrived', tone: 'fail' },
     ],
-    caption: 'A real run, September 2026: Brand G was joined 4 times, and in 48 hours neither the basket nor the checkout got a reminder.',
+    caption: 'A real run, September 2026: 4 personas signed up at Brand G, and in 48 hours neither the basket nor the checkout got a reminder.',
     real: true,
   },
 
   pieces: {
-    heading: 'Customers that never unsubscribe.',
+    heading: 'Subscribed to every competitor, for months.',
     line: 'Each persona keeps its inbox, number and browser for as long as the blueprint runs, free while it waits.',
     items: [
       { piece: 'personas', line: 'A persona per competitor, subscribed for months.' },
@@ -58,7 +58,7 @@ export const watch: KitPage = {
   blueprints: {
     heading: 'Pick a blueprint, and Obsession runs it.',
     line: 'No code. Name the competitors, choose how often, and say where results go.',
-    slugs: ['competitor-tracking', 'email-sms-tracking', 'price-watch', 'trial-teardown', 'ad-tracking', 'prospect-intelligence', 'account-watch'],
+    slugs: ['competitor-tracking', 'email-sms-tracking', 'price-watch', 'trial-teardown', 'ad-tracking', 'prospect-intelligence', 'account-watch', 'listings-ai-answers'],
   },
 
   who: {
@@ -92,12 +92,12 @@ export const watch: KitPage = {
         a: 'No. It stops before payment unless you give it your own card, and it never uses fake payment details.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
-      { q: 'What does a blueprint cost?', a: 'It is billed on the pieces it uses, at list rates, and you can try it on the Free plan.', link: { label: 'See pricing', to: '/pricing' } },
+      { q: 'What does a blueprint cost?', a: 'It is billed on the pieces it uses, at list rates. Try any blueprint on the Free plan.', link: { label: 'See pricing', to: '/pricing' } },
     ],
   },
 
   final: {
-    heading: 'Which competitors should your personas join first?',
+    heading: 'Name the competitors your personas join first.',
     capture: { kind: 'waitlist', source: 'kit-watch', button: 'Start free', interest: 'competitor' },
   },
 }

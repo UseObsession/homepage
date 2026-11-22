@@ -10,8 +10,8 @@ export const guidesCopy: Record<'recipe' | 'useCase' | 'reader', { name: string;
 /* Which guides each reader page shows: its blog hub, then any guide that links the page itself (lib/connections.ts). */
 export const readerHubs: Record<string, string[]> = {
   '/agencies': ['For agencies'],
-  '/marketing': ['Watch other companies'],
-  '/verify': ['Check your AI agents'],
-  '/sales': [],
-  '/developers': ['Behind the login'],
+  '/marketing': ['Watch the market'],
+  '/verify': ['Test sign-up and agents'],
+  '/sales': ['Talk to customers'],
+  '/developers': ['Build agent products', 'Work behind logins'],
 }

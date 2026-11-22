@@ -10,4 +10,20 @@ export const teamPathList = [
   '/use-cases/journey-checks-for-banks-and-fintechs',
   '/use-cases/opt-out-and-cancel-checks-for-compliance-teams',
 ]
-export const teamPathSet = new Set(teamPathList)
+/* The use case pages in the same template (22 Nov 2026, _research/seo/revamp-22nov/PLAN_usecases.md): one job in one
+   industry each, words in content/teams/cases/. */
+export const casePathList = [
+  '/use-cases/ai-receptionist',
+  '/use-cases/ai-agent-for-insurance',
+  '/use-cases/ai-agent-for-dental-practices',
+  '/use-cases/ai-agent-for-property-management',
+  '/use-cases/ai-recruiter',
+  '/use-cases/ai-agent-for-customer-support',
+  '/use-cases/otp-testing',
+  '/use-cases/ai-sdr',
+  '/use-cases/imessage-ai-assistant',
+  '/use-cases/prior-authorization-ai-agent',
+  '/use-cases/ai-agent-for-freight-brokers',
+  '/use-cases/ai-agent-evaluation',
+]
+export const teamPathSet = new Set([...teamPathList, ...casePathList])

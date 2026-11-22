@@ -65,21 +65,64 @@ export const resourcesPage: ResourcesPage = {
 export const useCasesPage: UseCasesIndexPage = {
   meta: {
     path: '/use-cases',
-    title: 'Obsession use cases: who looks up the web behind the login',
+    title: 'AI agent use cases by job: calls, QA, portals and more',
     description:
-      'Worked examples of Obsession: what 1 kind of team looks up behind the login, from the companies it names to the data in its own tools. Names made up.',
+      'AI agent use cases by job: answering customers, testing sign-up, building agent products, working in portals, watching the market and running evals.',
     answer:
-      'Obsession use cases are worked examples: what 1 kind of team looks up behind the login, from the companies it names to the data in its own tools. The names and numbers are made up.',
+      'Obsession use cases show one job in one industry at a time, sorted by the kit that does it: the pieces it runs on, the blueprint that runs it for you, and what lands in your tools.',
     ogImage: '/og/use-cases.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Resources', path: '/resources' },
       { name: 'Use cases', path: '/use-cases' },
     ],
   },
   hero: {
-    headline: 'What each team looks up, and where it lands.',
-    sub: 'Obsession use cases are worked examples: what 1 kind of team looks up behind the login, from the companies it names to the data in its own tools. The names and numbers are made up.',
+    headline: 'Use cases, sorted by the job your agent does.',
+    sub: 'Obsession use cases show one job in one industry at a time, sorted by the kit that does it: the pieces it runs on, the blueprint that runs it for you, and what lands in your tools.',
+  },
+  byKit: [
+    {
+      kit: 'talk',
+      paths: [
+        '/use-cases/ai-receptionist',
+        '/use-cases/ai-agent-for-insurance',
+        '/use-cases/ai-agent-for-dental-practices',
+        '/use-cases/ai-agent-for-property-management',
+        '/use-cases/ai-recruiter',
+        '/use-cases/ai-agent-for-customer-support',
+        '/sales',
+      ],
+    },
+    {
+      kit: 'test',
+      paths: [
+        '/use-cases/otp-testing',
+        '/use-cases/trial-checks-for-software-companies',
+        '/use-cases/leak-checks-for-ecommerce-stores',
+        '/use-cases/journey-checks-for-banks-and-fintechs',
+        '/use-cases/opt-out-and-cancel-checks-for-compliance-teams',
+        '/use-cases/funnel-qa-for-cro-agencies',
+        '/verify',
+      ],
+    },
+    { kit: 'build', paths: ['/use-cases/ai-sdr', '/use-cases/imessage-ai-assistant', '/use-cases/prospect-intelligence-with-clay'] },
+    { kit: 'portals', paths: ['/use-cases/prior-authorization-ai-agent', '/use-cases/ai-agent-for-freight-brokers', '/use-cases/web-behind-the-login'] },
+    {
+      kit: 'watch',
+      paths: [
+        '/marketing',
+        '/agencies',
+        '/use-cases/member-prices-for-price-intelligence',
+        '/use-cases/leak-checks-for-retention-agencies',
+        '/use-cases/sales-intelligence-behind-the-login',
+        '/use-cases/consumer-promotions-data-for-funds',
+      ],
+    },
+    { kit: 'train', paths: ['/use-cases/ai-agent-evaluation'] },
+  ],
+  orbit: {
+    label: 'Obsession in the middle, its five pieces around it, and the six kits on the outer ring: every use case below belongs to one of them.',
+    caption: 'Every use case below belongs to one of the six kits.',
   },
   group: {
     id: 'examples',
@@ -88,18 +131,18 @@ export const useCasesPage: UseCasesIndexPage = {
   },
   guides: {
     id: 'every-job',
-    name: 'Every use case, by industry',
+    name: 'Every use case, in depth',
     line: '2 long guides, with the blueprint for each use case.',
     rows: [
       {
         label: 'AI agent use cases for business',
         to: '/blog/ai-agent-use-cases-for-business',
-        line: 'What teams in every industry look up about competitors, prospects, partners and their own company.',
+        line: 'What AI agents do for teams in every industry, with the pieces and blueprint for each job.',
       },
       {
         label: 'Agentic AI use cases in ecommerce',
         to: '/blog/agentic-ai-use-cases-in-ecommerce',
-        line: 'What ecommerce brands, and the agencies that serve them, look up behind the login.',
+        line: 'What AI agents do for ecommerce brands and their agencies, from mystery shopping to price watch.',
       },
     ],
   },

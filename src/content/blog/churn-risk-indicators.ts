@@ -54,7 +54,7 @@ export const post: BlogPost = {
     'churn risk factors',
     'customer health score',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-11',
   updated: '2026-11-22',
   readingMinutes: 13,

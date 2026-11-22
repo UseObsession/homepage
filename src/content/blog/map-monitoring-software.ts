@@ -61,7 +61,7 @@ export const post: BlogPost = {
     'MAP monitoring software checks the prices resellers advertise for a brand’s products against its minimum advertised price (MAP), and records each listing below it with the seller, the time and a screenshot. Brand Alignment, GrowByData and TrackStreet also send the notices, and Pricefy, Prisync and Price2Spy add MAP to a price tracker. On Obsession, the toolkit for AI agents, a persona signs up at each reseller and keeps the price a signed-up customer is shown, from the basket to the member price and the emailed code, each dated.',
   primaryKeyword: 'map monitoring software',
   keywords: ['minimum advertised price monitoring software', 'map tracking software', 'map price monitoring software', 'map monitoring tool'],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-14',
   updated: '2026-11-22',
   readingMinutes: 20,

@@ -176,7 +176,17 @@ const menus = {
     kitsAll: { label: 'All kits', to: kitsPath } satisfies NavPage,
     teamsLabel: 'Teams',
     teams,
-    teamsAll: { label: 'Every use case', to: '/use-cases' } satisfies NavPage,
+    /* The use cases people search most (Google suggestions, 22 Nov 2026), by name; the rest are on /use-cases. */
+    useCasesLabel: 'Use cases',
+    useCases: [
+      { label: 'AI receptionist', to: '/use-cases/ai-receptionist' },
+      { label: 'OTP testing', to: '/use-cases/otp-testing' },
+      { label: 'AI SDR', to: '/use-cases/ai-sdr' },
+      { label: 'Prior authorization', to: '/use-cases/prior-authorization-ai-agent' },
+      { label: 'Freight brokers', to: '/use-cases/ai-agent-for-freight-brokers' },
+      { label: 'Agent evaluation', to: '/use-cases/ai-agent-evaluation' },
+    ] satisfies NavPage[],
+    useCasesAll: { label: 'Every use case', to: '/use-cases' } satisfies NavPage,
     /* The 2 columns as the footer and the phone sheet list them. */
     columns: [
       { label: 'Kits', items: kitTools },

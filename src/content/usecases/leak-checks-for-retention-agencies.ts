@@ -22,7 +22,7 @@ export const study: UseCaseStudy = {
 
   meta: {
     path: '/use-cases/leak-checks-for-retention-agencies',
-    title: 'Retention agencies: audit every client’s flows with AI agents',
+    title: 'Retention agencies: audit each client’s flows with AI agents',
     description:
       'A persona signs up at every store you pitch or keep, opts in to texts and leaves a basket, then logs each email and text, and every one that never came.',
     answer,
@@ -273,7 +273,7 @@ export const study: UseCaseStudy = {
       {
         q: 'Which pieces does it use?',
         a: 'Email, phone and the browser, under 1 persona per store. Mystery shopping runs the stores you pitch and keep, and Email and SMS tracking runs their competitors, on the same key and bill.',
-        link: { label: 'Check your own sign-up and AI agents', to: '/kits/test-sign-up-and-agents' },
+        link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
       },
       {
         q: 'Do our clients have to agree?',
@@ -317,6 +317,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'mystery',
     },
-    link: { label: 'See the kit', to: '/kits/test-sign-up-and-agents' },
+    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
   },
 }

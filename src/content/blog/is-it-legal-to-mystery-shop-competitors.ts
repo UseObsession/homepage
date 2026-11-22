@@ -64,7 +64,7 @@ export const post: BlogPost = {
     'is mystery shopping legal in the uk',
     'is it legal to sign up for a competitor’s free trial',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-01',
   updated: '2026-11-22',
   readingMinutes: 15,

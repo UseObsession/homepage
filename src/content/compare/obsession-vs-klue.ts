@@ -112,7 +112,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'together', text: 'Using Klue and Obsession together' },
     {
       kind: 'p',
-      text: 'A product marketing team can feed Obsession’s events into the battlecards it keeps in Klue. The trial teardown, the onboarding emails and the cancel offer each arrive with their screenshot. Events reach your tools over the API, MCP or a webhook as they land, so a card can change the week a competitor changes its trial.',
+      text: 'A product marketing team can feed Obsession’s events into the battlecards it keeps in Klue. The trial teardown, the onboarding emails and the cancel offer each arrive with their screenshot. Events reach your tools over the API, MCP (the standard way AI agents call tools) or a webhook as they land, so a card can change the week a competitor changes its trial.',
     },
     {
       kind: 'p',

@@ -13,7 +13,7 @@ const enterpriseFrom = plans.find((p) => p.id === 'enterprise')?.from ?? 0
 const path = '/use-cases/journey-checks-for-banks-and-fintechs'
 
 const sub =
-  'Obsession, the toolkit for AI agents, sends an AI agent with its own inbox, number and browser to apply at your bank and your competitors. This persona stops at the identity check, and every step, rate, code and chat answer lands in one event log.'
+  'Obsession, the toolkit for AI agents, sends a persona, an AI agent with its own inbox, number and browser, to apply at your bank and your competitors. It stops at the identity check, and every step, rate, code and chat answer lands in one event log.'
 
 export const team: TeamPage = {
   id: 'banks',

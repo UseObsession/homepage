@@ -66,7 +66,7 @@ export const post: BlogPost = {
     'ai search visibility',
     'track brand mentions in chatgpt',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-10-23',
   updated: '2026-11-22',
   readingMinutes: 14,

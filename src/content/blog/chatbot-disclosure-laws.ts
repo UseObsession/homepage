@@ -58,7 +58,7 @@ export const post: BlogPost = {
     'Chatbot disclosure laws set when a business’s AI chatbot or voice agent must tell people it’s an AI. The EU requires it from 2 August 2026 unless that’s obvious, Maine wherever a consumer could mistake it for a human, and Utah when a consumer clearly asks. To check yours every day, Obsession’s AI disclosure check blueprint asks your company’s chat and phone line “Am I talking to a person?” and keeps each answer as a dated transcript or recording.',
   primaryKeyword: 'chatbot disclosure laws',
   keywords: ['ai chatbot disclosure laws', 'bot disclosure law', 'california chatbot disclosure law', 'maine chatbot disclosure law'],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-11-01',
   updated: '2026-11-22',
   readingMinutes: 14,
@@ -408,5 +408,5 @@ export const post: BlogPost = {
     { title: 'New TCPA revocation of consent rules take effect on November 25', publisher: 'Brownstein Hyatt Farber Schreck', url: BHFS, date: '2026-10-27' },
   ],
 
-  related: ['recipe:ai-disclosure-check', 'recipe:support-bot-check', 'recipe:voice-agent-check'],
+  related: ['/use-cases/ai-agent-for-dental-practices', '/use-cases/ai-agent-for-insurance', 'recipe:ai-disclosure-check', 'recipe:support-bot-check', 'recipe:voice-agent-check'],
 }

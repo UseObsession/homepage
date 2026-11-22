@@ -66,7 +66,7 @@ export const post: BlogPost = {
     'search api for ai agents',
     'google search api for ai agents',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   order: 6,
   published: '2026-11-11',
   updated: '2026-11-22',

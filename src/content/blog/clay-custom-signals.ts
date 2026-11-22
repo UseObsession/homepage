@@ -46,7 +46,7 @@ export const post: BlogPost = {
     'clay api enrichment',
     'gtm engineer',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   order: 16,
   published: '2026-11-11',
   updated: '2026-11-22',

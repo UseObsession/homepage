@@ -49,7 +49,7 @@ export const post: BlogPost = {
     'how to see competitor ads on linkedin',
     'how to see competitor ads on tiktok',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   order: 5,
   published: '2026-11-11',
   updated: '2026-11-22',

@@ -69,7 +69,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'who-reads-it', text: 'Who needs what sits behind it' },
     {
       kind: 'p',
-      text: 'Anyone whose decisions depend on what other companies do to their customers. Marketing and CRM teams compare a competitor’s first 30 days of emails with their own. Pricing teams need the [member price](/glossary/member-price), not only the public one. Compliance teams need proof that a cancel flow and an unsubscribe work. Agencies open a pitch with a prospect’s own emails, and AI agents need the same facts to answer questions about a named company.',
+      text: 'Teams whose work depends on what competitors show their own customers. Marketing and CRM teams compare a competitor’s first 30 days of emails with their own. Pricing teams need the [member price](/glossary/member-price), not only the public one. Compliance teams need the dated screens and emails that show a cancel flow and an unsubscribe work. Agencies open a pitch with a prospect’s own emails, and AI agents need the same facts to answer questions about a named company.',
     },
     { kind: 'h2', id: 'how-its-kept', text: 'How what sits behind a login wall is kept' },
     {
@@ -89,7 +89,7 @@ export const ref: ReferencePage = {
       items: [
         {
           q: 'Is a login wall the same as a paywall?',
-          a: 'A paywall is one kind of login wall: it asks for payment before showing an article or a product. A login wall is any step that turns a visitor into a customer, free sign-ups and quote forms included.',
+          a: 'A paywall is one type of login wall: it asks for payment before showing an article or a product. A login wall is any step that turns a visitor into a customer, free sign-ups and quote forms included.',
         },
         {
           q: 'Can Google index content behind a login wall?',

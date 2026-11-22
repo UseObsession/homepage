@@ -7,7 +7,7 @@ import type { TeamPage } from './types'
    (22 Nov 2026). Every company is invented, at a .example address. */
 
 const sub =
-  'Obsession gives AI agents inboxes, phone numbers and browsers on one API and one bill. A persona holds all three under one name. It signs up at each competitor you name and keeps every email, text, offer and price, dated.'
+  'Obsession gives AI agents inboxes, phone numbers and browsers on one API and one bill. A persona, an AI agent with all three under one name, signs up at each competitor you name. It keeps every email, text, offer and price, dated.'
 
 export const team: TeamPage = {
   id: 'marketing',
@@ -144,14 +144,14 @@ export const team: TeamPage = {
       },
       {
         q: 'Will competitors know it’s us?',
-        a: 'No. Each persona has its own name, inbox and number, and says it’s an AI when it talks to a person. It stops before payment, never gets round a CAPTCHA or a bot block, and never clicks paid ads at volume.',
+        a: 'Not from the persona. Each one has its own name, inbox and number, and never names who asked. It says it’s an AI when it talks to a person. It stops before payment, never gets round a CAPTCHA or a bot block, and never clicks paid ads at volume.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
     ],
   },
 
   final: {
-    heading: 'Which competitors should a persona join first?',
+    heading: 'Keep every competitor’s emails, texts and prices, dated.',
     capture: { kind: 'waitlist', source: 'team-marketing', button: 'Start free', interest: 'competitor' },
   },
 }

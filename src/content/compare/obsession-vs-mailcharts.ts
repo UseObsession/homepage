@@ -14,7 +14,7 @@ export const ref: ReferencePage = {
   kind: 'compare',
   name: 'Obsession vs MailCharts',
   company: 'MailCharts',
-  line: 'MailCharts keeps ecommerce campaigns to browse. Obsession puts a persona on each competitor’s list and keeps what it’s sent.',
+  line: 'MailCharts keeps a library of ecommerce campaigns to browse. Obsession’s persona joins each competitor’s list and dates every email.',
   meta: {
     path: '/compare/obsession-vs-mailcharts',
     title: 'Obsession vs MailCharts (2026): a library or your own list',
@@ -100,7 +100,7 @@ export const ref: ReferencePage = {
       items: [
         '**Use MailCharts** to plan campaigns from a wide library: Black Friday examples across ecommerce, how a category’s welcome emails look, or a benchmark slide for a client.',
         '**Use Obsession** for the competitors you name, whether or not a library covers them. That might be your 10 closest competitors, the brands an agency is pitching, or a software company’s trial. A persona keeps every email and text they send a new customer, beside the welcome code and the [member price](/glossary/member-price), each dated.',
-        '**Use Obsession in your own tools.** Results land in Slack, a sheet or your CRM. Developers get each email as an email.received event at one webhook, or connect their agent over MCP.',
+        '**Use Obsession in your own tools.** Results land in Slack, a sheet or your CRM. Developers get each email as an email.received event at one webhook, or connect their agent over MCP, the standard way AI agents call tools.',
       ],
     },
     {

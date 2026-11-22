@@ -62,7 +62,7 @@ export const post: BlogPost = {
     'member only prices',
     'member only price costco',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   order: 7,
   published: '2026-11-11',
   updated: '2026-11-22',

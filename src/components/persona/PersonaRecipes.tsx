@@ -29,6 +29,11 @@ export function PersonaRecipes({ recipes, id }: { recipes: Recipes; id?: string 
             <Heading text={recipes.heading} />
           </h2>
           {recipes.line && <p className="s-bp-line">{recipes.line}</p>}
+          {recipes.link && (
+            <Link className="s-bp-link" to={recipes.link.to}>
+              {recipes.link.label}
+            </Link>
+          )}
         </div>
         <ul className="s-rt-grid">
           {recipes.items.map((r) => (

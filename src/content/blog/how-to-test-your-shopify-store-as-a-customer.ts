@@ -56,7 +56,7 @@ export const post: BlogPost = {
     'shopify store checker',
     'how to test klaviyo flows',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-10-29',
   updated: '2026-11-22',
   readingMinutes: 17,

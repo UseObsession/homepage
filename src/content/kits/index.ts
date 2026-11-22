@@ -94,7 +94,7 @@ export const kitsHub: KitsHub = {
     ],
   },
   final: {
-    heading: 'Which job will your agent do first?',
+    heading: 'Start with the job your agent does first.',
     capture: { kind: 'waitlist', source: 'kits-hub', button: 'Start free', interest: 'any' },
   },
 }

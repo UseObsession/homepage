@@ -72,7 +72,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: '[Price watch](/blueprints/price-watch), a ready-made collection, gathers competitors’ public and member prices each morning as a customer in your country. [Member prices for price intelligence](/use-cases/member-prices-for-price-intelligence) shows the same data at work for a pricing team.',
+      text: 'It reads both prices each morning, as a customer in your country, at every competitor you name. [Member prices for price intelligence](/use-cases/member-prices-for-price-intelligence) shows it at work for a pricing team tracking a basket across retailers.',
     },
     {
       kind: 'faq',

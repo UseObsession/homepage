@@ -64,7 +64,7 @@ export const post: BlogPost = {
     'A Klaviyo audit tool reads a store’s Klaviyo account (its flows, segments, sign-up forms, campaigns and sending health) and returns a list of fixes in priority order. Klaviyo’s Composer audits from inside the account, apps such as Fluxchek and SPARK CRM connect with read-only access, and agencies such as Flowium and Netalico audit by hand. On Obsession the mystery shopping blueprint signs up to your store as a new customer every week and keeps each email after a sign-up, a basket and a checkout, dated.',
   primaryKeyword: 'klaviyo audit tool',
   keywords: ['klaviyo auditor', 'klaviyo account audit', 'klaviyo audit template', 'klaviyo audit tools', 'best klaviyo audit tool'],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-11-14',
   updated: '2026-11-22',
   readingMinutes: 19,

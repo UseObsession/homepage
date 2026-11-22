@@ -61,8 +61,8 @@ export const build: KitPage = {
   },
 
   pieces: {
-    heading: 'One API, not five vendors.',
-    line: 'Take one piece or all six, on one key, one webhook and one invoice.',
+    heading: 'One key in place of three to five vendors.',
+    line: 'Take one piece or all six, with one webhook and one invoice.',
     items: [
       { piece: 'email', line: 'Inboxes that send and receive, with threads and attachments.' },
       { piece: 'phone', line: 'Numbers that text and take calls.' },

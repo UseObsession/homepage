@@ -57,7 +57,7 @@ export const post: BlogPost = {
     'can google ai make phone calls',
     'can muse ai make phone calls',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-11-01',
   updated: '2026-11-22',
   readingMinutes: 13,
@@ -423,5 +423,5 @@ export const post: BlogPost = {
     { title: 'The Privacy and Electronic Communications (EC Directive) Regulations 2003, regulation 19', publisher: 'legislation.gov.uk', url: PECR_19, date: '2016-05-16' },
   ],
 
-  related: ['/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'agent-ready-website', 'how-ai-customers-work'],
+  related: ['/use-cases/ai-receptionist', '/use-cases/ai-agent-for-insurance', '/use-cases/ai-agent-for-dental-practices', '/use-cases/ai-agent-for-property-management', '/use-cases/ai-agent-for-freight-brokers', '/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'agent-ready-website', 'how-ai-customers-work'],
 }

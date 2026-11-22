@@ -143,7 +143,7 @@ export const ref: ReferencePage = {
     { kind: 'h3', id: 'campaigns', text: 'For a library of competitors’ campaigns' },
     {
       kind: 'p',
-      text: `[MailCharts](${MC}) says “We signup, trigger, collect, and classify thousands of ecommerce email journeys” and publishes no price. [Reyo](${REYO}) covers “newsletters, push notifications, Meta ads and websites” for ecommerce teams, from €69 a month, with an MCP server of 49 tools.`,
+      text: `[MailCharts](${MC}) says “We signup, trigger, collect, and classify thousands of ecommerce email journeys” and publishes no price. [Reyo](${REYO}) covers “newsletters, push notifications, Meta ads and websites” for ecommerce teams, from €69 a month, with an MCP server of 49 tools (MCP is the standard way AI agents call tools).`,
     },
     { kind: 'h3', id: 'ads', text: 'For competitors’ ads' },
     {

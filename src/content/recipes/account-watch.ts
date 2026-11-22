@@ -176,7 +176,7 @@ export const recipe: Recipe = {
       { q: 'How many accounts can it cover?', a: 'As many as you add, every morning. Run one, or a fleet of thousands.' },
       {
         q: 'What does Account watch cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox, a number and browser hours. A persona is free while it waits. Try it on the Free plan.',
+        a: 'It’s billed on the pieces it uses, at list rates: an inbox, a number and browser hours for each account’s persona. Waiting for the next email costs nothing, so the month grows with the accounts you watch, not the days between messages.',
         link: { label: 'See inboxes for AI agents', to: '/email' },
       },
     ],

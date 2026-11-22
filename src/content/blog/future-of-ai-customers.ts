@@ -62,7 +62,7 @@ export const post: BlogPost = {
     'ai shopping agents',
     'personal ai agents customer service',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-10-24',
   updated: '2026-11-22',
   readingMinutes: 10,

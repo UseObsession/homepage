@@ -12,7 +12,7 @@ const orList = (items: string[]) => (items.length < 2 ? items.join('') : `${item
 const path = '/use-cases/leak-checks-for-ecommerce-stores'
 
 const sub =
-  'Obsession, the toolkit for AI agents, sends an AI agent with its own inbox, number and browser to your online store and each competitor. This persona signs up, leaves a basket and logs every email and text, and every reminder that never came.'
+  'Obsession, the toolkit for AI agents, sends a persona, an AI agent with its own inbox, number and browser, to your online store and each competitor. It signs up, leaves a basket and logs every email and text, and every reminder that never came.'
 
 export const team: TeamPage = {
   id: 'stores',

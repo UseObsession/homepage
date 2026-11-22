@@ -59,7 +59,7 @@ export const email: PiecePage = {
       { title: 'Send and receive', line: 'Plain text or HTML, to anyone. Replies land back in the same inbox.' },
       { title: 'Threads kept for you', line: 'Replies are grouped by conversation, so your agent reads the whole exchange first.' },
       { title: 'Attachments both ways', line: 'Send files, and get every file that arrives: invoices, PDFs, images and calendar invites.' },
-      { title: 'Codes read for you', line: 'Verification codes and confirm links are pulled out of each email, so a sign up finishes without a person.' },
+      { title: 'Codes read for you', line: 'Verification codes and confirm links are pulled out of each email, so a sign-up finishes without a person.' },
       { title: 'A webhook for every email', line: 'Your app gets each new message as it lands, with its thread and its files.' },
     ],
   },

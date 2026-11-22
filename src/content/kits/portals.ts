@@ -103,7 +103,7 @@ export const portals: KitPage = {
   },
 
   final: {
-    heading: 'Which portal should your agent sign in to first?',
+    heading: 'Sign your agent in once, and keep it signed in for weeks.',
     capture: { kind: 'waitlist', source: 'kit-portals', button: 'Start free', interest: 'any' },
   },
 }

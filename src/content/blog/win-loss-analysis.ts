@@ -51,7 +51,7 @@ export const post: BlogPost = {
     'win loss analysis software',
     'win loss analysis sales',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-11',
   updated: '2026-11-22',
   readingMinutes: 15,

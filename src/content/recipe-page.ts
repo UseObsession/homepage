@@ -18,8 +18,8 @@ export const recipePage = {
 
   /* What the blueprint spins up: its `kit`, landing 1 by 1. */
   kit: {
-    heading: 'A job that runs beside the pieces, with nothing to host.',
-    line: 'Say where they go. Each persona arrives with its name, inbox, number and schedule.',
+    heading: 'A ready job that runs on the pieces, with nothing to host.',
+    line: 'A persona is an AI agent with its own name, inbox, number and browser. Say where each one goes, and when.',
     list: 'What this blueprint sets up',
     status: { setup: 'Setting up', ready: 'Ready', of: (n: number, all: number) => `${n} of ${all}` },
   },

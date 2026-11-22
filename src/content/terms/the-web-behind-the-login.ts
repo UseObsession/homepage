@@ -35,7 +35,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'what-sits-there', text: 'What sits behind the login' },
     {
       kind: 'p',
-      text: 'Each step a site puts between a visitor and its customers, a [login wall](/glossary/login-wall), hides a different kind of fact. Together they are the half of a company that only its customers see.',
+      text: 'Each step a site puts between a visitor and its customers, a [login wall](/glossary/login-wall), hides its own facts, from the emails after a sign-up to the offer behind a cancel button. Together they are the half of a company that only its customers see.',
     },
     {
       kind: 'list',

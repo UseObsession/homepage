@@ -7,7 +7,7 @@ import type { TeamPage } from './types'
    (22 Nov 2026). Every company is invented, at a .example address. */
 
 const sub =
-  'Obsession gives every AI agent its own inbox, phone number and browser, on one API and one bill. A persona holds all three under one name, times every reply to a new lead and signs up at the accounts you sell to.'
+  'Obsession gives every AI agent its own inbox, phone number and browser, on one API and one bill. A persona, an AI agent with all three under one name, times every reply to a new lead. It also signs up at the accounts you sell to.'
 
 export const team: TeamPage = {
   id: 'sales',
@@ -145,7 +145,7 @@ export const team: TeamPage = {
   },
 
   final: {
-    heading: 'Which lead form should a persona test first?',
+    heading: 'Time the first reply to your next lead.',
     capture: { kind: 'waitlist', source: 'team-sales', button: 'Start free', interest: 'speed' },
   },
 }

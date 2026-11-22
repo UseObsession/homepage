@@ -58,7 +58,7 @@ export const post: BlogPost = {
     'chatbot return policy',
     'is my company liable for chatbot',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-10-23',
   updated: '2026-11-22',
   readingMinutes: 13,

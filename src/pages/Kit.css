@@ -25,12 +25,12 @@
 }
 .k-bps__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 6px; border-radius: 2px; }
 .k-bps__name { display: inline-flex; align-items: center; gap: var(--ob-space-8); font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
-.k-bps__arrow { width: 16px; height: 16px; fill: none; stroke: var(--ob-text-2); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-fast) var(--ob-ease-out); }
+.k-bps__arrow { width: 16px; height: 16px; fill: none; stroke: var(--ob-text-3); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-base) var(--ob-ease-out), stroke var(--ob-dur-base) var(--ob-ease-out); }
 .k-bps__line { font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
 .k-bps__all { display: inline-block; margin-top: var(--ob-space-40); }
 @media (hover: hover) and (pointer: fine) {
   .k-bps__link:hover { border-top-color: var(--ob-text); }
-  .k-bps__link:hover .k-bps__arrow { translate: var(--ob-space-2) 0; stroke: var(--ob-text); }
+  .k-bps__link:hover .k-bps__arrow { translate: 3px 0; stroke: var(--ob-text); }
 }
 
 /* ---- The code ---- */
@@ -94,9 +94,23 @@
   background: var(--ob-surface);
   color: inherit;
   text-decoration: none;
-  transition: border-color var(--ob-dur-base) var(--ob-ease-out), translate var(--ob-dur-base) var(--ob-ease-out);
+  transition: border-color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out), translate var(--ob-dur-base) var(--ob-ease-out);
 }
 .k-hub__card:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 4px; }
+.k-hub__chev {
+  position: absolute;
+  top: var(--ob-space-24);
+  right: var(--ob-space-20);
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--ob-text-3);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), stroke var(--ob-dur-base) var(--ob-ease-out);
+}
+.k-hub__card { padding-right: var(--ob-space-48); }
 .k-hub__ic { display: grid; place-items: center; width: 40px; height: 40px; border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: var(--ob-radius-md); background: var(--ob-bg); color: var(--ob-text); }
 .k-hub__ic svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
 .k-hub__name { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
@@ -104,7 +118,8 @@
 .k-hub__pieces { display: flex; flex-wrap: wrap; gap: var(--ob-space-6); margin-top: var(--ob-space-4); }
 .k-hub__piece { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); padding: 2px var(--ob-space-6); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-pill); }
 @media (hover: hover) and (pointer: fine) {
-  .k-hub__card:hover { border-color: var(--ob-line-strong); translate: 0 -2px; }
+  .k-hub__card:hover { border-color: var(--ob-line-strong); background-color: var(--ob-surface-raised, var(--ob-surface)); translate: 0 -2px; }
+  .k-hub__card:hover .k-hub__chev { translate: 3px 0; stroke: var(--ob-text); }
 }
 .k-hub__door { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ob-space-16); margin-top: var(--ob-space-48); padding: var(--ob-space-24) var(--ob-space-32); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-lg); }
 .k-hub__door p { margin: 0; font: var(--ob-type-body-lg); letter-spacing: var(--ob-type-body-lg-tracking); color: var(--ob-text); }

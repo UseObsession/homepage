@@ -191,7 +191,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What does Outbound agent check cost?',
-        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox and a number for texts and calls. A persona is free while it waits. Try it on the Free plan.',
+        a: 'Each prospect persona uses an inbox and a number, billed at list rates with every email, text and call it receives. Between messages it waits at no charge, for as long as the sequence runs.',
         link: { label: 'See phone numbers for AI agents', to: '/phone' },
       },
     ],

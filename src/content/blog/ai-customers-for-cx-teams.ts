@@ -72,7 +72,7 @@ export const post: BlogPost = {
     'ai agent monitoring',
     'chatbot quality assurance',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-10-24',
   updated: '2026-11-22',
   readingMinutes: 12,
