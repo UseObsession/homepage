@@ -124,7 +124,7 @@
 /* The pointer crosses the 20px between the item and its menu without leaving the item. */
 .s-menu::before { content: ""; position: absolute; inset: calc(var(--ob-space-20) * -1) 0 auto; height: var(--ob-space-20); }
 .s-menu--products { width: 724px; padding: var(--ob-space-8); }
-.s-menu--solutions { width: 640px; padding: var(--ob-space-8); }
+.s-menu--solutions { width: 820px; padding: var(--ob-space-8); }
 .s-menu--resources { width: 548px; padding: var(--ob-space-8); }
 
 .s-menu__list { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; }
@@ -196,7 +196,7 @@
 .ob-menu__item.s-tool--compact { grid-template-columns: 28px minmax(0, 1fr); gap: var(--ob-space-8); padding-inline-end: var(--ob-space-8); }
 .s-tool--compact .s-tool__ic { width: 28px; height: 28px; }
 /* Solutions: use cases beside teams and industries. */
-.s-sm { display: grid; grid-template-columns: minmax(0, 1fr) 208px; gap: var(--ob-space-8); }
+.s-sm { display: grid; grid-template-columns: minmax(0, 1fr) 196px 184px; gap: var(--ob-space-8); }
 .s-sm__col--teams { padding-inline-start: var(--ob-space-8); border-inline-start: var(--ob-border-hair) solid var(--ob-line-subtle); }
 /* Products (22 Nov): the 6 pieces in 2 columns on the left; the 2 ways in, and the prices, on a sunken side panel. */
 .s-pd { display: grid; grid-template-columns: minmax(0, 1fr) 224px; gap: var(--ob-space-8); }

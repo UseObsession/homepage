@@ -177,8 +177,7 @@ const menus = {
     kitsAll: { label: 'Every blueprint', to: kitsPath } satisfies NavPage,
     teamsLabel: 'Teams',
     teams,
-    /* The use cases people search most (Google suggestions, 22 Nov 2026); since the 22 Nov call the menu shows only the
-       link to every use case, under Teams, and these stay for the footer. */
+    /* The use cases people search most (Google suggestions, 22 Nov 2026), by name; the rest are on /use-cases. */
     useCasesLabel: 'Use cases',
     useCases: [
       { label: 'AI receptionist', to: '/use-cases/ai-receptionist' },
