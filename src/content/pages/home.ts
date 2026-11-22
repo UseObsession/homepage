@@ -118,15 +118,16 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'Free plan, no credit card',
-    pillTo: '#join',
+    /* No pill: the form's own line under the box says "Free plan, no credit card", so the hero says it once. */
     /* Locked by James, 21 Nov: "toolkit" leads, the sub names what is in the kit at once. */
     headline: 'The toolkit for AI agents. One API, one bill.',
-    /* 23 Nov 2026 (Seun): the sub names both ways in, so a team that doesn't code knows from the first screen that
-       Obsession is for them too; the doors under it say how each starts. */
-    sub: 'An inbox, a phone number and a browser for every agent, used alone or together. Developers build on them in code; every other team picks a blueprint, and Obsession runs the job end to end.',
-    /* Not drawn on Home (its hero has buttons, not a form); the Hero contract asks for one. */
+    /* 23 Nov 2026 (Seun, version 1 of the hero copy): the whole toolkit in one sentence (every piece, under one identity),
+       then both ways in, so a developer and a team that doesn't code each see their door on the first screen. */
+    sub: 'Give every AI agent its own inbox, phone number and browser, plus messaging and a computer to run code, all under one identity. Developers build on them in code. Every other team picks a blueprint, and Obsession runs the job.',
+    /* The hero's main action (23 Nov 2026): the email form, then the sign-up card asks which way in. */
     capture: { ...access, source: 'home-hero' },
+    /* The scale and the proof, under the form. */
+    note: 'One agent or 10,000. Every email, text, call and page lands in your event log.',
     secondary: { label: 'Browse blueprints', to: '/blueprints' },
     /* 3 facts, true by design: no prices, no country. 50 ms is James's figure (20 Nov). */
     proof: [
@@ -141,9 +142,14 @@ export const page: Page = {
     primary: { label: 'Start free', to: '#join' },
     chip: { code: 'obsession.personas.create({ inbox: true, phone: "US", browser: true })', copy: 'Copy the code', copied: 'Copied' },
     doors: {
-      dev: { label: 'For developers' },
-      noCode: { label: 'For teams', line: 'Choose a ready-made job, set it up in plain language, and get results in the tools you already use.' },
+      dev: { label: 'For developers', cta: { label: 'See the API and MCP', to: '/developers' } },
+      noCode: {
+        label: 'For teams',
+        line: 'Choose a ready-made job, set it up in plain language, and get results in the tools you already use.',
+        cta: { label: 'Browse blueprints', to: '/blueprints' },
+      },
     },
+    form: true,
   },
 
   /* The share image's card (scripts/og.mjs): 1 persona's events in the event log, Juno of the slab diagram, through 3 pieces. */

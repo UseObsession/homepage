@@ -135,7 +135,7 @@ const behind = pages['web-behind-the-login']
 
 /* Every prerendered page, in the order the sitemap and llms.txt list them. */
 export const entries: Entry[] = [
-  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill, findings: home.shareFindings, faq: home.faq, source: 'src/content/pages/home.ts' },
+  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill ?? home.hero.headline, findings: home.shareFindings, faq: home.faq, source: 'src/content/pages/home.ts' },
   /* Each piece's own page (content/pieces, 21 Nov): Email, Phone, Messaging, Browser, Sandbox, Personas. */
   ...pieces.map(
     (p): Entry => ({

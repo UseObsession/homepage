@@ -88,7 +88,8 @@ export type HeroScreen = { tab: string; screen: ScreenName; line: string } & ({ 
    holds, erases, types the second and rests there (content/console.ts). The console is either category tabs of app
    screens (`screens`, Home) or example runs (`demos`, the audience pages and Developers). */
 export type Hero = {
-  pill: string
+  /* Optional: Home's hero has none, since its form's line says the same (23 Nov 2026). */
+  pill?: string
   /* Where the pill goes. Without it, the pill links to the open source code (nav.github). */
   pillTo?: string
   headline: string
@@ -558,7 +559,11 @@ export type PersonaStart = {
   chip: { code: string; copy: string; copied: string }
   /* The hero's two doors (23 Nov 2026): developers start from code (the chip and the primary button), teams that don't
      code start from a blueprint (a plain line and the secondary button), so both readers see their way in at once. */
-  doors?: { dev: { label: string }; noCode: { label: string; line: string } }
+  doors?: { dev: { label: string; cta?: Cta }; noCode: { label: string; line: string; cta?: Cta } }
+  /* The hero's email form (23 Nov 2026, Seun: "cta should collect email and form in the hero", then "I still want that
+     two paths for developers and teams"): when set, the hero draws hero.capture as its main action and, under it, the
+     two doors as path cards, each a whole link to its `cta` (the API, the blueprints). */
+  form?: boolean
 }
 /* The line drawings of Home's sections (components/persona/icons), on a 16px grid in the nav's style. */
 export type PersonaIcon =
