@@ -76,7 +76,6 @@ export const recipe: Recipe = {
     {
       name: 'Growth',
       includes: [
-        'Everything in Starter',
         'A persona in each prospect’s country',
         'A link the prospect can open, for each finding',
       ],
@@ -84,7 +83,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Growth',
         'Subscriber, trial user or buyer personas, mixed across your list',
         'Every finding in your event log, by webhook or API',
       ],

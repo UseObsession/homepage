@@ -77,7 +77,6 @@ export const recipe: Recipe = {
     {
       name: 'Every release',
       includes: [
-        'Everything in Indie',
         'Started by every deploy, or each morning',
         'Phone and desktop browsers',
         'A persona in the country you choose',
@@ -87,7 +86,6 @@ export const recipe: Recipe = {
     {
       name: 'Agency',
       includes: [
-        'Everything in Every release',
         'Flow tests spread across products as you choose',
         'A report you can share after each release',
         'Each product’s results kept apart in your event log',

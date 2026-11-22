@@ -78,7 +78,6 @@ export const recipe: Recipe = {
     {
       name: 'Team',
       includes: [
-        'Everything in Weekly',
         'Every channel’s answers side by side',
         'Every transcript in your event log',
       ],
@@ -86,7 +85,7 @@ export const recipe: Recipe = {
     {
       name: 'Daily',
       includes: [
-        'Everything in Team, every morning',
+        'Every channel asked each morning',
         'A flag the morning an answer breaks your policy',
         'Every transcript by webhook or API',
       ],

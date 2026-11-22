@@ -6,8 +6,9 @@ import {
   personaCostLine as personaLine,
   plans,
   prices,
+  ladderRule,
+  registration,
   scaleFrom,
-  scaleRule,
   type PieceId,
   type Plan,
   type PlanId,
@@ -19,11 +20,14 @@ import type { Cta, Faq, Meta } from './types'
    (James, 21 Nov 2026: plans first, the long rate list on its own page).
 
    The plans (founders, 21 Nov 2026): a paid plan's fee buys a month of usage in dollars ("$100 of usage a month, spent
-   on any piece"), at each piece's rate, model tokens included; past it, pay as you go at the same rates. What isn't
-   used resets each month and never carries over. Plans differ by features and, on Scale, by lower rates. Free keeps
-   fixed allowances. Enterprise leads with the reseller offer and starts monthly with nothing paid up front; yearly
-   billing is an option chosen later, never a requirement. Blueprint plans are separate products and never use a plan's
-   monthly usage; a blueprint a developer runs through the API is billed on the pieces it uses, so it does.
+   on any piece"), at each piece's rate; model tokens are taken from it at cost plus 10% (founders, 22 Nov 2026); past
+   it, pay as you go at list rates (a plan's lower rates apply only to usage paid from its credit, founders 22 Nov 2026),
+   with a spend cap if the buyer sets one. What isn't used resets each month and never carries over. Plans differ by
+   features and, on Scale, by lower rates. Free keeps fixed allowances. Enterprise leads with the reseller offer, is from
+   $1,500 as a first-month floor, starts monthly with nothing paid up front and earns 2 months free when paid yearly. A
+   blueprint run draws on the same monthly usage at the piece rates, like any piece, and each blueprint page shows what
+   a typical month costs (founders, 22 Nov 2026). The US texting registration has fixed prices, the same on every plan,
+   and no plan includes it (founders, 22 Nov 2026).
 
    /pricing: the hero, the 5 plans as cards read from `plans` in prices.ts (each card's fee, monthly usage and features
    come from there; who it's for, the words of each feature and its button are written here; Startup is the
@@ -76,22 +80,6 @@ export const counts: Partial<Record<PriceKey, { one: string; many: string }>> = 
 }
 /* "1 phone number", "10 million events in your event log". */
 const amountOf = (key: PriceKey, n: number) => `${quantity(n)} ${n === 1 ? counts[key]?.one : counts[key]?.many}`
-/* The prices Scale lowers, as a reader names them: "inboxes, emails, texts ...". */
-const plural: Partial<Record<PriceKey, string>> = {
-  inbox: 'inboxes',
-  email: 'emails',
-  sms: 'texts',
-  memory: 'sandbox memory',
-  whatsapp: 'WhatsApp',
-  register: 'US texting registration',
-  log: `the ${EVENT_LOG.lower}`,
-  number: 'phone numbers',
-  voice: 'calls',
-  imessage: 'iMessage lines',
-  browser: 'browser hours',
-  stealth: 'stealth browser hours',
-  sandbox: 'sandbox CPU time',
-}
 const named = (id: PlanId) => planOf(id).name
 const planOf = (id: PlanId): Plan => {
   const pl = plans.find((x) => x.id === id)
@@ -107,24 +95,26 @@ const paid = plans.filter((pl) => (pl.monthly ?? 0) > 0)
 
 /* Free's number: what it receives a month, "50 texts and 30 call minutes" (prices.ts freeNumber). */
 const freeIn = `${amountOf('sms', freeNumber.texts)} and ${amountOf('voice', freeNumber.minutes)}`
-/* A paid plan's monthly usage: "$100 of usage a month, spent on any piece" (the lead, 21 Nov). */
-const usageLine = (pl: Plan) => `${dollars(pl.credit ?? 0)} of usage a month${pl.lowerRates ? ' at lower rates' : ''}, spent on any piece`
-/* Scale's lower rates, in words. */
-const scaleLower = andList(scaleRule.lower.filter((k) => k !== 'tokens').map((k) => plural[k] ?? k))
-const scaleLowerOr = [...scaleRule.lower.filter((k) => k !== 'tokens').map((k) => plural[k] ?? k), 'model tokens'].join(', ').replace(/, ([^,]*)$/, ' or $1')
-const scaleSame = andList(scaleRule.atList.filter((k) => k !== 'tokens').map((k) => plural[k] ?? k))
-const scaleLowerLine = `Up to ${percent(scaleRule.off)} off ${scaleLower}`
-const scaleTokensLine = `Model tokens at ${scaleRule.tokens.scale.toLowerCase()}`
-/* A plan's campaigns: "1 low volume campaign", "2 standard campaigns". */
-const campaignsOf = (pl: Plan) => (pl.campaigns ? `${pl.campaigns.count} ${pl.campaigns.kind} campaign${pl.campaigns.count === 1 ? '' : 's'}` : '')
+/* A paid plan's monthly usage: "$100 of usage a month, worth about $111 at list rates, spent on any piece" (the lead,
+   21 Nov; the rate ladder, founders 22 Nov). */
+const worthWords = (pl: Plan) => {
+  const w = pl.worth ?? 0
+  return Number.isInteger(w) ? dollars(w) : `about ${dollars(Math.round(w))}`
+}
+const usageLine = (pl: Plan) => `${dollars(pl.credit ?? 0)} of usage a month${pl.off ? `, worth ${worthWords(pl)} at list rates,` : ''} spent on any piece`
+/* A plan's discount, in words: "10% off every piece’s list rate". Model tokens and the US texting registration are the
+   same on every plan. */
+const offLine = (pl: Plan) => `${percent(pl.off)} off every piece’s list rate, model tokens and US texting registration aside`
 /* "Events kept for 90 days in your event log". */
 const keptLine = (pl: Plan) => `Events kept for ${pl.eventLogDays === 365 ? 'a year' : `${pl.eventLogDays} days`} in your ${EVENT_LOG.lower}`
 const supportLine: Record<string, string> = { email: 'Email support', priority: 'Priority support' }
 
-/* Enterprise's terms (founder, 21 Nov): it starts monthly, with no yearly commitment and nothing paid up front, and
-   grows with usage; yearly billing is an option the buyer may choose later. */
-const enterpriseStart = `${named('enterprise')} starts monthly, from ${dollars(enterprise.from ?? 0)} a month, with no yearly commitment and nothing paid up front`
-const enterpriseYearly = enterprise.yearlyLater ? 'If you want yearly billing later, you can switch to it, but it’s never required.' : ''
+/* Enterprise's terms (founders, 22 Nov): from $1,500 a month, the floor on the first month's bill; it starts monthly,
+   with no yearly commitment and nothing paid up front, and grows with usage; paid yearly, it earns months free. */
+const enterpriseStart = `${named('enterprise')} is from ${dollars(enterprise.from ?? 0)} a month${enterprise.fromFirstMonth ? ', the minimum for the first month,' : ''} and starts monthly, with no yearly commitment and nothing paid up front`
+const enterpriseYearly = enterprise.yearlyFree
+  ? `Pay yearly and you get ${enterprise.yearlyFree} months free: you pay for ${12 - enterprise.yearlyFree} months and get 12. Yearly billing is never required.`
+  : ''
 
 const JOIN = '/#join'
 const RATES = '/pricing/rates'
@@ -150,8 +140,9 @@ export type PlanCard = {
 }
 
 /* The last line under every paid plan's usage (buyer panel, 21 Nov: readers took amounts for hard caps): past it the
-   plan keeps working at the same rates, and growing never needs Enterprise. */
-const payAsYouGo = 'Past it, pay as you go at the same rates, with no limit'
+   plan keeps working at list rates, a monthly spend cap holds the bill where the reader wants it, and growing never needs
+   Enterprise. */
+const payAsYouGo = 'Past it, pay as you go at list rates. Set a monthly spend cap if you want one.'
 
 /* Free's allowances, in prices.ts order; its number with what it receives. */
 const freeIncludes = (Object.keys(prices) as PriceKey[]).flatMap((k) => {
@@ -160,10 +151,9 @@ const freeIncludes = (Object.keys(prices) as PriceKey[]).flatMap((k) => {
   return [k === 'number' ? `${amountOf(k, n)} that receives up to ${freeIn} a month` : amountOf(k, n)]
 })
 
-/* A paid plan's features: its US texting campaigns, how long its event log keeps events, support, seats, the spend cap. */
+/* A paid plan's features: how long its event log keeps events, support, seats, the spend cap. */
 const paidFeatures = (pl: Plan) =>
   [
-    pl.campaigns ? `US texting: the monthly fee of ${campaignsOf(pl)}` : '',
     pl.eventLogDays ? keptLine(pl) : '',
     pl.support ? supportLine[pl.support] ?? '' : '',
     pl.seats ? 'Seats for your whole team' : '',
@@ -185,13 +175,13 @@ const planWords: Record<PlanId, Omit<PlanCard, 'id' | 'name' | 'price' | 'per' |
   },
   startup: {
     for: 'For a product whose agents work every day.',
-    includes: [usageLine(startup), payAsYouGo],
+    includes: [usageLine(startup), offLine(startup), payAsYouGo],
     features: paidFeatures(startup),
     cta: { label: 'Get early access', to: JOIN },
   },
   scale: {
     for: 'For agents that run at volume, on lower rates.',
-    includes: [usageLine(scale), scaleLowerLine, scaleTokensLine, payAsYouGo],
+    includes: [usageLine(scale), offLine(scale), payAsYouGo],
     features: paidFeatures(scale),
     cta: { label: 'Get early access', to: JOIN },
   },
@@ -204,7 +194,7 @@ const planWords: Record<PlanId, Omit<PlanCard, 'id' | 'name' | 'price' | 'per' |
       `Events kept longer in your ${EVENT_LOG.lower}`,
       'SSO and a support channel of your own',
       'Starts monthly, with nothing paid up front',
-      ...(enterprise.yearlyLater ? ['Yearly billing later, only if you choose it'] : []),
+      ...(enterprise.yearlyFree ? [`${enterprise.yearlyFree} months free when paid yearly, never required`] : []),
     ],
     cta: { label: 'Talk to us', to: JOIN },
   },
@@ -215,7 +205,7 @@ const planCards: PlanCard[] = plans.map((pl) => ({
   name: pl.name,
   lead: pl.monthly == null ? 'From' : undefined,
   price: dollars(pl.monthly ?? pl.from ?? 0),
-  per: pl.monthly == null ? 'a month, billed monthly' : pl.lowerRates ? 'a month, no contract' : 'a month',
+  per: pl.monthly == null ? 'a month, billed monthly' : pl.id === 'scale' ? 'a month, no contract' : 'a month',
   ...planWords[pl.id],
   featured: pl.featured,
 }))
@@ -224,7 +214,8 @@ const planCards: PlanCard[] = plans.map((pl) => ({
 
 /* A quantity on a piece's card: the price it counts, its label, where it starts, the stepper's step, and, where the
    range is large, the slider's stops (Free's own allowances are added to them, so the slider lands on Free's edge).
-   `adds` is a price that comes with any use of it (texting in the US needs the carriers' registration). */
+   `adds` is a price that comes with any use of it (texting in the US needs the carriers' registration: 1 active
+   campaign). */
 export type CalcQuantity = { key: PriceKey; label: string; start: number; step: number; stops?: number[]; adds?: PriceKey }
 /* A piece's card: its switch (name and line), whether it starts on, its quantities and a note under them. */
 export type CalcPiece = { id: string; name: string; line: string; on: boolean; quantities: CalcQuantity[]; note?: string }
@@ -266,7 +257,7 @@ const calcPieces: CalcPiece[] = [
       { key: 'voice', label: 'Call minutes a month', start: 200, step: 100 },
     ],
     /* Free's number sends nothing, so any texts or minutes here take the summary to a paid plan. */
-    note: `${named('free')}’s number receives up to ${freeIn} a month. It sends no texts and makes no calls, so those need a paid plan, and each paid plan includes the monthly fee of its US texting campaigns.`,
+    note: `${named('free')}’s number receives up to ${freeIn} a month. It sends no texts and makes no calls, so those need a paid plan. ${registration.line} ${registration.why}`,
   },
   {
     id: 'sandbox',
@@ -299,7 +290,7 @@ const calcPieces: CalcPiece[] = [
     line: 'Our model for your agents, paid from the same monthly usage.',
     on: false,
     quantities: [{ key: 'tokens', label: 'Model spend at cost, $ a month', start: 100, step: 10 }],
-    note: `${tokens.amount} on every plan, ${tokens.scale?.amount.toLowerCase() ?? tokens.amount.toLowerCase()} on ${named('scale')}. With your own key, your provider bills you and nothing reaches your Obsession bill.`,
+    note: `Taken from your plan’s monthly usage at ${tokens.amount.toLowerCase()} on every plan. With your own key, your provider bills you and nothing reaches your Obsession bill.`,
   },
 ]
 
@@ -334,8 +325,10 @@ export type PricingPage = {
     tag: string
     includes: string
     features: string
-    /* The line under the cards: how the monthly usage works, and the link to every rate. */
+    /* The line under the cards: how the monthly usage works, and the link to every rate. Then the US texting note: the
+       registration's fixed prices, which no plan includes. */
     extra: { line: string; link: Cta }
+    texting: string
   }
   calc: {
     heading: string
@@ -350,12 +343,14 @@ export type PricingPage = {
       plan: (name: string) => string
       /* A line's sub: what it counts, at what rate. */
       at: (n: string, rate: string) => string
-      /* A line Free's allowance covers in full, and one a paid plan includes (the US texting campaign). */
+      /* A line Free's allowance covers in full. */
       allowance: (n: string) => string
-      inPlan: string
       free: string
       /* The line taking the plan's monthly usage off the month. */
       covered: (usage: string) => string
+      /* The row adding what list rates cost over the plan's rates, for the usage past the credit. */
+      pastList: string
+      pastListSub: (atList: string, extra: string) => string
       /* Under the lines, when some of the plan's usage is left. */
       unused: (left: string) => string
       /* The month on every plan. */
@@ -386,7 +381,7 @@ export const pricingPage: PricingPage = {
     path: '/pricing',
     title: 'Obsession pricing: plans for agent email, phone and browser',
     description: `${andList(plans.map((pl) => pl.name))} plans for AI agent email, phone, a cloud browser and a sandbox: a month of usage, spent on any piece.`,
-    answer: `${openLine} ${named('free')} costs nothing and includes ${andList(freeIncludes)}. ${paidLine}, each spent on any piece, and past it you pay as you go at the same rates. ${enterpriseStart}, and gives resellers wholesale rates.`,
+    answer: `${openLine} ${named('free')} costs nothing and includes ${andList(freeIncludes)}. ${paidLine}, each spent on any piece, model tokens at ${tokens.amount.toLowerCase()}, and past it you pay as you go at list rates. ${enterpriseStart}. It gives resellers wholesale rates.`,
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Pricing', path: '/pricing' },
@@ -396,7 +391,7 @@ export const pricingPage: PricingPage = {
 
   pill: 'Early access pricing',
   headline: 'Start free. A paid plan is a month of usage, spent on any piece.',
-  sub: `${openLine} A paid plan’s fee buys that much usage each month at each piece’s rate, model tokens included, and past it you pay as you go.`,
+  sub: `${openLine} A paid plan’s fee buys that much usage each month at each piece’s rate, model tokens at ${tokens.amount.toLowerCase()}, and past it you pay as you go at list rates.`,
 
   plans: {
     label: 'Plans',
@@ -405,9 +400,10 @@ export const pricingPage: PricingPage = {
     includes: 'Each month',
     features: 'Also',
     extra: {
-      line: `A plan’s usage is counted in dollars at each piece’s rate. What you don’t use resets at the start of each month and doesn’t carry over.`,
+      line: `A plan’s usage is counted in dollars at each piece’s rate. Model tokens are taken from it at ${tokens.amount.toLowerCase()}, and blueprint runs at the same piece rates. Past it, usage is billed at list rates. What you don’t use resets at the start of each month and doesn’t carry over.`,
       link: { label: 'See every rate', to: RATES },
     },
+    texting: `${registration.line} ${registration.why}`,
   },
 
   calc: {
@@ -422,14 +418,15 @@ export const pricingPage: PricingPage = {
       plan: (name) => `${name} plan`,
       at: (n, rate) => `${n} at ${rate}`,
       allowance: (n) => `${n} in ${named('free')}`,
-      inPlan: 'Monthly fee in the plan',
       free: 'Included',
       covered: (usage) => `Paid from the plan’s ${usage} of usage`,
+      pastList: 'List rates past the credit',
+      pastListSub: (atList, extra) => `The usage past the credit is ${atList} at list rates, ${extra} more than at the plan’s rates`,
       unused: (left) => `${left} of the plan’s usage is left this month. It doesn’t carry over.`,
       each: 'Your month on each plan',
       over: 'Past its allowances',
       rows: 'Your month, line by line',
-      rest: 'WhatsApp messages and the US texting filing are paid from the same monthly usage, at their own rates.',
+      rest: `WhatsApp messages and the ${registration.once} filing of each new US texting campaign are paid from the same monthly usage, at their own rates.`,
       cta: { label: 'Get early access', to: JOIN },
       secondary: { label: `Talk to us about ${named('enterprise')}`, to: JOIN },
       announce: (plan, total) => `${plan}, ${total} a month.`,
@@ -441,7 +438,7 @@ export const pricingPage: PricingPage = {
     items: [
       {
         q: 'How does a plan’s monthly usage work?',
-        a: `Each paid plan’s fee buys a set amount of usage every month, in dollars, at each piece’s rate. Spend it on any piece, model tokens included. On ${ex.plan}, ${dollars(ex.fee)} buys ${dollars(ex.credit)} of usage. If your agents use ${cash(ex.low.used)} in a month, the bill stays ${cash(ex.low.bill)}. If they use ${cash(ex.high.used)}, the bill is ${dollars(ex.fee)} + ${cash(ex.high.payg)} = ${cash(ex.high.bill)}. What you don’t use resets at the start of each month and doesn’t carry over.`,
+        a: `Each paid plan’s fee buys a set amount of usage every month, in dollars, at each piece’s rate. Spend it on any piece. Model tokens are taken from it at ${tokens.amount.toLowerCase()}, and blueprint runs draw on it at the same piece rates, so each blueprint’s page shows what a typical month of it costs. On ${ex.plan}, ${dollars(ex.fee)} buys ${dollars(ex.credit)} of usage. If your agents use ${cash(ex.low.used)} in a month, the bill stays ${cash(ex.low.bill)}. If they use ${cash(ex.high.used)} at ${ex.plan}’s rates, the credit pays ${dollars(ex.credit)} of it and the rest is billed at list rates, ${cash(ex.high.payg)}, so the bill is ${dollars(ex.fee)} + ${cash(ex.high.payg)} = ${cash(ex.high.bill)}. What you don’t use resets at the start of each month and doesn’t carry over.`,
       },
       {
         q: 'Can I use just one piece?',
@@ -449,12 +446,12 @@ export const pricingPage: PricingPage = {
       },
       {
         q: 'What happens when I use more than my plan’s monthly usage?',
-        a: `You pay as you go, at the same rates. On ${named('developer')} and ${named('startup')} that’s each piece’s rate on the rates page, such as ${email.amount} ${email.unit}. On ${named('scale')} it’s ${named('scale')}’s lower rate. Nothing stops and we set no limit, so your plan keeps working as your agents grow. You don’t need ${named('enterprise')} to grow: it’s for companies that resell Obsession to their own clients. To keep the bill where you want it, set a monthly spend cap.`,
+        a: `You pay as you go at list rates, the same on every plan, such as ${email.amount} ${email.unit}. ${named('startup')}’s ${percent(ladderRule.startup)} off and ${named('scale')}’s ${percent(ladderRule.scale)} off apply to usage paid from the plan’s monthly credit. Nothing stops, so your plan keeps working as your agents grow, and you don’t need an ${named('enterprise')} contract to grow: it’s for companies that resell Obsession to their own clients. A monthly spend cap keeps the bill where you want it.`,
         link: { label: 'See every rate', to: RATES },
       },
       {
         q: `When does ${named('scale')} cost less than ${named('startup')}?`,
-        a: `Once your month’s usage passes ${dollars(scaleFrom)} at the standard rates on the rates page. Past that, ${named('startup')} bills ${dollars(startup.monthly ?? 0)} plus everything past its ${dollars(startup.credit ?? 0)} at the standard rates, and ${named('scale')} bills ${dollars(scale.monthly ?? 0)} plus everything past its ${dollars(scale.credit ?? 0)} at its lower rates, so ${named('scale')} never costs more. It costs less whenever your month includes ${scaleLowerOr}. ${named('scale')} bills these up to ${percent(scaleRule.off)} less, and model tokens at ${scaleRule.tokens.scale.toLowerCase()}. ${scaleSame.charAt(0).toUpperCase() + scaleSame.slice(1)} cost the same on every plan.`,
+        a: `Once your month’s usage passes about ${dollars(scaleFrom)} at list rates. ${named('startup')}’s ${dollars(startup.credit ?? 0)} of usage is worth ${worthWords(startup)} at list rates and ${named('scale')}’s ${dollars(scale.credit ?? 0)} ${worthWords(scale)}, and usage past a plan’s credit is billed at list rates. So past that point ${named('scale')}’s ${dollars(scale.monthly ?? 0)} costs less than ${named('startup')}’s ${dollars(startup.monthly ?? 0)} plus what goes past its credit. Model tokens are ${tokens.amount.toLowerCase()} on every plan, so they cost the same on both.`,
       },
       {
         q: `What happens when ${named('free')} runs out?`,
@@ -466,7 +463,7 @@ export const pricingPage: PricingPage = {
       },
       {
         q: 'What does a blueprint cost?',
-        a: `A blueprint is a job that runs on Obsession, one of ours or one you write. Each blueprint has its own plans, priced for the job it does, such as per store, location, competitor or voice agent. Every one starts with a free run, and its page shows what each plan covers. A blueprint’s plan is billed on its own and never uses your plan’s monthly usage. Developers who run a blueprint from their own code through the API pay for the pieces it uses, from their plan’s monthly usage.`,
+        a: `A blueprint is a job that runs on Obsession, one of ours or one you write. Its runs are paid from your plan’s monthly usage at the piece rates, then as you go, like any piece, so you pay only for what runs. Each blueprint’s page shows what a typical month costs at 3 sizes, worked out from what each run uses, such as per store, location, competitor or voice agent. Every blueprint starts with a free run, and there’s no separate plan to buy.`,
         link: { label: 'See the mystery shopper blueprint', to: '/blueprints/mystery-shopper' },
       },
       {
@@ -475,7 +472,7 @@ export const pricingPage: PricingPage = {
       },
       {
         q: 'Can my agent send texts on every plan?',
-        a: `No. ${named('free')}’s number receives texts and calls, such as login codes, up to ${freeIn} a month. It sends no texts and makes no calls. Past those amounts, messages still arrive and are kept, but your agent isn’t woken until you upgrade. To send texts or call out, pick a paid plan. Texting from a US number needs the carriers’ registration. Each paid plan includes the monthly fee of its campaigns: ${andList(paid.map((pl) => `${pl.name} ${campaignsOf(pl)}`))}. A low volume campaign is the carriers’ tier for small senders, and a standard campaign can send more. Filing a campaign is ${register.amount} once, paid from your monthly usage, and each extra campaign is ${register.unit.replace(/^once, then /, '')}.`,
+        a: `No. ${named('free')}’s number receives texts and calls, such as login codes, up to ${freeIn} a month. It sends no texts and makes no calls. Past those amounts, messages still arrive and are kept, but your agent isn’t woken until you upgrade. To send texts or call out, pick a paid plan. Texting from a US number needs the carriers’ registration: ${registration.once} once to file each campaign, then ${registration.monthly} a month while it’s active, the same on every plan and taken from your account. No plan includes it.`,
         link: { label: 'See the phone rates', to: `${RATES}#phone` },
       },
       {
@@ -531,8 +528,14 @@ export type RatesPage = {
   pill: string
   headline: string
   sub: string
-  /* The list has no visible heading of its own: the hero above is its claim. */
-  list: { label: string; groups: PriceGroup[]; scale: string }
+  /* The list has no visible heading of its own: the hero above is its claim. `plans` is the toggle above it (founder,
+     22 Nov 2026): every row shows the list rate, and beside it the chosen plan's rate, Startup first; Enterprise's says
+     "Contact us" and links to the form its plan card uses. */
+  list: {
+    label: string
+    groups: PriceGroup[]
+    plans: { label: string; options: { id: 'startup' | 'scale' | 'enterprise'; name: string }[]; on: (name: string, id: string) => string; note: string; contact: Cta }
+  }
   faq: Faq
   final: { heading: string; line: string; cta: Cta; secondary: Cta }
 }
@@ -555,17 +558,31 @@ export const ratesPage: RatesPage = {
   line: 'Every rate Obsession bills, piece by piece, in US dollars.',
 
   pill: 'Early access pricing',
-  headline: `Each piece has one rate, and ${named('scale')} lowers ${scaleRule.lower.length} of them.`,
-  sub: `${ratesOpen} Prices are in US dollars, every piece is on the same bill, and ${named('scale')}’s rate is shown beside each one it lowers.`,
+  headline: `Each piece has one list rate. ${named('startup')} takes ${percent(ladderRule.startup)} off and ${named('scale')} ${percent(ladderRule.scale)}, on usage paid from their credit.`,
+  sub: `${ratesOpen} Prices are in US dollars and every piece is on the same bill. ${named('free')} and ${named('developer')} pay the list rate, and so does every plan past its credit; pick a plan to see its credit rate beside each one.`,
 
-  list: { label: 'Every rate, by piece', groups, scale: `On ${named('scale')}` },
+  list: {
+    label: 'Every rate, by piece',
+    groups,
+    plans: {
+      label: `Every row shows the list rate: what ${named('free')} and ${named('developer')} pay, and what every plan pays past its credit. Beside it, the rate for usage paid from the credit of`,
+      options: [
+        { id: 'startup', name: named('startup') },
+        { id: 'scale', name: named('scale') },
+        { id: 'enterprise', name: named('enterprise') },
+      ],
+      on: (name, id) => (id === 'enterprise' ? `On ${name}` : `${name}, from its credit`),
+      note: 'Usage past a plan’s monthly credit is billed at list rates, the same on every plan.',
+      contact: { label: 'Contact us', to: JOIN },
+    },
+  },
 
   faq: {
     heading: 'Questions about rates.',
     items: [
       {
         q: 'Do the rates change with my plan?',
-        a: `Only on ${named('scale')}. ${named('free')}, ${named('developer')} and ${named('startup')} bill the rates on this page. ${named('scale')} bills up to ${percent(scaleRule.off)} less for ${scaleLower}. Its model tokens are ${scaleRule.tokens.scale.toLowerCase()}. ${scaleSame.charAt(0).toUpperCase() + scaleSame.slice(1)} cost the same on every plan. ${named('enterprise')} gets wholesale rates, agreed with you, that drop as your volume grows.`,
+        a: `Yes. ${named('free')} and ${named('developer')} bill the list rates on this page. ${named('startup')} takes ${percent(ladderRule.startup)} off every piece and ${named('scale')} ${percent(ladderRule.scale)} on usage paid from the plan’s credit, so ${named('startup')}’s ${dollars(startup.credit ?? 0)} of usage is worth ${worthWords(startup)} at list rates and ${named('scale')}’s ${dollars(scale.credit ?? 0)} ${worthWords(scale)}. Past the credit, usage is billed at list rates on every plan. Model tokens at ${tokens.amount.toLowerCase()} and the ${register.name} are the same on every plan. ${named('enterprise')} gets wholesale rates, agreed with you, lower again and dropping as your volume grows.`,
       },
       {
         q: 'How is WhatsApp priced?',
@@ -573,7 +590,7 @@ export const ratesPage: RatesPage = {
       },
       {
         q: 'Why does texting in the US cost a monthly fee?',
-        a: `US carriers ask every business that texts to register its use, and each registration, called a campaign, carries a monthly fee. Each paid plan includes the monthly fee of its campaigns: ${andList(paid.map((pl) => `${pl.name} ${campaignsOf(pl)}`))}. A low volume campaign is the carriers’ tier for small senders, and a standard campaign can send more. Filing a campaign is ${register.amount} once, paid from your monthly usage, and each extra campaign is ${register.unit.replace(/^once, then /, '')}. We file every one for you. ${named('free')}’s number sends no texts, so it needs no registration.`,
+        a: `US carriers require every business that texts to register what it texts for, and each registration, called a campaign, carries a monthly fee. Ours is ${registration.once} once to file each campaign, then ${registration.monthly} a month while it’s active, taken from your account. It’s the same on every plan, no plan includes it, and we file it for you. ${named('free')}’s number sends no texts, so it needs no registration.`,
       },
       {
         q: 'What does a phone number outside the US or UK cost?',
@@ -589,14 +606,14 @@ export const ratesPage: RatesPage = {
       },
       {
         q: 'How are model tokens billed?',
-        a: `At ${tokens.amount.toLowerCase()}${tokens.scale ? `, or ${tokens.scale.amount.toLowerCase()} on ${named('scale')}` : ''}, paid from your plan’s monthly usage. With your own key, your model provider bills you and the tokens never reach your Obsession bill.`,
+        a: `They’re taken straight from your plan’s monthly usage at ${tokens.amount.toLowerCase()} on every plan: what the model costs us, plus ${tokens.amount.replace(/\D+/g, '')}%. With your own key, your model provider bills you and the tokens never reach your Obsession bill.`,
       },
     ],
   },
 
   final: {
     heading: 'A plan buys a month of usage at these rates.',
-    line: 'Pick the plan that fits your agents. Its fee covers that much usage each month, and past it you pay these rates.',
+    line: 'Pick the plan that fits your agents. Its fee covers that much usage each month at its rates, and past it you pay the list rates.',
     cta: { label: 'See the plans', to: '/pricing#plans' },
     secondary: { label: 'Get early access', to: JOIN },
   },

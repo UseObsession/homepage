@@ -106,6 +106,7 @@
 }
 
 /* The line under the cards: extra usage, and the link to every rate. */
+.s-pr-texting + .s-pr-extra { margin-top: var(--ob-space-12); }
 .s-pr-extra {
   max-width: 64ch;
   margin: var(--ob-space-32) auto 0;

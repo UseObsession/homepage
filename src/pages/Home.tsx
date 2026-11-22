@@ -10,8 +10,8 @@ import { FinalCta } from '../components/sections/FinalCta'
 import { page } from '../content/pages/home'
 
 /* Home (/), composed from content/pages/home.ts in the order its comment gives (21 Nov, the pieces rewrite): the hero;
-   the 6 pieces, each linking to its page (#pieces); the pieces under one identity, the persona (#personas); 2 claims in
-   the form "X, not Y"; how it works (#how, persona/HomeHowItWorks): set up once, the loop through your event log as 1
+   the 6 pieces under "One API, not five vendors.", each linking to its page (#pieces); the pieces under one identity,
+   the persona (#personas); 1 claim in the form "X, not Y" (wakes in milliseconds); how it works (#how, persona/HomeHowItWorks): set up once, the loop through your event log as 1
    picture, then the 6 channels (#delivery, inside it); blueprints, ours or your own job, with every result in the event
    log, and the web behind the login as 1 tile to its use case page (#recipes); for developers, the code (#build); 7
    questions (#questions); the early access form (#join). No pricing section and no pricing link: prices live on

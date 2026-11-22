@@ -569,9 +569,8 @@ export type PersonaAnatomy = {
   line?: string
   parts: { name: string; line: string; eg: string }[]
 }
-/* The illustration card beside an "X, not Y" claim: loose parts beside the whole, or 1 wake in milliseconds. */
+/* The illustration card beside an "X, not Y" claim: 1 wake in milliseconds. */
 export type PersonaArt =
-  | { kind: 'parts'; parts: { label: string; items: string[]; note: string }; whole: { label: string; items: string[]; note: string } }
   | { kind: 'timeline'; title: string; rows: { at: string; text: string; state: 'act' | 'sleep' | 'wake' | 'done' }[] }
 /* 1 claim, its lines, 1 big true number (`value`, its `unit` beside it, `label` under) and its card. */
 export type PersonaContrast = { heading: string; line: string; value: string; unit: string; label: string; art: PersonaArt }
@@ -740,18 +739,20 @@ export type Recipe = {
 
 /* A blueprint's pricing table (components/BlueprintPricing), on every blueprint page and in each tab of the audience
    pages' pricing (/agencies, /marketing, /sales). content/recipe-page.ts `blueprintPricing` works it out from the
-   blueprint's priced tiers (content/catalog.ts, from content/blueprint-tiers.ts), so no price is typed twice: 1 card per
-   tier, then the line to /pricing. */
+   blueprint's typical months (content/catalog.ts, from content/blueprint-tiers.ts), so no figure is typed twice: 1 card
+   per typical month, the free run first, then the line to the rates. */
 export type BlueprintPlanCard = {
   id: string
   name: string
   /* Who it's for, in 1 line. */
   for: string
-  /* The big words and the line beside them: "$49" and "a month", "Free" and nothing, or "Enterprise" and nothing. */
+  /* A word before the price ("About"), the big words and the line beside them: "$206" and "a month", or "Free" and
+     "your first run". */
+  lead?: string
   price: string
   per: string
-  /* What the tier buys, under the price (BlueprintTier `covers`). */
-  covers?: string
+  /* The line under the price: how the month is worked out and paid, or what the free run would have cost. */
+  note?: string
   includes: string[]
   cta: Cta
   /* The tier the table lifts: the raised card, its tag and the row's 1 primary button. */
@@ -1155,11 +1156,20 @@ export type BlueprintTierWords = { name: string; includes: string[] }
    units ("Up to 150 client stores, each shopped every month") and whether it is the 1 recommended tier, all from the
    pricing engine; `enterprise` when its price works out above the Enterprise cap (shown as Enterprise, linking
    /pricing); `includes` from the blueprint's own file. */
+/* A typical month of a blueprint as the pricing engine works it out (content/blueprint-tiers.ts): its name (matched to
+   the file's), who it's for, whether it's the free run, what it costs at the list piece rates (dollars, rounded), what it
+   covers, what a month like it brings and whether it's the featured month. */
 export type BlueprintTier = {
   name: string
   for: string
-  price: number
-  enterprise: boolean
+  free: boolean
+  estimate: number
+  /* The same month paid from Startup's and Scale's credit, at their rates (10% and 20% off every piece but model tokens
+     and the texting registration), and whether the whole month fits inside that plan's credit (past it, list rates). */
+  startup: number
+  scale: number
+  startupFits: boolean
+  scaleFits: boolean
   covers: string
   includes: string[]
   featured: boolean

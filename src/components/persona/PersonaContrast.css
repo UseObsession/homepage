@@ -44,46 +44,6 @@
   color: var(--ob-text-2);
 }
 
-/* ---- parts: loose parts in dashed outline beside the finished persona, drawn solid. */
-.s-pc-parts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: var(--ob-space-16); }
-.s-pc-parts-loose,
-.s-pc-parts-whole { display: grid; align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-20); border-radius: var(--ob-radius-md); min-width: 0; }
-.s-pc-parts-loose { box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); }
-.s-pc-parts-whole { background: var(--ob-solid); color: var(--ob-text-inverse); }
-.s-pc-parts-loose > .s-pc-card-label,
-.s-pc-parts-whole > .s-pc-card-label { margin: 0; }
-.s-pc-parts-whole > .s-pc-card-label { color: inherit; opacity: 0.72; }
-.s-pc-parts-list,
-.s-pc-whole-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ob-space-8); }
-.s-pc-parts-list > li {
-  justify-self: start;
-  padding: var(--ob-space-8) var(--ob-space-12);
-  border: var(--ob-border-hair) dashed var(--ob-line-strong);
-  border-radius: var(--ob-radius-xs);
-  font: 500 14px / 1.3 var(--ob-font-sans);
-  color: var(--ob-text-2);
-}
-/* Loose: each part sits a little off the line of the one before. */
-.s-pc-parts-list > li:nth-child(2) { margin-left: var(--ob-space-16); }
-.s-pc-parts-list > li:nth-child(3) { margin-left: var(--ob-space-6); }
-.s-pc-parts-list > li:nth-child(4) { margin-left: var(--ob-space-20); }
-.s-pc-parts-list > li:nth-child(5) { margin-left: var(--ob-space-2); }
-.s-pc-whole-list > li { display: flex; align-items: baseline; gap: var(--ob-space-8); font: 500 14.5px / 1.35 var(--ob-font-sans); }
-.s-pc-whole-list > li::before {
-  content: "";
-  flex: none;
-  width: 9px;
-  height: 5px;
-  border-left: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: translateY(-3px) rotate(-45deg);
-}
-.s-pc-parts-note { margin: var(--ob-space-4) 0 0; font: 400 13.5px / 1.45 var(--ob-font-sans); color: var(--ob-text-2); }
-.s-pc-parts-whole > .s-pc-parts-note { color: inherit; opacity: 0.8; }
-@media (max-width: 560px) {
-  .s-pc-parts { grid-template-columns: minmax(0, 1fr); }
-}
-
 /* ---- timeline: 1 persona's wake, to the millisecond. Solid where it works, dashed where it sleeps; the wakes ringed. */
 .s-pc-tl-list { list-style: none; margin: 0; padding: 0; display: grid; }
 .s-pc-tl-row {

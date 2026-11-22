@@ -76,7 +76,6 @@ export const recipe: Recipe = {
     {
       name: 'Team',
       includes: [
-        'Everything in Starter',
         'A persona in any country, with a local number',
         'Each trial day in your CRM, Slack or a table',
         'Your own trial too, after a release',
@@ -85,7 +84,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Team',
         'Every competitor’s trial compared side by side',
         'Every event in your event log, by webhook or API',
         'A report you can share',

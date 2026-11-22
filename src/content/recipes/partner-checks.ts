@@ -75,7 +75,6 @@ export const recipe: Recipe = {
     {
       name: 'Growth',
       includes: [
-        'Everything in Starter',
         'A note drafted in your team’s thread for each partner out of date',
         'Each note sent only after your OK',
         'Every check in your event log, by webhook or API',
@@ -84,7 +83,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Growth',
         'Your partner list kept in sync from a CSV or the API',
         'A monthly report you can share',
       ],

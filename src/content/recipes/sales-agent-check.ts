@@ -77,7 +77,7 @@ export const recipe: Recipe = {
     {
       name: 'Daily',
       includes: [
-        'Everything in Weekly, every morning',
+        'A test shop every morning',
         'Your price list and stock page captured each run',
         'How many chats asked about the same product, from your chat history',
         'Every test shop in your event log',
@@ -86,7 +86,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Daily',
         'Competitors’ shopping assistants asked the same questions',
         'A weekly report you can share',
         'Every answer by webhook or API',

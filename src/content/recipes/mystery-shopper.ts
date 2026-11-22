@@ -4,7 +4,8 @@ import type { Recipe } from '../types'
    from Agentic mystery shopping on 21 Nov 2026, when James split mystery shopping in 2: this one is for agencies (CRO,
    retention, and email and SMS agencies) who check many client stores, each with its owner's OK; a brand checking its
    own store has content/recipes/store-mystery-shopper.ts. Personas sign up, browse, fill a basket and leave at checkout
-   before payment (or pay with a card the client provides), wait 48 hours by default, wake on every email and text, and
+   before payment (or pay with a card the client provides), wait as long as the agency chooses (48 hours by default;
+   James, 22 Nov: agencies want different lengths, so the page never fixes one), wake on every email and text, and
    bring back every event to the event log, client by client. Its screen is the agency's typed task (15 client stores).
    It keeps the 1 real run, Brand G (sample.ts), stated exactly: 4 journeys from the UK, a £40 Body Care Gift Set left
    at 02:57 and a £21 deodorant left at checkout at 03:11 on Tue 22 Sep 2026, 48 hours watched, 0 reminders, browse 3
@@ -27,7 +28,7 @@ export const recipe: Recipe = {
     'Its own inbox, phone number and home connection',
     'Sign up, browse, basket and checkout',
     'Stops before payment and at any identity check',
-    '48 hours of waiting, waking on each email and text',
+    'Waiting as long as you choose, waking on each email and text',
     'A report per client, every message dated',
   ],
 
@@ -37,7 +38,7 @@ export const recipe: Recipe = {
     description:
       'Mystery shopping software for agencies: personas shop each client store as new shoppers, leave a basket before payment and keep every email and text.',
     answer:
-      'Mystery shopping for agencies sends personas through every client store you look after, as new shoppers, with each client’s OK. They sign up, browse, fill a basket and leave at checkout before payment. Then they wait 48 hours and bring back every email and text, dated, client by client.',
+      'Mystery shopping for agencies sends personas through every client store you look after, as new shoppers, with each client’s OK. They sign up, browse, fill a basket and leave at checkout before payment. Then they wait as long as you choose and bring back every email and text, dated, client by client.',
     ogImage: '/og/mystery-shopper.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -48,7 +49,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Personas shop every client store and show you whose reminder never came.',
-    sub: 'Mystery shopping for agencies sends personas through every client store you look after, as new shoppers, with each client’s OK. They sign up, browse, fill a basket and leave at checkout before payment. Then they wait 48 hours and bring back every email and text, dated, client by client.',
+    sub: 'Mystery shopping for agencies sends personas through every client store you look after, as new shoppers, with each client’s OK. They sign up, browse, fill a basket and leave at checkout before payment. Then they wait as long as you choose and bring back every email and text, dated, client by client.',
     screen: 'agencytask',
     capture: {
       kind: 'waitlist',
@@ -67,7 +68,7 @@ export const recipe: Recipe = {
       name: 'Free',
       includes: [
         'A full mystery shop: sign up, browse, basket and checkout',
-        'A 48 hour watch of every inbox and number',
+        'Waiting as long as you choose, waking on each email and text',
         'Every email, text and screenshot in your event log',
       ],
     },
@@ -75,7 +76,7 @@ export const recipe: Recipe = {
       name: 'Starter',
       includes: [
         'A full mystery shop of each store, every month',
-        'A 48 hour watch after every shop',
+        'Waiting as long as you choose after every shop, waking on each email and text',
         'A report for each client, ready to share',
         'Email and Slack alerts when a reminder goes missing',
         'Every result by webhook, API or MCP',
@@ -84,7 +85,6 @@ export const recipe: Recipe = {
     {
       name: 'Agency',
       includes: [
-        'Everything in Starter',
         'Every client in one table, so you see who needs a call first',
         'A row per store in Clay, Baserow or Supabase',
         'A client’s competitors shopped too, counted as stores',
@@ -93,10 +93,8 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Agency',
         'Client stores added from a list or by API',
         'History and trends for each client store',
-        'Priority support',
       ],
     },
   ],
@@ -137,7 +135,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'They wait, and wake on every email',
-      line: 'They wait 48 hours by default, so a reminder that never comes is in your event log too, filed under its client.',
+      line: 'They wait as long as you choose, so a reminder that never comes is in your event log too, filed under its client.',
     },
   ],
 
@@ -190,7 +188,7 @@ export const recipe: Recipe = {
     { k: 'Stores', v: 'Every client store, each with its owner’s OK' },
     { k: 'Journeys', v: 'Sign up, browse, basket, checkout and texts' },
     { k: 'Persona', v: 'A first-time shopper in Manchester on a phone, or your own' },
-    { k: 'Waiting', v: '48 hours by default, 7 days, or as long as you hold the persona' },
+    { k: 'Waiting', v: 'As long as you choose, 48 hours by default' },
     { k: 'Payment', v: 'Stops before payment, or pays with a card the client provides' },
     { k: 'How often', v: 'Each client store, once a month' },
   ],
@@ -228,7 +226,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How many client stores can I check?',
-        a: 'As many as your plan covers, each shopped in full once a month. The plans above show how many each one covers. For more stores, or reports in your own brand, see every plan on the pricing page.',
+        a: 'As many as you look after. Each store’s shops are paid from your plan’s credit at the piece rates, so a store costs what its runs use, and the months above show what 30, 150 and 500 stores cost. For reports in your own brand, see the Enterprise plan on the pricing page.',
       },
       {
         q: 'Do my clients need to agree?',
@@ -248,11 +246,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can I compare a client with its competitors?',
-        a: 'Yes. Send the same persona to the stores a client competes with, and their events sit side by side in your event log. Each store it shops counts towards your plan.',
+        a: 'Yes. Send the same persona to the stores a client competes with, and their events sit side by side in your event log. Each store it shops is paid for like a client store, from your plan’s credit.',
       },
       {
-        q: 'Can a persona watch for longer than 48 hours?',
-        a: 'Yes. It lives as long as you hold it, so it can come back months later as the same shopper, and every new email joins your event log the day it arrives.',
+        q: 'How long does a persona wait after a shop?',
+        a: 'As long as you choose. A persona stays yours until you let it go, so it can come back months later as the same shopper, and every new email joins your event log the day it arrives.',
       },
     ],
   },

@@ -82,7 +82,6 @@ export const recipe: Recipe = {
     {
       name: 'Group',
       includes: [
-        'Everything in Single site',
         'A scorecard per location, side by side',
         'The locations and hours that leave leads waiting',
         'A report you can share with each location’s manager',
@@ -91,7 +90,6 @@ export const recipe: Recipe = {
     {
       name: 'Agency',
       includes: [
-        'Everything in Group',
         'Out of hours checks on a prospect’s line before you pitch',
         'Each client’s leads kept apart in your event log',
       ],

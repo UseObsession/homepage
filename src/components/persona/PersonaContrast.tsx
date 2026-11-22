@@ -5,38 +5,15 @@ import './blueprint.css'
 import './PersonaContrast.css'
 
 /* The "X, not Y" sections (after rivet.dev's "Start in milliseconds, not seconds."): each 1 screen, its claim, 2 or 3
-   lines and 1 big true number on one side, its card on the other, the sides flipping from section to section. Each
-   opens on the ruled line. The cards are product objects (.ob-object): loose parts beside the whole (1 API, not 5
-   vendors), or 1 wake in milliseconds. */
+   lines and 1 big true number on one side, its card on the other, the sides flipping from section to section, the
+   first with its words on the right, opposite the persona section above it. Each opens on the ruled line. The card is
+   a product object (.ob-object): 1 wake in milliseconds. */
 
 /* A numeral stays on the line of the word it counts. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
 function Card({ art }: { art: PersonaArt }) {
   switch (art.kind) {
-    case 'parts':
-      return (
-        <div className="s-pc-parts">
-          <div className="s-pc-parts-loose">
-            <p className="s-pc-card-label">{art.parts.label}</p>
-            <ul className="s-pc-parts-list">
-              {art.parts.items.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
-            <p className="s-pc-parts-note">{art.parts.note}</p>
-          </div>
-          <div className="s-pc-parts-whole">
-            <p className="s-pc-card-label">{art.whole.label}</p>
-            <ul className="s-pc-whole-list">
-              {art.whole.items.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
-            <p className="s-pc-parts-note">{art.whole.note}</p>
-          </div>
-        </div>
-      )
     case 'timeline':
       return (
         <div className="s-pc-tl">
@@ -86,7 +63,7 @@ export function PersonaContrasts({ items }: { items: Contrast[] }) {
   return (
     <>
       {items.map((c, i) => (
-        <ContrastSection key={c.heading} c={c} flip={i % 2 === 1} />
+        <ContrastSection key={c.heading} c={c} flip={i % 2 === 0} />
       ))}
     </>
   )

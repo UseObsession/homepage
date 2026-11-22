@@ -77,7 +77,6 @@ export const recipe: Recipe = {
     {
       name: 'Team',
       includes: [
-        'Everything in Starter',
         'Each change on the account’s record in your CRM, with screenshots',
         'A table of every account and change, day by day',
         'Every change in your event log, by webhook or API',
@@ -86,7 +85,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Team',
         'Each account’s history of changes, month by month',
         'Ask your AI agent what changed before a call',
       ],

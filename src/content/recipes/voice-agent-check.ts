@@ -86,7 +86,6 @@ export const recipe: Recipe = {
     {
       name: 'Daily',
       includes: [
-        'Everything in Starter',
         '3 callers every morning, in different voices and accents',
         'Calls out of hours and at weekends, if you want them',
         'Trends for each question over time',
@@ -95,7 +94,6 @@ export const recipe: Recipe = {
     {
       name: 'Agency',
       includes: [
-        'Everything in Daily',
         'A report you can share for each client',
         'Each client’s calls kept apart in your event log',
       ],

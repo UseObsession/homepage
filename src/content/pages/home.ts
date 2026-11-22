@@ -10,9 +10,11 @@ import type { HomePieces, Page, PersonaIcon } from '../types'
    and writes its results to the event log: 1 per account, where every event from every piece, persona and recipe lands
    (James, 21 Nov). The persona is the bundle, not the headline. The page reads, in order
    (pages/Home.tsx): 1 the hero: what we sell, "One API, one bill.", the 2 buttons, the copyable call and 3 facts >
-   2 #pieces: the 6 pieces as 1 sheet, each linking to its page (content/piecePaths.ts) with the call that starts it >
-   3 #personas: the pieces under one identity, as a stacked slab diagram >
-   4 2 claims in the form "X, not Y": 1 API, not 5 vendors; wakes in milliseconds, not minutes >
+   2 #pieces: "One API, not five vendors.", the 6 pieces as 1 sheet, each linking to its page (content/piecePaths.ts)
+   with the call that starts it (James, 22 Nov: the claim moved here and its own section went) >
+   3 #personas: the pieces under one identity, as a stacked slab diagram of 5 parts (James, 22 Nov: inbox and number,
+   browser and sandbox, each 1 slab) >
+   4 1 claim in the form "X, not Y": wakes in milliseconds, not minutes >
    5 #how: how it works, 1 section in place of the fleet timeline and the delivery plates (James, 21 Nov): set up
    once, then the loop through your event log as 1 picture, then the 6 channels in their order (#delivery,
    content/delivery.ts) and the line on a server that's down (components/persona/HomeHowItWorks) >
@@ -92,8 +94,8 @@ const PIECES: Record<PieceId, { icon: PersonaIcon; name: string; line: string; c
 }
 
 const pieces: HomePieces = {
-  heading: 'Every piece an agent needs is 1 call away.',
-  line: 'Use one on its own, like email, or several together. They share one key, one bill and one event log.',
+  heading: 'One API, not five vendors.',
+  line: 'Every piece, from inboxes and phone numbers to browsers and sandboxes, comes through one key, one webhook and one bill.',
   items: pieceOrder.map((id) => ({ ...PIECES[id], to: piecePaths[id], whole: id === 'personas' })),
 }
 
@@ -159,37 +161,16 @@ export const page: Page = {
     line: 'Its inbox, number, channels, browser and sandbox share one name. It lives on our runtime: free while it waits, and your code runs 50 ms after a message lands, with no machine to start.',
     parts: [
       { name: 'One identity', line: 'A name every piece shares, so each email, text and page belongs to the same agent.', eg: 'Juno, bookings at Larkfield' },
-      { name: 'An inbox', line: 'Its own address, to send and receive email, with threads and attachments.', eg: 'juno@larkfield.example' },
-      { name: 'A phone number', line: 'Texts and calls, from sign up codes to people who’d rather ring.', eg: '+1 415 555 0142' },
+      { name: 'An inbox and/or a phone number', line: 'Its own email address and number, to send and receive email, texts and calls.', eg: 'juno@larkfield.example · +1 415 555 0142' },
       { name: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram, on the same identity.', eg: 'iMessage · WhatsApp · Slack' },
-      { name: 'A browser on a home connection', line: 'Its own browser profile, connecting from a home, that keeps its logins.', eg: 'Home connection, US · signed in' },
-      { name: 'A sandbox', line: 'A computer to run code in, started only when a task needs it.', eg: 'python report.py' },
+      { name: 'A browser and/or a sandbox', line: 'A browser on a home connection that keeps its logins, and a computer to run code when a task needs one.', eg: 'US home connection, signed in · python report.py' },
       { name: 'Its events in your event log', line: 'Every page, email, text and call it saw, dated, with screenshots.', eg: '14 pages · 4 emails · 2 texts · 1 call' },
     ],
   },
 
-  /* "X, not Y" (rivet.dev's pattern): 1 claim each, 1 big true number, a card on the other side. The wake is Juno's. */
+  /* "X, not Y" (rivet.dev's pattern): 1 claim, 1 big true number, a card on the other side. The wake is Juno's. "One
+     API, not five vendors." had its own section here until James moved it to #pieces (22 Nov). */
   personaContrasts: [
-    {
-      heading: 'One API, not five vendors.',
-      line: 'An agent that emails, texts, browses and runs code needs a vendor for each: 5 accounts, 5 keys and 5 bills. Here each piece is 1 call on the same key.',
-      value: '1',
-      unit: 'key',
-      label: 'for every piece, on one bill.',
-      art: {
-        kind: 'parts',
-        parts: {
-          label: '5 vendors',
-          items: ['An email API', 'A phone API', 'A messaging API', 'A browser API', 'A sandbox API'],
-          note: '5 keys, 5 bills, and the code that joins them is yours.',
-        },
-        whole: {
-          label: 'Obsession',
-          items: ['Email', 'Phone', 'Messaging', 'Browser', 'Sandbox', 'Personas'],
-          note: 'One key, one bill, one set of webhooks.',
-        },
-      },
-    },
     {
       heading: 'Wakes in milliseconds, not minutes.',
       line: 'When an email, text or call reaches a persona, your code runs on our runtime 50 ms later. No machine starts: its inbox, logins and browser state are already there.',
@@ -211,21 +192,22 @@ export const page: Page = {
   ],
 
   /* How it works (James, 21 Nov: variation B's loop with variation A's words, in place of the fleet timeline and the
-     delivery plates; components/persona/HomeHowItWorks). Set up once, then a loop either side can start: a message
-     comes in or the agent acts, it's saved in the event log, then reaches the agent, on our runtime or the developer's
+     delivery plates; components/persona/HomeHowItWorks). Set up once, then a loop either side can start: a message, a
+     webhook from another tool or a new spreadsheet or CSV row comes in (James, 22 Nov: never only "a message"), or the
+     agent acts, it's saved in the event log, then reaches the agent, on our runtime or the developer's
      own servers, or a person. What the agent does next is a new event. Live call audio doesn't take the loop: it streams
      straight to the voice agent, and the log keeps the call's events. `loop` is the picture's words; `label` says the
      whole picture for screen readers and llms-full.txt. Under it, the channels and the line on a server that's down
      come from content/delivery.ts, the same words as the piece, recipe and developer pages. */
   homeHow: {
     heading: 'From the first call to months of messages, every event reaches your agent.',
-    line: 'Set it up once. Each persona waits for free, and every email, text or call is saved in your event log, then reaches your agent. Its reply is the next event.',
+    line: 'Set it up once, and each persona waits for free. Every email, text, call, webhook or new spreadsheet row is saved in your event log, then reaches your agent. Its reply is the next event.',
     loop: {
       label:
-        'Set up once, by picking pieces, a persona or a blueprint and saying where your agent runs. Then a loop of 3 stops. Something happens: a message comes in, or your agent acts. It is saved in your event log, which keeps every event in order. Then it reaches your agent, on our runtime as a handler in about 50 ms or on your servers through a webhook, the API or MCP, or it reaches a person in Slack, Zapier, Make or n8n. Whatever your agent does next is a new event, so the loop goes round again. Live call audio crosses the loop straight to your voice agent without touching the log, and the log keeps each call’s start, end and transcript.',
+        'Set up once, by picking pieces, a persona or a blueprint and saying where your agent runs. Then a loop of 3 stops. Something happens: a message, a webhook from another tool or a new row in a spreadsheet or CSV comes in, or your agent acts. It is saved in your event log, which keeps every event in order. Then it reaches your agent, on our runtime as a handler in about 50 ms or on your servers through a webhook, the API or MCP, or it reaches a person in Slack, Zapier, Make or n8n. Whatever your agent does next is a new event, so the loop goes round again. Live call audio crosses the loop straight to your voice agent without touching the log, and the log keeps each call’s start, end and transcript.',
       setup: { name: 'Set up once', line: 'Pick pieces, a persona or a blueprint, and say where your agent runs.' },
       then: 'then',
-      happens: { name: 'Something happens', line: 'A message comes in, or your agent acts.' },
+      happens: { name: 'Something happens', line: 'A message, a webhook or a new spreadsheet row comes in, or your agent acts.' },
       saved: 'is saved in',
       log: { name: 'Your event log', line: 'saves every event, in order' },
       reaches: 'reaches',
@@ -255,7 +237,8 @@ export const page: Page = {
      that reader (styles/accents.css). The heading is James's (21 Nov), its comma included: it speaks to the reader. */
   personaRecipes: {
     /* James, 21 Nov: the heading speaks to teams with no engineers; the line says where the results arrive. */
-    heading: 'No engineers? Pick a blueprint. We run the job and send you the results.',
+    /* James, 22 Nov. The part before the colon shows as a quiet first line (components/persona/PersonaRecipes). */
+    heading: 'For teams without engineers: Pick a blueprint, we run the job, you get the report.',
     line: 'Every result arrives where you already work: in your spreadsheet, in Clay, through your own Claude agent or on our dashboard. Developers can bring their own job to run the same way.',
     items: [
       {

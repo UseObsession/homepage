@@ -1,7 +1,8 @@
 /* A blueprint's pricing table (components/BlueprintPricing), on the design system's cards (surfaces.css .ob-card, Weekly
    .ob-card--raised), badge and buttons, in both themes. Every class starts s-bpp. The cards follow the table's own width
    (a named container, so the page's other container rules never meet it): 1 column, 2 from 560px, 4 from 960px, where
-   each card's 5 rows (name, who it's for, price with what it covers, what's included, button) line up across the row. In 1 or 2 columns
+   each card's 5 rows (the month, who it's for, "About $N a month" with its line, what a month like it brings, button)
+   line up across the row. In 1 or 2 columns
    the list takes the slack, so the buttons of a row sit on 1 line. Spacing sits on the 4px grid. */
 
 .s-bpp { container: s-bpp / inline-size; min-width: 0; }
@@ -56,7 +57,7 @@
   color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
 }
-/* The price row: the price and the line beside it, then what the tier covers under them. */
+/* The price row: "About", the figure and "a month", then the line on how it's worked out and paid. */
 .s-bpp__price { margin: var(--ob-space-16) 0 0; }
 .s-bpp__cost {
   display: flex;
@@ -66,13 +67,17 @@
   margin: 0;
   color: var(--ob-text);
 }
-.s-bpp__covers {
+.s-bpp__note {
   margin: var(--ob-space-4) 0 0;
   font: var(--ob-type-small);
-  font-weight: var(--ob-weight-medium);
   letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text);
+  color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
+}
+.s-bpp__lead {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
 }
 .s-bpp__amount {
   font: var(--ob-type-h2);
@@ -105,7 +110,7 @@
 
 .s-bpp__cta { align-self: end; margin-top: var(--ob-space-24); }
 
-/* The line under the cards: more of them, white label or your own blueprint, and the link to every plan. */
+/* The line under the cards and the link to every rate. */
 .s-bpp__more {
   max-width: 64ch;
   margin: var(--ob-space-24) 0 0;

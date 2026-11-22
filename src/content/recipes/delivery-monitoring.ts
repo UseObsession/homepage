@@ -81,7 +81,6 @@ export const recipe: Recipe = {
     {
       name: 'Growth',
       includes: [
-        'Everything in Launch',
         'Started by your release pipeline, by webhook or API',
         'iPhone, Android and desktop',
         'A ticket drafted for your OK when a message goes missing',
@@ -90,7 +89,6 @@ export const recipe: Recipe = {
     {
       name: 'Global',
       includes: [
-        'Everything in Growth',
         'A local number and home connection in each country',
         'Every message compared across releases',
         'A report you can share after each release',

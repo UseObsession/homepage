@@ -1,15 +1,11 @@
 import { piecePaths } from '../piecePaths'
-import { plans, prices } from '../prices'
+import { plans, prices, registration } from '../prices'
 import type { PiecePage } from './types'
 
-/* The paid plans and the US texting campaigns each includes the monthly fee of, from prices.ts. */
+/* The paid plans, from prices.ts. No plan includes the US texting registration (founders, 22 Nov 2026). */
 const andList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`)
 const paid = plans.filter((pl) => (pl.monthly ?? 0) > 0)
 const paidNames = paid.map((pl) => pl.name)
-const campaignsLine = andList(
-  paid.flatMap((pl) => (pl.campaigns ? [`${pl.name} ${pl.campaigns.count} ${pl.campaigns.kind} campaign${pl.campaigns.count === 1 ? '' : 's'}`] : [])),
-)
-const extraCampaign = prices.register.unit.replace(/^once, then /, '')
 
 /* Phone (/phone), 21 Nov 2026: phone numbers for AI agents. One call makes a number; the agent sends and receives texts,
    gets verification codes, and makes and takes calls through the voice agent the developer brings or connects. US numbers
@@ -114,11 +110,11 @@ export const phone: PiecePage = {
       },
       {
         q: 'Do I need to register to text people in the US?',
-        a: `Yes. US carriers ask every business that texts to register what it texts for, a step known as 10DLC. We file the registration for you when you add a US number. Each paid plan includes the monthly fee of its campaigns: ${campaignsLine}. Filing a campaign is ${prices.register.amount} once, paid from your plan’s monthly usage, and each extra campaign is ${extraCampaign}.`,
+        a: `Yes. US carriers ask every business that texts to register what it texts for, a step known as 10DLC. We file the registration for you when you add a US number. It costs ${registration.once} once to file each campaign, then ${registration.monthly} a month while it’s active, taken from your account. ${registration.why}`,
       },
       {
         q: 'What does a number cost?',
-        a: `${prices.number.name}: ${prices.number.amount} ${prices.number.unit}. ${prices.sms.name}: ${prices.sms.amount} ${prices.sms.unit}. ${prices.sms.note} ${prices.voice.name}: ${prices.voice.amount} ${prices.voice.unit}. ${prices.register.name}: each paid plan includes its campaigns’ monthly fee; filing one is ${prices.register.amount} once, and each extra campaign is ${extraCampaign}. ${prices.number.note}`,
+        a: `${prices.number.name}: ${prices.number.amount} ${prices.number.unit}. ${prices.sms.name}: ${prices.sms.amount} ${prices.sms.unit}. ${prices.sms.note} ${prices.voice.name}: ${prices.voice.amount} ${prices.voice.unit}. ${registration.line} ${prices.number.note}`,
       },
     ],
   },

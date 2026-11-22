@@ -76,7 +76,6 @@ export const recipe: Recipe = {
     {
       name: 'Team',
       includes: [
-        'Everything in Starter',
         'The next message after no or STOP, timed',
         'A pause on a flag, if you switch it on',
       ],
@@ -84,7 +83,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Team',
         'Personas added to your lists from your code',
         'Every message in your event log, by webhook or API',
       ],

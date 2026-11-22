@@ -100,8 +100,8 @@ type Bill = Bills['bills'][number]
 type Line = Bill['lines'][number]
 
 /* The month as the engine counts it: each piece in its own unit. Model spend is typed in dollars at cost, so it is
-   turned into the model tokens piece's unit; a quantity that brings another price with it (texts bring the US texting
-   registration) adds 1 of it. */
+   turned into the model tokens piece's unit; a quantity that brings another price with it (texts bring 1 active US
+   texting campaign, the same fixed monthly fee on every plan) adds 1 of it. */
 function usageOf(used: Used[]): Record<string, number> {
   const usage: Record<string, number> = {}
   for (const { q, n } of used) {
@@ -116,10 +116,10 @@ function usageOf(used: Used[]): Record<string, number> {
 const labels: Record<string, string> = Object.fromEntries(p.calc.pieces.flatMap((piece) => piece.quantities.map((q) => [q.key, q.label])))
 const labelOf = (key: string) => labels[key] ?? (key in prices ? priceOf(key as PriceKey).name : key)
 
-/* What a line counts, at what rate on the bill's plan: "20,000 at $0.32 per 1,000", "10 in Free", the fee in the plan. */
+/* What a line counts, at what rate on the bill's plan: "20,000 at $0.32 per 1,000", "10 in Free". */
 function subOf(bill: Bill, l: Line, spend: number): string {
   const s = p.calc.summary
-  if (l.billable === 0) return l.piece === 'register' ? s.inPlan : s.allowance(quantity(l.n))
+  if (l.billable === 0) return s.allowance(quantity(l.n))
   if (l.piece === 'tokens') {
     const t = prices.tokens
     return s.at(`$${figure(spend)}`, ((bill.plan === 'scale' && t.scale?.amount) || t.amount).toLowerCase())
@@ -242,6 +242,9 @@ function Summary({ bill, bills, spend }: { bill: Bill; bills: Bill[]; spend: num
   const total = money(toCents(bill.total ?? 0))
   const name = bill.name
   const credit = bill.credit ?? 0
+  /* Past the credit the rest of the month bills at list (founders, 22 Nov 2026): what that adds over the plan's rates, so
+     the rows still add up to the total. */
+  const listExtra = toCents(bill.payg) - (toCents(bill.used) - toCents(bill.creditUsed))
 
   /* 1 polite announcement once the inputs settle, never on load and never on every keystroke. */
   const [said, setSaid] = useState('')
@@ -289,6 +292,15 @@ function Summary({ bill, bills, spend }: { bill: Bill; bills: Bill[]; spend: num
             <div>
               <dt>{s.covered(`$${figure(credit)}`)}</dt>
               <dd className="s-pr-sum__in">{money(-toCents(bill.creditUsed))}</dd>
+            </div>
+          )}
+          {listExtra > 0 && (
+            <div>
+              <dt>
+                {s.pastList}
+                <span className="s-pr-sum__sub">{tie(s.pastListSub(money(toCents(bill.payg)), money(listExtra)))}</span>
+              </dt>
+              <dd>{money(listExtra)}</dd>
             </div>
           )}
         </dl>
@@ -369,6 +381,7 @@ export function Pricing() {
               <PlanItem plan={plan} key={plan.id} />
             ))}
           </div>
+          <p className="s-pr-extra s-pr-texting">{tie(p.plans.texting)}</p>
           <p className="s-pr-extra">
             {tie(p.plans.extra.line)}{' '}
             <Link className="ob-btn ob-btn--link ob-btn--inline" to={p.plans.extra.link.to}>

@@ -86,7 +86,6 @@ export const recipe: Recipe = {
     {
       name: 'Large shortlist',
       includes: [
-        'Everything in Shortlist',
         '40 cases from your own tickets, the hardest included',
         'Every test tagged on every vendor',
         'Every answer in your event log, by webhook or API',

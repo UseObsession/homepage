@@ -75,7 +75,7 @@ export const recipe: Recipe = {
     {
       name: 'Daily',
       includes: [
-        'Everything in Weekly, every morning',
+        'Public and member prices read every morning',
         'Sitewide sales and codes the day they appear',
         'Each change beside your own price',
         'Alerts only above an amount you set',
@@ -84,7 +84,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Daily',
         'Changes in Clay, a webhook or the API',
         'A weekly report you can share',
       ],

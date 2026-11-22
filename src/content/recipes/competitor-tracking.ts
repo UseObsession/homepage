@@ -79,7 +79,6 @@ export const recipe: Recipe = {
     {
       name: 'Growth',
       includes: [
-        'Everything in Starter',
         'Member prices beside the public ones',
         'Their public ads beside their pages',
       ],
@@ -87,7 +86,6 @@ export const recipe: Recipe = {
     {
       name: 'Daily',
       includes: [
-        'Everything in Growth',
         'Every price, offer and page change, the day it happens',
         'History and trends for each competitor',
         'A report you can share each month',

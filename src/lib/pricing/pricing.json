@@ -1,8 +1,8 @@
 {
-  "version": "2026-11-21.1",
-  "date": "2026-11-21",
+  "version": "2026-11-22.3",
+  "date": "2026-11-22",
   "currency": "USD",
-  "about": "Obsession's single source of pricing. Primitives are what we pay (wholesale). Pieces are what we sell one by one. Plans sell a monthly credit in dollars, spent at the pieces' rates (list, or Scale's lower rates); Free keeps fixed allowances. Blueprints state what one run uses in primitives, and each tier states how many units, how often and at what target margin. engine.js turns these into every price: cost at full use / (1 - margin), rounded up to the ladder. No price is typed anywhere in this file except the retail piece prices and the plan prices, which are set by the founders and checked against wholesale here.",
+  "about": "Obsession's single source of pricing. Primitives are what we pay (wholesale). Pieces are the one price list: what we sell one by one. Plans sell a monthly credit in dollars, spent at the pieces' rates (list, or Startup's and Scale's lower rates); Free keeps fixed allowances. A blueprint run draws on that credit at the piece rates like any piece (founders, 22 Nov 2026): each blueprint states what one run uses, and each of its 4 scenarios (the free run, then a small, medium and large typical month) states how many units and how often. engine.js turns these into what a typical month costs the buyer (usage x piece rates, model tokens at cost plus 10%) and what it costs us. No price is typed anywhere in this file except the retail piece prices and the plan prices, which are set by the founders and checked against wholesale here.",
   "daysPerMonth": 30.4,
   "frequencies": {
     "once": { "runsPerMonth": 1, "label": "once" },
@@ -61,7 +61,7 @@
     },
 
     "overhead": {
-      "about": "A browser plan fee is a fixed monthly cost. The part not returned as included usage is spread over the browser-hours of every paying run in a month (the fleet), and shows as its own line, 'Browser plan, spread'.",
+      "about": "A browser plan fee is a fixed monthly cost, overhead like the server bill (founders, 22 Nov 2026). The part not returned as included usage is spread over the browser-hours of every paying run in a month (the fleet), and shows as its own line, 'Browser plan, spread', in our cost of a blueprint month and of a store check. It never counts toward a piece's 25% floor, which is judged on what an hour costs us at the margin.",
       "fleet": {
         "journeysPerMonth": { "value": 300, "unit": "store checks a month across every customer", "basis": "assumed", "source": "The founder's journey cost calculator default. At the measured 13.4 minutes a check this is 67 browser-hours a month." },
         "journeyVisits": ["signup", "checkout"]
@@ -142,51 +142,61 @@
   "pieces": [
     { "id": "inbox", "name": "Inbox", "unit": "an inbox a month", "retail": 0.5, "wholesale": [{ "path": "email.inboxMonthly" }], "note": "The first 3 inboxes are free." },
     { "id": "email", "name": "Emails", "unit": "an email, sent or received", "displayPer": 1000, "displayUnit": "per 1,000 emails", "retail": 0.0004, "wholesale": [{ "path": "email.send" }], "note": "Wholesale is the sending cost; receiving costs us nothing." },
-    { "id": "number", "name": "Phone number", "unit": "a US or UK number a month", "retail": 1.5, "wholesale": [{ "path": "phone.numberMonthly" }] },
+    { "id": "number", "name": "Phone number", "unit": "a US or UK number a month", "retail": 2, "wholesale": [{ "path": "phone.numberMonthly" }] },
     { "id": "sms", "name": "Texts", "unit": "a text, sent or received", "retail": 0.015, "wholesale": [{ "path": "phone.textOut" }], "note": "Wholesale is a sent text, the dearer direction." },
-    { "id": "register", "name": "US texting registration", "unit": "a campaign a month", "retail": 15, "wholesale": [{ "path": "phone.registration.standardMonthly" }], "once": { "retail": 30, "wholesale": [{ "path": "phone.registration.brandOnce" }, { "path": "phone.registration.reviewOnce" }] } },
-    { "id": "voice", "name": "Calls", "unit": "a minute, in or out", "retail": 0.01, "wholesale": [{ "path": "phone.callMinuteOut" }], "note": "A raw call. A persona's own voice adds the relay and model tokens." },
-    { "id": "imessage", "name": "iMessage line", "unit": "a line a month", "retail": 140, "wholesale": [{ "path": "messaging.imessageLineMonthly" }] },
+    { "id": "register", "name": "US texting registration", "unit": "a campaign a month", "retail": 17, "fixed": true, "wholesale": [{ "path": "phone.registration.standardMonthly" }], "once": { "retail": 25, "wholesale": [{ "path": "phone.registration.brandOnce" }, { "path": "phone.registration.reviewOnce" }] }, "note": "The US carriers' texting registration (10DLC), at fixed prices, the same on every plan and off the rate ladder (fixed: true; founders, 22 Nov 2026): $25 once to file each campaign and $17 a month for each active campaign, both taken from the buyer's account (the credit, then pay as you go). No plan includes a campaign, and we bear none of the cost. It costs us $19.50 once (brand $4.50 and review $15) and $1.50 to $10 a month a campaign; wholesale here is the dearer standard campaign." },
+    { "id": "voice", "name": "Calls", "unit": "a minute, in or out", "retail": 0.012, "wholesale": [{ "path": "phone.callMinuteOut" }], "note": "A raw call. A persona's own voice adds the relay and model tokens." },
+    { "id": "imessage", "name": "iMessage line", "unit": "a line a month", "retail": 170, "wholesale": [{ "path": "messaging.imessageLineMonthly" }] },
     { "id": "whatsapp", "name": "WhatsApp", "unit": "a US utility message", "retailPlus": 0.004, "wholesale": [{ "path": "messaging.whatsappUtilityUS" }], "note": "Meta's fee passed through at cost, plus $0.004." },
     { "id": "chat", "name": "Slack and Telegram", "unit": "a message", "retail": 0, "wholesale": [{ "path": "messaging.slackTelegram" }] },
-    { "id": "browser", "name": "Browser", "unit": "a browser hour", "retail": 0.08, "wholesale": [{ "browser": "headless" }], "note": "Wholesale follows the selected browser's headless rate, before the plan fee." },
-    { "id": "stealth", "name": "Stealth browser", "unit": "a browser hour, with a full screen", "retail": 0.65, "wholesale": [{ "browser": "headful" }], "note": "Wholesale follows the selected browser's headful rate, before the plan fee." },
-    { "id": "sandbox", "name": "Sandbox", "unit": "an active vCPU hour", "retail": 0.1, "wholesale": [{ "path": "sandbox.vcpuHour" }] },
+    { "id": "browser", "name": "Browser", "unit": "a browser hour", "retail": 0.1, "wholesale": [{ "browser": "headless" }], "note": "Wholesale follows the selected browser's headless rate: what an hour costs us at the margin. The browser plan fee is fixed overhead, outside the floor." },
+    { "id": "stealth", "name": "Stealth browser", "unit": "a browser hour, with a full screen", "retail": 0.85, "wholesale": [{ "browser": "headful" }], "note": "Wholesale follows the selected browser's headful rate: what an hour costs us at the margin. The browser plan fee is fixed overhead, outside the floor." },
+    { "id": "sandbox", "name": "Sandbox", "unit": "an active vCPU hour", "retail": 0.12, "wholesale": [{ "path": "sandbox.vcpuHour" }] },
     { "id": "memory", "name": "Sandbox memory", "unit": "a GiB hour", "retail": 0.015, "wholesale": [{ "path": "sandbox.gibHour" }] },
     { "id": "persona", "name": "Persona", "unit": "while it waits", "retail": 0, "wholesale": [] },
     { "id": "log", "name": "Event log", "unit": "an event", "displayPer": 1000000, "displayUnit": "per million events", "retail": 0.000005, "wholesale": [{ "path": "eventLog.perEvent" }] },
-    { "id": "tokens", "name": "Model tokens", "unit": "1M input tokens at the selected model, cache share applied", "retailMarkup": 0.3, "wholesale": [{ "model": "input" }], "note": "Cost plus 30%, or free with your own key. Cost plus 30% is a 23.1% margin, under the 30% floor the other pieces keep on Scale: model tokens pass through near cost. On Scale they are cost plus 20% (plans[scale].discount)." }
+    { "id": "tokens", "name": "Model tokens", "unit": "1M input tokens at the selected model, cache share applied", "retailMarkup": 0.1, "wholesale": [{ "model": "input" }], "note": "Taken straight from the buyer's credit at cost plus 10% (a 9.1% margin) on every plan, or free with your own key (founders, 22 Nov 2026). Never discounted (each plan's discount.except). Not a priced piece: plan margins and the 25% floor are judged without it (credit.marginExcludes)." }
   ],
 
   "plans": [
-    { "id": "free", "name": "Free", "monthly": 0, "credit": 0, "billing": ["monthly"], "allowances": { "inbox": 3, "email": 3000, "number": 1, "browser": 10, "sandbox": 10, "log": 100000 }, "freeNumber": { "textsIn": 50, "callMinutesIn": 30 }, "features": { "eventLogDays": 30, "spendCap": false }, "note": "Fixed free allowances and no credit card. Free's number receives up to 50 texts and 30 call minutes a month; it sends no texts and makes no calls. Past an allowance the piece pauses until the next month. Paid plans do not carry these allowances: their credit pays from the first unit, and Developer's $20 covers Free's allowances (worth $6.50 at list rates) three times over." },
-    { "id": "developer", "name": "Developer", "monthly": 20, "credit": 20, "billing": ["monthly"], "features": { "register": { "kind": "low volume", "campaigns": 1, "wholesale": "phone.registration.lowVolumeMonthly" }, "eventLogDays": 30, "support": "email", "spendCap": true }, "note": "$20 of usage a month at list rates. Includes the monthly fee of 1 low volume US texting campaign." },
-    { "id": "startup", "name": "Startup", "monthly": 99, "credit": 100, "billing": ["monthly"], "featured": true, "features": { "register": { "kind": "standard", "campaigns": 1, "wholesale": "phone.registration.standardMonthly" }, "eventLogDays": 90, "support": "email", "seats": true, "spendCap": true }, "note": "$100 of usage a month at list rates for $99. Includes the monthly fee of 1 standard US texting campaign." },
-    { "id": "scale", "name": "Scale", "monthly": 499, "credit": 500, "billing": ["monthly"], "discount": { "off": 0.2, "marginFloor": 0.3, "roundUpSignificant": 3, "pieces": { "tokens": { "retailMarkup": 0.2, "note": "Model tokens keep their own rule: cost plus 20% on Scale (a 16.7% margin), against cost plus 30% at list (23.1%). Tokens pass through near cost, and a buyer's own key costs nothing." } }, "rule": "Each piece's Scale rate is its list rate less 20%, but never below the rate that keeps a 30% margin over wholesale and never above list, rounded up to 3 significant figures. A piece whose list margin is already under 30% stays at list. A pass-through piece (WhatsApp) takes the 20% off the fee we add on top of Meta's. Model tokens follow their own rule above." }, "features": { "register": { "kind": "standard", "campaigns": 2, "wholesale": "phone.registration.standardMonthly" }, "eventLogDays": 365, "support": "priority", "seats": true, "spendCap": true }, "note": "$500 of usage a month at Scale's lower rates for $499, monthly, no contract. Includes the monthly fees of 2 standard US texting campaigns." },
-    { "id": "enterprise", "name": "Enterprise", "monthly": null, "from": 1500, "credit": null, "billing": ["monthly", "yearly"], "billingDefault": "monthly", "upfront": false, "commitment": null, "billingRule": "Starts monthly, with no yearly commitment and nothing paid up front, and grows with usage. Yearly billing is an option the buyer may choose later, never a requirement. No yearly discount is defined.", "features": { "reseller": true, "whiteLabel": true, "accountPerClient": true, "wholesaleRates": true, "volumeRates": true, "eventLogDays": null, "sso": true, "support": "own channel", "spendCap": true }, "note": "Led by the reseller offer: white label, an account per client and wholesale rates on every piece. Also lower rates as volume grows, a longer event log, SSO and a support channel of its own. From about $1,500 a month, billed monthly. Any blueprint tier that works out above $1,499 a month goes here." }
+    { "id": "free", "name": "Free", "monthly": 0, "credit": 0, "billing": ["monthly"], "allowances": { "inbox": 3, "email": 3000, "number": 1, "browser": 10, "sandbox": 10, "log": 100000 }, "freeNumber": { "textsIn": 50, "callMinutesIn": 30 }, "features": { "eventLogDays": 30, "spendCap": false }, "note": "Fixed free allowances and no credit card. Free's number receives up to 50 texts and 30 call minutes a month; it sends no texts and makes no calls. Past an allowance the piece pauses until the next month. Paid plans do not carry these allowances: their credit pays from the first unit, and Developer's $20 covers Free's allowances (worth $7.40 at list rates) more than twice." },
+    { "id": "developer", "name": "Developer", "monthly": 20, "credit": 20, "billing": ["monthly"], "features": { "eventLogDays": 30, "support": "email", "spendCap": true }, "note": "$20 of usage a month at list rates." },
+    { "id": "startup", "name": "Startup", "monthly": 99, "credit": 100, "billing": ["monthly"], "featured": true, "discount": { "off": 0.1, "except": ["tokens"], "rule": "10% off every piece's list rate, on usage paid from the credit; past the credit, list rates. Model tokens and the fixed-price US texting registration are never discounted." }, "features": { "eventLogDays": 90, "support": "email", "seats": true, "spendCap": true }, "note": "$100 of usage a month at 10% off list rates for $99, worth about $111 at list rates." },
+    { "id": "scale", "name": "Scale", "monthly": 499, "credit": 500, "billing": ["monthly"], "discount": { "off": 0.2, "except": ["tokens"], "rule": "20% off every piece's list rate, on usage paid from the credit; past the credit, list rates. A pass-through piece (WhatsApp) takes the 20% off the fee we add on top of Meta's. Model tokens and the fixed-price US texting registration are never discounted." }, "features": { "eventLogDays": 365, "support": "priority", "seats": true, "spendCap": true }, "note": "$500 of usage a month at 20% off list rates for $499, worth $625 at list rates, monthly, no contract, with a 1-year event log (founders, 22 Nov 2026)." },
+    { "id": "enterprise", "name": "Enterprise", "monthly": null, "from": 1500, "fromRule": "first month", "credit": null, "billing": ["monthly", "yearly"], "billingDefault": "monthly", "upfront": false, "commitment": null, "yearly": { "monthsPaid": 10, "monthsCovered": 12, "words": "2 months free when paid yearly" }, "billingRule": "From $1,500 a month: the floor on the first month's bill (founders, 22 Nov 2026). Starts monthly, with no yearly commitment and nothing paid up front, and grows with usage. Yearly billing is optional and earns 2 months free: pay for 10 months, get 12 (16.7% off).", "features": { "reseller": true, "whiteLabel": true, "accountPerClient": true, "wholesaleRates": true, "volumeRates": true, "eventLogDays": null, "sso": true, "support": "own channel", "spendCap": true }, "note": "Led by the reseller offer: white label, an account per client and wholesale rates on every piece, lower again than Scale's by contract. Also lower rates as volume grows, a longer event log, SSO and a support channel of its own. From $1,500 a month as a first-month floor, billed monthly with nothing up front; 2 months free when paid yearly." }
   ],
 
   "credit": {
-    "about": "How the paid plans bill (founders, 21 Nov 2026). A paid plan's monthly fee buys a monthly credit, spent at that plan's rates on any piece, model tokens included. Past the credit, usage is billed at the same rates: pay as you go, with no limit, until the spend cap the buyer sets. Plans differ by features and, on Scale, by lower rates, never by fixed amounts of each piece.",
+    "about": "How the paid plans bill (founders, 21 Nov 2026). A paid plan's monthly fee buys a monthly credit, spent at that plan's rates on any piece, model tokens included. A plan's lower rates apply only to usage paid from its credit: past the credit, usage is billed at list rates on every plan, pay as you go up to any monthly spend cap the buyer sets (founders, 22 Nov 2026). Plans differ by features and by the rates on credit-paid usage, never by fixed amounts of each piece.",
     "unit": "US dollars of usage, never points or abstract credits. Every piece rate stays in dollars per unit.",
     "resets": "monthly",
     "rollover": false,
     "rolloverRule": "Unused credit resets at the start of each month and does not roll over.",
-    "blueprints": "Blueprint plans are separate products with their own tier prices and never draw on plan credit. A blueprint a developer runs from their own code through the API is billed on the pieces it uses, so it draws on credit.",
-    "registration": "A paid plan includes the monthly fees of its US texting campaigns (features.register). Filing a campaign with the carriers is the register piece's one-off price, paid from the credit at the plan's rate. Filing on every plan would cost us $19.50 once each and puts Developer's worst case below cost in its first months.",
+    "blueprints": "A blueprint run draws on the plan's credit at the plan's piece rates, then at list rates once the credit is used, like any piece (founders, 22 Nov 2026). There is one price list, the pieces: a blueprint has no prices or margins of its own. Each blueprint page shows what a typical month of it costs, worked out from what each run uses at the piece rates. The first run of every blueprint is free.",
+    "marginExcludes": ["tokens"],
+    "ladder": {
+      "about": "The plan rate ladder (founders, 22 Nov 2026), in place of the Scale-only discount: Free and Developer pay list rates, Startup 10% off every piece and Scale 20% off every piece on usage paid from their credit (past the credit, list rates), Enterprise lower again by contract. Model tokens and fixed-price pieces (the US texting registration, fixed: true) are never discounted. Each plan's credit is worth credit / (1 - off) at list rates: Startup's $100 about $111, Scale's $500 $625.",
+      "floor": 0.25,
+      "floorPlan": "scale",
+      "floorRule": "Every piece on the ladder keeps at least a 25% margin at Scale's 20% off over what a unit costs us at the margin (wholesale). The browser plan fee is fixed overhead, like the server bill, and never counts toward the floor (founders, 22 Nov 2026): the browser is $0.10 an hour at list, $0.08 on Scale over $0.06 (25%), and the stealth browser $0.85, $0.68 on Scale over $0.48 (29%). A fixed-price piece (fixed: true) is off the ladder and outside the floor. List prices were raised on 22 Nov 2026 to meet it, rounded to clean figures.",
+      "raised": { "number": [1.5, 2], "voice": [0.01, 0.012], "imessage": [140, 170], "browser": [0.08, 0.1], "stealth": [0.65, 0.85], "sandbox": [0.1, 0.12] }
+    },
+    "marginRule": "Plan margins are judged on the pieces, without model tokens: tokens are taken straight from the credit at cost plus 10%.",
+    "registration": "The US carriers' texting registration is at fixed prices, the same on every plan and off the rate ladder (founders, 22 Nov 2026): $25 once to file each campaign and $17 a month for each active campaign, both taken from the buyer's account (the credit, then pay as you go). No plan includes a campaign, and we bear none of the cost. It costs us $19.50 once and $1.50 to $10 a month a campaign.",
     "typicalMonth": {
       "basis": "assumed",
-      "about": "A mid-size buyer's month, in each piece's own unit: 50 personas with an inbox, 20 numbers, browsers, a sandbox, the event log and our model. It is each plan's typical mix (scaled to fill the plan's credit for its typical margin) and the worked example bill in check.mjs. Model tokens count 1M input tokens at the selected model, cache share applied (400 is $151.52 of model cost at the default).",
+      "about": "A mid-size buyer's month, in each piece's own unit: 50 personas with an inbox, 20 numbers, 1 US texting campaign, browsers, a sandbox, the event log and our model. It is the worked example bill in check.mjs, and, without model tokens (credit.marginExcludes), each plan's typical mix (scaled to fill the plan's credit for its typical margin). Model tokens count 1M input tokens at the selected model, cache share applied (400 is $151.52 of model cost at the default).",
       "usage": { "inbox": 50, "email": 200000, "number": 20, "sms": 4000, "register": 1, "voice": 1000, "browser": 1500, "stealth": 150, "sandbox": 400, "memory": 1600, "log": 20000000, "tokens": 400 }
     }
   },
 
-  "rounding": {
-    "rule": "Round the worked-out price up to the next price on the ladder.",
-    "ladder": [9, 19, 29, 49, 79, 99, 149, 199, 249, 299, 399, 499, 599, 799, 999, 1499, 1999, 2499, 2999, 3999, 4999],
-    "beyond": { "step": 1000, "rule": "Above the ladder, the next whole thousand less 1." },
-    "enterpriseAbove": 1499,
-    "enterpriseRule": "A tier whose price works out above $1,499 a month is offered as Enterprise on /pricing, with its worked price shown for reference."
+  "estimates": {
+    "about": "How a blueprint's typical month is worked out and said (founders, 22 Nov 2026): what each run uses, counted in pieces, x each piece's rate (list, or the plan's for a month paid from its credit), with model tokens and a persona's own voice on calls at cost plus 10%. No margin, no ladder. Shown as \"about $N a month\".",
+    "step": 1,
+    "wholeFrom": 10,
+    "smallStep": 0.5,
+    "rule": "Round to the nearest dollar; under $10, to the nearest 50 cents, never below 50 cents.",
+    "firstRunFree": true
   },
 
   "blueprints": [
@@ -199,17 +209,17 @@
       "unit": "mystery shop",
       "per": "client store",
       "noun": ["client store", "client stores"],
-      "run": "One full shop of one client store: a sign-up visit and a checkout visit on one browser, stopped before payment, then a 48 hour watch that wakes on each email and text.",
-      "note": "The founder's anchor. Visits are the measured Kernel medians. 4 wakes (3 emails, 1 text) are assumed from the September run, which kept 5 messages from 4 journeys. The agency's personas shop every client store (as the page says), so their inboxes and numbers are held per account; each store gets its own free inbox address.",
+      "run": "One full shop of one client store: a sign-up visit and a checkout visit on one browser, stopped before payment, then a wait that wakes on each email and text (48 hours assumed; the agency chooses its length).",
+      "note": "The founder's check: 150 stores a month, expected at roughly $230 at the piece rates (check.mjs reports the engine's figure). Visits are the measured Kernel medians. The wait after each shop is the agency's to choose (founder, 22 Nov 2026); these estimates assume 48 hours, the default, and its 4 wakes (3 emails, 1 text) are assumed from the September run, which kept 5 messages from 4 journeys. The agency's personas shop every client store (as the page says), so their inboxes and numbers are held per account; each store gets its own free inbox address.",
       "usage": {
         "run": { "visits": [{ "type": "signup" }, { "type": "checkout" }], "wakes": 4, "emailsIn": 3, "textsIn": 1, "textsOut": 1, "events": 40 },
         "account": { "inboxes": 2, "numbers": 2, "note": "2 personas (a UK and a US shopper), each with an inbox and a number, shop every client store." }
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 2, "covers": "{q} {noun}, shopped once", "for": "Try it on 1 client store." },
-        { "name": "Starter", "q": 30, "every": "month", "margin": 0.5, "covers": "Up to {q} {noun}, each shopped {every}", "for": "For an agency with its first clients." },
-        { "name": "Agency", "q": 150, "every": "month", "margin": 0.35, "featured": true, "covers": "Up to {q} {noun}, each shopped {every}", "for": "For an agency with a full client list." },
-        { "name": "Scale", "q": 500, "every": "month", "margin": 0.35, "covers": "Up to {q} {noun}, each shopped {every}", "for": "For an agency group, or several agencies on one account." }
+        { "name": "Starter", "q": 30, "every": "month", "covers": "{q} {noun}, each shopped {every}", "for": "For an agency with its first clients." },
+        { "name": "Agency", "q": 150, "every": "month", "featured": true, "covers": "{q} {noun}, each shopped {every}", "for": "For an agency with a full client list." },
+        { "name": "Scale", "q": 500, "every": "month", "covers": "{q} {noun}, each shopped {every}", "for": "For an agency group, or several agencies on one account." }
       ]
     },
     {
@@ -221,8 +231,8 @@
       "unit": "mystery shop",
       "per": "store",
       "noun": ["store", "stores"],
-      "run": "One full shop of your store, the same as the agency shop: a sign-up visit and a checkout visit, then a 48 hour watch. The Daily tier adds a checkout left on its own every day.",
-      "note": "One persona is held for the store; each shop signs up with a fresh free inbox address.",
+      "run": "One full shop of your store, the same as the agency shop: a sign-up visit and a checkout visit, then a wait that wakes on each email and text (48 hours assumed; the buyer chooses its length). The Daily month adds a checkout left on its own every day.",
+      "note": "One persona is held for the store; each shop signs up with a fresh free inbox address. The wait after each shop is the buyer's to choose; these estimates assume 48 hours, the default.",
       "usage": {
         "run": { "visits": [{ "type": "signup" }, { "type": "checkout" }], "wakes": 4, "emailsIn": 3, "textsIn": 1, "textsOut": 1, "events": 40 },
         "runs": {
@@ -232,9 +242,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 2, "covers": "1 full mystery shop of your store", "for": "Try it on your own store." },
-        { "name": "Monthly", "q": 1, "every": "month", "margin": 0.6, "covers": "{q} {noun}, shopped in full {every}", "for": "For a store whose flows rarely change." },
-        { "name": "Weekly", "q": 1, "every": "week", "margin": 0.5, "featured": true, "covers": "{q} {noun}, shopped in full {every}", "for": "Know the week a flow stops." },
-        { "name": "Daily", "q": 1, "every": "week", "margin": 0.4, "extra": [{ "run": "checkout", "every": "day" }], "covers": "{q} {noun}: a checkout left every day, a full shop every week", "for": "Know the day your checkout reminder stops." }
+        { "name": "Monthly", "q": 1, "every": "month", "covers": "{q} {noun}, shopped in full {every}", "for": "For a store whose flows rarely change." },
+        { "name": "Weekly", "q": 1, "every": "week", "featured": true, "covers": "{q} {noun}, shopped in full {every}", "for": "Know the week a flow stops." },
+        { "name": "Daily", "q": 1, "every": "week", "extra": [{ "run": "checkout", "every": "day" }], "covers": "{q} {noun}: a checkout left every day, a full shop every week", "for": "Know the day your checkout reminder stops." }
       ]
     },
 
@@ -251,10 +261,10 @@
         "run": { "visits": [{ "type": "stealthRead", "count": 2 }], "events": 6 }
       },
       "tiers": [
-        { "name": "Free", "free": true, "q": 10, "every": "once", "days": 1, "covers": "Up to {q} {noun}, once", "for": "Check your live ads’ pages once." },
-        { "name": "Weekly", "q": 10, "every": "monday", "margin": 0.6, "covers": "Up to {q} {noun}, {every}", "for": "Start each week knowing your ads land on pages that sell." },
-        { "name": "Daily", "q": 10, "every": "morning", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun}, {every}", "for": "Catch a sold out page the morning it happens." },
-        { "name": "Scale", "q": 25, "every": "morning", "margin": 0.4, "covers": "Up to {q} {noun}, {every}", "for": "Check every live ad on a busy account, yours or a client’s." }
+        { "name": "Free", "free": true, "q": 10, "every": "once", "days": 1, "covers": "{q} {noun}, once", "for": "Check your live ads’ pages once." },
+        { "name": "Weekly", "q": 10, "every": "monday", "covers": "{q} {noun}, {every}", "for": "Start each week knowing your ads land on pages that sell." },
+        { "name": "Daily", "q": 10, "every": "morning", "featured": true, "covers": "{q} {noun}, {every}", "for": "Catch a sold out page the morning it happens." },
+        { "name": "Scale", "q": 25, "every": "morning", "covers": "{q} {noun}, {every}", "for": "Check every live ad on a busy account, yours or a client’s." }
       ]
     },
     {
@@ -272,9 +282,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 14, "covers": "{q} {noun} for 14 days, in 1 country", "for": "Follow 1 new user through your first 14 days." },
-        { "name": "Launch", "q": 8, "every": "month", "margin": 0.6, "covers": "1 flow, {q} {noun} a month", "for": "Check each launch the way a new user meets it." },
-        { "name": "Growth", "q": 30, "every": "month", "margin": 0.5, "featured": true, "covers": "{q} {noun} a month, in up to 3 countries", "for": "Know every message still lands after each release." },
-        { "name": "Global", "q": 80, "every": "month", "margin": 0.4, "covers": "{q} {noun} a month, in up to 10 countries", "for": "Cover every country you sell in." }
+        { "name": "Launch", "q": 8, "every": "month", "covers": "1 flow, {q} {noun} a month", "for": "Check each launch the way a new user meets it." },
+        { "name": "Growth", "q": 30, "every": "month", "featured": true, "covers": "{q} {noun} a month, in 3 countries", "for": "Know every message still lands after each release." },
+        { "name": "Global", "q": 80, "every": "month", "covers": "{q} {noun} a month, in 10 countries", "for": "Cover every country you sell in." }
       ]
     },
     {
@@ -292,9 +302,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 2, "covers": "1 test lead on 1 site", "for": "See how fast 1 site answers a new lead." },
-        { "name": "Single site", "q": 1, "runsPerMonth": 8, "margin": 0.6, "covers": "{q} {noun}, {runs} test leads a month", "for": "Hold 1 site to your reply target." },
-        { "name": "Group", "q": 5, "runsPerMonth": 8, "margin": 0.5, "featured": true, "covers": "Up to {q} {noun}, {runs} test leads each a month", "for": "Compare every location you run." },
-        { "name": "Agency", "q": 20, "runsPerMonth": 8, "margin": 0.4, "covers": "Up to {q} {noun}, {runs} test leads each a month", "for": "Audit clients and prospects at scale." }
+        { "name": "Single site", "q": 1, "runsPerMonth": 8, "covers": "{q} {noun}, {runs} test leads a month", "for": "Hold 1 site to your reply target." },
+        { "name": "Group", "q": 5, "runsPerMonth": 8, "featured": true, "covers": "{q} {noun}, {runs} test leads each a month", "for": "Compare every location you run." },
+        { "name": "Agency", "q": 20, "runsPerMonth": 8, "covers": "{q} {noun}, {runs} test leads each a month", "for": "Audit clients and prospects at scale." }
       ]
     },
     {
@@ -311,9 +321,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 1, "covers": "{q} {noun}, 10 questions, once", "for": "See what AI assistants tell buyers about you today." },
-        { "name": "Starter", "q": 1, "every": "monday", "margin": 0.6, "covers": "{q} {noun}, 10 questions, {every}", "for": "Keep 1 location’s facts right." },
-        { "name": "Growth", "q": 5, "every": "monday", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun}, 10 questions each, {every}", "for": "Check every location your buyers search for." },
-        { "name": "Scale", "q": 15, "every": "monday", "margin": 0.4, "covers": "Up to {q} {noun}, 10 questions each, {every}", "for": "Cover a chain, or every client’s locations." }
+        { "name": "Starter", "q": 1, "every": "monday", "covers": "{q} {noun}, 10 questions, {every}", "for": "Keep 1 location’s facts right." },
+        { "name": "Growth", "q": 5, "every": "monday", "featured": true, "covers": "{q} {noun}, 10 questions each, {every}", "for": "Check every location your buyers search for." },
+        { "name": "Scale", "q": 15, "every": "monday", "covers": "{q} {noun}, 10 questions each, {every}", "for": "Cover a chain, or every client’s locations." }
       ]
     },
     {
@@ -331,10 +341,10 @@
         "account": { "inboxes": 1 }
       },
       "tiers": [
-        { "name": "Free", "free": true, "q": 5, "every": "once", "days": 7, "covers": "Up to {q} {noun}, once", "for": "Check your partners’ links and codes once." },
-        { "name": "Starter", "q": 10, "every": "monday", "margin": 0.6, "covers": "Up to {q} {noun}, {every}", "for": "Check a small affiliate programme every week." },
-        { "name": "Growth", "q": 30, "every": "monday", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun}, {every}", "for": "Check every active affiliate and creator each Monday." },
-        { "name": "Scale", "q": 100, "every": "monday", "margin": 0.4, "covers": "Up to {q} {noun}, {every}", "for": "Cover a large programme, or every client’s partners." }
+        { "name": "Free", "free": true, "q": 5, "every": "once", "days": 7, "covers": "{q} {noun}, once", "for": "Check your partners’ links and codes once." },
+        { "name": "Starter", "q": 10, "every": "monday", "covers": "{q} {noun}, {every}", "for": "Check a small affiliate programme every week." },
+        { "name": "Growth", "q": 30, "every": "monday", "featured": true, "covers": "{q} {noun}, {every}", "for": "Check every active affiliate and creator each Monday." },
+        { "name": "Scale", "q": 100, "every": "monday", "covers": "{q} {noun}, {every}", "for": "Cover a large programme, or every client’s partners." }
       ]
     },
     {
@@ -351,9 +361,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 1, "covers": "1 flow test on 1 product", "for": "Run 1 flow on your product as a new user." },
-        { "name": "Indie", "q": 5, "every": "month", "margin": 0.6, "covers": "1 product, {q} {noun} a month", "for": "Catch a broken sign up before your users do." },
-        { "name": "Every release", "q": 30, "every": "month", "margin": 0.5, "featured": true, "covers": "1 product, {q} {noun} a month", "for": "Test every release before your users meet it." },
-        { "name": "Agency", "q": 120, "every": "month", "margin": 0.4, "covers": "Up to 5 products, {q} {noun} a month", "for": "Run QA for every product you look after." }
+        { "name": "Indie", "q": 5, "every": "month", "covers": "1 product, {q} {noun} a month", "for": "Catch a broken sign up before your users do." },
+        { "name": "Every release", "q": 30, "every": "month", "featured": true, "covers": "1 product, {q} {noun} a month", "for": "Test every release before your users meet it." },
+        { "name": "Agency", "q": 120, "every": "month", "covers": "5 products, {q} {noun} a month", "for": "Run QA for every product you look after." }
       ]
     },
 
@@ -375,9 +385,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "morning", "days": 14, "covers": "{q} {noun}, for 14 days", "for": "See what 1 account sends a new subscriber." },
-        { "name": "Starter", "q": 3, "every": "morning", "margin": 0.6, "covers": "Up to {q} {noun}, {every}", "for": "Watch the accounts that renew next." },
-        { "name": "Team", "q": 10, "every": "morning", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun}, {every}", "for": "Cover an account manager’s renewals for the quarter." },
-        { "name": "Scale", "q": 30, "every": "morning", "margin": 0.4, "covers": "Up to {q} {noun}, {every}", "for": "Cover the accounts your sales team holds." }
+        { "name": "Starter", "q": 3, "every": "morning", "covers": "{q} {noun}, {every}", "for": "Watch the accounts that renew next." },
+        { "name": "Team", "q": 10, "every": "morning", "featured": true, "covers": "{q} {noun}, {every}", "for": "Cover an account manager’s renewals for the quarter." },
+        { "name": "Scale", "q": 30, "every": "morning", "covers": "{q} {noun}, {every}", "for": "Cover the accounts your sales team holds." }
       ]
     },
     {
@@ -396,9 +406,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 1, "covers": "{q} {noun}, read once", "for": "See what 1 competitor advertises right now." },
-        { "name": "Weekly", "q": 3, "every": "monday", "margin": 0.6, "covers": "Up to {q} {noun}, {every}", "for": "Keep up with your closest competitors." },
-        { "name": "Daily", "q": 5, "every": "morning", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun}, {every}", "for": "Know a competitor’s new offer the morning it starts." },
-        { "name": "Scale", "q": 15, "every": "morning", "margin": 0.4, "covers": "Up to {q} {noun}, {every}", "for": "Follow a whole category, or each client’s competitors." }
+        { "name": "Weekly", "q": 3, "every": "monday", "covers": "{q} {noun}, {every}", "for": "Keep up with your closest competitors." },
+        { "name": "Daily", "q": 5, "every": "morning", "featured": true, "covers": "{q} {noun}, {every}", "for": "Know a competitor’s new offer the morning it starts." },
+        { "name": "Scale", "q": 15, "every": "morning", "covers": "{q} {noun}, {every}", "for": "Follow a whole category, or each client’s competitors." }
       ]
     },
     {
@@ -419,9 +429,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "day", "days": 14, "covers": "{q} {noun}, tracked for 14 days", "for": "See what 1 competitor sends a new customer." },
-        { "name": "Starter", "q": 5, "every": "week", "margin": 0.6, "covers": "Up to {q} {noun}, pages checked {every}", "for": "Keep up with your closest competitors." },
-        { "name": "Growth", "q": 10, "every": "twiceWeek", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun}, pages checked {every}", "for": "Plan your calendar around theirs." },
-        { "name": "Daily", "q": 10, "every": "day", "margin": 0.4, "covers": "Up to {q} {noun}, prices checked {every}", "for": "Know the day a competitor changes a price." }
+        { "name": "Starter", "q": 5, "every": "week", "covers": "{q} {noun}, pages checked {every}", "for": "Keep up with your closest competitors." },
+        { "name": "Growth", "q": 10, "every": "twiceWeek", "featured": true, "covers": "{q} {noun}, pages checked {every}", "for": "Plan your calendar around theirs." },
+        { "name": "Daily", "q": 10, "every": "day", "covers": "{q} {noun}, prices checked {every}", "for": "Know the day a competitor changes a price." }
       ]
     },
     {
@@ -441,9 +451,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "week", "days": 14, "covers": "{q} {noun}, for 14 days", "for": "See what 1 brand sends a new subscriber." },
-        { "name": "Starter", "q": 10, "every": "week", "margin": 0.6, "covers": "Up to {q} {noun}", "for": "Watch your closest competitors’ emails and texts." },
-        { "name": "Growth", "q": 25, "every": "week", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun}", "for": "See every competitor’s offers on 1 timeline." },
-        { "name": "Scale", "q": 100, "every": "week", "margin": 0.4, "covers": "Up to {q} {noun}", "for": "Cover a whole category, or each client’s competitors." }
+        { "name": "Starter", "q": 10, "every": "week", "covers": "{q} {noun}", "for": "Watch your closest competitors’ emails and texts." },
+        { "name": "Growth", "q": 25, "every": "week", "featured": true, "covers": "{q} {noun}", "for": "See every competitor’s offers on 1 timeline." },
+        { "name": "Scale", "q": 100, "every": "week", "covers": "{q} {noun}", "for": "Cover a whole category, or each client’s competitors." }
       ]
     },
     {
@@ -463,9 +473,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 1, "covers": "{q} {noun}, read once", "for": "See 1 competitor’s member prices." },
-        { "name": "Weekly", "q": 5, "every": "monday", "margin": 0.6, "covers": "Up to {q} {noun}, {every}", "for": "Keep track of your closest competitors." },
-        { "name": "Daily", "q": 5, "every": "morning", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun}, {every}", "for": "Know a price change the morning it happens." },
-        { "name": "Scale", "q": 15, "every": "morning", "margin": 0.4, "covers": "Up to {q} {noun}, {every}", "for": "Cover a whole category, or each client’s competitors." }
+        { "name": "Weekly", "q": 5, "every": "monday", "covers": "{q} {noun}, {every}", "for": "Keep track of your closest competitors." },
+        { "name": "Daily", "q": 5, "every": "morning", "featured": true, "covers": "{q} {noun}, {every}", "for": "Know a price change the morning it happens." },
+        { "name": "Scale", "q": 15, "every": "morning", "covers": "{q} {noun}, {every}", "for": "Cover a whole category, or each client’s competitors." }
       ]
     },
     {
@@ -482,9 +492,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 2, "every": "once", "days": 14, "covers": "{q} {noun}, for 14 days", "for": "Try it on 2 companies on your list." },
-        { "name": "Starter", "q": 20, "every": "month", "margin": 0.6, "covers": "Up to {q} {noun} a month", "for": "Find a reason to write to 20 companies." },
-        { "name": "Growth", "q": 75, "every": "month", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun} a month", "for": "Open a month of outbound on dated findings." },
-        { "name": "Scale", "q": 250, "every": "month", "margin": 0.4, "covers": "Up to {q} {noun} a month", "for": "Cover a whole team’s or agency’s list." }
+        { "name": "Starter", "q": 20, "every": "month", "covers": "{q} {noun} a month", "for": "Find a reason to write to 20 companies." },
+        { "name": "Growth", "q": 75, "every": "month", "featured": true, "covers": "{q} {noun} a month", "for": "Open a month of outbound on dated findings." },
+        { "name": "Scale", "q": 250, "every": "month", "covers": "{q} {noun} a month", "for": "Cover a whole team’s or agency’s list." }
       ]
     },
     {
@@ -501,9 +511,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 14, "covers": "1 trial, up to 14 days", "for": "Tear down 1 competitor’s free trial." },
-        { "name": "Starter", "q": 3, "every": "month", "margin": 0.6, "covers": "Up to {q} {noun} a month", "for": "Keep your closest competitors’ trials on file." },
-        { "name": "Team", "q": 8, "every": "month", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun} a month", "for": "Refresh each competitor’s trial when it changes." },
-        { "name": "Scale", "q": 25, "every": "month", "margin": 0.4, "covers": "Up to {q} {noun} a month", "for": "Track every trial in your category." }
+        { "name": "Starter", "q": 3, "every": "month", "covers": "{q} {noun} a month", "for": "Keep your closest competitors’ trials on file." },
+        { "name": "Team", "q": 8, "every": "month", "featured": true, "covers": "{q} {noun} a month", "for": "Refresh each competitor’s trial when it changes." },
+        { "name": "Scale", "q": 25, "every": "month", "covers": "{q} {noun} a month", "for": "Track every trial in your category." }
       ]
     },
 
@@ -522,9 +532,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 1, "covers": "1 AI agent, 4 channels, once", "for": "Hear what your AI agent says when someone asks." },
-        { "name": "Weekly", "q": 1, "every": "monday", "margin": 0.6, "covers": "{q} {noun}, 4 channels, {every}", "for": "Get a dated check every week for 1 agent." },
-        { "name": "Daily", "q": 1, "every": "morning", "margin": 0.5, "featured": true, "covers": "{q} {noun}, 4 channels, {every}", "for": "Keep a dated record for every day of the year." },
-        { "name": "Team", "q": 5, "every": "morning", "margin": 0.4, "covers": "Up to {q} {noun}, 4 channels each, {every}", "for": "Check every agent you run, or run for clients." }
+        { "name": "Weekly", "q": 1, "every": "monday", "covers": "{q} {noun}, 4 channels, {every}", "for": "Get a dated check every week for 1 agent." },
+        { "name": "Daily", "q": 1, "every": "morning", "featured": true, "covers": "{q} {noun}, 4 channels, {every}", "for": "Keep a dated record for every day of the year." },
+        { "name": "Team", "q": 5, "every": "morning", "covers": "{q} {noun}, 4 channels each, {every}", "for": "Check every agent you run, or run for clients." }
       ]
     },
     {
@@ -543,9 +553,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "items": 10, "every": "once", "days": 1, "covers": "{items} {itemNoun}, replayed once", "for": "See how your agent handles your hardest cases." },
-        { "name": "Starter", "q": 1, "items": 20, "every": "week", "margin": 0.6, "covers": "Up to {items} {itemNoun}, replayed {every}", "for": "Check the answers that matter every week." },
-        { "name": "Team", "q": 1, "items": 40, "every": "week", "margin": 0.5, "featured": true, "covers": "Up to {items} {itemNoun}, replayed {every}", "for": "Hear the week an update changes an answer." },
-        { "name": "Daily", "q": 1, "items": 40, "every": "morning", "margin": 0.4, "covers": "Up to {items} {itemNoun}, {every}", "for": "Watch an agent that answers thousands of people a day." }
+        { "name": "Starter", "q": 1, "items": 20, "every": "week", "covers": "{items} {itemNoun}, replayed {every}", "for": "Check the answers that matter every week." },
+        { "name": "Team", "q": 1, "items": 40, "every": "week", "featured": true, "covers": "{items} {itemNoun}, replayed {every}", "for": "Hear the week an update changes an answer." },
+        { "name": "Daily", "q": 1, "items": 40, "every": "morning", "covers": "{items} {itemNoun}, {every}", "for": "Watch an agent that answers thousands of people a day." }
       ]
     },
     {
@@ -563,9 +573,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 2, "every": "none", "days": 14, "covers": "{q} {noun}, for 14 days", "for": "See what your AI SDR sends a prospect." },
-        { "name": "Starter", "q": 10, "every": "none", "margin": 0.6, "covers": "1 AI SDR, up to {q} {noun}", "for": "Check 1 AI SDR’s sequences." },
-        { "name": "Team", "q": 30, "every": "none", "margin": 0.5, "featured": true, "covers": "1 AI SDR, up to {q} {noun}", "for": "Check every sequence your AI SDR runs." },
-        { "name": "Scale", "q": 100, "every": "none", "margin": 0.4, "covers": "Up to 3 AI SDRs, {q} {noun}", "for": "Check every AI SDR you run, or run for clients." }
+        { "name": "Starter", "q": 10, "every": "none", "covers": "1 AI SDR, {q} {noun}", "for": "Check 1 AI SDR’s sequences." },
+        { "name": "Team", "q": 30, "every": "none", "featured": true, "covers": "1 AI SDR, {q} {noun}", "for": "Check every sequence your AI SDR runs." },
+        { "name": "Scale", "q": 100, "every": "none", "covers": "3 AI SDRs, {q} {noun}", "for": "Check every AI SDR you run, or run for clients." }
       ]
     },
     {
@@ -577,16 +587,16 @@
       "per": "AI agent",
       "noun": ["billed resolution", "billed resolutions"],
       "run": "One billed resolution matched against your payments and helpdesk by the model. Each month a persona also makes 4 test asks on your live channels and places 2 test orders on your own card.",
-      "note": "Cost-plus makes this blueprint cheap: the matching is model work, not browsing. Its value to a buyer is the money it can challenge on a vendor's bill.",
+      "note": "At the piece rates this blueprint is cheap: the matching is model work, taken at cost plus 10%, not browsing. Its value to a buyer is the money it can challenge on a vendor's bill.",
       "usage": {
         "run": { "analysis": { "inputTokens": 15000, "outputTokens": 500 }, "sandboxVcpuHours": 0.0005, "events": 3 },
         "account": { "inboxes": 1, "visits": [{ "type": "chatSession", "count": 4 }, { "type": "checkout", "count": 2, "name": "Test order" }], "wakes": 6, "emailsIn": 6, "events": 40 }
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 50, "every": "once", "days": 1, "covers": "{q} {noun}, matched once", "for": "Test a sample of last month’s bill." },
-        { "name": "Starter", "q": 500, "every": "month", "margin": 0.6, "covers": "Up to {q} {noun} a month", "for": "Check the bill before you pay it." },
-        { "name": "Team", "q": 2000, "every": "month", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun} a month", "for": "Check every resolution on a busy support bot." },
-        { "name": "Scale", "q": 10000, "every": "month", "margin": 0.4, "covers": "Up to {q} {noun} a month", "for": "Cover high volume, or bots you run for clients." }
+        { "name": "Starter", "q": 500, "every": "month", "covers": "{q} {noun} a month", "for": "Check the bill before you pay it." },
+        { "name": "Team", "q": 2000, "every": "month", "featured": true, "covers": "{q} {noun} a month", "for": "Check every resolution on a busy support bot." },
+        { "name": "Scale", "q": 10000, "every": "month", "covers": "{q} {noun} a month", "for": "Cover high volume, or bots you run for clients." }
       ]
     },
     {
@@ -604,9 +614,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 1, "covers": "1 test shop", "for": "See what your sales agent quotes today." },
-        { "name": "Weekly", "q": 1, "every": "monday", "margin": 0.6, "covers": "{q} {noun}, {every}", "for": "Run a test shop on 1 agent every week." },
-        { "name": "Daily", "q": 1, "every": "morning", "margin": 0.5, "featured": true, "covers": "{q} {noun}, {every}", "for": "Catch a wrong price the morning it starts." },
-        { "name": "Scale", "q": 3, "every": "morning", "margin": 0.4, "covers": "Up to {q} {noun}, {every}", "for": "Test your agent beside your competitors’ agents." }
+        { "name": "Weekly", "q": 1, "every": "monday", "covers": "{q} {noun}, {every}", "for": "Run a test shop on 1 agent every week." },
+        { "name": "Daily", "q": 1, "every": "morning", "featured": true, "covers": "{q} {noun}, {every}", "for": "Catch a wrong price the morning it starts." },
+        { "name": "Scale", "q": 3, "every": "morning", "covers": "{q} {noun}, {every}", "for": "Test your agent beside your competitors’ agents." }
       ]
     },
     {
@@ -624,9 +634,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "every": "once", "days": 1, "covers": "10 questions on {q} {noun}, once", "for": "See what your bot tells customers today." },
-        { "name": "Weekly", "q": 2, "every": "monday", "margin": 0.6, "covers": "10 questions on {q} {noun}, {every}", "for": "Check what customers hear from your bot each week." },
-        { "name": "Team", "q": 3, "every": "monday", "margin": 0.5, "featured": true, "covers": "10 questions on {q} {noun}, {every}", "for": "Check every channel, every week." },
-        { "name": "Daily", "q": 3, "every": "morning", "margin": 0.4, "covers": "10 questions on {q} {noun}, {every}", "for": "Watch a bot that answers thousands of customers a day." }
+        { "name": "Weekly", "q": 2, "every": "monday", "covers": "10 questions on {q} {noun}, {every}", "for": "Check what customers hear from your bot each week." },
+        { "name": "Team", "q": 3, "every": "monday", "featured": true, "covers": "10 questions on {q} {noun}, {every}", "for": "Check every channel, every week." },
+        { "name": "Daily", "q": 3, "every": "morning", "covers": "10 questions on {q} {noun}, {every}", "for": "Watch a bot that answers thousands of customers a day." }
       ]
     },
     {
@@ -645,9 +655,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "items": 5, "every": "once", "days": 1, "covers": "{items} {itemNoun} on 1 vendor’s agent", "for": "Try 1 vendor’s agent on your own cases." },
-        { "name": "Monthly", "q": 1, "items": 40, "every": "month", "margin": 0.6, "covers": "1 agent, {items} {itemNoun}, {every}", "for": "Keep the agent you chose on your cases." },
-        { "name": "Shortlist", "q": 3, "items": 40, "every": "week", "margin": 0.5, "featured": true, "covers": "Up to {q} {noun}, {items} {itemNoun} each, {every}", "for": "Choose between vendors before you sign." },
-        { "name": "Large shortlist", "q": 6, "items": 40, "every": "week", "margin": 0.4, "covers": "Up to {q} {noun}, {items} {itemNoun} each, {every}", "for": "Test a wide shortlist on your hardest cases." }
+        { "name": "Monthly", "q": 1, "items": 40, "every": "month", "covers": "1 agent, {items} {itemNoun}, {every}", "for": "Keep the agent you chose on your cases." },
+        { "name": "Shortlist", "q": 3, "items": 40, "every": "week", "featured": true, "covers": "{q} {noun}, {items} {itemNoun} each, {every}", "for": "Choose between vendors before you sign." },
+        { "name": "Large shortlist", "q": 6, "items": 40, "every": "week", "covers": "{q} {noun}, {items} {itemNoun} each, {every}", "for": "Test a wide shortlist on your hardest cases." }
       ]
     },
     {
@@ -667,9 +677,9 @@
       },
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "items": 3, "every": "once", "days": 2, "covers": "{items} {itemNoun} to 1 voice agent", "for": "Hear what your voice agent tells 3 callers." },
-        { "name": "Starter", "q": 1, "runsPerMonth": 20, "margin": 0.6, "covers": "{q} {noun}, {runs} test calls a month", "for": "Check your agent after every update." },
-        { "name": "Daily", "q": 1, "runsPerMonth": 90, "margin": 0.5, "featured": true, "covers": "{q} {noun}, {runs} test calls a month", "for": "Know the morning your agent gets it wrong." },
-        { "name": "Agency", "q": 5, "runsPerMonth": 90, "margin": 0.4, "covers": "Up to {q} {noun}, {runs} test calls each a month", "for": "Test every voice agent you build or run." }
+        { "name": "Starter", "q": 1, "runsPerMonth": 20, "covers": "{q} {noun}, {runs} test calls a month", "for": "Check your agent after every update." },
+        { "name": "Daily", "q": 1, "runsPerMonth": 90, "featured": true, "covers": "{q} {noun}, {runs} test calls a month", "for": "Know the morning your agent gets it wrong." },
+        { "name": "Agency", "q": 5, "runsPerMonth": 90, "covers": "{q} {noun}, {runs} test calls each a month", "for": "Test every voice agent you build or run." }
       ]
     }
   ]

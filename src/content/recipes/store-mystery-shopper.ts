@@ -2,9 +2,10 @@ import type { Recipe } from '../types'
 
 /* Mystery shopping for your store (/blueprints/store-mystery-shopper), split from mystery-shopper.ts on 21 Nov 2026
    (James): an ecommerce brand checks its own store, while the agency version shops many client stores. Personas you
-   define sign up with their own inbox and number, browse, fill a basket and leave at checkout before payment, wait 48
-   hours, wake on every email and text, and keep every event in the event log, each run beside the last. Its difference
-   from a shopper simulation (content/blog/shopify-simgym-review-ai-shoppers-vs-ai-customers.ts, never named here): a
+   define sign up with their own inbox and number, browse, fill a basket and leave at checkout before payment, wait as
+   long as the brand chooses (James, 22 Nov: never a fixed length on the page), wake on every email and text, and
+   keep every event in the event log, each run beside the last. Its difference from a shopper simulation
+   (content/blog/shopify-simgym-review-ai-shoppers-vs-ai-customers.ts, never named here): a
    simulation predicts how shoppers would browse; a persona here is a shopper the store can email and text, and it keeps
    what follows. The run and the weekly table are illustrations, not a real run (the 1 real run stays on the agency
    page). Its screen is the sign-up and checkout watch, where hollin's welcome code fails at checkout.
@@ -24,7 +25,7 @@ export const recipe: Recipe = {
     'Its own inbox, phone number and home connection',
     'Sign up, browse, basket and checkout',
     'Stops before payment and at any identity check',
-    '48 hours of waiting, waking on each email and text',
+    'Waiting as long as you choose, waking on each email and text',
     'Each run beside the last, every message dated',
   ],
 
@@ -32,9 +33,9 @@ export const recipe: Recipe = {
     path: '/blueprints/store-mystery-shopper',
     title: 'Mystery shopping for your store: every email after a basket',
     description:
-      'Personas sign up to your store with their own inbox and number, leave a basket and wait 48 hours, keeping every email and text your store sends.',
+      'Personas sign up to your store with their own inbox and number, leave a basket and keep every email and text your store sends, for as long as you choose.',
     answer:
-      'Mystery shopping for your store sends personas you define through your own store as new shoppers. They sign up with their own inbox and phone number, browse, fill a basket and leave before payment. Then they wait 48 hours and keep every email and text your store sends, each dated.',
+      'Mystery shopping for your store sends personas you define through your own store as new shoppers. They sign up with their own inbox and phone number, browse, fill a basket and leave before payment. Then they wait as long as you choose and keep every email and text your store sends, each dated.',
     ogImage: '/og/store-mystery-shopper.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -45,7 +46,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'A new persona shops your store each week and shows you the week a reminder stops.',
-    sub: 'Mystery shopping for your store sends personas you define through your own store as new shoppers. They sign up with their own inbox and phone number, browse, fill a basket and leave before payment. Then they wait 48 hours and keep every email and text your store sends, each dated.',
+    sub: 'Mystery shopping for your store sends personas you define through your own store as new shoppers. They sign up with their own inbox and phone number, browse, fill a basket and leave before payment. Then they wait as long as you choose and keep every email and text your store sends, each dated.',
     screen: 'shop',
     capture: {
       kind: 'waitlist',
@@ -64,7 +65,7 @@ export const recipe: Recipe = {
       name: 'Free',
       includes: [
         'A full mystery shop: sign up, browse, basket and checkout',
-        'A 48 hour watch of every inbox and number',
+        'Waiting as long as you choose, waking on each email and text',
         'Every email, text and screenshot in your event log',
       ],
     },
@@ -72,21 +73,20 @@ export const recipe: Recipe = {
       name: 'Monthly',
       includes: [
         'A full mystery shop every month',
-        'A 48 hour watch after every shop',
+        'Waiting as long as you choose after every shop, waking on each email and text',
         'Email and Slack alerts when an email or text goes missing',
         'Every result by webhook, API or MCP',
       ],
     },
     {
       name: 'Weekly',
-      includes: ['A full mystery shop every week', 'Everything in Monthly', 'Each week beside the last, so a change stands out'],
+      includes: ['A full mystery shop every week', 'Email and Slack alerts when an email or text goes missing', 'Each week beside the last, so a change stands out'],
     },
     {
       name: 'Daily',
       includes: [
         'A checkout left every day, before payment',
         'A full mystery shop every week',
-        'Everything in Weekly',
         'History and trends for your store',
       ],
     },
@@ -128,7 +128,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'It waits, and wakes on every email',
-      line: 'It waits 48 hours by default, so a reminder that never comes is in your event log too, beside last week’s.',
+      line: 'It waits as long as you choose, so a reminder that never comes is in your event log too, beside last week’s.',
     },
   ],
 
@@ -181,7 +181,7 @@ export const recipe: Recipe = {
     { k: 'Store', v: 'Your own, or each country store you run' },
     { k: 'Journeys', v: 'Sign up, browse, basket, checkout and texts' },
     { k: 'Persona', v: 'A first-time shopper in Manchester on a phone, or your own' },
-    { k: 'Waiting', v: '48 hours by default, 7 days, or as long as you hold the persona' },
+    { k: 'Waiting', v: 'As long as you choose, 48 hours by default' },
     { k: 'Payment', v: 'Stops before payment, or pays with your own card' },
     { k: 'How often', v: 'Monthly, weekly, or a checkout left every day' },
   ],
@@ -189,7 +189,7 @@ export const recipe: Recipe = {
   forWho: [
     { audience: 'marketing', line: 'Your welcome, basket and checkout emails as a new shopper gets them, week after week.' },
     { audience: 'developers', line: 'Start a mystery shop from your code after each release, and read every email and text as it lands.' },
-    { audience: 'agencies', line: 'An agency with 1 client store can start here, and move to the agency plans as clients join.' },
+    { audience: 'agencies', line: 'An agency with 1 client store can start here, and move to mystery shopping for agencies as clients join.' },
   ],
 
   table: {
@@ -210,11 +210,11 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'What does a mystery shop of my store check?',
-        a: 'The 4 journeys a new shopper takes: signing up for emails and texts, browsing, leaving a basket and leaving at checkout. Then every email and text your store sends in the next 48 hours, each dated, and any reminder that never came.',
+        a: 'The 4 journeys a new shopper takes: signing up for emails and texts, browsing, leaving a basket and leaving at checkout. Then every email and text your store sends while the persona waits, each dated, and any reminder that never came.',
       },
       {
         q: 'How do I see what my store emails after a basket is left?',
-        a: 'Name the store and define the persona. It signs up, fills a basket and leaves before payment, then waits 48 hours and wakes on every email and text that follows, each kept with the time it arrived.',
+        a: 'Name the store and define the persona. It signs up, fills a basket and leaves before payment. Then it waits as long as you choose and wakes on every email and text that follows, each kept with the time it arrived.',
       },
       {
         q: 'How is this different from a shopper simulation?',
@@ -233,8 +233,8 @@ export const recipe: Recipe = {
         a: 'Yes. Send the same persona to the stores you compete with, and their emails sit beside yours in your event log.',
       },
       {
-        q: 'Can a persona watch for longer than 48 hours?',
-        a: 'Yes. It lives as long as you hold it, so it can come back months later as the same shopper, and every new email joins your event log the day it arrives.',
+        q: 'How long does a persona wait after a shop?',
+        a: 'As long as you choose. A persona stays yours until you let it go, so it can come back months later as the same shopper, and every new email joins your event log the day it arrives.',
       },
     ],
   },

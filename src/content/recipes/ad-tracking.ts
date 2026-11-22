@@ -75,7 +75,7 @@ export const recipe: Recipe = {
     {
       name: 'Daily',
       includes: [
-        'Everything in Weekly, every morning',
+        'New and stopped ads every morning',
         'Slack alerts with the ad and its page side by side',
         'An ad timeline: what each competitor starts, stops and keeps running',
         'A weekly PDF of what each competitor is pushing',
@@ -84,7 +84,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Daily',
         'Every ad, page and offer as a row in Clay or a sheet',
         'Every event in your event log, by webhook or API',
         'A report you can share',

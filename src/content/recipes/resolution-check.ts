@@ -77,7 +77,6 @@ export const recipe: Recipe = {
     {
       name: 'Team',
       includes: [
-        'Everything in Starter',
         'Test asks on refunds, cancellations and order changes',
         'Refunds the bot promised and nobody made, flagged',
         'Results in a sheet, Slack or the API',
@@ -86,7 +85,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Team',
         'Each client’s bot kept apart in your event log',
         'Every case in your event log, by webhook or API',
       ],

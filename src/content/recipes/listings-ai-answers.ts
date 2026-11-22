@@ -74,7 +74,7 @@ export const recipe: Recipe = {
     {
       name: 'Growth',
       includes: [
-        'Everything in Starter, for each location',
+        'Each location checked the same way',
         '10 questions per location',
         'Who AI assistants name instead of you',
         'Places buyers look where you don’t appear',
@@ -83,7 +83,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Growth',
         'Every answer and its source as a row in a sheet, or by API',
         'A report you can share, with the before and after',
       ],

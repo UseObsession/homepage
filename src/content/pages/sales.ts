@@ -195,8 +195,8 @@ export const page: Page = {
    outbound, win back) to the accounts it sells to and its own lead response (each opening that blueprint's own pricing
    table, components/BlueprintPricingTabs, from content/catalog). */
 export const pricing: PricingTabs = {
-  heading: 'Start each blueprint free, then pay for what it checks.',
-  line: 'Pick a blueprint to see what each plan covers in a month.',
+  heading: 'What a typical month of each blueprint costs.',
+  line: 'Pick a blueprint to see a small, medium and large month, worked out at the piece rates and paid from your plan’s credit. Every blueprint starts with a free run.',
   label: 'Blueprints for sales teams',
   recipes: ['prospect', 'trial', 'account-watch', 'speed', 'email-sms'],
 }

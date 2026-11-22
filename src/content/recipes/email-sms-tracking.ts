@@ -75,7 +75,6 @@ export const recipe: Recipe = {
     {
       name: 'Growth',
       includes: [
-        'Everything in Starter',
         'Who sends most, who discounts first, and whose offer beats yours',
         'Alerts on a new offer, a busier schedule or a new sender',
         'Every message in your event log, by webhook or API',
@@ -84,7 +83,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Growth',
         'Every message as a row in Clay or a sheet',
         'A monthly report you can share',
       ],

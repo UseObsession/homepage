@@ -82,7 +82,6 @@ export const recipe: Recipe = {
     {
       name: 'Daily',
       includes: [
-        'Everything in Team',
         'A dated PDF of each replay for your vendor, client or insurer',
         'Every answer in your event log, by webhook or API',
       ],

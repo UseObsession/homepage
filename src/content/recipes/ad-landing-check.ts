@@ -76,7 +76,7 @@ export const recipe: Recipe = {
     {
       name: 'Daily',
       includes: [
-        'Everything in Weekly, every morning at 07:00',
+        'Every page checked each morning at 07:00',
         'Ads that went live yesterday, in the next morning’s check',
         'A weekly summary: pages that failed and how long each took to fix',
         'Every check in your event log, by webhook or API',
@@ -85,7 +85,6 @@ export const recipe: Recipe = {
     {
       name: 'Scale',
       includes: [
-        'Everything in Daily',
         'Your own checks beside the 4 standard ones',
         'A report you can share',
       ],

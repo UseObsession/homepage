@@ -76,7 +76,7 @@ export const recipe: Recipe = {
     {
       name: 'Daily',
       includes: [
-        'Everything in Weekly, every morning at 07:00',
+        'Every channel checked each morning at 07:00',
         'A flag the morning a channel stops saying it’s AI',
         'A PDF for legal, compliance, your insurer or a client',
       ],
@@ -84,7 +84,7 @@ export const recipe: Recipe = {
     {
       name: 'Team',
       includes: [
-        'Everything in Daily, for each agent',
+        'Every channel checked each morning, for each agent',
         'A calendar of every day’s checks, per agent',
         'Each day’s events in Slack, a table or the API',
       ],

@@ -106,7 +106,7 @@ function Wide({ loop }: { loop: Loop }) {
       <path id={ring} d="M406.8 370 A200 200 0 0 1 753.2 170 A200 200 0 0 1 406.8 370" className="s-hiw-none" />
       <Arrow d="M385.9 318.4 A200 200 0 0 1 456.9 112.4" mark={mark} />
       <Arrow d="M703.1 112.4 A200 200 0 0 1 774.1 318.4" mark={mark} />
-      <Arrow d="M713.8 418.6 A200 200 0 0 1 446.2 418.6" mark={mark} c="s-hiw-dash" />
+      <Arrow d="M713.8 418.6 A200 200 0 0 1 469.3 436.6" mark={mark} c="s-hiw-dash" />
       <T x={368} y={200} c="s-hiw-tv" a="end">
         {loop.saved}
       </T>
@@ -130,11 +130,11 @@ function Wide({ loop }: { loop: Loop }) {
       <Lines x={580} y={134} lh={18} c="s-hiw-ts3" a="middle" lines={wrap(loop.audio.log, 26)} />
       <Mover ring={ring} dur="9s" />
 
-      <Box x={297} y={330} w={220} h={80} rx={12} />
+      <Box x={297} y={330} w={220} h={98} rx={12} />
       <T x={315} y={360} c="s-hiw-tn">
         {loop.happens.name}
       </T>
-      <Lines x={315} y={382} lh={18} c="s-hiw-ts" lines={wrap(loop.happens.line, 20)} />
+      <Lines x={315} y={382} lh={18} c="s-hiw-ts" lines={wrap(loop.happens.line, 25)} />
       <Box x={475} y={34} w={210} h={72} rx={14} log />
       <T x={580} y={66} c="s-hiw-tn s-hiw-inv" a="middle">
         {loop.log.name}
@@ -174,7 +174,7 @@ function Tall({ loop }: { loop: Loop }) {
   const mark = 's-hiw-ah-t'
   const ring = 's-hiw-ring-t'
   return (
-    <svg className="s-hiw-d s-hiw-tall" viewBox="0 0 360 696" width="360" height="696" aria-hidden="true" focusable="false">
+    <svg className="s-hiw-d s-hiw-tall" viewBox="0 0 360 714" width="360" height="714" aria-hidden="true" focusable="false">
       <Defs mark={mark} />
       <Box x={0} y={0} w={360} h={92} rx={14} />
       <T x={16} y={30} c="s-hiw-tn">
@@ -185,46 +185,46 @@ function Tall({ loop }: { loop: Loop }) {
       <T x={192} y={118} c="s-hiw-tv">
         {loop.then}
       </T>
-      <Arrow d="M180 216 V267" mark={mark} />
-      <T x={192} y={247} c="s-hiw-tv">
+      <Arrow d="M180 234 V285" mark={mark} />
+      <T x={192} y={265} c="s-hiw-tv">
         {loop.saved}
       </T>
-      <Arrow d="M180 342 V393" mark={mark} />
-      <T x={192} y={373} c="s-hiw-tv">
+      <Arrow d="M180 360 V411" mark={mark} />
+      <T x={192} y={391} c="s-hiw-tv">
         {loop.reaches}
       </T>
 
-      <path id={ring} d="M180 178 V560 H22 V178 Z" className="s-hiw-none" />
-      <Arrow d="M180 522 V552 H22 V178 H57" mark={mark} c="s-hiw-dash" />
-      <T x={180} y={578} c="s-hiw-tv" a="middle">
+      <path id={ring} d="M180 178 V578 H22 V178 Z" className="s-hiw-none" />
+      <Arrow d="M180 540 V570 H22 V178 H57" mark={mark} c="s-hiw-dash" />
+      <T x={180} y={596} c="s-hiw-tv" a="middle">
         {loop.acts.name}
       </T>
-      <T x={180} y={597} c="s-hiw-ts" a="middle">
+      <T x={180} y={615} c="s-hiw-ts" a="middle">
         {loop.acts.line}
       </T>
-      <Arrow d={`M300 178 H338 ${waveV(178, 470, 3, 12)} H319`} mark={mark} c="s-hiw-wave" />
+      <Arrow d={`M300 178 H338 ${waveV(178, 488, 3, 12)} H319`} mark={mark} c="s-hiw-wave" />
       <Mover ring={ring} dur="7s" />
 
-      <Box x={60} y={140} w={240} h={76} rx={12} />
+      <Box x={60} y={140} w={240} h={94} rx={12} />
       <T x={78} y={168} c="s-hiw-tn">
         {loop.happens.name}
       </T>
-      <Lines x={78} y={190} lh={18} c="s-hiw-ts" lines={wrap(loop.happens.line, 20)} />
-      <Box x={60} y={274} w={240} h={68} rx={12} log />
-      <T x={78} y={302} c="s-hiw-tn s-hiw-inv">
+      <Lines x={78} y={190} lh={18} c="s-hiw-ts" lines={wrap(loop.happens.line, 25)} />
+      <Box x={60} y={292} w={240} h={68} rx={12} log />
+      <T x={78} y={320} c="s-hiw-tn s-hiw-inv">
         {loop.log.name}
       </T>
-      <T x={78} y={324} c="s-hiw-ts s-hiw-inv2">
+      <T x={78} y={342} c="s-hiw-ts s-hiw-inv2">
         {loop.log.line}
       </T>
-      <Box x={44} y={400} w={272} h={122} rx={12} />
-      <T x={62} y={428} c="s-hiw-tn">
+      <Box x={44} y={418} w={272} h={122} rx={12} />
+      <T x={62} y={446} c="s-hiw-tn">
         {`${loop.agent.name}, ${loop.agent.line}`}
       </T>
-      <Lines x={62} y={454} lh={22} c="s-hiw-ts" lines={loop.places.map((p) => p.short)} />
+      <Lines x={62} y={472} lh={22} c="s-hiw-ts" lines={loop.places.map((p) => p.short)} />
 
-      <path d={waveH(0, 24, 638, 2.6, 8)} className="s-hiw-ar s-hiw-wave" />
-      <Lines x={34} y={642} lh={19} c="s-hiw-ts" lines={wrap(`${loop.audio.note} ${loop.audio.log}`, 44)} />
+      <path d={waveH(0, 24, 656, 2.6, 8)} className="s-hiw-ar s-hiw-wave" />
+      <Lines x={34} y={660} lh={19} c="s-hiw-ts" lines={wrap(`${loop.audio.note} ${loop.audio.log}`, 44)} />
     </svg>
   )
 }

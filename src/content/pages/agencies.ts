@@ -18,10 +18,11 @@ import type { CardGrid, Page, PricingTabs } from '../types'
 
 const access = { kind: 'waitlist', button: 'Get early access', interest: 'any' } as const
 
-/* What a client costs (James, 21 Nov 2026, second pass): each blueprint has its own tiers, in its recipe file, shown in
-   the #pricing tabs. A page's words can't import them (registry.ts globs every page and recipe), so no price is typed
-   here: the lines say how the plans work and send the reader to the tabs. */
-const PRICED = 'Every blueprint starts with a free run, then has 3 plans priced by what it checks, such as sites, voice agents or competitors.'
+/* What a client costs (founders, 22 Nov 2026): a blueprint run is paid from the plan's credit at the piece rates, like
+   any piece, and each blueprint shows what a typical month costs in the #pricing tabs. A page's words can't import those
+   figures (registry.ts globs every page and recipe), so no figure is typed here: the lines say how a run is paid and
+   send the reader to the tabs. */
+const PRICED = 'Every blueprint starts with a free run. After that, each run is paid from your plan’s credit at the piece rates, so a client costs what its runs use.'
 
 const SUB =
   'Obsession’s AI agents shop, call and fill in forms as new customers of your clients. Every result lands in a dashboard and a report with your name on it.'
@@ -131,8 +132,8 @@ export const page: Page = {
       },
       {
         q: 'What does each client cost?',
-        a: 'It depends on the blueprint. Each starts with a free run, then has 3 plans priced in its own terms: sites for lead response checks, voice agents for voice agent checks and competitors for competitor tracking.',
-        link: { label: 'See the plans', to: '#pricing' },
+        a: 'It depends on the blueprint and how often it runs. Each starts with a free run, then each run is paid from your plan’s credit at the piece rates. Each blueprint shows what a typical month costs, counted in its own terms: sites for lead response checks, voice agents for voice agent checks and competitors for competitor tracking.',
+        link: { label: 'See a typical month', to: '#pricing' },
       },
       {
         q: 'Can reports carry our brand?',
@@ -144,7 +145,7 @@ export const page: Page = {
       },
       {
         q: 'What do we pay, and what do we charge?',
-        a: 'You pay for each blueprint’s plan and set your own price to clients. White label is part of the Enterprise plan, which starts monthly with nothing paid up front, and its rates drop as your volume grows.',
+        a: 'You pay for what each blueprint’s runs use, from your plan’s credit, and set your own price to clients. White label is part of the Enterprise plan, from $1,500 for the first month, billed monthly with nothing paid up front, and its rates drop as your volume grows.',
         link: { label: 'See the Enterprise plan', to: '/pricing' },
       },
       {
@@ -173,11 +174,12 @@ export const page: Page = {
   },
 }
 
-/* #pricing (James, 21 Nov 2026), in place of the pilot: 1 tab per blueprint resellers sell, each opening that blueprint's
-   own pricing table (components/BlueprintPricingTabs, from content/catalog: the blueprint's `tiers`). */
+/* #pricing (James, 21 Nov 2026; founders, 22 Nov), in place of the pilot: 1 tab per blueprint resellers sell, each
+   opening what a typical month of that blueprint costs (components/BlueprintPricingTabs, from content/catalog: the
+   blueprint's `tiers`, its months at the piece rates). */
 export const pricing: PricingTabs = {
-  heading: 'Every blueprint you resell starts with a free run.',
-  line: 'Pick a blueprint to see its plans, each priced by what it checks. You charge your clients what you choose.',
+  heading: 'What a typical month of each blueprint costs.',
+  line: 'Pick a blueprint to see a small, medium and large month, worked out at the piece rates and paid from your plan’s credit. Every blueprint starts with a free run, and you charge your clients what you choose.',
   label: 'Blueprints you can resell',
   recipes: ['mystery', 'speed', 'voice-agent', 'competitor', 'delivery', 'audit'],
 }

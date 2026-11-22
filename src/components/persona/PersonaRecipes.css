@@ -74,3 +74,14 @@
   .s-rt-tile::after,
   .s-rt-tile.is-live::after { top: var(--ob-space-20); right: var(--ob-space-20); }
 }
+
+/* The heading's "who it's for" line (PersonaRecipes Heading): quieter and smaller, on its own line above the promise. */
+.s-rt-h { max-width: 24ch; }
+.s-rt-for {
+  display: block;
+  margin-bottom: 0.3em;
+  font: var(--ob-type-body-lg);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  font-weight: 500;
+  color: var(--ob-text-2);
+}
