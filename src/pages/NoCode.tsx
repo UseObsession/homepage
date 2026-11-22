@@ -2,6 +2,8 @@ import { useId } from 'react'
 import { Link } from 'react-router-dom'
 import { Crumbs } from '../components/Crumbs'
 import { NoCodeFormats } from '../components/nocode/NoCodeFormats'
+import { NoCodeLimits } from '../components/nocode/NoCodeLimits'
+import { NoCodeScale } from '../components/nocode/NoCodeScale'
 import { NoCodeWeek } from '../components/nocode/NoCodeWeek'
 import { HomeTeams } from '../components/persona/HomeTeams'
 import { PersonaGlyph } from '../components/persona/icons'
@@ -17,7 +19,8 @@ import './NoCode.css'
    a working week at one invented company; what an agent does for each team (8 teams, 3 blueprints each, the KPIs they
    move); how it works (Home's teams section, its own heading); the same result in any format; what it costs, from
    prices.ts; the rules every agent follows; the handoff to developers; questions; the form. Words:
-   content/noCode.ts. */
+   content/noCode.ts. Since 23 Nov: after the hero, where AI on its own stops and the same jobs finished with Obsession
+   (#limits), then who runs it by size, biggest first (#scale), before the teams. */
 
 const nameOf = Object.fromEntries(catalog.recipes.map((r) => [r.slug, r.name]))
 
@@ -68,6 +71,30 @@ export function NoCode() {
             <p className="nc-note">{p.hero.note}</p>
           </div>
           <NoCodeWeek week={p.week} />
+        </div>
+      </section>
+
+      <section className="s-section nc-limits" data-tone="alt" id="limits" aria-labelledby={`${hid}-l`}>
+        <div className="s-wrap">
+          <div className="s-bp-head">
+            <h2 className="s-bp-h" id={`${hid}-l`}>
+              {p.limits.heading}
+            </h2>
+            <p className="s-bp-line">{p.limits.line}</p>
+          </div>
+          <NoCodeLimits limits={p.limits} />
+        </div>
+      </section>
+
+      <section className="s-section nc-scale-s" id="scale" aria-labelledby={`${hid}-s`}>
+        <div className="s-wrap">
+          <div className="s-bp-head">
+            <h2 className="s-bp-h" id={`${hid}-s`}>
+              {p.scale.heading}
+            </h2>
+            <p className="s-bp-line">{p.scale.line}</p>
+          </div>
+          <NoCodeScale scale={p.scale} />
         </div>
       </section>
 

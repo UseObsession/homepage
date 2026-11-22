@@ -25,6 +25,24 @@ export type NoCodePage = {
     caption: string
     days: { day: string; items: { team: string; reader: KitReader; format: NoCodeFormat; text: string }[] }[]
   }
+  /* Right after the hero: where an AI agent on its own stops, and the same jobs finished with Obsession. */
+  limits: {
+    heading: string
+    line: string
+    label: string
+    cols: { job: string; alone: string; with: string }
+    rows: { icon: PersonaIcon; job: string; alone: string; piece: string; result: string }[]
+    caption: string
+  }
+  /* Who runs it, by size, biggest first (perception): the people involved, the agents running, two jobs each. */
+  scale: {
+    heading: string
+    line: string
+    label: string
+    kpisLabel: string
+    rows: { id: string; name: string; size: string; who: string; reader: KitReader; agents: string; weight: number; jobs: { slug: string; line: string }[]; kpis: string }[]
+    caption: string
+  }
   teams: {
     heading: string
     line: string
@@ -127,6 +145,101 @@ export const noCodePage: NoCodePage = {
         ],
       },
     ],
+  },
+
+  limits: {
+    heading: 'Most AI stops where the work begins.',
+    line: 'Chat assistants draft and summarise, but the jobs that cost your team hours need a phone number, an inbox, a signed-in browser and days of follow-up. Obsession gives an agent all of them, and a blueprint packages each job so your team can run it without code.',
+    label:
+      'Four jobs a team hands off. Returning a missed call at 9pm: an AI agent on its own has no number to call from; with Obsession it calls back in 30 seconds and books Thursday at 10:00. Signing in to a supplier portal: on its own it cannot receive the sign-in code; with Obsession’s inbox and browser it signs in and adds 6 price changes to your sheet. Chasing a missing document: on its own it cannot wait days and follow up; with a persona it reminds on day 2 and day 4 and the file arrives. Tracking 40 competitors’ offers: on its own it has no subscriber inbox at each; with Obsession it keeps 312 emails and posts a Monday summary.',
+    cols: { job: 'The job', alone: 'An AI agent on its own', with: 'With Obsession' },
+    rows: [
+      { icon: 'phone', job: 'Return a missed call at 9pm', alone: 'No number to call from', piece: 'Phone', result: 'Called back in 30 seconds; Thursday 10:00 booked' },
+      { icon: 'key', job: 'Sign in to a supplier portal', alone: 'Can’t receive the sign-in code', piece: 'Inbox and browser', result: 'Signed in; 6 price changes added to your sheet' },
+      { icon: 'clock', job: 'Chase a missing document', alone: 'Can’t wait days and follow up', piece: 'Persona', result: 'Reminded on day 2 and day 4; file received' },
+      { icon: 'record', job: 'Track 40 competitors’ offers', alone: 'No subscriber inbox at each', piece: 'Inbox', result: '312 emails kept; Monday summary posted' },
+    ],
+    caption: 'The same four jobs, before and after. Every figure is an example.',
+  },
+
+  scale: {
+    heading: 'From a team of one to an enterprise, the same blueprints run at your scale.',
+    line: 'A blueprint runs for one location or hundreds, a single inbox or thousands of agents. Each one is priced for your volume on its own page.',
+    label: 'Agents running',
+    kpisLabel: 'Measured in',
+    rows: [
+      {
+        id: 'enterprise',
+        name: 'Enterprises',
+        size: '5,000+ people',
+        who: 'Operations, procurement, customer experience and regional sales',
+        reader: 'developers',
+        agents: '1,200 agents',
+        weight: 1,
+        jobs: [
+          { slug: 'supplier-reorder-agent', line: 'Reorder supplies for 400 sites from 60 suppliers' },
+          { slug: 'lead-leaks', line: 'Check lead response in every country you sell in' },
+        ],
+        kpis: 'Cost per order, response time by region',
+      },
+      {
+        id: 'mid-market',
+        name: 'Mid-market companies',
+        size: '200 to 5,000 people',
+        who: 'Sales operations, customer support and finance',
+        reader: 'sales',
+        agents: '150 agents',
+        weight: 0.72,
+        jobs: [
+          { slug: 'speed-to-lead-callback', line: 'Call every inbound lead within a minute, across 3 brands' },
+          { slug: 'order-receipt-ledger', line: 'Match 2,000 receipts a month to their orders' },
+        ],
+        kpis: 'Pipeline, days to close',
+      },
+      {
+        id: 'smb',
+        name: 'Small and multi-location businesses',
+        size: '10 to 200 people',
+        who: 'Front desks, office managers and owners',
+        reader: 'founders',
+        agents: '40 agents',
+        weight: 0.5,
+        jobs: [
+          { slug: 'missed-call-text-back', line: 'Text back missed calls at 40 clinics' },
+          { slug: 'appointment-reminders', line: 'Confirm tomorrow’s 340 appointments' },
+        ],
+        kpis: 'Bookings, no-shows',
+      },
+      {
+        id: 'agencies',
+        name: 'Agencies',
+        size: 'Serving 10 to 500 clients',
+        who: 'Founders, account managers and strategists',
+        reader: 'agencies',
+        agents: '45 agents',
+        weight: 0.52,
+        jobs: [
+          { slug: 'mystery-shopper', line: 'Shop 45 client stores every week, with each owner’s OK' },
+          { slug: 'competitor-tracking', line: 'Track every client’s competitors' },
+        ],
+        kpis: 'Clients kept, pitches won',
+      },
+      {
+        id: 'solo',
+        name: 'Founders and consultants',
+        size: 'A team of one',
+        who: 'Founders, freelancers and consultants',
+        reader: 'marketing',
+        agents: '2 agents',
+        weight: 0.16,
+        jobs: [
+          { slug: 'speed-to-lead-callback', line: 'Answer every new enquiry within a minute' },
+          { slug: 'competitor-tracking', line: 'Read a Monday digest of 20 competitors' },
+        ],
+        kpis: 'Hours back, deals won',
+      },
+    ],
+    caption: 'Example sizes: the agents each runs and two of its jobs.',
   },
 
   teams: {

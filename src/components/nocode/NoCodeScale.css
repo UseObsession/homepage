@@ -1,0 +1,50 @@
+/* The scale ladder (NoCodeScale.tsx): five rows, biggest first, each in its reader colour as a thin left rule and the
+   agents bar; the bar's width is the row's --w. Design system tokens only. */
+
+.nc-scale { margin: 0; display: grid; gap: var(--ob-space-12); }
+.nc-scale__rows { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ob-space-12); }
+.nc-scale__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(0, 1.5fr);
+  gap: var(--ob-space-24);
+  align-items: center;
+  padding: var(--ob-space-20) var(--ob-space-24);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-left: 2px solid var(--s-accent, var(--ob-line-strong));
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-surface);
+}
+.nc-scale__row p { margin: 0; }
+.nc-scale__who { display: grid; gap: 3px; min-width: 0; }
+.nc-scale__name { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.nc-scale__size { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-2); }
+.nc-scale__people { font: var(--ob-type-caption); color: var(--ob-text-3); text-wrap: pretty; }
+
+.nc-scale__agents { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'label label' 'track count'; gap: var(--ob-space-6) var(--ob-space-12); align-items: center; min-width: 0; }
+.nc-scale__label { grid-area: label; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-scale__track { grid-area: track; display: block; height: 8px; border-radius: 4px; background: var(--ob-bg-sunken, var(--ob-bg)); border: var(--ob-border-hair) solid var(--ob-line); overflow: hidden; }
+.nc-scale__bar { display: block; height: 100%; width: calc(var(--w, 0.5) * 100%); border-radius: 4px; background: var(--s-accent, var(--ob-text-2)); transform-origin: left center; }
+.nc-scale__agents b { grid-area: count; font: var(--ob-type-small); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.nc-scale__jobs { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ob-space-6); min-width: 0; }
+.nc-scale__job { display: grid; gap: 1px; padding: var(--ob-space-6) var(--ob-space-10, 10px); border-radius: var(--ob-radius-md); color: var(--ob-text); text-decoration: none; font: var(--ob-type-small); transition: background-color var(--ob-dur-base) var(--ob-ease-out); }
+.nc-scale__bp { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-scale__kpis { padding: 0 var(--ob-space-10, 10px); font: var(--ob-type-caption); color: var(--ob-text-2); }
+.nc-scale__kpis span { color: var(--ob-text-3); }
+.nc-scale__job:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .nc-scale__job:hover { background: rgba(var(--ob-tint-rgb), 0.05); } }
+.nc-scale__cap { font: var(--ob-type-caption); color: var(--ob-text-3); }
+
+@media (max-width: 900px) {
+  .nc-scale__row { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-12); padding: var(--ob-space-16); }
+}
+
+/* Motion: the bars grow in order, once, as the ladder enters the view. */
+@keyframes nc-scale-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .nc-scale__rows[data-armed]:not(.is-in) .nc-scale__bar { transform: scaleX(0); }
+  .nc-scale__rows.is-in .nc-scale__bar { animation: nc-scale-grow 700ms var(--ob-ease-out) both; animation-delay: calc(var(--i, 0) * 120ms + 150ms); }
+}
