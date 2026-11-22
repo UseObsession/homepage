@@ -142,7 +142,7 @@ export const page: Page = {
     chip: { code: 'obsession.personas.create({ inbox: true, phone: "US", browser: true })', copy: 'Copy the code', copied: 'Copied' },
     doors: {
       dev: { label: 'For developers' },
-      noCode: { label: 'For teams that don’t code', line: 'Choose a ready-made job, set it up in plain language, and get results in the tools you already use.' },
+      noCode: { label: 'For teams', line: 'Choose a ready-made job, set it up in plain language, and get results in the tools you already use.' },
     },
   },
 

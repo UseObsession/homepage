@@ -89,12 +89,12 @@ export const noCodePage: NoCodePage = {
     answer: `${headline} ${sub} ${ENTITY.split('. ')[0]}.`,
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'No code', path: '/no-code' },
+      { name: 'For teams', path: '/no-code' },
     ],
   },
 
   hero: {
-    pill: 'For teams that don’t code',
+    pill: 'For business teams',
     headline,
     sub,
     primary: { label: 'Browse blueprints', to: '/blueprints' },

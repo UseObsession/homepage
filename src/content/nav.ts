@@ -172,7 +172,7 @@ const menus = {
     kitsLabel: 'Blueprints by job',
     kits: kitTools,
     kitsAll: { label: 'Every blueprint', to: kitsPath } satisfies NavPage,
-    teamsLabel: 'Teams',
+    teamsLabel: 'By team',
     teams,
     /* The use cases people search most (Google suggestions, 22 Nov 2026), by name; the rest are on /use-cases. */
     useCasesLabel: 'Use cases',
@@ -189,7 +189,7 @@ const menus = {
     /* The 2 columns as the footer and the phone sheet list them. */
     columns: [
       { label: 'Blueprints by job', items: kitTools },
-      { label: 'Teams', items: teams },
+      { label: 'By team', items: teams },
     ] as { label: string; items: NavPage[] }[],
   },
   resources: {
@@ -216,8 +216,9 @@ const menus = {
     },
   },
   developers: { label: 'Developers', to: '/developers' } satisfies NavPage,
-  /* Beside Developers since 23 Nov 2026: the front door for teams that don't write code, as the hero's two doors. */
-  noCode: { label: 'No code', to: '/no-code' } satisfies NavPage,
+  /* Beside Developers since 23 Nov 2026: the front door for teams that don't write code, as the hero's two doors. Named for
+     who the reader is, not the skill they lack (Seun, 23 Nov: "For teams"); the address keeps the searched words. */
+  noCode: { label: 'For teams', to: '/no-code' } satisfies NavPage,
   pricing: { label: 'Pricing', to: '/pricing' } satisfies NavPage,
 }
 
