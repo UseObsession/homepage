@@ -19,6 +19,9 @@ export type RecipeId =
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'listings'
   | 'adcheck' | 'partners'
   | 'support-bot' | 'voice-agent' | 'outbound-agent' | 'sales-agent' | 'vendor-agent' | 'resolution' | 'disclosure' | 'drift'
+  /* Wave 2 (23 Nov 2026): the 11 blueprints from competitors' customer stories (_research/seo/blueprints-22nov/PLAN.md). */
+  | 'missed-call' | 'reminders' | 'callback' | 'documents' | 'codes' | 'inbox-agent' | 'imessage' | 'prior-auth' | 'loads'
+  | 'invoices' | 'eval'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
 /* The 5 readers, each with its own hue (styles/accents.css: [data-reader] sets --s-accent and --s-accent-glow). */
 export type ReaderId = AudienceId | 'developers'
@@ -715,10 +718,15 @@ export type Page = {
 
 /* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.
    A recipe comes with all its infrastructure already set up; `kit` is what choosing it spins up. */
+/* Since the 22 Nov call a blueprint's group is its type: the six jobs AI agents do (content/kitPaths), so the hub, the
+   form's chips, the footer and every grid sort by the same six names. */
 export type RecipeGroup =
-  | 'Watch other companies'
-  | 'Check your own journeys'
-  | 'Check your AI agents'
+  | 'Talk to customers'
+  | 'Test sign-up and agents'
+  | 'Build agent products'
+  | 'Work behind logins'
+  | 'Watch the market'
+  | 'Train and test agents'
 export type Recipe = {
   id: RecipeId
   slug: string

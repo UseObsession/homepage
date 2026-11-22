@@ -58,7 +58,7 @@ export const test: KitPage = {
   blueprints: {
     heading: 'Checks that run after every release.',
     line: 'Obsession goes through your sign-up, checkout and forms as a new customer, and posts what it found to Slack, a sheet or your CI.',
-    slugs: ['website-audit', 'delivery-monitoring', 'mystery-shopper', 'lead-leaks', 'ad-landing-check', 'partner-checks'],
+    slugs: ['website-audit', 'delivery-monitoring', 'sign-in-code-check', 'mystery-shopper', 'lead-leaks', 'ad-landing-check', 'partner-checks'],
   },
 
   who: {

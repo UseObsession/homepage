@@ -77,7 +77,7 @@ export const build: KitPage = {
   blueprints: {
     heading: 'Check the agents you ship, as a customer would.',
     line: 'Obsession joins your AI SDR’s lists and shops with your sales agent, and keeps every message it sends.',
-    slugs: ['outbound-agent-check', 'sales-agent-check'],
+    slugs: ['inbox-agent', 'imessage-assistant', 'outbound-agent-check', 'sales-agent-check'],
   },
 
   code: {

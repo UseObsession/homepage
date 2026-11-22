@@ -58,18 +58,12 @@ export const recipesPage: RecipesIndexPage = {
   types: { label: 'Blueprints by job', more: 'See the pieces and prices', runsOn: 'Runs on' },
 
   groups: [
-    {
-      group: 'Watch other companies',
-      line: 'Competitors’, prospects’ and accounts’ emails, prices, trials and offers, dated.',
-    },
-    {
-      group: 'Check your own journeys',
-      line: 'A persona goes through your own sign-up, checkout and lead forms, and keeps everything that follows, timed.',
-    },
-    {
-      group: 'Check your AI agents',
-      line: 'A persona talks to your support chats, voice lines and sales agents, and keeps every answer word for word.',
-    },
+    { group: 'Talk to customers', line: 'Calls, texts and messages answered, confirmed and followed up, on your own numbers.' },
+    { group: 'Test sign-up and agents', line: 'Your own sign-up, codes, emails and forms, checked as a new customer meets them.' },
+    { group: 'Build agent products', line: 'Starters for agents that answer their own inbox, texts and messages.' },
+    { group: 'Work behind logins', line: 'Portals signed in for weeks, statuses and documents collected every day.' },
+    { group: 'Watch the market', line: 'Competitors’ emails, prices, trials and ads, dated.' },
+    { group: 'Train and test agents', line: 'Your agent scored on real tasks, every night and after every update.' },
   ],
 
   hub: {

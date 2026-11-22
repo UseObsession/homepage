@@ -62,9 +62,10 @@ export function offerOf(capture: Capture, path: string): { offer: OfferId; free:
   if (agency) return { offer: 'clients', free: false }
   if (path.startsWith('/developers')) return { offer: 'api', free: false }
   const group = catalog.recipes.find((r) => r.id === capture.interest)?.group
-  if (group === 'Check your AI agents') return { offer: 'agents', free: false }
-  if (group === 'Check your own journeys') return { offer: 'own', free: false }
-  if (group === 'Watch other companies') return { offer: 'companies', free: false }
+  /* The type of blueprint the page's job belongs to (content/kitPaths). */
+  if (group === 'Talk to customers' || group === 'Train and test agents') return { offer: 'agents', free: false }
+  if (group === 'Test sign-up and agents' || group === 'Work behind logins') return { offer: 'own', free: false }
+  if (group === 'Watch the market') return { offer: 'companies', free: false }
   return { offer: 'any', free: false }
 }
 

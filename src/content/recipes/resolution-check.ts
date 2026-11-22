@@ -14,7 +14,7 @@ export const recipe: Recipe = {
   id: 'resolution',
   slug: 'resolution-check',
   name: 'Resolution check',
-  group: 'Check your AI agents',
+  group: 'Train and test agents',
   line: 'Every resolution your AI vendor bills, matched to what followed and tested by a persona.',
   gets: 'Every billed resolution beside what the customer got, and a dispute pack for the ones that weren’t real.',
   kit: [

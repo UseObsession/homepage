@@ -59,7 +59,7 @@ export const talk: KitPage = {
   blueprints: {
     heading: 'Check what your agent says, every day.',
     line: 'Obsession calls, texts and chats with your agent as a customer would, and sends you every answer.',
-    slugs: ['voice-agent-check', 'support-bot-check', 'ai-disclosure-check'],
+    slugs: ['missed-call-text-back', 'appointment-reminders', 'speed-to-lead-callback', 'document-chaser', 'voice-agent-check', 'support-bot-check', 'ai-disclosure-check'],
   },
 
   who: {

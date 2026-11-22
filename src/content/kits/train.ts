@@ -77,7 +77,7 @@ export const train: KitPage = {
   blueprints: {
     heading: 'Keep testing agents after they ship.',
     line: 'Obsession asks your hardest cases after every update, runs them on vendors’ agents before you sign, and tests every resolution you’re billed for.',
-    slugs: ['drift-watch', 'vendor-agent-check', 'resolution-check'],
+    slugs: ['nightly-agent-evaluation', 'drift-watch', 'vendor-agent-check', 'resolution-check'],
   },
 
   code: {

@@ -12,7 +12,7 @@ export const recipe: Recipe = {
   id: 'partners',
   slug: 'partner-checks',
   name: 'Partner checks',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'Each Monday a persona reads every partner’s page, follows your link and tries the code.',
   gets: 'Every partner’s link, code and offer each Monday, with a screenshot, and the ones out of date flagged.',
   kit: [

@@ -15,7 +15,7 @@ export const recipe: Recipe = {
   id: 'support-bot',
   slug: 'support-bot-check',
   name: 'Support bot check',
-  group: 'Check your AI agents',
+  group: 'Talk to customers',
   line: 'A persona asks your support bot, and competitors’, what your team hears most, keeping every answer.',
   gets: 'Every answer and wait, word for word, beside your policy page as it read that minute.',
   kit: [

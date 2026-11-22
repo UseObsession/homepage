@@ -25,7 +25,7 @@ export const recipe: Recipe = {
   id: 'mystery',
   slug: 'mystery-shopper',
   name: 'Mystery shopping',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'Personas shop a store as new shoppers and show every email, text and missing reminder.',
   gets: 'Every email and text a store sends a new shopper, dated, and the reminders that never came.',
   kit: [

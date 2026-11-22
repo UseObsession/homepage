@@ -16,7 +16,7 @@ export const recipe: Recipe = {
   id: 'speed',
   slug: 'lead-leaks',
   name: 'Lead response checks',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'A persona fills in your forms as a new lead and times how fast sales replies.',
   gets: 'Your speed to lead on every form, chat and sales line, and every lead nobody answered.',
   kit: [

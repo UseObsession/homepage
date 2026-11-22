@@ -15,7 +15,7 @@ export const recipe: Recipe = {
   id: 'vendor-agent',
   slug: 'vendor-agent-check',
   name: 'Vendor agent check',
-  group: 'Check your AI agents',
+  group: 'Train and test agents',
   line: 'A persona runs your cases on every shortlisted vendor’s AI agent, before you sign.',
   gets: 'Every shortlisted agent on your cases, side by side, every answer and handoff dated.',
   kit: [

@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'adcheck',
   slug: 'ad-landing-check',
   name: 'Ad landing check',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'Each morning a shopper persona checks every live ad’s landing page: loads, offer, price and stock.',
   gets: 'Every landing page that can’t sell, flagged each morning with its screenshot.',
   kit: [

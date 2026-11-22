@@ -14,7 +14,7 @@ export const recipe: Recipe = {
   id: 'sales-agent',
   slug: 'sales-agent-check',
   name: 'Sales agent check',
-  group: 'Check your AI agents',
+  group: 'Build agent products',
   line: 'A persona shops with your AI sales agent and competitors’, following every answer to checkout.',
   gets: 'Every price, stock and delivery answer, dated, beside your price list as it read that minute.',
   kit: [

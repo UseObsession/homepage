@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'competitor',
   slug: 'competitor-tracking',
   name: 'Competitor tracking',
-  group: 'Watch other companies',
+  group: 'Watch the market',
   line: 'A persona signs up at each competitor and keeps every email, text, offer and price.',
   gets: 'A dated timeline per competitor: every email, text, offer and price, each with its screenshot.',
   kit: [

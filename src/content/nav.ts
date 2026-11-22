@@ -18,22 +18,18 @@ export type NavJob = { name: string; line: string; to: string; examples: NavReci
 /* A card in the Resources menu: who it is for (or what it is), its name, and what happened in 1 line. */
 export type NavCard = NavPage & { line: string; kicker: string }
 
-/* The 3 jobs, in the order the menu, the phone sheet, the footer and the Recipes index list them (COPY.md, "One
-   taxonomy"): whose data it is. Other companies (competitors, prospects, accounts), your own company, and the AI
-   agents you run. */
-export const JOBS: RecipeGroup[] = ['Watch other companies', 'Check your own journeys', 'Check your AI agents']
+/* The six types of blueprints (22 Nov call: the kits became these), in the order the menu, the phone sheet, the footer,
+   the hub and the form's chips list them: content/kitPaths' order. A blueprint's group is its type. */
+export const JOBS: RecipeGroup[] = ['Talk to customers', 'Test sign-up and agents', 'Build agent products', 'Work behind logins', 'Watch the market', 'Train and test agents']
 
 /* Each job's anchor on /recipes (pages/Recipes gives each job's section this id). */
 export const jobAnchor = (g: RecipeGroup) => g.toLowerCase().replace(/[^a-z]+/g, '-')
 
-/* The name a job shows in the Recipes menu and on /recipes. The group value stays (recipes, anchors and the join card
-   read it); since 9 Nov the AI agents job is the event log of what AI agents tell people, as /verify says. */
-export const jobLabel = (g: RecipeGroup) => (g === 'Check your AI agents' ? 'What AI agents say' : g)
+/* The name a type shows: its own name, as content/kitPaths gives it. */
+export const jobLabel = (g: RecipeGroup) => g
 
 /* A job with a page of its own links to it after its recipes. */
-const MORE: Partial<Record<RecipeGroup, NavPage>> = {
-  'Check your AI agents': { label: 'See how it works', to: ways.verify.to },
-}
+const MORE: Partial<Record<RecipeGroup, NavPage>> = {}
 
 const recipeLink = (r: Pick<CatalogRecipe, 'id' | 'name' | 'slug'>): NavRecipe => ({ id: r.id, label: r.name, to: `/blueprints/${r.slug}` })
 const recipeById = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
@@ -50,14 +46,14 @@ export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
    featured card is the sample data. Check your AI agents leads to its own page, /verify, which lists its recipes; the
    other jobs lead to their section of /recipes. */
 const JOB_MENU: Record<RecipeGroup, { line: string; examples: RecipeId[]; to?: string }> = {
-  'Watch other companies': { line: 'Their emails, prices, trials and offers, after sign-up.', examples: ['competitor', 'prospect'] },
-  'Check your own journeys': { line: 'Your own sign up, lead forms and emails, as a new user gets them.', examples: ['adcheck', 'speed'] },
-  'Check your AI agents': {
-    line: 'What support chats, voice lines and sales agents tell a persona, word for word.',
-    examples: ['support-bot', 'voice-agent'],
-    to: ways.verify.to,
-  },
+  'Talk to customers': { line: 'Missed calls texted back, reminders sent, every lead called.', examples: ['missed-call', 'reminders'], to: '/blueprints/talk-to-customers' },
+  'Test sign-up and agents': { line: 'Your own sign-up, codes and emails, as a new user gets them.', examples: ['mystery', 'codes'], to: '/blueprints/test-sign-up-and-agents' },
+  'Build agent products': { line: 'Starters for agents with their own inbox and iMessage line.', examples: ['inbox-agent', 'imessage'], to: '/blueprints/build-agent-products' },
+  'Work behind logins': { line: 'Portals checked every morning, documents collected.', examples: ['prior-auth', 'loads'], to: '/blueprints/work-behind-logins' },
+  'Watch the market': { line: 'Competitors’ emails, prices, trials and ads, dated.', examples: ['competitor', 'prices'], to: '/blueprints/watch-the-market' },
+  'Train and test agents': { line: 'Your agent scored on real tasks, every night.', examples: ['eval', 'drift'], to: '/blueprints/train-and-test-agents' },
 }
+
 
 export const recipeJobs: NavJob[] = JOBS.map((name) => {
   const j = JOB_MENU[name]

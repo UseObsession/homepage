@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'audit',
   slug: 'website-audit',
   name: 'QA on your own flows',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'A persona signs up to your product after every release and finds the step that breaks.',
   gets: 'Every step of every release as a new user meets it, screenshotted, and the step that broke.',
   kit: [

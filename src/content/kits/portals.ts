@@ -73,7 +73,7 @@ export const portals: KitPage = {
   blueprints: {
     heading: 'Jobs that sign in for you, every morning.',
     line: 'Obsession signs in, starts trials and reads what each company shows its signed-in customers.',
-    slugs: ['price-watch', 'trial-teardown', 'account-watch'],
+    slugs: ['prior-authorization-status', 'load-tracking', 'invoice-collector', 'price-watch', 'trial-teardown', 'account-watch'],
   },
 
   code: {
