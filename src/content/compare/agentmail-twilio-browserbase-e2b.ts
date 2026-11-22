@@ -63,7 +63,7 @@ export const ref: ReferencePage = {
   title: 'AgentMail, Twilio, Browserbase and E2B, or every piece on one API',
   dek: 'Four vendors give an agent an inbox, a number, a browser and a sandbox, on four keys and four bills. Obsession gives it all four on one key, one bill and one event log.',
   primaryKeyword: 'agentmail twilio browserbase e2b',
-  keywords: ['agentmail and twilio', 'one api for ai agents', 'email phone browser sandbox for ai agents', 'agentmail pricing', 'browserbase pricing', 'e2b pricing'],
+  keywords: ['agentmail and twilio', 'one api for ai agents', 'email phone browser sandbox for ai agents', 'agentmail pricing'],
   checked: '2026-11-22',
   readingMinutes: 6,
   reader: 'developers',
