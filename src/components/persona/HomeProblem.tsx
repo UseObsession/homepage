@@ -2,6 +2,8 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { blueprintPieces, pieceChips } from '../../content/blueprint-ui'
 import { catalog } from '../../content/catalog'
+import { kitLinks } from '../../content/kitPaths'
+import { kits } from '../../content/kits'
 import type { HomeProblem as Words } from '../../content/types'
 import { useInView } from '../../hooks/useReveal'
 import { PersonaGlyph } from './icons'
@@ -24,6 +26,9 @@ type State = 'alone' | 'equipped'
 const HOLD = 1500
 
 const nameOf = Object.fromEntries(catalog.recipes.map((r) => [r.slug, r]))
+/* Each blueprint wears its type's reader colour (content/kitPaths), as on Home's blueprints section. */
+const readerOfType = Object.fromEntries(kitLinks.map((k) => [k.id, k.reader]))
+const readerOf = Object.fromEntries(kits.flatMap((k) => (k.blueprints?.slugs ?? []).map((s) => [s, readerOfType[k.id]])))
 
 const Chev = ({ className }: { className: string }) => (
   <svg className={className} viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -182,7 +187,7 @@ export function HomeProblem({ problem, id }: { problem: Words; id?: string }) {
                   .filter((s) => nameOf[s])
                   .map((s, i) => (
                     <li key={s} style={{ ['--i' as string]: i }}>
-                      <Link className="h-pr__bp" to={`/blueprints/${s}`}>
+                      <Link className="h-pr__bp" to={`/blueprints/${s}`} data-reader={readerOf[s]}>
                         <span className="h-pr__bp-name">
                           {nameOf[s].name}
                           <Chev className="h-pr__chev" />

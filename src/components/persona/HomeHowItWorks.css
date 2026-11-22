@@ -34,6 +34,9 @@
   cursor: pointer;
   transition: background-color var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
 }
+.h-how__tab { display: inline-flex; align-items: center; gap: var(--ob-space-6); }
+.h-how__tab-mark { width: 7px; height: 7px; border-radius: 2px; background: var(--s-accent, var(--ob-text-3)); opacity: 0.55; transition: opacity var(--ob-dur-base) var(--ob-ease-out); }
+.h-how__tab[aria-pressed='true'] .h-how__tab-mark { opacity: 1; }
 .h-how__tab[aria-pressed='true'] { background: var(--ob-surface-raised, var(--ob-surface)); color: var(--ob-text); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong); }
 .h-how__play { display: inline-grid; place-items: center; width: 32px; padding: 0; }
 .h-how__play svg { width: 12px; height: 12px; fill: currentColor; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
@@ -76,6 +79,16 @@
 .h-how__from { font: var(--ob-type-caption); color: var(--ob-text-3); }
 .h-how__text { font: var(--ob-type-small); color: var(--ob-text); text-wrap: pretty; }
 .h-how__kind { justify-self: start; padding: 2px var(--ob-space-8); border-radius: var(--ob-radius-pill); background: var(--ob-bg); border: var(--ob-border-hair) solid var(--ob-line); font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-2); }
+/* The example's reader colour (styles/accents.css), as on James's blueprint tiles: a glow from the card's corner. */
+.h-how__card { position: relative; isolation: isolate; overflow: hidden; }
+.h-how__card--in::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -70% 35% 40% -35%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-hover, 66%), transparent), transparent);
+  pointer-events: none;
+}
 .h-how__card--does { grid-template-columns: 16px minmax(0, 1fr); align-items: start; gap: var(--ob-space-8); font: var(--ob-type-small); color: var(--ob-text); }
 .h-how__does-ic { width: 16px; height: 16px; margin-top: 2px; fill: none; stroke: var(--ob-success); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
@@ -116,8 +129,8 @@
 .h-how__place-words { display: grid; gap: 1px; min-width: 0; }
 .h-how__place-words b { font: var(--ob-type-caption); font-weight: var(--ob-weight-medium, 500); color: inherit; }
 .h-how__place-words span { font: var(--ob-type-caption); color: var(--ob-text-3); }
-.h-how__place.is-on { border-color: var(--ob-success); color: var(--ob-text); background: var(--ob-surface); }
-.h-how__place.is-on .h-how__place-ic { border-color: var(--ob-success); color: var(--ob-success); }
+.h-how__place.is-on { border-color: var(--s-accent, var(--ob-line-strong)); color: var(--ob-text); background: var(--ob-surface); }
+.h-how__place.is-on .h-how__place-ic { border-color: var(--s-accent, var(--ob-line-strong)); color: var(--s-accent, var(--ob-text)); }
 
 /* The wires between the stops: a verb over a line with an arrowhead; a dot travels it while that step plays. */
 .h-how__wire { position: relative; display: grid; justify-items: center; align-content: start; gap: var(--ob-space-6); padding-top: 64px; }

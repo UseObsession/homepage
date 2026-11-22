@@ -616,6 +616,7 @@ export type HomeHow = {
     play: string
     examples: {
       who: string
+      reader: 'sales' | 'agencies' | 'developers' | 'founders' | 'marketing'
       from: string
       in: { at: string; kind: string; text: string }
       place: 'runtime' | 'servers' | 'person'

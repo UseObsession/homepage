@@ -11,7 +11,8 @@ import './HomeBlueprints.css'
 /* Home's blueprints (#blueprints, 22 Nov 2026). On the 22 Nov call the kits became six types of blueprints, and Home
    keeps one blueprints section: each type a card (its icon, name, what the agent does and how many blueprints it holds,
    linking the type's page), its first blueprints as rows that link their own pages, and the link to every blueprint.
-   Every link carries the site's learn-more cue: a chevron that steps right on hover. The cards rise in order once, when
+   Every link carries the site's learn-more cue: a chevron that steps right on hover. Each card wears its type's reader
+   colour, as James's blueprint tiles did: a faint glow from its top corner and the colour on its icon (styles/accents.css). The cards rise in order once, when
    the grid enters the view; nothing moves under prefers-reduced-motion, and nothing hides before the page's script arms
    the grid. Words: content/pages/home.ts (homeBlueprints); each type's name and line from content/kitPaths, its
    blueprints from content/kits, each blueprint's name from its own file. */
@@ -54,7 +55,7 @@ export function HomeBlueprints({ words, id }: { words: Words; id?: string }) {
             const slugs = slugsOf[k.id] ?? []
             const rest = slugs.length - SHOW
             return (
-              <li className="h-bp__card" key={k.id} style={{ ['--i' as string]: i }}>
+              <li className="h-bp__card" key={k.id} style={{ ['--i' as string]: i }} data-reader={k.reader}>
                 <Link className="h-bp__type" to={k.path}>
                   <span className="h-bp__ic" aria-hidden="true">
                     <PersonaGlyph name={k.icon} />

@@ -262,6 +262,7 @@ export const page: Page = {
       examples: [
         {
           who: 'Support and sales',
+          reader: 'sales',
           from: 'A customer messages on WhatsApp',
           in: { at: '09:41:07', kind: 'message.received', text: '“Can I move my table to Friday?”' },
           place: 'runtime',
@@ -270,6 +271,7 @@ export const page: Page = {
         },
         {
           who: 'QA and product',
+          reader: 'agencies',
           from: 'Your app emails a new user',
           in: { at: '09:41:07', kind: 'email.received', text: 'Your 6-digit sign-in code' },
           place: 'servers',
@@ -278,6 +280,7 @@ export const page: Page = {
         },
         {
           who: 'Teams without engineers',
+          reader: 'marketing',
           from: 'A blueprint finds a change',
           in: { at: '09:41:07', kind: 'blueprint.result', text: 'A competitor cut its price by 15%' },
           place: 'person',

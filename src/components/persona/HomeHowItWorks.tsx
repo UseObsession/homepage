@@ -175,7 +175,8 @@ export function HomeHowItWorks({ how, id }: { how: HomeHow; id?: string }) {
                 {L.examplesLabel}
               </span>
               {L.examples.map((x, i) => (
-                <button key={x.who} type="button" className="h-how__tab" aria-pressed={i === ex} onClick={() => pick(i)}>
+                <button key={x.who} type="button" className="h-how__tab" aria-pressed={i === ex} onClick={() => pick(i)} data-reader={x.reader}>
+                  <i className="h-how__tab-mark" aria-hidden="true" />
                   {x.who}
                 </button>
               ))}
@@ -193,6 +194,7 @@ export function HomeHowItWorks({ how, id }: { how: HomeHow; id?: string }) {
             ref={root}
             className={'h-how__stage' + (running ? ' is-running' : '') + (motion ? ' has-motion' : '') + (e.out ? ' has-out' : '')}
             data-step={step}
+            data-reader={e.reader}
           >
             {/* 1 · Something happens */}
             <div className="h-how__col h-how__col--in">

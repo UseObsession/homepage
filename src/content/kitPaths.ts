@@ -8,17 +8,21 @@ import type { PersonaIcon } from './types'
 
 export type KitId = 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train'
 
-export type KitLink = { id: KitId; name: string; line: string; path: string; icon: PersonaIcon }
+/* `reader` is the reader colour the type wears (styles/accents.css: James's blueprint tiles' hues, one per reader), the
+   one who buys that job most: sales and support teams talk to customers, agencies and QA test sign-ups, developers build
+   and train agents, operations founders work behind logins, marketing watches the market. */
+export type KitReader = 'sales' | 'agencies' | 'developers' | 'founders' | 'marketing'
+export type KitLink = { id: KitId; name: string; line: string; path: string; icon: PersonaIcon; reader: KitReader }
 
 export const kitsPath = '/blueprints'
 
 export const kitLinks: KitLink[] = [
-  { id: 'talk', name: 'Talk to customers', line: 'Calls, texts and email from one number and inbox', path: '/blueprints/talk-to-customers', icon: 'chat' },
-  { id: 'test', name: 'Test sign-up and agents', line: 'A new user’s codes, emails and your own bot’s answers', path: '/blueprints/test-sign-up-and-agents', icon: 'check' },
-  { id: 'build', name: 'Build agent products', line: 'Every piece for every agent you ship, on one key', path: '/blueprints/build-agent-products', icon: 'code' },
-  { id: 'portals', name: 'Work behind logins', line: 'Portals signed in for weeks, every code caught', path: '/blueprints/work-behind-logins', icon: 'key' },
-  { id: 'watch', name: 'Watch the market', line: 'Competitors’ trials, emails and prices, kept', path: '/blueprints/watch-the-market', icon: 'record' },
-  { id: 'train', name: 'Train and test agents', line: 'Real inboxes, numbers and browsers for every run', path: '/blueprints/train-and-test-agents', icon: 'flask' },
+  { id: 'talk', name: 'Talk to customers', line: 'Calls, texts and email from one number and inbox', path: '/blueprints/talk-to-customers', icon: 'chat', reader: 'sales' },
+  { id: 'test', name: 'Test sign-up and agents', line: 'A new user’s codes, emails and your own bot’s answers', path: '/blueprints/test-sign-up-and-agents', icon: 'check', reader: 'agencies' },
+  { id: 'build', name: 'Build agent products', line: 'Every piece for every agent you ship, on one key', path: '/blueprints/build-agent-products', icon: 'code', reader: 'developers' },
+  { id: 'portals', name: 'Work behind logins', line: 'Portals signed in for weeks, every code caught', path: '/blueprints/work-behind-logins', icon: 'key', reader: 'founders' },
+  { id: 'watch', name: 'Watch the market', line: 'Competitors’ trials, emails and prices, kept', path: '/blueprints/watch-the-market', icon: 'record', reader: 'marketing' },
+  { id: 'train', name: 'Train and test agents', line: 'Real inboxes, numbers and browsers for every run', path: '/blueprints/train-and-test-agents', icon: 'flask', reader: 'developers' },
 ]
 
 export const kitPathOf = Object.fromEntries(kitLinks.map((k) => [k.id, k.path])) as Record<KitId, string>
