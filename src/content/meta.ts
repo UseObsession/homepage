@@ -6,6 +6,7 @@ import { alternativesHub, glossaryHub, type ReferenceHub, type ReferenceKind } f
 import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
 import { lookupPage } from './pages/lookup'
+import { noCodePage } from './pages/no-code'
 import { pieces } from './pieces'
 import { kits } from './kits'
 import { cases, teams } from './teams'
@@ -20,6 +21,7 @@ export type PageKind =
   | 'home'
   | 'audience'
   | 'developers'
+  | 'no-code'
   | 'compare'
   | 'verify'
   | 'recipes'
@@ -167,6 +169,16 @@ export const entries: Entry[] = [
     line: firstSentence(dev.hero.sub),
     faq: dev.faq,
     source: 'src/content/pages/developers.ts',
+  },
+  /* The front door for teams that don't write code (content/pages/no-code.ts, 23 Nov 2026), beside /developers. */
+  {
+    kind: 'no-code',
+    meta: ogFor(noCodePage.meta),
+    name: crumbName(noCodePage.meta, 'No code'),
+    headline: noCodePage.hero.headline,
+    line: firstSentence(noCodePage.hero.sub),
+    faq: noCodePage.faq,
+    source: 'src/content/pages/no-code.ts',
   },
   /* What each piece costs (content/pricing.ts): its own words, not a Page, like the lookup. Its share card's line is
      its own `line`, and its questions are FAQPage. */

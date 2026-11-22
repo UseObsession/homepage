@@ -216,6 +216,8 @@ const menus = {
     },
   },
   developers: { label: 'Developers', to: '/developers' } satisfies NavPage,
+  /* Beside Developers since 23 Nov 2026: the front door for teams that don't write code, as the hero's two doors. */
+  noCode: { label: 'No code', to: '/no-code' } satisfies NavPage,
   pricing: { label: 'Pricing', to: '/pricing' } satisfies NavPage,
 }
 

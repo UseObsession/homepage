@@ -66,7 +66,7 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | agentic commerce infrastructure, ai agent payment infrastructure | `/use-cases/agentic-commerce` | Title, H1, first sentence, a question (23 Nov) |
 | agentic commerce, agentic commerce meaning, agentic commerce definition, agentic commerce examples, what is agentic commerce | `/blog/agentic-commerce` | Title, H1, answer (the pillar, 23 Nov; stores' side stays with `/blog/agentic-commerce-for-merchants`) |
 | agentic commerce protocol, agent payments protocol, universal commerce protocol, agentic checkout protocol, ai agent payment standards visa mastercard | `/blog/agentic-commerce-protocols` | Title, H1, answer (23 Nov) |
-| agentic commerce companies, top agentic commerce companies, agentic commerce platform | `/blog/agentic-commerce-companies` | Title, H1, answer (23 Nov) |
+| agentic commerce companies, top agentic commerce companies, agentic commerce platform, agentic commerce infrastructure companies | `/blog/agentic-commerce-companies` | Title, H1, answer (23 Nov) |
 | ai agent use cases (by job) | `/use-cases` | The hub, sorted by kit |
 | what can ai agents do for my business | `/blog/what-can-ai-agents-do-for-business` | Title, H1, answer (a kit guide, 22 Nov; moved from `/blog/ai-agent-use-cases-for-business`) |
 | ai agent templates free | `/blog/ai-agent-templates-free` | Title, H1, answer (22 Nov) |

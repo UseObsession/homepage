@@ -1,0 +1,71 @@
+/* The no-code hero's week (NoCodeWeek.tsx): a product window, five day columns, each card marked with its format and its
+   team's reader colour (styles/accents.css). Design system tokens only. */
+
+.nc-week { margin: var(--ob-space-48, var(--ob-space-40)) 0 0; display: grid; gap: var(--ob-space-12); }
+.nc-week__win {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-xl);
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(var(--ob-tint-rgb), 0.06), transparent 60%),
+    var(--ob-surface);
+  box-shadow: var(--ob-shadow-3);
+}
+.nc-week__bar { display: flex; align-items: center; gap: var(--ob-space-12); padding: var(--ob-space-12) var(--ob-space-16); border-bottom: var(--ob-border-hair) solid var(--ob-line); }
+.nc-week__dots { display: inline-flex; gap: 5px; }
+.nc-week__dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--ob-line-strong); }
+.nc-week__crumb { font: var(--ob-type-caption); color: var(--ob-text-2); }
+
+.nc-week__days { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.nc-week__day { display: grid; align-content: start; gap: var(--ob-space-8); padding: var(--ob-space-16) var(--ob-space-12); min-width: 0; }
+.nc-week__day + .nc-week__day { border-left: var(--ob-border-hair) solid var(--ob-line); }
+.nc-week__dayname { margin: 0 0 var(--ob-space-4); font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); text-transform: uppercase; }
+
+.nc-week__card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  gap: var(--ob-space-6);
+  padding: var(--ob-space-12);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-surface-raised, var(--ob-surface));
+}
+.nc-week__card::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -70% 40% 50% -40%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-rest, 40%), transparent), transparent);
+  pointer-events: none;
+}
+.nc-week__fmt { display: inline-flex; align-items: center; gap: var(--ob-space-6); justify-self: start; margin: 0; padding: 1px var(--ob-space-8) 1px var(--ob-space-6); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-pill); background: var(--ob-bg); font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-2); }
+.nc-fmt-ic { width: 13px; height: 13px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.nc-week__text { margin: 0; font: var(--ob-type-small); color: var(--ob-text); text-wrap: pretty; }
+.nc-week__team { display: flex; align-items: center; gap: var(--ob-space-6); margin: 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-week__team i { width: 7px; height: 7px; border-radius: 2px; background: var(--s-accent, var(--ob-text-3)); }
+.nc-week__cap { font: var(--ob-type-caption); color: var(--ob-text-3); text-align: center; }
+
+@media (max-width: 960px) {
+  .nc-week__days { grid-template-columns: minmax(0, 1fr); }
+  .nc-week__day { grid-template-columns: 44px repeat(2, minmax(0, 1fr)); align-items: start; gap: var(--ob-space-8); padding: var(--ob-space-12); }
+  .nc-week__day + .nc-week__day { border-left: 0; border-top: var(--ob-border-hair) solid var(--ob-line); }
+  .nc-week__dayname { padding-top: var(--ob-space-12); }
+}
+@media (max-width: 560px) {
+  .nc-week__day { grid-template-columns: minmax(0, 1fr); }
+  .nc-week__dayname { padding-top: 0; }
+}
+
+/* Motion: the days arrive left to right, once, as the window enters the view. */
+@keyframes nc-week-rise {
+  from { opacity: 0; translate: 0 8px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .nc-week__win[data-armed]:not(.is-in) .nc-week__day { opacity: 0; }
+  .nc-week__win.is-in .nc-week__day { animation: nc-week-rise 520ms var(--ob-ease-out) both; animation-delay: calc(var(--i, 0) * 130ms + 120ms); }
+}

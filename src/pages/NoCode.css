@@ -1,0 +1,90 @@
+/* /no-code (NoCode.tsx): a centred hero over the week, the teams grid, Home's teams section, the formats, then cost,
+   rules and the developer handoff as cards. Design system tokens only; each team card wears its reader colour. */
+
+.nc-hero { padding-top: clamp(32px, 5vw, 72px); }
+.nc-crumbs { margin-bottom: var(--ob-space-24); }
+.nc-hero__words { display: grid; justify-items: center; gap: var(--ob-space-20); text-align: center; }
+.nc-pill { margin: 0; padding: 6px 12px; border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-pill); font: 500 13px / 1 var(--ob-font-sans); color: var(--ob-text-2); }
+.nc-h1 { margin: 0; max-width: 20ch; font: 600 clamp(34px, 4.6vw, 60px) / 1.05 var(--ob-font-sans); letter-spacing: -0.04em; color: var(--ob-text); text-wrap: balance; }
+.nc-sub { margin: 0; max-width: 62ch; font: 400 clamp(16.5px, 1.4vw, 19px) / 1.55 var(--ob-font-sans); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
+.nc-act { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--ob-space-12); margin-top: var(--ob-space-4); }
+.nc-note { margin: 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
+
+/* The teams: 4 cards a row, each its icon, name, 3 jobs as links (the job, then the blueprint's name), and its KPIs. */
+.nc-teams__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ob-space-16); }
+.nc-team {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--ob-space-12);
+  padding: var(--ob-space-20);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-surface);
+}
+.nc-team::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -45% 35% 55% -35%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-rest, 45%), transparent), transparent);
+  pointer-events: none;
+}
+.nc-team__head { display: flex; align-items: center; gap: var(--ob-space-12); margin: 0; }
+.nc-team__head b { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.nc-team__ic { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: var(--ob-radius-md); background: var(--ob-bg); color: var(--s-accent, var(--ob-text)); }
+.nc-team__ic svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.nc-team__jobs { list-style: none; margin: 0; padding: 0; border-top: var(--ob-border-hair) solid var(--ob-line); }
+.nc-team__job { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-8); padding: var(--ob-space-10, 10px) 0; border-bottom: var(--ob-border-hair) solid var(--ob-line); color: var(--ob-text); text-decoration: none; }
+.nc-team__job-words { display: grid; gap: 2px; min-width: 0; font: var(--ob-type-small); }
+.nc-team__bp { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-team__job .nc-chev { color: var(--ob-text-3); }
+.nc-team__kpis { margin: 0; font: var(--ob-type-caption); color: var(--ob-text-2); }
+.nc-team__kpis span { display: block; color: var(--ob-text-3); margin-bottom: 2px; }
+.nc-team__job:focus-visible, .nc-more:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; border-radius: var(--ob-radius-sm); }
+
+.nc-chev { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-base) var(--ob-ease-out); }
+.nc-more { display: inline-flex; align-items: center; gap: var(--ob-space-4); margin-top: var(--ob-space-24); font: var(--ob-type-small); color: var(--ob-text); text-decoration: underline; text-decoration-color: var(--ob-line-strong); text-underline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .nc-team__job:hover .nc-chev, .nc-more:hover .nc-chev { translate: 3px 0; color: var(--ob-text); }
+  .nc-more:hover { text-decoration-color: var(--ob-text); }
+}
+
+/* Cost, rules and the developer handoff. */
+.nc-base__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-16); }
+.nc-card { display: grid; align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-24); border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: var(--ob-radius-xl); background: var(--ob-surface); box-shadow: var(--ob-shadow-2, var(--ob-shadow-3)); }
+.nc-card__h { margin: 0; font: var(--ob-type-h3, var(--ob-type-title)); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); text-wrap: balance; }
+.nc-card__line { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.nc-card__note { margin: 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-card .nc-more { margin-top: var(--ob-space-4); }
+.nc-plans { list-style: none; margin: var(--ob-space-4) 0 0; padding: 0; display: grid; border-top: var(--ob-border-hair) solid var(--ob-line); }
+.nc-plan { display: flex; justify-content: space-between; gap: var(--ob-space-12); padding: var(--ob-space-10, 10px) 0; border-bottom: var(--ob-border-hair) solid var(--ob-line); font: var(--ob-type-small); color: var(--ob-text-2); }
+.nc-plan b { font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.nc-rules__list { list-style: none; margin: var(--ob-space-4) 0 0; padding: 0; display: grid; gap: var(--ob-space-10, 10px); }
+.nc-rules__list li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--ob-space-10, 10px); align-items: start; font: var(--ob-type-small); color: var(--ob-text); }
+.nc-rules__ic { display: grid; place-items: center; width: 28px; height: 28px; border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-sm); color: var(--ob-text-2); }
+.nc-rules__ic svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.nc-dev {
+  grid-column: 1 / -1;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-24);
+  padding: var(--ob-space-24);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-surface);
+}
+.nc-dev::before { content: ''; position: absolute; z-index: -1; inset: -80% 55% 30% -20%; background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-rest, 40%), transparent), transparent); pointer-events: none; }
+.nc-dev__words { display: grid; gap: var(--ob-space-8); max-width: 60ch; }
+
+@media (max-width: 1100px) { .nc-teams__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .nc-teams__grid, .nc-base__grid { grid-template-columns: minmax(0, 1fr); }
+  .nc-dev { flex-direction: column; align-items: flex-start; }
+}

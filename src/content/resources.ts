@@ -194,7 +194,7 @@ export const blogUi = {
   more: 'More posts',
   feedTitle: 'The Obsession blog',
   share: 'Share',
-  screenCaption: 'The same job, run by Obsession’s AI customers.',
+  screenCaption: 'The same job, run as an Obsession blueprint.',
   photo: 'Photo:',
   onPexels: 'on Pexels',
   readPost: 'Read the article',
