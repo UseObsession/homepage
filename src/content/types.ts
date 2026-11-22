@@ -551,6 +551,9 @@ export type CardGrid = {
 export type PersonaStart = {
   primary: Cta
   chip: { code: string; copy: string; copied: string }
+  /* The hero's two doors (23 Nov 2026): developers start from code (the chip and the primary button), teams that don't
+     code start from a blueprint (a plain line and the secondary button), so both readers see their way in at once. */
+  doors?: { dev: { label: string }; noCode: { label: string; line: string } }
 }
 /* The line drawings of Home's sections (components/persona/icons), on a 16px grid in the nav's style. */
 export type PersonaIcon =

@@ -1,12 +1,14 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Cta, Hero, PersonaStart } from '../../content/types'
+import { PersonaGlyph } from './icons'
 import './blueprint.css'
 import './PersonaHero.css'
 
 /* Home's hero (21 Nov 2026, after rivet.dev's centred hero): the tag, the headline (each sentence on its own line: what
-   we sell, then "One API, one bill."), the sub, the 2 buttons with the copyable line of code beside them, then 3 facts
-   on a ruled row. No object under it: the pieces follow straight after. Words come from content/pages/home.ts (hero and
+   we sell, then "One API, one bill."), the sub, then two doors (23 Nov 2026): for developers, the copyable line of code
+   and Start building; for teams that don't code, the job in plain words and Browse blueprints. Then 3 facts on a ruled
+   row. No object under it: the pieces follow straight after. Words come from content/pages/home.ts (hero and
    personaStart). */
 
 /* A link inside the site goes through the router; an anchor on this page or another site stays a plain link. */
@@ -82,13 +84,40 @@ export function PersonaHero({ hero, start }: { hero: Hero; start: PersonaStart }
             ))}
           </h1>
           <p className="s-ph-sub">{hero.sub}</p>
-          <div className="s-ph-act">
-            <div className="s-ph-buttons">
-              <CtaButton cta={start.primary} className="ob-btn ob-btn--lg s-ph-primary" />
-              {hero.secondary && <CtaButton cta={hero.secondary} className="ob-btn ob-btn--lg ob-btn--secondary" />}
+          {start.doors && hero.secondary ? (
+            /* Two doors (23 Nov 2026): each says who it is for, shows how that reader starts (the code, or the job in
+               plain words) and gives its button, on 2 equal cards side by side; stacked on a phone. */
+            <div className="s-ph-doors">
+              <div className="s-ph-door" data-reader="developers">
+                <p className="s-ph-door-k">
+                  <span className="s-ph-door-ic" aria-hidden="true">
+                    <PersonaGlyph name="code" />
+                  </span>
+                  {start.doors.dev.label}
+                </p>
+                <CodeChip chip={start.chip} />
+                <CtaButton cta={start.primary} className="ob-btn ob-btn--lg s-ph-primary s-ph-door-btn" />
+              </div>
+              <div className="s-ph-door" data-reader="marketing">
+                <p className="s-ph-door-k">
+                  <span className="s-ph-door-ic" aria-hidden="true">
+                    <PersonaGlyph name="check" />
+                  </span>
+                  {start.doors.noCode.label}
+                </p>
+                <p className="s-ph-door-line">{start.doors.noCode.line}</p>
+                <CtaButton cta={hero.secondary} className="ob-btn ob-btn--lg ob-btn--secondary s-ph-door-btn" />
+              </div>
             </div>
-            <CodeChip chip={start.chip} />
-          </div>
+          ) : (
+            <div className="s-ph-act">
+              <div className="s-ph-buttons">
+                <CtaButton cta={start.primary} className="ob-btn ob-btn--lg s-ph-primary" />
+                {hero.secondary && <CtaButton cta={hero.secondary} className="ob-btn ob-btn--lg ob-btn--secondary" />}
+              </div>
+              <CodeChip chip={start.chip} />
+            </div>
+          )}
           {hero.note && <p className="s-ph-note">{hero.note}</p>}
         </div>
         {hero.proof.length > 0 && (

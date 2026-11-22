@@ -122,7 +122,9 @@ export const page: Page = {
     pillTo: '#join',
     /* Locked by James, 21 Nov: "toolkit" leads, the sub names what is in the kit at once. */
     headline: 'The toolkit for AI agents. One API, one bill.',
-    sub: 'An inbox, a phone number and a browser for every agent, used alone or together. Every email, text, call and page lands in your event log.',
+    /* 23 Nov 2026 (Seun): the sub names both ways in, so a team that doesn't code knows from the first screen that
+       Obsession is for them too; the doors under it say how each starts. */
+    sub: 'An inbox, a phone number and a browser for every agent, used alone or together. Build on them with code, or pick a blueprint and Obsession runs the whole job.',
     /* Not drawn on Home (its hero has buttons, not a form); the Hero contract asks for one. */
     capture: { ...access, source: 'home-hero' },
     secondary: { label: 'Browse blueprints', to: '/blueprints' },
@@ -138,6 +140,10 @@ export const page: Page = {
   personaStart: {
     primary: { label: 'Start building', to: '#join' },
     chip: { code: 'obsession.personas.create({ inbox: true, phone: "US", browser: true })', copy: 'Copy the code', copied: 'Copied' },
+    doors: {
+      dev: { label: 'For developers' },
+      noCode: { label: 'For teams that don’t code', line: 'Pick a job, fill in the blanks, get results in Slack or a sheet.' },
+    },
   },
 
   /* The share image's card (scripts/og.mjs): 1 persona's events in the event log, Juno of the slab diagram, through 3 pieces. */
