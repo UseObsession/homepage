@@ -248,7 +248,7 @@ export const post: BlogPost = {
         ['Mem0: memory', 'Memory across sessions for unlimited end users', 'Free: 50,000 adds a month with your own model key\nCustom plan', 'Memory only', 'Agents that must remember each user'],
         ['Composio: tools and app connections', '1,700+ apps with sign-in handled, over MCP or SDK', 'Hobby: 100,000 tool calls a month free\nPaid tools billed per call', 'Works through accounts users already hold', 'Agents acting in a user’s own apps'],
         ['AgentMail: email inboxes', 'Inboxes, threads, webhooks, MCP and SDKs', 'Free: 3 inboxes\nDeveloper $20 a month\nStartup $200 a month', 'Email only', 'Agents that need an inbox and nothing else'],
-        ['Twilio: numbers, texts and calls', 'Numbers, texts and calls at any volume', 'Number $1.15 a month\nText $0.0083, plus carrier fees', 'No inbox, browser or sandbox', 'A phone line at high volume'],
+        ['Twilio: numbers, texts and calls', 'Numbers, texts and calls at any volume', 'Number $1.15 a month\nText $0.0083, plus carrier fees', 'No cloud browser or sandbox', 'A phone line at high volume'],
         ['AgentPhone: numbers for agents', 'Numbers, texts, calls and iMessage on one webhook', 'Number $3 a month\nCalls 13¢ a minute, texts 2¢', 'Phone and messaging only', 'Agents that live on the phone'],
         ['Vapi: voice agents', 'Hosted voice agents with the models you choose', '$0.05 a minute, plus model, voice and transcriber', 'Voice only', 'Teams shipping a voice agent'],
         ['Browserbase: cloud browsers', 'Browser fleets, Stagehand, Playwright and Puppeteer', 'Free: 1 browser hour\nDeveloper $20 a month\nStartup $99 a month', 'Proxy traffic billed per GB\nNo inbox or number described', 'Browser-only agents at scale'],
@@ -291,7 +291,7 @@ export const post: BlogPost = {
       items: [
         '**The job itself.** The model and your instructions decide what the agent attempts, and evaluations show whether it worked.',
         '**The rules.** US carriers require texting registration, sites block automated sign-ins with CAPTCHAs and bot checks, and identity checks exist to stop software. A well-built agent stops at each and records where it stopped.',
-        '**Security.** The MCP specification says tools represent arbitrary code execution, and that tool descriptions are untrusted unless they come from a trusted server. Give each agent only the tools its job needs.',
+        '**Security.** The MCP specification says tools represent arbitrary code execution, and that descriptions of tool behaviour, such as annotations, are untrusted unless they come from a trusted server. Give each agent only the tools its job needs.',
         '**Prices.** Every price here is as listed on 22 November 2026. Check each vendor’s page before you commit, since plans and allowances change.',
       ],
     },
@@ -320,7 +320,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What does an AI agent infrastructure market map show?',
-          a: 'It sorts vendors across the 10 layers by the job each does for the agent, so you can see what you have covered and where two vendors overlap. Several now span 2 or more layers: Composio lists apps, a browser and a sandbox, Anthropic sells models, tools and a hosted runtime, and agent toolkits put email, phone, browser and sandbox on one API.',
+          a: 'It sorts vendors across the 10 layers by the job each does for the agent, so you can see what you have covered and where two vendors overlap. Several now span 2 or more layers: Composio connects more than 1,700 apps and handles their sign-in, Anthropic sells models, tools and a hosted runtime, and agent toolkits put email, phone, browser and sandbox on one API.',
         },
         {
           q: 'What is agent infrastructure as a service?',

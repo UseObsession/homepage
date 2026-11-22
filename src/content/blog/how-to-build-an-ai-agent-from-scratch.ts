@@ -177,14 +177,14 @@ export const post: BlogPost = {
         LANGGRAPH +
         ') make the same split. A checkpointer saves a snapshot of each thread’s state, keyed by a thread_id. With it, the agent remembers within a conversation, pauses for a person’s input and resumes, and recovers after a failure. A separate store holds data across threads. The [OpenAI Agents SDK](' +
         OPENAI_SDK +
-        ') builds the first kind in as sessions, which keep an agent’s working context from one turn of its loop to the next.',
+        ') builds in sessions, which store the conversation history so the agent keeps its working context within its loop.',
     },
     {
       kind: 'p',
       text:
         'More context isn’t always better. [Anthropic’s guide to context engineering](' +
         CONTEXT +
-        ') describes a pattern it calls context rot, in which the model recalls what is in its window less accurately as the window fills. It suggests four fixes. Compaction summarises a long run and restarts from the summary. Notes go to a file outside the window, and the agent reads them back later. Files load only when a tool needs them, and sub-agents each work in a clean window and return a summary of 1,000 to 2,000 tokens. Memory passes when you can stop the process mid-task, restart it, and the agent carries on from its last saved step.',
+        ') describes a pattern it calls context rot, in which the model recalls what is in its window less accurately as the window fills. It suggests four fixes. Compaction summarises a long run and restarts from the summary. Notes go to a file outside the window, and the agent reads them back later. Files load only when a tool needs them, and sub-agents each work in a clean window and return a summary that is often 1,000 to 2,000 tokens. Memory passes when you can stop the process mid-task, restart it, and the agent carries on from its last saved step.',
     },
 
     { kind: 'h2', id: 'guardrails', text: 'Step 5: add guardrails' },
@@ -282,7 +282,7 @@ export const post: BlogPost = {
       items: [
         '**It can be wrong with confidence.** Every tool result that matters needs a check in code or a person.',
         '**It should keep to checks built for people.** A well-built agent says it’s an AI when it talks to a person, stops at an identity check and treats a CAPTCHA or a bot block as a hard stop.',
-        '**It stops before payment.** It pays only with the customer’s own payment card and approval, and never with made-up payment details.',
+        '**It stops before payment.** It stops before payment unless it is given the customer’s own card, and never uses made-up payment details.',
         '**Long tasks drift.** As the window fills, accuracy falls, so split long tasks, save notes and compact.',
         '**Fixed steps suit a workflow better.** If the steps never change, a workflow costs less and is easier to test.',
       ],

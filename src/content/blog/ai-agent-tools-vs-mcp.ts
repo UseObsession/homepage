@@ -113,7 +113,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `[The official MCP Registry](${MCP_REGISTRY}) lists public servers by name and version, each with a one-line description of what it does. Managed services such as [Composio](${COMPOSIO}) wrap more than 1,700 apps as tools behind one MCP server and handle each app’s sign-in. Web search is one of the most common tools to add, and [the best web search APIs for AI agents](/blog/best-web-search-api-for-ai-agents) compares the providers. [The glossary](/glossary/model-context-protocol) defines hosts, clients and servers in more depth.`,
+      text: `[The official MCP Registry](${MCP_REGISTRY}) is the public directory of MCP servers. Managed services such as [Composio](${COMPOSIO}) wrap more than 1,700 apps as tools behind one MCP server and handle each app’s sign-in. Web search is one of the most common tools to add, and [the best web search APIs for AI agents](/blog/best-web-search-api-for-ai-agents) compares the providers. [The glossary](/glossary/model-context-protocol) defines hosts, clients and servers in more depth.`,
     },
 
     { kind: 'h2', id: 'what-are-skills', text: 'What are agent skills?' },
@@ -131,7 +131,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A skill holds know-how and doesn’t act on its own. It tells the agent which tools to call, in what order and what to check, and the agent then calls those tools directly or through MCP. The Agent Skills site lists clients that load skills, Claude Code and ChatGPT’s Codex among them, and OpenAI’s documentation lists Skills beside MCP servers in its tools section. The MCP specification also lists Skills over MCP as an extension, for finding skills through a server.',
+      text: 'A skill holds know-how and doesn’t act on its own. It tells the agent which tools to call, in what order and what to check, and the agent then calls those tools directly or through MCP. The Agent Skills site says a large number of AI tools and agent clients support the format, and Claude Code loads skills from SKILL.md folders. The MCP specification also lists Skills over MCP as an extension, for finding skills through a server.',
     },
 
     { kind: 'h2', id: 'compared', text: 'AI agent tools vs MCP vs skills, compared', compare: true },
@@ -148,7 +148,7 @@ export const post: BlogPost = {
         ['No tools: the model alone', 'Writes and reasons with no setup', 'Model tokens only', 'Can’t look anything up or act', 'Drafting and analysis'],
         ['Your own tools, through function calling', 'Any function your code can run, in one request', 'Input tokens for every definition and call', 'Defined per app; formats differ by provider', 'One app calling your own APIs'],
         ['Provider server tools: web search, code execution', 'Run on the provider’s side, with no handler code', 'Tokens, plus fees such as $10 per 1,000 web searches', 'Only the tools that provider offers', 'Search and code runs inside one model’s API'],
-        ['An MCP server', 'One server works in Claude Code, Cursor and every other MCP host', 'The standard is free; each server is priced by its maker', 'Descriptions untrusted unless the server is', 'A capability used in several apps or by other teams'],
+        ['An MCP server', 'One server works in Claude Code, Cursor and every other MCP host', 'The standard is free; each server is priced by its maker', 'Annotations untrusted unless the server is trusted', 'A capability used in several apps or by other teams'],
         ['A skill: SKILL.md and scripts', 'Know-how loaded only when a task needs it', 'About 100 tokens per skill until used', 'Calls tools, and holds no inbox or number', 'Procedures the agent keeps getting wrong'],
         ['Composio: managed app connections', '1,700+ apps with sign-in handled, over MCP or SDK', 'Hobby: 100,000 tool calls a month free', 'Works through accounts people already hold', 'Agents acting in a user’s own apps'],
         ['AgentMail: inboxes over API and MCP', 'Email inboxes with webhooks, websockets and an MCP server', 'Free: 3 inboxes\nDeveloper $20 a month', 'Email only', 'An agent that needs an inbox'],
@@ -184,7 +184,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession is the toolkit for AI agents, and its [Build agent products kit](/kits/build-agent-products) puts email inboxes, phone numbers, a cloud browser and a sandbox on one API and one bill, under one identity. Its MCP server, added with claude mcp add obsession, gives an agent inboxes.create, numbers.create and browsers.create as tools, and events.list and events.subscribe read each email, text and page as it lands. Teams without engineers pick a blueprint such as [Support bot check](/blueprints/support-bot-check), and Obsession runs it and sends them every answer.',
+      text: 'Obsession is the toolkit for AI agents, and its [Build agent products kit](/kits/build-agent-products) puts email inboxes, phone numbers, a cloud browser and a sandbox on one API and one bill, under one identity. Its MCP server, added with claude mcp add obsession, gives an agent tools to create inboxes, numbers and browsers itself, and the events API shows each email, text and page as it lands, dated. Teams without engineers pick a blueprint such as [Support bot check](/blueprints/support-bot-check), and Obsession runs it and sends them every answer.',
     },
     {
       kind: 'cta',
@@ -213,7 +213,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Tools run code.** The MCP specification says tools represent arbitrary code execution, and that tool descriptions are untrusted unless they come from a trusted server.',
+        '**Tools run code.** The MCP specification says tools represent arbitrary code execution, and that descriptions of tool behaviour, such as annotations, are untrusted unless they come from a trusted server.',
         '**People approve.** The specification says hosts must get the user’s explicit consent before invoking any tool, and that a person should be able to deny a call.',
         '**Servers can carry injected instructions.** Claude Code’s guide says to verify you trust each server, because servers that fetch outside content can expose you to prompt injection, text that tries to give the model new orders.',
         '**Skills are software.** Anthropic’s guide says to use skills only from trusted sources and to audit every file, since a skill can direct the agent to call tools or run code.',

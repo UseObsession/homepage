@@ -85,7 +85,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `The business answers for all six. The UK Competition and Markets Authority (CMA) publishes guidance on [complying with consumer law when using AI agents](${CMA}), last updated on 30 October 2026. It says “you are responsible for what an AI agent does”, even when a third party provides it. It also tells businesses to “regularly check how well an AI agent is performing”. Air Canada had to honour a refund rule its website chatbot invented, one of the [AI chatbot fails](/blog/ai-chatbot-fails) that customers found before the companies did.`,
+      text: `The business answers for all six. The UK Competition and Markets Authority (CMA) publishes guidance on [complying with consumer law when using AI agents](${CMA}), last updated on 30 October 2026. It says “you are responsible for what an AI agent does”, even when a third party provides it. It also tells businesses to “regularly check how well an AI agent is performing”. A tribunal ordered Air Canada to pay a refund its website chatbot had promised against its own policy, one of the [AI chatbot fails](/blog/ai-chatbot-fails) that customers found before the companies did.`,
     },
 
     { kind: 'h2', id: 'test-types', text: 'Test types, from unit tests to live calls' },
@@ -191,7 +191,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Check the model grader before trusting it. Anthropic’s guide says model-based graders need “calibration with human graders for accuracy”: have a person grade 20 conversations, compare the two sets of grades, and tighten the rubric until they agree. The same guide closes on one instruction, to read the transcripts.',
+      text: 'Check the model grader before trusting it. Anthropic’s guide says model-based graders need “calibration with human graders for accuracy”: have a person grade 20 conversations, compare the two sets of grades, and tighten the rubric until they agree. The same guide’s conclusion gives one instruction: read the transcripts.',
     },
 
     { kind: 'h2', id: 'weekly-routine', text: 'A weekly routine for testing AI agents' },
@@ -258,14 +258,14 @@ export const post: BlogPost = {
           `[Promptfoo](${PROMPTFOO_PRICING})`,
           'Open source evals and red teaming, run from your own code',
           'Community: free, 10,000 red-team probes a month\nEnterprise: custom',
-          'Tests prompts and models in your pipeline',
+          'Probes past 10,000 a month are bought separately',
           'Engineers testing prompts and attacks on every commit',
         ],
         [
           `[Braintrust](${BRAINTRUST_PRICING})`,
           'Datasets, experiments and scores by a model, autoevals or code',
           'Starter: $0, 10,000 scores\nPro: $249 a month',
-          'Scores the outputs your code sends it',
+          'Starter: 10,000 scores, then $2.50 per 1,000',
           'Teams comparing versions before each release',
         ],
         [
@@ -279,14 +279,14 @@ export const post: BlogPost = {
           `[Retell’s built-in tests](${RETELL_PRICING})`,
           'Simulated scenarios, batch runs, web and phone test calls',
           'Per message or minute, from your balance\n$10 credit at sign-up',
-          'Follow-ups after the call not described',
+          'Phone tests need a number and a card on file',
           'Teams whose voice agent runs on Retell',
         ],
         [
           'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check), [Drift watch](/blueprints/drift-watch), [Personas](/personas)',
           'Calls, chats and emails your live agent as a customer, then waits days for each follow-up',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Grades against your rules, and stops at any identity check',
+          'Keeps each answer beside your policy page, and stops at any identity check',
           'The live agent on every channel, every morning',
         ],
       ],

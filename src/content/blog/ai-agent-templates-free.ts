@@ -126,7 +126,7 @@ export const post: BlogPost = {
       text:
         '[Copilot Studio](' +
         COPILOT +
-        ') is Microsoft’s agent builder, and its pricing page lists access to “pre-built agents and templates”. It costs $200 a month per pack of 25,000 Copilot Credits, with a free trial, and an Azure subscription is needed to use agents.',
+        ') is Microsoft’s agent builder, and its pricing page lists “pre-built agents and templates” among its features. It costs $200 a month per pack of 25,000 Copilot Credits, with a free trial, and an Azure subscription is needed to use agents.',
     },
 
     { kind: 'h2', id: 'running-costs', text: 'What a free template costs to run' },
@@ -186,7 +186,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'blueprints', text: 'Blueprints: AI agent templates Obsession runs for you' },
     {
       kind: 'p',
-      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Every agent gets an inbox, a phone number and a browser, plus messaging and a sandbox to run code. Its [blueprints](/blueprints) are ready-made jobs that run on those pieces: a team with no engineers names the competitors, stores, forms or voice lines, picks how often and says where results go. Each blueprint is billed on the pieces it uses and runs on the Free plan, which starts without a credit card. The jobs sit in the [Test sign-up and agents](/kits/test-sign-up-and-agents) and [Watch the market](/kits/watch-the-market) kits.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Every agent can have an inbox, a phone number and a browser, plus messaging and a sandbox to run code. Its [blueprints](/blueprints) are ready-made jobs that run on those pieces: a team with no engineers names the competitors, stores, forms or voice lines, picks how often and says where results go. Each blueprint is billed on the pieces it uses. The Free plan starts without a credit card and covers small runs; blueprints that make calls or send texts need a paid plan. The jobs sit in the [Test sign-up and agents](/kits/test-sign-up-and-agents) and [Watch the market](/kits/watch-the-market) kits.',
     },
     {
       kind: 'list',
@@ -232,7 +232,7 @@ export const post: BlogPost = {
           '10 activities per run on Free, 40 on Pro',
           'Teams already on Zapier',
         ],
-        ['Make templates', 'More than 600 AI templates, sorted by app and job', 'Free: 1,000 credits a month', '2 templates under Agentic AI', 'Teams that want a visual editor'],
+        ['Make templates', '571 LLM templates, 58 chatbot templates and 2 agentic AI templates', 'Free: 1,000 credits a month', '2 templates under Agentic AI', 'Teams that want a visual editor'],
         [
           'OpenAI Agents SDK examples on GitHub',
           'MIT-licensed code for text, sandbox, realtime and voice agents',
@@ -287,7 +287,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'Are there free AI agent templates?',
-          a: 'Yes. On 22 November 2026, n8n’s library listed 14,409 workflow templates and Make’s AI category held more than 600. Zapier listed ready-made agents such as a Support Email Agent, and GitHub holds open source examples such as OpenAI’s Agents SDK. Each is free to copy and billed to run. Obsession’s blueprints run on its Free plan, which starts without a credit card.',
+          a: 'Yes. On 22 November 2026, n8n’s library listed 14,409 workflow templates and Make’s AI category listed 571 for LLMs, 58 for chatbots and 2 for agentic AI. Zapier listed ready-made agents such as a Support Email Agent, and GitHub holds open source examples such as OpenAI’s Agents SDK. Each is free to copy and billed to run. Obsession’s Free plan starts without a credit card and covers small blueprint runs.',
         },
         {
           q: 'Where can I find AI agent templates on GitHub?',

@@ -230,19 +230,19 @@ export const post: BlogPost = {
           '[Gymnasium](' + GYM + ') (Farama Foundation)',
           'The reset and step interface most RL code expects, with terminated and truncated kept apart',
           'Free, open source',
-          'An interface: the tasks, state and reward are yours to write',
+          'Defines the reset and step API; each environment supplies its own tasks and reward',
           'Wrapping a new environment so any trainer can drive it',
         ],
         [
           '[OpenEnv](' + OPENENV + ') (Meta-PyTorch, Hugging Face and partners)',
           'reset(), step() and state() over a WebSocket; each environment a Docker image, run locally, on a cloud sandbox or as a Hugging Face Space',
           'Free, open source (BSD 3-Clause)',
-          'Catalogue as listed: code, text games, board games, web navigation and coding-agent tasks',
+          'Catalogue as listed: sandboxed Python, text games, board and card games, web navigation, coding-agent harness tasks',
           'Sharing environments across teams and trainers',
         ],
         [
           '[verifiers](' + VERIFIERS + ') (Prime Intellect)',
-          'One library for environments that both train and evaluate LLMs, tied to the Environments Hub',
+          'A library for RL environments and evals, tightly integrated with the Environments Hub',
           'Free, open source (MIT)',
           'Integrations named: Prime Intellect’s prime-rl trainer and Hosted Training',
           'Teams training with prime-rl or publishing to the Environments Hub',
@@ -257,21 +257,21 @@ export const post: BlogPost = {
         [
           '[WebArena](' + WEBARENA + ')',
           'Fully functional websites in 4 domains, scored on whether each task was completed correctly',
-          'Free',
+          'No price listed',
           'Scope set by the paper: 4 site types, a map and user manuals',
           'Web skills on realistic sites, with a published human baseline',
         ],
         [
           '[OSWorld](' + OSWORLD + ')',
           'A real computer on Ubuntu, Windows or macOS; 369 tasks, each with a set-up state and an evaluation script',
-          'Free; you run the virtual machines (VMware, VirtualBox, Docker or AWS)',
+          'No price listed; you run the virtual machines (VMware, VirtualBox, Docker or AWS)',
           'The published task set: 369, or 361 without the Google Drive tasks',
           'Desktop and multi-app agents',
         ],
         [
           '[τ-bench](' + TAU + ') (Yao, Shinn, Razavi and Narasimhan)',
           'A user played by a language model, domain tools and policy rules; success means the database matches the goal state',
-          'Free',
+          'No price listed',
           'Simulated users and tools, in the domains the paper defines',
           'Agents that serve users under written policies, measured with pass^k',
         ],
@@ -301,11 +301,11 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'frameworks-interface', text: 'Frameworks that give you the interface' },
     {
       kind: 'p',
-      text: 'Gymnasium is the reference. Its Env class defines reset and step, and OpenEnv and BrowserGym both keep those calls. [OpenEnv](' + OPENENV + ') carries the idea to LLM post-training. Each environment is a Docker image that answers reset(), step() and state() over a WebSocket, sync or async. It runs locally, on a cloud sandbox or as a Hugging Face Space. A technical committee that includes Meta-PyTorch and Hugging Face governs it. Its catalogue lists sandboxed Python execution, text games such as Wordle, board games from OpenSpiel, BrowserGym’s web tasks and coding-agent tasks.',
+      text: 'Gymnasium is the reference. Its Env class defines reset and step, and OpenEnv and BrowserGym both keep those calls. [OpenEnv](' + OPENENV + ') carries the idea to LLM post-training. Each environment is a Docker image that answers reset(), step() and state() over a WebSocket, sync or async. It runs locally, on a cloud sandbox or as a Hugging Face Space. A technical committee that includes Meta-PyTorch and Hugging Face governs it. Its catalogue lists sandboxed Python execution, text games such as Wordle, board games from OpenSpiel, BrowserGym’s web tasks and tasks run through coding-agent harnesses.',
     },
     {
       kind: 'p',
-      text: 'Prime Intellect’s [verifiers](' + VERIFIERS + ') is a library for writing environments that train and evaluate LLMs with the same code. Environments publish to its Environments Hub and train with Prime Intellect’s prime-rl or its Hosted Training.',
+      text: 'Prime Intellect’s [verifiers](' + VERIFIERS + ') is a library for creating environments to train and evaluate LLMs. Environments publish to its Environments Hub and train with Prime Intellect’s prime-rl or its Hosted Training.',
     },
     { kind: 'h3', id: 'benchmarks', text: 'Benchmarks with tasks and checks built in' },
     {
@@ -335,7 +335,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'real-pieces', text: 'What changes when every episode has its own inbox, phone and browser' },
     {
       kind: 'p',
-      text: 'Obsession, the toolkit for AI agents, gives each episode its own inbox, phone number, browser and [sandbox](/sandbox), on one API and one bill. The reset is obsession.personas.create({ inbox: true, phone: "US", browser: true }), and each code, email and page reaches your reward function in order as an sms.received, email.received or page.visited event. A persona, the one identity holding those pieces, costs nothing while it waits, so thousands of episodes can start at once and wait days for a reply.',
+      text: 'Obsession, the toolkit for AI agents, gives each episode its own inbox, phone number, browser and [sandbox](/sandbox), on one API and one bill. The reset is obsession.personas.create({ inbox: true, phone: "US", browser: true }), and each code, email and page reaches your reward function in order as an sms.received, email.received or page.visited event. A persona, the one identity holding those pieces, costs nothing while it waits, so many episodes can start at once and wait days for a reply.',
     },
     {
       kind: 'cta',

@@ -101,7 +101,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'A bot finds each button and field by a selector, a stored description of that element on the screen. [UiPath’s documentation](' +
         UIPATH_SELECTORS +
-        ') says selectors “store the attributes of a graphical user interface element and its parents, in the shape of an XML fragment”. It adds that some programs, “such as some web-apps”, have changing layouts and values. “Studio cannot predict these changes”, it says, so some selectors may need writing by hand.',
+        ') says selectors “store the attributes of a graphical user interface element and its parents, in the shape of an XML fragment”. It adds that some programs, “such as some web-apps”, have changing layouts and values. “Studio cannot predict these changes”, it says, so some selectors might have to be generated manually.',
     },
     {
       kind: 'p',
@@ -267,7 +267,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Do RPA bots break when a website changes?',
-          a: 'They can. UiPath’s documentation says selectors store each element’s attributes, and that Studio cannot predict changes in apps with changing layouts, such as some web apps, so some selectors may need writing by hand. Each redesign of a portal you don’t own can stop a bot at the first step it no longer recognises.',
+          a: 'They can. UiPath’s documentation says selectors store each element’s attributes, and that Studio cannot predict changes in apps with changing layouts, such as some web apps, so some selectors might have to be generated manually. Each redesign of a portal you don’t own can stop a bot at the first step it no longer recognises.',
         },
         {
           q: 'Can an AI agent work in a portal that sends a login code?',

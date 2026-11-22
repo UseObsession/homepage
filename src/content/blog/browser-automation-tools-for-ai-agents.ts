@@ -109,7 +109,7 @@ export const post: BlogPost = {
           ') gives an agent a browser through MCP, the Model Context Protocol, the standard way AI agents call tools. Its README says it uses Playwright’s accessibility tree, “not pixel-based input”, so it needs no vision model. Text on standard web pages comes back exact and costs few tokens to read.',
         '**Screenshots.** [Claude’s computer use](' +
           CLAUDE_CU +
-          ') sends the model screenshots and carries out the mouse and keyboard actions it returns, so it works on any screen a person can see, desktop apps included. Its documentation says long agent loops pile up screenshots at roughly 1,000 to 1,800 input tokens each.',
+          ') sends the model screenshots and carries out the mouse and keyboard actions it returns, so it can control a desktop in a sandbox, desktop apps included. Its documentation says long agent loops pile up screenshots at roughly 1,000 to 1,800 input tokens each.',
       ],
     },
     {
@@ -210,8 +210,8 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Browser Use](' +
           BU_PRICING +
-          ') runs agents that complete tasks in a browser, with an open source harness under the MIT licence and cloud browsers billed by the minute. Its pricing page lists up to 1,000 browsers at once on pay as you go, with CAPTCHA solving included.',
-        '**Price as listed:** $0 a month, pay as you go, with credits from $5. Browsers $0.06 an hour, home IP proxy traffic $5 a GB, and its fastest agent $0.006 a task.',
+          ') runs agents that complete tasks in a browser, with an open source harness under the MIT licence and cloud browsers billed by the hour. Its pricing page lists up to 1,000 browsers at once on pay as you go, with CAPTCHA solving included.',
+        '**Price as listed:** $0 a month, pay as you go, with credits from $5. Browsers $0.06 an hour, home IP proxy traffic $5 a GB, and its bu-ultrafast agent about $0.006 for a median task.',
         '**Where it stops:** its pricing page doesn’t describe keeping logins between sessions or handling login codes, and proxy traffic is billed per GB.',
         '**Best for:** many short browser tasks at a low hourly rate.',
       ],
@@ -314,7 +314,7 @@ export const post: BlogPost = {
         '**How long must the login last?** Minutes suit a one-off task in any cloud browser. Days or weeks need saved state that survives between sessions and is renewed when it expires.',
         '**Where does the login code land?** A pass is an inbox or number registered to the agent and read by code. A code that goes to an employee’s phone on every sign-in keeps a person in the loop.',
         '**Tree or screenshots?** The accessibility tree suits standard web pages at a lower token cost. Screenshots suit canvas pages and desktop apps.',
-        '**How many browsers at once, and the bill?** Multiply browser hours by the hourly rate, then add proxy traffic per GB where the plan charges for it. At $0.10 an hour, an agent working 2 hours a day uses about $6 of browser time a month, whether you run 10 agents or 10,000. Watch cost per task beside task success rate, since a cheap browser that loses its login every night pays for it in failed runs.',
+        '**How many browsers at once, and the bill?** Multiply browser hours by the hourly rate, then add proxy traffic per GB where the plan charges for it. At $0.10 an hour, an agent working 2 hours a day uses about $6 of browser time a month, so 10 agents cost about $60 and 10,000 about $60,000. Watch cost per task beside task success rate, since a cheap browser that loses its login every night pays for it in failed runs.',
         '**Can your team check what the agent saw?** A screenshot or saved page for each step shows what was on screen, and when.',
         '**Where does it stop?** Decide before launch which steps hand back to a person: CAPTCHAs, identity checks, payments and anything that accepts terms.',
       ],
@@ -338,7 +338,7 @@ export const post: BlogPost = {
         ['Browser Use', 'Agent tasks, open source harness, up to 1,000 browsers', '$0.06 a browser hour\n$5 a GB home IP\n$0.006 a task', 'Saved logins not on its pricing page', 'Many short tasks'],
         ['Stagehand', 'Act, observe and extract in plain language', 'Not listed', 'Hosting comes from its browser', 'Plain-language steps beside code'],
         ['Playwright MCP', 'Accessibility tree, persistent profile', 'Free', 'One browser per profile', 'MCP clients that need a browser'],
-        ['Claude’s computer use', 'Any screen, by screenshot', 'Token rates\n1,000 to 1,800 tokens a screenshot', 'Your sandbox, a person on key steps', 'Desktop apps and canvas pages'],
+        ['Claude’s computer use', 'Desktop control by screenshot', 'Token rates\n1,000 to 1,800 tokens a screenshot', 'Your sandbox, a person on key steps', 'Desktop apps and canvas pages'],
         ['Browserbase', 'Hosted sessions, CAPTCHA solving from Developer', 'Free, 1 hour\n$20 or $99 a month\nCustom', '15 minute sessions on Free', 'Many parallel sessions'],
         ['Steel', 'Hosted sessions up to 24 hours on Enterprise', '$0 or $250 a month plus usage\n$0.08 to $0.10 an hour', '15 minutes on Launch, 1 hour on Scale', 'Long sessions at volume'],
         ['Cloudflare Browser Rendering', 'Browsers on Cloudflare’s network', 'Free, 10 minutes a day\n$0.09 an hour past 10', 'Saved logins not on its pricing page', 'Teams on Cloudflare Workers'],
@@ -346,7 +346,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Personas](/personas)',
           'A browser that keeps its logins for weeks, with the agent’s own inbox and number for every code',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at CAPTCHAs, bot blocks, identity checks and payment',
+          'Stops at CAPTCHAs, bot blocks and identity checks; pays only with the customer’s own card',
           'Agents that work in portals for weeks',
         ],
       ],

@@ -158,7 +158,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'latency', text: 'Latency' },
     {
       kind: 'p',
-      text: 'Vertex AI adds latency, the time an agent takes to return a response, and a failure flag to every run by default. Measure latency per step and end to end, and report the median and the slowest 5% beside the average, because one stuck run hides inside a good average. Some agents wait on the outside world, such as a sign-in code by text or a reply email. For those, split the agent’s own working time from the time spent waiting, or a slow sender looks like a slow agent.',
+      text: 'Vertex AI adds latency, the time an agent takes to return a response, and failure to every evaluation by default. Measure latency per step and end to end, and report the median and the slowest 5% beside the average, because one stuck run hides inside a good average. Some agents wait on the outside world, such as a sign-in code by text or a reply email. For those, split the agent’s own working time from the time spent waiting, or a slow sender looks like a slow agent.',
     },
 
     { kind: 'h3', id: 'cost', text: 'Cost per task' },

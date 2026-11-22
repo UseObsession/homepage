@@ -5,7 +5,7 @@
    post first compares it. */
 const COMPETITOR_HOSTS = new Set([
   // The pieces' neighbours (the bundle and piece comparisons, 22 Nov 2026)
-  'agentmail.to', 'twilio.com', 'browserbase.com', 'e2b.dev',
+  'agentmail.to', 'twilio.com', 'browserbase.com', 'e2b.dev', 'goodcall.com', 'smith.ai', 'ruby.com',
   // AI mystery shopping and store checks
   'adstack.com', 'aistoreshopper.com', 'competitive-compass.com', 'convertica.org', 'cresta.com', 'customeroptix.com',
   'dealerdrivendata.com', 'gen.qa', 'implementai.io', 'intouchinsight.com', 'liveperson.com', 'localspyai.com',

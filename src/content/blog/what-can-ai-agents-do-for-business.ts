@@ -181,7 +181,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'One real run shows what a single sign-up can surface. In a [September 2026 sample](/sample-output) at a UK skincare store, 4 sign-ups each filled a basket, and a £40 basket left at 02:57 on 22 September never got a reminder email.',
+      text: 'One real run shows what a single sign-up can surface. In a [September 2026 sample](/sample-output) at a UK skincare store, 4 test customers each got their own inbox, and the one that left a £40 basket at 02:57 on 22 September got no reminder email in the 48 hours that followed.',
     },
     {
       kind: 'list',
@@ -252,7 +252,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'limits', text: 'What AI agents should not do on their own' },
     {
       kind: 'p',
-      text: 'Anthropic’s advice in the same guide is to find to start with the simplest system that does the job and to add multi-step agents when a simpler one falls short. A fixed workflow is easier to predict, so use one wherever the steps never change. Where an agent does the work, set these lines from the first day:',
+      text: 'Anthropic’s advice in the same guide is to start with the simplest build that does the job, often a single model call with retrieval and examples, and to add multi-step agents when that falls short. A fixed workflow is easier to predict, so use one wherever the steps never change. Where an agent does the work, set these lines from the first day:',
     },
     {
       kind: 'list',
@@ -332,7 +332,7 @@ export const post: BlogPost = {
           '[Zapier Agents](' + ZAPIER_PRICING + ')',
           'Agents that act across the apps Zapier connects, with ready templates',
           'Free: 400 activities a month\nPro: from about $33.33 a month, billed annually',
-          '10 activities per run on Free, 40 on Pro',
+          '10 activities per run on Free, 40 on paid plans',
           'Teams already running Zapier',
         ],
         [
@@ -344,7 +344,7 @@ export const post: BlogPost = {
         ],
         [
           '[Microsoft Copilot Studio](' + COPILOT + ')',
-          'Pre-built agents and templates for Microsoft 365',
+          'Pre-built agents and templates, with a free trial',
           '$200 a month per 25,000 Copilot Credits\nFree trial',
           'An Azure subscription to use agents',
           'Companies on Microsoft 365',

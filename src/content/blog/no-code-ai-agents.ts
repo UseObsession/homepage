@@ -103,7 +103,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The decision is what separates an agent from ordinary automation. An automation follows the same steps every time. An agent chooses its next step from what it reads, which suits messy inputs such as free-text emails, documents and support questions. Make’s page recommends agents for intake, triage, follow-ups and analysis, beside fixed steps where the path never changes.',
+      text: 'The decision is what separates an agent from ordinary automation. An automation follows the same steps every time. An agent chooses its next step from what it reads, which suits messy inputs such as free-text emails, documents and support questions. Make’s page lists intake, triage, follow-ups and analysis as agent work, and says to use an agent when a workflow needs judgment or reasoning.',
     },
 
     { kind: 'h2', id: 'what-they-do-well', text: 'What no-code agents do well' },
@@ -114,7 +114,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Triage an inbox and draft replies.** The agent sorts new email, drafts answers in your voice and leaves them for a person to send, which [Lindy](' +
+        '**Triage an inbox and draft replies.** The agent manages new email, drafts answers in your voice and leaves them for a person to send, which [Lindy](' +
           LINDY +
           ') lists on its plans. Teams watch first-reply time and hours saved a week.',
         '**Qualify new leads.** It reads each form, scores the lead, adds it to the CRM and books the next step. Sales teams watch speed to lead and meetings booked, and [speed to lead statistics](/blog/speed-to-lead-statistics) shows which benchmarks hold up.',
@@ -160,7 +160,7 @@ export const post: BlogPost = {
         [
           '[Zapier Agents](' + ZAPIER_AGENTS + ')',
           'Agents set up with Zapier Copilot that act in 9,000+ apps and on the web',
-          'Free: 400 agent activities a month\nPro: from $33.33 a month, billed yearly',
+          'Free: 400 agent activities a month\nPro: from about $33.33 a month on the annual plan',
           'Agent activities are billed apart from Zap tasks',
           'Teams that already run Zaps',
         ],
@@ -180,7 +180,7 @@ export const post: BlogPost = {
         ],
         [
           '[Lindy](' + LINDY + ')',
-          'Inbox triage and replies in your voice, computer use, 3,000+ integrations',
+          'Inbox management and replies in your voice, computer use, 3,000+ integrations',
           'Free: $50 of credits for 7 days\nTeam: $29.99 a user a month',
           'Works in 2 to 5 of your inboxes, by plan',
           'Email and meeting work for a team',
@@ -194,7 +194,7 @@ export const post: BlogPost = {
         ],
         [
           '[Microsoft Copilot Studio](' + COPILOT + ')',
-          'Agents for Microsoft 365, websites and apps, plus phone menu agents',
+          'Agents for Microsoft 365, websites and apps, plus IVR (phone menu) agents',
           '$200 a month for 25,000 Copilot Credits\nIncluded for internal agents with Microsoft 365 Copilot',
           'Pay as you go needs an Azure subscription',
           'Companies already on Microsoft 365',
@@ -310,11 +310,11 @@ export const post: BlogPost = {
         },
         {
           q: 'Is there a free no-code AI agent builder?',
-          a: 'Yes. On 22 November 2026, Zapier’s free plan included 400 agent activities a month, Make offered agents on every plan with a free start, and Lindy gave $50 of credits for 7 days. Obsession’s Free plan includes 3 inboxes, a number and 10 browser hours for blueprints to run on.',
+          a: 'Yes. On 22 November 2026, Zapier’s free plan included 400 agent activities a month, Make offered agents on every plan with a free start, and Lindy gave $50 of credits for 7 days. Obsession’s Free plan includes 3 inboxes, a number that receives texts and calls, and 10 browser hours.',
         },
         {
           q: 'Can no-code AI agents make phone calls?',
-          a: 'Some can. Relevance AI lists calling agents on its Enterprise plan, and Microsoft Copilot Studio lets you design phone menu agents. Elsewhere, calls come through a connection to a phone provider, with its own number, setup and bill. Obsession’s Lead response checks call your sales line as a new lead and record every call.',
+          a: 'Some can. Relevance AI lists calling agents on its Enterprise plan, and Microsoft Copilot Studio lets you design IVR (phone menu) agents. Elsewhere, calls come through a connection to a phone provider, with its own number, setup and bill. On a paid plan, Obsession’s Lead response checks call your sales line as a new lead and time every reply.',
         },
         {
           q: 'What is the difference between a no-code AI agent and an automation?',

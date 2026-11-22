@@ -59,6 +59,8 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | rl environments for llms | `/blog/rl-environments-for-llms` | Title, H1, answer (22 Nov; rl environments for ai agents stays with the train kit) |
 | ai agent infrastructure stack, ai agent infrastructure, ai agent infrastructure companies, ai agent infrastructure market map, ai agent tech stack, agent infrastructure as a service | `/blog/ai-agent-infrastructure-stack` | Title, H1, answer (the pillar, 22 Nov) |
 | ai agent tools vs mcp, mcp vs function calling, tool calling vs mcp, agent skills vs mcp, ai agent tools vs skills, mcp vs api | `/blog/ai-agent-tools-vs-mcp` | Title, H1, answer (22 Nov; api for ai agents mcp stays with `/developers`) |
+| ai voice agent for small business, ai voice agent pricing, ai voice agent cost per minute, ai answering service for small business, ai phone answering service for small business | `/blog/ai-voice-agent-for-small-business` | Title, H1, answer (22 Nov; ai receptionist stays with `/use-cases/ai-receptionist`) |
+| 10dlc registration, 10dlc registration cost, 10dlc requirements, 10dlc campaign types, a2p 10dlc brand registration, 10dlc campaign description example | `/blog/10dlc-registration` | Title, H1, answer (22 Nov) |
 
 Blueprint titles own the job as a verb ("Track competitors’ emails and texts"); guides keep the noun phrase ("competitor email tracking tools"). Not worth a title: persona for ai agent, event log, ai agent blueprint, ai agent identity. Not built yet (the plan's waves): alternatives pages for AgentMail, Browserbase, E2B and Mailosaur, best email API, browser and sandbox for AI agents, and an OTP testing guide.
 
