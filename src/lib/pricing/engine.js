@@ -62,7 +62,7 @@
  * Global switches. Anything left out takes its default from pricing.json.
  * @typedef {{model?:string, modelPrices?:{in:number, out:number, cached:number}, cacheShare?:number,
  *   browser?:string, browserRates?:Partial<Browser>, attempts?:number, failedShare?:number, fleetJourneys?:number,
- *   journeys?:string[]}} Overrides
+ *   journeys?:string[], hold?:'price'|'margin'}} Overrides
  */
 /** @typedef {{group:string, label:string, amount:number, detail?:string}} Line */
 /** @typedef {{total:number, lines:Line[], groups:Record<string, number>}} Cost */
@@ -668,8 +668,17 @@ export function blueprintMonth(blueprint, scenario, pricing, o = {}, ctxIn) {
     if (!r) throw new Error(`blueprintMonth: no piece "${id}" in pricing.json`);
     return { id, name: r.name, n: x, unit: r.unit, rate: r.rate, amount: x * r.rate, cost: x * r.wholesale };
   });
-  const total = lines.reduce((s, l) => s + l.amount, 0);
   const ours = tierCost(blueprint, tier, pricing, o, ctx);
+  /* Holding margins (o.hold 'margin'), supplier costs that are in no piece (proxy data, CAPTCHAs) are passed on at the
+     month's margin at the reference suppliers, so the month's margin stays exactly where it was. Zero at the reference
+     suppliers. */
+  if (o.hold === 'margin') {
+    const refMonth = blueprintMonth(blueprint, tier, pricing, referenceOverrides(o));
+    const keep = refMonth.margin ?? 0;
+    const owed = ours.cost / (1 - keep) - lines.reduce((s, l) => s + l.amount, 0);
+    if (Math.abs(owed) > 1e-9) lines.push({ id: 'passThrough', name: 'Other supplier costs, at the same margin', n: 1, unit: 'a month', rate: owed, amount: owed, cost: 0 });
+  }
+  const total = lines.reduce((s, l) => s + l.amount, 0);
   const estimate = roundEstimate(total, pricing);
   return {
     name: tier.name,
@@ -749,19 +758,46 @@ function wholesaleTerm(w, ctx) {
 }
 
 /**
+ * The overrides at the reference suppliers (pricing.json's default model and browser), with no `hold`: the prices a
+ * `hold` keeps.
+ * @param {Overrides} o
+ * @returns {Overrides}
+ */
+export function referenceOverrides(o) {
+  const { model, modelPrices, browser, browserRates, hold, ...rest } = o;
+  return rest;
+}
+
+/**
  * Each retail piece beside what it costs us, so the margin on every piece is visible. `wholesaleValue` is its unit
  * cost, what one more unit costs us at the supplier's rate (founders, 22 Nov 2026: no plan fee is ever spread into it),
  * which margins and the 25% floor are judged on.
+ *
+ * `o.hold` says what stays put when a supplier switch (o.model, o.modelPrices, o.browser, o.browserRates) moves a unit
+ * cost (founders, 22 Nov 2026, the calculator's switch): 'price' keeps every customer price at the reference suppliers'
+ * (pricing.json's default model and browser), so our margin takes the change, what we gain by engineering or a better
+ * supplier deal; 'margin' keeps every piece's margin at the reference suppliers', so the customer price takes it. Left
+ * out, each piece follows its own rule: a set list price stays, a markup piece (model tokens) follows its cost. At the
+ * reference suppliers all three agree.
  * @param {Pricing} pricing
  * @param {Overrides} [o]
  */
 export function pieceMargins(pricing, o = {}) {
   const ctx = context(pricing, o);
+  const ref = o.hold ? context(pricing, referenceOverrides(o)) : null;
   return pricing.pieces.map((/** @type {any} */ p) => {
-    const wholesale = (p.wholesale || []).reduce((/** @type {number} */ s, /** @type {any} */ w) => s + wholesaleTerm(w, ctx), 0);
-    let retail = p.retail ?? 0;
-    if (p.retailMarkup != null) retail = wholesale * (1 + p.retailMarkup);
-    if (p.retailPlus != null) retail = wholesale + p.retailPlus;
+    /** @param {Ctx} c */
+    const costAt = (c) => (p.wholesale || []).reduce((/** @type {number} */ s, /** @type {any} */ w) => s + wholesaleTerm(w, c), 0);
+    /** The list price the piece's own rule gives for a unit cost. @param {number} w */
+    const listAt = (w) => (p.retailMarkup != null ? w * (1 + p.retailMarkup) : p.retailPlus != null ? w + p.retailPlus : p.retail ?? 0);
+    const wholesale = costAt(ctx);
+    let retail = listAt(wholesale);
+    if (ref) {
+      const refCost = costAt(ref);
+      const refList = listAt(refCost);
+      if (o.hold === 'price' || Math.abs(wholesale - refCost) < 1e-15) retail = refList;
+      else if (o.hold === 'margin') retail = refCost > 0 && refList > 0 ? wholesale * (refList / refCost) : refList;
+    }
     const margin = retail > 0 ? (retail - wholesale) / retail : null;
     let once = null;
     if (p.once) {
