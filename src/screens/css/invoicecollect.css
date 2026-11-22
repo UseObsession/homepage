@@ -1,0 +1,136 @@
+/* app-invoicecollect (23 Nov 2026): Your company / Watches / Invoice collector. Invoice collector for Calder Foods, an
+   invented food distributor, on Monday 7 December. Top: where the PDFs went (Finance / Invoices / November, between
+   07:00 and 07:41) and the month in 3 counts (62 filed, 2 missing, 1 changed). Below: November's invoices, the 3 that need a look
+   first (a telecoms bill well above October's, 2 vendors that haven't posted) with the hollow mark and a band, then the
+   rest, each with its PDF or a dashed gap where the PDF should be. Foot: the logins line, and the toast to #finance.
+   Story (3.6 s): the rows land, each filed invoice's PDF drops in, the 2 missing flip from Checking to Not posted yet,
+   the changed bill lights, the 3 counts land, Needs you goes 0 to 3, the toast.
+   Geometry (design px, main 556 x 414, padding 14): header 14..38, top 50..100, table 112..354, foot 362..400.
+   Rest state (no .play) = the finished scene. Monochrome, like every screen. */
+
+.app-invoicecollect .ax-main{grid-template-columns:minmax(0,1fr);grid-template-rows:24px auto auto;align-content:start;gap:12px;padding:14px}
+
+/* ---------- header ---------- */
+.app-invoicecollect .ic-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-invoicecollect .ic-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-invoicecollect .ic-meta{padding-top:2px;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-invoicecollect .ic-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-invoicecollect .ic-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-invoicecollect .ic-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* sidebar: the list this watch belongs to; Needs you gains the 3 */
+.app-invoicecollect .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-invoicecollect .ax-clients a.on i{background:var(--fg-2)}
+.app-invoicecollect .ic-nb{display:inline-grid}
+.app-invoicecollect .ic-nb b{grid-area:1/1;font-weight:inherit}
+.app-invoicecollect .ic-nb b:first-child{opacity:0}
+
+/* the status mark slot and stacked words: the before state hidden at rest */
+.app-invoicecollect .ic-mk{display:grid;place-items:center;flex:none;width:12px;height:12px}
+.app-invoicecollect .ic-mk>svg{grid-area:1/1}
+.app-invoicecollect .ic-mk .w0{opacity:0}
+.ilwrap .app-invoicecollect .ic-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-invoicecollect .ic-sv{display:grid;min-width:0}
+.app-invoicecollect .ic-sv>span{grid-area:1/1}
+.app-invoicecollect .v0{opacity:0}
+
+/* ---------- where the PDFs went, and the 3 counts ---------- */
+.app-invoicecollect .ic-top{display:grid;grid-template-columns:minmax(0,1fr) repeat(3,84px);align-items:center;column-gap:8px;height:50px;padding:0 10px 0 12px}
+.app-invoicecollect .ic-fold{display:flex;align-items:center;gap:9px;min-width:0}
+.ilwrap .app-invoicecollect .ic-fold svg{width:16px;height:16px;color:var(--fg-2);flex:none}
+.app-invoicecollect .ic-fv{display:grid;gap:5px;min-width:0}
+.app-invoicecollect .ic-fv b{font:500 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-invoicecollect .ic-fv small{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-invoicecollect .ic-k{display:grid;grid-template-columns:12px auto;grid-template-rows:auto auto;column-gap:7px;row-gap:4px;align-items:center;height:34px;padding:0 10px;
+  border-radius:8px;background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line) inset}
+.app-invoicecollect .ic-k.ok{background:rgb(var(--fg-rgb) / .025)}
+.app-invoicecollect .ic-k .ic-mk{grid-row:1/3}
+.app-invoicecollect .ic-k b{font:600 13px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-invoicecollect .ic-k small{font:400 10.5px/1 var(--sans);color:var(--fg-3)}
+
+/* ---------- November's invoices ---------- */
+.app-invoicecollect .ic-tb{position:relative;display:grid;overflow:hidden}
+.app-invoicecollect .ic-th{display:flex;align-items:center;justify-content:space-between;height:26px;padding:0 12px;border-bottom:1px solid var(--line-2)}
+.app-invoicecollect .ic-th b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-invoicecollect .ic-ct{font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-invoicecollect .ic-g{display:grid;grid-template-columns:minmax(0,1fr) 112px 96px 70px 14px;align-items:center;column-gap:10px;padding:0 12px}
+.app-invoicecollect .ic-g>*{min-width:0}
+.app-invoicecollect .ic-ch{height:22px;font:500 10.5px/1 var(--sans);color:var(--fg-3);background:rgb(var(--fg-rgb) / .02);box-shadow:0 -1px 0 var(--line) inset}
+.app-invoicecollect .ic-r{position:relative;height:34px;box-shadow:0 -1px 0 var(--line) inset}
+.app-invoicecollect .ic-v{display:flex;align-items:center;gap:8px;min-width:0}
+.app-invoicecollect .ic-two{display:grid;gap:4px;min-width:0}
+.app-invoicecollect .ic-two b{font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-invoicecollect .ic-two small{font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-invoicecollect .ic-two small.ic-host{font-family:var(--mono)}
+.app-invoicecollect .ic-mono b{font:500 11px/1 var(--mono);font-variant-numeric:tabular-nums}
+.app-invoicecollect .ic-amt b,.app-invoicecollect .ic-ar{text-align:right}
+.app-invoicecollect .ic-amt small{text-align:right;font-family:var(--mono)}
+/* the 3 that need a look: a band; a missing invoice reads in sans, its amount and date dimmed as last month's */
+.app-invoicecollect .ic-r.changed,.app-invoicecollect .ic-r.missing{background:rgb(var(--fg-rgb) / .05)}
+.app-invoicecollect .ic-r.changed .ic-amt small{color:var(--fg-2)}
+.app-invoicecollect .ic-r.missing .ic-sv b{font-family:var(--sans)}
+.app-invoicecollect .ic-r.missing .ic-mono b{color:var(--fg-3)}
+/* the PDF filed, or a dashed gap where it should be */
+.app-invoicecollect .ic-pdf{color:var(--fg-2)}
+.ilwrap .app-invoicecollect .ic-pdf{width:14px;height:14px}
+.app-invoicecollect .ic-gap{display:block;width:11px;height:13px;border-radius:2px;outline:1px dashed var(--line-3);outline-offset:-1px}
+
+/* the proof marker: a tiny capture of the portal page */
+.app-invoicecollect .ic-pf{position:relative;flex:none;display:block;width:12px;height:10px;border-radius:2px;box-shadow:0 0 0 1px rgb(var(--fg-rgb) / .32) inset}
+.app-invoicecollect .ic-pf::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px 2px 0 0;background:rgb(var(--fg-rgb) / .32)}
+
+.app-invoicecollect .ic-f{display:flex;align-items:center;justify-content:space-between;gap:12px;height:24px;padding:0 12px;font-size:10.5px;color:var(--fg-3);background:rgb(var(--fg-rgb) / .02)}
+.app-invoicecollect .ic-f span{display:flex;align-items:center;gap:7px;white-space:nowrap}
+
+/* ---------- foot: the logins line, the toast ---------- */
+.app-invoicecollect .ic-note{position:absolute;left:14px;bottom:14px;height:38px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:4px;
+  font-size:10.5px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.app-invoicecollect .ic-note span{grid-column:2}
+.ilwrap .app-invoicecollect .ic-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-invoicecollect .ic-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-invoicecollect .ic-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-invoicecollect .ic-toast b{font-weight:500;color:var(--fg)}
+.app-invoicecollect .ic-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play, and only for readers who allow it) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes invcol-on{from{opacity:1}to{opacity:1}}
+  @keyframes invcol-show{from{opacity:0}to{opacity:1}}
+  @keyframes invcol-hide{from{opacity:1}to{opacity:0}}
+  @keyframes invcol-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes invcol-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+  @keyframes invcol-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes invcol-drop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  @keyframes invcol-spin{to{transform:rotate(360deg)}}
+  @keyframes invcol-spinr{to{transform:rotate(-360deg)}}
+  @keyframes invcol-sqin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(.7525)}}
+  @keyframes invcol-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}30%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .05)}}
+  @keyframes invcol-pulse{0%,100%{opacity:1}50%{opacity:.15}}
+  @keyframes invcol-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. the invoices land row by row; each filed invoice's PDF drops in */
+  .app-invoicecollect.play .ic-r{animation:invcol-land .4s var(--ease) var(--ic-t) both;}
+  .app-invoicecollect.play .ic-r .ic-pdf{animation:invcol-drop .4s var(--ease) calc(var(--ic-t) + .3s) both;}
+  .app-invoicecollect.play .ic-r .ic-gap{animation:invcol-show .3s var(--ease) calc(var(--ic-t) + .8s) both;}
+
+  /* 2. the 3 that need a look: the missing 2 flip from Checking to Not posted yet, the changed bill lights */
+  .app-invoicecollect.play .ic-r.changed,.app-invoicecollect.play .ic-r.missing{animation:invcol-land .4s var(--ease) var(--ic-t) both,invcol-glow 1.2s var(--ease) calc(var(--ic-t) + .8s) both;}
+  .app-invoicecollect.play .ic-r .w0{animation:invcol-on .01s linear both,invcol-hide .2s var(--ob-ease-in) calc(var(--ic-t) + .8s) forwards;}
+  .app-invoicecollect.play .ic-r .w0 .sig-rot{animation:invcol-spin .7s linear var(--ic-t) 1;}
+  .app-invoicecollect.play .ic-r .w0 .sig-orb{animation:invcol-spinr .7s linear var(--ic-t) 1;}
+  .app-invoicecollect.play .ic-r .w1{animation:invcol-show .2s var(--ease) calc(var(--ic-t) + .8s) both;}
+  .app-invoicecollect.play .ic-r .w1 .sig-sq{animation:invcol-sqin .45s var(--snap) calc(var(--ic-t) + .8s) both;}
+  .app-invoicecollect.play .ic-r .v0{animation:invcol-on .01s linear both,invcol-out .25s var(--ob-ease-in) calc(var(--ic-t) + .75s) forwards;}
+  .app-invoicecollect.play .ic-r .v1{animation:invcol-in .35s var(--ease) calc(var(--ic-t) + .8s) both;}
+  .app-invoicecollect.play .ic-f{animation:invcol-show .35s var(--ease) 2.7s both;}
+
+  /* 3. the month in 3 counts, Needs you goes 0 to 3, the note, then the toast to #finance */
+  .app-invoicecollect.play .ic-k{animation:invcol-land .4s var(--ease) var(--ic-t) both;}
+  .app-invoicecollect.play .ic-ct{animation:invcol-show .35s var(--ease) 2.2s both;}
+  .app-invoicecollect.play .ic-nb b:first-child{animation:invcol-on .01s linear both,invcol-out .25s var(--ob-ease-in) 2.6s forwards;}
+  .app-invoicecollect.play .ic-nb b:last-child{animation:invcol-in .3s var(--ease) 2.65s both;}
+  .app-invoicecollect.play .ic-note{animation:invcol-show .4s var(--ease) .3s both;}
+  .app-invoicecollect.play .ic-toast{animation:invcol-toast .45s var(--ease) 3.1s both;}
+  .app-invoicecollect.play .ic-toast .sig-sq{animation:invcol-pulse 2.6s ease-in-out 3.7s infinite;}
+}

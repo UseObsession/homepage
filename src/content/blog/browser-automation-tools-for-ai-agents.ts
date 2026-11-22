@@ -439,5 +439,6 @@ export const post: BlogPost = {
     'recipe:delivery-monitoring',
     'can-ai-agents-log-in-to-websites',
     'scrape-data-behind-login',
+    'recipe:invoice-collector',
   ],
 }

@@ -1,0 +1,111 @@
+/* app-evalrun: Your company / Blueprints / Nightly agent evaluation. A support agent's build 4.12 runs 200 tasks on the
+   company's staging apps from 02:00, 50 at a time, each with its own persona, browser and sandbox, and is scored against
+   build 4.11 from the night before. Top: tonight's tasks as a grid of 200 squares (20 a row, a task each: dim passed,
+   bright newly failing, outlined failed both nights; task 077 ringed), the night's numbers in the card's head, and the new
+   failures listed beside the grid. Below: task 077's trail, each step with its real event name.
+   The 1 thing: 9 tasks broke since last night, and the trail shows the step (accepting 50% off instead of cancelling).
+   Story (4.7 s): the grid fills row by row as tasks finish; the new failures light up and 077 is ringed; the list lands;
+   077's steps land one by one, the offer step breaks the rule; the toast. Rest state (no .play) = the finished scene. */
+
+.app-evalrun .ax-main{padding:14px;gap:9px}
+.app-evalrun .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-evalrun .ax-clients a.on i{background:var(--fg-2)}
+.app-evalrun .ax-clients a{white-space:nowrap}
+
+/* ---------- head: the blueprint, the agent, the builds compared ---------- */
+.app-evalrun .er-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-evalrun .er-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-evalrun .er-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-evalrun .er-id{margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:8px;white-space:nowrap;
+  font:400 11px/1 var(--mono);color:var(--fg);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-evalrun .er-id i{font-style:normal;color:var(--fg-3)}
+
+/* the status mark slot */
+.app-evalrun .er-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.ilwrap .app-evalrun .er-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.ilwrap .app-evalrun .ax-side-f svg.sig{width:13px;height:13px;color:var(--fg)}
+.ilwrap .app-evalrun .er-toast svg.sig{width:14px;height:14px;color:var(--fg)}
+
+/* ---------- tonight's tasks ---------- */
+.app-evalrun .er-nt{display:grid;grid-template-rows:26px auto;border-radius:10px;overflow:hidden;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-evalrun .er-kp{display:flex;align-items:center;gap:18px;padding:0 12px;box-shadow:0 -1px 0 var(--line-2) inset;white-space:nowrap}
+.app-evalrun .er-k{display:inline-flex;align-items:baseline;gap:6px;font-size:10.5px;color:var(--fg-3)}
+.app-evalrun .er-k b{font:500 12px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-evalrun .er-bd{display:grid;grid-template-columns:217px minmax(0,1fr);gap:20px;padding:10px 12px 9px}
+
+/* a task: dim when it passed, bright when it newly fails, outlined when it failed both nights */
+.app-evalrun .er-grid{display:grid;gap:3px}
+.app-evalrun .er-row{display:flex;gap:3px}
+.app-evalrun .er-sq{display:block;flex:none;width:8px;height:8px;border-radius:2px;background:rgb(var(--fg-rgb) / .22)}
+.app-evalrun .er-sq.er-new{background:var(--fg)}
+.app-evalrun .er-sq.er-two{background:none;box-shadow:0 0 0 1px var(--line-3) inset}
+.app-evalrun .er-sq.er-open{outline:1px solid var(--fg);outline-offset:1px}
+.app-evalrun .er-lg{display:flex;gap:12px;margin-top:9px;font-size:10.5px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.app-evalrun .er-lg span{display:inline-flex;align-items:center;gap:5px}
+
+/* the new failures, 077 first and open below */
+.app-evalrun .er-nf{display:grid;align-content:start;gap:2px;min-width:0}
+.app-evalrun .er-nh{margin-bottom:4px;font:500 10.5px/1 var(--sans);color:var(--fg-3)}
+.app-evalrun .er-f{position:relative;display:grid;gap:5px;padding:6px 8px;border-radius:6px;white-space:nowrap}
+.app-evalrun .er-f b{display:flex;align-items:baseline;gap:7px;font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-evalrun .er-f code{font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-evalrun .er-f em{padding-left:29px;font:400 10.5px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+.app-evalrun .er-f1{background:rgb(var(--fg-rgb) / .05)}
+.app-evalrun .er-f1::before{content:"";position:absolute;left:0;top:6px;width:2px;height:14px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-evalrun .er-f1 em{color:var(--fg-2)}
+.app-evalrun .er-more{padding:5px 8px 0 37px;font:400 10.5px/1 var(--sans);color:var(--fg-3)}
+
+/* ---------- task 077's trail ---------- */
+.app-evalrun .er-tr{border-radius:10px;overflow:hidden;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-evalrun .er-th{display:flex;align-items:center;gap:8px;height:24px;padding:0 12px;white-space:nowrap;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-evalrun .er-th b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-evalrun .er-th em{font:400 11px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+.app-evalrun .er-ts{margin-left:auto;font:400 10.5px/1 var(--mono);color:var(--fg-3)}
+.app-evalrun .er-r{display:grid;grid-template-columns:58px 112px minmax(0,1fr) 104px;align-items:center;height:24px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset;white-space:nowrap}
+.app-evalrun .er-r4{box-shadow:none}
+.app-evalrun .er-r time,.app-evalrun .er-r code{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-evalrun .er-tx{min-width:0;overflow:hidden;font:400 11px/1 var(--sans);color:var(--fg)}
+.app-evalrun .er-rs{display:flex;align-items:center;gap:6px;font:500 11px/1 var(--sans);color:var(--fg)}
+.app-evalrun .er-q{padding-left:18px;font-weight:400;color:var(--fg-3)}
+/* the step that broke the task's rule */
+.app-evalrun .er-r2{background:rgb(var(--fg-rgb) / .05)}
+
+/* ---------- foot: where it runs, the toast ---------- */
+.app-evalrun .er-note{position:absolute;left:14px;bottom:14px;height:40px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:3px;
+  font-size:10.5px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-evalrun .er-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-evalrun .er-note span{grid-column:2}
+.app-evalrun .er-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-evalrun .er-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-evalrun .er-toast b{font-weight:500;color:var(--fg)}
+.app-evalrun .er-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play, and only when the reader allows motion) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes er-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes er-fill{from{opacity:0}to{opacity:1}}
+  @keyframes er-flag{from{background-color:rgb(var(--fg-rgb) / .22)}to{background-color:var(--fg)}}
+  @keyframes er-ring{from{outline-color:transparent}to{outline-color:var(--fg)}}
+  @keyframes er-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}30%{background-color:rgb(var(--fg-rgb) / .11)}100%{background-color:rgb(var(--fg-rgb) / .05)}}
+  @keyframes er-home{from{transform:none}to{transform:translate(-24.6965px,24.6965px) scale(.8)}}
+  @keyframes er-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. the grid fills row by row as tasks finish, 50 at a time */
+  .appx-il.play.app-evalrun .er-row{animation:er-fill .35s var(--ease) calc(.3s + var(--er-r) * .1s) both}
+  /* 2. the new failures light up, and 077 is ringed */
+  .appx-il.play.app-evalrun .er-sq.er-new{animation:er-flag .4s var(--ease) 1.45s both}
+  .appx-il.play.app-evalrun .er-sq.er-open{animation:er-flag .4s var(--ease) 1.45s both,er-ring .35s var(--ease) 1.7s both}
+  .appx-il.play.app-evalrun .er-f1{animation:er-land .4s var(--ease) 1.8s both}
+  .appx-il.play.app-evalrun .er-f2{animation:er-land .4s var(--ease) 1.94s both}
+  .appx-il.play.app-evalrun .er-f3{animation:er-land .4s var(--ease) 2.08s both}
+
+  /* 3. 077's steps land in order, and the offer step breaks the rule */
+  .appx-il.play.app-evalrun .er-r1{animation:er-land .4s var(--ease) 2.5s both}
+  .appx-il.play.app-evalrun .er-r2{animation:er-land .4s var(--ease) 2.9s both,er-glow 1.4s var(--ease) 3s both}
+  .appx-il.play.app-evalrun .er-r3{animation:er-land .4s var(--ease) 3.3s both}
+  .appx-il.play.app-evalrun .er-r4{animation:er-land .4s var(--ease) 3.75s both}
+  .appx-il.play.app-evalrun .er-r1 .sig-sq{animation:er-home .5s var(--snap) 2.7s both}
+
+  /* 4. the toast */
+  .appx-il.play.app-evalrun .er-toast{animation:er-toast .45s var(--ease) 4.25s both}
+}

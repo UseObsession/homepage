@@ -1,0 +1,56 @@
+/* The two doors on a blueprint page (BlueprintDoors.tsx): 2 raised cards side by side, each in its reader's colour as a
+   faint glow from the top corner (styles/accents.css); stacked on narrow screens. Design system tokens only. */
+
+.bp-doors { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--ob-space-16); align-items: stretch; }
+.bp-doors__door {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  padding: var(--ob-space-24);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-surface);
+  box-shadow: var(--ob-shadow-2, var(--ob-shadow-3));
+}
+.bp-doors__door::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -60% 40% 50% -30%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-rest, 40%), transparent), transparent);
+  pointer-events: none;
+}
+.bp-doors__who { display: flex; align-items: center; gap: var(--ob-space-8); margin: 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); }
+.bp-doors__who::before { content: ''; width: 7px; height: 7px; border-radius: 2px; background: var(--s-accent, var(--ob-text-3)); }
+.bp-doors__name { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.bp-doors__line { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+
+.bp-doors__steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ob-space-8); }
+.bp-doors__steps li { display: grid; grid-template-columns: 22px minmax(0, 1fr); align-items: baseline; gap: var(--ob-space-8); font: var(--ob-type-small); color: var(--ob-text); }
+.bp-doors__n { display: inline-grid; place-items: center; width: 20px; height: 20px; border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: 50%; font: var(--ob-type-label-mono); color: var(--ob-text-2); translate: 0 -1px; }
+
+.bp-doors__formats { display: flex; flex-wrap: wrap; gap: var(--ob-space-6); margin: var(--ob-space-4) 0 0; }
+.bp-doors__format { padding: 2px var(--ob-space-8); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-pill); background: var(--ob-bg); font: var(--ob-type-caption); color: var(--ob-text-2); }
+.bp-doors__format:last-child { border-style: dashed; color: var(--ob-text); }
+.bp-doors__note { margin: 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.bp-doors__cta { justify-self: start; margin-top: var(--ob-space-8); }
+
+.bp-doors__code { min-width: 0; }
+.bp-doors__events-h { margin: var(--ob-space-4) 0 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.bp-doors__events { list-style: none; margin: 0; padding: var(--ob-space-8); display: grid; gap: var(--ob-space-4); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-lg); background: var(--ob-bg-sunken, var(--ob-bg)); }
+.bp-doors__events li { display: grid; grid-template-columns: minmax(0, auto) minmax(0, 1fr); gap: var(--ob-space-12); align-items: baseline; padding: var(--ob-space-6) var(--ob-space-8); font: var(--ob-type-caption); color: var(--ob-text-2); }
+.bp-doors__kind { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text); white-space: nowrap; }
+.bp-doors__link { display: inline-flex; align-items: center; gap: var(--ob-space-4); justify-self: start; font: var(--ob-type-small); color: var(--ob-text); text-decoration: underline; text-decoration-color: var(--ob-line-strong); text-underline-offset: 4px; }
+.bp-doors__chev { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-base) var(--ob-ease-out); }
+.bp-doors__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .bp-doors__link:hover .bp-doors__chev { translate: 3px 0; } .bp-doors__link:hover { text-decoration-color: var(--ob-text); } }
+
+@media (max-width: 960px) {
+  .bp-doors { grid-template-columns: minmax(0, 1fr); }
+  .bp-doors__door { padding: var(--ob-space-16); }
+  .bp-doors__events li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}

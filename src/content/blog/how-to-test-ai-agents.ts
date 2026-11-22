@@ -384,5 +384,7 @@ export const post: BlogPost = {
     'recipe:voice-agent-check',
     'best-ai-chatbot-testing-tools',
     'ai-voice-agent-testing',
+    'recipe:sign-in-code-check',
+    'recipe:nightly-agent-evaluation',
   ],
 }

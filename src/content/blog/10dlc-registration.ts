@@ -316,5 +316,5 @@ export const post: BlogPost = {
     { title: 'Code of Conduct', publisher: 'T-Mobile', url: TMO_COC },
   ],
 
-  related: ['/phone', '/blueprints/talk-to-customers', 'recipe:voice-agent-check', 'ai-voice-agent-for-small-business', 'can-ai-make-phone-calls'],
+  related: ['/phone', '/blueprints/talk-to-customers', 'recipe:voice-agent-check', 'ai-voice-agent-for-small-business', 'can-ai-make-phone-calls', 'recipe:missed-call-text-back', 'recipe:appointment-reminders', 'recipe:imessage-assistant'],
 }

@@ -22,6 +22,8 @@ export type RecipeId =
   /* Wave 2 (23 Nov 2026): the 11 blueprints from competitors' customer stories (_research/seo/blueprints-22nov/PLAN.md). */
   | 'missed-call' | 'reminders' | 'callback' | 'documents' | 'codes' | 'inbox-agent' | 'imessage' | 'prior-auth' | 'loads'
   | 'invoices' | 'eval'
+  /* Buy, book and order (23 Nov 2026, _research/seo/agentic-commerce-23nov/PLAN.md). */
+  | 'agent-checkout' | 'travel' | 'reorder' | 'ledger'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
 /* The 5 readers, each with its own hue (styles/accents.css: [data-reader] sets --s-accent and --s-accent-glow). */
 export type ReaderId = AudienceId | 'developers'
@@ -562,7 +564,7 @@ export type PersonaStart = {
 export type PersonaIcon =
   | 'mail' | 'phone' | 'chat' | 'browser' | 'sandbox' | 'persona'
   | 'sleep' | 'home' | 'person' | 'users' | 'cap' | 'stop' | 'webhook' | 'record' | 'clock' | 'code' | 'retry' | 'domain'
-  | 'check' | 'key' | 'flask'
+  | 'check' | 'key' | 'flask' | 'cart'
 /* The pieces as 1 ruled sheet (HomePieces): each its icon, name, 1 line, the call that starts it, and `to`, its page
    (content/piecePaths.ts); the whole cell links there. `whole` draws the cell solid: the persona, every piece in one. */
 export type HomePieces = {
@@ -727,6 +729,7 @@ export type RecipeGroup =
   | 'Work behind logins'
   | 'Watch the market'
   | 'Train and test agents'
+  | 'Buy, book and order'
 export type Recipe = {
   id: RecipeId
   slug: string
@@ -738,6 +741,9 @@ export type Recipe = {
   gets: string
   /* What choosing it sets up, a few words each (agent ID, inboxes, numbers, browsers, schedule, screenshots of every step). */
   kit: string[]
+  /* The developer door (23 Nov 2026): what a developer gets in one line, the call that starts the blueprint or hooks into
+     it (8 lines at most), and the events it writes to the event log, each with a real event name from content/delivery. */
+  build?: { line: string; code: string; events: { kind: string; text: string }[] }
   meta: Meta
   hero: { headline: string; sub: string; screen: ScreenName; capture: Capture }
   /* The recipe's 1 buyer (21 Nov 2026: the buyer study sold each recipe to its 1 buyer, and James approved each), named
@@ -1028,7 +1034,7 @@ export type UseCasesIndexPage = {
   meta: Meta
   hero: IndexHero
   /* Since 22 Nov: every use case and team page under the kit whose job it does (pages/UseCases.tsx), in kitLinks' order. */
-  byKit: { kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train'; paths: string[] }[]
+  byKit: { kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train' | 'buy'; paths: string[] }[]
   orbit: { label: string; caption: string }
   group: LinkGroup
   /* The two guides that set out every job an AI customer does, each row linking the guide. */

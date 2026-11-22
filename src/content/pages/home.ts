@@ -165,7 +165,7 @@ export const page: Page = {
      James's words from 22 Nov; blueprints serve developers too, so it no longer opens "For teams without engineers". */
   homeBlueprints: {
     heading: 'Pick a blueprint. We run the job, you get the report.',
-    line: 'Six types of blueprints, one for each job AI agents do. Results are delivered in any format: Slack, email, your CRM, Clay, Google Sheets, a PDF or your own Claude agent.',
+    line: 'Seven types of blueprints, one for each job AI agents do. Results are delivered in any format: Slack, email, your CRM, Clay, Google Sheets, a PDF or your own Claude agent.',
     unit: { one: 'blueprint', many: 'blueprints' },
     more: 'more',
     all: { label: 'See every blueprint', to: '/blueprints' },

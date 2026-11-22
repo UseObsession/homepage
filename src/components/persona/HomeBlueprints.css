@@ -128,7 +128,16 @@
   .h-bp__item--more:hover { color: var(--ob-text); }
 }
 
-@media (max-width: 960px) { .h-bp__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* A last card alone on its row (the seventh type, 23 Nov 2026) runs the full width: its head and line on the left, its
+   blueprints in a row on the right, so the grid closes without a gap. */
+@media (min-width: 961px) {
+  .h-bp__card:last-child:nth-child(3n + 1) { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); grid-template-rows: auto 1fr; column-gap: var(--ob-space-32, var(--ob-space-24)); }
+  .h-bp__card:last-child:nth-child(3n + 1) .h-bp__type,
+  .h-bp__card:last-child:nth-child(3n + 1) .h-bp__line { grid-column: 1; }
+  .h-bp__card:last-child:nth-child(3n + 1) .h-bp__list { grid-column: 2; grid-row: 1 / span 2; align-self: center; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--ob-space-24); border-top: 0; }
+  .h-bp__card:last-child:nth-child(3n + 1) .h-bp__item { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle, var(--ob-line)); }
+}
+@media (max-width: 960px) { .h-bp__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .h-bp__card:last-child:nth-child(2n + 1) { grid-column: 1 / -1; } }
 @media (max-width: 600px) {
   .h-bp__grid { grid-template-columns: minmax(0, 1fr); }
   .h-bp__head { align-items: flex-start; }

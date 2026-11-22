@@ -66,6 +66,7 @@ export function offerOf(capture: Capture, path: string): { offer: OfferId; free:
   if (group === 'Talk to customers' || group === 'Train and test agents') return { offer: 'agents', free: false }
   if (group === 'Test sign-up and agents' || group === 'Work behind logins') return { offer: 'own', free: false }
   if (group === 'Watch the market') return { offer: 'companies', free: false }
+  if (group === 'Buy, book and order') return { offer: 'agents', free: false }
   return { offer: 'any', free: false }
 }
 

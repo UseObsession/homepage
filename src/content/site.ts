@@ -51,7 +51,7 @@ export const recipesPage: RecipesIndexPage = {
 
   hero: {
     headline: 'Pick a blueprint. Obsession runs the job.',
-    sub: 'Blueprints are ready-made AI agent templates that run on Obsession’s pieces. They come in six types, one for each job AI agents do. Pick one, say where results go, and pay only for the pieces it uses.',
+    sub: 'Blueprints are ready-made AI agent templates that run on Obsession’s pieces. They come in seven types, one for each job AI agents do. Pick one, say where results go, and pay only for the pieces it uses.',
   },
 
   /* The recipes' own `group` field, kept for their data; since the 22 Nov call the hub groups by the six types below. */
@@ -64,6 +64,7 @@ export const recipesPage: RecipesIndexPage = {
     { group: 'Work behind logins', line: 'Portals signed in for weeks, statuses and documents collected every day.' },
     { group: 'Watch the market', line: 'Competitors’ emails, prices, trials and ads, dated.' },
     { group: 'Train and test agents', line: 'Your agent scored on real tasks, every night and after every update.' },
+    { group: 'Buy, book and order', line: 'Supplies reordered, trips booked and every receipt kept, paid with the card you give it.' },
   ],
 
   hub: {

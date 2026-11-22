@@ -369,5 +369,7 @@ export const post: BlogPost = {
     'long-running-ai-agents',
     'ai-agent-observability',
     '/compare/agentmail-twilio-browserbase-e2b',
+    'recipe:inbox-agent',
+    'recipe:imessage-assistant',
   ],
 }

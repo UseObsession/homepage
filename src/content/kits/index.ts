@@ -1,5 +1,6 @@
 import { kitLinks, type KitId } from '../kitPaths'
 import { build } from './build'
+import { buy } from './buy'
 import { portals } from './portals'
 import { talk } from './talk'
 import { test } from './test'
@@ -11,7 +12,7 @@ import { watch } from './watch'
    (pages/Recipes.tsx) groups every blueprint by type; App.tsx routes them and meta.ts, the sitemap and llms.txt read `kits`. */
 export type { KitPage } from './types'
 
-const byId: Record<KitId, KitPage> = { talk, test, build, portals, watch, train }
+const byId: Record<KitId, KitPage> = { talk, test, build, portals, watch, train, buy }
 
 export const kits: KitPage[] = kitLinks.map((k) => byId[k.id])
 

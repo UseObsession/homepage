@@ -47,6 +47,17 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | prior authorization ai agent, prior authorization ai automation | `/use-cases/prior-authorization-ai-agent` | Title, H1, first sentence, a question |
 | ai agent for freight broker, ai agents for trucking | `/use-cases/ai-agent-for-freight-brokers` | Title, H1, first sentence, a question |
 | ai agent evaluation, ai agent evaluation tools | `/use-cases/ai-agent-evaluation` | Title, H1, first sentence, a question |
+| missed call text back, missed call text back software, missed call text back automation | `/blueprints/missed-call-text-back` | Title, H1, first sentence, a question (wave 2, 23 Nov) |
+| appointment reminder text, appointment reminder service, appointment reminder app, automated appointment reminders, appointment confirmation text | `/blueprints/appointment-reminders` | Title, H1, first sentence, a question (wave 2, 23 Nov) |
+| speed to lead automation | `/blueprints/speed-to-lead-callback` | Title, H1, first sentence (wave 2, 23 Nov; speed to lead AI stays with `/blog/ai-customers-for-b2b-sales-teams`) |
+| document collection automation, document collection software | `/blueprints/document-chaser` | Title, H1, first sentence, a question (wave 2, 23 Nov) |
+| test 2fa codes, test 2fa sms, 2fa automation testing | `/blueprints/sign-in-code-check` | Title, H1, first sentence (wave 2, 23 Nov; otp testing stays with `/use-cases/otp-testing`) |
+| ai email agent, email inbox ai agent, ai email responder | `/blueprints/inbox-agent` | Title, H1, first sentence (wave 2, 23 Nov; email for ai agents stays with `/email`, ai agent inbox with `/blog/ai-customers-for-developers`) |
+| imessage ai agent, imessage ai bot, imessage chatbot | `/blueprints/imessage-assistant` | Title, H1, first sentence (wave 2, 23 Nov; imessage ai assistant stays with its use case, imessage api with `/messaging`) |
+| check prior authorization status, prior authorization status check | `/blueprints/prior-authorization-status` | Title, H1, first sentence (wave 2, 23 Nov; prior authorization ai agent stays with its use case) |
+| load tracking, load tracking software | `/blueprints/load-tracking` | Title, first sentence, a question (wave 2, 23 Nov) |
+| download invoices from vendor portals | `/blueprints/invoice-collector` | Title, H1, first sentence (wave 2, 23 Nov; invoice collection software reads as debt collection and is left alone) |
+| agent evals, ai agent regression testing | `/blueprints/nightly-agent-evaluation` | Title, H1, first sentence (wave 2, 23 Nov; ai agent evaluation tools stays with its use case) |
 | ai agent use cases (by job) | `/use-cases` | The hub, sorted by kit |
 | what can ai agents do for my business | `/blog/what-can-ai-agents-do-for-business` | Title, H1, answer (a kit guide, 22 Nov; moved from `/blog/ai-agent-use-cases-for-business`) |
 | ai agent templates free | `/blog/ai-agent-templates-free` | Title, H1, answer (22 Nov) |

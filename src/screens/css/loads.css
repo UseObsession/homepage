@@ -1,0 +1,140 @@
+/* app-loads (23 Nov 2026): Your company / Watches / Load tracking. Load tracking for Larkspur Logistics, an invented
+   freight brokerage. Top: the day's reads, the 06:00 read done (8 carrier portals, 312 loads, 19 minutes, 1 login code)
+   on a track of the 4 a day (06:00, 10:00, 14:00, 18:00, 80px apart). Below: the board since yesterday's 18:00 read,
+   exceptions first (an ETA 19 hours later, a load with no update for 14 hours) with the hollow mark and a band, then the
+   rest, each row with its screenshot; a delivered load carries its proof of delivery (POD) from the persona's inbox.
+   Foot: the logins line, and the toast to #loads.
+   Story (3.7 s): the 06:00 read works then lands and its node fills, the rows land, the 2 exceptions flip from what the
+   board showed before this read to what it shows now and light, Needs you goes 0 to 5, the toast.
+   Geometry (design px, main 556 x 414, padding 14): header 14..38, day 50..100, board 112..354, foot 362..400.
+   Rest state (no .play) = the finished scene. Monochrome, like every screen. */
+
+.app-loads .ax-main{grid-template-columns:minmax(0,1fr);grid-template-rows:24px auto auto;align-content:start;gap:12px;padding:14px}
+
+/* ---------- header ---------- */
+.app-loads .lt-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-loads .lt-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-loads .lt-meta{padding-top:2px;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-loads .lt-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-loads .lt-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-loads .lt-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* sidebar: the list this watch belongs to; Needs you gains the 5 */
+.app-loads .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-loads .ax-clients a.on i{background:var(--fg-2)}
+.app-loads .lt-nb{display:inline-grid}
+.app-loads .lt-nb b{grid-area:1/1;font-weight:inherit}
+.app-loads .lt-nb b:first-child{opacity:0}
+
+/* the status mark slot and stacked words: the before state hidden at rest */
+.app-loads .lt-mk{display:grid;place-items:center;flex:none;width:12px;height:12px}
+.app-loads .lt-mk>svg{grid-area:1/1}
+.app-loads .lt-mk .w0{opacity:0}
+.ilwrap .app-loads .lt-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-loads .lt-sv{display:grid;min-width:0}
+.app-loads .lt-sv>span{grid-area:1/1}
+.app-loads .v0{opacity:0}
+
+/* ---------- the day's reads ---------- */
+.app-loads .lt-day{display:grid;grid-template-columns:minmax(0,1fr) 276px;align-items:center;height:50px;padding:0 14px 0 12px}
+.app-loads .lt-sum{display:flex;align-items:center;gap:9px;min-width:0}
+.app-loads .lt-sum .lt-sv>span{display:grid;gap:5px}
+.app-loads .lt-sum b{font:500 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-loads .lt-sum small{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-loads .lt-track{position:relative;height:34px;margin:0 18px}
+.app-loads .lt-line{position:absolute;left:0;width:240px;top:9px;height:1px;background:repeating-linear-gradient(90deg,var(--line-3) 0 4px,transparent 4px 7px)}
+.app-loads .lt-node{position:absolute;left:var(--lt-x);top:5px;display:grid;justify-items:center;gap:6px;transform:translateX(-50%)}
+.app-loads .lt-node i{width:9px;height:9px;border-radius:50%;background:var(--panel-2);box-shadow:0 0 0 1.5px var(--line-3) inset}
+.app-loads .lt-node.done i{background:var(--fg);box-shadow:0 0 0 3px rgb(var(--fg-rgb) / .12)}
+.app-loads .lt-node time{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-loads .lt-node.done time{color:var(--fg)}
+
+/* ---------- the board ---------- */
+.app-loads .lt-tb{position:relative;display:grid;overflow:hidden}
+.app-loads .lt-th{display:flex;align-items:center;justify-content:space-between;height:26px;padding:0 12px;border-bottom:1px solid var(--line-2)}
+.app-loads .lt-th b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-loads .lt-ct{font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-loads .lt-g{display:grid;grid-template-columns:44px 118px 60px minmax(0,1fr) 84px 14px;align-items:center;column-gap:8px;padding:0 12px}
+.app-loads .lt-g>*{min-width:0}
+.app-loads .lt-ch{height:22px;font:500 10.5px/1 var(--sans);color:var(--fg-3);background:rgb(var(--fg-rgb) / .02);box-shadow:0 -1px 0 var(--line) inset}
+.app-loads .lt-r{position:relative;height:34px;box-shadow:0 -1px 0 var(--line) inset}
+.app-loads .lt-ld{font:500 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-loads .lt-two{display:grid;gap:4px;min-width:0}
+.app-loads .lt-two b{font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-loads .lt-two small{display:flex;align-items:center;gap:4px;font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-loads .lt-cr{font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-loads .lt-s{display:flex;align-items:center;gap:7px;min-width:0}
+.app-loads .lt-eta b{font:500 11px/1 var(--mono);font-variant-numeric:tabular-nums}
+.app-loads .lt-eta small{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.app-loads .lt-clip{flex:none;color:var(--fg-2)}
+.ilwrap .app-loads .lt-clip{width:11px;height:11px}
+/* the exceptions: a band, their changed words brighter */
+.app-loads .lt-r.ex{background:rgb(var(--fg-rgb) / .05)}
+.app-loads .lt-r.ex small{color:var(--fg-2)}
+
+/* the proof marker: a tiny capture of the carrier's page */
+.app-loads .lt-pf{position:relative;flex:none;display:block;width:12px;height:10px;border-radius:2px;box-shadow:0 0 0 1px rgb(var(--fg-rgb) / .32) inset}
+.app-loads .lt-pf::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px 2px 0 0;background:rgb(var(--fg-rgb) / .32)}
+
+.app-loads .lt-f{display:flex;align-items:center;justify-content:space-between;gap:12px;height:24px;padding:0 12px;font-size:10.5px;color:var(--fg-3);background:rgb(var(--fg-rgb) / .02)}
+.app-loads .lt-f span{display:flex;align-items:center;gap:7px;white-space:nowrap}
+
+/* ---------- foot: the logins line, the toast ---------- */
+.app-loads .lt-note{position:absolute;left:14px;bottom:14px;height:38px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:4px;
+  font-size:10.5px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.app-loads .lt-note span{grid-column:2}
+.ilwrap .app-loads .lt-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-loads .lt-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-loads .lt-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-loads .lt-toast b{font-weight:500;color:var(--fg)}
+.app-loads .lt-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play, and only for readers who allow it) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes loadtr-on{from{opacity:1}to{opacity:1}}
+  @keyframes loadtr-show{from{opacity:0}to{opacity:1}}
+  @keyframes loadtr-hide{from{opacity:1}to{opacity:0}}
+  @keyframes loadtr-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes loadtr-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+  @keyframes loadtr-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes loadtr-spin{to{transform:rotate(360deg)}}
+  @keyframes loadtr-spinr{to{transform:rotate(-360deg)}}
+  @keyframes loadtr-home{from{transform:none}to{transform:translate(-24.6965px,24.6965px) scale(.8)}}
+  @keyframes loadtr-sqin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(.7525)}}
+  @keyframes loadtr-fill{from{background-color:var(--panel-2);box-shadow:0 0 0 1.5px var(--line-3) inset}to{background-color:var(--fg);box-shadow:0 0 0 3px rgb(var(--fg-rgb) / .12)}}
+  @keyframes loadtr-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}30%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .05)}}
+  @keyframes loadtr-pulse{0%,100%{opacity:1}50%{opacity:.15}}
+  @keyframes loadtr-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. the 06:00 read works, then lands, and its node on the day's track fills */
+  .app-loads.play .lt-sum .w0{animation:loadtr-on .01s linear both,loadtr-hide .2s var(--ob-ease-in) 1.05s forwards;}
+  .app-loads.play .lt-sum .w0 .sig-rot{animation:loadtr-spin .7s linear .2s 1;}
+  .app-loads.play .lt-sum .w0 .sig-orb{animation:loadtr-spinr .7s linear .2s 1;}
+  .app-loads.play .lt-sum .w1{animation:loadtr-show .2s var(--ease) 1.05s both;}
+  .app-loads.play .lt-sum .w1 .sig-sq{animation:loadtr-home .55s var(--snap) 1.05s both;}
+  .app-loads.play .lt-sum .w1 .sig-gap{animation:loadtr-show .3s var(--ease) 1.2s both;}
+  .app-loads.play .lt-sum .v0{animation:loadtr-on .01s linear both,loadtr-out .25s var(--ob-ease-in) 1.05s forwards;}
+  .app-loads.play .lt-sum .v1{animation:loadtr-in .35s var(--ease) 1.1s both;}
+  .app-loads.play .lt-node.done i{animation:loadtr-fill .45s var(--ease) 1.1s both;}
+
+  /* 2. the board fills row by row; each exception flips from what it showed before this read to what it shows now */
+  .app-loads.play .lt-ct{animation:loadtr-show .35s var(--ease) 1.2s both;}
+  .app-loads.play .lt-r{animation:loadtr-land .4s var(--ease) var(--lt-t) both;}
+  .app-loads.play .lt-r.ex{animation:loadtr-land .4s var(--ease) var(--lt-t) both,loadtr-glow 1.2s var(--ease) calc(var(--lt-t) + .9s) both;}
+  .app-loads.play .lt-r.ex .v0{animation:loadtr-on .01s linear both,loadtr-out .25s var(--ob-ease-in) calc(var(--lt-t) + .85s) forwards;}
+  .app-loads.play .lt-r.ex .v1{animation:loadtr-in .35s var(--ease) calc(var(--lt-t) + .9s) both;}
+  .app-loads.play .lt-r.ex .w0{animation:loadtr-on .01s linear both,loadtr-hide .2s var(--ob-ease-in) calc(var(--lt-t) + .9s) forwards;}
+  .app-loads.play .lt-r.ex .w1{animation:loadtr-show .2s var(--ease) calc(var(--lt-t) + .9s) both;}
+  .app-loads.play .lt-r.ex .w1 .sig-sq{animation:loadtr-sqin .45s var(--snap) calc(var(--lt-t) + .9s) both;}
+  .app-loads.play .lt-r .lt-pf{animation:loadtr-show .3s var(--ease) calc(var(--lt-t) + .3s) both;}
+  .app-loads.play .lt-clip{animation:loadtr-show .3s var(--ease) 2.3s both;}
+  .app-loads.play .lt-f{animation:loadtr-show .35s var(--ease) 2.6s both;}
+
+  /* 3. Needs you goes 0 to 5, the note, then the toast to #loads */
+  .app-loads.play .lt-nb b:first-child{animation:loadtr-on .01s linear both,loadtr-out .25s var(--ob-ease-in) 2.55s forwards;}
+  .app-loads.play .lt-nb b:last-child{animation:loadtr-in .3s var(--ease) 2.6s both;}
+  .app-loads.play .lt-note{animation:loadtr-show .4s var(--ease) .3s both;}
+  .app-loads.play .lt-toast{animation:loadtr-toast .45s var(--ease) 3.1s both;}
+  .app-loads.play .lt-toast .sig-sq{animation:loadtr-pulse 2.6s ease-in-out 3.7s infinite;}
+}

@@ -511,5 +511,6 @@ export const post: BlogPost = {
     'recipe:sales-agent-check',
     'recipe:outbound-agent-check',
     'recipe:account-watch',
+    'recipe:speed-to-lead-callback',
   ],
 }

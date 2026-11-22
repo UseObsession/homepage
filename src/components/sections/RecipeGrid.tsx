@@ -10,8 +10,8 @@ const tie = (s: string) => s.replace(/(\d) /g, '$1\u00a0')
    line is only ever written once. */
 const RECIPES = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
 
-/* The six types of blueprints, in the order every page shows them (content/nav JOBS). */
-const JOBS: RecipeGroup[] = ['Talk to customers', 'Test sign-up and agents', 'Build agent products', 'Work behind logins', 'Watch the market', 'Train and test agents']
+/* The seven types of blueprints, in the order every page shows them (content/nav JOBS). */
+const JOBS: RecipeGroup[] = ['Talk to customers', 'Test sign-up and agents', 'Build agent products', 'Work behind logins', 'Watch the market', 'Train and test agents', 'Buy, book and order']
 
 type Props = {
   heading: string

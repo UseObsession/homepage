@@ -25,5 +25,6 @@ export const casePathList = [
   '/use-cases/prior-authorization-ai-agent',
   '/use-cases/ai-agent-for-freight-brokers',
   '/use-cases/ai-agent-evaluation',
+  '/use-cases/agentic-commerce',
 ]
 export const teamPathSet = new Set([...teamPathList, ...casePathList])

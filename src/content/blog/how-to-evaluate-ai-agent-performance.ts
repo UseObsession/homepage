@@ -412,5 +412,6 @@ export const post: BlogPost = {
     'recipe:voice-agent-check',
     'ai-agent-observability',
     'best-ai-chatbot-testing-tools',
+    'recipe:nightly-agent-evaluation',
   ],
 }

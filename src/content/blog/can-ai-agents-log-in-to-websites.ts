@@ -586,6 +586,5 @@ export const post: BlogPost = {
     'recipe:competitor-tracking',
     '/personas',
     '/agents',
-    '/developers',
-  ],
+    '/developers','recipe:sign-in-code-check', 'recipe:prior-authorization-status'],
 }

@@ -20,7 +20,7 @@ export type NavCard = NavPage & { line: string; kicker: string }
 
 /* The six types of blueprints (22 Nov call: the kits became these), in the order the menu, the phone sheet, the footer,
    the hub and the form's chips list them: content/kitPaths' order. A blueprint's group is its type. */
-export const JOBS: RecipeGroup[] = ['Talk to customers', 'Test sign-up and agents', 'Build agent products', 'Work behind logins', 'Watch the market', 'Train and test agents']
+export const JOBS: RecipeGroup[] = ['Talk to customers', 'Test sign-up and agents', 'Build agent products', 'Work behind logins', 'Watch the market', 'Train and test agents', 'Buy, book and order']
 
 /* Each job's anchor on /recipes (pages/Recipes gives each job's section this id). */
 export const jobAnchor = (g: RecipeGroup) => g.toLowerCase().replace(/[^a-z]+/g, '-')
@@ -52,6 +52,7 @@ const JOB_MENU: Record<RecipeGroup, { line: string; examples: RecipeId[]; to?: s
   'Work behind logins': { line: 'Portals checked every morning, documents collected.', examples: ['prior-auth', 'loads'], to: '/blueprints/work-behind-logins' },
   'Watch the market': { line: 'Competitors’ emails, prices, trials and ads, dated.', examples: ['competitor', 'prices'], to: '/blueprints/watch-the-market' },
   'Train and test agents': { line: 'Your agent scored on real tasks, every night.', examples: ['eval', 'drift'], to: '/blueprints/train-and-test-agents' },
+  'Buy, book and order': { line: 'Supplies reordered, trips booked, every receipt kept.', examples: ['reorder', 'travel'], to: '/blueprints/buy-book-and-order' },
 }
 
 
@@ -110,7 +111,7 @@ export type NavTool = NavPage & { line: string; icon: NavIcon }
 export type NavColumn = { label: string; items: NavTool[] }
 
 /* Each kit's icon in the menus (components/Nav ICONS). */
-const KIT_ICONS: Record<KitId, NavIcon> = { talk: 'chat', test: 'check', build: 'api', portals: 'key', watch: 'watch', train: 'flask' }
+const KIT_ICONS: Record<KitId, NavIcon> = { talk: 'chat', test: 'check', build: 'api', portals: 'key', watch: 'watch', train: 'flask', buy: 'cart' }
 
 /* The bar's menus, rebuilt 22 Nov 2026 (Seun: "cleaner ... right now it feels like a dump"): Products holds the 6 pieces
    with a short line each, then the 2 ways in beside them (Blueprints for teams who don't code, the API and MCP for
@@ -182,6 +183,7 @@ const menus = {
       { label: 'Prior authorization', to: '/use-cases/prior-authorization-ai-agent' },
       { label: 'Freight brokers', to: '/use-cases/ai-agent-for-freight-brokers' },
       { label: 'Agent evaluation', to: '/use-cases/ai-agent-evaluation' },
+      { label: 'Agentic commerce', to: '/use-cases/agentic-commerce' },
     ] satisfies NavPage[],
     useCasesAll: { label: 'Every use case', to: '/use-cases' } satisfies NavPage,
     /* The 2 columns as the footer and the phone sheet list them. */

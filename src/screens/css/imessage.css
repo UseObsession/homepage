@@ -1,0 +1,124 @@
+/* app-imessage: Your company / Agents / Mabel. iMessage assistant (Build agent products, 23 Nov 2026). An AI assistant
+   on its own iMessage line and UK number (Mabel is invented). Left: Maya's iMessage thread as she sees it, the
+   assistant's bubbles in full ink (the brand's black and white stand in for iMessage's blue): its first message says it's
+   an AI; Maya's receipt photo; the split. Right: the event log, row by row: the message, the sandbox's working, the reply,
+   then Leo texting the number from an Android phone and the reply by text.
+   Story (4.4 s): the photo and its question land in the thread and the log; the sandbox works, then lands; the assistant
+   types (3 dots), its reply lands and is read; Leo's text and its reply land in the log; the toast.
+   Rest state (no .play) = the finished scene. Every animation sits under prefers-reduced-motion: no-preference. */
+
+.app-imessage .ax-main{padding:14px;gap:12px}
+
+/* ---------- head: the assistant, and its AI notice switched on ---------- */
+.app-imessage .im-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-imessage .im-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-imessage .im-meta{padding-top:2px;font:400 12px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-imessage .im-id{margin-left:auto;display:inline-flex;align-items:center;gap:9px;height:24px;padding:0 7px 0 10px;border-radius:8px;white-space:nowrap;
+  font-size:12px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+
+.app-imessage .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-imessage .ax-clients a.on i{background:var(--fg-2)}
+
+/* the status mark slot: stacked states, only the last shows at rest */
+.app-imessage .im-mk{display:grid;place-items:center;width:12px;height:12px;flex:none;margin-left:auto}
+.app-imessage .im-mk>svg{grid-area:1/1}
+.app-imessage .im-mk .w0{opacity:0}
+.ilwrap .app-imessage .im-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+
+/* ---------- the thread and the log ---------- */
+.app-imessage .im-bd{position:relative;display:grid;grid-template-columns:236px minmax(0,1fr);height:296px;border-radius:10px;overflow:hidden;background:var(--panel-2)}
+/* the card's hairline, drawn above both panels so the thread's own ground never hides it */
+.app-imessage .im-bd::after{content:"";position:absolute;inset:0;border-radius:10px;box-shadow:0 0 0 1px var(--line-2) inset;pointer-events:none}
+
+/* Maya's thread, drawn as the conversation she sees */
+.app-imessage .im-ph{display:flex;flex-direction:column;min-width:0;background:var(--panel);box-shadow:-1px 0 0 var(--line-2) inset}
+.app-imessage .im-ct{display:flex;align-items:center;gap:8px;height:34px;padding:0 12px;flex:none;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-imessage .im-pa{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;font:600 10.5px/1 var(--sans);color:var(--fg);background:var(--panel-3);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-imessage .im-who{display:grid;gap:3px}
+.app-imessage .im-who b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-imessage .im-who em{font:400 11px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+.app-imessage .im-cv{position:relative;display:flex;flex-direction:column;gap:4px;padding:8px 12px 10px;min-height:0}
+.app-imessage .im-dy{align-self:center;padding:2px 0;font:400 11px/1 var(--sans);color:var(--fg-3)}
+.app-imessage .im-b{max-width:200px;padding:6px 10px;border-radius:14px;font:400 12px/1.35 var(--sans)}
+.app-imessage .im-o{align-self:flex-end;border-bottom-right-radius:4px;color:var(--bg);background:var(--fg)}
+.app-imessage .im-i{align-self:flex-start;border-bottom-left-radius:4px;color:var(--fg);background:var(--panel-3);box-shadow:0 0 0 1px var(--line) inset}
+.app-imessage .im-rd{align-self:flex-end;margin-top:-1px;font:400 11px/1 var(--sans);color:var(--fg-3)}
+
+/* the photo Maya sent: a small receipt */
+.app-imessage .im-pic{align-self:flex-start;display:grid;place-items:center;width:76px;height:50px;border-radius:12px 12px 12px 4px;background:var(--panel-3);box-shadow:0 0 0 1px var(--line) inset}
+/* a photo of paper: always paper-coloured, in both themes */
+.app-imessage .im-rc{display:grid;gap:3px;width:40px;padding:5px 5px 4px;border-radius:2px;background:var(--ob-paper);box-shadow:0 1px 2px rgb(0 0 0 / .25);transform:rotate(-4deg)}
+.app-imessage .im-rc i{display:block;height:2px;border-radius:1px;background:var(--ob-ink);opacity:.28}
+.app-imessage .im-rc i:nth-child(2){width:70%}
+.app-imessage .im-rc i:nth-child(4){width:55%}
+.app-imessage .im-rc .im-tot{justify-self:end;width:45%;height:3px;margin-top:2px;background:var(--ob-ink);opacity:1}
+
+/* the assistant writing: 3 dots, only while the story plays */
+.app-imessage .im-ty{position:absolute;right:12px;bottom:28px;display:flex;gap:4px;padding:8px 10px;border-radius:14px;border-bottom-right-radius:4px;background:var(--panel-3);opacity:0}
+.app-imessage .im-ty i{width:5px;height:5px;border-radius:50%;background:var(--fg-3)}
+
+/* the event log */
+.app-imessage .im-lg{display:flex;flex-direction:column;min-width:0}
+.app-imessage .im-lh{display:flex;align-items:center;justify-content:space-between;height:34px;padding:0 12px;flex:none;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-imessage .im-lh b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-imessage .im-lh span{font:400 11px/1 var(--sans);color:var(--fg-3)}
+.app-imessage .im-r{display:grid;gap:6px;padding:9px 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-imessage .im-l1{display:flex;align-items:center;gap:8px;min-width:0;white-space:nowrap}
+.app-imessage .im-l1 time{font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-imessage .im-l1 code{padding:3px 6px;border-radius:5px;font:400 11px/1 var(--mono);color:var(--fg);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-imessage .im-l1>span:last-child{margin-left:auto;font:400 11px/1 var(--sans);color:var(--fg-3)}
+.app-imessage .im-l2{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:400 12px/1.2 var(--sans);color:var(--fg-2)}
+/* a reply the assistant sent: an arrow and full ink, never dressed as an event */
+.app-imessage .im-re{display:inline-flex;align-items:center;gap:5px;font:500 12px/1 var(--sans);color:var(--fg)}
+.ilwrap .app-imessage .im-re svg{width:12px;height:12px}
+.app-imessage .im-rp .im-l2{color:var(--fg)}
+.app-imessage .im-r5{box-shadow:none}
+
+/* ---------- foot: the red lines, the toast ---------- */
+.app-imessage .im-note{position:absolute;left:14px;bottom:14px;height:40px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:3px;
+  font-size:11px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-imessage .im-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-imessage .im-note span{grid-column:2}
+.app-imessage .im-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-imessage .im-toast p{display:flex;align-items:baseline;gap:8px;font-size:12px;white-space:nowrap}
+.app-imessage .im-toast b{font-weight:500;color:var(--fg)}
+.app-imessage .im-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play, and only when the reader allows motion) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  @keyframes im-fade{from{opacity:0}to{opacity:1}}
+  @keyframes im-hide{from{opacity:1}to{opacity:0}}
+  @keyframes im-on{from{opacity:1}to{opacity:1}}
+  @keyframes im-pop{from{opacity:0;transform:translateY(6px) scale(.96)}to{opacity:1;transform:none}}
+  @keyframes im-row{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @keyframes im-spin{to{transform:rotate(360deg)}}
+  @keyframes im-dot{0%,100%{opacity:.25}50%{opacity:1}}
+  @keyframes im-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. the photo and its question land, in the thread and in the log */
+  .appx-il.play.app-imessage .im-i1{transform-origin:left bottom;animation:im-pop .45s var(--snap) .5s both}
+  .appx-il.play.app-imessage .im-i2{transform-origin:left bottom;animation:im-pop .45s var(--snap) .68s both}
+  .appx-il.play.app-imessage .im-r1{animation:im-row .45s var(--ease) .62s both}
+
+  /* 2. the sandbox works on the receipt, then lands */
+  .appx-il.play.app-imessage .im-r2{animation:im-row .45s var(--ease) 1.05s both}
+  .appx-il.play.app-imessage .im-r2 .w0{animation:im-on .01s linear both,im-hide .2s var(--ob-ease-in) 1.75s forwards}
+  .appx-il.play.app-imessage .im-r2 .w0 .sig-rot{animation:im-spin .7s linear 1.05s both}
+  .appx-il.play.app-imessage .im-r2 .w1{animation:im-fade .25s var(--ease) 1.75s both}
+
+  /* 3. the assistant types, its reply lands and is read */
+  .appx-il.play.app-imessage .im-ty{animation:im-on .01s linear 1.15s both,im-hide .2s var(--ob-ease-in) 1.95s forwards}
+  .appx-il.play.app-imessage .im-ty i{animation:im-dot .6s ease-in-out 1.15s 1 both}
+  .appx-il.play.app-imessage .im-ty i:nth-child(2){animation-delay:1.27s}
+  .appx-il.play.app-imessage .im-ty i:nth-child(3){animation-delay:1.39s}
+  .appx-il.play.app-imessage .im-o2{transform-origin:right bottom;animation:im-pop .45s var(--snap) 1.95s both}
+  .appx-il.play.app-imessage .im-r3{animation:im-row .45s var(--ease) 2.05s both}
+  .appx-il.play.app-imessage .im-rd{animation:im-fade .3s var(--ease) 2.5s both}
+
+  /* 4. Leo texts the number from an Android phone, and the reply goes by text */
+  .appx-il.play.app-imessage .im-r4{animation:im-row .45s var(--ease) 3s both}
+  .appx-il.play.app-imessage .im-r5{animation:im-row .45s var(--ease) 3.45s both}
+
+  /* 5. the toast */
+  .appx-il.play.app-imessage .im-toast{animation:im-toast .45s var(--ease) 3.95s both}
+}

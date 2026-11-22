@@ -691,6 +691,253 @@
         { "name": "Daily", "q": 1, "runsPerMonth": 90, "featured": true, "covers": "{q} {noun}, {runs} test calls a month", "for": "Know the morning your agent gets it wrong." },
         { "name": "Agency", "q": 5, "runsPerMonth": 90, "covers": "{q} {noun}, {runs} test calls each a month", "for": "Test every voice agent you build or run." }
       ]
+    },
+    {
+      "id": "missed-call-text-back",
+      "siteId": "missed-call",
+      "name": "Missed call text back",
+      "job": "Talk to customers",
+      "buyer": "For home services companies, clinics, salons and multi-location businesses, and the agencies that run their phones.",
+      "unit": "missed call",
+      "per": "phone line",
+      "noun": ["phone line", "phone lines"],
+      "itemNoun": ["missed call", "missed calls"],
+      "run": "One missed call: the forwarded call met with a short line saying a text is on its way, a text within seconds, and the caller's replies answered until they book, ask for a person or go quiet.",
+      "usage": {
+        "run": {"callMinutesIn": 0.3, "textsOut": 2.5, "textsIn": 1.5, "wakes": 2.5, "events": 6},
+        "runs": {"draft": {"callMinutesIn": 0.3, "wakes": 1, "events": 3, "note": "The Free run: the missed call logged and its text drafted, never sent, because Free's number sends no texts."}},
+        "monthly": {"numbers": 1, "note": "One number per phone line, which the line forwards its unanswered and busy calls to."}
+      },
+      "tiers": [
+        { "name": "Free", "free": true, "q": 1, "days": 7, "runsPerMonth": 0, "extra": [{"run": "draft", "runsPerMonth": 60}], "covers": "{q} {noun}, 7 days of missed calls, each text drafted", "for": "See how many calls you miss, and the text each caller would get." },
+        { "name": "Starter", "q": 1, "runsPerMonth": 60, "covers": "{q} {noun}, {runs} missed calls a month", "for": "Text back every caller a small team can't get to." },
+        { "name": "Growth", "q": 1, "runsPerMonth": 250, "featured": true, "covers": "{q} {noun}, {runs} missed calls a month", "for": "Answer every caller on a busy line, day and night." },
+        { "name": "Multi-location", "q": 10, "runsPerMonth": 150, "covers": "{q} {noun}, {runs} missed calls each a month", "for": "Run it for every location, or every client you answer phones for." }
+      ]
+    },
+    {
+      "id": "appointment-reminders",
+      "siteId": "reminders",
+      "name": "Appointment reminders",
+      "job": "Talk to customers",
+      "buyer": "For clinic and dental groups, service departments, salons and gyms, and the agencies that run their bookings.",
+      "unit": "appointment",
+      "per": "location",
+      "noun": ["location", "locations"],
+      "itemNoun": ["appointment", "appointments"],
+      "run": "One appointment: a reminder text and email the day before, replies that confirm or move it, a short call to people still quiet who agreed to reminder calls, and a text offering new times after a no-show.",
+      "usage": {
+        "run": {"textsOut": 1.6, "textsIn": 0.9, "callMinutesOut": 0.3, "emailsOut": 1, "emailsIn": 0.05, "wakes": 1.3, "events": 5},
+        "runs": {"email": {"emailsOut": 1, "emailsIn": 0.05, "wakes": 0.2, "events": 2, "note": "The Free run: the reminder sent by email, with the text and call drafted beside it and never sent, because Free's number sends no texts and makes no calls."}},
+        "monthly": {"numbers": 1, "inboxes": 1, "note": "Each location texts and calls from its own number and emails from its own inbox."}
+      },
+      "tiers": [
+        { "name": "Free", "free": true, "q": 1, "days": 7, "runsPerMonth": 0, "extra": [{"run": "email", "runsPerMonth": 300}], "covers": "{q} {noun}, a week of email reminders, texts and calls drafted", "for": "See every reminder before a text goes out." },
+        { "name": "Starter", "q": 1, "runsPerMonth": 300, "covers": "{q} {noun}, {runs} appointments a month", "for": "Remind every booking at a single clinic, salon or shop." },
+        { "name": "Growth", "q": 1, "runsPerMonth": 1200, "featured": true, "covers": "{q} {noun}, {runs} appointments a month", "for": "Confirm a full diary and call everyone who stays quiet." },
+        { "name": "Group", "q": 10, "runsPerMonth": 1500, "covers": "{q} {noun}, {runs} appointments each a month", "for": "Run it for every location in a group, or every client." }
+      ]
+    },
+    {
+      "id": "speed-to-lead-callback",
+      "siteId": "callback",
+      "name": "Speed-to-lead callback",
+      "job": "Talk to customers",
+      "buyer": "For sales and contact centre teams that buy or generate leads, in insurance, home services, solar, mortgages and real estate.",
+      "unit": "new lead called",
+      "per": "location",
+      "noun": ["location", "locations"],
+      "itemNoun": ["test lead", "test leads"],
+      "run": "One new lead: a call from your agent within a minute of the form (qualify, then book or transfer), a text from the same number when the call is missed or booked, any reply read and answered, and the transcript and outcome sent to your CRM.",
+      "usage": {
+        "run": {"callMinutesOut": 2.5, "textsOut": 1, "textsIn": 0.5, "emailsOut": 1, "wakes": 1, "analysis": {"inputTokens": 15000, "outputTokens": 800}, "events": 6},
+        "monthly": {"numbers": 1, "inboxes": 1, "note": "One calling number (texting registered) and one inbox for booking confirmations per location."}
+      },
+      "tiers": [
+        { "name": "Free", "free": true, "q": 1, "items": 5, "every": "once", "days": 7, "covers": "{items} {itemNoun} called within a minute", "for": "Fill in your own form and get the call." },
+        { "name": "Starter", "q": 1, "runsPerMonth": 300, "covers": "{runs} new leads a month at {q} {noun}", "for": "Call back every lead your website brings in." },
+        { "name": "Team", "q": 1, "runsPerMonth": 1500, "featured": true, "covers": "{runs} new leads a month at {q} {noun}", "for": "Call every lead you pay for within a minute, day and evening." },
+        { "name": "Multi-location", "q": 10, "runsPerMonth": 600, "covers": "{runs} new leads a month at each of {q} {noun}", "for": "Run one lead desk across every branch." }
+      ]
+    },
+    {
+      "id": "document-chaser",
+      "siteId": "documents",
+      "name": "Document chaser",
+      "job": "Talk to customers",
+      "buyer": "For lenders, mortgage brokers, insurers, accountants and onboarding teams that wait on documents from applicants and clients.",
+      "unit": "applicant chased to a complete file",
+      "per": "team",
+      "noun": ["team", "teams"],
+      "itemNoun": ["applicant", "applicants"],
+      "run": "One applicant chased to a complete file: the list emailed, reminders by email and text on your schedule, questions answered, each file read and checked against the list as it arrives, and the complete file handed to your team.",
+      "usage": {
+        "run": {"emailsOut": 4, "emailsIn": 3, "textsOut": 3, "textsIn": 1, "wakes": 4, "analysis": {"inputTokens": 60000, "outputTokens": 2000}, "events": 14},
+        "monthly": {"inboxes": 1, "numbers": 1, "note": "One inbox that sends the list and receives every file, and one number for texts, per team."}
+      },
+      "tiers": [
+        { "name": "Free", "free": true, "q": 1, "items": 10, "every": "once", "days": 14, "covers": "{items} {itemNoun} chased by email", "for": "Watch 10 files fill up without anyone chasing." },
+        { "name": "Starter", "q": 1, "runsPerMonth": 200, "covers": "{runs} applicants a month for {q} {noun}", "for": "Stop chasing paperwork by hand." },
+        { "name": "Team", "q": 1, "runsPerMonth": 1000, "featured": true, "covers": "{runs} applicants a month for {q} {noun}", "for": "Keep every application moving, every day." },
+        { "name": "Multi-team", "q": 5, "runsPerMonth": 4000, "covers": "{runs} applicants a month for each of {q} {noun}", "for": "Run every product line’s paperwork from one place." }
+      ]
+    },
+    {
+      "id": "sign-in-code-check",
+      "siteId": "codes",
+      "name": "Sign-in code check",
+      "job": "Test sign-up and agents",
+      "buyer": "For QA leads and engineers who own login and sign-in.",
+      "unit": "sign-in check",
+      "per": "channel",
+      "noun": ["channel", "channels"],
+      "itemNoun": ["sign-in", "sign-ins"],
+      "run": "One sign-in check: a persona signs in to your product, asks for its code on one channel (text, email or a call), reads it on its own number or inbox, types it in and times it.",
+      "usage": {
+        "run": {"visits": [{"type": "signIn"}], "textsIn": 0.5, "emailsIn": 0.35, "callMinutesIn": 0.075, "wakes": 1, "events": 5},
+        "monthly": {"numbers": 0.65, "inboxes": 0.35, "note": "Each channel holds a number (codes by text or a call) or an inbox (codes and links by email)."}
+      },
+      "tiers": [
+        { "name": "Free", "free": true, "q": 1, "items": 2, "every": "once", "days": 1, "covers": "{items} {itemNoun}, by text and email", "for": "See how long your codes take tonight." },
+        { "name": "Nightly", "q": 2, "every": "day", "covers": "{q} {noun}, signed in {every}", "for": "Know each morning that last night’s codes arrived." },
+        { "name": "Every country", "q": 8, "every": "day", "featured": true, "covers": "{q} {noun} across your countries, {every}", "for": "Cover every country and carrier you send codes to." },
+        { "name": "Hourly", "q": 2, "runsPerMonth": 730, "covers": "{q} {noun}, signed in every hour", "for": "Catch a broken code within the hour it breaks." }
+      ]
+    },
+    {
+      "id": "inbox-agent",
+      "siteId": "inbox-agent",
+      "name": "Inbox agent",
+      "job": "Build agent products",
+      "buyer": "For developers shipping an AI agent that answers email, and the support and sales teams who run one.",
+      "unit": "email answered",
+      "per": "inbox",
+      "noun": ["inbox", "inboxes"],
+      "itemNoun": ["email", "emails"],
+      "run": "One email answered: the agent wakes on the email, reads it beside your help pages and rules, and replies in the same thread or hands it to a person.",
+      "usage": {
+        "run": {"emailsIn": 1, "emailsOut": 1, "wakes": 1, "analysis": {"inputTokens": 30000, "outputTokens": 800}, "events": 4},
+        "monthly": {"inboxes": 1, "note": "One address per inbox agent, on your domain or ours."}
+      },
+      "tiers": [
+        { "name": "Free", "free": true, "q": 1, "items": 25, "every": "once", "days": 7, "covers": "{items} {itemNoun} answered in {q} {noun}", "for": "Watch it answer your first 25 emails." },
+        { "name": "Starter", "q": 1, "runsPerMonth": 500, "covers": "{q} {noun}, {runs} emails a month", "for": "Answer a small team’s inbox, day and night." },
+        { "name": "Team", "q": 3, "runsPerMonth": 2000, "featured": true, "covers": "{q} {noun}, {runs} emails each a month", "for": "Run support, sales and billing from their own addresses." },
+        { "name": "Scale", "q": 10, "runsPerMonth": 5000, "covers": "{q} {noun}, {runs} emails each a month", "for": "Give every brand or client its own answering inbox." }
+      ]
+    },
+    {
+      "id": "imessage-assistant",
+      "siteId": "imessage",
+      "name": "iMessage assistant",
+      "job": "Build agent products",
+      "buyer": "For founders and engineers building an AI assistant people text.",
+      "unit": "reply",
+      "per": "line",
+      "noun": ["line", "lines"],
+      "itemNoun": ["reply", "replies"],
+      "run": "One reply: a message read on iMessage, or by text from someone not on iMessage, and answered in the same thread.",
+      "usage": {
+        "run": {"wakes": 1, "textsIn": 0.15, "textsOut": 0.15, "sandboxVcpuHours": 0.0005, "events": 3},
+        "monthly": {"imessageLines": 1, "numbers": 1, "inboxes": 1, "note": "One persona per line: its iMessage line, a number for people not on iMessage and an inbox for confirmations."}
+      },
+      "tiers": [
+        { "name": "Free", "free": true, "q": 1, "items": 20, "every": "once", "days": 1, "covers": "{items} {itemNoun} on {q} iMessage {noun}", "for": "Text your assistant and watch it answer." },
+        { "name": "Launch", "q": 1, "runsPerMonth": 3000, "covers": "{q} iMessage {noun}, {runs} replies a month", "for": "Put your assistant in front of its first users." },
+        { "name": "Growth", "q": 1, "runsPerMonth": 20000, "featured": true, "covers": "{q} iMessage {noun}, {runs} replies a month", "for": "Answer every user, day and night, from one line." },
+        { "name": "Scale", "q": 5, "runsPerMonth": 20000, "covers": "{q} iMessage {noun}, {runs} replies each a month", "for": "Spread a growing user base across lines." }
+      ]
+    },
+    {
+      "id": "prior-authorization-status",
+      "siteId": "prior-auth",
+      "name": "Prior authorization status",
+      "job": "Work behind logins",
+      "buyer": "For revenue cycle teams at clinic groups and specialty practices, and the medical billing companies that work for them.",
+      "unit": "status check",
+      "per": "payer portal",
+      "noun": ["payer portal", "payer portals"],
+      "itemNoun": ["pending request", "pending requests"],
+      "run": "One pending request read once in a payer portal that stays signed in: its status page found, read and saved with a screenshot (a status lookup, sized at two thirds of a stealth page read). Each payer portal holds a persona with its own inbox and number for login codes, and signs in again about once a week when its session lapses.",
+      "note": "Reading every pending request every morning is most of the cost. Reading each request only on the days a decision is due would cut it by more than half.",
+      "usage": {
+        "run": {"visits": [{"type": "stealthRead", "name": "Status page read", "minutes": 1, "inputTokens": 184000, "outputTokens": 1800}], "events": 3},
+        "monthly": {"inboxes": 1, "numbers": 1, "visits": [{"type": "signIn", "count": 4.33, "name": "Sign in again when the session lapses"}], "wakes": 4.33, "emailsIn": 3, "textsIn": 1.33, "events": 10, "note": "1 persona per payer portal: an inbox and a number for its login codes."}
+      },
+      "tiers": [
+        { "name": "Free", "free": true, "q": 1, "items": 20, "every": "once", "days": 1, "covers": "{items} {itemNoun} in 1 {noun}, read once", "for": "See where 20 requests stand in 1 payer portal." },
+        { "name": "Practice", "q": 2, "items": 25, "every": "morning", "covers": "{q} {noun}, {items} {itemNoun} each, {every}", "for": "Every pending request at a practice’s main payers." },
+        { "name": "Clinic group", "q": 5, "items": 60, "every": "morning", "featured": true, "covers": "{q} {noun}, {items} {itemNoun} each, {every}", "for": "Every payer a clinic group works with, read before clinics open." },
+        { "name": "Billing company", "q": 15, "items": 100, "every": "morning", "covers": "{q} {noun}, {items} {itemNoun} each, {every}", "for": "Each client’s payers, for a medical billing company." }
+      ]
+    },
+    {
+      "id": "load-tracking",
+      "siteId": "loads",
+      "name": "Load tracking",
+      "job": "Work behind logins",
+      "buyer": "For freight brokers, third-party logistics providers (3PLs) and shippers’ logistics teams.",
+      "unit": "status read",
+      "per": "carrier portal",
+      "noun": ["carrier portal", "carrier portals"],
+      "itemNoun": ["load", "loads"],
+      "run": "One load read once in a carrier portal that stays signed in: its row in the portal's shipment list read, its page opened only when something changed, and both saved with a screenshot (a status read, sized at a third of a stealth page read). Each carrier portal holds a persona with its own inbox and number, for login codes and the carrier's status emails and proofs of delivery, and signs in again about once a week when its session lapses.",
+      "note": "Reading every load 4 times a day is most of the cost. Twice a day halves it.",
+      "usage": {
+        "run": {"visits": [{"type": "stealthRead", "name": "Load status read", "minutes": 0.5, "inputTokens": 92000, "outputTokens": 900}], "events": 2},
+        "monthly": {"inboxes": 1, "numbers": 1, "visits": [{"type": "signIn", "count": 4.33, "name": "Sign in again when the session lapses"}], "wakes": 34.33, "emailsIn": 33, "textsIn": 1.33, "events": 40, "note": "1 persona per carrier portal: an inbox and a number for its login codes, status emails and proofs of delivery."}
+      },
+      "tiers": [
+        { "name": "Free", "free": true, "q": 1, "items": 25, "every": "once", "days": 1, "covers": "{items} {itemNoun} in 1 {noun}, read once", "for": "See where 25 loads stand in 1 carrier portal." },
+        { "name": "Desk", "q": 3, "items": 40, "runsPerMonth": 60.8, "covers": "{q} {noun}, {items} {itemNoun} each, read twice a day", "for": "One desk’s loads across its main carriers." },
+        { "name": "Brokerage", "q": 8, "items": 40, "runsPerMonth": 121.6, "featured": true, "covers": "{q} {noun}, {items} {itemNoun} each, read 4 times a day", "for": "Every load a brokerage moves, with exceptions as they happen." },
+        { "name": "Network", "q": 25, "items": 60, "runsPerMonth": 121.6, "covers": "{q} {noun}, {items} {itemNoun} each, read 4 times a day", "for": "Every carrier a 3PL books, for each of its customers." }
+      ]
+    },
+    {
+      "id": "invoice-collector",
+      "siteId": "invoices",
+      "name": "Invoice collector",
+      "job": "Work behind logins",
+      "buyer": "For finance and accounts payable teams, and the bookkeeping firms that close the books for clients.",
+      "unit": "portal check",
+      "per": "vendor portal",
+      "noun": ["vendor portal", "vendor portals"],
+      "run": "One vendor portal checked once: signed in again (sessions lapse between weekly checks), its billing page opened, each new invoice downloaded and read for vendor, number, date, amount, tax and due date, and the page saved with a screenshot. One persona holds the account's vendor logins, with one inbox and one number for login codes and emailed bills.",
+      "note": "Each check signs in afresh, which is most of the cost. Where a vendor's session lasts a week, a check costs about a third less.",
+      "usage": {
+        "run": {"visits": [{"type": "signIn", "name": "Sign in and open the billing page"}, {"type": "stealthRead", "name": "Download and read each new invoice"}], "analysis": {"inputTokens": 30000, "outputTokens": 800}, "events": 4},
+        "monthly": {"wakes": 1.5, "emailsIn": 1.5, "events": 2, "note": "Per vendor portal: about 1 login code or emailed bill a month."},
+        "account": {"inboxes": 1, "numbers": 1, "note": "One persona for the account's vendor logins: 1 inbox and 1 number, set as the contact for login codes and emailed bills."}
+      },
+      "tiers": [
+        { "name": "Free", "free": true, "q": 5, "every": "once", "days": 1, "covers": "{q} {noun}, checked once", "for": "Collect this month’s invoices from 5 vendor portals." },
+        { "name": "Business", "q": 15, "every": "monday", "covers": "{q} {noun}, {every}", "for": "Every bill a small business logs in for." },
+        { "name": "Finance team", "q": 60, "every": "monday", "featured": true, "covers": "{q} {noun}, {every}", "for": "Every vendor portal a finance team pays from." },
+        { "name": "Bookkeeping firm", "q": 300, "every": "monday", "covers": "{q} {noun}, {every}", "for": "Each client’s vendor portals, for a bookkeeping firm." }
+      ]
+    },
+    {
+      "id": "nightly-agent-evaluation",
+      "siteId": "eval",
+      "name": "Nightly agent evaluation",
+      "job": "Train and test agents",
+      "buyer": "For evaluation, QA and platform engineers at companies building AI agents, and at AI labs.",
+      "unit": "task run",
+      "per": "agent",
+      "noun": ["agent", "agents"],
+      "itemNoun": ["task", "tasks"],
+      "run": "One task run: a sandbox started for your agent, a persona with its own inbox and number, a browser your agent drives through the task, every step written to the event log in order, and the run scored against the task's rule and last night's result.",
+      "usage": {
+        "run": {"visits": [{"type": "signIn", "minutes": 3, "inputTokens": 0, "outputTokens": 0, "name": "Agent-driven browser session"}], "sandboxVcpuHours": 0.1, "sandboxGibHours": 0.2, "emailsIn": 1, "textsIn": 0.5, "analysis": {"inputTokens": 25000, "outputTokens": 800}, "events": 30},
+        "monthly": {"inboxes": 50, "numbers": 5, "note": "A pool of 50 inboxes and 5 numbers per agent: tasks run 50 at a time, and each task's persona gets a clean inbox from the pool for its run."}
+      },
+      "tiers": [
+        { "name": "Free", "free": true, "q": 1, "items": 20, "every": "once", "days": 1, "covers": "{items} {itemNoun}, run once", "for": "Score your agent on 20 real tasks tonight." },
+        { "name": "Weekly", "q": 1, "items": 50, "every": "week", "covers": "{items} {itemNoun}, {every}", "for": "Score every release before it ships." },
+        { "name": "Nightly", "q": 1, "items": 200, "every": "day", "featured": true, "covers": "{items} {itemNoun}, {every}", "for": "Know by morning what last night’s build broke." },
+        { "name": "Every agent", "q": 5, "items": 200, "every": "day", "covers": "{items} {itemNoun} for each of {q} {noun}, {every}", "for": "Run a suite for every agent and model you ship." }
+      ]
     }
   ]
 }

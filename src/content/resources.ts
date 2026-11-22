@@ -119,10 +119,11 @@ export const useCasesPage: UseCasesIndexPage = {
       ],
     },
     { kit: 'train', paths: ['/use-cases/ai-agent-evaluation'] },
+    { kit: 'buy', paths: ['/use-cases/agentic-commerce'] },
   ],
   orbit: {
-    label: 'Obsession in the middle, its five pieces around it, and the six types of blueprints on the outer ring: every use case below belongs to one of them.',
-    caption: 'Every use case below belongs to one of the six types of blueprints.',
+    label: 'Obsession in the middle, its five pieces around it, and the seven types of blueprints on the outer ring: every use case below belongs to one of them.',
+    caption: 'Every use case below belongs to one of the seven types of blueprints.',
   },
   group: {
     id: 'examples',
