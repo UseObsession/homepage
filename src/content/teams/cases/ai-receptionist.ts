@@ -95,9 +95,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Check your receptionist the way a caller would.',
-    line: 'No code. Name the number, and every answer lands in Slack, a sheet or your inbox.',
-    slugs: ['voice-agent-check', 'lead-leaks', 'ai-disclosure-check'],
+    heading: 'Text back every missed call, confirm every booking, and check your receptionist.',
+    line: 'No code. Pick a job, name the number, and every result lands in Slack, a sheet or your inbox.',
+    slugs: ['missed-call-text-back', 'appointment-reminders', 'voice-agent-check', 'lead-leaks', 'ai-disclosure-check'],
   },
 
   prices: ['number', 'voice', 'sms', 'register', 'inbox', 'persona'],

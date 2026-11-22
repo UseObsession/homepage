@@ -15,18 +15,18 @@ const access = (source: string): Capture => ({
 
 /* The shared close (the blog index uses it too). Its line, "Free plan, no credit card.", is content/join.ts. */
 const final = (source: string): Final => ({
-  heading: 'Which company should we look up first?',
+  heading: 'What should your first AI agent do?',
   capture: access(source),
 })
 
 export const resourcesPage: ResourcesPage = {
   meta: {
     path: '/resources',
-    title: 'Obsession resources: use cases and one real store’s record',
+    title: 'Obsession resources: use cases, blueprints and guides',
     description:
-      'Obsession’s data at work: use cases that follow 1 team from its question to the data, and a real store’s record in every format it comes in.',
+      'Use cases that follow one team from a job to its result, the blueprints that run them, a sample result in every format, and guides from the founders.',
     answer:
-      'Obsession’s resources show the data at work: use cases that follow 1 team from its question to the data, and 1 real store’s record in every format it comes in.',
+      'Obsession’s resources show AI agents at work: use cases that follow one team from a job to its result, the blueprints that run them, a sample result in every format it lands in, and guides from both founders.',
     ogImage: '/og/resources.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -34,21 +34,21 @@ export const resourcesPage: ResourcesPage = {
     ],
   },
   hero: {
-    headline: 'See the data first.',
-    sub: 'Obsession’s resources show the data at work: use cases that follow 1 team from its question to the data, and 1 real store’s record in every format it comes in.',
+    headline: 'See AI agents at work, job by job.',
+    sub: 'Obsession’s resources show AI agents at work: use cases that follow one team from a job to its result, the blueprints that run them, a sample result in every format it lands in, and guides from both founders.',
   },
   groups: {
     useCases: {
       id: 'use-cases',
       name: 'Use cases',
-      line: 'What 1 kind of team looks up, and where it lands. The names and numbers are made up.',
+      line: 'One kind of team, one job, and where its results land. Every company and number is an example.',
       all: { label: 'Every use case', to: '/use-cases' },
     },
     sample: {
       id: 'sample-output',
       name: 'Sample data',
-      line: 'A real record: a UK skincare store in September 2026, its name hidden.',
-      link: { label: 'Brand G’s record', to: '/sample-output', line: '4 test customers, every inbox watched for 48 hours. 1 left a basket, 1 stopped at checkout, and nobody wrote to either.' },
+      line: 'A real mystery shopping run at a UK skincare store, September 2026, its name hidden.',
+      link: { label: 'See the sample result', to: '/sample-output', line: 'Every email, text, screen and price the run kept, in each format a result can land in.' },
     },
     blog: {
       id: 'blog',
@@ -122,7 +122,7 @@ export const useCasesPage: UseCasesIndexPage = {
     { kit: 'buy', paths: ['/use-cases/agentic-commerce'] },
   ],
   orbit: {
-    label: 'Obsession in the middle, its five pieces around it, and the seven types of blueprints on the outer ring: every use case below belongs to one of them.',
+    label: 'Obsession in the middle, its six pieces around it, and the seven types of blueprints on the outer ring: every use case below belongs to one of them.',
     caption: 'Every use case below belongs to one of the seven types of blueprints.',
   },
   group: {
@@ -153,11 +153,11 @@ export const useCasesPage: UseCasesIndexPage = {
 export const blogPage: BlogIndexPage = {
   meta: {
     path: '/blog',
-    title: 'The Obsession blog: what companies show only to customers',
+    title: 'The Obsession blog: guides for teams putting AI agents to work',
     description:
-      'Guides for teams that track what companies show only to customers: competitors’ emails, member prices, trial limits, cancel offers and what AI agents say.',
+      'Guides for teams giving AI agents an inbox, a phone number and a browser, and for teams handing whole jobs to blueprints: methods, tools and prices.',
     answer:
-      'Guides for teams that track what companies show only to customers: competitors’ emails and offers, member prices, trial limits, cancel flows and what AI agents say. Each shows the method by hand, with every source linked, and where Obsession’s index takes over.',
+      'Guides for teams giving AI agents an inbox, a phone number and a browser, and for teams handing whole jobs to blueprints. Each shows the method by hand, with every source linked, and where an Obsession blueprint takes over.',
     ogImage: '/og/blog.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -165,8 +165,8 @@ export const blogPage: BlogIndexPage = {
     ],
   },
   hero: {
-    headline: 'Find out what any company’s customers actually receive.',
-    sub: 'Guides for teams that track what companies show only to customers: competitors’ emails and offers, member prices, trial limits, cancel flows and what AI agents say. From both founders of Obsession, with every source linked.',
+    headline: 'Guides for putting AI agents to work.',
+    sub: 'Guides for teams giving AI agents an inbox, a phone number and a browser, and for teams handing whole jobs to blueprints. From both founders of Obsession, with every source linked.',
   },
   empty: {
     heading: 'Start with the work itself.',

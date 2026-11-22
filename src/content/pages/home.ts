@@ -118,7 +118,7 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'Early access',
+    pill: 'Free plan, no credit card',
     pillTo: '#join',
     /* Locked by James, 21 Nov: "toolkit" leads, the sub names what is in the kit at once. */
     headline: 'The toolkit for AI agents. One API, one bill.',
@@ -138,7 +138,7 @@ export const page: Page = {
   },
 
   personaStart: {
-    primary: { label: 'Start building', to: '#join' },
+    primary: { label: 'Start free', to: '#join' },
     chip: { code: 'obsession.personas.create({ inbox: true, phone: "US", browser: true })', copy: 'Copy the code', copied: 'Copied' },
     doors: {
       dev: { label: 'For developers' },
@@ -168,7 +168,7 @@ export const page: Page = {
     line: 'Seven types of blueprints, one for each job AI agents do. Results are delivered in any format: Slack, email, your CRM, Clay, Google Sheets, a PDF or your own Claude agent.',
     unit: { one: 'blueprint', many: 'blueprints' },
     more: 'more',
-    all: { label: 'See every blueprint', to: '/blueprints' },
+    all: { label: 'Browse blueprints', to: '/blueprints' },
   },
 
   /* For teams that don't write code (#teams, 23 Nov 2026, components/persona/HomeTeams). Seun: will non-technical teams
@@ -291,7 +291,7 @@ export const page: Page = {
         { icon: 'stop', name: 'Clear operating rules', line: 'It identifies itself as an AI, uses only the logins you provide and stops at any identity check.' },
       ],
     },
-    primary: { label: 'Browse every blueprint', to: '/blueprints' },
+    primary: { label: 'Browse blueprints', to: '/blueprints' },
     secondary: { label: 'Start free', to: '#join' },
     free: 'Free plan, no credit card.',
   },
@@ -335,7 +335,7 @@ export const page: Page = {
       slugs: ['mystery-shopper', 'voice-agent-check', 'competitor-tracking'],
       runs: 'Runs on',
       out: 'Results land in Slack, a sheet, your CRM or our dashboard.',
-      link: { label: 'See every blueprint', to: '/blueprints' },
+      link: { label: 'Browse blueprints', to: '/blueprints' },
     },
     caption: 'One example AI agent before and after Obsession equips it. Larkfield is invented.',
     link: { label: 'See every piece', to: '#pieces' },
@@ -499,7 +499,7 @@ export const page: Page = {
           in: { at: '09:13:20', kind: 'email.received', text: 'Order SX-20931 confirmed · £318.40' },
           place: 'runtime',
           does: 'Your agent matches it to the order and adds the delivery date',
-          out: { at: '09:13:21', kind: 'blueprint.result', text: 'Order, amount and delivery date in your ledger' },
+          out: { at: '09:13:21', kind: 'blueprint.result', text: 'Order, amount and delivery date in your sheet' },
           tally: 'This month: 900 reorders across 40 suppliers, every receipt matched to its order',
         },
       ],
@@ -517,7 +517,7 @@ export const page: Page = {
   personaBuild: {
     heading: 'One key, from the first inbox to a fleet of personas.',
     line: 'Create an inbox, a number or a whole persona from code, or let your agent do it over MCP. Subscribe once to hear from all of them.',
-    cta: { label: 'For developers', to: '/developers' },
+    cta: { label: 'See the API and MCP', to: '/developers' },
     codeLabel: 'agent.ts',
     code: BUILD_CODE,
   },
@@ -544,7 +544,7 @@ export const page: Page = {
       },
       {
         q: 'What is the event log?',
-        a: 'One place per account where every event from every piece, persona and blueprint lands, in order and dated, with its proof: the email as it arrived, or a screenshot of the page. Nothing in it is changed or deleted.',
+        a: 'One place per account where every event from every piece, persona and blueprint lands, in order and dated, with its proof: the email as it arrived, or a screenshot of the page. Nothing in it is edited after it lands.',
       },
       {
         q: 'How do events reach my app?',
@@ -552,7 +552,7 @@ export const page: Page = {
       },
       {
         q: 'Does a persona say it’s an AI?',
-        a: 'Yes, whenever it talks to a person. It signs up the way anyone can, on pages open to everyone, and you choose where it goes.',
+        a: 'Yes, whenever it talks to a person. It signs up the way anyone can, signs in only with logins you give it, and you choose where it goes.',
       },
     ],
   },
@@ -561,6 +561,6 @@ export const page: Page = {
     heading: 'Start with the piece your agent needs first.',
     sub: 'Tell us which pieces, or which blueprint, and we’ll set you up on the Free plan.',
     /* James's line (21 Nov), on this closing button only; the hero's main button still says what it does. */
-    capture: { ...access, button: 'Kit up your agent', source: 'home-final' },
+    capture: { ...access, button: 'Start free', source: 'home-final' },
   },
 }

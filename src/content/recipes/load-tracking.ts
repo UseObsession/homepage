@@ -201,7 +201,7 @@ obsession.on('blueprint.result', async (e) => {
       {
         q: 'How do our engineers build on it?',
         a: 'Start it with obsession.blueprints.run and handle each blueprint.result in your own code. Sessions stay signed in for weeks, each page arrives as page.visited with its screenshot, and every change can reach your TMS by webhook.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'How many loads can it track?',

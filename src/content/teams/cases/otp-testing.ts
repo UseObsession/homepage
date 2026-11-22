@@ -96,9 +96,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Checks that run after every release.',
+    heading: 'Sign in by text and email after every release.',
     line: 'Each posts a pass or fail to Slack, a sheet or your CI.',
-    slugs: ['delivery-monitoring', 'website-audit'],
+    slugs: ['sign-in-code-check', 'delivery-monitoring', 'website-audit'],
   },
 
   prices: ['number', 'sms', 'voice', 'inbox', 'browser', 'persona'],

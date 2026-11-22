@@ -964,7 +964,7 @@
     {
       "id": "order-receipt-ledger",
       "siteId": "ledger",
-      "name": "Order and receipt ledger",
+      "name": "Order and receipt matching",
       "job": "Buy, book and order",
       "buyer": "For finance and procurement teams whose AI agents buy, and the engineers who build those agents.",
       "unit": "order matched",
@@ -979,7 +979,7 @@
       "tiers": [
         { "name": "Free", "free": true, "q": 1, "items": 25, "every": "once", "days": 14, "covers": "{items} {itemNoun} matched for {q} {noun}", "for": "Watch your first 25 orders match themselves." },
         { "name": "Starter", "q": 1, "runsPerMonth": 200, "covers": "{q} {noun}, {runs} orders a month", "for": "Match every order one buying agent places." },
-        { "name": "Team", "q": 5, "runsPerMonth": 500, "featured": true, "covers": "{q} {noun}, {runs} orders each a month", "for": "One ledger across reorders, travel and subscriptions." },
+        { "name": "Team", "q": 5, "runsPerMonth": 500, "featured": true, "covers": "{q} {noun}, {runs} orders each a month", "for": "Every order matched across reorders, travel and subscriptions." },
         { "name": "Scale", "q": 20, "runsPerMonth": 1000, "covers": "{q} {noun}, {runs} orders each a month", "for": "Give every buying agent you run its own inbox and number." }
       ]
     },

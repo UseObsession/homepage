@@ -95,9 +95,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Hear what your agent tells patients, every morning.',
+    heading: 'Confirm every appointment, return every missed call, and hear what your agent tells patients.',
     line: 'No code. Name the practice’s number or booking form, and every answer lands in Slack, a sheet or your inbox.',
-    slugs: ['voice-agent-check', 'lead-leaks', 'ai-disclosure-check'],
+    slugs: ['appointment-reminders', 'missed-call-text-back', 'voice-agent-check', 'lead-leaks', 'ai-disclosure-check'],
   },
 
   prices: ['number', 'voice', 'sms', 'register', 'inbox', 'whatsapp'],

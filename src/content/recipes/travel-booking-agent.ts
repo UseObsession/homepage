@@ -208,7 +208,7 @@ obsession.on('email.received', async (e) => {
       {
         q: 'How do our engineers build on it?',
         a: 'Start it with obsession.blueprints.run, apply your own policy or approval logic in a handler, and read each confirmation and change as email.received. The persona’s inbox, number and browser are the same pieces you can call yourself.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'How many trips can it book?',

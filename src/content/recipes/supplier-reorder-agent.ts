@@ -209,7 +209,7 @@ obsession.on('email.received', async (e) => {
       {
         q: 'How do our engineers build on it?',
         a: 'A webhook from your stock system starts it with obsession.blueprints.run, and each confirmation and delivery update reaches your code as email.received. You can also drive the browser yourself with the same persona.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'How many suppliers and sites can it cover?',

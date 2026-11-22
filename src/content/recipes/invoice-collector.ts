@@ -203,7 +203,7 @@ obsession.on('blueprint.result', async (e) => {
       {
         q: 'How do our engineers build on it?',
         a: 'Start it with obsession.blueprints.run and handle each blueprint.result in your own code. Each portal page arrives as page.visited with its screenshot, and each emailed bill as email.received with the PDF attached.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'Can a bookkeeping firm run it for clients?',

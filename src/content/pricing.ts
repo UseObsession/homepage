@@ -448,7 +448,7 @@ export const pricingPage: PricingPage = {
     more: {
       heading: 'Every blueprint, priced the same way.',
       line: (n) => `${n} blueprints across 7 types, each page with its free run and 3 typical months.`,
-      link: { label: 'Browse every blueprint', to: '/blueprints' },
+      link: { label: 'Browse blueprints', to: '/blueprints' },
     },
   },
 

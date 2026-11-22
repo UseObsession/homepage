@@ -97,9 +97,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Check what your agent quotes, every day.',
+    heading: 'Chase every missing document, call every new lead, and check what your agent quotes.',
     line: 'No code. Name the number or the form, and every answer lands in Slack, a sheet or your CRM.',
-    slugs: ['voice-agent-check', 'lead-leaks', 'ai-disclosure-check', 'support-bot-check'],
+    slugs: ['document-chaser', 'speed-to-lead-callback', 'voice-agent-check', 'lead-leaks', 'ai-disclosure-check', 'support-bot-check'],
   },
 
   prices: ['number', 'voice', 'sms', 'register', 'inbox', 'persona'],

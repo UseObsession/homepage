@@ -204,7 +204,7 @@ obsession.on('blueprint.result', async (e) => {
       {
         q: 'How do our engineers build on it?',
         a: 'Start it with obsession.blueprints.run and handle each blueprint.result in your own code, or drive the browser yourself with obsession.browsers.create and Playwright. Each login code reaches your code as email.received or sms.received.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'How many payers and requests can it cover?',

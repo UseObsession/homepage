@@ -7,7 +7,7 @@ import './PersonaHero.css'
 
 /* Home's hero (21 Nov 2026, after rivet.dev's centred hero): the tag, the headline (each sentence on its own line: what
    we sell, then "One API, one bill."), the sub, then two doors (23 Nov 2026): for developers, the copyable line of code
-   and Start building; for teams that don't code, the job in plain words and Browse blueprints. Then 3 facts on a ruled
+   and Start free; for teams that don't code, the job in plain words and Browse blueprints. Then 3 facts on a ruled
    row. No object under it: the pieces follow straight after. Words come from content/pages/home.ts (hero and
    personaStart). */
 

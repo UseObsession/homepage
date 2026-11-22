@@ -329,7 +329,7 @@ export const noCodePage: NoCodePage = {
       {
         q: 'What can an AI agent do for a small business?',
         a: 'Text back missed calls, confirm appointments, call new leads within a minute, chase missing documents, track competitors’ prices and download invoices from supplier portals. Each runs on its own schedule.',
-        link: { label: 'Every blueprint', to: '/blueprints' },
+        link: { label: 'Browse blueprints', to: '/blueprints' },
       },
       {
         q: 'How is this different from automation tools?',

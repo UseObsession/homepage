@@ -74,4 +74,8 @@ export const blueprintPieces: Record<string, PieceId[]> = {
   'load-tracking': ['browser', 'email', 'phone'],
   'invoice-collector': ['browser', 'email'],
   'nightly-agent-evaluation': ['sandbox', 'browser', 'email'],
+  'agent-checkout-test': ['browser', 'email', 'phone'],
+  'travel-booking-agent': ['browser', 'email', 'phone', 'messaging'],
+  'supplier-reorder-agent': ['email', 'browser', 'phone'],
+  'order-receipt-ledger': ['email', 'phone'],
 }

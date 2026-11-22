@@ -100,9 +100,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Checks for an assistant people text every day.',
+    heading: 'Start an iMessage assistant, then check it every day.',
     line: 'Each runs on its own and posts what it found to Slack, a sheet or your webhook.',
-    slugs: ['drift-watch', 'ai-disclosure-check'],
+    slugs: ['imessage-assistant', 'inbox-agent', 'drift-watch', 'ai-disclosure-check'],
   },
 
   prices: ['imessage', 'number', 'sms', 'inbox', 'browser', 'persona'],
@@ -137,7 +137,7 @@ export const useCase: TeamPage = {
       {
         q: 'How does my code send and receive iMessages?',
         a: 'Connect the line once with obsession.messaging.connect({ channel: "imessage" }). Every message reaches your webhook as message.received, and your assistant replies through the same API.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'Do I need to run my own iMessage bridge?',

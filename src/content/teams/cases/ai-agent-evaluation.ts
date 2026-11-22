@@ -103,9 +103,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Evaluations that run without a harness.',
+    heading: 'Run your agent’s evaluation every night, without a harness.',
     line: 'Each posts what it found to Slack, a sheet or your webhook.',
-    slugs: ['drift-watch', 'voice-agent-check', 'vendor-agent-check', 'support-bot-check'],
+    slugs: ['nightly-agent-evaluation', 'drift-watch', 'voice-agent-check', 'vendor-agent-check', 'support-bot-check'],
   },
 
   prices: ['sandbox', 'memory', 'browser', 'inbox', 'number', 'log'],
@@ -130,7 +130,7 @@ export const useCase: TeamPage = {
       {
         q: 'Which AI agent evaluation tools does it work with?',
         a: 'The harness you already run. Create a persona and a sandbox for each run, then read its events with obsession.events.list({ persona: run.id }) and score them in your own tool.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'What does an evaluation run cost?',

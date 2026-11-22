@@ -1,6 +1,6 @@
 /* The navigation's words and structure (components/Nav). Since 21 Nov it says what Home says: inboxes, phone numbers,
    browsers and sandboxes for AI agents through one API, plus recipes, ours or your own, with sample data as
-   the second button and "Start building" as the call to action. Structure: _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the recipes and
+   the second button and "Start free" as the call to action. Structure: _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the recipes and
    worked examples (content/catalog.ts), never their words. */
 import { catalog, type CatalogRecipe } from './catalog'
 import type { Cta, ReaderId, RecipeGroup, RecipeId } from './types'
@@ -240,7 +240,7 @@ export const nav = {
     label: 'Blueprints',
     to: '/blueprints',
     button: 'Blueprints menu',
-    all: { label: 'Browse all blueprints', to: '/blueprints' } satisfies NavPage,
+    all: { label: 'Browse blueprints', to: '/blueprints' } satisfies NavPage,
     /* The featured card: the 1 real run, the sample data. */
     feature: {
       label: 'See one real run',
@@ -295,25 +295,25 @@ export const nav = {
       : null,
     all: { label: 'Every resource', to: '/resources' } satisfies NavPage,
   },
-  /* The header's call to action on every page. Since 21 Nov it is Home's: "Start building", to Home's early access
+  /* The header's call to action on every page. Since 23 Nov it is "Start free", to Home's sign-up
      form; each page's own form stays where it is. `bar` is what the bar itself shows: past 16 characters the button
-     covers the logo on a 375 to 390px phone, and "Start building" is 14. */
-  cta: { label: 'Start building', to: '/#join', bar: 'Start building' } satisfies Cta,
+     covers the logo on a 375 to 390px phone; "Start free" is 10. */
+  cta: { label: 'Start free', to: '/#join', bar: 'Start free' } satisfies Cta,
   /* The second button, before the call to action: in the bar where it fits (Nav.css), in the sheet otherwise. Since 9 Nov
      the sample data, not Star on GitHub (the key keeps its old name; components/Nav reads it). */
-  github: { label: 'Sample data', to: '/sample-output' } satisfies Cta,
+  github: { label: 'Blueprints', to: '/blueprints' } satisfies Cta,
   menu: { open: 'Open menu', close: 'Close menu', sheet: 'Menu' },
   theme: { row: 'Theme', toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
 }
 
-/* The few pages whose header button differs from nav.cta ("Start building", to Home's form, on every other page). */
+/* The few pages whose header button differs from nav.cta ("Start free", to Home's form, on every other page). */
 export const pageCtas: Record<string, Cta> = {
   /* On /lookup, the header's "Look up your site" goes to the page's own box. */
   '/lookup': { label: 'Look up your site', to: '#lookup', bar: 'Lookup your site' },
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not early access. */
   '/agents': catalog.agentsCta,
   /* Home (21 Nov): the bar's button matches the hero's, to the page's own early access form. */
-  '/': { label: 'Start building', to: '#join', bar: 'Start building' },
+  '/': { label: 'Start free', to: '#join', bar: 'Start free' },
   /* The resellers page (21 Nov): the bar's button matches its forms' (early access), to its own form. */
   '/agencies': { label: 'Start free', to: '#join', bar: 'Start free' },
 }

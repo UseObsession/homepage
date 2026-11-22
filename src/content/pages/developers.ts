@@ -3,6 +3,9 @@ import { piecePaths, pieceOrder } from '../piecePaths'
 import { prices, type PieceId, type Price } from '../prices'
 import type { Cta, OpenSource, Page } from '../types'
 
+/* How many blueprints there are: one words file each (content/recipes), counted without loading them. */
+const blueprintCount = Object.keys(import.meta.glob('../recipes/*.ts')).length
+
 /* Developers (/developers, "API and MCP" in the nav), the pieces rewrite (21 Nov 2026, James): one API for every piece an
    AI agent needs, with one key and one bill. A developer takes one piece (only the email, the way people use an email
    API for agents) or many, and can put them under one persona. The story (pages/Developers.tsx): the hero with the
@@ -241,7 +244,7 @@ export const api: ApiSections = {
     line: 'A blueprint is a job that runs beside the pieces and writes its results to your event log.',
     code: RECIPES,
     facts: [
-      { term: 'Ours, ready to run', line: '22 ready jobs, from mystery shopping and trial teardown to price watch. Name the site, and Obsession runs it.' },
+      { term: 'Ours, ready to run', line: `${blueprintCount} ready jobs across 7 types, from missed call text back to price watch. Pick one, and Obsession runs it.` },
       { term: 'Your own job', line: 'Your own task, on our runtime next to the inbox, browser and sandbox.' },
       { term: 'One event log', line: 'Each result lands as a blueprint.result event and reaches you like any other.' },
     ],

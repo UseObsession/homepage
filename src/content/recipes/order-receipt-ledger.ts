@@ -18,9 +18,9 @@ import type { Recipe } from '../types'
 export const recipe: Recipe = {
   id: 'ledger',
   slug: 'order-receipt-ledger',
-  name: 'Order and receipt ledger',
+  name: 'Order and receipt matching',
   group: 'Buy, book and order',
-  line: 'Every confirmation, receipt and delivery text your buying agents get, matched to its order in one ledger.',
+  line: 'Every confirmation, receipt and delivery text your buying agents get, matched to its order in one sheet.',
   gets: 'Each order with its confirmation, receipt and delivery updates, matched by order number, and a flag in Slack when they don’t agree.',
   kit: [
     'An inbox and a number for each buying agent',
@@ -51,20 +51,20 @@ obsession.on('blueprint.result', async (e) => {
     path: '/blueprints/order-receipt-ledger',
     title: 'Match every receipt to the order your AI agent placed',
     description:
-      'AI receipt matching for buying agents: every confirmation, receipt and delivery text lands in one ledger, matched to its order and flagged when they differ.',
+      'AI receipt matching for buying agents: every confirmation, receipt and delivery text lands in one sheet, matched to its order and flagged when they differ.',
     answer:
-      'Order and receipt ledger gives each buying agent its own inbox and number. It reads every confirmation, receipt and delivery text as it lands and matches each to its order in one sheet. When a receipt doesn’t match its order, finance sees it in Slack that day.',
+      'Order and receipt matching gives each buying agent its own inbox and number. It reads every confirmation, receipt and delivery text as it lands and matches each to its order in one sheet. When a receipt doesn’t match its order, finance sees it in Slack that day.',
     ogImage: '/og/order-receipt-ledger.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Blueprints', path: '/blueprints' },
-      { name: 'Order and receipt ledger', path: '/blueprints/order-receipt-ledger' },
+      { name: 'Order and receipt matching', path: '/blueprints/order-receipt-ledger' },
     ],
   },
 
   hero: {
     headline: 'Match every receipt and delivery text to the order your AI agent placed.',
-    sub: 'Order and receipt ledger gives each buying agent its own inbox and number. It reads every confirmation, receipt and delivery text as it lands and matches each to its order in one sheet. When a receipt doesn’t match its order, finance sees it in Slack that day.',
+    sub: 'Order and receipt matching gives each buying agent its own inbox and number. It reads every confirmation, receipt and delivery text as it lands and matches each to its order in one sheet. When a receipt doesn’t match its order, finance sees it in Slack that day.',
     screen: 'ledger',
     capture: {
       kind: 'waitlist',
@@ -81,7 +81,7 @@ obsession.on('blueprint.result', async (e) => {
   tiers: [
     { name: 'Free', includes: ['Your first 25 orders matched, for 1 buying agent', 'An inbox and a number for its receipts and texts', 'Every order in a Google Sheet'] },
     { name: 'Starter', includes: ['Every order 1 buying agent places', 'A flag in Slack when a receipt doesn’t match', 'A list every Monday of receipts still missing'] },
-    { name: 'Team', includes: ['Agents for reorders, travel and subscriptions, in one ledger', 'Each agent with its own inbox and number', 'Each matched order sent to your accounting system by webhook'] },
+    { name: 'Team', includes: ['Agents for reorders, travel and subscriptions, in one sheet', 'Each agent with its own inbox and number', 'Each matched order sent to your accounting system by webhook'] },
     { name: 'Scale', includes: ['An inbox and a number for every buying agent you run', 'Each team’s or client’s orders kept apart in your event log'] },
   ],
 

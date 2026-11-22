@@ -57,8 +57,8 @@ export const talk: KitPage = {
   },
 
   blueprints: {
-    heading: 'Check what your agent says, every day.',
-    line: 'Obsession calls, texts and chats with your agent as a customer would, and sends you every answer.',
+    heading: 'Answer every call, text and lead, and check what your agent says.',
+    line: 'Ready-made jobs that call back, remind and chase on your behalf, and checks that call, text and chat with your own agent as a customer would.',
     slugs: ['missed-call-text-back', 'appointment-reminders', 'speed-to-lead-callback', 'document-chaser', 'voice-agent-check', 'support-bot-check', 'ai-disclosure-check'],
   },
 

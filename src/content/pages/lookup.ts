@@ -166,7 +166,7 @@ export const lookupPage: LookupPage = {
       'Grow the account: the gaps outside your current work, such as texts never set up or a checkout that sends nothing, each with the email or screenshot the client can open.',
       'Every store already in the index, in a table you already use, like Clay or Google Sheets, or through our API and MCP for your own tools and AI agents.',
     ],
-    capture: { kind: 'waitlist', source: 'lookup-agencies', button: 'Request early access', interest: 'any' },
+    capture: { kind: 'waitlist', source: 'lookup-agencies', button: 'Start free', interest: 'any' },
   },
   sample: {
     heading: 'A whole entry, for our sample store',
@@ -244,7 +244,7 @@ export const lookupPage: LookupPage = {
       { q: 'Where do the numbers next to each finding come from?', a: 'From every store in the index that took the same step: how many of them do it, and how fast half of them are.' },
       { q: 'Will you place orders on my store?', a: 'No. Our accounts stop before payment and never place an order.' },
       { q: 'Do you see my customers or their data?', a: 'No. Every email in an entry was sent to one of our own accounts. We never see your customers, their orders or their emails.' },
-      { q: 'Can I have my entry taken down?', a: 'Yes. Email james@useobsession.com from an address at your site and we’ll remove it from the index.' },
+      { q: 'Can I have my entry taken down?', a: 'Yes. Email seun@useobsession.com from an address at your site and we’ll remove it from the index.' },
     ],
   },
   final: { heading: 'See your site’s entry', line: 'Type your email at your site and the link comes to your inbox.', button: 'Look up your site' },
@@ -376,5 +376,5 @@ export const lookupPage: LookupPage = {
   },
   another: 'Look up another site',
   takedown: 'Your site, and you want its entry taken down? Email',
-  takedownEmail: 'james@useobsession.com',
+  takedownEmail: 'seun@useobsession.com',
 }

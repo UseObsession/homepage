@@ -160,7 +160,7 @@ export const useCase: TeamPage = {
       {
         q: 'How do our engineers give each buying agent an identity?',
         a: 'Create a persona with obsession.personas.create({ inbox: true, phone: "US", browser: true }). Each order confirmation reaches your code as email.received and each delivery text as sms.received, about 50 ms after it lands.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
     ],
   },

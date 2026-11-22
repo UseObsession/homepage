@@ -134,3 +134,36 @@
   .s-join__step,
   .s-join__reveal { animation: none; }
 }
+
+/* ---- The sign-up card's first question (components/SetupCard): 3 ways in as radio cards, each its icon, name and
+   line, the chosen one edged and lit. 1 column in a narrow card, 3 across from 640px of card width. ---- */
+.s-join__doors { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-8); }
+@container s-join (min-width: 640px) { .s-join__doors { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.s-join__door {
+  position: relative;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 16px;
+  gap: var(--ob-space-12);
+  align-items: start;
+  padding: var(--ob-space-14, 14px);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  cursor: pointer;
+  transition: box-shadow var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-join__door-input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
+.s-join__door-ic { display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--ob-radius-sm); background: var(--ob-bg-sunken); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset; color: var(--ob-text-2); }
+.s-join__door-ic svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.s-join__door-words { display: grid; gap: 2px; min-width: 0; }
+.s-join__door-words b { font: var(--ob-type-label); color: var(--ob-text); }
+.s-join__door-words span { font: var(--ob-type-caption); color: var(--ob-text-2); text-wrap: pretty; }
+.s-join__door-dot { width: 16px; height: 16px; margin-top: 2px; border-radius: 50%; box-shadow: 0 0 0 1.5px var(--ob-line-strong) inset; }
+.s-join__door:has(.s-join__door-input:checked) { background: var(--ob-surface-raised, var(--ob-surface)); box-shadow: 0 0 0 1.5px var(--ob-text) inset; }
+.s-join__door:has(.s-join__door-input:checked) .s-join__door-ic { color: var(--s-accent-developers); background: color-mix(in srgb, var(--s-accent-developers) 12%, transparent); }
+.s-join__door:has(.s-join__door-input:checked) .s-join__door-dot { box-shadow: 0 0 0 5px var(--ob-text) inset; }
+.s-join__door:has(.s-join__door-input:focus-visible) { outline: var(--ob-focus-width, 2px) solid var(--ob-focus); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .s-join__door:hover { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; } }
+
+/* The thank you's next step: the link to read now, then the quiet edit. */
+.s-join__done-acts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-12) var(--ob-space-20); }

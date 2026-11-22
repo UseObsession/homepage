@@ -48,7 +48,7 @@ export const buy: KitPage = {
       { icon: 'browser', label: 'The agent fills the basket and checks out' },
       { icon: 'mail', label: 'The confirmation lands in its inbox' },
       { icon: 'phone', label: 'Delivery texts reach its number' },
-      { icon: 'record', label: 'Every order joins your ledger' },
+      { icon: 'record', label: 'Every order lands in your event log' },
     ],
     who: 'Purchasing agent 2 at a restaurant group with 18 sites',
     rows: [
@@ -75,7 +75,7 @@ export const buy: KitPage = {
 
   blueprints: {
     heading: 'Ready-made jobs for agents that buy.',
-    line: 'Test your checkout the way shoppers’ agents meet it, book travel inside your policy, reorder supplies when stock runs low, and keep every receipt in one ledger.',
+    line: 'Test your checkout the way shoppers’ agents meet it, book travel inside your policy, reorder supplies when stock runs low, and match every receipt to its order.',
     slugs: ['agent-checkout-test', 'travel-booking-agent', 'supplier-reorder-agent', 'order-receipt-ledger'],
   },
 

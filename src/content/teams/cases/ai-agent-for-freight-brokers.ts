@@ -101,9 +101,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Checks for your sales line and your agents.',
+    heading: 'Track every load in carrier portals, and check your sales line and agents.',
     line: 'Each runs without code and posts what it found to Slack, a sheet or your webhook.',
-    slugs: ['lead-leaks', 'voice-agent-check', 'vendor-agent-check'],
+    slugs: ['load-tracking', 'lead-leaks', 'voice-agent-check', 'vendor-agent-check'],
   },
 
   prices: ['voice', 'number', 'sms', 'inbox', 'browser', 'sandbox'],
@@ -138,7 +138,7 @@ export const useCase: TeamPage = {
       {
         q: 'How do AI agents for trucking stay signed in to load boards?',
         a: 'Create a browser with obsession.browsers.create({ home: "US" }) and drive it with Playwright over CDP. It keeps its session for weeks, and each login code reaches your code as email.received or sms.received.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'What if a signed rate confirmation shows the wrong rate?',

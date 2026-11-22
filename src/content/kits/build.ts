@@ -75,8 +75,8 @@ export const build: KitPage = {
   },
 
   blueprints: {
-    heading: 'Check the agents you ship, as a customer would.',
-    line: 'Obsession joins your AI SDR’s lists and shops with your sales agent, and keeps every message it sends.',
+    heading: 'Start an agent product, then check it as a customer would.',
+    line: 'Starters for an inbox agent and an iMessage assistant, and checks that join your AI SDR’s lists and shop with your sales agent, keeping every message it sends.',
     slugs: ['inbox-agent', 'imessage-assistant', 'outbound-agent-check', 'sales-agent-check'],
   },
 
@@ -113,7 +113,7 @@ export const build: KitPage = {
       {
         q: 'Can my own agent use it?',
         a: 'Yes. Add it with claude mcp add obsession, and your agent can create inboxes, numbers and browsers itself.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'Can each of my users get their own identity?',

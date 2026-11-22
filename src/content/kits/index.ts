@@ -37,8 +37,8 @@ export const kitUi = {
   billed: 'A blueprint is billed on the pieces it uses.',
   priceHeading: 'Priced per piece, on one bill.',
   priceLine: 'Start free, then pay for what runs, at list rates.',
-  api: { label: 'The API and MCP', to: '/developers' },
-  browse: { label: 'Browse all blueprints', to: '/blueprints' },
+  api: { label: 'See the API and MCP', to: '/developers' },
+  browse: { label: 'Browse blueprints', to: '/blueprints' },
   watch: 'They watch',
   others: 'Other types of blueprints',
 }
