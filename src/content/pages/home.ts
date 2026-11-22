@@ -308,7 +308,7 @@ export const page: Page = {
      invented. */
   homeProblem: {
     heading: 'Your AI agent can think. Obsession equips it to act.',
-    line: 'An AI agent can plan and write, but without its own inbox, phone number and browser it can’t receive a login code, take a call or stay signed in to a portal. Obsession gives it all three under one name, or runs the whole job for you as a blueprint.',
+    line: 'An AI agent can plan and write, but without its own inbox, phone number and browser it can’t receive a login code, take a call or stay signed in to a portal. Obsession gives it all three under one identity, or runs the whole job for you as a blueprint.',
     states: { alone: 'On its own', equipped: 'Equipped by Obsession', label: 'Show the agent' },
     card: {
       name: 'Juno',
