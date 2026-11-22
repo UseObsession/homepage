@@ -1,46 +1,51 @@
 import type { Recipe } from '../types'
 
-/* Speed to lead (/recipes/lead-leaks; /recipes/speed-to-lead redirects here, public/_redirects; the id stays 'speed').
-   Recast 9 Nov (James rejected selling speed-to-lead alerts to the companies that leak leads): a ready-made
-   collection of how fast, and how well, other companies answer a new enquiry, for the competitors, prospects or market
-   the reader names. Obsession asks by form, chat, email and phone as the buyer profile the reader picks, says it is an
-   AI to anyone who talks to it, and times and keeps every reply. Who asked is never shown. The run and the table are
-   1 example (5 invented payroll companies at .example addresses) and say so. */
+/* Lead response checks (/recipes/lead-leaks; /recipes/speed-to-lead redirects here, public/_redirects; the id stays
+   'speed'). Renamed from Speed to lead on 20 Nov 2026 to match Home's tile; "speed to lead" stays wherever it is the
+   phrase people search (the title, the sub, the questions). The persona version (20 Nov, James): a persona you define
+   goes through your own lead flows (or a client's, with their OK) as a new lead: it fills in your forms, opens your
+   site chat and calls your sales line, at the hours you choose, on its own inbox and phone number. It times every
+   first reply by email, text or call back from sales, keeps what was said, and tells anyone who talks to it that it's
+   an AI. The run and the table tell the `inbound` screen's story (09:00, 13:00 and 17:00 runs against a 5 minute
+   target, owners read from HubSpot; chat 38 seconds and assigned to JO; the form 4 hours 12 minutes and the sales line
+   rang out, both unassigned; a routing rule approved at 13:20; the form 3 minutes 40 seconds at 17:00). Example.
+   Its buyer (21 Nov, James): AI receptionist and front desk vendors, mystery shopping firms, dealer groups and RevOps
+   teams. Its pricing table counts lead response checks, per site (`unit`, `per`). */
 
 export const recipe: Recipe = {
   id: 'speed',
   slug: 'lead-leaks',
-  name: 'Speed to lead',
+  name: 'Lead response checks',
   group: 'Check your own journeys',
-  line: 'How fast, and how well, companies answer a new enquiry by form, chat, email and phone.',
-  gets: 'Each company’s time to first reply on every channel, what the reply said, and the enquiries nobody answered.',
+  line: 'A persona fills in your forms as a new lead and times how fast sales replies.',
+  gets: 'Your speed to lead on every form, chat and sales line, and every lead nobody answered.',
   kit: [
-    'An enquiry at each company, as the buyer you pick',
-    'An inbox and phone number for each enquiry',
-    'Forms, chat, email and phone',
-    'Enquiries at the hours you choose',
+    'A new lead every run, defined by you',
+    'Its own inbox and phone number, for replies and calls',
+    'Your forms, site chat and sales line',
+    'Runs at the hours you choose, evenings and weekends too',
     'Every reply timed to the second',
-    'Every reply kept: the email, the transcript, the call',
+    'Every reply kept: the email, the text, the call',
   ],
 
   meta: {
-    path: '/recipes/lead-leaks',
-    title: 'Speed to lead data: how fast companies answer · Obsession',
+    path: '/blueprints/lead-leaks',
+    title: 'Test speed to lead: how fast companies answer an enquiry',
     description:
-      'How fast companies answer a new enquiry by form, chat, email and phone, and what they say. Every reply timed and kept, for any company you name.',
+      'A persona fills in your forms, opens your chat and calls your sales line as a new lead, then times every first reply by email, text or call back.',
     answer:
-      'Speed to lead records how fast, and how well, companies answer a new enquiry. Obsession asks by form, chat, email and phone, as the buyer profile you pick, and times and keeps every reply.',
+      'Lead response checks time your speed to lead. As a new lead, a persona fills in your forms, opens your chat and calls your sales line, timing every first reply by email, text or call.',
     ogImage: '/og/lead-leaks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Speed to lead', path: '/recipes/lead-leaks' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Lead response checks', path: '/blueprints/lead-leaks' },
     ],
   },
 
   hero: {
-    headline: 'How fast every company answers a new enquiry.',
-    sub: 'Speed to lead records how fast, and how well, companies answer a new enquiry. Obsession asks by form, chat, email and phone, as the buyer profile you pick, and times and keeps every reply.',
+    headline: 'Find the form that leaves a new lead waiting 4 hours.',
+    sub: 'Lead response checks time your speed to lead. As a new lead, a persona fills in your forms, opens your chat and calls your sales line, timing every first reply by email, text or call.',
     screen: 'inbound',
     capture: {
       kind: 'waitlist',
@@ -50,44 +55,58 @@ export const recipe: Recipe = {
     },
   },
 
+  buyer: 'For AI receptionist and front desk vendors, mystery shopping firms, dealer groups and RevOps teams.',
+  unit: 'lead response check',
+  per: 'site',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    { name: 'Free', includes: ['The lead tries your form, chat and phone line', 'Time to first reply on each channel', 'Every reply kept, calls recorded'] },
+    { name: 'Single site', includes: ['Test leads in business hours, evenings and weekends', 'An alert when a lead waits past your target', 'A scorecard each month'] },
+    { name: 'Group', includes: ['A scorecard per location, side by side', 'A report for each location’s manager'] },
+    { name: 'Agency', includes: ['Out of hours checks on a prospect’s line before you pitch', 'Each client’s leads kept apart in your event log'] },
+  ],
+
   run: {
-    tab: 'Example: 5 payroll companies, 1 demo request',
+    tab: '1 day, 3 new leads',
     recipe: 'speed',
-    task: 'Ask 5 payroll software companies for a demo at 09:00 on Tuesday, by form, chat and phone. Time each first reply and keep what they say.',
-    targets: 'paytide.example, ledgerly.example, wagewise.example, staffbook.example, runpay.example',
-    journey: ['Fill the demo form', 'Open the site chat', 'Call the sales line', 'Time each first reply'],
-    schedule: 'Tuesday at 09:00, replies watched for 3 days',
-    report: 'A table, 1 row per company and channel',
-    kit: ['Buyer: 40-person firm, UK', '5 inboxes', '5 phone numbers', 'Every reply timed'],
+    task: 'Every day at 09:00, 13:00 and 17:00, send a new lead to our demo form, site chat and sales line. Time each first reply against 5 minutes, and read who owns the lead in HubSpot.',
+    targets: 'Your demo form, site chat and sales line',
+    journey: ['Fill in the demo form', 'Open the site chat', 'Call the sales line', 'Time each first reply'],
+    schedule: 'Every day at 09:00, 13:00 and 17:00',
+    report: 'Slack, with each lead’s owner from HubSpot',
+    kit: ['New lead · UK', 'Its own inbox', 'Its own phone number', '5 minute target'],
     events: [
-      { time: 'Tue 09:00', text: 'Demo forms filled, chats opened and sales lines called at all 5.' },
-      { time: 'Tue 09:01', text: 'Paytide’s chat answers in 38 seconds. Its sales line picks up.' },
-      { time: 'Tue 09:02', text: 'Staffbook’s chat answers in 2 minutes. Its sales line rings out.' },
-      { time: 'Tue 09:04', text: 'Ledgerly calls back in 4 minutes.' },
-      { time: 'Tue 13:12', text: 'Wagewise emails a reply after 4 hours 12 minutes, with a price list.' },
-      { time: 'Fri 09:00', text: 'Runpay: no reply on any channel after 3 days.' },
+      { time: 'Tue 09:00', text: 'A new lead fills in the demo form, opens the chat and calls the sales line.' },
+      { time: 'Tue 09:00', text: 'The chat answers in 38 seconds. The lead is assigned to JO in HubSpot.' },
+      { time: 'Tue 09:01', text: 'The sales line rings out, with no voicemail. The lead lands unassigned.' },
+      { time: 'Tue 13:12', text: 'The form’s first reply, an email, after 4 hours 12 minutes. The lead sat unassigned.' },
+      {
+        time: 'Tue 13:20',
+        text: 'A routing rule approved by your sales lead: unassigned form and phone leads go to the next free rep within 1 minute.',
+      },
+      { time: 'Tue 17:04', text: 'At the 17:00 run, a rep calls the new lead back in 3 minutes 40 seconds. It tells the rep it’s an AI.' },
     ],
-    finding: '3 of 5 answer a channel inside 5 minutes. Runpay answered nothing in 3 days.',
-    fix: 'In your table: 15 rows, 1 per company and channel, each with the reply itself.',
-    ledger: 'Example run. Every enquiry timed, every reply kept with its receipt.',
+    finding: 'The demo form left a new lead waiting 4 hours 12 minutes, unassigned. The sales line rang out.',
+    fix: '1 routing rule, approved at 13:20, closed both. At 17:00 the form got a call back in 3 minutes 40 seconds.',
+    ledger: 'Every lead timed, every reply kept: emails, chats and calls.',
   },
 
   steps: [
     {
-      title: 'Name the companies',
-      line: 'Your competitors, the prospects you sell to, or a whole market. Paste a list or call the API.',
+      title: 'Name your lead flows',
+      line: 'Your forms, site chat and sales line, or a client’s, with their OK.',
     },
     {
-      title: 'Pick the buyer',
-      line: 'Who asks, from where, and what: a 40-person firm in the UK asking for a demo, or a homeowner asking for a quote.',
+      title: 'Define the lead',
+      line: 'A finance lead at a firm of 40 in Leeds wanting a demo, or a homeowner wanting a quote.',
     },
     {
-      title: 'Obsession gets in touch',
-      line: 'By form, chat, email and phone, at the hours you choose. It says it’s an AI to anyone who talks to it.',
+      title: 'It gets in touch',
+      line: 'By form, chat, email and phone, at the hours you choose. It answers every call back.',
     },
     {
       title: 'Every reply lands, timed',
-      line: 'From the second the enquiry was sent to the first answer, with the reply itself: the email, the transcript or the call.',
+      line: 'From the second it asked to the first answer, with the reply itself.',
     },
   ],
 
@@ -95,95 +114,92 @@ export const recipe: Recipe = {
     {
       group: 'How it asks',
       items: [
-        { title: 'Web forms', line: 'Demo, contact and quote forms, filled the way a buyer fills them.' },
-        { title: 'Site chat', line: 'Whether a bot or a person answers.' },
-        { title: 'Phone', line: 'Whether the line picks up, goes to voicemail or calls back.' },
-        { title: 'Email', line: 'The published sales or enquiry address.' },
+        { title: 'Web forms', line: 'Demo, contact and quote forms, filled in as a new lead.' },
+        { title: 'Site chat', line: 'Whether a bot or a person answers, and how fast.' },
+        { title: 'Phone', line: 'Whether the sales line picks up, goes to voicemail or rings out.' },
+        { title: 'Email', line: 'Your published sales or enquiry address.' },
       ],
     },
     {
       group: 'What it records',
       items: [
-        { title: 'Time to first reply', line: 'On any channel, from the second the enquiry was sent.' },
-        { title: 'The reply itself', line: 'What they offered: a call, a price, a brochure or a question back.' },
-        { title: 'Follow ups', line: 'How many times they chase, on which channel, and for how long.' },
-        { title: 'Out of hours', line: 'What an enquiry at 21:00 on a Friday gets.' },
+        { title: 'Time to first reply', line: 'On any channel, from the second it asked.' },
+        { title: 'Calls back', line: 'When sales rings the lead’s number, how soon, and what the rep offers.' },
+        { title: 'The reply itself', line: 'What came back: a call, a price, a booking link or a question.' },
+        { title: 'Follow ups', line: 'How many times sales chases, on which channel, and for how long.' },
+        { title: 'Out of hours', line: 'What a lead at 21:00 on a Friday gets.' },
       ],
     },
     {
       group: 'Where it stops',
       items: [
         { title: 'People', line: 'It says it’s an AI to anyone who talks to it.' },
-        { title: 'Your name', line: 'Who asked is never shown.' },
+        { title: 'Your pipeline', line: 'Every test lead is labelled, so you can filter it out of your reports.' },
       ],
     },
   ],
 
   outputs: {
-    heading: 'Every company’s reply time, side by side.',
+    heading: 'Every lead’s first reply, side by side.',
     items: [
-      { format: 'Time to first reply', line: 'Fastest, slowest and the median, by company, channel and hour.' },
-      { format: 'The replies', line: 'Emails, chat transcripts and call recordings, as they came.' },
-      { format: 'No reply', line: 'Every enquiry nobody answered inside the window you set.' },
-      { format: 'Over time', line: 'Ask again each month and see who got faster.' },
-      { format: 'A table', line: 'A row per company and channel in Clay or Google Sheets.' },
-      { format: 'API and MCP', line: 'Each reply time as a fact, from your code or your AI agent.' },
+      { format: 'Time to first reply', line: 'Fastest, slowest and the median, by form, channel and hour.' },
+      { format: 'The replies', line: 'Emails, texts, chat transcripts and call recordings, as they came.' },
+      { format: 'No reply', line: 'Every lead nobody answered inside the time you set.' },
+      { format: 'Over time', line: 'Run it every day and see the week a change slowed you down.' },
+      { format: 'Clay or HubSpot', line: 'A row per lead and channel in Clay, or on the lead’s HubSpot record.' },
+      { format: 'API and MCP', line: 'Your code or agent spawns leads and reads each reply as it lands.' },
     ],
   },
 
   settings: [
-    { k: 'Companies', v: 'Competitors, prospects or a whole market' },
-    { k: 'The buyer', v: 'Who asks, from where, and in which words' },
+    { k: 'Lead flows', v: 'Your forms, site chat and sales line, or a client’s with their OK' },
+    { k: 'The lead', v: 'Who asks, from where, and in which words' },
     { k: 'Channels', v: 'Forms, chat, email and phone' },
     { k: 'When', v: 'The hours you choose, evenings and weekends included' },
-    { k: 'Window', v: 'How long to wait for a reply' },
-    { k: 'How often', v: 'Once, monthly or quarterly' },
-  ],
-
-  forWho: [
-    { audience: 'sales', line: 'Find the prospects that answer slowly, and open the call with their own reply times.' },
-    { audience: 'agencies', line: 'Show a prospect how its replies compare with 5 competitors’.' },
-    { audience: 'marketing', line: 'See how fast competitors answer the buyers you both pay to reach.' },
-    { audience: 'founders', line: 'Know how fast your market answers a buyer before you set your own target.' },
-    { audience: 'developers', line: 'Reply times by company and channel, as facts from the API.' },
+    { k: 'Target', v: 'The reply time you hold your team to, such as 5 minutes' },
+    { k: 'How often', v: 'Every day, every week, or after each routing change' },
   ],
 
   table: {
-    heading: 'Paytide answered in 38 seconds. Runpay never answered.',
-    line: 'Example: 5 payroll companies, a demo request at 09:00 on Tuesday.',
-    cols: ['Form', 'Chat', 'Phone'],
+    heading: 'The chat answered in 38 seconds. The demo form took 4 hours.',
+    line: '1 day, a new lead at 09:00, 13:00 and 17:00, against a 5 minute target.',
+    cols: ['Demo form', 'Site chat', 'Sales line'],
     rows: [
-      { label: 'Paytide', values: ['12 minutes', '38 seconds', 'Picked up'] },
-      { label: 'Ledgerly', values: ['26 minutes', 'Bot only', 'Called back in 4 minutes'] },
-      { label: 'Wagewise', values: ['4 hours 12 minutes', 'No chat', 'Voicemail'] },
-      { label: 'Staffbook', values: ['1 day', '2 minutes', 'Rang out'] },
-      { label: 'Runpay', values: ['No reply', 'No reply', 'Rang out'] },
+      { label: '09:00', values: ['Email after 4 hours 12 minutes, unassigned', '38 seconds', 'Rang out, no voicemail'] },
+      { label: '13:00', values: ['Email after 2 hours 8 minutes', '52 seconds', 'Voicemail, call back in 40 minutes'] },
+      { label: '17:00, after the fix', values: ['Call back in 3 minutes 40 seconds', '41 seconds', 'Picked up'] },
     ],
   },
 
   faq: {
-    heading: 'Every reply timed and kept. Who asked is never shown.',
+    heading: 'Every reply timed and kept, calls included.',
     items: [
       {
-        q: 'Is this a speed to lead test?',
-        a: 'It is speed to lead data on other companies: the time from a new enquiry to the first reply, on every channel, for the competitors, prospects or market you name.',
+        q: 'How do I test our speed to lead?',
+        a: 'Send a persona through it as a new lead. It fills in your forms, opens your chat and calls your sales line, then times every first reply by email, text or call back, evenings and weekends included.',
       },
       {
-        q: 'How fast do companies in my market answer a lead?',
-        a: 'Name them, and Obsession asks each one as the buyer you pick, by form, chat, email and phone, then times every first reply, evenings and weekends included.',
+        q: 'Do calls back from sales count?',
+        a: 'Yes. Each lead has its own phone number, so a call back from a rep and every text count as replies. Automatic replies are kept apart.',
       },
       {
-        q: 'Where does the data come from?',
-        a: 'From real enquiries. Obsession’s agents ask the way any buyer can, each with its own inbox and number, and say they’re an AI to anyone who talks to them.',
+        q: 'What does the persona say when a rep calls?',
+        a: 'It tells the rep it’s an AI, and the call is kept with its time and length.',
       },
-      { q: 'Do callbacks count?', a: 'Yes. Each enquiry has its own number, so callbacks and texts count as replies. Automatic replies are kept apart.' },
-      { q: 'Can I include my own company?', a: 'Yes. Name it beside your competitors, and the reply times sit side by side.' },
+      {
+        q: 'Will test leads clutter our CRM?',
+        a: 'No. Every test lead is labelled, so you can filter it out of your pipeline and reports.',
+      },
+      {
+        q: 'Can an agency run it for clients?',
+        a: 'Yes, with each client’s OK. Each client’s leads, hours and events are kept apart in your event log.',
+      },
     ],
   },
 
   final: {
-    heading: 'Which companies should we ask first?',
-    sub: 'Early access includes every company already covered, and up to 5 added for you.',
+    heading: 'Which form should your first lead fill in?',
+    sub: 'Tell us your forms and your target. We’ll set up your first lead with you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-speed-final',

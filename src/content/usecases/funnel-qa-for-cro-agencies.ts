@@ -239,19 +239,19 @@ export const study: UseCaseStudy = {
       label: 'Before the pitch',
       title: 'Prospect intelligence',
       line: 'What each brand on your list sends after the sign-up.',
-      cta: { label: 'Learn more', to: '/recipes/prospect-intelligence' },
+      cta: { label: 'Learn more', to: '/blueprints/prospect-intelligence' },
     },
     second: {
       label: 'Every test',
       title: 'Website audit',
       line: 'A new sign-up after every release or every morning, with a screenshot of any break.',
-      cta: { label: 'Learn more', to: '/recipes/website-audit' },
+      cta: { label: 'Learn more', to: '/blueprints/website-audit' },
     },
     third: {
       label: 'Every ad',
       title: 'Ad landing check',
       line: 'Every live ad’s page, opened from its link each morning.',
-      cta: { label: 'Learn more', to: '/recipes/ad-landing-check' },
+      cta: { label: 'Learn more', to: '/blueprints/ad-landing-check' },
     },
     sample: {
       label: '1 real run',

@@ -12,9 +12,11 @@ export const footer = {
      engines read it (llms.txt, the Organization's JSON-LD, each page's meta answer) and in Home's "What is Obsession?",
      so a page never says the whole definition twice. */
   /* Since 5 Nov evening the index (James). Until then: Send an AI customer to any company. Keep the receipts. */
-  tagline: 'The web behind the login, as data.',
+  tagline: 'The toolkit for AI agents. One API, one bill.',
   columns: [
-    { label: products.label, links: names(products.items) },
+    /* Products is the bar's Products menu (content/nav.ts): the 6 pieces, Blueprints, API and MCP; then Pricing, which
+       left that menu for the bar (21 Nov). */
+    { label: products.label, links: [...names(products.items), nav.menus.pricing] },
     { label: products.integrations.label, links: [...names(products.integrations.items), products.integrations.all] },
     ...solutions.columns.map((c) => ({ label: c.label, links: names(c.items) })),
     /* Then the menu's first 2 More links: Look up your site, Every resource. */
@@ -26,6 +28,7 @@ export const footer = {
         { label: 'LinkedIn', to: 'https://www.linkedin.com/company/useobsession/' },
         { label: 'YouTube', to: 'https://www.youtube.com/@useobsession' },
         { label: 'Privacy', to: '/privacy' },
+        { label: 'Security', to: '/security' },
         { label: 'Contact', to: `mailto:${catalog.contact}` },
       ],
     },

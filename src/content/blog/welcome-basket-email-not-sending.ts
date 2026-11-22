@@ -43,7 +43,7 @@ const SH_DISCOUNT = 'https://help.shopify.com/en/manual/discounts/discount-types
 const SH_FAQ = 'https://help.shopify.com/en/manual/discounts/discounts-faq'
 const SAMPLE = 'https://useobsession.com/sample-output'
 const LEAKS = '/use-cases/leak-checks-for-ecommerce-stores'
-const DELIVERY = '/recipes/delivery-monitoring'
+const DELIVERY = '/blueprints/delivery-monitoring'
 
 export const post: BlogPost = {
   slug: 'welcome-basket-email-not-sending',

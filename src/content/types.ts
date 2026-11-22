@@ -7,7 +7,10 @@ export type ScreenName = string
    delivery-monitoring, account-watch, business-case, get-paid, supplier-quotes, listings-ai-answers, ai-checkout-test
    ('checkout', retired 22 Oct 2026), inbound-quotes ('quotes'), renewal-negotiation ('renewal'), cancellation-saves ('saves'),
    account-handover ('handover'), software-renewals ('spend'), expansion-offers ('expansion'), client-upsells
-   ('upsells'), review-requests ('reviews'), ad-landing-check ('adcheck'), partner-checks ('partners').
+   ('upsells'), review-requests ('reviews'), ad-landing-check ('adcheck'), partner-checks ('partners'). Mystery shopping
+   is 1 page for brands and agencies since 22 Nov 2026 (founders): store-mystery-shopper ('store-mystery', split off on
+   21 Nov) was merged back into mystery-shopper, whose pricing table switches between the 2 (Recipe.variants), and its
+   address redirects there (public/_redirects).
    Check your AI agents (3 Oct, _research/verify/VERIFY.md): support-bot-check ('support-bot'), voice-agent-check
    ('voice-agent'), outbound-agent-check ('outbound-agent'), sales-agent-check ('sales-agent'), vendor-agent-check
    ('vendor-agent'), resolution-check ('resolution'), ai-disclosure-check ('disclosure'), drift-watch ('drift'). */
@@ -538,6 +541,89 @@ export type CardGrid = {
   more?: { text: string; label: string; to: string }
 }
 
+/* ---- Home's sections (21 Nov 2026, components/persona) ---------------------------------------------------------------
+   One API for the pieces an AI agent needs (email, phone, messaging, browser, sandbox), the persona that puts them under
+   one identity, and recipes: jobs that run beside the pieces, ours or your own, with every result in your event log. Every
+   block is optional on a Page; only Home draws them. */
+
+/* The hero's first path and its copyable line of code (components/persona/PersonaHero). The rest of the hero is the
+   page's `hero`: its headline, sub, `note` (the small line under the buttons), `secondary` and `proof` (the 3 facts). */
+export type PersonaStart = {
+  primary: Cta
+  chip: { code: string; copy: string; copied: string }
+}
+/* The line drawings of Home's sections (components/persona/icons), on a 16px grid in the nav's style. */
+export type PersonaIcon =
+  | 'mail' | 'phone' | 'chat' | 'browser' | 'sandbox' | 'persona'
+  | 'sleep' | 'home' | 'person' | 'users' | 'cap' | 'stop' | 'webhook' | 'record' | 'clock' | 'code' | 'retry' | 'domain'
+/* The pieces as 1 ruled sheet (HomePieces): each its icon, name, 1 line, the call that starts it, and `to`, its page
+   (content/piecePaths.ts); the whole cell links there. `whole` draws the cell solid: the persona, every piece in one. */
+export type HomePieces = {
+  heading: string
+  line?: string
+  items: { icon: PersonaIcon; name: string; line: string; call: string; to: string; whole?: boolean }[]
+}
+/* The pieces under one identity, as a stacked slab diagram (PersonaAnatomy): each part a slab, its name, 1 line and a
+   value in mono. The first part is drawn solid. */
+export type PersonaAnatomy = {
+  heading: string
+  line?: string
+  parts: { name: string; line: string; eg: string }[]
+}
+/* Recipes as tiles (PersonaRecipes). `reader` gives a tile its hue (styles/accents.css); `live` makes the big tile;
+   `status` says who the recipe fits. */
+export type PersonaRecipes = {
+  heading: string
+  line?: string
+  items: { name: string; line: string; status: string; live?: boolean; reader: ReaderId; link: Cta }[]
+}
+/* For developers (PersonaBuild): the claim, its line and link beside the code. Where events go is HomeHow. */
+export type PersonaBuild = {
+  heading: string
+  line: string
+  cta: Cta
+  codeLabel: string
+  code: string
+}
+/* A box or a label in Home's loop picture: its name, then its line. */
+type HowLabel = { name: string; line: string }
+/* How it works on Home (HomeHowItWorks, #how): the claim and its line, then the loop as 1 picture, wide on a desktop and
+   tall on a phone. Set up once, then 3 stops round a ring: something happens, it's saved in your event log, it reaches
+   your agent (on our runtime or your servers) or a person; what the agent does next goes round again. Live call audio
+   crosses the ring straight to the voice agent and never touches the log. `loop` holds the picture's words, each line
+   wrapped to its box, and `label` says the whole picture in words (screen readers, llms-full.txt). Under it, the link
+   to every channel's code on /developers. */
+export type HomeHow = {
+  heading: string
+  line: string
+  loop: {
+    label: string
+    setup: HowLabel
+    then: string
+    happens: HowLabel
+    saved: string
+    log: HowLabel
+    reaches: string
+    agent: HowLabel
+    /* Where the agent runs, or the person it reaches: `name` over `line` on the wide picture, `short` on the tall one. */
+    places: { name: string; line: string; short: string }[]
+    acts: HowLabel
+    /* Live call audio: `name` over `line` on the wave, `log` under the event log; the tall picture says `note`, then `log`. */
+    audio: { name: string; line: string; note: string; log: string }
+  }
+  link: Cta
+}
+/* 1 wide card to a use case page (HomeUseCase): the claim, its line and link, beside what sits behind a sign up: the
+   page anyone sees (`before`), the wall (`wall`), then what only people who signed up see (`after`). */
+export type HomeUseCase = {
+  heading: string
+  line: string
+  link: Cta
+  before: string
+  wall: string
+  after: string[]
+}
+
 export type Page = {
   meta: Meta
   hero: Hero
@@ -588,6 +674,14 @@ export type Page = {
   openSource?: OpenSource
   parity?: Parity
   scale?: Scale
+  /* Home only, since 21 Nov: its sections (components/persona), in the order pages/Home.tsx draws them. */
+  personaStart?: PersonaStart
+  homePieces?: HomePieces
+  personaAnatomy?: PersonaAnatomy
+  personaRecipes?: PersonaRecipes
+  personaBuild?: PersonaBuild
+  homeHow?: HomeHow
+  homeUseCase?: HomeUseCase
 }
 
 /* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.
@@ -609,18 +703,72 @@ export type Recipe = {
   kit: string[]
   meta: Meta
   hero: { headline: string; sub: string; screen: ScreenName; capture: Capture }
+  /* The recipe's 1 buyer (21 Nov 2026: the buyer study sold each recipe to its 1 buyer, and James approved each), named
+     in their own words under the hero's headline. A recipe without one renders as before. */
+  buyer?: string
+  /* What 1 run of the job is, as its buyer names it, singular ("mystery shop", "round of test calls"), and what 1 tier
+     counts, singular ("store", "voice agent"), made plural with an "s" in the line under its pricing table. */
+  unit?: string
+  per?: string
+  /* What comes with each of the blueprint's 4 tiers, keyed by the tier's name. Each tier's name, who it's for, its price,
+     what it covers and the recommended tier come from the pricing JSON (src/lib/pricing/pricing.json) through the
+     pricing engine (content/blueprint-tiers.ts), so no price is typed in a blueprint's file. The names must match the
+     JSON's tiers in order, or the build fails. */
+  tiers: BlueprintTierWords[]
+  /* A blueprint whose pricing table switches between buyers (founders, 22 Nov 2026: mystery shopping, for agencies and
+     for ecommerce brands): what each other set of scenarios includes, under its id in the pricing JSON (a blueprint
+     there with `variantOf` naming this one). `tiers` above are the first set's. The build fails if the file and the
+     JSON name different variants or tiers. */
+  variants?: BlueprintVariantWords[]
   /* The example run played on the page (labelled Example unless it is the real September store check). */
   run: Demo
   steps: { title: string; line: string }[]
   checks: { group: string; items: { title: string; line: string }[] }[]
   outputs: { heading: string; items: { format: string; line: string }[] }
   settings?: { k: string; v: string }[]
-  forWho: { audience: AudienceId | 'developers'; line: string }[]
   /* Optional depth for the templates that need it: a comparison, a timeline, what is allowed where. */
   table?: { heading: string; line?: string; cols: string[]; rows: { label: string; values: string[] }[] }
   faq: Faq
   final: Final
 }
+
+/* A blueprint's pricing table (components/BlueprintPricing), on every blueprint page and in each tab of the audience
+   pages' pricing (/agencies, /marketing, /sales). content/recipe-page.ts `blueprintPricing` works it out from the
+   blueprint's typical months (content/catalog.ts, from content/blueprint-tiers.ts), so no figure is typed twice: 1 card
+   per typical month, the free run first, then the line to the rates. A card is the month and its price (founders,
+   22 Nov 2026: less text); the section's line says once how every price is worked out and paid. */
+export type BlueprintPlanCard = {
+  id: string
+  /* The month it describes ("150 client stores, each shopped every month"), or "Your first run". */
+  name: string
+  /* The big words and the line beside them: "$214" and "a month", or "Free". */
+  price: string
+  per: string
+  includes: string[]
+  cta: Cta
+  /* The tier the table lifts: the raised card, its tag and the row's 1 primary button. */
+  featured?: boolean
+}
+export type BlueprintPricing = {
+  /* The cards' names for a screen reader: the list's, the featured card's tag and each card's list. */
+  label: string
+  tag: string
+  includes: string
+  plans: BlueprintPlanCard[]
+  /* Under the cards: more of them, white label or a blueprint of your own, on /pricing. */
+  more: { line: string; link: Cta }
+  /* The journeys the buyer ticks above the cards, and their legend; only where the months add up from journeys. */
+  journeys?: BlueprintJourneys & { legend: string }
+}
+/* A blueprint's pricing as its section shows it (components/BlueprintPricing BlueprintPrices): 1 table, or for a
+   blueprint with variants 1 per variant behind the switch, each named by its label ("Agencies", "Ecommerce brands")
+   and keyed by its id in the pricing JSON. */
+export type BlueprintPricingOption = { id: string; label: string; pricing: BlueprintPricing }
+/* An audience page's pricing (components/BlueprintPricingTabs: /agencies, /marketing, /sales): 1 tab per blueprint the
+   page sells, in this order, each opening that blueprint's own pricing table. `label` names the tab list. `variant` is
+   the variant a tab with a switch opens on, by its id in the pricing JSON (mystery shopping: "mystery-shopper" for
+   agencies, "mystery-shopper-brands" for ecommerce brands); else its first. */
+export type PricingTabs = { heading: string; line?: string; label: string; recipes: RecipeId[]; variant?: string }
 
 /* ---- Site pages: Sample output and the output viewer (content/sample.ts); Recipes index, Privacy, Agents, 404 and
    llms.txt (content/site.ts). Appended 2 Oct; nothing above changes. ---- */
@@ -701,6 +849,8 @@ export type AgentsPage = {
   faq?: Faq
   contact: { heading: string; line: string; email: string; cta: Cta; secondary: Cta }
 }
+/* /security: the privacy notice's shape, closed by the agents page's contact (content/security.ts). */
+export type SecurityPage = PrivacyPage & { contact: AgentsPage['contact'] }
 export type NotFoundPage = { meta: Meta; headline: string; sub: string; links: Cta[]; capture: Capture }
 export type Llms = { summary: string; intro: string }
 
@@ -855,9 +1005,8 @@ export type BlogIndexPage = {
    Every block is optional on a Page; a page draws the ones it has, in the order its page component sets.
    --------------------------------------------------------------------------------------------------------------------- */
 
-/* Home's share image (scripts/og.mjs): what AI customers caught inside a few companies this month, the card drawn
-   beside the headline. Each row: the company, what was caught, the day. Invented companies only (Company 1, 2, 3, as in
-   the how it works lanes). */
+/* Home's share image (scripts/og.mjs): the card drawn beside the headline. Since 21 Nov, 1 persona's events in the event log: each
+   row the piece it came through (`company`), what came (`finding`) and when. Invented people and companies only. */
 export type ShareFindings = {
   title: string
   aside: string
@@ -994,4 +1143,37 @@ export type Scale = {
   program: { kinds: Record<ScaleKind, string>; steps: { kind: ScaleKind; label: string }[]; routes: { heading: string; items: { label: string; share: number; line: string }[] } }
   run: { total: number; unit: string; call: string; covered: string; square: string; toast: string }
   principles: { title: string; line: string }[]
+}
+
+/* What a blueprint's file writes for 1 of its tiers (Recipe.tiers): the tier's name, as the pricing JSON names it
+   (src/lib/pricing/pricing.json), and what comes with it, at most 3 short lines (founders, 22 Nov 2026: less text),
+   each a thing the buyer gets. Everything else about the tier comes from the pricing engine (content/blueprint-tiers.ts). */
+export type BlueprintTierWords = { name: string; includes: string[] }
+/* What a blueprint's file writes for 1 of its variants (Recipe.variants): the variant's id in the pricing JSON and its
+   tiers' words. */
+export type BlueprintVariantWords = { id: string; tiers: BlueprintTierWords[] }
+
+/* A typical month of a blueprint as the pricing engine works it out (content/blueprint-tiers.ts): its name (matched to
+   the file's), whether it's the free run, what it costs at the list piece rates (dollars, rounded), what it covers,
+   what a month like it brings and whether it's the featured month. */
+export type BlueprintTier = {
+  name: string
+  free: boolean
+  estimate: number
+  covers: string
+  includes: string[]
+  featured: boolean
+}
+/* 1 set of a blueprint's scenarios behind its pricing switch (content/blueprint-tiers.ts pricedVariants): its id in the
+   pricing JSON, the switch's label for it, what it counts ("client store", "store") and its typical months. */
+export type BlueprintVariant = { id: string; label: string; per: string; tiers: BlueprintTier[]; journeys?: BlueprintJourneys }
+/* A blueprint whose months add up from journeys the buyer ticks (founders, 22 Nov 2026: mystery shopping's sign-up,
+   browse, basket and checkout abandonment). From the engine's journeyMonths: per scenario, what it costs with no journey
+   (`base`) and what each journey adds (`each`), unrounded, in the cards' order; the page sums the ticked ones and rounds
+   them the engine's way (`round`), so no price is typed and the JSON never ships. */
+export type BlueprintJourneys = {
+  items: { id: string; name: string; line: string }[]
+  defaults: string[]
+  tiers: { base: number; each: Record<string, number> }[]
+  round: { step: number; smallStep: number; wholeFrom: number }
 }

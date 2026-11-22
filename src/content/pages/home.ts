@@ -1,76 +1,100 @@
-import { consoleHeading } from '../console'
-import { explorer } from '../explorer'
-import { outputFormats } from '../sample'
-import { askExamples, askShared, life } from '../shared5'
-import type { Page, ViewerFormat } from '../types'
+import { pieceOrder, piecePaths } from '../piecePaths'
+import type { PieceId } from '../prices'
+import type { HomePieces, Page, PersonaIcon } from '../types'
 
-/* Home (/), the 9 Nov rewrite (James): Obsession is a data company for the web behind the login. It sells what
-   companies show only to customers, looked up by API, MCP or a table, and a company not covered yet is
-   added on request. No AI customers and no mystery shopping on Home: the agents appear only where the page says where
-   the data comes from. Early access, never a waitlist. The page reads, in order:
-   1 the hero: what it is, and the explorer in place of the film (HeroExplorer) >
-   2 What's in it? (the kinds of data behind the login) >
-   3 Is this real? (our real count, and the 1 real record) >
-   4 Who uses it? (teams that sell to, compete with or invest in other companies) >
-   5 Where else can I get it? (where every other source stops) >
-   6 How does it work? (a company not covered yet, added and kept) >
-   7 How do I use it? (your AI agent, your code, Clay, a webhook) >
-   8 questions > 9 the early access form.
-   Every company on the screens is invented, at a .example address, except Brand G, the real run. */
+/* Home (/), the pieces rewrite (21 Nov 2026, James): Obsession sells the pieces an AI agent needs (email, phone,
+   messaging, browser, sandbox) through one API and one bill, and the persona that puts them under one identity. Two
+   readers: developers who take one piece or many (nothing stops a company using only the email), and teams who pick a
+   recipe and we run it. A recipe is a job that runs on Obsession beside the pieces, one of ours or a developer's own,
+   and writes its results to the event log: 1 per account, where every event from every piece, persona and recipe lands
+   (James, 21 Nov). The persona is the bundle, not the headline. The page reads, in order
+   (pages/Home.tsx): 1 the hero: what we sell, "One API, one bill.", the 2 buttons, the copyable call and 3 facts >
+   2 #pieces: "One API, not five vendors.", the 6 pieces as 1 sheet, each linking to its page (content/piecePaths.ts)
+   with the call that starts it (James, 22 Nov: the claim moved here and its own section went) >
+   3 #personas: the pieces under one identity, as a stacked slab diagram of 5 parts (James, 22 Nov: inbox and number,
+   browser and sandbox, each 1 slab) >
+   4 #how: how it works, 1 section in place of the fleet timeline and the delivery plates (James, 21 Nov): set up
+   once, then the loop through your event log as 1 picture, then the link to every channel's code on /developers
+   (components/persona/HomeHowItWorks) > 5 #recipes: blueprints beside the pieces, 5 tiles, the web behind the login
+   as 1 of them, to its use case page >
+   6 #build: the code > 7 #questions: 5 for a first-time reader (the developer ones live on /developers) >
+   8 #join: the early access form. James, 22 Nov: the shorter Home; "Wakes in milliseconds, not minutes" (its 50 ms is
+   in the loop picture), the channel cards (the questions and /developers list them), 3 tiles and 2 questions left.
+   Home shows no prices and no pricing link (James, 20 Nov): prices live in content/prices.ts, on /pricing and the piece
+   pages. Nothing here bills by the minute. The product is described as designed (50 ms, free while a persona waits),
+   never with build-state caveats; country is a feature, never the pitch. People and companies are invented, at .example
+   addresses, with US numbers in the 555-01XX range kept for fiction, and carry no "Example" tag. Never name a
+   competitor, never "AI customers"; a persona is never defined as a customer. */
 
-/* Home's code tile: look a company up, add one that isn't covered, get each new fact at a webhook. */
-const HOME_CODE = `import os
-from obsession import Obsession
+/* The developer section's code, in the API's own names (the shared brief, 21 Nov). */
+const BUILD_CODE = `import { Obsession } from "obsession"
 
-ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
+const obsession = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
 
-# What does Quillon show its customers?
-for fact in ob.facts("quillon.example", since="30d"):
-    print(fact.seen_at, fact.kind, fact.sentence, fact.receipt_url)
+// One piece: an inbox your agent sends and receives from
+const inbox = await obsession.inboxes.create()
+await inbox.send({ to: "maya@larkfield.example", subject: "Your booking", text: "See you at 7." })
 
-# Not covered yet? Add it, and get each new fact at your webhook
-ob.index(["larkfield.example"], how="account")
-ob.notify(on="fact.created", destination="https://example.com/hooks/obsession")`
+// Or every piece under one identity
+const persona = await obsession.personas.create({ inbox: true, phone: "US", browser: true })
 
-/* Home's 2 format tiles: Clay and a webhook (the email, Slack, PDF and workflow tiles sold alerts; /sample-output keeps
-   all 6 on the real run). The Clay table keeps Brand G, the real run, as its first row. */
-function homeFormats(): ViewerFormat[] {
-  const views: Partial<Record<ViewerFormat['id'], ViewerFormat['view']>> = {
-    clay: {
-      kind: 'clay',
-      cols: ['Company', 'Fact', 'Seen on', 'Screenshot'],
-      added: ['Fact', 'Seen on', 'Screenshot'],
-      rows: [
-        { cells: ['Brand G', 'No basket reminder', '24 Sep', 'link'], gap: true, example: false },
-        { cells: ['Larkfield', 'Dead welcome links', '3 Nov', 'link'], gap: true, example: true },
-        { cells: ['Kittiwake Bank', 'Chat: wrong rate', '4 Nov', 'link'], gap: true, example: true },
-        { cells: ['Quillon', '40% off, trial only', '5 Nov', 'link'], gap: false, example: true },
-      ],
-      note: 'Brand G is a real run. The other rows are examples.',
-    },
-    webhook: {
-      kind: 'webhook',
-      request: 'POST https://your-app.example/hooks/obsession',
-      body: `{
-  "event": "fact.created",
-  "company": "larkfield.example",
-  "kind": "email",
-  "sentence": "Every link in the welcome email opens a closed site.",
-  "seen_at": "2026-11-03T09:04:00+00:00",
-  "receipt": {
-    "journey": "welcome",
-    "url": "/v1/evidence/run_l1_1103"
-  }
-}`,
-    },
-  }
-  const lines: Partial<Record<ViewerFormat['id'], string>> = {
-    clay: 'New columns on the rows you already have: the fact, the day it was seen and its screenshot.',
-    webhook: 'Each new fact at your own endpoint, the moment it lands.',
-  }
-  return outputFormats
-    .filter((f) => f.id === 'clay' || f.id === 'webhook')
-    .map((f) => ({ ...f, line: lines[f.id] ?? f.line, view: views[f.id] ?? f.view }))
+persona.on("email.received", async (email) => {
+  // runs on our runtime, about 50 ms after it lands
+})
+
+// Every event lands in your event log. Subscribe once to get all of it
+await obsession.events.subscribe({
+  url: "https://api.larkfield.example/hooks/obsession",
+  events: ["*"],
+})
+
+// Or read a persona's events: every page, email, text and call, dated
+const { events } = await obsession.events.list({ persona: persona.id })`
+
+/* The 6 pieces, in the nav's order (pieceOrder); each cell links to its page (piecePaths). */
+const PIECES: Record<PieceId, { icon: PersonaIcon; name: string; line: string; call: string }> = {
+  email: {
+    icon: 'mail',
+    name: 'Email',
+    line: 'Inboxes your agents send and receive from, with threads and attachments.',
+    call: 'obsession.inboxes.create()',
+  },
+  phone: {
+    icon: 'phone',
+    name: 'Phone',
+    line: 'Numbers that send and receive texts and calls, with your own voice agent or ours.',
+    call: 'obsession.numbers.create({ country: "US" })',
+  },
+  messaging: {
+    icon: 'chat',
+    name: 'Messaging',
+    line: 'iMessage lines, Slack and Telegram, and WhatsApp for support, sales, bookings and notifications.',
+    call: 'obsession.messaging.connect({ channel: "imessage" })',
+  },
+  browser: {
+    icon: 'browser',
+    name: 'Browser',
+    line: 'A cloud browser on a home connection that stays signed in.',
+    call: 'obsession.browsers.create({ home: "US" })',
+  },
+  sandbox: {
+    icon: 'sandbox',
+    name: 'Sandbox',
+    line: 'A computer to run code in, started only when a task needs it.',
+    call: 'obsession.sandboxes.create()',
+  },
+  personas: {
+    icon: 'persona',
+    name: 'Personas',
+    line: 'Every piece under one identity, free while it waits.',
+    call: 'obsession.personas.create({ inbox: true, phone: "US" })',
+  },
+}
+
+const pieces: HomePieces = {
+  heading: 'One API, not five vendors.',
+  line: 'Every piece comes through one key, one webhook and one bill.',
+  items: pieceOrder.map((id) => ({ ...PIECES[id], to: piecePaths[id], whole: id === 'personas' })),
 }
 
 /* Every form on Home is the early access form. Its line ("Onboarding a limited number of teams.") is content/join.ts. */
@@ -83,223 +107,194 @@ const access = {
 export const page: Page = {
   meta: {
     path: '/',
-    title: 'Obsession: the web behind the login',
+    title: 'Obsession: inboxes, phone numbers and browsers for AI agents',
     description:
-      'The screens, emails, texts, prices and offers companies show only to customers, step by step, each dated with a screenshot. Look up any company by API or MCP.',
+      'Tools for AI agents, through one API and one bill: an inbox, a phone number, a browser and a sandbox for every agent. Use one piece or all of them.',
     /* The sentence AI assistants quote. Its first sentence opens the first answer below (scripts/prerender.mjs). */
     answer:
-      'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
-    ogLine: 'The web behind the login.',
+      'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
+    ogLine: 'An inbox, a phone number and a browser for every agent.',
     ogImage: '/og/home.png',
   },
 
   hero: {
     pill: 'Early access',
     pillTo: '#join',
-    headline: 'The web behind the login.',
-    sub: 'The screens, emails, texts, prices and offers companies show only to customers, step by step. Look up any company by API or MCP, each fact dated.',
+    /* Locked by James, 21 Nov: "toolkit" leads, the sub names what is in the kit at once. */
+    headline: 'The toolkit for AI agents. One API, one bill.',
+    sub: 'An inbox, a phone number and a browser for every agent, used alone or together. Every email, text, call and page lands in your event log.',
+    /* Not drawn on Home (its hero has buttons, not a form); the Hero contract asks for one. */
     capture: { ...access, source: 'home-hero' },
-    secondary: { label: 'See sample data', to: '/sample-output' },
-    proof: [],
-    consoleHeading,
+    secondary: { label: 'Browse blueprints', to: '/blueprints' },
+    /* 3 facts, true by design: no prices, no country. 50 ms is James's figure (20 Nov). */
+    proof: [
+      { value: '1 API', label: 'for every piece, on one bill' },
+      { value: '50 ms', label: 'to act on a new message' },
+      { value: 'Free', label: 'while a persona waits' },
+    ],
+    consoleHeading: [],
   },
 
-  /* The hero's object: the explorer (content/explorer.ts), in place of the film. */
-  explorer,
+  personaStart: {
+    primary: { label: 'Start building', to: '#join' },
+    chip: { code: 'obsession.personas.create({ inbox: true, phone: "US", browser: true })', copy: 'Copy the code', copied: 'Copied' },
+  },
 
-  /* The share image's card (scripts/og.mjs): 4 facts from the index, from 4 kinds of company. */
+  /* The share image's card (scripts/og.mjs): 1 persona's events in the event log, Juno of the slab diagram, through 3 pieces. */
   shareFindings: {
-    title: 'New in the index',
-    aside: 'This month',
+    title: 'Juno, Larkfield bookings',
+    aside: 'Event log',
     rows: [
-      { company: 'Company 1', finding: 'Welcome links open a closed site', when: 'Day 3' },
-      { company: 'Company 2', finding: 'Chat called a variable rate fixed', when: 'Day 9' },
-      { company: 'Company 3', finding: 'Price cut from £24 to £19', when: 'Day 21' },
-      { company: 'Company 4', finding: 'A private 40% off for trial users', when: 'Day 30' },
+      { company: 'Email', finding: '“Can we move to Friday?”', when: '09:04' },
+      { company: 'WhatsApp', finding: 'A table for 4 at 7', when: '12:30' },
+      { company: 'Call', finding: 'A booking question, 2 min', when: '18:40' },
     ],
-    foot: 'Each one dated, with a screenshot',
+    foot: 'Every email, text and call, dated',
   },
 
-  dataKinds: {
-    kicker: 'What’s behind the login?',
-    heading: 'Six kinds of data no search engine can reach.',
-    items: [
-      { title: 'Emails, texts and flows', line: 'Every screen and message after a sign-up, a basket or a trial, each one timed.', eg: 'Day 3 · “Invite your team”' },
-      { title: 'Trial plans and limits', line: 'What the free plan includes, where it stops and when the upgrade prompt appears.', eg: '3 projects, 1 seat · prompt on day 7' },
-      { title: 'Member and signed-in prices', line: 'The price a signed-in customer sees, beside the public one.', eg: 'Pro £24 signed in · £29 public' },
-      { title: 'Quotes behind forms', line: 'Finance, insurance and service quotes for the customer profile you pick.', eg: '£289 a month over 36 months' },
-      { title: 'Checkout and cancel offers', line: 'Codes at checkout, the offer to stay when someone cancels, and renewal notices.', eg: '50% off for 3 months to stay' },
-      { title: 'Support answers', line: 'What chat and support tell a customer, and how long they take.', eg: 'Chat: fixed rate · page: variable' },
+  homePieces: pieces,
+
+  personaAnatomy: {
+    heading: 'A persona is every piece under one identity.',
+    line: 'Its inbox, number, channels, browser and sandbox share one name, and it waits on our runtime for free.',
+    parts: [
+      { name: 'One identity', line: 'Each email, text and page belongs to the same agent.', eg: 'Juno, bookings at Larkfield' },
+      { name: 'An inbox and/or a phone number', line: 'Its own address and number, for email, texts and calls.', eg: 'juno@larkfield.example · +1 415 555 0142' },
+      { name: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram, on the same identity.', eg: 'iMessage · WhatsApp · Slack' },
+      { name: 'A browser and/or a sandbox', line: 'A browser that stays signed in, and a computer for code when a task needs one.', eg: 'US home connection, signed in · python report.py' },
+      { name: 'Its events in your event log', line: 'Every page, email, text and call it saw, dated, with screenshots.', eg: '14 pages · 4 emails · 2 texts · 1 call' },
     ],
   },
 
-  /* Is this real: our own runs, then the 1 real record. No benchmark until one is measured over many runs. */
-  finding: {
-    kicker: 'Is this real?',
-    value: '1,500',
-    heading: 'sign-ups, baskets and checkouts run at real companies, and counting.',
-    also: [
-      { value: '02:57', text: 'a £40 basket left at Brand G, a real skincare store, on 22 Sep.' },
-      { value: '48 h', text: 'later, still no reminder. The inbox, kept, is the proof.' },
-    ],
-    source: 'Source: our own runs. Brand G’s whole record is the sample data.',
-    cta: { label: 'See the sample data', to: '/sample-output' },
-  },
-
-  /* Who uses it (9 Nov, James chose): the teams whose work is about other companies, in the heading's order: sell to
-     (agencies, sales), compete with (marketing, product, intelligence, pricing), invest in (funds, research), then the
-     API for teams building AI agents. */
-  users: {
-    kicker: 'Who uses it?',
-    heading: 'Teams that sell to, compete with or invest in other companies.',
-    items: [
-      {
-        title: 'Agencies',
-        line: 'Open a pitch with the prospect’s own emails, and the ones that never came.',
-        link: { label: 'For agencies', to: '/agencies' },
-      },
-      {
-        title: 'Sales teams',
-        line: 'What each account sends its own customers, ready before the call.',
-        link: { label: 'For sales', to: '/sales' },
-      },
-      {
-        title: 'Marketing and product teams',
-        line: 'Every competitor’s emails, onboarding and paywall, without signing up yourself.',
-        link: { label: 'For marketing', to: '/marketing' },
-      },
-      {
-        title: 'Intelligence and pricing teams',
-        line: 'Competitors’ trials, member prices and quotes, dated, week after week.',
-        link: { label: 'Member prices', to: '/use-cases/member-prices-for-price-intelligence' },
-      },
-      {
-        title: 'Funds and research firms',
-        line: 'Offers, prices and rates across a market, company by company, kept month after month.',
-        link: { label: 'Use cases', to: '/use-cases' },
-      },
-      {
-        title: 'Teams building AI agents',
-        line: 'Give your agent what the public web can’t: a competitor’s real price, trial limit or offer, in 1 call.',
-        link: { label: 'For developers', to: '/developers' },
-      },
-    ],
-    more: { text: 'Also banks and compliance teams.', label: 'Every use case', to: '/use-cases' },
-  },
-
-  /* Where else the data lives: every other source, and the step where it stops. The full table stays on /compare. */
-  stopTrack: {
-    kicker: 'Where else can I get it?',
-    heading: 'Search engines stop at the login.',
-    line: 'Everyone else stops at public pages or a fixed list of brands. Obsession covers any company you name.',
-    steps: ['Public page', 'Sign up', 'Emails and texts', 'Trials and prices', 'Quotes and checkout', 'Cancel and support', 'Month 3'],
-    rows: [
-      { name: 'Search engines', who: 'Google, Exa', stop: 1, note: 'The pages anyone can open' },
-      { name: 'Competitive intelligence', who: 'Klue, Crayon', stop: 1, note: 'What competitors publish' },
-      { name: 'Email archives', who: 'MailCharts, Milled, Panoramata', stop: 3, note: 'Newsletters, for their own list of brands' },
-      { name: 'Panels', who: 'Competiscan, Comperemedia', stop: 3, note: 'A fixed list of brands, behind a client login' },
-      { name: 'By hand', who: 'A spare inbox and a spreadsheet', fade: true, note: 'Every step, for a few companies, until someone stops checking' },
-      { name: 'Obsession', who: 'The web behind the login', stop: 7, ours: true, note: 'Every step short of paying, at any company, by API' },
-    ],
-    catches: {
-      label: 'What only a signed-up customer gets',
-      items: [
-        'A welcome email whose links open a closed site',
-        'A chat quoting a rate the terms don’t',
-        'A 40% offer sent only to trial users',
-        'A member price below the public one',
-        'The offer to stay when someone cancels',
-        'The reminder that never came',
+  /* How it works (James, 21 Nov: variation B's loop with variation A's words, in place of the fleet timeline and the
+     delivery plates; components/persona/HomeHowItWorks). Set up once, then a loop either side can start: a message, a
+     webhook from another tool or a new spreadsheet or CSV row comes in (James, 22 Nov: never only "a message"), or the
+     agent acts, it's saved in the event log, then reaches the agent, on our runtime or the developer's
+     own servers, or a person. What the agent does next is a new event. Live call audio doesn't take the loop: it streams
+     straight to the voice agent, and the log keeps the call's events. `loop` is the picture's words; `label` says the
+     whole picture for screen readers and llms-full.txt. Under it, the link to every channel's code on /developers. */
+  homeHow: {
+    heading: 'From the first call to months of messages, every event reaches your agent.',
+    line: 'Every email, text, call, webhook or new spreadsheet row is saved in your event log, then reaches your agent. Its reply is the next event.',
+    loop: {
+      label:
+        'Set up once: pick pieces, a persona or a blueprint, and say where your agent runs. Then a loop of 3 stops. Something happens: a message, a webhook or a new spreadsheet or CSV row comes in, or your agent acts. It is saved in your event log, in order. Then it reaches your agent, on our runtime as a handler in about 50 ms or on your servers through a webhook, the API or MCP, or a person in Slack, Zapier, Make or n8n. What your agent does next is a new event. Live call audio goes straight to your voice agent, and the log keeps each call’s start, end and transcript.',
+      setup: { name: 'Set up once', line: 'Pick pieces, a persona or a blueprint, and say where your agent runs.' },
+      then: 'then',
+      happens: { name: 'Something happens', line: 'A message, a webhook or a new spreadsheet row comes in, or your agent acts.' },
+      saved: 'is saved in',
+      log: { name: 'Your event log', line: 'saves every event, in order' },
+      reaches: 'reaches',
+      agent: { name: 'Your agent', line: 'or a person' },
+      places: [
+        { name: 'Runs on our runtime', line: 'a handler, in about 50 ms', short: 'On our runtime: a handler' },
+        { name: 'Runs on your servers', line: 'a webhook, the API or MCP', short: 'On your servers: webhook, API, MCP' },
+        { name: 'Or reaches a person', line: 'Slack, Zapier, Make, n8n', short: 'A person: Slack, Zapier, Make, n8n' },
       ],
+      acts: { name: 'acts', line: 'whatever your agent does next is a new event' },
+      audio: {
+        name: 'Live call audio streams',
+        line: 'straight to your voice agent',
+        note: 'Live call audio streams straight to your voice agent and skips the log.',
+        log: 'The log keeps each call’s start, end and transcript.',
+      },
     },
-    more: { label: 'See the full comparison', to: '/compare' },
+    link: { label: 'See the code for each channel', to: '/developers#delivery' },
   },
 
-  /* How it works, as the 2 ends of 1 range (9 Nov, James, after Parallel's "From sub-second lookups to hour-long
-     research"): a company in the index answers at once; one that isn't is watched, and kept for months. The lanes show
-     what arrived at 3 kinds of company. */
-  life: {
-    ...life,
-    kicker: 'How does it work?',
-    heading: 'From an instant lookup to months of watching, at any company.',
-    line: 'Companies in the index answer at once. Name one that isn’t, and Obsession signs up and keeps watching.',
-    list: 'companies.csv · 10,000 companies',
-    axis: { ...life.axis, end: 'Day 90: every message from all 10,000, kept' },
-    lanes: [
-      { name: 'An app', wakes: [{ day: 0.006, label: '09:09 · welcome email' }, { day: 12, label: 'Day 12 · 40% off, trial only' }] },
-      { name: 'A bank', wakes: [{ day: 1, label: 'Day 1 · rate 4.6%' }, { day: 30, label: 'Day 30 · rate cut to 4.3%' }] },
-      { name: 'A shop', wakes: [{ day: 2, label: 'Day 2 · 10% off' }, { day: 21, label: 'Day 21 · £24 to £19' }, { day: 47, label: 'Day 47 · 30% off' }] },
+  /* A blueprint is a job that runs on Obsession beside the pieces and writes its results to the event log: one of ours,
+     ready to run, or your own. Mystery shopping is the big tile and 4 sit beside it, so the 3 column grid closes
+     (James, 22 Nov: 5 tiles, not 8); every tile links to its blueprint page (content/recipes), except the web behind the login, which links to its use
+     case page. `status` says who it fits, and each tile's hue is
+     that reader (styles/accents.css). The heading is James's (21 Nov), its comma included: it speaks to the reader. */
+  personaRecipes: {
+    /* James, 21 Nov: the heading speaks to teams with no engineers; the line says where the results arrive. */
+    /* James, 22 Nov. The part before the colon shows as a quiet first line (components/persona/PersonaRecipes). */
+    heading: 'For teams without engineers: Pick a blueprint, we run the job, you get the report.',
+    line: 'Results arrive where you already work: your spreadsheet, Clay, your own Claude agent or our dashboard.',
+    items: [
+      {
+        name: 'Mystery shopping',
+        line: 'Personas shop a store and bring back every email, text and reminder that followed, or the silence.',
+        status: 'For online stores',
+        live: true,
+        reader: 'founders',
+        link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
+      },
+      {
+        name: 'Competitor trials',
+        line: 'Start a competitor’s trial and keep every email it sends until the trial ends.',
+        status: 'For marketing',
+        reader: 'marketing',
+        link: { label: 'See the blueprint', to: '/blueprints/trial-teardown' },
+      },
+      {
+        name: 'Agency prospect audits',
+        line: 'Shop a prospect’s store before the pitch, and open with what a new shopper gets.',
+        status: 'For agencies',
+        reader: 'agencies',
+        link: { label: 'See the blueprint', to: '/blueprints/prospect-intelligence' },
+      },
+      {
+        name: 'Lead response checks',
+        line: 'Fill in a contact form as a new lead, and time the first reply by email, text or call.',
+        status: 'For sales',
+        reader: 'sales',
+        link: { label: 'See the blueprint', to: '/blueprints/lead-leaks' },
+      },
+      {
+        name: 'The web behind the login, as data',
+        line: 'Personas sign up and bring back the prices, emails and offers shown only after sign up.',
+        status: 'For data teams',
+        reader: 'developers',
+        link: { label: 'See the use case', to: '/use-cases/web-behind-the-login' },
+      },
     ],
-    phases: [
-      { title: 'Look it up', line: 'A company already covered returns its history at once.' },
-      { title: 'Not covered? We sign up', line: 'Obsession signs up, starts the trial or asks for the quote, as the customer profile and country you pick.' },
-      { title: 'It stays open', line: 'New emails, prices and offers keep arriving for as long as you need.' },
-      { title: 'Into the index', line: 'Each one dated, with its screenshot, ready to search by API, MCP or a table.' },
-    ],
   },
 
-  runReports: {
-    kicker: 'How do I use it?',
-    heading: 'Use it where you already work.',
-    node: { title: 'The index', line: 'Every company you look up' },
-    label: 'Ways to use it',
-    agent: {
-      label: 'Asked in your AI agent',
-      line: 'None of it is on the public web, so no search engine has it. Connect Obsession once, then ask in plain words.',
-      where: 'Claude Code',
-      connect: askShared.connect['Claude Code'],
-      thread: [
-        {
-          q: 'Which of our competitors changed a rate this month, and what did their chat say?',
-          a: ['Quaystone raised its easy access rate to 4.75% on Thursday.', 'Its chat kept quoting 4.5% until Friday.'],
-          receipts: 'Screenshots: 3 rate pages and 2 chat transcripts, linked',
-        },
-        {
-          q: 'Brief me on Quillon before Thursday’s call.',
-          a: ['Trial users get 40% off the first year on day 12. Its pricing page shows no offer.', 'Its welcome email came in 3 minutes, but support took 31 hours to answer.'],
-          receipts: 'Screenshots: 6 emails, 1 page and 1 support thread, linked',
-        },
-      ],
-      from: askShared.from,
-    },
-    code: {
-      label: 'Use from your code',
-      line: 'Look a company up, add one that isn’t covered, and get each new fact at your webhook.',
-      file: askExamples.watch.file,
-      code: HOME_CODE,
-    },
-    formats: homeFormats(),
+
+  personaBuild: {
+    heading: 'One key, from the first inbox to a fleet of personas.',
+    line: 'Create an inbox, a number or a whole persona from code, or let your agent do it over MCP. Subscribe once to hear from all of them.',
+    cta: { label: 'For developers', to: '/developers' },
+    codeLabel: 'agent.ts',
+    code: BUILD_CODE,
   },
 
+  /* 5 questions for a first-time reader (James, 21 and 22 Nov). The channels and voice agent questions moved to
+     /developers; the browser one was already there, and checkout is the mystery shopping blueprint's "Does it place real
+     orders?". What a persona is, the persona section says; that no code is needed, the blueprint tiles' heading says. */
   faq: {
-    kicker: 'What else would I ask?',
-    heading: 'Before you request access.',
+    heading: 'Before your agent sends its first email.',
     items: [
       {
         q: 'What is Obsession?',
-        a: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. You look it up by API, MCP or a table.',
+        a: 'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
       },
       {
-        q: 'Where does the data come from?',
-        a: 'From real accounts. Obsession’s agents sign up, start trials and ask for quotes the way any customer can, from the customer profiles and countries you choose, and keep each account open for months. Every email is kept as it arrived, with its sender checked.',
+        q: 'Can I use just one piece, like email?',
+        a: 'Yes. Start with inboxes, and add a number, a browser or a sandbox later, on the same key and bill.',
+        link: { label: 'Email for AI agents', to: '/email' },
       },
       {
-        q: 'Is collecting it legal?',
-        a: 'Obsession does only what any customer can, on the pages and forms anyone can use. It says it’s an AI when it talks to a person, and it never signs in to an account that isn’t its own.',
+        q: 'What is the event log?',
+        a: 'One place per account where every event from every piece, persona and blueprint lands, in order and dated, with its proof: the email as it arrived, or a screenshot of the page. Nothing in it is changed or deleted.',
       },
       {
-        q: 'Who can see what I look up?',
-        a: 'Only you. Anyone can see that a company is covered, and since when, but never who asked. What a company sends every new subscriber goes into the shared index, so its history is there on day one. Anything more, like a reply from a salesperson, stays on an account that works only for you.',
+        q: 'How do events reach my app?',
+        a: 'Through one signed webhook you subscribe once. If your server is down, events retry for 27 hours and can be replayed. You can also read the log by cursor, use MCP, run a handler on our runtime, or connect Zapier, Make or n8n.',
       },
       {
-        q: 'What does early access include?',
-        a: 'API and MCP access, lookups of every company already covered, and up to 5 companies added to the index for you. We’re onboarding a limited number of teams, and you set it up with the founders.',
+        q: 'Does a persona say it’s an AI?',
+        a: 'Yes, whenever it talks to a person. It signs up the way anyone can, on pages open to everyone, and you choose where it goes.',
       },
     ],
   },
 
   final: {
-    heading: 'Which company should we look up first?',
-    capture: { ...access, source: 'home-final' },
+    heading: 'What will your agent need first?',
+    sub: 'Tell us which pieces, or which blueprint, and we’ll set you up.',
+    /* James's line (21 Nov), on this closing button only; the hero's main button still says what it does. */
+    capture: { ...access, button: 'Kit up your agent', source: 'home-final' },
   },
 }

@@ -298,7 +298,7 @@ export const post: BlogPost = {
           'A one-off sign-up you can watch',
         ],
         [
-          'Obsession (ours): [Prospect intelligence](/recipes/prospect-intelligence), [Mystery shopper](/recipes/mystery-shopper)',
+          'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Mystery shopper](/blueprints/mystery-shopper)',
           'What any store you name sends a new customer at each step, from the US or the UK, each email kept as it arrived',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Why a flow didn’t send sits inside the brand’s account',
@@ -316,7 +316,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Use Obsession when your agency checks hundreds of prospects a month and wants the hours in your sum back, with a finding about each brand’s own store in every proposal. Each prospect is read at the hours you choose: 4 hours for an Upwork job, 12 or 24 for a warm lead, 48 before any call, or for as long as you want to keep watching. After the win, the same checks run on each client every week before the Monday report. Brands that won’t pay a retainer get a monthly check, and your agency can run it for every brand it serves. Obsession’s ready-made job for pitch lists, [prospect intelligence](/recipes/prospect-intelligence), returns a verdict for every company on the list, with the email or page that shows it.',
+      text: 'Use Obsession when your agency checks hundreds of prospects a month and wants the hours in your sum back, with a finding about each brand’s own store in every proposal. Each prospect is read at the hours you choose: 4 hours for an Upwork job, 12 or 24 for a warm lead, 48 before any call, or for as long as you want to keep watching. After the win, the same checks run on each client every week before the Monday report. Brands that won’t pay a retainer get a monthly check, and your agency can run it for every brand it serves. Obsession’s ready-made job for pitch lists, [prospect intelligence](/blueprints/prospect-intelligence), returns a verdict for every company on the list, with the email or page that shows it.',
     },
     {
       kind: 'p',

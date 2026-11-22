@@ -2,8 +2,9 @@ import type { BlogPost } from './types'
 
 /* Best X guide 1 (_research/seo/recommend/best-x/PLAN.md, row 1; agreed by Seun 28 Oct 2026): the best AI mystery
    shopping tools, sorted by what they test. Primary "ai mystery shopping tools"; secondaries from Google autocomplete
-   (US and UK, 28 Oct): ai mystery shopping, mystery shopping software, ai secret shopper. /recipes/mystery-shopper keeps
-   "ai mystery shopper" and is linked with that anchor. Readers: store founders, CX leads and agencies choosing a tool.
+   (US and UK, 28 Oct): ai mystery shopping, ai secret shopper. /blueprints/mystery-shopper keeps "ai mystery shopper"
+   and, since the 22 Nov search plan, "mystery shopping software" and "mystery shopper software": it is linked with both
+   anchors. Readers: store founders, CX leads and agencies choosing a tool.
    Every fact about another tool comes from research_mystery_shopping.json (each tool read on its own pages on
    28 Oct 2026). 20 tools in 4 groups, alphabetical inside each, no stars, ranking or Review markup. Left out: Mystery
    Agent (a published study, not a product), mocktomer (site down on 28 Oct), DeepCall (empty page), SignalSprint
@@ -59,10 +60,8 @@ export const post: BlogPost = {
   primaryKeyword: 'ai mystery shopping tools',
   keywords: [
     'ai mystery shopping',
-    'mystery shopping software',
     'ai secret shopper',
     'best ai mystery shopping tools',
-    'ai mystery shopping software',
     'mystery shopping tools',
   ],
   category: 'Check your own journeys',
@@ -470,7 +469,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**What a real customer receives after signing up, leaving a basket or reaching checkout:** use Obsession when your company needs every email, offer, price and page kept as proof, at its own store or any company it names. Its [AI mystery shopper](/recipes/mystery-shopper) gives each journey its own new customer and inbox, and watches every inbox to the end of the wait.',
+        '**What a real customer receives after signing up, leaving a basket or reaching checkout:** use Obsession when your company needs every email, offer, price and page kept as proof, at its own store or any company it names. Its [AI mystery shopper](/blueprints/mystery-shopper) gives each journey its own new customer and inbox, and watches every inbox to the end of the wait.',
         '**Phone staff:** PressTwo SpotCheck for a listed monthly price, AdStack to have the programme run for you, Implement AI for multi-site gyms.',
         '**Competitors’ sales and phone teams:** Dealer Driven Data for car dealers, LocalSpy AI for local businesses.',
         '**How fast reps answer a new lead:** Qualified’s free test.',
@@ -530,7 +529,7 @@ export const post: BlogPost = {
         ['Intouch Insight', 'Human shoppers across websites and apps', 'Quoted for each programme', 'No published prices for online shops', 'Real purchases and members’ prices'],
         ['T-ROC', 'In-person visits, compliance checks and fast dashboards', '$40 to $150 a store visit', '4 to 6 visits per store per quarter suggested', 'Multi-location retail'],
         [
-          'Obsession (ours): [AI mystery shopper](/recipes/mystery-shopper), [store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
+          'Obsession (ours): [AI mystery shopper](/blueprints/mystery-shopper), [store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
           'What any company you name sends after a sign-up, a basket and a checkout, kept as it arrives',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Online journeys and inboxes, with a person for the shop floor',
@@ -550,6 +549,7 @@ export const post: BlogPost = {
         {
           q: 'Is an AI secret shopper the same as an AI mystery shopper?',
           a: 'Yes. “AI secret shopper”, “AI mystery shopper” and “mystery shopping software” name the same practice: software that plays a customer and reports what it got. AdStack calls its service AI Secret Shopping, and UndercoverAgent describes itself as a secret shopper for AI agents.',
+          link: { label: 'Mystery shopping software for agencies', to: '/blueprints/mystery-shopper' },
         },
         {
           q: 'How much do AI mystery shopping tools cost?',

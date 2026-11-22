@@ -155,10 +155,10 @@ export const study: UseCaseStudy = {
 
   more: {
     recipe: {
-      label: 'The recipe',
+      label: 'The blueprint',
       title: 'Trial teardown',
       line: 'Every onboarding email, prompt and offer in a trial, day by day.',
-      cta: { label: 'Learn more', to: '/recipes/trial-teardown' },
+      cta: { label: 'Learn more', to: '/blueprints/trial-teardown' },
     },
     sample: {
       label: '1 real run',

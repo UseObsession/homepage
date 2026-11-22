@@ -213,7 +213,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A clean trial teardown is dull by design, and it’s how our [trial teardown recipe](/recipes/trial-teardown) runs. 1 sign up per competitor, under an identity that says what it is. No card, so there’s nothing to bill. No replies to the sales team. If a rep writes or calls, you stop and note the time. Trials that need a card or a sales call get skipped: the first risks a bill, the second means talking to staff.',
+      text: 'A clean trial teardown is dull by design, and it’s how our [trial teardown blueprint](/blueprints/trial-teardown) runs. 1 sign up per competitor, under an identity that says what it is. No card, so there’s nothing to bill. No replies to the sales team. If a rep writes or calls, you stop and note the time. Trials that need a card or a sales call get skipped: the first risks a bill, the second means talking to staff.',
     },
     {
       kind: 'screen',
@@ -368,7 +368,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same rules hold at a prospect, where an agent becomes a customer ([prospect intelligence](/recipes/prospect-intelligence)), and on a competitor’s inbox ([email and SMS tracking](/recipes/email-sms-tracking)). On your own business, or a client’s with their OK, a [mystery shopper](/recipes/mystery-shopper) can go further, into baskets and checkouts.',
+      text: 'The same rules hold at a prospect, where an agent becomes a customer ([prospect intelligence](/blueprints/prospect-intelligence)), and on a competitor’s inbox ([email and SMS tracking](/blueprints/email-sms-tracking)). On your own business, or a client’s with their OK, a [mystery shopper](/blueprints/mystery-shopper) can go further, into baskets and checkouts.',
     },
     {
       kind: 'p',
@@ -377,7 +377,7 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'Competitor tracking runs on these 8 rules. A declared AI agent joins each competitor’s emails and texts, reads their public pages and ads, and logs every offer, continuously.',
-      to: '/recipes/competitor-tracking',
+      to: '/blueprints/competitor-tracking',
       label: 'How competitor tracking works',
     },
 

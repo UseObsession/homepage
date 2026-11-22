@@ -276,37 +276,37 @@ export const post: BlogPost = {
       cols: ['Job', 'The check', 'A pass', 'That week'],
       rows: [
         [
-          'Every way in: [Lead leaks](/recipes/lead-leaks)',
+          'Every way in: [Lead leaks](/blueprints/lead-leaks)',
           'Form, chat and sales line at set times each weekday',
           'A person replies within target, with an owner in the CRM',
           'Each fail goes to its owner with the evidence',
         ],
         [
-          'Evenings and weekends: [Lead leaks](/recipes/lead-leaks)',
+          'Evenings and weekends: [Lead leaks](/blueprints/lead-leaks)',
           'A request at 21:00 on Friday and on Sunday',
           'An owner set and a reply by 09:30 the next working day',
           'Out of hours rule or holiday calendar fixed',
         ],
         [
-          'After every change: [Lead leaks](/recipes/lead-leaks)',
+          'After every change: [Lead leaks](/blueprints/lead-leaks)',
           'The same paths after every routing change',
           'Every path that passed before still passes',
           'The change fixed or rolled back that day',
         ],
         [
-          'The AI agent’s answers: [Sales agent check](/recipes/sales-agent-check)',
+          'The AI agent’s answers: [Sales agent check](/blueprints/sales-agent-check)',
           'Price and offer questions to the AI agent in chat each morning',
           'Each answer matches the price list',
           'The agent’s source content corrected',
         ],
         [
-          'What the AI SDR sends: [Outbound agent check](/recipes/outbound-agent-check)',
+          'What the AI SDR sends: [Outbound agent check](/blueprints/outbound-agent-check)',
           'Test prospects on its lists receive every email, text and call',
           'Claims, discounts and send times within the team’s rules',
           'The sequence corrected or paused',
         ],
         [
-          'Accounts after the sale: [Account watch](/recipes/account-watch)',
+          'Accounts after the sale: [Account watch](/blueprints/account-watch)',
           'A customer of each account, with the CRM and tickets read with consent',
           'Every churn signal has a play',
           'The account manager runs the drafted play',
@@ -315,7 +315,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs this today. It keeps what any company shows only to its customers, each dated with the email or screenshot. Its [speed to lead](/recipes/lead-leaks) recipe asks by form, chat, email and phone as the buyer profile the team picks, then times and keeps every reply, at your own company and any competitor you name, at the hours the team picks, evenings and weekends included. The prospect side of a sales team’s week is covered in [AI for sales teams](' +
+      text: 'Obsession runs this today. It keeps what any company shows only to its customers, each dated with the email or screenshot. Its [speed to lead](/blueprints/lead-leaks) blueprint asks by form, chat, email and phone as the buyer profile the team picks, then times and keeps every reply, at your own company and any competitor you name, at the hours the team picks, evenings and weekends included. The prospect side of a sales team’s week is covered in [AI for sales teams](' +
         COMMERCIAL +
         '#sales).',
     },
@@ -402,7 +402,7 @@ export const post: BlogPost = {
           'Forms that break outright',
         ],
         [
-          'Obsession (ours): [Lead leaks](/recipes/lead-leaks), [Sales agent check](/recipes/sales-agent-check), [Outbound agent check](/recipes/outbound-agent-check), [Account watch](/recipes/account-watch)',
+          'Obsession (ours): [Lead leaks](/blueprints/lead-leaks), [Sales agent check](/blueprints/sales-agent-check), [Outbound agent check](/blueprints/outbound-agent-check), [Account watch](/blueprints/account-watch)',
           'Test leads use the form, chat and phone at set times and time every first reply',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Real leads’ outcomes sit in the CRM the team connects',
@@ -441,8 +441,8 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'How fast, and how well, your own team and every competitor you name answer a new enquiry, each reply timed and kept exactly as it arrived.',
-      to: '/recipes/lead-leaks',
-      label: 'See the recipe',
+      to: '/blueprints/lead-leaks',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about speed to lead' },

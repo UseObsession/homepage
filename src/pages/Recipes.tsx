@@ -25,7 +25,7 @@ const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
    It takes focus when reached that way (App.tsx ScrollManager), so the keyboard carries on from the job. */
 
 /* The jump links' name, for screen readers. */
-const UI = { jobs: 'Recipes by job', inputs: 'Add companies from', outputs: 'Results go to' }
+const UI = { jobs: 'Blueprints by job', inputs: 'Add companies from', outputs: 'Results go to' }
 
 function Arrow({ className }: { className: string }) {
   return (
@@ -79,7 +79,7 @@ export function Recipes() {
             <ul className="s-ri-job__list">
               {g.items.map((r) => (
                 <li key={r.id}>
-                  <Link className="s-ri-item" to={`/recipes/${r.slug}`}>
+                  <Link className="s-ri-item" to={`/blueprints/${r.slug}`}>
                     <span className="s-ri-item__name">
                       {r.name}
                       <Arrow className="s-ri-item__arrow" />

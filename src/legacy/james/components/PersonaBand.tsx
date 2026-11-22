@@ -83,7 +83,7 @@ export function PersonaBand() {
                   .filter(Boolean)
                   .map((rec) => (
                     <li key={rec.id}>
-                      <Link to={`/recipes/${rec.slug}`}>
+                      <Link to={`/blueprints/${rec.slug}`}>
                         {rec.name}
                         <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                           <path d="M3.5 8.5l5-5M4.5 3.5h4v4" />

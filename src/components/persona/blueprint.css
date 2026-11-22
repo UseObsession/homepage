@@ -1,0 +1,66 @@
+/* Home's shared primitives (components/persona), after rivet.dev's blueprint: a hairline at the container's width with
+   a small "+" at each end, the section head every Home section opens with, the quiet caption under a code well, and a
+   text link. Tokens only, so both themes work. */
+
+/* The "+" at each end of a hairline: 2 short strokes per mark, drawn as gradients in the line's strong ink. */
+.s-bp-cross { position: relative; border-top: var(--ob-border-hair) solid var(--ob-line); }
+.s-bp-cross::before,
+.s-bp-ruled > .s-wrap::after {
+  --s-bp-c: var(--ob-line-strong);
+  content: "";
+  position: absolute;
+  top: -6px;
+  height: 11px;
+  background:
+    linear-gradient(var(--s-bp-c), var(--s-bp-c)) left 0 top 5px / 11px 1px no-repeat,
+    linear-gradient(var(--s-bp-c), var(--s-bp-c)) left 5px top 0 / 1px 11px no-repeat,
+    linear-gradient(var(--s-bp-c), var(--s-bp-c)) right 0 top 5px / 11px 1px no-repeat,
+    linear-gradient(var(--s-bp-c), var(--s-bp-c)) right 5px top 0 / 1px 11px no-repeat;
+  pointer-events: none;
+}
+.s-bp-cross::before { left: -5px; right: -5px; }
+
+/* A section on the same ground as the one before it opens on the ruled line, with the section's air on each side. */
+.s-bp-ruled > .s-wrap { position: relative; padding-top: var(--ob-space-section); }
+.s-bp-ruled > .s-wrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline: var(--s-gutter);
+  border-top: var(--ob-border-hair) solid var(--ob-line);
+  pointer-events: none;
+}
+.s-bp-ruled > .s-wrap::after { inset-inline: calc(var(--s-gutter) - 5px); }
+
+/* The section head: the claim, then at most 1 line. */
+.s-bp-head { display: grid; gap: var(--ob-space-16); max-width: 760px; margin-bottom: var(--ob-space-block); }
+.s-bp-head--center { margin-inline: auto; text-align: center; justify-items: center; }
+.s-bp-h { margin: 0; max-width: 22ch; font: var(--ob-type-h2); letter-spacing: var(--ob-type-h2-tracking); color: var(--ob-text); text-wrap: balance; }
+.s-bp-line { margin: 0; max-width: 58ch; font: var(--ob-type-body-lg); letter-spacing: var(--ob-type-body-lg-tracking); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
+
+/* The quiet caption (site.css .s-screen-note): sentence case, the caption type, never a badge. */
+.s-bp-tag { margin: 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-2); }
+
+/* A quiet text link with a drawn arrow, the site's own (styles/v5.css .v5-link), for links inside cards. */
+.s-bp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  font: 500 15px / 1.3 var(--ob-font-sans);
+  color: var(--ob-text);
+  text-decoration: none;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-strong);
+  padding-bottom: 2px;
+  transition: border-color var(--ob-dur-fast, 0.15s) var(--ob-ease-out);
+}
+.s-bp-link::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+.s-bp-link:hover { border-color: var(--ob-text); }
+.s-bp-link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 4px; border-radius: 2px; }
+@media (prefers-reduced-motion: reduce) { .s-bp-link { transition: none; } }

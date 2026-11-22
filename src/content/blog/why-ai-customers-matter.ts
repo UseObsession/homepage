@@ -294,5 +294,5 @@ export const post: BlogPost = {
     { title: 'We asked 6,346 companies for a demo. Most never wrote back.', publisher: 'Clay', url: CLAY, date: '2026-09-22' },
     { title: 'AI can’t take over your holiday shopping quite yet, a new study suggests', publisher: 'Business Insider, via DNYUZ', url: PRODUCT_AI, date: '2026-09-25' },
   ],
-  related: ['ai-customers', 'how-ai-customers-work', 'ai-customers-find-revenue-leaks', 'hire-ai-customers', 'recipe:mystery-shopper', '/sample-output'],
+  related: ['/email', '/phone', '/browser', 'ai-customers', 'how-ai-customers-work', 'ai-customers-find-revenue-leaks', 'hire-ai-customers', 'recipe:mystery-shopper', '/sample-output'],
 }

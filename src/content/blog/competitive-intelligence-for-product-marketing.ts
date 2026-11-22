@@ -313,7 +313,7 @@ export const post: BlogPost = {
 
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For product marketing, it keeps each competitor’s onboarding emails, trial limits, upgrade prompts, signed-in prices and offers by trial day, as the [trial teardown](/recipes/trial-teardown) and [competitor tracking](/recipes/competitor-tracking) recipes show. A fresh run follows when a competitor changes its trial. Exa and search tools like it give reps and AI agents the public web in seconds. Obsession gives them what a competitor sends the people who sign up, as the [comparison with Exa](/compare/obsession-vs-exa) sets out. Each new email, limit and offer lands dated the day it arrives, so you can see it in your positioning, your battlecards and your win-loss against each competitor. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For product marketing, it keeps each competitor’s onboarding emails, trial limits, upgrade prompts, signed-in prices and offers by trial day, as the [trial teardown](/blueprints/trial-teardown) and [competitor tracking](/blueprints/competitor-tracking) blueprints show. A fresh run follows when a competitor changes its trial. Exa and search tools like it give reps and AI agents the public web in seconds. Obsession gives them what a competitor sends the people who sign up, as the [comparison with Exa](/compare/obsession-vs-exa) sets out. Each new email, limit and offer lands dated the day it arrives, so you can see it in your positioning, your battlecards and your win-loss against each competitor. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
@@ -370,7 +370,7 @@ export const post: BlogPost = {
           'Public pages and company data, in an agent',
         ],
         [
-          'Obsession (ours): [Trial teardown](/recipes/trial-teardown), [Competitor tracking](/recipes/competitor-tracking)',
+          'Obsession (ours): [Trial teardown](/blueprints/trial-teardown), [Competitor tracking](/blueprints/competitor-tracking)',
           'Keeps what each competitor you name shows new customers: trial emails, limits, upgrade prompts, signed-in prices, offers',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'A competitor not yet covered starts its history the day it is added\nEvery journey stops short of paying',
@@ -462,6 +462,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/use-cases/web-behind-the-login',
     'battlecard-template',
     'win-loss-analysis',
     'competitor-monitoring',

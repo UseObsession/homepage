@@ -407,7 +407,7 @@ export const post: BlogPost = {
           'A one off fix list',
         ],
         [
-          'Obsession (ours): [Website audit](/recipes/website-audit), [Support bot check](/recipes/support-bot-check), [Voice agent check](/recipes/voice-agent-check), [Listings and AI answers](/recipes/listings-ai-answers)',
+          'Obsession (ours): [Website audit](/blueprints/website-audit), [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check), [Listings and AI answers](/blueprints/listings-ai-answers)',
           'Website audit: what the site shows and sends a new customer, after every release\nSupport bot check: your support bot’s answers on every channel, dated\nVoice agent check: calls to your AI receptionist, recorded and dated\nListings and AI answers: what AI assistants tell buyers, every Monday',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Bot and fraud settings stay with the security team',

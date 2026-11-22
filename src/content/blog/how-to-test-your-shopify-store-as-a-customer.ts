@@ -419,7 +419,7 @@ export const post: BlogPost = {
           'An alert within hours when checkout breaks',
         ],
         [
-          'Obsession (ours): [Store leak checks](' + LEAKS + '), [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit)',
+          'Obsession (ours): [Store leak checks](' + LEAKS + '), [Mystery shopper](/blueprints/mystery-shopper), [Website audit](/blueprints/website-audit)',
           'Every email, code and page the store and its competitors show after a sign-up, a basket and a checkout, kept with its time',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Leaves the payment step to Shopify’s test mode',

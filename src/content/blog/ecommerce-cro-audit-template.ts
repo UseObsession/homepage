@@ -456,7 +456,7 @@ export const post: BlogPost = {
           'A first draft',
         ],
         [
-          'Obsession (ours): [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies), [Prospect intelligence](/recipes/prospect-intelligence), [Website audit](/recipes/website-audit)',
+          'Obsession (ours): [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies), [Prospect intelligence](/blueprints/prospect-intelligence), [Website audit](/blueprints/website-audit)',
           'The pop up’s code taken to checkout and every email after the sign up, dated\nEvery live test variant checked past the sign up, each morning',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Covers step 5 and the pages behind ads, not analytics, research, page review or scoring',

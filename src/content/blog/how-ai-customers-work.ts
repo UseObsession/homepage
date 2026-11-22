@@ -86,7 +86,7 @@ export const post: BlogPost = {
       kind: 'list',
       ordered: true,
       items: [
-        '**Identity.** It is given its own inbox, phone number and browser, and later the accounts it opens.',
+        '**Identity.** It is given its own [inbox](/email), [phone number](/phone) and [browser](/browser), and later the accounts it opens.',
         '**Sign up.** It joins through the company’s public forms, the same ones any customer uses, and confirms by email or text where the company asks.',
         '**Sleep.** It waits, with no process running, for as long as the watch lasts.',
         '**Wake.** A new email, a text or a scheduled check wakes it.',
@@ -308,5 +308,5 @@ export const post: BlogPost = {
     { title: 'Trace an email with its full header', publisher: 'Gmail Help', url: GMAIL_HEADERS },
     { title: 'What is the Model Context Protocol (MCP)?', publisher: 'Model Context Protocol', url: MCP },
   ],
-  related: ['ai-customers', 'ai-customers-at-scale', 'ai-customers-for-developers', 'recipe:delivery-monitoring', 'recipe:website-audit'],
+  related: ['/email', '/phone', 'ai-customers', 'ai-customers-at-scale', 'ai-customers-for-developers', 'recipe:delivery-monitoring', 'recipe:website-audit'],
 }

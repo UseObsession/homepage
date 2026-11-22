@@ -214,16 +214,16 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each agency type sells the services that sit closest to the work it is already paid for. Each one links to the Obsession recipe behind it: a ready-made check with its steps, its schedule and what it reports.',
+      text: 'Each agency type sells the services that sit closest to the work it is already paid for. Each one links to the Obsession blueprint behind it: a ready-made check with its steps, its schedule and what it reports.',
     },
     { kind: 'h3', id: 'retention', text: 'Retention and email agencies' },
     {
       kind: 'list',
       items: [
-        '**A weekly flow log** ([Mystery shopper](/recipes/mystery-shopper)). An AI customer signs up, leaves a basket and starts a checkout at each client store every week and after every launch. The client sees what arrived, when and what never came, beside the email platform’s revenue report, in the format set out in [proof that every flow fired](/blog/show-clients-every-flow-fired).',
-        '**Welcome and Black Friday code checks** ([Website audit](/recipes/website-audit)). The pop-up code and each sale code are tried at checkout on the days that matter, Friday 27 November 2026 included. The client sees each code accepted or refused, with the screenshot.',
-        '**A competitor watch** ([Email and SMS tracking](/recipes/email-sms-tracking)). An AI customer on each competitor’s list keeps every email and offer it sends. The client sees its competitors’ Black Friday plans as they land, beside its own.',
-        '**What AI assistants tell shoppers** ([Listings and AI answers](/recipes/listings-ai-answers)). Every Monday, the questions shoppers ask ChatGPT and other assistants about the brand, with each wrong answer traced to the page it came from. The method is in [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store).',
+        '**A weekly flow log** ([Mystery shopper](/blueprints/mystery-shopper)). An AI customer signs up, leaves a basket and starts a checkout at each client store every week and after every launch. The client sees what arrived, when and what never came, beside the email platform’s revenue report, in the format set out in [proof that every flow fired](/blog/show-clients-every-flow-fired).',
+        '**Welcome and Black Friday code checks** ([Website audit](/blueprints/website-audit)). The pop-up code and each sale code are tried at checkout on the days that matter, Friday 27 November 2026 included. The client sees each code accepted or refused, with the screenshot.',
+        '**A competitor watch** ([Email and SMS tracking](/blueprints/email-sms-tracking)). An AI customer on each competitor’s list keeps every email and offer it sends. The client sees its competitors’ Black Friday plans as they land, beside its own.',
+        '**What AI assistants tell shoppers** ([Listings and AI answers](/blueprints/listings-ai-answers)). Every Monday, the questions shoppers ask ChatGPT and other assistants about the brand, with each wrong answer traced to the page it came from. The method is in [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store).',
       ],
     },
     {
@@ -234,19 +234,19 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Release checks** ([Website audit](/recipes/website-audit)). After every release, a fresh customer signs up, fills in each form, opens every email and link, and goes through checkout. The client sees a pass or a break for each step, with the screenshot.',
-        '**The pop-up and the code at checkout** ([Website audit](/recipes/website-audit)). Each test variant’s pop-up is signed up through and its code tried at checkout, every morning the test runs. A variant that stops sending its code is found before anyone calls the test, as step 5 of the [ecommerce CRO audit template](/blog/ecommerce-cro-audit-template) describes.',
-        '**Offers and prices after each deadline** ([Price watch](/recipes/price-watch)). Every competitor’s prices, offers and delivery terms are checked each morning beside the client’s own, so the morning after a sale ends shows who moved first.',
-        '**Competitor offers** ([Competitor tracking](/recipes/competitor-tracking)). Each competitor’s emails, offers, price changes and public ads on one timeline per competitor, for the next round of test ideas.',
+        '**Release checks** ([Website audit](/blueprints/website-audit)). After every release, a fresh customer signs up, fills in each form, opens every email and link, and goes through checkout. The client sees a pass or a break for each step, with the screenshot.',
+        '**The pop-up and the code at checkout** ([Website audit](/blueprints/website-audit)). Each test variant’s pop-up is signed up through and its code tried at checkout, every morning the test runs. A variant that stops sending its code is found before anyone calls the test, as step 5 of the [ecommerce CRO audit template](/blog/ecommerce-cro-audit-template) describes.',
+        '**Offers and prices after each deadline** ([Price watch](/blueprints/price-watch)). Every competitor’s prices, offers and delivery terms are checked each morning beside the client’s own, so the morning after a sale ends shows who moved first.',
+        '**Competitor offers** ([Competitor tracking](/blueprints/competitor-tracking)). Each competitor’s emails, offers, price changes and public ads on one timeline per competitor, for the next round of test ideas.',
       ],
     },
     { kind: 'h3', id: 'paid-ads', text: 'Paid ads and performance agencies' },
     {
       kind: 'list',
       items: [
-        '**The page behind every live ad, each morning** ([Ad landing check](/recipes/ad-landing-check)). Each page is opened from the ad’s own link on a phone and a desktop, so no click is paid for. It is checked for loading, offer, price and stock. The client sees every ad sending clicks to a page that can’t sell, with the fix drafted. The routine by hand is the [10-minute morning check of where ads land](/blog/where-your-ads-land-morning-check).',
-        '**Competitor ads and their pages** ([Ad tracking](/recipes/ad-tracking)). The ads a client’s competitors run in public, read each morning and opened to their page, price and code. The client sees each new competitor offer beside its own.',
-        '**Affiliate and partner links and codes** ([Partner checks](/recipes/partner-checks)). Every partner’s link is followed to the client’s store each Monday and its code tried in the basket. The client sees each out-of-date code or banner, with a note to the partner drafted.',
+        '**The page behind every live ad, each morning** ([Ad landing check](/blueprints/ad-landing-check)). Each page is opened from the ad’s own link on a phone and a desktop, so no click is paid for. It is checked for loading, offer, price and stock. The client sees every ad sending clicks to a page that can’t sell, with the fix drafted. The routine by hand is the [10-minute morning check of where ads land](/blog/where-your-ads-land-morning-check).',
+        '**Competitor ads and their pages** ([Ad tracking](/blueprints/ad-tracking)). The ads a client’s competitors run in public, read each morning and opened to their page, price and code. The client sees each new competitor offer beside its own.',
+        '**Affiliate and partner links and codes** ([Partner checks](/blueprints/partner-checks)). Every partner’s link is followed to the client’s store each Monday and its code tried in the basket. The client sees each out-of-date code or banner, with a note to the partner drafted.',
       ],
     },
     {
@@ -257,16 +257,16 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Every release checked as a customer** ([Website audit](/recipes/website-audit)). A new customer runs sign-up, forms, emails and checkout after each deploy. The client sees the release pass, or the break with its screenshot, before its own customers meet it.',
-        '**Chat and AI agent answers that changed overnight** ([Drift watch](/recipes/drift-watch)). The store’s chat or AI agent is asked its hardest questions every morning and within the hour of any update. The client sees every answer that changed, with the before and after.',
-        '**The store’s chat and AI agent** ([Support bot check](/recipes/support-bot-check), [Sales agent check](/recipes/sales-agent-check)). The chat is asked what customers ask about refunds, delivery, prices and stock, and each answer is checked against the policy and the price list. The client sees each wrong answer with the right one drafted. The questions to start with are in [how to test a chatbot on your store](/blog/test-store-chatbot-returns-policy).',
+        '**Every release checked as a customer** ([Website audit](/blueprints/website-audit)). A new customer runs sign-up, forms, emails and checkout after each deploy. The client sees the release pass, or the break with its screenshot, before its own customers meet it.',
+        '**Chat and AI agent answers that changed overnight** ([Drift watch](/blueprints/drift-watch)). The store’s chat or AI agent is asked its hardest questions every morning and within the hour of any update. The client sees every answer that changed, with the before and after.',
+        '**The store’s chat and AI agent** ([Support bot check](/blueprints/support-bot-check), [Sales agent check](/blueprints/sales-agent-check)). The chat is asked what customers ask about refunds, delivery, prices and stock, and each answer is checked against the policy and the price list. The client sees each wrong answer with the right one drafted. The questions to start with are in [how to test a chatbot on your store](/blog/test-store-chatbot-returns-policy).',
       ],
     },
     { kind: 'h3', id: 'every-agency', text: 'For every agency' },
     {
       kind: 'list',
       items: [
-        '**A renewal check before each review** ([Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking)). A week before a client’s review or renewal, AI customers take the store’s full journey again and shop its 2 closest competitors. The account lead walks into the call with what changed for the client’s customers since the last review, what was fixed, and what its competitors now offer. A slipping account shows up here before the client says so.',
+        '**A renewal check before each review** ([Mystery shopper](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking)). A week before a client’s review or renewal, AI customers take the store’s full journey again and shop its 2 closest competitors. The account lead walks into the call with what changed for the client’s customers since the last review, what was fixed, and what its competitors now offer. A slipping account shows up here before the client says so.',
         '**A monthly check for brands that won’t pay a full retainer.** The same sign-up, basket and checkout once a month, with a short note of what changed. It keeps a smaller brand on the books and makes the step up to a retainer an easy one.',
       ],
     },
@@ -406,7 +406,7 @@ export const post: BlogPost = {
           'Shop floors, phone lines and websites',
         ],
         [
-          'Obsession (ours): [Delivery monitoring](/recipes/delivery-monitoring), [Mystery shopper](/recipes/mystery-shopper), [Website audit](/recipes/website-audit), [Ad landing check](/recipes/ad-landing-check), [Competitor tracking](/recipes/competitor-tracking), [Price watch](/recipes/price-watch)',
+          'Obsession (ours): [Delivery monitoring](/blueprints/delivery-monitoring), [Mystery shopper](/blueprints/mystery-shopper), [Website audit](/blueprints/website-audit), [Ad landing check](/blueprints/ad-landing-check), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch)',
           'What every client store, its competitors and its ads show a new customer, every email and screenshot kept as it arrived',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Leaves the fix and the client call to the agency',

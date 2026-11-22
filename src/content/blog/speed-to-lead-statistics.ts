@@ -401,11 +401,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession keeps what any company shows only to its customers, each dated with the email or screenshot. Its [speed to lead](/recipes/lead-leaks) recipe asks by form, chat, email and phone as the buyer profile the team picks, then times and keeps every reply, at your own company and any competitor you name. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Obsession keeps what any company shows only to its customers, each dated with the email or screenshot. Its [speed to lead](/blueprints/lead-leaks) blueprint asks by form, chat, email and phone as the buyer profile the team picks, then times and keeps every reply, at your own company and any competitor you name. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
     },
     {
       kind: 'p',
-      text: 'The same checks reach the team’s own AI agents. [Sales agent check](/recipes/sales-agent-check) asks the AI agent in the site chat about prices, stock and delivery every day and checks each answer against the price list. [Outbound agent check](/recipes/outbound-agent-check) joins the lists of an AI SDR, an AI agent that writes to prospects for the team, and checks every email and call it sends against the team’s rules. [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out who each agent works for.',
+      text: 'The same checks reach the team’s own AI agents. [Sales agent check](/blueprints/sales-agent-check) asks the AI agent in the site chat about prices, stock and delivery every day and checks each answer against the price list. [Outbound agent check](/blueprints/outbound-agent-check) joins the lists of an AI SDR, an AI agent that writes to prospects for the team, and checks every email and call it sends against the team’s rules. [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out who each agent works for.',
     },
     {
       kind: 'p',
@@ -453,7 +453,7 @@ export const post: BlogPost = {
           'Forms that break outright',
         ],
         [
-          'Obsession (ours): [Lead leaks](/recipes/lead-leaks), [Sales agent check](/recipes/sales-agent-check), [Outbound agent check](/recipes/outbound-agent-check)',
+          'Obsession (ours): [Lead leaks](/blueprints/lead-leaks), [Sales agent check](/blueprints/sales-agent-check), [Outbound agent check](/blueprints/outbound-agent-check)',
           'Test enquiries by form, chat and phone at set times, every first reply timed and kept',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Why a lead was misrouted sits in the CRM the team connects',
@@ -468,8 +468,8 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'How fast, and how well, your own team and every competitor you name answer a new enquiry, each reply timed and kept exactly as it arrived.',
-      to: '/recipes/lead-leaks',
-      label: 'See the recipe',
+      to: '/blueprints/lead-leaks',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about speed to lead statistics' },

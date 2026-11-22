@@ -242,10 +242,10 @@ export const study: UseCaseStudy = {
 
   more: {
     recipe: {
-      label: 'The recipe',
+      label: 'The blueprint',
       title: 'Prospect intelligence',
       line: 'What each account on your list sends its customers, dated, before the first call.',
-      cta: { label: 'Learn more', to: '/recipes/prospect-intelligence' },
+      cta: { label: 'Learn more', to: '/blueprints/prospect-intelligence' },
     },
     sample: {
       label: '1 real run',

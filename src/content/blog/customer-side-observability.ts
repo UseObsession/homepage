@@ -265,7 +265,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'every-business', text: 'For every business: your competitors and your market' },
     {
       kind: 'p',
-      text: 'Customer-side observability works on any company, so the same practice covers your market. Every competitor’s emails, texts, offers and prices on 1 timeline ([Competitor tracking](/recipes/competitor-tracking)). What each prospect does to its own customers before a sales call ([Prospect intelligence](/recipes/prospect-intelligence)). The partners and deals sites showing your codes, and what AI assistants say about you ([Listings and AI answers](/recipes/listings-ai-answers)). For all 3, and for your own company, use Obsession. It keeps what any company you name shows only to its customers, dated with the email or screenshot, by API, MCP or a table.',
+      text: 'Customer-side observability works on any company, so the same practice covers your market. Every competitor’s emails, texts, offers and prices on 1 timeline ([Competitor tracking](/blueprints/competitor-tracking)). What each prospect does to its own customers before a sales call ([Prospect intelligence](/blueprints/prospect-intelligence)). The partners and deals sites showing your codes, and what AI assistants say about you ([Listings and AI answers](/blueprints/listings-ai-answers)). For all 3, and for your own company, use Obsession. It keeps what any company you name shows only to its customers, dated with the email or screenshot, by API, MCP or a table.',
     },
 
     { kind: 'h2', id: 'plan', text: 'A 30 day plan' },

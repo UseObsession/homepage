@@ -325,7 +325,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its Ad tracking recipe, a ready-made collection of checks, reads the ads competitors run in public each morning and follows each one to its page, price and code. Where an ad offers a code for signing up, it signs up and keeps what arrives, so [marketing teams](/marketing) see every new offer beside the ad that led to it.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its Ad tracking blueprint, a ready-made collection of checks, reads the ads competitors run in public each morning and follows each one to its page, price and code. Where an ad offers a code for signing up, it signs up and keeps what arrives, so [marketing teams](/marketing) see every new offer beside the ad that led to it.',
     },
     {
       kind: 'cta',
@@ -382,7 +382,7 @@ export const post: BlogPost = {
           'Brands testing creative at scale',
         ],
         [
-          'Obsession (ours): [Ad tracking](/recipes/ad-tracking), [Ad landing check](/recipes/ad-landing-check)',
+          'Obsession (ours): [Ad tracking](/blueprints/ad-tracking), [Ad landing check](/blueprints/ad-landing-check)',
           'Every competitor ad followed to its page, price and code, then the sign-up and every email that arrives, dated with screenshots',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'No history before a competitor is added',
@@ -401,8 +401,8 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'The ads your competitors run in public, each followed to its page, price and code, with every new offer dated beside the ad that led to it.',
-      to: '/recipes/ad-tracking',
-      label: 'See the recipe',
+      to: '/blueprints/ad-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

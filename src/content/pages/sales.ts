@@ -1,25 +1,32 @@
 import { askShared } from '../shared5'
 import { consoleHeading } from '../console'
-import type { Page } from '../types'
+import type { Page, PricingTabs } from '../types'
 
-/* Sales (/sales), the 9 Nov rewrite to Home's story: sales teams, RevOps and GTM engineers get what each account and
-   competitor sends its own customers, ready before the call, with a domain as the only input. Their words: battlecards,
-   competitor intel, evidence. The page: the hero > stale battlecards > 4 jobs from first call to win back > asked in
-   plain words > Brand G, the 1 real run > questions > early access. Every use case screen is an example. */
+/* Sales (/sales), the toolkit rewrite (22 Nov 2026, James: "fix the marketing and sales positioning"): a persona the
+   reader defines signs up at each account and competitor they name, starts the trial and asks what a buyer would, and
+   every email, price and support answer it gets lands in their event log, dated, with a screenshot, ready before the
+   call. A domain is the only input. The blueprints run it (prospect intelligence, trial teardown, account watch, lead
+   response, email and SMS tracking). Their words: battlecards, competitor intel, evidence. Sold as designed, as on the
+   blueprint pages: no index, no "already covered", no caps. The page: the hero > stale battlecards > 4 jobs from first
+   call to win back > asked in plain words > Brand G, the 1 real run > questions > early access. Every use case screen
+   is an example. Never name a competitor of ours. */
 
-/* The code example: an account's facts before the call, then a competitor not covered yet added. */
-const CODE = `import os
-from obsession import Obsession
+/* The code example, in the API's own names (pages/developers.ts): the blueprint signs up at each account on the list,
+   and every finding reaches a webhook before the call. */
+const CODE = `import { Obsession } from "obsession"
 
-ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
+const obsession = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
 
-# What did Wrenfield send its customers this month?
-for fact in ob.facts("wrenfield.example", since="30d"):
-    print(fact.seen_at, fact.kind, fact.sentence, fact.receipt_url)
+// A persona signs up at each account, starts the trial and asks support
+await obsession.blueprints.run("prospect-intelligence", {
+  domains: ["wrenfield.example", "larchwise.example"],
+})
 
-# A competitor not covered yet? Add it, and get each new fact at your webhook
-ob.index(["larchwise.example"], how="account")
-ob.notify(on="fact.created", destination="https://example.com/hooks/obsession")`
+// Every finding, at your webhook before the call, with its screenshots
+await obsession.events.subscribe({
+  url: "https://example.com/hooks/obsession",
+  events: ["blueprint.result"],
+})`
 
 const access = { kind: 'waitlist', button: 'Request early access', interest: 'prospect' } as const
 
@@ -28,9 +35,9 @@ export const page: Page = {
     path: '/sales',
     title: 'Competitor intel for battlecards and briefs · Obsession',
     description:
-      'What each account and competitor sends its own customers, ready before the call: trial emails, discounts, signed-in prices and support answers, each dated.',
+      'A persona signs up at each account and competitor and brings back what they send: trial emails, discounts, signed-in prices and support answers, dated.',
     answer:
-      'Obsession shows what each account and competitor sends its own customers, ready before the call, with every fact dated and its screenshot linked. A domain is the only input, from Clay, your CRM or your own agent.',
+      'A persona you define signs up at each account and competitor you name and keeps every email, price and support answer it gets, dated, with a screenshot. A domain is the only input, from Clay, your CRM or your own agent.',
     ogImage: '/og/sales.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,9 +49,9 @@ export const page: Page = {
     pill: 'Early access',
     pillTo: '#join',
     headline: 'Know what every account sends its customers before you call.',
-    sub: 'Obsession shows what each account and competitor sends its own customers, ready before the call, with every fact dated and its screenshot linked. A domain is the only input, from Clay, your CRM or your own agent.',
+    sub: 'A persona you define signs up at each account and competitor you name and keeps every email, price and support answer it gets, dated, with a screenshot. A domain is the only input, from Clay, your CRM or your own agent.',
     capture: { ...access, source: 'sales-hero' },
-    secondary: { label: 'See how it compares', to: '/compare' },
+    secondary: { label: 'See sample data', to: '/sample-output' },
     proof: [],
     consoleHeading,
     /* The hero's object: domains in a Clay table, facts landing row by row. */
@@ -53,7 +60,7 @@ export const page: Page = {
 
   gapPair: {
     heading: 'Battlecards go stale the week they’re written.',
-    line: 'Someone signs up to a competitor once, screenshots the pricing page, and the card is out of date by the next price change. Obsession keeps each competitor’s emails, prices and offers as they arrive.',
+    line: 'A persona at each competitor keeps its emails, prices and offers as they arrive.',
     tools: {
       label: 'What you have today',
       items: [
@@ -120,7 +127,7 @@ export const page: Page = {
   ask: {
     ...askShared,
     heading: 'Ask about any account before the call.',
-    line: 'Connect Obsession once to Claude Code or Codex, or call it from code with a domain. Every answer links the emails and pages behind it.',
+    line: 'Connect Obsession once to Claude Code or Codex and ask across your event log, or call it from code with a domain. Every answer links the emails and pages behind it.',
     areas: ['Prospects', 'Accounts', 'Competitors'],
     examples: [
       {
@@ -143,14 +150,14 @@ export const page: Page = {
         ],
         receipts: 'Screenshots: 9 emails and 3 pricing pages, linked',
       },
-      { where: 'Code', q: 'Pull an account’s facts by domain before the call.', file: 'accounts.py', code: CODE },
+      { where: 'Code', q: 'Brief every account on our call list, by domain.', file: 'accounts.ts', code: CODE },
     ],
   },
 
   /* The 1 real run: Brand G, the September store check. */
   proof: {
     heading: 'A £40 basket left at 02:57. No reminder in 48 hours.',
-    line: 'Brand G, a real skincare store, on 22 Sep. Its whole record is the sample data: every email with the time it arrived, and every screenshot. Every line on a brief or battlecard links to a record like it.',
+    line: 'Brand G, a real skincare store, on 22 Sep: every email with the time it arrived, and every screenshot. Every line on a brief or battlecard links to a record like it.',
     cta: { label: 'See the sample data', to: '/sample-output' },
   },
 
@@ -159,28 +166,28 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession do for a sales team?',
-        a: 'Obsession shows what each account and competitor sends its own customers, ready before the call, with every fact dated and its screenshot linked. Briefs and battlecards stay current as new emails, prices and offers arrive.',
+        a: 'A persona you define signs up at each account and competitor you name and keeps every email, price and support answer it gets, dated, with a screenshot. Briefs and battlecards stay current as new ones arrive.',
         link: { label: 'Sales intelligence, role by role', to: '/use-cases/sales-intelligence-behind-the-login' },
       },
       {
-        q: 'How is this different from Klue or Crayon?',
-        a: 'They keep what competitors publish: pages, news and reviews. Obsession keeps what competitors send their signed-up customers: trial emails, signed-in prices, discounts and support answers.',
+        q: 'How is this different from a competitive intelligence tool?',
+        a: 'Competitive intelligence tools keep what competitors publish: pages, news and reviews. Obsession keeps what competitors send the people who sign up: trial emails, signed-in prices, discounts and support answers.',
       },
       {
         q: 'Does it work with Clay and our CRM?',
-        a: 'Yes. A domain is the only input. Send a list from Clay or your CRM, and each fact comes back to the same row, with its screenshot linked.',
+        a: 'Yes. A domain is the only input. Send a list from Clay or your CRM, and each finding comes back to the same row, with its screenshot linked.',
       },
       {
         q: 'Where does the data come from?',
-        a: 'From real accounts. Obsession’s agents sign up, start trials and ask for quotes the way any customer can, from the customer profiles and countries you choose, and keep each account open for months.',
+        a: 'From real accounts. A persona you define signs up, starts the trial and asks for a quote the way anyone can, from the country you choose, and keeps each account open for months.',
       },
       {
-        q: 'Does an account know we looked it up?',
-        a: 'No. Anyone can see that a company is covered, and since when, but never who asked.',
+        q: 'Will an account know who asked?',
+        a: 'No. The persona has its own name, inbox and number, and who asked is never shown. When it talks to a person, it says it’s an AI.',
       },
       {
         q: 'What does early access include?',
-        a: 'API and MCP access, lookups of every company already covered, and up to 5 accounts added to the index for you. We’re onboarding a limited number of teams, and you set it up with the founders.',
+        a: 'API and MCP keys, and a free first run of every blueprint. Tell us which accounts to start with, and we set it up with you.',
       },
     ],
   },
@@ -189,4 +196,14 @@ export const page: Page = {
     heading: 'Which account is your next call with?',
     capture: { ...access, source: 'sales-final' },
   },
+}
+
+/* #pricing (James, 21 Nov 2026): 1 tab per blueprint a sales team runs, from the page's own jobs (briefs, battlecards,
+   outbound, win back) to the accounts it sells to and its own lead response (each opening that blueprint's own pricing
+   table, components/BlueprintPricingTabs, from content/catalog). */
+export const pricing: PricingTabs = {
+  heading: 'What a typical month of each blueprint costs.',
+  line: 'Prices are worked out from what each run uses, at list rates.',
+  label: 'Blueprints for sales teams',
+  recipes: ['prospect', 'trial', 'account-watch', 'speed', 'email-sms'],
 }

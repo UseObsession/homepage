@@ -67,7 +67,7 @@ const organization: Node = {
   logo: { '@type': 'ImageObject', url: `${SITE}/logo/obsession-app-icon-1024.png`, width: 1024, height: 1024 },
   alternateName: 'useobsession',
   description: llms.summary,
-  slogan: 'The web behind the login, as data.',
+  slogan: 'A persona on the web for every agent you run.',
   knowsAbout: ['Competitor emails and texts', 'Member and signed-in prices', 'Trial plans and limits', 'Quotes behind forms'],
   email: CONTACT_EMAIL,
   founder: FOUNDERS.map(person),
@@ -254,6 +254,10 @@ export function jsonLd(e: Entry): Node {
     ...(e.kind === 'agents' ? { about: agentTerms() } : {}),
     ...(e.kind === 'term' && e.term ? { about: { '@id': termId(e.meta.path) } } : {}),
     ...(e.kind === 'glossary' ? { about: { '@id': GLOSSARY_SET } } : {}),
+    /* A piece's own page and the API page describe the product itself, so they are about it, as Home is. */
+    ...(e.kind === 'piece' || e.kind === 'developers'
+      ? { about: { '@type': 'SoftwareApplication', '@id': APP, name: 'Obsession', url: `${SITE}/` } }
+      : {}),
     ...(e.kind === 'comparison' || e.kind === 'alternatives' || e.kind === 'lookup'
       ? {
           mentions: [

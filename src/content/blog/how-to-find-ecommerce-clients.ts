@@ -463,7 +463,7 @@ export const post: BlogPost = {
           'Next year’s pipeline',
         ],
         [
-          'Obsession (ours): [Prospect intelligence](/recipes/prospect-intelligence), [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies)',
+          'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies)',
           'What each prospect shows a new customer, from the pop up’s code to checkout, with a verdict and a dated proof link',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Supplies no contact data, and leaves the list, the message and the call to you',

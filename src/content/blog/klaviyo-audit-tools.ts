@@ -532,7 +532,7 @@ export const post: BlogPost = {
         ['Milled', '53 million+ emails from 104,230 brands', 'Team 5: $249.92 a month', 'Basket and checkout emails not described', 'Category research back to 2012'],
         ['Panoramata', 'Competitors’ emails, texts, ads and flows', '$99 to $399 a month', 'Collection method not stated', 'Many competitors in one place'],
         [
-          'Obsession (ours): [Store lookup](/lookup), [Leak checks](/use-cases/leak-checks-for-ecommerce-stores), [Store sign-up and checkout](/recipes/mystery-shopper)',
+          'Obsession (ours): [Store lookup](/lookup), [Leak checks](/use-cases/leak-checks-for-ecommerce-stores), [Store sign-up and checkout](/blueprints/mystery-shopper)',
           'Every email a new customer gets after each step, dated, and every one that never came',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Reads what arrives, with the account’s settings left to Klaviyo',

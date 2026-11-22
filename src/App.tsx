@@ -9,6 +9,7 @@ import { catalog } from './content/catalog'
 import { headFor } from './content/head'
 import { ctaFor, nav } from './content/nav'
 import { absolute, cleanPath } from './content/paths'
+import { pieceOrder, piecePaths } from './content/piecePaths'
 import { recipeWords, refWords, studyWords } from './content/words'
 import { JAMES_PATHS, isJamesPath } from './legacy/jamesPaths'
 import { lazyPage, type LazyPage } from './lib/lazy'
@@ -43,7 +44,13 @@ const Blog = page('Blog')
 const BlogPost = page<{ slug: string }>('BlogPost', 'BlogPostAt')
 const SampleOutput = page('SampleOutput')
 const Privacy = page('Privacy')
+const Security = page('Security')
 const Lookup = page('Lookup')
+const Pricing = page('Pricing')
+const PricingRates = page('PricingRates')
+const WebBehindTheLogin = page('WebBehindTheLogin')
+/* Each piece's own page (content/pieces), one component for all 6. */
+const Piece = page<{ path: string }>('Piece', 'PieceAt')
 const Agents = page('Agents')
 const NotFound = page('NotFound')
 const Reference = page<{ path: string }>('Reference', 'ReferenceAt')
@@ -51,6 +58,7 @@ const AlternativesHub = page('ReferenceHub', 'AlternativesHub')
 const GlossaryHub = page('ReferenceHub', 'GlossaryHub')
 
 const RECIPES = new Set(catalog.recipes.map((r) => r.slug))
+const PIECES = new Set(Object.values(piecePaths))
 /* The worked examples the study system draws. The pages in James's format (legacy/jamesPaths) are their own pages at their own addresses. */
 const STUDIES = new Set(catalog.studies.map((s) => s.path).filter((p) => !isJamesPath(p)))
 const POSTS = new Set(catalog.posts.map((p) => p.slug))
@@ -64,12 +72,16 @@ const PAGES: Record<string, LazyPage> = {
   '/marketing': Marketing,
   '/developers': Developers,
   '/verify': Verify,
-  '/recipes': Recipes,
+  '/blueprints': Recipes,
   '/resources': Resources,
   '/use-cases': UseCases,
   '/sample-output': SampleOutput,
   '/privacy': Privacy,
+  '/security': Security,
   '/lookup': Lookup,
+  '/pricing': Pricing,
+  '/pricing/rates': PricingRates,
+  '/use-cases/web-behind-the-login': WebBehindTheLogin,
   '/agents': Agents,
   '/alternatives': AlternativesHub,
   '/glossary': GlossaryHub,
@@ -87,7 +99,8 @@ function routeOf(path: string): { page: LazyPage; words?: { preload: () => Promi
   const p = cleanPath(path)
   const [, first, slug] = p.split('/')
   if (PAGES[p]) return { page: PAGES[p] }
-  if (first === 'recipes' && slug && RECIPES.has(slug)) return { page: Recipe, words: recipeWords(slug) }
+  if (PIECES.has(p)) return { page: Piece }
+  if (first === 'blueprints' && slug && RECIPES.has(slug)) return { page: Recipe, words: recipeWords(slug) }
   if (first === 'use-cases' && STUDIES.has(p)) return { page: UseCase, words: studyWords(p) }
   if (first === 'blog' && catalog.blogLive && slug && POSTS.has(slug)) return { page: BlogPost }
   if (REFERENCES.has(p)) return { page: Reference, words: refWords(p) }
@@ -234,7 +247,7 @@ function ctaAt(pathname: string) {
 
 /* The pages whose first view has no button of their own (their hero has no form), so the bar's call to action is the
    view's 1 primary from the first paint. Everywhere else it starts as the secondary beside the hero's own (Nav.tsx). */
-const NO_HERO_FORM = new Set(['/privacy', '/agents', '/recipes', '/resources', '/use-cases', '/blog', ...Object.values(JAMES_PATHS)])
+const NO_HERO_FORM = new Set(['/privacy', '/security', '/agents', '/pricing', '/pricing/rates', '/blueprints', '/resources', '/use-cases', '/blog', ...Object.values(JAMES_PATHS)])
 /* A comparison, an alternatives page or a glossary term opens on the article's header, with no form (pages/Reference). */
 const REFERENCE_PREFIXES = ['/blog/', '/compare/', '/alternatives/', '/glossary/']
 const heroFormAt = (clean: string) => !NO_HERO_FORM.has(clean) && !REFERENCE_PREFIXES.some((p) => clean.startsWith(p))
@@ -358,7 +371,7 @@ function PostRoute() {
    followed inside the app. */
 function TemplatesRedirect() {
   const { '*': rest = '' } = useParams()
-  return <Navigate to={rest ? `/recipes/${rest}` : '/recipes'} replace />
+  return <Navigate to={rest ? `/blueprints/${rest}` : '/blueprints'} replace />
 }
 
 /* The route tree, shared by the browser (BrowserRouter) and the prerender (StaticRouter). Each route maps to 1 named
@@ -379,9 +392,11 @@ export function AppRoutes() {
         <Route path="marketing" element={<Marketing />} />
         <Route path="developers" element={<Developers />} />
         <Route path="verify" element={<Verify />} />
-        <Route path="recipes" element={<Recipes />} />
-        <Route path="recipes/prospect-research" element={<Navigate to="/recipes/prospect-intelligence" replace />} />
-        <Route path="recipes/:slug" element={<RecipeRoute />} />
+        <Route path="blueprints" element={<Recipes />} />
+        <Route path="blueprints/:slug" element={<RecipeRoute />} />
+        {/* Recipes were renamed blueprints (21 Nov 2026); the host answers the old addresses with a 301 first. */}
+        <Route path="recipes/prospect-research" element={<Navigate to="/blueprints/prospect-intelligence" replace />} />
+        <Route path="recipes/*" element={<TemplatesRedirect />} />
         <Route path="resources" element={<Resources />} />
         <Route path="use-cases" element={<UseCases />} />
         <Route path={JAMES_PATHS.prospect.slice(1)} element={<ProspectIntelligence />} />
@@ -389,15 +404,22 @@ export function AppRoutes() {
         <Route path={JAMES_PATHS.retention.slice(1)} element={<RetentionAgencies />} />
         <Route path={JAMES_PATHS.stores.slice(1)} element={<EcommerceStores />} />
         <Route path={JAMES_PATHS.cro.slice(1)} element={<CroAgencies />} />
+        <Route path="use-cases/web-behind-the-login" element={<WebBehindTheLogin />} />
         <Route path="use-cases/:slug" element={<UseCaseRoute />} />
         {catalog.blogLive && <Route path="blog" element={<Blog />} />}
         {catalog.blogLive && <Route path="blog/:slug" element={<PostRoute />} />}
         <Route path="sample-output" element={<SampleOutput />} />
         <Route path="privacy" element={<Privacy />} />
+        <Route path="security" element={<Security />} />
         <Route path="lookup" element={<Lookup />} />
+        <Route path="pricing" element={<Pricing />} />
+        <Route path="pricing/rates" element={<PricingRates />} />
+        {pieceOrder.map((id) => (
+          <Route key={id} path={piecePaths[id].slice(1)} element={<Piece key={id} path={piecePaths[id]} />} />
+        ))}
         <Route path="agents" element={<Agents />} />
         <Route path="sample-report" element={<Navigate to="/sample-output" replace />} />
-        <Route path="templates" element={<Navigate to="/recipes" replace />} />
+        <Route path="templates" element={<Navigate to="/blueprints" replace />} />
         <Route path="templates/*" element={<TemplatesRedirect />} />
         <Route path="*" element={<NotFound />} />
       </Route>

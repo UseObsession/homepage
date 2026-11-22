@@ -363,11 +363,11 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '[Competitor tracking](/recipes/competitor-tracking) signs up to every competitor and logs each email, offer, price change and public ad.',
-        '[Price watch](/recipes/price-watch) checks every competitor’s prices, offers and delivery each morning, plus the codes they only send subscribers.',
-        '[Trial teardown](/recipes/trial-teardown) starts a competitor’s free trial and logs every onboarding email, prompt and offer, day by day.',
-        'To [track competitor emails](/recipes/email-sms-tracking), Obsession subscribes to every brand on your list and sets their emails side by side: who sends most, and who discounts first.',
-        'The [Mystery shopper](/recipes/mystery-shopper) recipe goes through your own business, or a client’s, as a customer does, from the first click to the last email.',
+        '[Competitor tracking](/blueprints/competitor-tracking) signs up to every competitor and logs each email, offer, price change and public ad.',
+        '[Price watch](/blueprints/price-watch) checks every competitor’s prices, offers and delivery each morning, plus the codes they only send subscribers.',
+        '[Trial teardown](/blueprints/trial-teardown) starts a competitor’s free trial and logs every onboarding email, prompt and offer, day by day.',
+        'To [track competitor emails](/blueprints/email-sms-tracking), Obsession subscribes to every brand on your list and sets their emails side by side: who sends most, and who discounts first.',
+        'The [Mystery shopper](/blueprints/mystery-shopper) blueprint goes through your own business, or a client’s, as a customer does, from the first click to the last email.',
       ],
     },
     {

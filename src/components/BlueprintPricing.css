@@ -1,0 +1,142 @@
+/* A blueprint's pricing table (components/BlueprintPricing), on the design system's cards (surfaces.css .ob-card, Weekly
+   .ob-card--raised), badge and buttons, in both themes. Every class starts s-bpp. The cards follow the table's own width
+   (a named container, so the page's other container rules never meet it): 1 column, 2 from 560px, 4 from 960px, where
+   each card's 4 rows (the month, "$N a month", what a month like it brings, button) line up across the row. In 1 or 2
+   columns the list takes the slack, so the buttons of a row sit on 1 line. The switch above a blueprint's tables (mystery
+   shopping: Agencies or Ecommerce brands) is the design system's pill tabs (.ob-ptabs). Spacing sits on the 4px grid. */
+
+.s-bpp { container: s-bpp / inline-size; min-width: 0; }
+
+.s-bpp__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-16);
+}
+@container s-bpp (min-width: 560px) {
+  .s-bpp__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.s-bpp__plan.ob-card {
+  grid-template-rows: auto auto 1fr auto;
+  gap: 0;
+  padding: var(--ob-space-24) var(--ob-space-20);
+  border-radius: var(--ob-radius-lg);
+}
+@container s-bpp (min-width: 960px) {
+  .s-bpp__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(4, auto);
+    row-gap: 0;
+  }
+  .s-bpp__plan.ob-card { grid-row: span 4; grid-template-rows: subgrid; }
+}
+
+/* Weekly: the raised face and a control-weight edge, its tag and the row's 1 primary button. */
+.s-bpp__plan--featured.ob-card--raised {
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset, var(--ob-highlight), var(--ob-shadow-2);
+}
+
+.s-bpp__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-8);
+  min-height: 24px;
+}
+.s-bpp__name {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+/* The price row: the figure and "a month". */
+.s-bpp__cost {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--ob-space-8);
+  margin: var(--ob-space-12) 0 0;
+  color: var(--ob-text);
+}
+.s-bpp__amount {
+  font: var(--ob-type-h2);
+  letter-spacing: var(--ob-type-h2-tracking);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.s-bpp__per {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+}
+
+.s-bpp__rows {
+  display: grid;
+  align-content: start;
+  margin: var(--ob-space-20) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.s-bpp__row {
+  padding-block: var(--ob-space-8);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+.s-bpp__row:last-child { padding-bottom: 0; }
+
+.s-bpp__cta { align-self: end; margin-top: var(--ob-space-24); }
+
+/* The line under the cards and the link to every rate. */
+.s-bpp__more {
+  max-width: 64ch;
+  margin: var(--ob-space-24) 0 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+/* The switch above a blueprint's tables: the pill rail on its own line, the chosen table under it. */
+.s-bpp-switch { min-width: 0; }
+.s-bpp-switch__rail { margin: 0 0 var(--ob-space-24); }
+.s-bpp-switch__panel[hidden] { display: none; }
+
+/* The journeys the buyer ticks above the cards (founders, 22 Nov 2026: mystery shopping): 1 tile per journey, its name
+   and what it does, the box ticked or not; the cards' prices follow them. 1 column on a phone, 2 from 560px, 4 from
+   960px, like the cards under them. */
+.s-bpp-journeys { min-width: 0; margin: 0 0 var(--ob-space-24); padding: 0; border: 0; }
+.s-bpp-journeys__legend {
+  margin: 0 0 var(--ob-space-12);
+  padding: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  font-weight: var(--ob-weight-medium);
+  color: var(--ob-text);
+}
+.s-bpp-journeys__list { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-8); }
+@container s-bpp (min-width: 560px) { .s-bpp-journeys__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container s-bpp (min-width: 960px) { .s-bpp-journeys__list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.s-bpp-journey {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  min-height: 44px;
+  padding: var(--ob-space-12);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-sm);
+  background: var(--ob-surface, transparent);
+  cursor: pointer;
+}
+.s-bpp-journey.is-on { border-color: var(--ob-text-3); }
+.s-bpp-journey:has(.s-bpp-journey__box:disabled) { cursor: default; }
+.s-bpp-journey:has(.s-bpp-journey__box:focus-visible) { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+.s-bpp-journey__box { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--ob-text); }
+.s-bpp-journey__text { display: grid; gap: var(--ob-space-2); min-width: 0; }
+.s-bpp-journey__name { font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+.s-bpp-journey__line { font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-2); text-wrap: pretty; }

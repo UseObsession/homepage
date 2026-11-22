@@ -201,7 +201,7 @@ export const post: BlogPost = {
         ['Your own team: by hand', 'Knows the brand and its context', 'Your hours at your rate', 'Time for every check, every week', '1 to 3 companies, once'],
         ['AI browser agent: ChatGPT cloud browser', 'Completes one web task on request', 'Paid ChatGPT plans', 'No inbox or number described', 'One-off lookups'],
         ['AI customers you build: retail services', 'Every email and page for months, with evidence', 'About $2 a month each at retail', 'Identity cost grows with every company', 'Developers watching a few hundred companies'],
-        ['Obsession (ours): [Competitor tracking](/recipes/competitor-tracking), [Mystery shopper](/recipes/mystery-shopper)', 'What any company shows only to customers, dated, for months', 'Early access, onboarding teams now. Priced per call or per company watched', 'Stops at bot walls and CAPTCHAs', 'What a real customer gets at many companies, for months'],
+        ['Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Mystery shopper](/blueprints/mystery-shopper)', 'What any company shows only to customers, dated, for months', 'Early access, onboarding teams now. Priced per call or per company watched', 'Stops at bot walls and CAPTCHAs', 'What a real customer gets at many companies, for months'],
       ],
     },
     {
@@ -332,5 +332,5 @@ export const post: BlogPost = {
     { title: 'Frequently asked questions', publisher: 'Secret View', url: SECRET_VIEW },
     { title: 'Market research analysts: Occupational Outlook Handbook', publisher: 'US Bureau of Labor Statistics', url: BLS },
   ],
-  related: ['ai-customers', 'how-ai-customers-work', 'hire-ai-customers', 'ai-customers-for-developers', 'recipe:mystery-shopper', 'recipe:competitor-tracking'],
+  related: ['/pricing', 'ai-customers', 'how-ai-customers-work', 'hire-ai-customers', 'ai-customers-for-developers', 'recipe:mystery-shopper', 'recipe:competitor-tracking'],
 }

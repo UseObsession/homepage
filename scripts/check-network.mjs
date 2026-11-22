@@ -41,7 +41,7 @@ const pathOf = (f) => {
 const NOINDEX = /<meta name="robots" content="noindex"/
 const pages = new Map(files.map((f) => [pathOf(f), readFileSync(f, 'utf8')]).filter(([, html]) => !NOINDEX.test(html)))
 const kindOf = (p) =>
-  p.startsWith('/blog/') ? 'post' : p.startsWith('/recipes/') ? 'recipe' : p.startsWith('/use-cases/') ? 'use case' : READERS.includes(p) ? 'reader' : 'page'
+  p.startsWith('/blog/') ? 'post' : p.startsWith('/blueprints/') ? 'recipe' : p.startsWith('/use-cases/') ? 'use case' : READERS.includes(p) ? 'reader' : 'page'
 const mainOf = (html) => {
   const i = html.indexOf('<main')
   const j = html.lastIndexOf('</main>')
@@ -97,5 +97,5 @@ if (problems.length) {
 }
 const count = (k) => [...pages.keys()].filter((p) => kindOf(p) === k).length
 console.log(
-  `Checked ${pages.size} pages as one network: ${count('post')} guides, ${count('recipe')} recipes and ${count('use case')} use cases, and every page has links in.`,
+  `Checked ${pages.size} pages as one network: ${count('post')} guides, ${count('recipe')} blueprints and ${count('use case')} use cases, and every page has links in.`,
 )

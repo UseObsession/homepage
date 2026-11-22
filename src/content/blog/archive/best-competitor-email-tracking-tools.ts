@@ -309,7 +309,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It starts a competitor’s trial as any new user would, logs every email, prompt and offer by trial day, and closes the trial the moment a rep writes or calls ([trial teardown](/recipes/trial-teardown)).',
+      text: 'It starts a competitor’s trial as any new user would, logs every email, prompt and offer by trial day, and closes the trial the moment a rep writes or calls ([trial teardown](/blueprints/trial-teardown)).',
     },
     {
       kind: 'screen',
@@ -323,13 +323,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Suits** [agencies](/agencies) and B2B teams who need a dated record of a specific journey at named competitors, and [marketing teams](/marketing) who want texts and emails on 1 timeline. **Doesn’t suit** a team that wants ideas from thousands of brands or years of history. [Competitor tracking](/recipes/competitor-tracking) adds competitors’ prices, ads and pages to the same record, and agencies use the same outside-in view to [win clients with a free audit](/blog/free-audit-agency-clients).',
+      text: '**Suits** [agencies](/agencies) and B2B teams who need a dated record of a specific journey at named competitors, and [marketing teams](/marketing) who want texts and emails on 1 timeline. **Doesn’t suit** a team that wants ideas from thousands of brands or years of history. [Competitor tracking](/blueprints/competitor-tracking) adds competitors’ prices, ads and pages to the same record, and agencies use the same outside-in view to [win clients with a free audit](/blog/free-audit-agency-clients).',
     },
     {
       kind: 'cta',
       text: 'A declared AI subscriber on each competitor’s list, every email and text on 1 timeline, continuously.',
-      to: '/recipes/email-sms-tracking',
-      label: 'The email and SMS tracking recipe',
+      to: '/blueprints/email-sms-tracking',
+      label: 'The email and SMS tracking blueprint',
     },
 
     { kind: 'h2', id: 'method', text: 'Every price and feature here was checked on the vendor’s own pages on 3 October 2026' },

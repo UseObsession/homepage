@@ -320,7 +320,7 @@ export const post: BlogPost = {
         GOOGLE_GUIDE +
         '), so a tool reports what an assistant answered without access to the reasons. Rand Fishkin’s test for any provider is whether it [“shows their math”](' +
         SPARKTORO +
-        '). If you need each wrong answer traced to the page it cites and asked again until it changes, use Obsession. For a daily count of how often your brand is named across many prompts and countries, the visibility tools are built for that job.',
+        '). If you need each wrong answer traced to the page it cites and asked again until it changes, use Obsession’s [listings and AI answers check](/blueprints/listings-ai-answers). For a daily count of how often your brand is named across many prompts and countries, the visibility tools are built for that job.',
     },
     {
       kind: 'cta',

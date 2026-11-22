@@ -14,48 +14,52 @@
 /blog/black-friday-rival-report-template/hero-1760.webp  /blog/black-friday-competitor-email-report-template/hero-1760.webp  301
 /blog/black-friday-rival-report-template/hero-880.webp   /blog/black-friday-competitor-email-report-template/hero-880.webp   301
 /blog/black-friday-rival-report-template/thumb-640.webp  /blog/black-friday-competitor-email-report-template/thumb-640.webp  301
-/recipes/prospect-research    /recipes/prospect-intelligence  301
-/recipes/prospect-research/   /recipes/prospect-intelligence  301
-/recipes/speed-to-lead        /recipes/lead-leaks             301
-/recipes/speed-to-lead/       /recipes/lead-leaks             301
+/recipes/prospect-research    /blueprints/prospect-intelligence  301
+/recipes/prospect-research/   /blueprints/prospect-intelligence  301
+/recipes/speed-to-lead        /blueprints/lead-leaks             301
+/recipes/speed-to-lead/       /blueprints/lead-leaks             301
 # The ecommerce agencies' mystery shopping page, merged into leak checks on 21 Oct 2026.
 /use-cases/mystery-shopping-for-ecommerce-agencies    /use-cases/leak-checks-for-retention-agencies  301
 /use-cases/mystery-shopping-for-ecommerce-agencies/   /use-cases/leak-checks-for-retention-agencies  301
+# Mystery shopping for your store, merged back into the one mystery shopping page on 22 Nov 2026 (founders): its
+# pricing table switches between agencies and ecommerce brands.
+/blueprints/store-mystery-shopper     /blueprints/mystery-shopper  301
+/blueprints/store-mystery-shopper/    /blueprints/mystery-shopper  301
 # The seller's representative recipes, retired from the site in the October rewrite (COPY.md, "Recipes").
-/recipes/account-handover           /recipes                        301
-/recipes/account-handover/          /recipes                        301
-/recipes/business-case              /recipes                        301
-/recipes/business-case/             /recipes                        301
-/recipes/cancellation-saves         /recipes                        301
-/recipes/cancellation-saves/        /recipes                        301
-/recipes/client-upsells             /recipes                        301
-/recipes/client-upsells/            /recipes                        301
-/recipes/expansion-offers           /recipes                        301
-/recipes/expansion-offers/          /recipes                        301
-/recipes/get-paid                   /recipes                        301
-/recipes/get-paid/                  /recipes                        301
-/recipes/inbound-quotes             /recipes                        301
-/recipes/inbound-quotes/            /recipes                        301
-/recipes/renewal-negotiation        /recipes                        301
-/recipes/renewal-negotiation/       /recipes                        301
-/recipes/review-requests            /recipes                        301
-/recipes/review-requests/           /recipes                        301
-/recipes/software-renewals          /recipes                        301
-/recipes/software-renewals/         /recipes                        301
-/recipes/supplier-quotes            /recipes                        301
-/recipes/supplier-quotes/           /recipes                        301
+/recipes/account-handover           /blueprints                        301
+/recipes/account-handover/          /blueprints                        301
+/recipes/business-case              /blueprints                        301
+/recipes/business-case/             /blueprints                        301
+/recipes/cancellation-saves         /blueprints                        301
+/recipes/cancellation-saves/        /blueprints                        301
+/recipes/client-upsells             /blueprints                        301
+/recipes/client-upsells/            /blueprints                        301
+/recipes/expansion-offers           /blueprints                        301
+/recipes/expansion-offers/          /blueprints                        301
+/recipes/get-paid                   /blueprints                        301
+/recipes/get-paid/                  /blueprints                        301
+/recipes/inbound-quotes             /blueprints                        301
+/recipes/inbound-quotes/            /blueprints                        301
+/recipes/renewal-negotiation        /blueprints                        301
+/recipes/renewal-negotiation/       /blueprints                        301
+/recipes/review-requests            /blueprints                        301
+/recipes/review-requests/           /blueprints                        301
+/recipes/software-renewals          /blueprints                        301
+/recipes/software-renewals/         /blueprints                        301
+/recipes/supplier-quotes            /blueprints                        301
+/recipes/supplier-quotes/           /blueprints                        301
 # AI checkout test, retired on 22 Oct 2026 (James: too narrow).
-/recipes/ai-checkout-test            /recipes                        301
-/recipes/ai-checkout-test/           /recipes                        301
+/recipes/ai-checkout-test            /blueprints                        301
+/recipes/ai-checkout-test/           /blueprints                        301
 /founders                     /                               301
 /sample-report                /sample-output                  301
 /sample-report/               /sample-output                  301
-/templates                    /recipes                        301
-/templates/                   /recipes                        301
-/templates/prospect-research  /recipes/prospect-intelligence  301
-/templates/prospect-research/ /recipes/prospect-intelligence  301
-/templates/speed-to-lead      /recipes/lead-leaks             301
-/templates/speed-to-lead/     /recipes/lead-leaks             301
+/templates                    /blueprints                        301
+/templates/                   /blueprints                        301
+/templates/prospect-research  /blueprints/prospect-intelligence  301
+/templates/prospect-research/ /blueprints/prospect-intelligence  301
+/templates/speed-to-lead      /blueprints/lead-leaks             301
+/templates/speed-to-lead/     /blueprints/lead-leaks             301
 
 # The old site's indexed addresses ended in a slash: every page's slashed address is sent for good to the canonical
 # address without it (a new page adds its line here).
@@ -64,13 +68,17 @@
 /sales/                       /sales                          301
 /marketing/                   /marketing                      301
 /developers/                  /developers                     301
-/recipes/                     /recipes                        301
+/recipes/                     /blueprints                        301
 /sample-output/               /sample-output                  301
 /privacy/                     /privacy                        301
 /agents/                      /agents                         301
 /verify/                      /verify                         301
 /resources/                   /resources                      301
 /use-cases/                   /use-cases                      301
+
+# Recipes were renamed blueprints on 21 Nov 2026 (James): every old recipe address goes to its blueprint for good.
+/recipes                      /blueprints                     301
+/blueprints/                  /blueprints                     301
 
 # Short links. /join is the waitlist form on the home page (its #join section), the address banners, profiles and
 # posts print (Seun, 25 Oct 2026). 302, not 301, so /join can become its own page later without browsers holding on
@@ -79,7 +87,9 @@
 /join/                        /#join                          302
 
 # Patterns. A slashed old template address goes straight to its recipe in 1 hop, never through /recipes/SLUG/.
-/templates/:slug/             /recipes/:slug                  301
-/templates/*                  /recipes/:splat                 301
-/recipes/:slug/               /recipes/:slug                  301
+/templates/:slug/             /blueprints/:slug                  301
+/templates/*                  /blueprints/:splat                 301
+/recipes/:slug/               /blueprints/:slug               301
+/blueprints/:slug/            /blueprints/:slug               301
 /use-cases/:slug/             /use-cases/:slug                301
+/recipes/:slug                /blueprints/:slug               301

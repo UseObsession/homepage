@@ -23,7 +23,7 @@ import './ScreenTabs.css'
      screen, finished. Reduced motion keeps every screen finished and never advances. */
 
 const UI = {
-  recipe: 'See the recipe',
+  recipe: 'See the blueprint',
   pause: 'Pause the example screens',
 }
 
@@ -199,7 +199,7 @@ export function ScreenTabs({ screens, labelledBy, workspace }: { screens: HeroSc
                for screen readers. */
             const go = t.link
               ? { to: t.link.to, label: t.link.label, name: t.tab }
-              : recipe && { to: `/recipes/${recipe.slug}`, label: UI.recipe, name: recipe.name }
+              : recipe && { to: `/blueprints/${recipe.slug}`, label: UI.recipe, name: recipe.name }
             return (
               <div
                 key={t.screen}

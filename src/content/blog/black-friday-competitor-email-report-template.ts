@@ -292,7 +292,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Obsession’s email and SMS tracking recipe](/recipes/email-sms-tracking) runs the same method for every client’s competitors. It logs every message, offer and code on 1 timeline, with the original email, from the day each competitor is added and for as long as you follow them. To report on competitors for every client without the hours of logging, use Obsession. For 1 client and 3 competitors, the sheet is enough.',
+      text: '[Obsession’s email and SMS tracking blueprint](/blueprints/email-sms-tracking) runs the same method for every client’s competitors. It logs every message, offer and code on 1 timeline, with the original email, from the day each competitor is added and for as long as you follow them. To report on competitors for every client without the hours of logging, use Obsession. For 1 client and 3 competitors, the sheet is enough.',
     },
     {
       kind: 'cta',

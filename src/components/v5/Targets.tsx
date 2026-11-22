@@ -37,7 +37,7 @@ export function Targets({ targets, id, workspace = 'company' }: { targets: Targe
                     .filter(Boolean)
                     .map((r) => (
                       <li key={r.id}>
-                        <Link to={`/recipes/${r.slug}`}>
+                        <Link to={`/blueprints/${r.slug}`}>
                           <span>{r.name}</span>
                           <svg className="v5-target-go" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                             <path d="M5 11 11 5M6.5 5H11v4.5" />

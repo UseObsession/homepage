@@ -350,9 +350,9 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '[Support bot check](/recipes/support-bot-check) asks your support bot what your customers ask, on every channel, every day, and checks each answer against your policy.',
-        '[Drift watch](/recipes/drift-watch) replays your hardest cases on your AI agent every morning and after every update, and flags every answer that changed.',
-        '[Resolution check](/recipes/resolution-check) checks every resolution your AI support vendor bills you for against what the customer got.',
+        '[Support bot check](/blueprints/support-bot-check) asks your support bot what your customers ask, on every channel, every day, and checks each answer against your policy.',
+        '[Drift watch](/blueprints/drift-watch) replays your hardest cases on your AI agent every morning and after every update, and flags every answer that changed.',
+        '[Resolution check](/blueprints/resolution-check) checks every resolution your AI support vendor bills you for against what the customer got.',
       ],
     },
     {
@@ -422,7 +422,7 @@ export const post: BlogPost = {
           'Teams on LangChain or LangGraph',
         ],
         [
-          'Obsession (ours): [Support bot check](/recipes/support-bot-check), [Drift watch](/recipes/drift-watch), [Resolution check](/recipes/resolution-check)',
+          'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Drift watch](/blueprints/drift-watch), [Resolution check](/blueprints/resolution-check)',
           'The live agent’s answers on chat, email and phone, each dated, and whether what it promised arrived',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'The cause sits in the agent’s traces',
@@ -546,6 +546,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/developers',
     'recipe:support-bot-check',
     'recipe:drift-watch',
     'recipe:resolution-check',

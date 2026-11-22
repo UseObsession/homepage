@@ -155,7 +155,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “Login code by text in 8 seconds”, “Sign in link arrived in 6 seconds and opened the account”. **A pass:** every code within 60 seconds and every link resolving. [Website audit](/recipes/website-audit) runs this after every release, and [Delivery monitoring](/recipes/delivery-monitoring) follows the first 14 days in each country.',
+      text: '**Facts:** “Login code by text in 8 seconds”, “Sign in link arrived in 6 seconds and opened the account”. **A pass:** every code within 60 seconds and every link resolving. [Website audit](/blueprints/website-audit) runs this after every release, and [Delivery monitoring](/blueprints/delivery-monitoring) follows the first 14 days in each country.',
     },
 
     { kind: 'h3', id: 'shopping-agents', text: '2. Shopping agent readiness' },
@@ -181,7 +181,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “Pro plan cut from $49 to $39 a month”, “Subscriber code SAVE20 arrived, 20% off”. **A pass:** every change reported the day it happens, with a before and after. [Price watch](/recipes/price-watch) runs it as a recipe.',
+      text: '**Facts:** “Pro plan cut from $49 to $39 a month”, “Subscriber code SAVE20 arrived, 20% off”. **A pass:** every change reported the day it happens, with a before and after. [Price watch](/blueprints/price-watch) runs it as a blueprint.',
     },
 
     { kind: 'h3', id: 'competitor-feeds', text: '4. Competitor feeds in a marketing tool' },
@@ -191,7 +191,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “4 emails this week, 2 with offers”, “Welcome offer changed from 10% to 15%”. **A pass:** each new email in the feed within minutes of arriving. [Competitor tracking](/recipes/competitor-tracking) is the recipe behind it.',
+      text: '**Facts:** “4 emails this week, 2 with offers”, “Welcome offer changed from 10% to 15%”. **A pass:** each new email in the feed within minutes of arriving. [Competitor tracking](/blueprints/competitor-tracking) is the blueprint behind it.',
     },
 
     { kind: 'h3', id: 'prospect-facts', text: '5. Prospect facts in a sales agent or Clay' },
@@ -210,7 +210,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “No welcome email in 7 days”, “Opted in to texts, none arrived”. **A pass:** a verdict only once the sign up is confirmed, the spam folder checked and the full window watched. [Prospect intelligence](/recipes/prospect-intelligence) writes the verdict and a proof link back to Clay.',
+      text: '**Facts:** “No welcome email in 7 days”, “Opted in to texts, none arrived”. **A pass:** a verdict only once the sign up is confirmed, the spam folder checked and the full window watched. [Prospect intelligence](/blueprints/prospect-intelligence) writes the verdict and a proof link back to Clay.',
     },
 
     { kind: 'h3', id: 'support-bot', text: '6. Customer-side tests of your own support bot' },
@@ -222,7 +222,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “Chat said 60 day returns, the policy says 30”, “Handoff to a person in 4 minutes”. **A pass:** every answer matches the policy page. [Support bot check](/recipes/support-bot-check) runs it daily, and [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy) gives the questions for a check by hand.',
+      text: '**Facts:** “Chat said 60 day returns, the policy says 30”, “Handoff to a person in 4 minutes”. **A pass:** every answer matches the policy page. [Support bot check](/blueprints/support-bot-check) runs it daily, and [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy) gives the questions for a check by hand.',
     },
 
     { kind: 'h3', id: 'inbox-placement', text: '7. Inbox placement monitoring' },
@@ -244,7 +244,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “SPRING15 expired 12 days ago, still on 3 partner pages”, “Link lost its affiliate tag on redirect”. **A pass:** every live code works and every link keeps its tag. [Partner checks](/recipes/partner-checks) drafts a note to each partner for the team’s OK.',
+      text: '**Facts:** “SPRING15 expired 12 days ago, still on 3 partner pages”, “Link lost its affiliate tag on redirect”. **A pass:** every live code works and every link keeps its tag. [Partner checks](/blueprints/partner-checks) drafts a note to each partner for the team’s OK.',
     },
 
     { kind: 'h3', id: 'trials', text: '9. Trial teardowns' },
@@ -254,7 +254,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “Day 3: 20% off annual if upgraded within 48 hours”, “Day 13: trial ending email”. **A pass:** every email of the trial logged in order, to its last day. [Trial teardown](/recipes/trial-teardown) is the recipe.',
+      text: '**Facts:** “Day 3: 20% off annual if upgraded within 48 hours”, “Day 13: trial ending email”. **A pass:** every email of the trial logged in order, to its last day. [Trial teardown](/blueprints/trial-teardown) is the blueprint.',
     },
 
     { kind: 'h3', id: 'ai-disclosure', text: '10. AI disclosure checks' },
@@ -268,7 +268,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “Chat: AI notice in the first message”, “Phone: no notice before the first answer”. **A pass:** an AI notice first, a truthful answer when asked and a person within the target time. [AI disclosure check](/recipes/ai-disclosure-check) keeps a dated record of every check.',
+      text: '**Facts:** “Chat: AI notice in the first message”, “Phone: no notice before the first answer”. **A pass:** an AI notice first, a truthful answer when asked and a person within the target time. [AI disclosure check](/blueprints/ai-disclosure-check) keeps a dated record of every check.',
     },
 
     { kind: 'h2', id: 'options', text: 'Ways to build them, compared', compare: true },
@@ -410,6 +410,7 @@ export const post: BlogPost = {
     { title: 'Browserbase Pricing: Free, $20, $99, or Custom', publisher: 'Browserbase', url: BB_PRICING },
   ],
   related: [
+    '/developers',
     'long-running-ai-agents',
     'ai-customers-for-developers',
     'how-ai-customers-work',

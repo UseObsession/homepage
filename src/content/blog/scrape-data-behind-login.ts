@@ -420,7 +420,7 @@ export const post: BlogPost = {
           'A scheduled job around a form login',
         ],
         [
-          'Obsession (ours): [Competitor tracking](/recipes/competitor-tracking), [Trial teardown](/recipes/trial-teardown), [the API and MCP](/developers)',
+          'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Trial teardown](/blueprints/trial-teardown), [the API and MCP](/developers)',
           'What each company shows only to customers, sign-up to cancel, dated with its screenshot',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Leaves your own account’s data to your export or scraper',
@@ -528,6 +528,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/browser',
     'can-ai-agents-log-in-to-websites',
     'the-web-behind-the-login',
     'exa-vs-tavily-vs-firecrawl',

@@ -1,0 +1,348 @@
+/* /pricing (pages/Pricing.tsx), on the design system's tokens and type scale, in both themes. Every class starts s-pr.
+   The hero is the plain pages' centred hero (Notice.css), the closing call is the final block (FinalCta.css). The plans
+   are the system's cards (surfaces.css .ob-card, Startup .ob-card--raised); each calculator piece is a card with the
+   system's switch (forms.css .ob-switch), icon buttons (buttons.css .ob-btn--icon), field (.ob-input) and slider
+   (surfaces.css .ob-range); the summary takes the calculator's face and rows (.ob-calc-outs). Spacing sits on the 4px
+   grid. Nothing is wider than a phone's screen. */
+
+/* ---- The plans. The hero above closes with its block space, so the cards take no more. 1 column on a phone; 2 from
+   640px, with Enterprise across both; all 5 in 1 row from 1180px (on the wide wrap), where each card's top rows (name,
+   price, who it's for, button) line up across the row and the price takes the h3 size to fit. ---- */
+.s-pr-plans.s-section { padding-top: 0; }
+.s-pr-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-16);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 640px) {
+  .s-pr-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .s-pr-plan--enterprise.ob-card { grid-column: 1 / -1; }
+}
+.s-pr-plan.ob-card {
+  gap: 0;
+  padding: var(--ob-space-24) var(--ob-space-20);
+  border-radius: var(--ob-radius-lg);
+  scroll-margin-top: calc(var(--ob-nav-h, 64px) + var(--ob-space-16));
+}
+/* Startup: the raised face and a control-weight edge, its tag and the row's 1 primary button. */
+.s-pr-plan--featured.ob-card--raised {
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-ui) inset, var(--ob-highlight), var(--ob-shadow-2);
+}
+.s-pr-plan__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-8);
+  min-height: 24px;
+}
+.s-pr-plan__name {
+  margin: 0;
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+}
+.s-pr-plan__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--ob-space-8);
+  margin: var(--ob-space-16) 0 0;
+  color: var(--ob-text);
+}
+.s-pr-plan__amount {
+  font: var(--ob-type-h2);
+  letter-spacing: var(--ob-type-h2-tracking);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.s-pr-plan__lead,
+.s-pr-plan__per {
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+}
+/* The value tag in a paid plan's price line (James, 22 Nov 2026, the pill): a tinted pill under the price, "covers" and
+   "of usage" small, the figure big, all in the developers accent. Only where the fee covers more than it costs (Startup,
+   Scale): on Developer it is implied. */
+.s-pr-covers {
+  --s-pr-value: var(--s-accent-developers);
+  flex-basis: 100%;
+  min-width: 0;
+  margin-top: var(--ob-space-12);
+  color: var(--s-pr-value);
+  font-variant-numeric: tabular-nums;
+}
+.s-pr-covers__chip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--ob-space-6);
+  max-width: 100%;
+  padding: var(--ob-space-6) var(--ob-space-12);
+  border-radius: var(--ob-radius-pill);
+  background: color-mix(in srgb, var(--s-pr-value) 10%, transparent);
+  box-shadow: 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--s-pr-value) 32%, transparent) inset;
+}
+.s-pr-covers__word { font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); }
+.s-pr-covers__amount { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); line-height: 1.15; font-weight: var(--ob-weight-semibold); white-space: nowrap; }
+@media (min-width: 1180px) { .s-pr-covers__chip { gap: 0 var(--ob-space-4); padding-inline: var(--ob-space-8); } }
+.s-pr-plan__rates { color: inherit; text-decoration: underline; text-decoration-color: var(--ob-link-underline); text-underline-offset: 0.2em; }
+.s-pr-plan__rates:hover { text-decoration-color: currentColor; }
+.s-pr-sum__plans dt .s-pr-sum__sub { font-weight: var(--ob-weight-regular, 400); }
+.s-pr-plan__for {
+  margin: var(--ob-space-12) 0 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--s-read, var(--ob-text-2));
+  text-wrap: pretty;
+}
+.s-pr-plan__cta { align-self: start; margin-top: var(--ob-space-20); }
+.s-pr-plan__lists { display: grid; align-content: start; margin-top: var(--ob-space-24); }
+.s-pr-plan__rows { display: grid; margin: 0; padding: 0; list-style: none; }
+.s-pr-plan__row {
+  padding-block: var(--ob-space-8);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text);
+  font-variant-numeric: tabular-nums;
+  text-wrap: pretty;
+}
+.s-pr-plan__row:last-child { padding-bottom: 0; }
+@media (min-width: 1180px) {
+  .s-pr-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(5, auto);
+    row-gap: 0;
+    column-gap: var(--ob-space-12);
+  }
+  .s-pr-plan.ob-card { grid-row: span 5; grid-template-rows: subgrid; padding-inline: var(--ob-space-16); }
+  .s-pr-plan--enterprise.ob-card { grid-column: auto; }
+  .s-pr-plan__amount { font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); }
+}
+
+/* The line under the cards: extra usage, and the link to every rate. */
+.s-pr-texting + .s-pr-extra { margin-top: var(--ob-space-12); }
+.s-pr-extra {
+  max-width: 64ch;
+  margin: var(--ob-space-32) auto 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* ---- A section's claim and its line: each measured in its own type, so the claim keeps to 2 lines. ---- */
+.s-pr-head.s-head { max-width: none; }
+.s-pr-head > h2 { max-width: 20ch; margin: 0; }
+.s-pr-head > p { max-width: 58ch; margin: 0; }
+
+/* ---- The calculator: the pieces in 1 column, the summary beside them on the page's mirrored split from 960px, held in
+   view under the nav while the pieces scroll. Under 960px the summary follows the pieces, and its top (the best plan
+   and the total) is a bar pinned to the foot of the screen until the reader scrolls down to it. ---- */
+.s-pr-calc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+.s-pr-calc__pieces {
+  display: grid;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* A piece: its switch row (name and line on the left, the switch on the right), then its quantities while it is on. */
+.s-pr-piece.ob-card { gap: 0; padding: var(--ob-space-16) var(--ob-space-20); border-radius: var(--ob-radius-lg); }
+.s-pr-piece__switch.ob-switch { column-gap: var(--ob-space-16); align-items: center; }
+.s-pr-piece__name {
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
+  color: var(--ob-text);
+}
+.s-pr-piece__switch .s-pr-piece__name.ob-choice-text { padding-top: 0; }
+.s-pr-piece__line { color: var(--ob-text-2); }
+.s-pr-piece__body { display: grid; gap: var(--ob-space-16); margin-top: var(--ob-space-16); }
+.s-pr-piece__note {
+  margin: 0;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+
+/* A quantity: its label and rate, the stepper, and the slider under them where the range is large. On a phone the
+   stepper takes its own line; from 480px it sits to the right of the words. */
+.s-pr-q {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ob-space-4) var(--ob-space-16);
+  align-items: center;
+  padding-top: var(--ob-space-16);
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+}
+.s-pr-q__label {
+  font: var(--ob-type-label);
+  letter-spacing: var(--ob-type-label-tracking);
+  color: var(--ob-text);
+}
+.s-pr-q__rate {
+  margin: 0;
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
+  font-variant-numeric: tabular-nums;
+  text-wrap: pretty;
+}
+.s-pr-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--ob-space-4);
+  width: 100%;
+  max-width: 240px;
+  margin-top: var(--ob-space-8);
+}
+.s-pr-step__input.ob-input {
+  --ob-field-h: var(--ob-btn-height-md);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.s-pr-q__range { margin-top: var(--ob-space-4); }
+@media (min-width: 480px) {
+  .s-pr-q { grid-template-columns: minmax(0, 1fr) auto; }
+  .s-pr-q__label { grid-column: 1; grid-row: 1; align-self: end; }
+  .s-pr-q__rate { grid-column: 1; grid-row: 2; align-self: start; }
+  .s-pr-step { grid-column: 2; grid-row: 1 / span 2; width: 220px; margin-top: 0; }
+  .s-pr-q__range { grid-column: 1 / -1; }
+}
+
+/* The summary: the calculator's face, its top the best plan and the month's total. */
+.s-pr-sum__bar,
+.s-pr-sum__body {
+  min-width: 0;
+  padding-inline: clamp(var(--ob-space-20), 3vw, var(--ob-space-28));
+  color: var(--ob-text);
+}
+.s-pr-sum__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--ob-space-4) var(--ob-space-16);
+  padding-block: var(--ob-space-20) var(--ob-space-16);
+}
+.s-pr-sum__best,
+.s-pr-sum__total { display: grid; gap: var(--ob-space-2); margin: 0; min-width: 0; }
+.s-pr-sum__total { justify-items: end; text-align: right; }
+.s-pr-sum__k,
+.s-pr-sum__per {
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-2);
+}
+.s-pr-sum__plan {
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+}
+.s-pr-sum__figure {
+  font: var(--ob-type-h3);
+  letter-spacing: var(--ob-type-h3-tracking);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.s-pr-sum__body { display: grid; gap: var(--ob-space-20); padding-bottom: clamp(var(--ob-space-20), 3vw, var(--ob-space-28)); }
+.s-pr-sum__rows > div { padding-block: var(--ob-space-8); }
+.s-pr-sum__rows dt { min-width: 0; }
+.s-pr-sum__rows dd { text-align: right; font-size: var(--ob-type-small-size); }
+.s-pr-sum__rows .s-pr-sum__in { color: var(--ob-text-2); font-weight: var(--ob-weight-medium); }
+.s-pr-sum__sub {
+  display: block;
+  margin-top: var(--ob-space-2);
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+  font-variant-numeric: tabular-nums;
+}
+.s-pr-sum__rest { margin: 0; }
+/* The month on every plan: 1 row each, the best one in the text colour. */
+.s-pr-sum__each { display: grid; gap: var(--ob-space-4); }
+.s-pr-sum__plans { display: grid; margin: 0; }
+.s-pr-sum__plans > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  padding-block: var(--ob-space-4);
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  color: var(--ob-text-2);
+  font-variant-numeric: tabular-nums;
+}
+.s-pr-sum__plans dd { margin: 0; text-align: right; }
+.s-pr-sum__plans > .is-best { color: var(--ob-text); font-weight: var(--ob-weight-medium); }
+.s-pr-sum__actions { display: grid; justify-items: center; gap: var(--ob-space-12); }
+
+/* From 960px: 1 card beside the pieces, held under the nav; a long month scrolls inside it. */
+@media (min-width: 960px) {
+  .s-pr-calc {
+    grid-template-columns: var(--s-split-flip);
+    column-gap: var(--s-split-gap);
+  }
+  .s-pr-sum {
+    position: sticky;
+    top: calc(var(--ob-nav-h, 64px) + var(--ob-space-24));
+    max-height: calc(100dvh - var(--ob-nav-h, 64px) - var(--ob-space-48));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-radius: var(--ob-radius-lg);
+    background: var(--ob-sheen), var(--ob-surface);
+    box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2);
+  }
+  .s-pr-sum__bar { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+  .s-pr-sum__body { padding-top: var(--ob-space-4); }
+  .s-pr-sum__rows.ob-calc-outs { border-top: 0; }
+}
+
+/* Under 960px the summary's 2 parts join the calculator's own column (display: contents), so the bar can stay pinned to
+   the foot of the screen for the whole length of the pieces, then land on top of the month's lines. */
+@media (max-width: 959.98px) {
+  .s-pr-calc__pieces { margin-bottom: var(--ob-space-24); }
+  .s-pr-sum { display: contents; }
+  .s-pr-sum__bar,
+  .s-pr-sum__body { background: var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+  .s-pr-sum__bar {
+    position: sticky;
+    bottom: 0;
+    z-index: var(--ob-z-raised);
+    align-items: center;
+    padding-block: var(--ob-space-12);
+    border-radius: var(--ob-radius-lg) var(--ob-radius-lg) 0 0;
+    box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, 0 -12px 32px -16px rgb(0 0 0 / .45);
+  }
+  .s-pr-sum__body {
+    margin-top: calc(var(--ob-border-hair) * -1);
+    padding-top: var(--ob-space-4);
+    border-radius: 0 0 var(--ob-radius-lg) var(--ob-radius-lg);
+  }
+  .s-pr-sum__plan,
+  .s-pr-sum__figure { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); }
+}
+
+/* ---- The closing call (FinalCta.css): the claim, its line, the button to early access and a quiet second path. ---- */
+.s-pr-final__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--ob-space-16) var(--ob-space-24);
+  margin-top: var(--ob-space-40);
+}
+@media (max-width: 860px) {
+  .s-pr-final__actions { margin-top: var(--ob-space-32); }
+}

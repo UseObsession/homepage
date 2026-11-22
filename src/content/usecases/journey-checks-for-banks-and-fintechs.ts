@@ -156,10 +156,10 @@ export const study: UseCaseStudy = {
 
   more: {
     recipe: {
-      label: 'The recipe',
+      label: 'The blueprint',
       title: 'Support bot check',
       line: 'The same questions to a support bot every day, each answer checked against the policy.',
-      cta: { label: 'Learn more', to: '/recipes/support-bot-check' },
+      cta: { label: 'Learn more', to: '/blueprints/support-bot-check' },
     },
     sample: {
       label: '1 real run',

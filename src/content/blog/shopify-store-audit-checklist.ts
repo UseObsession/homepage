@@ -281,7 +281,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'A test by hand covers 1 inbox, 1 device and 1 moment. A theme publish, an app update or a discount edit can break a step the day after you test it, and [Shopify Status](' +
         STATUS +
-        ') notes that issues affecting a small share of stores may not appear there. Obsession runs that test after every change. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. On your own store, its [website audit](/recipes/website-audit) signs up as a fresh customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
+        ') notes that issues affecting a small share of stores may not appear there. Obsession runs that test after every change. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. On your own store, its [website audit](/blueprints/website-audit) signs up as a fresh customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
     },
     {
       kind: 'cta',
@@ -444,7 +444,7 @@ export const post: BlogPost = {
           'A redesign or a growth plan',
         ],
         [
-          'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Delivery monitoring](/recipes/delivery-monitoring)',
+          'Obsession (ours): [Website audit](/blueprints/website-audit), [Mystery shopper](/blueprints/mystery-shopper), [Delivery monitoring](/blueprints/delivery-monitoring)',
           'Every email, link and code a new customer meets after every release or each morning, kept with its time',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Sees what a new customer receives, and names any step behind a CAPTCHA',

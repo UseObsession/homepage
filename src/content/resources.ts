@@ -89,7 +89,7 @@ export const useCasesPage: UseCasesIndexPage = {
   guides: {
     id: 'every-job',
     name: 'Every use case, by industry',
-    line: '2 long guides, with the recipe for each use case.',
+    line: '2 long guides, with the blueprint for each use case.',
     rows: [
       {
         label: 'AI agent use cases for business',
@@ -143,7 +143,7 @@ export const blogUi = {
   oursTag: 'Ours',
   sourcesNote: (checked: string) => `In the order the article cites them. Every link was checked on ${checked}.`,
   related: 'Read next',
-  recipes: 'Recipes for this',
+  recipes: 'Blueprints for this',
   rss: 'RSS feed',
   featured: 'Latest',
   posts: (n: number) => (n === 1 ? '1 post' : `${n} posts`),

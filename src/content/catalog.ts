@@ -2,12 +2,30 @@
    the recipe lists and the links between pages read this. Each page's own words load with the page (App.tsx).
    On the server (the prerender) it is worked out here from the content. In the browser this module is the build's copy
    of its values (vite.config.ts contentIndex), so the app ships these lines instead of every page's words. */
+import { checkBlueprints, pricedTiers, pricedVariants } from './blueprint-tiers'
 import { agentsPage, blogLive, posts, recipeFileOf, recipes, refFileOf, references, studies, studyFileOf } from './registry'
 import { CONTACT_EMAIL } from './site'
 
+checkBlueprints(recipes)
+
 export const catalog = {
-  /* Every recipe, in the registry's order, and the file its words are in. */
-  recipes: recipes.map(({ id, slug, name, group, line }) => ({ id, slug, name, group, line, file: recipeFileOf[slug] })),
+  /* Every recipe, in the registry's order, and the file its words are in. `tiers` (priced by the pricing engine,
+     content/blueprint-tiers.ts, with each tier's includes from the recipe's file), `variants` (a blueprint whose table
+     switches between buyers, mystery shopping: each set of months with its label; [] for the rest) and `per` make its pricing table on
+     its own page and in the audience pages' pricing tabs on /agencies, /marketing and /sales (content/recipe-page.ts
+     blueprintPricing), so the browser never carries the engine or the pricing JSON, and those pages never import a
+     recipe's words. */
+  recipes: recipes.map((r) => ({
+    id: r.id,
+    slug: r.slug,
+    name: r.name,
+    group: r.group,
+    line: r.line,
+    per: r.per,
+    tiers: pricedTiers(r),
+    variants: pricedVariants(r),
+    file: recipeFileOf[r.slug],
+  })),
   studies: studies.map(({ name, line, meta }) => ({ name, line, path: meta.path, file: studyFileOf[meta.path] })),
   /* Every post, newest first: what a list of posts shows, and the hub and lead the Resources menu shows. */
   posts: posts.map(({ slug, title, dek, category, published, readingMinutes, featured }) => ({

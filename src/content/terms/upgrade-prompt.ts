@@ -70,7 +70,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: '[Trial teardown](/recipes/trial-teardown), a ready-made collection, gathers every email, prompt, limit and offer in a competitor’s trial by trial day.',
+      text: '[Trial teardown](/blueprints/trial-teardown), a ready-made collection, gathers every email, prompt, limit and offer in a competitor’s trial by trial day.',
     },
     {
       kind: 'faq',

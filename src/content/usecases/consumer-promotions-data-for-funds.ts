@@ -159,10 +159,10 @@ export const study: UseCaseStudy = {
 
   more: {
     recipe: {
-      label: 'The recipe',
+      label: 'The blueprint',
       title: 'Email and SMS tracking',
       line: 'Every email and text the brands on your list send a subscriber, side by side: who sends most, and who discounts first.',
-      cta: { label: 'Learn more', to: '/recipes/email-sms-tracking' },
+      cta: { label: 'Learn more', to: '/blueprints/email-sms-tracking' },
     },
     sample: {
       label: '1 real run',

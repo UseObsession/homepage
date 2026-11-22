@@ -22,10 +22,11 @@ import './Nav.css'
 /* The site navigation, on the design system's .ob-nav, .ob-menu and .ob-mnav (docs/REBUILD.md, section 7; the spec is
    _research/nav/NAV.md in the workspace).
    Bar, since 9 Nov (James, after Exa's): the lockup; Products, Solutions and Resources, each a button that opens its
-   menu; Developers as a plain link; the theme switch, Sample data and the page's 1 call to action. Products lists the
-   ways to get the data with the integrations under them; Solutions puts the use cases beside the teams and industries;
-   Resources keeps the proof and the reading, with the rest of the company in a side column. Each tool row has an icon,
-   a name and 1 line. Under 860px the menu button opens the phone sheet, which lists the same 3 menus.
+   menu; Developers and Pricing (since 21 Nov, James) as plain links; the theme switch, Sample data and the page's 1
+   call to action. Products lists the ways to get the data with the integrations under them; Solutions puts the use
+   cases beside the teams and industries; Resources keeps the proof and the reading, with the rest of the company in a
+   side column. Each tool row has an icon, a name and 1 line. Under 860px the menu button opens the phone sheet, which
+   lists the same 3 menus, with Developers and Pricing under Resources.
    The menus are disclosures (a button with aria-expanded and aria-controls over a panel of links), not ARIA menus. They
    open on click and keys, and on a fine pointer also on hover after a short pause; Escape closes and returns focus.
    The sheet holds focus inside the nav and locks the page behind it. */
@@ -51,7 +52,7 @@ const sectionOf = (path: string): MenuId | null => {
   if (solutionPaths.has(path)) return 'solutions'
   /* The comparisons, alternatives and glossary terms sit under Compare and Glossary (content/reference.ts). */
   if (resourcePaths.has(path) || ['/blog/', '/compare/', '/alternatives', '/glossary/'].some((p) => path.startsWith(p))) return 'resources'
-  if (path === '/recipes' || path.startsWith('/recipes/')) return 'products'
+  if (path === '/blueprints' || path.startsWith('/blueprints/')) return 'products'
   if (path.startsWith('/use-cases/')) return 'solutions'
   return null
 }
@@ -234,6 +235,9 @@ const ICONS: Record<NavIcon, string> = {
   cart: '<path d="M1.5 2.5h2l1.6 7.5h7l1.4-5.5H4.3"/><circle cx="6.5" cy="13" r=".9"/><circle cx="11.5" cy="13" r=".9"/>',
   shield: '<path d="M8 1.8 13 3.6v4c0 3-2.1 5.4-5 6.6-2.9-1.2-5-3.6-5-6.6v-4Z"/><path d="m5.8 8 1.6 1.6 2.9-3"/>',
   chart: '<path d="M2.5 2.5v11h11"/><path d="m4.5 10.5 3-3.5 2 2 4-5"/>',
+  phone: '<rect x="4.5" y="1.5" width="7" height="13" rx="1.5"/><path d="M7 12.2h2"/>',
+  browser: '<circle cx="8" cy="8" r="5.5"/><path d="M2.5 8h11M8 2.5c1.6 1.6 2.4 3.4 2.4 5.5S9.6 11.9 8 13.5C6.4 11.9 5.6 10.1 5.6 8S6.4 4.1 8 2.5Z"/>',
+  sandbox: '<rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="m4.8 6.5 2 1.5-2 1.5M8.2 10h3"/>',
 }
 function ToolIcon({ name }: { name: NavIcon }) {
   return (
@@ -731,11 +735,13 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
             </>,
           )}
 
-          <li className="s-nav__plain">
-            <NavLink className="ob-nav__link" to={nav.menus.developers.to} end onClick={close}>
-              {nav.menus.developers.label}
-            </NavLink>
-          </li>
+          {[nav.menus.developers, nav.menus.pricing].map((p) => (
+            <li className="s-nav__plain" key={p.to}>
+              <NavLink className="ob-nav__link" to={p.to} end onClick={close}>
+                {p.label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
 
         <div className="ob-nav__end">
@@ -798,7 +804,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
             {resources.label}
           </p>
           <ul className="ob-mnav__list s-mnav__tools">
-            {[...resources.items, nav.menus.developers, ...resources.more.items].map((p) => (
+            {[...resources.items, nav.menus.developers, nav.menus.pricing, ...resources.more.items].map((p) => (
               <li key={p.to}>{pageRow(p, ' s-page--sheet')}</li>
             ))}
           </ul>

@@ -342,7 +342,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For ABM and demand gen teams, [Prospect intelligence](/recipes/prospect-intelligence) and [Account watch](/recipes/account-watch) keep a customer account open at each target account and date each change in what it sends customers. That covers a new offer, a price, an email that stops, and the email platform behind each email and the week it changes. Each fact lands on the account in the CRM, in a table or at a webhook, for as long as you follow it. You can then see what each trigger does to pipeline sourced, MQL to SQL conversion and cost per opportunity. [Exa](' +
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For ABM and demand gen teams, [Prospect intelligence](/blueprints/prospect-intelligence) and [Account watch](/blueprints/account-watch) keep a customer account open at each target account and date each change in what it sends customers. That covers a new offer, a price, an email that stops, and the email platform behind each email and the week it changes. Each fact lands on the account in the CRM, in a table or at a webhook, for as long as you follow it. You can then see what each trigger does to pipeline sourced, MQL to SQL conversion and cost per opportunity. [Exa](' +
         EXA +
         ') gives agents the public web, funding and hiring triggers included, and Obsession gives them what each account sends the people who sign up; [the two work together](/compare/obsession-vs-exa).',
     },
@@ -408,7 +408,7 @@ export const post: BlogPost = {
           'Public triggers across a whole target list',
         ],
         [
-          'Obsession (ours): [Account watch](/recipes/account-watch), [Prospect intelligence](/recipes/prospect-intelligence), [Price watch](/recipes/price-watch)',
+          'Obsession (ours): [Account watch](/blueprints/account-watch), [Prospect intelligence](/blueprints/prospect-intelligence), [Price watch](/blueprints/price-watch)',
           'What each target account shows only to its customers, each dated: offers, prices, emails, texts, support answers, the email platform',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'An account not yet covered starts its history the day it is added\nSign-ups, baskets and checkouts stop short of paying',
@@ -470,7 +470,7 @@ export const post: BlogPost = {
         {
           q: 'How do you track trigger events for target accounts?',
           a: 'Public triggers come from funding databases, job change tracking, intent data, technology lookup tools and web search APIs such as Exa. Triggers in what an account sends its customers need a customer account at each target. That means an inbox and phone number, a dated baseline and a weekly check of every email, price and page. Obsession’s Account watch keeps those accounts open and dates each change.',
-          link: { label: 'Account watch', to: '/recipes/account-watch' },
+          link: { label: 'Account watch', to: '/blueprints/account-watch' },
         },
         {
           q: 'How fast should you act on a sales trigger event?',

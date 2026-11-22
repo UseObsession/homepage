@@ -13,7 +13,7 @@ export type Way = {
 export const ways: Record<WayId, Way> = {
   recipes: {
     id: 'recipes',
-    name: 'Recipes',
+    name: 'Blueprints',
     who: 'For most teams',
     line: 'Ready made checks for the jobs teams repeat. Add the companies, choose how often, get the report.',
   },
@@ -63,7 +63,7 @@ export const roles: Role[] = [
       { k: 'Capture', v: 'Every email and text, with screenshots' },
       { k: 'Report', v: 'One timeline per brand' },
     ],
-    note: 'Agencies use recipes and plain language tasks. No code needed.',
+    note: 'Agencies use blueprints and plain language tasks. No code needed.',
   },
   {
     id: 'sales',
@@ -82,7 +82,7 @@ export const roles: Role[] = [
       { k: 'Capture', v: 'Every reply, call and text, timed' },
       { k: 'Report', v: 'Reply time per account, as a sheet' },
     ],
-    note: 'Sales teams use recipes and plain language tasks. No code needed.',
+    note: 'Sales teams use blueprints and plain language tasks. No code needed.',
   },
   {
     id: 'marketing',
@@ -101,7 +101,7 @@ export const roles: Role[] = [
       { k: 'Capture', v: 'Every email, text and offer, with send times' },
       { k: 'Report', v: 'A timeline per competitor, and a weekly note' },
     ],
-    note: 'Marketing teams use recipes and plain language tasks. No code needed.',
+    note: 'Marketing teams use blueprints and plain language tasks. No code needed.',
   },
   {
     id: 'builder',

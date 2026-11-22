@@ -151,7 +151,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For a demo, the test buyer records whether the booking works and what follows it: the confirmation, the invite and the reminders. An [AI mystery shopper](/recipes/mystery-shopper) runs these steps as a new customer of a company’s own business, or a client’s with the client’s agreement. It starts the trial or requests the demo, then times every email and reply that follows.',
+      text: 'For a demo, the test buyer records whether the booking works and what follows it: the confirmation, the invite and the reminders. An [AI mystery shopper](/blueprints/mystery-shopper) runs these steps as a new customer of a company’s own business, or a client’s with the client’s agreement. It starts the trial or requests the demo, then times every email and reply that follows.',
     },
     {
       kind: 'p',
@@ -175,7 +175,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, the method strains as it grows. Reps recognise a colleague’s name, and a repeat address merges into an existing contact and routes differently from a new buyer. Someone also has to be at a desk at 21:00 on a Friday. [Speed to lead statistics](/blog/speed-to-lead-statistics) grades the published figures a team can set its targets against, and the [speed to lead test](/recipes/lead-leaks) times every first reply each day.',
+      text: 'By hand, the method strains as it grows. Reps recognise a colleague’s name, and a repeat address merges into an existing contact and routes differently from a new buyer. Someone also has to be at a desk at 21:00 on a Friday. [Speed to lead statistics](/blog/speed-to-lead-statistics) grades the published figures a team can set its targets against, and the [speed to lead test](/blueprints/lead-leaks) times every first reply each day.',
     },
 
     { kind: 'h2', id: 'competitors', text: 'Why not test a competitor’s sales team' },
@@ -193,7 +193,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Published tests already show how companies reply, and a team’s own form, chat and sales line are the ones it can fix. To watch competitors, [AI customers](/blog/ai-customers) join their public sign-ups the way any customer can and keep each email, offer and price they send, as [competitor tracking](/recipes/competitor-tracking) does.',
+      text: 'Published tests already show how companies reply, and a team’s own form, chat and sales line are the ones it can fix. To watch competitors, [AI customers](/blog/ai-customers) join their public sign-ups the way any customer can and keep each email, offer and price they send, as [competitor tracking](/blueprints/competitor-tracking) does.',
     },
 
     { kind: 'h2', id: 'ai-agents', text: 'AI agents on both sides of the form' },
@@ -208,8 +208,8 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '[Sales agent check](/recipes/sales-agent-check) asks a company’s AI sales agent what it charges every day and checks each answer against the price list.',
-        '[Outbound agent check](/recipes/outbound-agent-check) puts test prospects on an AI SDR’s lists, replies as prospects do and checks every email and call it sends them against the team’s rules.',
+        '[Sales agent check](/blueprints/sales-agent-check) asks a company’s AI sales agent what it charges every day and checks each answer against the price list.',
+        '[Outbound agent check](/blueprints/outbound-agent-check) puts test prospects on an AI SDR’s lists, replies as prospects do and checks every email and call it sends them against the team’s rules.',
       ],
     },
 
@@ -220,7 +220,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Lead leaks](/recipes/lead-leaks) sends a test lead through a company’s own form, chat and phone, and times every first reply on each channel. It shows who in the CRM picked each lead up, names each lead nobody answered and drafts the routing fix in the CRM the team connects, live after the team’s OK. Callbacks are logged as replies, and automatic replies are logged apart.',
+      text: '[Lead leaks](/blueprints/lead-leaks) sends a test lead through a company’s own form, chat and phone, and times every first reply on each channel. It shows who in the CRM picked each lead up, names each lead nobody answered and drafts the routing fix in the CRM the team connects, live after the team’s OK. Callbacks are logged as replies, and automatic replies are logged apart.',
     },
     {
       kind: 'p',
@@ -289,7 +289,7 @@ export const post: BlogPost = {
           'Setting a target',
         ],
         [
-          'Obsession (ours): [Lead leaks](/recipes/lead-leaks), [Mystery shopper](/recipes/mystery-shopper), [Sales agent check](/recipes/sales-agent-check), [Outbound agent check](/recipes/outbound-agent-check)',
+          'Obsession (ours): [Lead leaks](/blueprints/lead-leaks), [Mystery shopper](/blueprints/mystery-shopper), [Sales agent check](/blueprints/sales-agent-check), [Outbound agent check](/blueprints/outbound-agent-check)',
           'Every reply a buyer gets from a demo form, chat and sales line, kept with its time and its email, screenshot or call',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Real leads and their deals stay in the team’s CRM',

@@ -338,7 +338,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For [sales teams](/sales), [prospect intelligence](/recipes/prospect-intelligence) and [account watch](/recipes/account-watch) put a dated page 1 behind every business case in the pipeline. They keep it current for as long as you follow each account, so you can see what it does to win rate, deal size and sales cycle.',
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For [sales teams](/sales), [prospect intelligence](/blueprints/prospect-intelligence) and [account watch](/blueprints/account-watch) put a dated page 1 behind every business case in the pipeline. They keep it current for as long as you follow each account, so you can see what it does to win rate, deal size and sales cycle.',
     },
     {
       kind: 'cta',

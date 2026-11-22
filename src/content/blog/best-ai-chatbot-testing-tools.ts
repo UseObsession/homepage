@@ -484,7 +484,7 @@ export const post: BlogPost = {
           'A review of one bot, done for your team',
         ],
         [
-          'Obsession (ours): [Support bot check](/recipes/support-bot-check), [Voice agent check](/recipes/voice-agent-check), [Drift watch](/recipes/drift-watch), [AI disclosure check](/recipes/ai-disclosure-check), [Resolution check](/recipes/resolution-check), [Vendor agent check](/recipes/vendor-agent-check)',
+          'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check), [Drift watch](/blueprints/drift-watch), [AI disclosure check](/blueprints/ai-disclosure-check), [Resolution check](/blueprints/resolution-check), [Vendor agent check](/blueprints/vendor-agent-check)',
           'The live chat, email and phone asked daily and after updates, each answer dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Keeps what customers are told, on the channels your team names',

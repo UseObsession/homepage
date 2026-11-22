@@ -276,7 +276,7 @@ export function Recipes({ recipes, fine, id = 'recipes' }: { recipes: NonNullabl
     line: g.line,
     rows: g.items.flatMap(({ recipe, line }) => {
       const r = catalog.recipes.find((x) => x.id === recipe)
-      return r ? [{ label: r.name, to: `/recipes/${r.slug}`, line }] : []
+      return r ? [{ label: r.name, to: `/blueprints/${r.slug}`, line }] : []
     }),
   }))
   return (

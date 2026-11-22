@@ -1,0 +1,41 @@
+/* How it works on Home (HomeHowItWorks.tsx). The loop picture is drawn twice: the wide one from 1080px, the tall one
+   below, centred and no wider than 440px. Its grammar: boxes on the surface with a strong hairline, the event log solid
+   in the page's ink, a solid arrow for an event on its way, a dashed one for the agent's next move, a wave for live call
+   audio, and 1 dot in the developers' cobalt (styles/accents.css) for the one event to follow. Then the channels: 1 ruled
+   sheet of cards (3 across, 2 on a tablet, 1 on a phone), the cells split by hairlines. Tokens only, so both themes
+   hold; code lines wrap instead of scrolling. */
+
+/* ---- The picture ------------------------------------------------------------------------------------------------- */
+.s-hiw-fig { margin: 0 0 calc(var(--ob-space-block) * 1.5); }
+.s-hiw-d { display: block; width: 100%; height: auto; overflow: visible; text-rendering: geometricPrecision; }
+.s-hiw-tall { display: none; }
+@media (max-width: 1079px) {
+  .s-hiw-wide { display: none; }
+  .s-hiw-tall { display: block; max-width: 440px; margin-inline: auto; }
+}
+
+.s-hiw-d text { font-family: var(--ob-font-sans); fill: var(--ob-text-2); }
+.s-hiw-d .s-hiw-tn { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; fill: var(--ob-text); }
+.s-hiw-d .s-hiw-tn14 { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; fill: var(--ob-text); }
+.s-hiw-d .s-hiw-ts { font-size: 13px; font-weight: 400; fill: var(--ob-text-2); }
+.s-hiw-d .s-hiw-ts3 { font-size: 12.5px; font-weight: 400; fill: var(--ob-text-3); }
+.s-hiw-d .s-hiw-tv { font-size: 13.5px; font-weight: 500; fill: var(--ob-text); }
+.s-hiw-d .s-hiw-inv { fill: var(--ob-text-inverse); }
+.s-hiw-d .s-hiw-inv2 { fill: var(--ob-text-inverse); opacity: 0.72; }
+
+.s-hiw-box { fill: var(--ob-surface); stroke: var(--ob-line-strong); stroke-width: 1; }
+.s-hiw-logbox { fill: var(--ob-solid); }
+.s-hiw-none { fill: none; stroke: none; }
+.s-hiw-ar { fill: none; stroke: var(--ob-text-2); stroke-width: 1.5; stroke-linejoin: round; }
+.s-hiw-dash { stroke-dasharray: 5 5; }
+.s-hiw-fork { fill: none; stroke: var(--ob-line-ui); stroke-width: 1.25; }
+.s-hiw-mk { fill: none; stroke: var(--ob-text-2); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.s-hiw-dot { fill: var(--s-accent-developers); }
+.s-hiw-glow { fill: color-mix(in srgb, var(--s-accent-developers) 20%, transparent); }
+/* With reduced motion the dot isn't drawn: the picture says everything without it. */
+@media (prefers-reduced-motion: reduce) {
+  .s-hiw-mover { display: none; }
+}
+
+/* ---- The link to every channel's code, under the picture --------------------------------------------------------- */
+.s-hiw-foot { margin-top: var(--ob-space-32); scroll-margin-top: var(--ob-space-80, 80px); }

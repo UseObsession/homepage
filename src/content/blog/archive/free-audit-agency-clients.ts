@@ -273,7 +273,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, tier 1 works for a handful of prospects. Across a list, it’s a job for software. Obsession’s [prospect intelligence recipe](/recipes/prospect-intelligence) runs the same public paths with a declared AI agent per company, each with its own inbox and number, and writes the gap and a proof link back to your rows. The [prospect intelligence with Clay](/use-cases/prospect-intelligence-with-clay) example shows it on a real table.',
+      text: 'By hand, tier 1 works for a handful of prospects. Across a list, it’s a job for software. Obsession’s [prospect intelligence blueprint](/blueprints/prospect-intelligence) runs the same public paths with a declared AI agent per company, each with its own inbox and number, and writes the gap and a proof link back to your rows. The [prospect intelligence with Clay](/use-cases/prospect-intelligence-with-clay) example shows it on a real table.',
     },
     {
       kind: 'screen',
@@ -284,7 +284,7 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'Run tier 1 at every prospect on your list, with a declared agent and a proof link for each company.',
-      to: '/recipes/prospect-intelligence',
+      to: '/blueprints/prospect-intelligence',
       label: 'See prospect intelligence',
     },
 
@@ -338,7 +338,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these checks on a schedule, with every step signed and dated, so each line in the report links to proof the client can open. Its [competitor email and text tracking](/recipes/email-sms-tracking) fills the last row, and [Obsession for agencies](/agencies) runs the same checks across every client you have.',
+      text: 'Obsession runs these checks on a schedule, with every step signed and dated, so each line in the report links to proof the client can open. Its [competitor email and text tracking](/blueprints/email-sms-tracking) fills the last row, and [Obsession for agencies](/agencies) runs the same checks across every client you have.',
     },
     {
       kind: 'screen',
@@ -348,7 +348,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'To see the method on 1 client store first, our [mystery shopper](/recipes/mystery-shopper) runs 4 test customers through it with the client’s OK, watches every inbox for 48 hours and sends the report within 4 days. The first one is free.',
+      text: 'To see the method on 1 client store first, our [mystery shopper](/blueprints/mystery-shopper) runs 4 test customers through it with the client’s OK, watches every inbox for 48 hours and sends the report within 4 days. The first one is free.',
     },
 
     { kind: 'h2', id: 'questions', text: 'Public paths need nobody’s OK. Baskets and checkouts always do.' },

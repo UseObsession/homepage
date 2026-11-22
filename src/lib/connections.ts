@@ -8,14 +8,16 @@ import type { BlogPost } from '../content/blog/types'
    are found in the posts themselves (a recipe a post names in `related`, or any link in its text or call to action), so
    a new post wires itself in the day it ships and nothing here is kept by hand. */
 
-const MAX_GUIDES = 4
+/* 3 guides, each its title and date (founder, 22 Nov 2026: the shorter page; the titles say what each guide is). */
+const MAX_GUIDES = 3
 
 const asRow = (p: BlogPost): LinkRow => ({
   label: p.title,
   to: `/blog/${p.slug}`,
-  line: p.dek,
   foot: `${formatDate(p.published)} · ${blogUi.read(p.readingMinutes)}`,
 })
+
+const recipesOf = (p: BlogPost) => p.related.filter((r) => r.startsWith('recipe:'))
 
 /* Does a post link this path, in its text, a list, a table or its call to action? */
 const links = (p: BlogPost, path: string) => {
@@ -23,10 +25,15 @@ const links = (p: BlogPost, path: string) => {
   return s.includes(`](${path})`) || s.includes(`"to":"${path}"`)
 }
 
-/* The guides for a recipe or a use case: posts that name the recipe or the page in `related`, then posts that link the page. */
+/* The guides for a recipe or a use case: posts that name the recipe or the page in `related`, then posts that link the
+   page. The closest come first: a post that names this recipe before any other, then the posts that name the fewest
+   recipes (a post that lists every recipe teaches none of them in particular). */
 export function guidesFor(path: string): LinkRow[] {
-  const recipe = path.startsWith('/recipes/') ? `recipe:${path.slice('/recipes/'.length)}` : ''
-  const named = posts.filter((p) => p.related.includes(path) || (recipe !== '' && p.related.includes(recipe)))
+  const recipe = path.startsWith('/blueprints/') ? `recipe:${path.slice('/blueprints/'.length)}` : ''
+  const fit = (p: BlogPost) => (recipe !== '' && recipesOf(p)[0] === recipe ? 0 : 1000) + recipesOf(p).length
+  const named = posts
+    .filter((p) => p.related.includes(path) || (recipe !== '' && p.related.includes(recipe)))
+    .sort((a, b) => fit(a) - fit(b))
   const linked = posts.filter((p) => !named.includes(p) && links(p, path))
   return [...named, ...linked].slice(0, MAX_GUIDES).map(asRow)
 }

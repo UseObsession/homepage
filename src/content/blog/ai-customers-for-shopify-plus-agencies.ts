@@ -301,29 +301,29 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'The jobs AI customers do for a Plus agency, with the recipe that runs each one',
+      caption: 'The jobs AI customers do for a Plus agency, with the blueprint that runs each one',
       cols: ['Job', 'The check', 'A pass', 'That week'],
       rows: [
         [
-          'Launch day and hypercare: [Delivery monitoring](/recipes/delivery-monitoring)',
+          'Launch day and hypercare: [Delivery monitoring](/blueprints/delivery-monitoring)',
           'Every email, text, login code and link from launch day, for 14 days',
           'Every email, text and code inside its pass mark',
           'Each fail sent to its owner, then run again',
         ],
         [
-          'Every release: [Website audit](/recipes/website-audit)',
+          'Every release: [Website audit](/blueprints/website-audit)',
           'Sign up, sign in code, a code and checkout after each deploy',
           'A pass for every step, minutes after the release',
           'Fixed or rolled back before the client sees it',
         ],
         [
-          'Before and after cutover: [Mystery shopper](/recipes/mystery-shopper)',
+          'Before and after cutover: [Mystery shopper](/blueprints/mystery-shopper)',
           'The same journeys run on the old store, then on the new one',
           'The new store sends everything the old one did',
           'Missing flows rebuilt before hypercare ends',
         ],
         [
-          'Partner and affiliate links: [Partner checks](/recipes/partner-checks)',
+          'Partner and affiliate links: [Partner checks](/blueprints/partner-checks)',
           'Each partner’s link followed to the store, its code tried in the basket',
           'Every link lands on a live page and every code applies',
           'A note to each partner with the new link',
@@ -428,7 +428,7 @@ export const post: BlogPost = {
           'Redirect checks at launch',
         ],
         [
-          'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Delivery monitoring](/recipes/delivery-monitoring), [Partner checks](/recipes/partner-checks)',
+          'Obsession (ours): [Website audit](/blueprints/website-audit), [Mystery shopper](/blueprints/mystery-shopper), [Delivery monitoring](/blueprints/delivery-monitoring), [Partner checks](/blueprints/partner-checks)',
           'What each client store sends a new customer from launch day, every email, text and code kept as it arrived',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops at bot walls and CAPTCHAs',

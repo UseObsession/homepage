@@ -1,192 +1,214 @@
-import { askShared } from '../shared5'
-import { consoleHeading } from '../console'
-import type { Page } from '../types'
+import type { CardGrid, Page, PricingTabs } from '../types'
 
-/* Agencies (/agencies), the 9 Nov rewrite to Home's story: growth, ecommerce, lifecycle and Clay agencies open a pitch
-   with the prospect's own emails, and the ones that never came, cover every client and prospect, and report straight
-   to the client. The page: the hero > the unpaid part of the job > 4 jobs (win, outbound, keep, report) > asked in
-   plain words > Brand G, the 1 real run > questions > early access. Every use case screen is an example. */
+/* Agencies (/agencies), the resellers rewrite (21 Nov 2026, James): one page for every business that resells our recipes
+   and pieces to its own clients under its own brand. A synthetic buyer study that day found the best buyers resell the
+   output: mystery shopping and CX audit firms, AI receptionist and front desk vendors, CRO, retention and voice AI
+   agencies, automation consultants (n8n, Make), managed QA and testing vendors, and agent builder platforms. All six asked
+   for the same 3 things: a dashboard, a report under their own brand, and white label terms (an account per client,
+   wholesale rates). Their trigger is proof from a pilot, or a client asking for it. The path stays /agencies for the
+   links already pointing here.
+   The page reads, in order (pages/Agencies.tsx): the hero, beside every client's checks on one board > the gap: checks
+   done by hand eat the margin (its claim is also the share image's line) > #resell: the 6 kinds of reseller, each with
+   the recipes it would sell (sections/Kinds) > #white-label: the white label terms, from the Enterprise plan on /pricing
+   (v5/CardGrid) > #pricing: the blueprints resellers sell, each a tab with that blueprint's own pricing table
+   (`pricing` below, components/BlueprintPricingTabs; James, 21 Nov, in place of the fixed price pilot) > questions >
+   #join: the early access form. Sold as designed (white label, an account per client, branded reports and the dashboard are the
+   offer). No customers, logos, quotes or results are claimed, and no price comes from a single deal. The old lifecycle
+   email audit story (the prospect's own emails, the Brand G run) is gone. Never name a competitor, never "AI customers". */
 
-/* The code example: each prospect's facts, then a new client's competitors added and pushed to a webhook. */
-const CODE = `import os
-from obsession import Obsession
+const access = { kind: 'waitlist', button: 'Get early access', interest: 'any' } as const
 
-ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
+/* What a client costs (founders, 22 Nov 2026): a blueprint run counts toward what the plan covers at list rates, like
+   any piece, and each blueprint shows what a typical month costs in the #pricing tabs. A page's words can't import those
+   figures (registry.ts globs every page and recipe), so no figure is typed here: the lines say how a run is paid and
+   send the reader to the tabs. */
+const PRICED = 'Every blueprint starts with a free run. After that, each run counts toward what your plan covers at list rates, so a client costs what its runs use.'
 
-# What did each prospect send its customers this month?
-for prospect in ["fernhollow.example", "northfold.example"]:
-    for fact in ob.facts(prospect, since="30d"):
-        print(prospect, fact.seen_at, fact.sentence, fact.receipt_url)
-
-# A new client's competitors: add them, and get each new email at your webhook
-ob.index(["wrenfield.example", "larchwise.example"], how="newsletter")
-ob.notify(on="fact.created", destination="https://example.com/hooks/obsession")`
-
-const access = { kind: 'waitlist', button: 'Request early access', interest: 'any' } as const
+const SUB =
+  'Obsession’s AI agents shop, call and fill in forms as new customers of your clients. Every result lands in a dashboard and a report with your name on it.'
 
 export const page: Page = {
   meta: {
     path: '/agencies',
-    title: 'Open every pitch with the prospect’s own emails · Obsession',
+    title: 'White label mystery shopping and AI agent checks · Obsession',
     description:
-      'Open a pitch with the prospect’s own emails, and the ones that never came. Every client and prospect covered, each fact dated, sent straight to the client.',
-    answer:
-      'Obsession collects what every client and prospect sends its signed-up customers, from the welcome email to the reminder that never came, each dated with a screenshot. Open a pitch on it, and report it straight to the client.',
+      'Sell mystery shops, lead response checks and AI agent checks to your clients under your brand, with a dashboard, reports and an account per client.',
+    /* Opens with the hero's sub, word for word (scripts/prerender.mjs checks its first sentence is on the page). */
+    answer: `${SUB} ${PRICED}`,
     ogImage: '/og/agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Agencies', path: '/agencies' },
+      { name: 'Agencies and resellers', path: '/agencies' },
     ],
   },
 
   hero: {
     pill: 'Early access',
     pillTo: '#join',
-    headline: 'Open every pitch with the prospect’s own emails.',
-    sub: 'Obsession collects what every client and prospect sends its signed-up customers, from the welcome email to the reminder that never came, each dated with a screenshot. Open a pitch on it, and report it straight to the client.',
+    headline: 'Sell your clients mystery shops run by AI agents, under your own brand.',
+    sub: SUB,
     capture: { ...access, source: 'agencies-hero' },
-    secondary: { label: 'See sample data', to: '/sample-output' },
+    secondary: { label: 'See what you can resell', to: '#resell' },
     proof: [],
-    consoleHeading,
-    /* The hero's object: 12 prospects from Clay, a pitch filling with its findings. */
-    screens: [{ tab: 'Every prospect', screen: 'pack', recipe: 'prospect', line: '' }],
+    consoleHeading: [],
+    /* The hero's object: every client's checks on one board, as a reseller's own dashboard shows them. */
+    screens: [{ tab: 'Every client', screen: 'board', recipe: 'mystery', line: '' }],
   },
 
   gapPair: {
-    heading: 'Clients pay for what you find. Finding it is the unpaid part.',
-    line: 'A weekend signing up to a prospect before each pitch, screenshots in a shared drive, a competitor report that takes a week. Obsession does the signing up for every client and prospect, and keeps every email, dated.',
+    heading: 'Your clients pay for each check. Running them by hand eats your margin.',
+    line: 'Obsession’s agents run each check and keep every email, text and call that comes back.',
     tools: {
-      label: 'What you have today',
+      label: 'By hand today',
       items: [
-        'A weekend audit before each pitch',
-        'Screenshots in a folder per client',
-        'A competitor swipe file nobody updates',
-        'Ad dashboards that stop at the click',
+        'A person paid for every shop and every call',
+        'Your sales team ringing each prospect’s front desk',
+        'Forms filled in after hours to time the reply',
+        'Screenshots pasted into a report, one client at a time',
       ],
     },
     customer: {
-      label: 'What Obsession keeps',
+      label: 'Run by Obsession',
       items: [
-        'The prospect’s welcome email, codes and texts, before the pitch',
-        'The reminder that never came, with the time the basket was left',
-        'Every client’s competitors’ emails and offers, dated',
-        'Member prices and checkout codes beside the public ones',
-        'A screenshot behind every line, ready for the client',
+        'An AI agent per check, with its own inbox, number and browser',
+        'Every email, text, call and page kept, dated, in the event log',
+        'Checks on the schedule you set, daily, weekly or before a pitch',
+        'Every client’s results in one dashboard',
+        'A report with your name and logo, ready to send',
       ],
     },
   },
 
-  uses: {
-    heading: 'Pitches won, clients kept, and a report you can bill for.',
+  /* The 6 kinds of reseller, each with the recipes it would sell (linked by Kinds from content/catalog). Every recipe the
+     page offers is linked at least once: mystery-shopper, lead-leaks, voice-agent-check, competitor-tracking and
+     email-sms-tracking, with website-audit for testing firms. */
+  kinds: {
+    heading: 'Sell the checks your clients already ask you for.',
+    label: 'What does your business sell?',
     items: [
       {
-        tab: 'Win the pitch',
-        moment: 'Thursday’s pitch, and all you’ve seen is their homepage.',
-        outcome: 'Open on their own emails, and the texts that never came.',
-        line: 'Their welcome email, codes and texts, each dated, go into the pitch and the first line of your email.',
-        whyOnly: 'A missing text shows only to someone who gave a number and waited.',
-        recipe: 'prospect',
-        screen: 'proofmail',
+        name: 'Mystery shopping and CX audits',
+        line: 'Add online and phone shops to the store visits you sell. Agents sign up, fill a basket, ring the branch and keep every email, text and call that follows.',
+        recipes: ['mystery', 'speed', 'competitor'],
       },
       {
-        tab: 'Outbound for clients',
-        moment: 'Monday, 09:00. 50 prospects from Clay for a client’s outbound.',
-        outcome: 'The prospects with a real gap rise to the top, each with a dated fact to open on.',
-        line: 'Put in the domains. Each comes back with what its customers get, and an opener drafted for you to send.',
-        whyOnly: 'Enrichment says who a company is. Its own emails say what it gets wrong.',
-        recipe: 'prospect',
-        screen: 'leads',
+        name: 'AI receptionists and front desks',
+        line: 'Open each sale with an audit of the prospect’s phone line: how long it rang, what the caller heard and whether they got booked. After launch, test your AI receptionist every morning.',
+        recipes: ['speed', 'voice-agent'],
       },
       {
-        tab: 'Keep every client',
-        moment: 'A month before renewal, the client asks what the retainer buys.',
-        outcome: 'A record of every gap in the client’s own emails, fixed and checked again.',
-        line: 'What each client’s customers get is checked every week. A gap comes with its fix drafted, and the next check shows it worked.',
-        whyOnly: 'Every step is dated, with its screenshot, so the client can check the work.',
-        recipe: 'audit',
-        screen: 'approve',
+        name: 'CRO, retention and voice AI agencies',
+        line: 'Time how fast each client answers a new lead, track every email and text its competitors send, and test the voice agents you build.',
+        recipes: ['speed', 'email-sms', 'competitor', 'voice-agent'],
       },
       {
-        tab: 'Report to every client',
-        moment: 'A client asks what their competitors send. You’d charge for the answer if it didn’t take a week.',
-        outcome: 'A monthly competitor report in your brand, sent straight to the client.',
-        line: 'Every competitor of every client is covered, and the report goes out under your name.',
-        whyOnly: 'Competitors save their best offers for subscribers, so the report shows what their customers get.',
-        recipe: 'email-sms',
-        screen: 'report',
+        name: 'Automation consultants',
+        line: 'Test the lead flows you build in n8n and Make the way a new lead meets them. Every result goes straight back into the workflow.',
+        recipes: ['speed', 'email-sms'],
+      },
+      {
+        name: 'Managed QA and testing',
+        line: 'Add sign ups, login codes by text and phone calls to the test runs you sell. Agents run each flow as a new user, with their own inbox and phone number.',
+        recipes: ['audit', 'voice-agent'],
+      },
+      {
+        name: 'Agent builder platforms',
+        line: 'Give the agents your users build an inbox, a phone number and a browser of their own. Each user gets an account under your brand, with ready-made jobs such as a mystery shop to start from.',
+        recipes: ['mystery', 'speed', 'competitor'],
       },
     ],
-  },
-
-  ask: {
-    ...askShared,
-    heading: 'Ask across every client and prospect at once.',
-    line: 'Connect Obsession once to Claude Code or Codex, or call it from code. Every answer links the emails and pages behind it, ready to send to a client.',
-    areas: ['Clients', 'Prospects', 'Their competitors'],
-    examples: [
-      {
-        where: 'Claude Code',
-        q: 'Show me every email our prospect’s 3 competitors sent since September, for Thursday’s pitch.',
-        a: [
-          '61 emails across the 3, 9 of them basket and browse reminders.',
-          'Only Fern Hollow sends a welcome series. Your prospect sends none.',
-          'Fern Hollow’s emails land in Primary. The other 2 land in Promotions.',
-        ],
-        receipts: 'Screenshots: 61 emails, linked',
-      },
-      {
-        where: 'Codex',
-        q: 'Which clients’ welcome emails landed in Promotions this month?',
-        a: [
-          '3 of 12: Northfold, Wrenfield and Larchwise.',
-          'Wrenfield’s moved from Primary to Promotions after its new sender went live on 8 October.',
-          'The other 9 landed in Primary, the same as last month.',
-        ],
-        receipts: 'Screenshots: 12 welcome emails, with their Gmail tabs',
-      },
-      { where: 'Code', q: 'Get every new email from each client’s competitors at our webhook.', file: 'clients.py', code: CODE },
-    ],
-  },
-
-  /* The 1 real run: Brand G, the September store check. */
-  proof: {
-    heading: 'A £40 basket left at 02:57. No reminder in 48 hours.',
-    line: 'Brand G, a real skincare store, on 22 Sep. Its whole record is the sample data: every email with the time it arrived, and every screenshot. Open your next pitch on a record like it.',
-    cta: { label: 'See the sample data', to: '/sample-output' },
   },
 
   faq: {
-    heading: 'Questions from agencies.',
+    heading: 'Before you sell it to your first client.',
     items: [
       {
-        q: 'What does Obsession do for an agency?',
-        a: 'Obsession collects what every client and prospect sends its signed-up customers, from the welcome email to the reminder that never came, each dated with a screenshot. You open pitches on it and report it straight to the client.',
+        q: 'What does Obsession do for a reseller?',
+        a: `${SUB} You sell the checks at your own price.`,
       },
       {
-        q: 'Can reports go out under our brand?',
-        a: 'Yes. Reports and pitch packs carry your name and logo, and go out from your own address.',
+        q: 'Who is this for?',
+        a: 'Businesses that sell checks, audits or agents to their own clients: mystery shopping and CX audit firms, AI receptionist vendors, CRO, retention and voice AI agencies, automation consultants, managed QA firms and agent builder platforms.',
       },
       {
-        q: 'Does it work with Clay?',
-        a: 'Yes. Send a list of domains from Clay and each company comes back with dated facts and screenshots, ready for the first line of an email.',
+        q: 'What does each client cost?',
+        a: 'It depends on the blueprint and how often it runs. Each starts with a free run, then runs count toward what your plan covers at list rates. Each blueprint shows a typical month in its own terms: sites, voice agents or competitors.',
+        link: { label: 'See a typical month', to: '#pricing' },
       },
       {
-        q: 'Where does the data come from?',
-        a: 'From real accounts. Obsession’s agents sign up, fill baskets and ask for quotes the way any customer can, from the customer profiles and countries you choose, and keep each account open for months.',
+        q: 'Can reports carry our brand?',
+        a: 'Yes. Every report carries your name and logo and goes out from your own email address. The dashboard your clients see carries your brand too.',
       },
       {
-        q: 'Does a prospect know we looked it up?',
-        a: 'No. Anyone can see that a company is covered, and since when, but never who asked.',
+        q: 'Can each client have its own account?',
+        a: 'Yes. Each client gets its own account, with its own event log, so results never mix. Give a client a login of their own, or keep the account to your team.',
       },
       {
-        q: 'What does early access include?',
-        a: 'API and MCP access, lookups of every company already covered, and up to 5 companies added to the index for you. We’re onboarding a limited number of teams, and you set it up with the founders.',
+        q: 'What do we pay, and what do we charge?',
+        a: 'You pay for what each blueprint’s runs use, at list rates, and set your own price to clients. White label is part of the Enterprise plan, from $1,500 for the first month, billed monthly with nothing paid up front, and its rates drop as your volume grows.',
+        link: { label: 'See the Enterprise plan', to: '/pricing' },
+      },
+      {
+        q: 'Can we check a prospect’s phone line before the sale?',
+        a: 'Yes. An agent calls the number any new customer would call, and says it’s an AI when a person answers. It records how long the line rang, what it was told and whether it was booked.',
+      },
+      {
+        q: 'Can results go into our own tools?',
+        a: 'Yes. Every result lands in the client’s event log first. From there it reaches you at a webhook, through the API or MCP, or in Zapier, Make and n8n.',
+      },
+      {
+        q: 'Can our platform’s users get agents of their own?',
+        a: 'Yes. Give each user inboxes, phone numbers, messaging, a browser and a sandbox through one API, or all of it as one persona, in an account under your brand.',
+      },
+      {
+        q: 'What does an agent do at a payment or an identity check?',
+        a: 'It stops before payment, so nothing is bought, unless the client gives it a payment card of their own. At an identity check it stops too, and the event log keeps what the check asked for.',
       },
     ],
   },
 
   final: {
-    heading: 'Which prospect are you pitching next?',
+    heading: 'Which client should we check first?',
+    sub: 'Tell us the client and the check. We’ll start with a free run, and the results land in your dashboard.',
     capture: { ...access, source: 'agencies-final' },
   },
+}
+
+/* #pricing (James, 21 Nov 2026; founders, 22 Nov), in place of the pilot: 1 tab per blueprint resellers sell, each
+   opening what a typical month of that blueprint costs (components/BlueprintPricingTabs, from content/catalog: the
+   blueprint's `tiers`, its months at the piece rates). Mystery shopping opens on its Agencies months (founders,
+   22 Nov 2026). */
+export const pricing: PricingTabs = {
+  heading: 'What a typical month of each blueprint costs.',
+  line: 'Prices are worked out from what each run uses, at list rates. You charge your clients what you choose.',
+  label: 'Blueprints you can resell',
+  recipes: ['mystery', 'speed', 'voice-agent', 'competitor', 'delivery', 'audit'],
+  variant: 'mystery-shopper',
+}
+
+/* #white-label: the 3 things every reseller asked for, as the Enterprise plan on /pricing gives them (content/pricing.ts:
+   an account for each of your users under your brand, wholesale rates that drop with volume, monthly with nothing up
+   front, founder 21 Nov). */
+export const whiteLabel: CardGrid = {
+  heading: 'Your clients see your brand, not ours.',
+  line: 'White label comes with the Enterprise plan: a dashboard, reports under your brand, an account per client and wholesale rates.',
+  items: [
+    {
+      title: 'One dashboard for every client',
+      line: 'Every check lands in one dashboard, with what it found and the email, call or page behind each result.',
+    },
+    {
+      title: 'Reports under your brand',
+      line: 'Your name and logo on every report, sent from your own email address.',
+    },
+    {
+      title: 'An account per client',
+      line: 'Each client gets its own account and event log, so results never mix. Give a client their own login, or keep it to your team.',
+    },
+    {
+      title: 'Wholesale rates',
+      line: 'You pay wholesale rates that drop as your volume grows, and charge your clients what you choose. It starts monthly, with nothing paid up front.',
+      link: { label: 'See the Enterprise plan', to: '/pricing' },
+    },
+  ],
 }

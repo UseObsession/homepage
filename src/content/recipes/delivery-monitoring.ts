@@ -1,46 +1,48 @@
 import type { Recipe } from '../types'
 
-/* Delivery monitoring (/recipes/delivery-monitoring). A ready-made collection (9 Nov): every email, text and login code
-   the reader's own sign-up (or a client's, with their OK) sends a new customer in its first 14 days, timed on real
-   inboxes and numbers in each country they sell in, from new accounts opened after every release. Anything missing is
-   flagged the day it was due. Codes are tried at checkout and stop before payment. No claim about spam folder
-   placement: only what arrived, when, and whether it works. The run and the table match the `qa` screen (release 4.2,
-   3 accounts, UK login codes stop on day 6, US codes in 6 seconds). Example. */
+/* Delivery monitoring (/recipes/delivery-monitoring). Check your own journeys. The persona version (20 Nov 2026,
+   James): after every release, new personas you define sign up to your own product (or a client's, with their OK),
+   each with its own inbox and phone number and a home connection in a country you sell in. They live your first 14
+   days, sleep between messages and wake on each one, and every email, text and login code is timed against when it was
+   due; anything missing is flagged that day. Codes are tried at checkout and stop before payment. No claim about spam
+   folder placement: only what arrived, when, and whether it works. The run and the table match the `qa` screen
+   (release 4.2, 3 personas, UK login codes stop on day 6, US codes in 6 seconds, a ticket drafted for your OK).
+   Example. */
 
 export const recipe: Recipe = {
   id: 'delivery',
   slug: 'delivery-monitoring',
   name: 'Delivery monitoring',
   group: 'Check your own journeys',
-  line: 'Every email, text and login code your sign-up sends a new customer in its first 14 days, timed, in each country.',
-  gets: 'Every message a new customer should get, timed, and anything missing flagged the day it was due.',
+  line: 'Personas in each country you sell in live your first 14 days and time every message.',
+  gets: 'Every message a new user should get, timed, and anything missing flagged the day it was due.',
   kit: [
-    'A new account after every release',
-    'Real inboxes',
-    'Real numbers in each country you sell in',
+    'New personas after every release',
+    'Each with its own inbox and phone number',
+    'A home connection in each country you sell in',
     'iPhone, Android and desktop',
-    'A 14 day watch, every message timed',
+    'A 14 day life, waking on every message',
     'Every message kept with its arrival time',
   ],
 
   meta: {
-    path: '/recipes/delivery-monitoring',
-    title: 'Delivery monitoring: prove every email, text and code lands',
+    path: '/blueprints/delivery-monitoring',
+    title: 'Check that every sign-up email, text and login code arrives',
     description:
-      'Every email, text and login code your sign-up sends a new customer in its first 14 days, timed on real inboxes and numbers in each country you sell in.',
+      'Personas sign up to your product in each country you sell in and live its first 14 days, timing every email, text and login code that should arrive.',
     answer:
-      'Delivery monitoring records every email, text and login code your sign-up sends a new customer in its first 14 days. After every release, Obsession opens new accounts with real inboxes and numbers in each country you sell in, and flags anything that never arrives.',
+      'Delivery monitoring sends new personas through your sign up after every release, each with its own inbox and local number. They live your first 14 days, time every message and flag any that never arrives.',
     ogImage: '/og/delivery-monitoring.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Recipes', path: '/recipes' },
-      { name: 'Delivery monitoring', path: '/recipes/delivery-monitoring' },
+      { name: 'Blueprints', path: '/blueprints' },
+      { name: 'Delivery monitoring', path: '/blueprints/delivery-monitoring' },
     ],
   },
 
   hero: {
-    headline: 'Every email, text and login code your new customers should get, timed.',
-    sub: 'Delivery monitoring records every email, text and login code your sign-up sends a new customer in its first 14 days. After every release, Obsession opens new accounts with real inboxes and numbers in each country you sell in, and flags anything that never arrives.',
+    headline: 'Every email, text and login code a new user should get, timed.',
+    sub: 'Delivery monitoring sends new personas through your sign up after every release, each with its own inbox and local number. They live your first 14 days, time every message and flag any that never arrives.',
     screen: 'qa',
     capture: {
       kind: 'waitlist',
@@ -50,32 +52,48 @@ export const recipe: Recipe = {
     },
   },
 
+  /* Its buyer (21 Nov 2026, James): growth engineers and QA leads, sold as lifecycle testing of their own email and SMS
+     flows. The trigger is a broken sequence that reached customers before anyone noticed. */
+  buyer: 'For growth engineers and QA leads who ship email and SMS flows.',
+  unit: 'delivery check',
+  per: 'flow',
+  /* What each tier includes, by its name. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). */
+  tiers: [
+    { name: 'Free', includes: ['A sign up with its own inbox and phone number', 'Every email, text and login code, timed against when it was due', 'Anything missing, flagged the day it was due'] },
+    { name: 'Launch', includes: ['A new user after each release, or twice a week', 'iPhone, Android or desktop', 'Alerts the day a message goes missing'] },
+    { name: 'Growth', includes: ['Started by your release pipeline', 'A ticket drafted for your OK when a message goes missing'] },
+    { name: 'Global', includes: ['A local number and home connection in each country', 'Every message compared across releases'] },
+  ],
+
   run: {
-    tab: 'Example: release 4.2',
+    tab: 'Release 4.2',
     recipe: 'delivery',
-    task: 'After release 4.2, open 3 new accounts in the UK and US. Watch our first 14 days and flag anything that never arrives.',
+    task: 'After release 4.2, sign up 3 new personas in the UK and US. Live our first 14 days and flag anything that never arrives.',
     targets: 'Your app, UK and US',
     journey: ['Sign up', 'Log in by text code', 'Open every email', 'Time every message'],
     schedule: 'Every release, then daily for 14 days',
     report: 'Slack alert, every message in a table',
-    kit: ['3 new accounts', '3 inboxes', 'UK and US numbers', 'iPhone and Android'],
+    kit: ['3 personas', '3 inboxes', 'UK and US numbers', 'iPhone and Android'],
     events: [
-      { time: 'Day 1, 09:00', text: '3 accounts sign up: UK on iPhone, US and UK on Android.' },
+      { time: 'Day 1, 09:00', text: '3 personas sign up: UK on iPhone, US and UK on Android.' },
       { time: 'Day 1, 09:03', text: 'Welcome emails in 2 to 3 minutes. Login codes by text in under 10 seconds.' },
       { time: 'Day 3, 10:00', text: 'Setup tips email arrives for all 3. Every link opens.' },
-      { time: 'Day 6, 09:12', text: 'Login code by text: the US account gets it in 6 seconds.' },
-      { time: 'Day 6, 09:22', text: 'Both UK accounts: no code after 10 minutes.' },
+      { time: 'Day 6, 09:12', text: 'Login code by text: the US persona gets it in 6 seconds.' },
+      { time: 'Day 6, 09:22', text: 'Both UK personas: no code after 10 minutes.' },
     ],
     finding: 'Login codes stopped reaching UK numbers on day 6. US numbers still get them in 6 seconds.',
-    fix: 'In #releases in Slack with the text log. A new UK account tries again after the fix.',
-    ledger: 'Example run. Every email, text and code timed, with its screenshot.',
+    fix: 'In #releases in Slack with the text log, and a ticket drafted for your OK. A new UK persona tries again after the fix.',
+    ledger: 'Every email, text and code timed, with its screenshot.',
   },
 
   steps: [
-    { title: 'Pick the journeys', line: 'Sign-up, onboarding, trial, a launch: every message a customer should get. Yours, or a client’s.' },
-    { title: 'New accounts open', line: 'After every release and every week, each with a real inbox and number in the countries you sell in.' },
-    { title: 'Every message timed', line: 'Against when it should arrive, for 14 days.' },
-    { title: 'What never arrives lands first', line: 'The day it was due, with the screenshot and the log, in Slack, a ticket or a webhook.' },
+    { title: 'Pick what a new user should get', line: 'Every email, text and code in your sign up, onboarding, trial or launch.' },
+    {
+      title: 'Personas sign up',
+      line: 'After every release and every week, from each country you sell in.',
+    },
+    { title: 'They live your first 14 days', line: 'Sleeping between messages and waking on each, timed against when it was due.' },
+    { title: 'What never arrives lands first', line: 'The day it was due, with its log, in Slack, a ticket or a webhook.' },
   ],
 
   checks: [
@@ -91,13 +109,13 @@ export const recipe: Recipe = {
       group: 'Every launch',
       items: [
         { title: 'Emails and texts', line: 'Each send lands in every inbox and on every number.' },
-        { title: 'Codes and links', line: 'Every code tried at checkout, stopping before payment. Every link opened on phone and desktop.' },
+        { title: 'Codes and links', line: 'Every code tried at checkout, stopping before payment, and every link opened.' },
       ],
     },
     {
       group: 'Every country and device',
       items: [
-        { title: 'Real numbers', line: 'In each country you sell in, so a text a network blocks shows up as missing.' },
+        { title: 'Local numbers', line: 'In each country you sell in, so a blocked text shows up as missing.' },
         { title: 'Phone and desktop', line: 'iPhone and Android, and desktop browsers.' },
       ],
     },
@@ -108,30 +126,23 @@ export const recipe: Recipe = {
     items: [
       { format: 'Slack', line: 'The day a message doesn’t arrive, with the log attached.' },
       { format: 'Ticket', line: 'For your tracker, with the screenshots and the text log.' },
-      { format: '14 day timeline', line: 'Every message each account got, and when.' },
+      { format: '14 day timeline', line: 'Every message each persona got, and when.' },
       { format: 'PDF', line: 'For your team or a client, ready to forward.' },
       { format: 'Webhook', line: 'Each arrival and each miss as JSON.' },
     ],
   },
 
   settings: [
-    { k: 'Journeys', v: 'Sign-up, onboarding, trial, renewals and launches' },
-    { k: 'New accounts', v: 'After every release, or every week' },
-    { k: 'Countries', v: 'A real number in each country you sell in' },
+    { k: 'Journeys', v: 'Sign up, onboarding, trial, renewals and launches' },
+    { k: 'New personas', v: 'After every release, or every week' },
+    { k: 'Connects from', v: 'Each country you sell in, with a local number' },
     { k: 'Devices', v: 'iPhone, Android and desktop' },
     { k: 'Window', v: '14 days, or as long as your journey runs' },
   ],
 
-  forWho: [
-    { audience: 'founders', line: 'Find the email, text or code new users never get, the day it goes missing.' },
-    { audience: 'marketing', line: 'Know every launch email, text and code works in every country you send to.' },
-    { audience: 'agencies', line: 'Every client’s messages timed, with a log to forward.' },
-    { audience: 'developers', line: 'Every login code timed on real numbers, after every release.' },
-  ],
-
   table: {
     heading: 'Day 1 passed. On day 6, UK login codes stopped arriving.',
-    line: 'Example: release 4.2, 3 new accounts.',
+    line: 'Release 4.2, 3 new personas.',
     cols: ['UK, iPhone', 'US, Android', 'UK, Android'],
     rows: [
       { label: 'Day 1, welcome email', values: ['2 min', '2 min', '3 min'] },
@@ -143,11 +154,11 @@ export const recipe: Recipe = {
   },
 
   faq: {
-    heading: 'Real inboxes and numbers, and every message timed.',
+    heading: 'Its own inbox and number, and every message timed.',
     items: [
       {
         q: 'How do I know our welcome emails and login codes arrive?',
-        a: 'Delivery monitoring opens new accounts with real inboxes and numbers in each country you sell in, watches your first 14 days, and flags any email, text or code that never arrives.',
+        a: 'Delivery monitoring sends new personas through your sign up in each country you sell in, each with its own inbox and a local number. They live your first 14 days and flag any email, text or code that never arrives.',
       },
       {
         q: 'Why 14 days?',
@@ -155,20 +166,20 @@ export const recipe: Recipe = {
       },
       {
         q: 'Are the inboxes and numbers real?',
-        a: 'Yes, each with a real number in the country you pick, so a text a network blocks never reaches it either.',
+        a: 'Yes. Each persona has its own inbox and a local number in the country you pick, so a text a network blocks never reaches it either.',
       },
       {
         q: 'Can it check our launch emails and texts?',
-        a: 'Yes. Accounts on your list get every send, open every link and try every code at checkout, stopping before payment.',
+        a: 'Yes. Personas on your list get every send, open every link and try every code at checkout, stopping before payment.',
       },
-      { q: 'Does it see our real customers’ data?', a: 'No. It sees only what its own accounts receive.' },
+      { q: 'Does it see our real users’ data?', a: 'No. It sees only what its own personas receive.' },
       { q: 'Can agencies run it for clients?', a: 'Yes, with each client’s OK, each with its own log to forward.' },
     ],
   },
 
   final: {
-    heading: 'Find the message your customers never got.',
-    sub: 'Early access includes API and MCP access, set up with the founders.',
+    heading: 'Find the message your new users never got.',
+    sub: 'Early access includes the API and MCP, set up with the founders.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-delivery-monitoring-final',

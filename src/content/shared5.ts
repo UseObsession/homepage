@@ -37,14 +37,15 @@ export const life: Life = {
   ],
 }
 
-/* The ask section: the index as something you ask, from the AI you already work in. Each page gives its own areas and
-   3 examples; these parts are the same everywhere. The AI is named by product (Claude Code, Codex), never "your AI
+/* The ask section, on /marketing and /sales: your event log as something you ask, from the AI you already work in
+   (22 Nov 2026: no index, no asking on our website). Each page gives its own areas and 3 examples; these parts are the
+   same everywhere. The AI is named by product (Claude Code, Codex), never "your AI
    agent". A chat example shows the 1 line that connects Obsession to that tool (`connect`). Every company in an answer is
    invented. */
 export const askShared: Pick<Ask, 'heading' | 'line' | 'from' | 'connect'> = {
   heading: 'Ask from the AI you already use.',
-  line: 'None of it is on the public web, so no search engine has it. Connect Obsession once to Claude Code or Codex and ask in plain words, or ask on our website. Every answer links the emails and pages behind it.',
-  from: { label: 'Ask from', items: ['Claude Code', 'Codex', 'Cursor', 'Grok', 'Muse', 'Your own code', 'Our website'] },
+  line: 'Connect Obsession once to Claude Code or Codex and ask across your event log in plain words. Every answer links the emails and pages behind it.',
+  from: { label: 'Ask from', items: ['Claude Code', 'Codex', 'Cursor', 'Grok', 'Muse', 'Your own code'] },
   connect: {
     'Claude Code': 'claude mcp add obsession',
     Codex: 'codex mcp add obsession',

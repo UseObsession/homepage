@@ -188,7 +188,7 @@ export const post: BlogPost = {
           'The time to the welcome email, and the offer in it',
           'Once, weekly or after every release',
           'Founder or CRM lead',
-          'Runs on: [Mystery shopper](/recipes/mystery-shopper)\nGuide: [welcome email not sending](/blog/welcome-basket-email-not-sending)',
+          'Runs on: [Mystery shopper](/blueprints/mystery-shopper)\nGuide: [welcome email not sending](/blog/welcome-basket-email-not-sending)',
         ],
         [
           'Abandoned basket or checkout',
@@ -196,7 +196,7 @@ export const post: BlogPost = {
           'Each reminder, when it came and the item it named',
           'Weekly, monthly or after every release',
           'CRM or retention lead',
-          'Runs on: [Mystery shopper](/recipes/mystery-shopper)\nGuide: [abandoned cart email not sending](/blog/ai-customers-find-revenue-leaks)',
+          'Runs on: [Mystery shopper](/blueprints/mystery-shopper)\nGuide: [abandoned cart email not sending](/blog/ai-customers-find-revenue-leaks)',
         ],
         [
           'Codes at checkout',
@@ -204,7 +204,7 @@ export const post: BlogPost = {
           'Each code accepted or refused, with the screenshot',
           'After every release, or every morning',
           'Ecommerce or marketing lead',
-          'Runs on: [Website audit](/recipes/website-audit)\nGuide: [Black Friday checklist](/blog/black-friday-checklist-new-customer)',
+          'Runs on: [Website audit](/blueprints/website-audit)\nGuide: [Black Friday checklist](/blog/black-friday-checklist-new-customer)',
         ],
         [
           'Sign-up after a release',
@@ -212,7 +212,7 @@ export const post: BlogPost = {
           'A pass or a break for every step, with a drafted fix',
           'After every release',
           'Founder or engineering lead',
-          'Runs on: [Website audit](/recipes/website-audit)',
+          'Runs on: [Website audit](/blueprints/website-audit)',
         ],
         [
           'Login codes by email',
@@ -220,7 +220,7 @@ export const post: BlogPost = {
           'Every email and login code timed, and any that never came',
           'After every release, then daily for 14 days',
           'Product or engineering lead',
-          'Runs on: [Delivery monitoring](/recipes/delivery-monitoring)',
+          'Runs on: [Delivery monitoring](/blueprints/delivery-monitoring)',
         ],
         [
           'Live ads and their pages',
@@ -228,7 +228,7 @@ export const post: BlogPost = {
           'Whether the page loads, matches the ad and is in stock',
           'Every morning',
           'Performance marketer',
-          'Runs on: [Ad landing check](/recipes/ad-landing-check)\nGuide: [landing page monitoring](/blog/ai-customers-for-cro-agencies)',
+          'Runs on: [Ad landing check](/blueprints/ad-landing-check)\nGuide: [landing page monitoring](/blog/ai-customers-for-cro-agencies)',
         ],
         [
           'Replies to your demo form',
@@ -236,7 +236,7 @@ export const post: BlogPost = {
           'Your speed to lead on each channel, and every lead missed',
           'Daily, weekly or after a routing change',
           'Sales leader',
-          'Runs on: [Lead leaks](/recipes/lead-leaks)\nGuide: [speed to lead](/blog/ai-customers-for-b2b-sales-teams)',
+          'Runs on: [Lead leaks](/blueprints/lead-leaks)\nGuide: [speed to lead](/blog/ai-customers-for-b2b-sales-teams)',
         ],
       ],
     },
@@ -260,7 +260,7 @@ export const post: BlogPost = {
           'Each wrong answer and slow handoff, with the transcript',
           'Every morning and after every update',
           'Head of CX',
-          'Runs on: [Support bot check](/recipes/support-bot-check)\nGuide: [how to test a chatbot](/blog/test-store-chatbot-returns-policy)',
+          'Runs on: [Support bot check](/blueprints/support-bot-check)\nGuide: [how to test a chatbot](/blog/test-store-chatbot-returns-policy)',
         ],
         [
           'AI receptionist calls',
@@ -268,7 +268,7 @@ export const post: BlogPost = {
           'Each wrong answer by 09:00, with the recording',
           'Every morning',
           'Owner or operations lead',
-          'Runs on: [Voice agent check](/recipes/voice-agent-check)\nGuide: [AI agent testing tools](/blog/best-ai-chatbot-testing-tools)',
+          'Runs on: [Voice agent check](/blueprints/voice-agent-check)\nGuide: [AI agent testing tools](/blog/best-ai-chatbot-testing-tools)',
         ],
         [
           'Says it’s AI',
@@ -276,7 +276,7 @@ export const post: BlogPost = {
           'A dated proof per channel, with the wait for a person',
           'Every day and after every update',
           'Compliance or CX lead',
-          'Runs on: [AI disclosure check](/recipes/ai-disclosure-check)',
+          'Runs on: [AI disclosure check](/blueprints/ai-disclosure-check)',
         ],
         [
           'Answers after an update',
@@ -284,7 +284,7 @@ export const post: BlogPost = {
           'Every answer that changed, before and after',
           'Every morning, and within the hour of any update',
           'Owner of the AI agent',
-          'Runs on: [Drift watch](/recipes/drift-watch)\nGuide: [AI agent QA](/blog/ai-customers-for-cx-teams)',
+          'Runs on: [Drift watch](/blueprints/drift-watch)\nGuide: [AI agent QA](/blog/ai-customers-for-cx-teams)',
         ],
         [
           'Resolutions your AI vendor bills',
@@ -292,7 +292,7 @@ export const post: BlogPost = {
           'Refunds promised and never made, with proof for the bill',
           'Monthly, before you pay',
           'CX or finance lead',
-          'Runs on: [Resolution check](/recipes/resolution-check)',
+          'Runs on: [Resolution check](/blueprints/resolution-check)',
         ],
       ],
     },
@@ -313,7 +313,7 @@ export const post: BlogPost = {
           'Every email, offer and code on 1 timeline',
           'Continuously, with a weekly digest',
           'CRM lead or agency strategist',
-          'Runs on: [Email and SMS tracking](/recipes/email-sms-tracking)\nGuide: [competitor email tracking tools](/blog/competitor-email-tracking-tools)',
+          'Runs on: [Email and SMS tracking](/blueprints/email-sms-tracking)\nGuide: [competitor email tracking tools](/blog/competitor-email-tracking-tools)',
         ],
         [
           'Prices and subscriber codes',
@@ -321,7 +321,7 @@ export const post: BlogPost = {
           'Every price cut and code, before and after',
           'Every morning, or hourly in a sale week',
           'Ecommerce or pricing lead',
-          'Runs on: [Price watch](/recipes/price-watch)\nGuide: [competitor price tracking tools](/blog/best-competitor-price-tracking-tools)',
+          'Runs on: [Price watch](/blueprints/price-watch)\nGuide: [competitor price tracking tools](/blog/best-competitor-price-tracking-tools)',
         ],
         [
           'Member prices at retailers',
@@ -337,7 +337,7 @@ export const post: BlogPost = {
           'Each new offer beside yours, the morning it starts',
           'Every morning',
           'Creative or paid social lead',
-          'Runs on: [Ad tracking](/recipes/ad-tracking)',
+          'Runs on: [Ad tracking](/blueprints/ad-tracking)',
         ],
         [
           'A competitor’s free trial',
@@ -345,7 +345,7 @@ export const post: BlogPost = {
           'Every email, prompt and offer, day by day',
           'Daily, until the trial ends',
           'Product marketing lead',
-          'Runs on: [Trial teardown](/recipes/trial-teardown)',
+          'Runs on: [Trial teardown](/blueprints/trial-teardown)',
         ],
         [
           'Your sign-up and basket beside theirs',
@@ -353,7 +353,7 @@ export const post: BlogPost = {
           'A verdict on every journey, side by side',
           'Once, monthly or after every release',
           'Head of CX or insights',
-          'Runs on: [Mystery shopper](/recipes/mystery-shopper)\nGuide: [AI mystery shopping tools](/blog/best-ai-mystery-shopping-tools)',
+          'Runs on: [Mystery shopper](/blueprints/mystery-shopper)\nGuide: [AI mystery shopping tools](/blog/best-ai-mystery-shopping-tools)',
         ],
         [
           'Every competitor move',
@@ -361,7 +361,7 @@ export const post: BlogPost = {
           'A timeline per competitor, and what changed',
           'Daily, weekly or monthly',
           'Marketing lead or founder',
-          'Runs on: [Competitor tracking](/recipes/competitor-tracking)\nGuide: [ecommerce competitive intelligence](/blog/ecommerce-competitive-intelligence)',
+          'Runs on: [Competitor tracking](/blueprints/competitor-tracking)\nGuide: [ecommerce competitive intelligence](/blog/ecommerce-competitive-intelligence)',
         ],
       ],
     },
@@ -386,7 +386,7 @@ export const post: BlogPost = {
           'A verdict and a proof link per company',
           '7, 14 or 30 days, then on a schedule',
           'Agency founder or sales rep',
-          'Runs on: [Prospect intelligence](/recipes/prospect-intelligence)\nGuide: [outside-in audit](/blog/get-clients-as-a-marketing-agency)',
+          'Runs on: [Prospect intelligence](/blueprints/prospect-intelligence)\nGuide: [outside-in audit](/blog/get-clients-as-a-marketing-agency)',
         ],
         [
           'Brands hiring for email help',
@@ -394,7 +394,7 @@ export const post: BlogPost = {
           'What the brand’s emails got wrong, and when',
           'Read at 4 hours for a job post, the full read at 48',
           'Email freelancer or agency',
-          'Runs on: [Prospect intelligence](/recipes/prospect-intelligence)\nGuide: [Upwork Klaviyo jobs](/blog/klaviyo-experts-win-upwork-jobs-from-shopify-brands)',
+          'Runs on: [Prospect intelligence](/blueprints/prospect-intelligence)\nGuide: [Upwork Klaviyo jobs](/blog/klaviyo-experts-win-upwork-jobs-from-shopify-brands)',
         ],
         [
           'The pop-up before a CRO pitch',
@@ -418,7 +418,7 @@ export const post: BlogPost = {
           'Who’s at risk, who’s ready to grow, and the play for each',
           'Every morning',
           'Account manager',
-          'Runs on: [Account watch](/recipes/account-watch)',
+          'Runs on: [Account watch](/blueprints/account-watch)',
         ],
         [
           'Every client store, each week',
@@ -453,7 +453,7 @@ export const post: BlogPost = {
           'Each wrong fact, traced to its page and corrected',
           'Every Monday, and after a price change',
           'Marketing or AI search lead',
-          'Runs on: [Listings and AI answers](/recipes/listings-ai-answers)\nGuide: [what does ChatGPT say about my brand](/blog/what-chatgpt-says-about-your-store)',
+          'Runs on: [Listings and AI answers](/blueprints/listings-ai-answers)\nGuide: [what does ChatGPT say about my brand](/blog/what-chatgpt-says-about-your-store)',
         ],
         [
           'Affiliate codes and links',
@@ -461,7 +461,7 @@ export const post: BlogPost = {
           'Every out-of-date code or banner, with a note drafted',
           'Every Monday, or daily in a sale',
           'Affiliate or partnerships manager',
-          'Runs on: [Partner checks](/recipes/partner-checks)',
+          'Runs on: [Partner checks](/blueprints/partner-checks)',
         ],
         [
           'A vendor’s AI agent, before you sign',
@@ -469,7 +469,7 @@ export const post: BlogPost = {
           'Every agent side by side, each answer kept',
           '2 weeks before signing, then monthly',
           'CX lead or procurement',
-          'Runs on: [Vendor agent check](/recipes/vendor-agent-check)',
+          'Runs on: [Vendor agent check](/blueprints/vendor-agent-check)',
         ],
         [
           'What your AI SDR sends',
@@ -477,7 +477,7 @@ export const post: BlogPost = {
           'Every claim, discount and send time that breaks a rule',
           'Every message, as it lands',
           'Sales leader',
-          'Runs on: [Outbound agent check](/recipes/outbound-agent-check)',
+          'Runs on: [Outbound agent check](/blueprints/outbound-agent-check)',
         ],
         [
           'Prices your AI sales agent quotes',
@@ -485,7 +485,7 @@ export const post: BlogPost = {
           'Each answer against your store, the right one drafted',
           'Every day and after every price change',
           'Ecommerce or sales lead',
-          'Runs on: [Sales agent check](/recipes/sales-agent-check)',
+          'Runs on: [Sales agent check](/blueprints/sales-agent-check)',
         ],
         [
           'Whether a shopper’s AI agent can buy',
@@ -493,7 +493,7 @@ export const post: BlogPost = {
           'A pass or a break for every step, with the screenshot',
           'On a schedule, and after every release',
           'Head of ecommerce or digital',
-          'Runs on: [Website audit](/recipes/website-audit)\nGuide: [agent ready website](/blog/agent-ready-website)',
+          'Runs on: [Website audit](/blueprints/website-audit)\nGuide: [agent ready website](/blog/agent-ready-website)',
         ],
       ],
     },
@@ -636,7 +636,7 @@ export const post: BlogPost = {
           'Email research and ideas',
         ],
         [
-          'Obsession (ours): [Mystery shopper](/recipes/mystery-shopper), [Competitor tracking](/recipes/competitor-tracking), [Prospect intelligence](/recipes/prospect-intelligence), [Lead leaks](/recipes/lead-leaks), [Support bot check](/recipes/support-bot-check), [Listings and AI answers](/recipes/listings-ai-answers)',
+          'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking), [Prospect intelligence](/blueprints/prospect-intelligence), [Lead leaks](/blueprints/lead-leaks), [Support bot check](/blueprints/support-bot-check), [Listings and AI answers](/blueprints/listings-ai-answers)',
           'Keeps what any company you name shows only to customers, each dated with the email or screenshot',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Leaves the fix to the company’s own team',
@@ -731,6 +731,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/blueprints',
     'agentic-ai-use-cases-in-ecommerce',
     'why-ai-customers-matter',
     '/use-cases/leak-checks-for-ecommerce-stores',

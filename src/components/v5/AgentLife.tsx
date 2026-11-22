@@ -3,9 +3,9 @@ import type { Life } from '../../content/types'
 import { useInView } from './useInView'
 import './AgentLife.css'
 
-/* How it works, breadth first (COPY.md, "Home > How it works"): a list fans out to many companies at once, each lane a
-   customer agent of 1 company, on 1 axis from Monday 09:00 to day 90. The 3 lanes are Company 1, 2 and 3, each wake
-   labelled where it lands; the faded lane under them is the rest of the list. Under the axis, the
+/* How it works, breadth first: a list fans out at once (Home: a fleet of personas; the audience pages: companies),
+   each lane 1 agent on 1 axis from Monday 09:00 to day 90, each wake labelled where it lands; the faded lane under
+   them is the rest of the list. Under the axis, the
    4 phases, in order (a real sequence, so they are numbered).
    The axis is logarithmic in days, so the first minutes and days have room beside the months. Drawn once in view: the
    lanes run out from the list in turn, the wakes land in time order, the rest of the list fills in. Under reduced
@@ -90,5 +90,5 @@ export function AgentLife({ life, id }: { life: Life; id?: string }) {
 
 function mapLabel(life: Life) {
   const lanes = life.lanes.map((l) => `${l.name}: ${l.wakes.map((w) => w.label).join(', ')}`).join('; ')
-  return `${life.list}, all signed up at ${life.axis.start}. ${lanes}; and ${life.more.name}, each woken when its company acts. ${life.axis.end}.`
+  return `${life.list}, all started at ${life.axis.start}. ${lanes}; and ${life.more.name}, each woken when something new arrives. ${life.axis.end}.`
 }

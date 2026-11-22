@@ -82,7 +82,7 @@ export const ref: ReferencePage = {
         {
           q: 'Can you see a competitor’s triggered flows?',
           a: 'Only by setting them off as a customer would and keeping what arrives. Their email platform’s reports stay private to them.',
-          link: { label: 'Email and SMS tracking', to: '/recipes/email-sms-tracking' },
+          link: { label: 'Email and SMS tracking', to: '/blueprints/email-sms-tracking' },
         },
       ],
     },

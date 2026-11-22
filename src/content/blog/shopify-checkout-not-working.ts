@@ -344,7 +344,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'On a Shopify store, [Website audit](/recipes/website-audit) runs after every release: a fresh Obsession agent goes through the store on a phone and a desktop. It signs up, opens every email and link, tries each code at checkout and stops before payment. Every break comes back with its screenshot and a drafted fix, then a fresh run once the fix ships. [Store leak checks](' +
+      text: 'On a Shopify store, [Website audit](/blueprints/website-audit) runs after every release: a fresh Obsession agent goes through the store on a phone and a desktop. It signs up, opens every email and link, tries each code at checkout and stops before payment. Every break comes back with its screenshot and a drafted fix, then a fresh run once the fix ships. [Store leak checks](' +
         LEAKS +
         ') give every journey, such as a sign-up or a checkout, a fresh sign-up each week. With Shopify and the store’s email tool connected, read only, a theme publish or an edit to an email flow reruns the checks it touches within the hour.',
     },
@@ -391,7 +391,7 @@ export const post: BlogPost = {
           'An alert within hours on a set path',
         ],
         [
-          'Obsession (ours): [Website audit](/recipes/website-audit), [Mystery shopper](/recipes/mystery-shopper), [Store leak checks](' + LEAKS + ')',
+          'Obsession (ours): [Website audit](/blueprints/website-audit), [Mystery shopper](/blueprints/mystery-shopper), [Store leak checks](' + LEAKS + ')',
           'Each page, code and email a new customer meets from sign-up to checkout, at the store and its competitors, kept with its screenshot',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Stops before payment',

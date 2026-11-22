@@ -384,7 +384,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An agent asked what pinecrate.example offers trial users on day 10 gets the [day 10 email itself](/recipes/trial-teardown), with the time it arrived and its screenshot. Teams without an agent read the same facts on the website, or as a table in Clay, Baserow or Google Sheets. The [sample data](/sample-output) shows a real store’s record in every format it comes in.',
+      text: 'An agent asked what pinecrate.example offers trial users on day 10 gets the [day 10 email itself](/blueprints/trial-teardown), with the time it arrived and its screenshot. Teams without an agent read the same facts on the website, or as a table in Clay, Baserow or Google Sheets. The [sample data](/sample-output) shows a real store’s record in every format it comes in.',
     },
 
     { kind: 'h2', id: 'when-exa', text: 'When Exa is still the right answer' },
@@ -432,7 +432,7 @@ export const post: BlogPost = {
         ['Exa Websets', 'Lists of companies and people with enrichment columns', '$49 or $449 a month', '100 or 1,000 results per list by plan', 'Sales lists for Clay or a CRM'],
         ['Parallel FindAll', 'Lists of entities with citations and confidence scores', 'A cost per run plus a cost per match', 'Price set by the generator picked', 'A list builder as an API'],
         [
-          'Obsession (ours): [Competitor tracking](/recipes/competitor-tracking), [Trial teardown](/recipes/trial-teardown), 5 verbs over the [API and MCP](/developers)',
+          'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Trial teardown](/blueprints/trial-teardown), 5 verbs over the [API and MCP](/developers)',
           'What any company shows only to customers: emails, texts, member prices, trial limits, cancel offers, each dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Public pages left to the search API it works beside',
@@ -534,6 +534,7 @@ export const post: BlogPost = {
   ],
 
   related: [
+    '/browser',
     'exa-vs-tavily-vs-firecrawl',
     'best-web-search-api-for-ai-agents',
     'the-web-behind-the-login',

@@ -1,31 +1,30 @@
+import { HomeHowItWorks } from '../components/persona/HomeHowItWorks'
+import { HomePieces } from '../components/persona/HomePieces'
+import { PersonaAnatomy } from '../components/persona/PersonaAnatomy'
+import { PersonaBuild } from '../components/persona/PersonaBuild'
+import { PersonaHero } from '../components/persona/PersonaHero'
+import { PersonaRecipes } from '../components/persona/PersonaRecipes'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
-import { AgentLife } from '../components/v5/AgentLife'
-import { CardGrid } from '../components/v5/CardGrid'
-import { Finding } from '../components/v5/Finding'
-import { Hero5 } from '../components/v5/Hero5'
-import { QuestionConsole } from '../components/v5/InsightRun'
-import { RunReports } from '../components/v5/RunReports'
-import { StopTrack } from '../components/v5/StopTrack'
 import { page } from '../content/pages/home'
-import './StoryPage.css'
 
-/* Home (/), composed from content/pages/home.ts in the order its comment gives (9 Nov, the data company rewrite): what
-   it is, with the explorer as the hero's object; what is behind the login; whether it is real (our count and the 1 real
-   record); who uses it; where else the data lives; how a company not covered yet is added; how to use it; questions;
-   the early access form. The wall (Look), the uses band, the film and the open source section left Home on 9 Nov;
-   their components stay for the other pages. */
+/* Home (/), composed from content/pages/home.ts in the order its comment gives (21 Nov, the pieces rewrite; 22 Nov, the
+   shorter Home): the hero; the 6 pieces under "One API, not five vendors.", each linking to its page (#pieces); the
+   pieces under one identity, the persona (#personas); how it works (#how, persona/HomeHowItWorks): set up once, the loop
+   through your event log as 1 picture, then the link to every channel's code; blueprints as 5 tiles, the web behind
+   the login 1 of them (#recipes); for developers, the code (#build); 5 questions (#questions); the early access form
+   (#join). No pricing section and no pricing link: prices live on /pricing and the piece pages. The nav links to these
+   ids, so they stay. */
 export function Home() {
   return (
     <>
-      <Hero5 hero={page.hero} visual={page.explorer && <QuestionConsole ex={page.explorer} />} crumbs={false} center />
-      {page.dataKinds && <CardGrid grid={page.dataKinds} id="data" />}
-      {page.finding && <Finding finding={page.finding} id="found" />}
-      {page.users && <CardGrid grid={page.users} id="for" />}
-      {page.stopTrack && <StopTrack track={page.stopTrack} id="compare" />}
-      {page.life && <AgentLife life={page.life} id="how" />}
-      {page.runReports && <RunReports runs={page.runReports} id="formats" />}
-      <Faq faq={page.faq} id="questions" />
+      {page.personaStart && <PersonaHero hero={page.hero} start={page.personaStart} />}
+      {page.homePieces && <HomePieces pieces={page.homePieces} id="pieces" />}
+      {page.personaAnatomy && <PersonaAnatomy anatomy={page.personaAnatomy} id="personas" />}
+      {page.homeHow && <HomeHowItWorks how={page.homeHow} id="how" />}
+      {page.personaRecipes && <PersonaRecipes recipes={page.personaRecipes} id="recipes" />}
+      {page.personaBuild && <PersonaBuild build={page.personaBuild} id="build" />}
+      <Faq faq={page.faq} id="questions" className="s-faq--ruled" />
       <FinalCta final={page.final} id="join" />
     </>
   )

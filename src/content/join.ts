@@ -1,7 +1,7 @@
 /* The early access form's words: the line under every form and the card that opens once the email is saved
    (components/CaptureForm, components/JoinCard, lib/join.ts). Since 9 Nov every form is early access, never a
-   waitlist and never a free check: API and MCP access, lookups of every company already covered, and up to 5
-   companies added for you, set up with the founders. A page's offer only changes the brands question and the thank
+   waitlist and never a free check: API and MCP keys, and up to 5 companies, stores or agents to start with, set up
+   with the founders (22 Nov 2026: no lookups, no "already covered"). A page's offer only changes the brands question and the thank
    you. The `free` words are what a form of kind 'mystery' or 'verify' shows; they say early access too.
 
    Offers, worked out from the form (lib/join.ts offerOf):
@@ -27,16 +27,16 @@ type Offer = { ask: Ask; micro: string; done: string; none?: string; head?: stri
 export const offers: Record<OfferId, Offer> = {
   clients: {
     ask: {
-      title: 'Which client stores should we add first?',
-      help: 'Up to 5 stores you run or pitch, with the owner’s OK.',
-      placeholder: 'client-store.com',
-      add: 'Add another store',
+      title: 'Which clients should we add first?',
+      help: 'Up to 5 client websites you run or pitch, with the owner’s OK.',
+      placeholder: 'client-site.com',
+      add: 'Add another client',
     },
-    micro: 'Onboarding a limited number of teams. Name up to 5 client stores to start with.',
+    micro: 'Onboarding a limited number of teams. Name up to 5 clients to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
-      micro: 'Onboarding a limited number of teams. Early access adds up to 5 client stores for you.',
-      help: 'Up to 5 stores you run or pitch, with the owner’s OK. We add each one as a new customer and keep everything it is sent.',
+      micro: 'Onboarding a limited number of teams. Early access adds up to 5 clients for you.',
+      help: 'Up to 5 client websites you run or pitch, with the owner’s OK. A persona joins each one and keeps everything it is sent.',
       done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
   },
@@ -51,7 +51,7 @@ export const offers: Record<OfferId, Offer> = {
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
       micro: 'Onboarding a limited number of teams. Early access adds up to 5 stores for you.',
-      help: 'Yours, a competitor’s, or a client’s with their OK. We sign up and leave a basket as a new customer, and keep everything each store sends. Up to 5 in all.',
+      help: 'Yours, a competitor’s, or a client’s with their OK. A persona signs up and leaves a basket, and keeps everything each store sends. Up to 5 in all.',
       done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
   },
@@ -66,7 +66,7 @@ export const offers: Record<OfferId, Offer> = {
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
       micro: 'Onboarding a limited number of teams. Early access adds up to 5 AI agents for you.',
-      help: 'Its chat page, phone number or website. Yours, a competitor’s, or a client’s with their OK. We ask it what customers ask and keep every answer, word for word. Up to 5.',
+      help: 'Its chat page, phone number or website. Yours, a competitor’s, or a client’s with their OK. A persona asks it what people ask and keeps every answer, word for word. Up to 5.',
       done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
   },
@@ -82,19 +82,19 @@ export const offers: Record<OfferId, Offer> = {
   },
   companies: {
     ask: {
-      title: 'Which companies should we look up first?',
-      help: 'Competitors, prospects or accounts. Up to 5.',
+      title: 'Which companies should we watch first?',
+      help: 'Competitors, prospects or accounts. Up to 5. A persona signs up to each one and keeps what it sends.',
       placeholder: 'competitor.com',
       add: 'Add a company',
     },
-    micro: 'Onboarding a limited number of teams. Name up to 5 companies to look up first.',
+    micro: 'Onboarding a limited number of teams. Name up to 5 companies to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   /* A sales team, asked by who they are (lib/join askOf), never by a page. */
   accounts: {
     ask: {
       title: 'Which accounts or prospects should we watch first?',
-      help: 'Up to 5. We collect what each one shows its customers.',
+      help: 'Up to 5. A persona signs up to each one and keeps what it sends.',
       placeholder: 'account.com',
       add: 'Add an account',
     },
@@ -114,10 +114,10 @@ export const offers: Record<OfferId, Offer> = {
   },
   any: {
     ask: {
-      title: 'Which companies should we look up first?',
-      help: 'Any website. If one isn’t covered yet, we add it. Up to 5.',
+      title: 'Where should your first personas go?',
+      help: 'Any website: your own, a competitor’s or a prospect’s. Up to 5.',
       placeholder: 'company.com',
-      add: 'Add a company',
+      add: 'Add a site',
     },
     micro: 'Onboarding a limited number of teams.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
@@ -168,13 +168,13 @@ export const sizes = {
 
 /* An agency's client stores, asked the way its work runs. */
 export const clientAsks: Record<string, { title?: string; help: string }> = {
-  'Retention, email and SMS': { help: 'Up to 5 stores you run or pitch, with the owner’s OK. We sign up as a new customer and keep every email and text.' },
-  CRO: { help: 'Up to 5 stores you run or pitch, with the owner’s OK. We go from landing page to checkout as a new customer.' },
+  'Retention, email and SMS': { help: 'Up to 5 stores you run or pitch, with the owner’s OK. A persona signs up and keeps every email and text.' },
+  CRO: { help: 'Up to 5 stores you run or pitch, with the owner’s OK. A persona goes from landing page to checkout.' },
   'Performance and paid media': {
     title: 'Which client brands should we follow from ad to checkout?',
-    help: 'Up to 5 brands you run ads for or pitch, with the owner’s OK. We click through as a new customer and see where each ad lands.',
+    help: 'Up to 5 brands you run ads for or pitch, with the owner’s OK. A persona clicks through and records where each ad lands.',
   },
-  'Shopify build': { help: 'Up to 5 stores you’ve built or are launching, with the owner’s OK. We sign up as a new customer after each change and keep what each one sends.' },
+  'Shopify build': { help: 'Up to 5 stores you’ve built or are launching, with the owner’s OK. A persona signs up after each change and keeps what each one sends.' },
 }
 
 /* The recipes most people like them start with, shown first (never ticked for them): by agency type, else by role. */

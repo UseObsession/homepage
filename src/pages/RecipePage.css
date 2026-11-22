@@ -7,6 +7,18 @@
 /* No typed line on a recipe: the sub follows the headline at the hero's own step. */
 .s-hero-sub.s-rp-hero__sub { margin-top: var(--ob-space-24); }
 
+/* Who it's for (a recipe with `buyer`), under the headline: the buyer named in full ink, with the sub closer under it. */
+.s-rp-hero__for {
+  max-width: 64ch;
+  margin: var(--ob-space-24) 0 0;
+  font: var(--ob-type-body-lg);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: var(--ob-type-body-lg-tracking);
+  color: var(--ob-text);
+  text-wrap: balance;
+}
+.s-rp-hero__for + .s-hero-sub.s-rp-hero__sub { margin-top: var(--ob-space-12); }
+
 /* The recipe's screen: the product object under the words, at a size where its text reads like the app's. */
 .s-rp-hero__screen { max-width: 960px; }
 .s-rp-hero__screen .ilwrap { cursor: pointer; }
@@ -24,6 +36,9 @@
   text-wrap: pretty;
 }
 .s-rp__action { justify-self: start; margin-top: var(--ob-space-4); }
+/* 2 links side by side under a claim (the sample data and every channel's code), wrapping on a phone. */
+.s-rp__actions { display: flex; flex-wrap: wrap; gap: var(--ob-space-4) var(--ob-space-24); margin-top: var(--ob-space-4); }
+.s-rp__actions .s-rp__action { margin-top: 0; }
 @media (hover: hover) and (pointer: fine) {
   .s-rp__action:hover .ob-btn-arrow { translate: var(--ob-space-2) 0; }
 }
@@ -145,47 +160,15 @@
   .s-rp-group { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-16); padding-block: var(--ob-space-24); }
 }
 
-/* ---- What you get: the formats as a list of rules, beside the claim like the checks and settings ------------------ */
+/* ---- What you can change: the recipe's settings under the steps, on the ink chapter, 1 rule a row --------------- */
 
-/* No board, no boxes: each format is a title and a line on its own top hairline, 2 to a row in the 7 column side, the
-   2nd column starting where the checks' does. The list's own bottom rule closes it, as the checks' does. */
-.s-rp-outs {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: var(--ob-space-48);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
-}
-.s-rp-outs > li {
-  display: grid;
-  align-content: start;
-  gap: var(--ob-space-4);
-  padding-block: var(--ob-space-24);
-  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
-}
-.s-rp-outs__format {
-  margin: 0;
-  font: var(--ob-type-body);
-  font-weight: var(--ob-weight-medium);
-  letter-spacing: -0.01em;
+.s-rp-change { margin-top: var(--ob-space-64); }
+.s-rp-change__h {
+  margin: 0 0 var(--ob-space-16);
+  font: var(--ob-type-title);
+  letter-spacing: var(--ob-type-title-tracking);
   color: var(--ob-text);
 }
-.s-rp-outs__line {
-  margin: 0;
-  font: var(--ob-type-small);
-  letter-spacing: var(--ob-type-small-tracking);
-  color: var(--s-read, var(--ob-text-2));
-  text-wrap: pretty;
-}
-@media (max-width: 519.98px) {
-  .s-rp-outs { grid-template-columns: minmax(0, 1fr); }
-  .s-rp-outs > li { padding-block: var(--ob-space-20); }
-}
-
-/* ---- What you can change: the recipe's settings, 1 rule a row ----------------------------------------------------- */
-
 .s-rp-settings { display: grid; margin: 0; border-top: var(--ob-border-hair) solid var(--ob-line); }
 .s-rp-settings > div {
   display: grid;
@@ -209,73 +192,6 @@
 }
 @media (max-width: 519.98px) {
   .s-rp-settings > div { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-4); }
-}
-
-/* ---- Who it's for: 1 link row per audience, to its own page ------------------------------------------------------- */
-
-.s-rp-who {
-  display: grid;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle);
-}
-.s-rp-who > li { border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
-/* The rows bleed 16px past the column, so their words line up with the section while the hover layer has room. */
-.s-rp-who__link {
-  display: grid;
-  grid-template-columns: var(--s-split);
-  align-items: baseline;
-  gap: var(--ob-space-8) var(--s-split-gap);
-  margin-inline: calc(var(--ob-space-16) * -1);
-  padding: var(--ob-space-24) var(--ob-space-16);
-  border-radius: var(--ob-radius-sm);
-  color: var(--ob-text);
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
-}
-.s-rp-who__name {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--ob-space-8);
-  font: var(--ob-type-title);
-  letter-spacing: var(--ob-type-title-tracking);
-}
-.s-rp-who__arrow {
-  flex: none;
-  width: var(--ob-icon-sm);
-  height: var(--ob-icon-sm);
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  color: var(--ob-text-3);
-  transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
-}
-/* The reader's key (COLOUR.md P1b, carried to a recipe's doors): the brand square, never text, 5 to 6.3:1 on paper and
-   8.4:1 or more on ink. */
-.s-rp-who__key.ob-sq {
-  width: var(--ob-sq-md);
-  height: var(--ob-sq-md);
-  margin-right: var(--ob-space-4);
-  color: var(--s-accent, currentColor);
-}
-.s-rp-who__line {
-  font: var(--ob-type-body);
-  letter-spacing: var(--ob-type-body-tracking);
-  color: var(--s-read, var(--ob-text-2));
-  text-wrap: pretty;
-}
-@media (hover: hover) and (pointer: fine) {
-  .s-rp-who__link:hover { background-color: var(--ob-state-hover); }
-  .s-rp-who__link:hover .s-rp-who__arrow { color: var(--s-accent, var(--ob-text)); translate: var(--ob-space-2) 0; }
-}
-.s-rp-who__link:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
-.s-rp-who__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
-@media (max-width: 859.98px) {
-  .s-rp-who__link { grid-template-columns: minmax(0, 1fr); padding-block: var(--ob-space-20); }
 }
 
 /* ---- The table: the design system's data table; cells wrap, and the row names lead each row ------------------- */
@@ -368,6 +284,3 @@
   }
 }
 
-@media (forced-colors: active) {
-  .s-rp-who__key { display: none; }
-}

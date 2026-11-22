@@ -1,8 +1,9 @@
 import type { BlogPost } from './types'
 import { AI_CUSTOMER } from '../glossary'
 
-/* The AI customers series, article 9 (24 Oct 2026): AI customers for developers. It owns "email api for ai agents"
-   (primary), "give your ai agent a phone number" and "mcp server ecommerce". Readers: engineers and agent builders who
+/* The AI customers series, article 9 (24 Oct 2026): AI customers for developers. Since 21 Nov it owns "ai agent inbox"
+   (primary) and "mcp server ecommerce"; "email api for ai agents" belongs to /email and the phone number searches to
+   /phone (docs/SEARCH.md), and the body links /email with that phrase. Retitled in place (the 22 Nov search plan). Readers: engineers and agent builders who
    need an agent to be a customer of other companies (rival tracking as a feature, prospect research, release checks,
    merchant checks), and who are deciding whether to build it.
    The argument: an agent session lasts minutes, a customer lasts months, so the engineering moves from compute to
@@ -38,20 +39,17 @@ const SHOPIFY_AGENTS = 'https://shopify.dev/docs/agents'
 
 export const post: BlogPost = {
   slug: 'ai-customers-for-developers',
-  title: 'Email API for AI agents: how developers get what companies send customers',
+  title: 'Give an AI agent an inbox that signs up and waits: a guide for developers',
   dek: 'How developers give an AI agent an inbox, a phone number and a browser and keep it a customer of thousands of companies for months. The parts at published prices, the hard parts at scale, and the same facts over MCP, the standard way AI agents call tools.',
-  metaTitle: 'Email API for AI agents: what developers build, at what cost',
+  metaTitle: 'AI agent inbox that signs up and waits: a developer guide',
   description:
-    'Email API for AI agents, phone numbers and browsers: what developers build to read what companies send customers, the costs, or 5 verbs over MCP and API.',
+    'An AI agent inbox, number and browser that sign up and wait for months: the parts developers build, what each costs, and the same facts over MCP.',
   answer:
     'An email API for AI agents, such as AgentMail, gives each agent its own inbox that it creates, reads and sends from by API. Reading what companies send their customers takes more: a phone number, a browser, a sign up program per platform, months of waiting and a store that keeps each raw email with its DKIM result, the signature check that shows which domain sent it. Obsession keeps what any company shows only to its customers, dated with the raw email or screenshot, and your agent looks it up through 5 verbs over the API or MCP.',
-  primaryKeyword: 'email api for ai agents',
+  primaryKeyword: 'ai agent inbox',
   keywords: [
-    'give your ai agent a phone number',
     'mcp server ecommerce',
-    'ai agent inbox',
     'ai agent email address',
-    'ai agent phone number',
     'durable objects hibernation',
     'dkim verification',
   ],
@@ -129,7 +127,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'identities', text: 'Identities: an inbox, a phone number and a browser' },
     {
       kind: 'p',
-      text: 'Give each AI customer its own inbox at each company it joins, so every email belongs to 1 company and 1 watch. An email API for AI agents creates one in a single call. [AgentMail’s pricing](' +
+      text: 'Give each AI customer its own inbox at each company it joins, so every email belongs to 1 company and 1 watch. An [email API for AI agents](/email) creates one in a single call. [AgentMail’s pricing](' +
         AGENTMAIL_PRICING +
         ') lists 10 inboxes for $20 a month on Developer, 150 for $200 on Startup, and $2 a month for each extra inbox. Gmail’s tabs are Gmail’s own sorting, so if you need to know whether an email landed in Promotions, that inbox has to be a Gmail mailbox.',
     },
@@ -426,5 +424,5 @@ export const post: BlogPost = {
     { title: 'What is the Model Context Protocol (MCP)?', publisher: 'Model Context Protocol', url: MCP },
     { title: 'Build commerce agents with UCP', publisher: 'Shopify developer docs', url: SHOPIFY_AGENTS },
   ],
-  related: ['ai-customers', 'how-ai-customers-work', 'customer-side-observability', 'ai-customers-at-scale', 'recipe:competitor-tracking', 'recipe:website-audit'],
+  related: ['/email', '/developers', 'ai-customers', 'how-ai-customers-work', 'customer-side-observability', 'ai-customers-at-scale', 'recipe:competitor-tracking', 'recipe:website-audit'],
 }

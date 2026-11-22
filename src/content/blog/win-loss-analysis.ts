@@ -330,7 +330,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For win loss analysis, its [trial teardown](/recipes/trial-teardown) keeps each competitor’s trial as a new user meets it. That covers the welcome email, the discount sent once the user goes quiet and the save offer. Each lost deal then sits beside what that competitor sent trial users the same week, for every competitor you name, for as long as you follow them. [Exa](' +
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For win loss analysis, its [trial teardown](/blueprints/trial-teardown) keeps each competitor’s trial as a new user meets it. That covers the welcome email, the discount sent once the user goes quiet and the save offer. Each lost deal then sits beside what that competitor sent trial users the same week, for every competitor you name, for as long as you follow them. [Exa](' +
         EXA +
         ') calls itself “The world’s data for AI agents” and gives reps and their agents the public web in seconds, from a competitor’s pricing page to its press coverage. Its pages don’t describe keeping what a company sends the people who sign up, and the [comparison of the two](/compare/obsession-vs-exa) shows how teams use both. Run it on the competitors you lose to most for a quarter, so you can see what it does to win rate against each of them, opportunities and pipeline.',
     },
@@ -382,7 +382,7 @@ export const post: BlogPost = {
           'Sales-led CI with automated alerts',
         ],
         [
-          'Obsession (ours): [Trial teardown](/recipes/trial-teardown), [Competitor tracking](/recipes/competitor-tracking)',
+          'Obsession (ours): [Trial teardown](/blueprints/trial-teardown), [Competitor tracking](/blueprints/competitor-tracking)',
           'Keeps what each competitor shows trial users: onboarding emails, limits, upgrade prompts, discounts and save offers, dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Why the buyer chose stays with interviews\nA competitor not yet covered starts its history the day it is added',

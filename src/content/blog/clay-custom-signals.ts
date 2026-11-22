@@ -262,7 +262,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**3 values, never 2.** A yes or no counts once the sign-up is confirmed, the spam folder is checked and the full window has passed. Until then the field reads No verdict, the same rule [Prospect intelligence](/recipes/prospect-intelligence) uses before it calls a gap.',
+        '**3 values, never 2.** A yes or no counts once the sign-up is confirmed, the spam folder is checked and the full window has passed. Until then the field reads No verdict, the same rule [Prospect intelligence](/blueprints/prospect-intelligence) uses before it calls a gap.',
         '**Date the fact, never the run.** Write seen_at into the field’s date column, so a re-run doesn’t make an old fact look new.',
         '**Never overwrite with a blank.** When an HTTP API column writes on to your CRM, turn on Remove empty fields from request, which Clay’s docs say prevents overwriting existing data with blank values.',
         '**Keep the receipt beside the value.** A rep trusts a field they can open, and the link settles a disagreement in one click.',
@@ -337,7 +337,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For accounts a team already sells to, [Account watch](/recipes/account-watch) runs the same check every morning. Each change lands on the account’s record in the CRM, with public news and job posts beside it.',
+      text: 'For accounts a team already sells to, [Account watch](/blueprints/account-watch) runs the same check every morning. Each change lands on the account’s record in the CRM, with public news and job posts beside it.',
     },
 
     { kind: 'h2', id: 'by-hand', text: 'Building the signal by hand' },
@@ -411,7 +411,7 @@ export const post: BlogPost = {
           'Finding accounts and what they publish',
         ],
         [
-          'Obsession (ours): [Account watch](/recipes/account-watch), [Prospect intelligence](/recipes/prospect-intelligence), [Email and SMS tracking](/recipes/email-sms-tracking)',
+          'Obsession (ours): [Account watch](/blueprints/account-watch), [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking)',
           'What each account sends its own customers, dated with the email or screenshot',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Every step short of paying, at any company your team names',
@@ -463,7 +463,7 @@ export const post: BlogPost = {
         {
           q: 'Which buying signals can a competitor’s team not copy?',
           a: 'Signals from sources your team alone holds, such as your own product usage, and what each account sends its own customers. Those messages reach a signed-up customer’s inbox and phone, so a team needs an account at every company to see them. Obsession keeps those facts for any company a team names, each dated with the email or screenshot.',
-          link: { label: 'Account watch', to: '/recipes/account-watch' },
+          link: { label: 'Account watch', to: '/blueprints/account-watch' },
         },
         {
           q: 'How do I see which platform sends a company’s emails?',

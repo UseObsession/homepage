@@ -411,7 +411,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For [sales teams](/sales), it keeps each of these customer-facing signals for every account you name, every morning, from the welcome email and the cart reminder to support replies and the platform behind each email. [Prospect intelligence](/recipes/prospect-intelligence) writes each fact, its date and a screenshot link back to the same rows in Clay, your CRM or a sheet. [Exa](' +
+      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For [sales teams](/sales), it keeps each of these customer-facing signals for every account you name, every morning, from the welcome email and the cart reminder to support replies and the platform behind each email. [Prospect intelligence](/blueprints/prospect-intelligence) writes each fact, its date and a screenshot link back to the same rows in Clay, your CRM or a sheet. [Exa](' +
         EXA +
         ') gives reps and their agents the public web in one call; Obsession gives them what an account shows only to its customers, and an agent can call both. Start with the 50 accounts your SDRs most want to win, so you can see what it does to reply rates, meetings booked and opportunities.',
     },
@@ -477,7 +477,7 @@ export const post: BlogPost = {
           'Research and list building for agents',
         ],
         [
-          'Obsession (ours): [Prospect intelligence](/recipes/prospect-intelligence), [Account watch](/recipes/account-watch)',
+          'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Account watch](/blueprints/account-watch)',
           'What each account you name sends its customers: welcome, cart and trial emails, texts, codes, support replies, sending platform',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'An account not yet covered starts its history the day it is added\nEvery journey stops short of paying',
@@ -502,7 +502,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Once an account becomes a customer, the same outside view becomes an early warning. [Churn risk indicators](/blog/churn-risk-indicators) covers that for customer success teams, and [external account signals](/recipes/account-watch) puts each change on the account in your CRM. Start with one signal that matches the step your product runs, check it at 20 accounts this week, and write first to the ones with a dated gap. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'Once an account becomes a customer, the same outside view becomes an early warning. [Churn risk indicators](/blog/churn-risk-indicators) covers that for customer success teams, and [external account signals](/blueprints/account-watch) puts each change on the account in your CRM. Start with one signal that matches the step your product runs, check it at 20 accounts this week, and write first to the ones with a dated gap. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',

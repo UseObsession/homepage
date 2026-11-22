@@ -36,7 +36,7 @@ const postRow = (slug: string): LinkRow | undefined => {
 
 const recipeRow = (slug: string): LinkRow | undefined => {
   const r = catalog.recipes.find((x) => x.slug === slug)
-  return r && { label: r.name, to: `/recipes/${r.slug}`, line: r.line }
+  return r && { label: r.name, to: `/blueprints/${r.slug}`, line: r.line }
 }
 
 /* What a reference page points to next, grouped: related terms, comparisons and alternatives, guides, recipes, the

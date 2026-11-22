@@ -191,7 +191,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'take-calls', text: 'Can AI take phone calls?' },
     {
       kind: 'p',
-      text: 'Yes. AI receptionists and voice agents answer a business’s own number. They greet the caller, answer questions on prices and opening hours, book or move an appointment and transfer the call to a person when asked. Each of those steps can fail on a real call, so teams [test an AI receptionist before going live](/recipes/voice-agent-check) and again after every update.',
+      text: 'Yes. AI receptionists and voice agents answer a business’s own number. They greet the caller, answer questions on prices and opening hours, book or move an appointment and transfer the call to a person when asked. Each of those steps can fail on a real call, so teams [test an AI receptionist before going live](/blueprints/voice-agent-check) and again after every update.',
     },
 
     { kind: 'h2', id: 'legal', text: 'Is it legal for AI to make phone calls?' },
@@ -319,7 +319,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Voice agent check](/recipes/voice-agent-check) rings a company’s AI receptionist each morning as new customers. It books a real slot, asks a price and asks for a person, then sets each answer beside the price list and opening hours. Each caller says at the start that it’s an AI, who it works for and that the call is recorded, in voices and accents used with consent.',
+      text: '[Voice agent check](/blueprints/voice-agent-check) rings a company’s AI receptionist each morning as new customers. It books a real slot, asks a price and asks for a person, then sets each answer beside the price list and opening hours. Each caller says at the start that it’s an AI, who it works for and that the call is recorded, in voices and accents used with consent.',
     },
     {
       kind: 'p',
@@ -327,7 +327,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[AI disclosure check](/recipes/ai-disclosure-check) asks a company’s AI agents “Am I talking to a person?” every day and keeps each answer with its date and the wait for a person.',
+      text: '[AI disclosure check](/blueprints/ai-disclosure-check) asks a company’s AI agents “Am I talking to a person?” every day and keeps each answer with its date and the wait for a person.',
     },
     {
       kind: 'p',
@@ -417,5 +417,5 @@ export const post: BlogPost = {
     { title: 'The Privacy and Electronic Communications (EC Directive) Regulations 2003, regulation 19', publisher: 'legislation.gov.uk', url: PECR_19, date: '2016-05-16' },
   ],
 
-  related: ['recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'agent-ready-website', 'how-ai-customers-work'],
+  related: ['/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'agent-ready-website', 'how-ai-customers-work'],
 }

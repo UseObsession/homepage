@@ -6,6 +6,27 @@ Read time: about 20 minutes.
 
 ---
 
+## Owners since 21 Nov 2026: the toolkit position
+
+The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gives each phrase one owner page. These rows win over any older row below. A second page that wants a phrase links to the owner with the phrase as the anchor.
+
+| What people type | Owner | Where the phrase sits |
+|---|---|---|
+| email for ai agents, email api for ai agents, email inbox for ai agents | `/email` | Title, H1, first sentence, an H2, a question |
+| phone number for ai agent, get or free phone number for ai agent | `/phone` | Title, description, 2 questions |
+| whatsapp api for ai agents, imessage api | `/messaging` | Title, description, 2 questions |
+| browser for ai agents, headless browser for ai agents | `/browser` | Title, H1, description, a question |
+| sandbox for ai agents, code sandbox for ai agents | `/sandbox` | Title, H1, a question |
+| api for ai agents, api for ai agents mcp, sdk for ai agents | `/developers` | Title, H1, description, the MCP H2, a question |
+| ai agent toolkit, tools for ai agents | `/` | The H1 (locked brand line), description, the entity line |
+| ai agent templates | `/blueprints` | Title, description, first sentence, the questions H2 |
+| mystery shopping software, mystery shopper software | `/blueprints/mystery-shopper` | Title, description, a question; `/blog/best-ai-mystery-shopping-tools` dropped both and links here |
+| ai agent inbox | `/blog/ai-customers-for-developers` | Retitled 21 Nov; it hands "email api for ai agents" to `/email` and links it |
+
+Blueprint titles own the job as a verb ("Track competitors’ emails and texts"); guides keep the noun phrase ("competitor email tracking tools"). Not worth a title: persona for ai agent, event log, ai agent blueprint, ai agent identity. Not built yet (the plan's waves): `/compare/obsession-vs-agentmail`, alternatives pages for AgentMail, Browserbase, E2B and Mailosaur, the AI agent infrastructure guide, best email API, browser and sandbox for AI agents, and an OTP testing guide.
+
+---
+
 ## 0. Own the trust and method questions, not the head terms
 
 1. **Skip the head terms.** "Mystery shopping" is job seekers ($0.37 to $0.61 CPC). "Competitive intelligence tools", "AI sales agent", "price monitoring", "customer health score" and "agentic commerce" belong to incumbents that ChatGPT already names.

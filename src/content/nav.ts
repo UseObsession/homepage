@@ -1,6 +1,6 @@
-/* The navigation's words and structure (components/Nav). Since 9 Nov it says what Home says: the web behind the login,
-   as data, with sample data as the second button and early access as the call to action (no free reports, no GitHub
-   star). Structure: _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the recipes and
+/* The navigation's words and structure (components/Nav). Since 21 Nov it says what Home says: inboxes, phone numbers,
+   browsers and sandboxes for AI agents through one API, plus recipes, ours or your own, with sample data as
+   the second button and "Start building" as the call to action. Structure: _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the recipes and
    worked examples (content/catalog.ts), never their words. */
 import { catalog, type CatalogRecipe } from './catalog'
 import type { Cta, ReaderId, RecipeGroup, RecipeId } from './types'
@@ -26,7 +26,7 @@ export const JOBS: RecipeGroup[] = ['Watch other companies', 'Check your own jou
 export const jobAnchor = (g: RecipeGroup) => g.toLowerCase().replace(/[^a-z]+/g, '-')
 
 /* The name a job shows in the Recipes menu and on /recipes. The group value stays (recipes, anchors and the join card
-   read it); since 9 Nov the AI agents job is the record of what AI agents tell customers, as /verify says. */
+   read it); since 9 Nov the AI agents job is the event log of what AI agents tell people, as /verify says. */
 export const jobLabel = (g: RecipeGroup) => (g === 'Check your AI agents' ? 'What AI agents say' : g)
 
 /* A job with a page of its own links to it after its recipes. */
@@ -34,7 +34,7 @@ const MORE: Partial<Record<RecipeGroup, NavPage>> = {
   'Check your AI agents': { label: 'See how it works', to: ways.verify.to },
 }
 
-const recipeLink = (r: Pick<CatalogRecipe, 'id' | 'name' | 'slug'>): NavRecipe => ({ id: r.id, label: r.name, to: `/recipes/${r.slug}` })
+const recipeLink = (r: Pick<CatalogRecipe, 'id' | 'name' | 'slug'>): NavRecipe => ({ id: r.id, label: r.name, to: `/blueprints/${r.slug}` })
 const recipeById = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
 
 /* Every recipe, by the job it does. Each recipe's job, name and address come from its own file (content/recipes/SLUG.ts),
@@ -50,9 +50,9 @@ export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
    other jobs lead to their section of /recipes. */
 const JOB_MENU: Record<RecipeGroup, { line: string; examples: RecipeId[]; to?: string }> = {
   'Watch other companies': { line: 'Their emails, prices, trials and offers, after sign-up.', examples: ['competitor', 'prospect'] },
-  'Check your own journeys': { line: 'Your own sign-up and emails, as a new customer gets them.', examples: ['adcheck', 'speed'] },
+  'Check your own journeys': { line: 'Your own sign up, lead forms and emails, as a new user gets them.', examples: ['adcheck', 'speed'] },
   'Check your AI agents': {
-    line: 'What support chats, voice lines and sales agents tell a customer, word for word.',
+    line: 'What support chats, voice lines and sales agents tell a persona, word for word.',
     examples: ['support-bot', 'voice-agent'],
     to: ways.verify.to,
   },
@@ -63,7 +63,7 @@ export const recipeJobs: NavJob[] = JOBS.map((name) => {
   return {
     name: jobLabel(name),
     line: j.line,
-    to: j.to ?? `/recipes#${jobAnchor(name)}`,
+    to: j.to ?? `/blueprints#${jobAnchor(name)}`,
     examples: j.examples.map((id) => recipeLink(recipeById[id])),
   }
 })
@@ -78,7 +78,8 @@ const blogLead = catalog.blogLive
 
 /* The bar's menus since 9 Nov (James, after Exa's): tool first. Products (the 3 ways to get the data, the API, the
    recipes) with the integrations under them; Solutions (use cases beside the teams and industries they serve);
-   Resources (the proof and the reading, with the rest of the company in a side column); Developers as a plain link.
+   Resources (the proof and the reading, with the rest of the company in a side column); Developers and, since 21 Nov
+   (James), Pricing as plain links after the menus.
    Each row is a name, 1 line and an icon (components/Nav draws the icons). */
 export type NavIcon =
   | 'search'
@@ -102,6 +103,9 @@ export type NavIcon =
   | 'cart'
   | 'shield'
   | 'chart'
+  | 'phone'
+  | 'browser'
+  | 'sandbox'
 export type NavTool = NavPage & { line: string; icon: NavIcon }
 export type NavColumn = { label: string; items: NavTool[] }
 
@@ -109,20 +113,27 @@ const menus = {
   products: {
     label: 'Products',
     button: 'Products menu',
+    /* Since 21 Nov (James: one API for the pieces an agent needs, plus recipes): each piece's own page, then the
+       blueprints and the API. Pricing left this menu for the bar (James, 21 Nov). The footer's Products column is this
+       list, then Pricing (content/footer.ts). The pieces are in the founders' order (piecePaths.ts pieceOrder): Email,
+       Personas, Browser, Phone, Sandbox, Messaging. */
     items: [
-      { label: 'Search', line: 'One company’s emails, prices and offers', to: '/#search', icon: 'search' },
-      { label: 'Insights', line: 'One question, answered across many companies', to: '/#insights', icon: 'insights' },
-      { label: 'Watch', line: 'Add any company not covered yet', to: '/#how', icon: 'watch' },
-      { label: 'API and MCP', line: '5 verbs for your agents and your code', to: '/developers', icon: 'api' },
-      { label: 'Recipes', line: 'Ready-made collections to start from', to: '/recipes', icon: 'recipes' },
+      { label: 'Email', line: 'Inboxes your agents send and receive from', to: '/email', icon: 'mail' },
+      { label: 'Personas', line: 'Every piece under one identity', to: '/personas', icon: 'users' },
+      { label: 'Browser', line: 'A cloud browser that keeps its logins', to: '/browser', icon: 'browser' },
+      { label: 'Phone', line: 'Numbers, texts and calls for agents', to: '/phone', icon: 'phone' },
+      { label: 'Sandbox', line: 'A computer to run code when a task needs one', to: '/sandbox', icon: 'sandbox' },
+      { label: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram', to: '/messaging', icon: 'chat' },
+      { label: 'Blueprints', line: 'Ready-made AI agent templates, or your own job', to: '/blueprints', icon: 'recipes' },
+      { label: 'API and MCP', line: 'One API for every piece, and MCP for your agent', to: '/developers', icon: 'api' },
     ] satisfies NavTool[],
     integrations: {
       label: 'Integrations',
       items: [
-        { label: 'Clay', line: 'Facts on the rows you have', to: '/use-cases/prospect-intelligence-with-clay', icon: 'table' },
-        { label: 'Baserow', line: 'A new row in, its facts out', to: '/developers#baserow', icon: 'table' },
-        { label: 'Supabase', line: 'Every fact in your own table', to: '/developers#supabase', icon: 'database' },
-        { label: 'Webhooks', line: 'Each new fact at your endpoint', to: '/developers#webhooks', icon: 'webhook' },
+        { label: 'Clay', line: 'Each event on the rows you have', to: '/use-cases/prospect-intelligence-with-clay', icon: 'table' },
+        { label: 'Baserow', line: 'A new row creates an inbox and a number', to: '/developers#baserow', icon: 'table' },
+        { label: 'Supabase', line: 'Every event in your own table', to: '/developers#supabase', icon: 'database' },
+        { label: 'Webhooks and MCP', line: 'Every event from your event log, as it lands', to: '/developers#webhooks', icon: 'webhook' },
       ] satisfies NavTool[],
       all: { label: 'All integrations', to: '/developers#integrations' } satisfies NavPage,
     },
@@ -134,24 +145,27 @@ const menus = {
       {
         label: 'Use cases',
         items: [
-          { label: 'Competitor tracking', line: 'Their emails, offers and prices, dated', to: '/recipes/competitor-tracking', icon: 'target' },
-          { label: 'Prospect research', line: 'Open every pitch with their own emails', to: '/recipes/prospect-intelligence', icon: 'mail' },
-          { label: 'Pricing intelligence', line: 'Member prices beside public ones', to: '/use-cases/member-prices-for-price-intelligence', icon: 'tag' },
-          { label: 'Trial teardowns', line: 'Competitors’ trials, sign-up to cancel', to: '/use-cases/trial-checks-for-software-companies', icon: 'clock' },
-          { label: 'AI agent answers', line: 'What AI agents tell customers', to: '/verify', icon: 'chat' },
+          { label: 'Mystery shopping', line: 'Shop a store as a new shopper, and keep what follows', to: '/blueprints/mystery-shopper', icon: 'cart' },
+          { label: 'QA on your own flows', line: 'Sign up to your product as a new user', to: '/blueprints/website-audit', icon: 'software' },
+          { label: 'Competitor trials', line: 'Every email a competitor’s trial sends', to: '/blueprints/trial-teardown', icon: 'clock' },
+          { label: 'Lead response checks', line: 'Time the first email, text and call', to: '/blueprints/lead-leaks', icon: 'mail' },
+          { label: 'Prospect audits', line: 'Shop a prospect’s store before the pitch', to: '/blueprints/prospect-intelligence', icon: 'target' },
+          { label: 'Price watch', line: 'Member prices, every week', to: '/blueprints/price-watch', icon: 'tag' },
+          { label: 'AI agent checks', line: 'What support bots and voice lines say', to: '/verify', icon: 'chat' },
+          { label: 'The web behind the login', line: 'What companies show people only after sign up', to: '/use-cases/web-behind-the-login', icon: 'search' },
         ],
       },
       {
         label: 'Teams and industries',
         items: [
-          { label: 'Marketing', line: 'Every competitor’s emails and offers', to: '/marketing', icon: 'megaphone' },
-          { label: 'Sales', line: 'What each account sends its customers', to: '/sales', icon: 'briefcase' },
-          { label: 'Agencies', line: 'Pitch with a prospect’s own emails', to: '/agencies', icon: 'users' },
-          { label: 'Banks and fintechs', line: 'Rates and answers behind the login', to: '/use-cases/journey-checks-for-banks-and-fintechs', icon: 'bank' },
+          { label: 'Marketing', line: 'A persona on every competitor’s list', to: '/marketing', icon: 'megaphone' },
+          { label: 'Sales', line: 'What each account sends a new sign up', to: '/sales', icon: 'briefcase' },
+          { label: 'Agencies and resellers', line: 'Sell our checks to clients under your brand', to: '/agencies', icon: 'users' },
+          { label: 'Banks and fintechs', line: 'Apply as a persona, keep every step', to: '/use-cases/journey-checks-for-banks-and-fintechs', icon: 'bank' },
           { label: 'Online stores', line: 'The emails after every basket', to: '/use-cases/leak-checks-for-ecommerce-stores', icon: 'cart' },
-          { label: 'B2B software', line: 'Prospects, renewals and competitors', to: '/use-cases/sales-intelligence-behind-the-login', icon: 'software' },
-          { label: 'Compliance', line: 'Cancel, unsubscribe and STOP, proven', to: '/use-cases/opt-out-and-cancel-checks-for-compliance-teams', icon: 'shield' },
-          { label: 'Funds and analysts', line: 'Consumer offers as point-in-time data', to: '/use-cases/consumer-promotions-data-for-funds', icon: 'chart' },
+          { label: 'B2B software', line: 'Trials, demos and onboarding, as a new user', to: '/use-cases/sales-intelligence-behind-the-login', icon: 'software' },
+          { label: 'Compliance', line: 'Cancel, unsubscribe and STOP, recorded', to: '/use-cases/opt-out-and-cancel-checks-for-compliance-teams', icon: 'shield' },
+          { label: 'Funds and analysts', line: 'Offers and prices, dated, every week', to: '/use-cases/consumer-promotions-data-for-funds', icon: 'chart' },
         ],
       },
     ] satisfies NavColumn[],
@@ -160,11 +174,11 @@ const menus = {
     label: 'Resources',
     button: 'Resources menu',
     items: [
-      { label: 'Sample data', line: 'One real store’s record, end to end', to: '/sample-output' },
+      { label: 'Sample data', line: 'One real store run, every event end to end', to: '/sample-output' },
       { label: 'Use cases', line: 'What each team looks up, and where it lands', to: '/use-cases' },
       ...(catalog.blogLive ? [{ label: 'Blog', line: 'Guides and research', to: '/blog' }] : []),
       { label: 'Compare', line: 'Every other source, and where it stops', to: '/compare' },
-      { label: 'Glossary', line: 'The words for what customers are shown', to: '/glossary' },
+      { label: 'Glossary', line: 'Plain definitions of the words we use', to: '/glossary' },
     ] satisfies (NavPage & { line: string })[],
     more: {
       label: 'More',
@@ -180,6 +194,7 @@ const menus = {
     },
   },
   developers: { label: 'Developers', to: '/developers' } satisfies NavPage,
+  pricing: { label: 'Pricing', to: '/pricing' } satisfies NavPage,
 }
 
 export const nav = {
@@ -189,22 +204,22 @@ export const nav = {
   menus,
   /* The readers, as plain links: who it is for comes first (COPY.md, "One taxonomy": 4 readers, by role). */
   readers: [
-    { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'Competitors’ emails, offers and prices, after sign-up.' },
-    { id: 'sales', label: 'Sales', to: '/sales', line: 'What each account shows its own customers.' },
-    { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Pitch with a prospect’s own emails.' },
-    { id: 'developers', label: 'Developers', to: '/developers', line: 'The web behind the login, as an API.' },
+    { id: 'marketing', label: 'Marketing', to: '/marketing', line: 'A persona on every competitor’s list, keeping what they send.' },
+    { id: 'sales', label: 'Sales', to: '/sales', line: 'What each account sends a new sign up.' },
+    { id: 'agencies', label: 'Agencies', to: '/agencies', line: 'Sell our checks to your clients under your own brand.' },
+    { id: 'developers', label: 'Developers', to: '/developers', line: 'Inboxes, numbers, browsers and sandboxes through one API.' },
   ] satisfies NavReader[],
   /* Where the readers fold into 1 menu, when the bar is too narrow for all 5 (Nav.css), and the phone sheet's question.
      `name` is the folded button's name for screen readers; it holds the word it shows. */
   readersMenu: { label: 'For', name: 'Who it’s for', ask: 'Who are you?' },
   recipes: {
-    label: 'Recipes',
-    to: '/recipes',
-    button: 'Recipes menu',
-    all: { label: 'Browse all recipes', to: '/recipes' } satisfies NavPage,
-    /* The featured card: the 1 real record, the sample data. */
+    label: 'Blueprints',
+    to: '/blueprints',
+    button: 'Blueprints menu',
+    all: { label: 'Browse all blueprints', to: '/blueprints' } satisfies NavPage,
+    /* The featured card: the 1 real run, the sample data. */
     feature: {
-      label: 'See one real record',
+      label: 'See one real run',
       line: 'A real store’s 4 sign-ups and baskets, and what it sent in the 48 hours after.',
       action: 'See sample data',
       to: '/sample-output',
@@ -220,7 +235,7 @@ export const nav = {
     button: 'Resources menu',
     run: {
       kicker: 'Sample data',
-      label: 'One real store’s record',
+      label: 'One real store run',
       to: '/sample-output',
       line: 'We joined a real store 4 times. 1 left a basket, 1 left at checkout, and in 48 hours nobody wrote to either.',
       /* The real report's top band (public/report/page-1.jpg: the logo row, the headline, the first numbers), cut at 2x
@@ -256,12 +271,10 @@ export const nav = {
       : null,
     all: { label: 'Every resource', to: '/resources' } satisfies NavPage,
   },
-  /* The header's call to action on every page (James, 13 Nov: the store lookup, in place of early access everywhere).
-     Each page's own early access form stays where it is. */
-  /* `bar` is what the bar itself shows (14 Nov): "Look up your site" is 17 characters, and past 16 the button covers the
-     logo on a 375 to 390px phone (the gate's limit; "Request early access" did the same until PR #60). James, 15 Nov:
-     "Lookup your site", 16 characters. The sheet and every other place keep the full label. */
-  cta: { label: 'Look up your site', to: '/lookup', bar: 'Lookup your site' } satisfies Cta,
+  /* The header's call to action on every page. Since 21 Nov it is Home's: "Start building", to Home's early access
+     form; each page's own form stays where it is. `bar` is what the bar itself shows: past 16 characters the button
+     covers the logo on a 375 to 390px phone, and "Start building" is 14. */
+  cta: { label: 'Start building', to: '/#join', bar: 'Start building' } satisfies Cta,
   /* The second button, before the call to action: in the bar where it fits (Nav.css), in the sheet otherwise. Since 9 Nov
      the sample data, not Star on GitHub (the key keeps its old name; components/Nav reads it). */
   github: { label: 'Sample data', to: '/sample-output' } satisfies Cta,
@@ -269,12 +282,16 @@ export const nav = {
   theme: { row: 'Theme', toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
 }
 
-/* The few pages whose header button differs from nav.cta ("Look up your site", to /lookup, on every other page). */
+/* The few pages whose header button differs from nav.cta ("Start building", to Home's form, on every other page). */
 export const pageCtas: Record<string, Cta> = {
   /* On /lookup, the header's "Look up your site" goes to the page's own box. */
   '/lookup': { label: 'Look up your site', to: '#lookup', bar: 'Lookup your site' },
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not early access. */
   '/agents': catalog.agentsCta,
+  /* Home (21 Nov): the bar's button matches the hero's, to the page's own early access form. */
+  '/': { label: 'Start building', to: '#join', bar: 'Start building' },
+  /* The resellers page (21 Nov): the bar's button matches its forms' (early access), to its own form. */
+  '/agencies': { label: 'Get early access', to: '#join', bar: 'Get early access' },
 }
 
 export function ctaFor(path: string): Cta {

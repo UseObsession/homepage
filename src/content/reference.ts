@@ -62,7 +62,7 @@ export const refUi = {
     terms: { name: 'Related terms', line: 'Each defined in a sentence, with where it shows up.' },
     compare: { name: 'Compare and choose', line: 'Obsession beside the tools teams already use, from each tool’s own pages.' },
     guides: { name: 'Guides that use it', line: 'Step-by-step guides, each with every source linked.' },
-    recipes: { name: 'Recipes for this', line: 'Ready-made collections that keep it dated, company by company.' },
+    recipes: { name: 'Blueprints for this', line: 'Ready-made collections that keep it dated, company by company.' },
     pages: { name: 'Where to go next', line: 'The pages that explain Obsession in depth.' },
     usedOn: { name: 'Where this term is used', line: 'The comparisons, alternatives and terms that lean on it.' },
   },
@@ -163,7 +163,7 @@ export const glossaryHub: ReferenceHub = {
     description:
       'Plain definitions of the words for what companies show only to customers: login wall, member price, trial limit, save offer, one-click unsubscribe, DKIM.',
     answer:
-      'The glossary defines the words for what companies show only to signed-up customers, from a login wall and a member price to a save offer, one-click unsubscribe and DKIM, each in a sentence or two. Each term links the guides, recipes and comparisons that use it.',
+      'The glossary defines the words for what companies show only to signed-up customers, from a login wall and a member price to a save offer, one-click unsubscribe and DKIM, each in a sentence or two. Each term links the guides, blueprints and comparisons that use it.',
     ogImage: '/og/glossary.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -173,14 +173,13 @@ export const glossaryHub: ReferenceHub = {
   reader: 'sales',
   hero: {
     headline: 'The words for what companies show only to customers.',
-    sub: 'The glossary defines the words for what companies show only to signed-up customers, from a login wall and a member price to a save offer, one-click unsubscribe and DKIM, each in a sentence or two. Each term links the guides, recipes and comparisons that use it.',
+    sub: 'The glossary defines the words for what companies show only to signed-up customers, from a login wall and a member price to a save offer, one-click unsubscribe and DKIM, each in a sentence or two. Each term links the guides, blueprints and comparisons that use it.',
     capture: access('glossary-hero'),
     secondary: sample,
   },
   art: {
     kind: 'flow',
     title: 'northwind.example · terms',
-    status: { tone: 'info', text: 'Example' },
     steps: [
       { label: 'Pricing page', detail: 'Public: search reads it', tone: 'info' },
       { label: 'Login wall', detail: 'The sign-up form', tone: 'late' },

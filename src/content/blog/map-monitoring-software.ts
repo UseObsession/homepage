@@ -451,7 +451,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps going after the first read. Prices, stock and delivery are read every morning in [price watch](/recipes/price-watch), and a fresh sign-up can run every step again each week, as in [leak checks for ecommerce stores](/use-cases/leak-checks-for-ecommerce-stores). It works the same for one company or a list of 3,000, on an index built for millions of companies.',
+      text: 'It keeps going after the first read. Prices, stock and delivery are read every morning in [price watch](/blueprints/price-watch), and a fresh sign-up can run every step again each week, as in [leak checks for ecommerce stores](/use-cases/leak-checks-for-ecommerce-stores). It works the same for one company or a list of 3,000, on an index built for millions of companies.',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which MAP monitoring software to choose' },
@@ -504,7 +504,7 @@ export const post: BlogPost = {
         ['MAPP Trap', 'Daily scans, sellers traced to real names', 'Not listed\nFree 3 product scan', 'Marketplaces and Google Shopping', 'Anonymous marketplace sellers'],
         ['Vorys eControl', 'Lawyers write and enforce the policy', 'Not listed', 'MAP work in the US', 'US brands that want counsel'],
         [
-          'Obsession (ours): [Price watch](/recipes/price-watch), [Member prices](/use-cases/member-prices-for-price-intelligence)',
+          'Obsession (ours): [Price watch](/blueprints/price-watch), [Member prices](/use-cases/member-prices-for-price-intelligence)',
           'The price a signed-up customer is shown after the basket, the login and the email, dated with the screenshot or the email',
           'Early access, onboarding teams now. Priced per call or per company watched',
           'Keeps the price, the screenshot and the email, with notices left to your MAP tool',

@@ -1,4 +1,5 @@
 import { AppScreen, type Workspace } from '../components/AppScreen'
+import { BlueprintPricingSection } from '../components/BlueprintPricingTabs'
 import { LinkGroups } from '../components/sections/LinkGroups'
 import { connectionsFor } from '../lib/connections'
 import { Faq } from '../components/sections/Faq'
@@ -10,17 +11,18 @@ import { Ask } from '../components/v5/Ask'
 import { Compare } from '../components/v5/Compare'
 import { GapPair } from '../components/v5/GapPair'
 import { Hero5 } from '../components/v5/Hero5'
-import type { Page, ReaderId } from '../content/types'
+import type { Page, PricingTabs, ReaderId } from '../content/types'
 import './StoryPage.css'
 
-/* Marketing, Sales and Agencies: 1 layout, only the words and the screens change (content/pages/NAME.ts). Since the
-   9 Nov rewrite each page reads: what you get from the web behind the login (the hero, beside an app screen) > the hand
-   work you do today (the gap) > the jobs, 1 tab each, each with its screen and its recipe > what you can ask from the
-   AI you already use (the ask section) > Brand G, the 1 real run > questions > early access (#join). The 3 pages leave
+/* Marketing and Sales: 1 layout, only the words and the screens change (content/pages/NAME.ts). Since the 9 Nov rewrite
+   each page reads: what you get from the web behind the login (the hero, beside an app screen) > the hand work you do
+   today (the gap) > the jobs, 1 tab each, each with its screen and its recipe > what you can ask from the AI you already
+   use (the ask section) > Brand G, the 1 real run > #pricing: 1 tab per blueprint the page sells, each with its own
+   pricing table (`pricing`, BlueprintPricingSection; James, 21 Nov) > questions > early access (#join). The pages leave
    out `life` and `compare`, which repeated Home; the blocks stay here for any page that sets them.
    `workspace` names whose workspace the app screens show: 'agency' on Agencies, 'company' everywhere else. `reader`
    gives the hero its hue (styles/accents.css). */
-export function AudiencePage({ page, workspace, reader }: { page: Page; workspace: Workspace; reader: ReaderId }) {
+export function AudiencePage({ page, workspace, reader, pricing }: { page: Page; workspace: Workspace; reader: ReaderId; pricing?: PricingTabs }) {
   const screen = page.hero.screens?.[0]?.screen
   return (
     <>
@@ -31,6 +33,7 @@ export function AudiencePage({ page, workspace, reader }: { page: Page; workspac
       {page.ask && <Ask ask={page.ask} id="ask" />}
       {page.compare && <Compare compare={page.compare} id="compare" />}
       {page.proof && <Proof proof={page.proof} id="proof" />}
+      {pricing && <BlueprintPricingSection pricing={pricing} />}
       <LinkGroups groups={connectionsFor(page.meta.path, 'reader')} />
       <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />

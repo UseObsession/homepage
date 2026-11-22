@@ -326,7 +326,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 10 competitors checked every morning, use Obsession’s [Price watch](/recipes/price-watch), which keeps each competitor’s prices, codes and emailed offers, dated, for as long as you follow them.',
+      text: 'For 10 competitors checked every morning, use Obsession’s [Price watch](/blueprints/price-watch), which keeps each competitor’s prices, codes and emailed offers, dated, for as long as you follow them.',
     },
     {
       kind: 'cta',

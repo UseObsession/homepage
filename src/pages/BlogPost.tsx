@@ -34,7 +34,7 @@ function relatedOf(post: Post): { reads: LinkRow[]; recipes: LinkRow[] } {
   for (const r of post.related) {
     if (r.startsWith('recipe:')) {
       const rx = recipeBySlug[r.slice(7)]
-      if (rx) recipes.push({ label: rx.name, to: `/recipes/${rx.slug}`, line: rx.line })
+      if (rx) recipes.push({ label: rx.name, to: `/blueprints/${rx.slug}`, line: rx.line })
     } else if (r.startsWith('/')) {
       const e = entryFor(r)
       if (e.kind !== 'not-found') reads.push({ label: e.name, to: e.meta.path, line: NAV_LINES.get(e.meta.path) ?? e.line })

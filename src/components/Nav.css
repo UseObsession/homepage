@@ -1,13 +1,14 @@
 /* The site nav (components/Nav), composed from the design system: .ob-nav (bar), .ob-menu (surfaces), .ob-mnav (phone
    sheet), .ob-btn (call to action, menu button, theme switch). Since 9 Nov the bar is tool first, after Exa's: 3 menu
-   buttons (Products, Solutions, Resources) and Developers. These rules only place things and add what the system
+   buttons (Products, Solutions, Resources), Developers and, since 21 Nov, Pricing. These rules only place things and add what the system
    lacks: tool rows with an icon tile (.s-tool), the integrations grid, the 2 columns of Solutions, the side column of
    Resources, and a sheet with its call to action pinned (.s-mnav). Tokens only, no colour literals. */
 
 /* ---------------------------------------------------------------------------------------------
    Bar
-   Widths are the bar's own (container ob-nav): the 3 menu buttons with their chevrons and Developers come to about
-   330px of words; the lockup 158.
+   Widths are the bar's own (container ob-nav): the 3 menu buttons with their chevrons, Developers and Pricing come to
+   about 375px of words (the links 498px at 1280, padding included); the lockup 158. Measured 21 Nov: at 880 the
+   tight bar keeps 51px of air before the call to action.
      1200 and up   roomy: 12px link padding, the theme switch
      860 to 1199   tight: 8px link padding; the theme switch leaves under 980 (it stays in the footer and the sheet)
      under 860     the design system's compact bar: the menu button opens the sheet

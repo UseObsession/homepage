@@ -112,7 +112,7 @@ export function Ways({ ways, id }: { ways: WaysContent; id?: string }) {
 function WayObject({ way }: { way: Way }) {
   if (way.kind === 'platform') {
     return (
-      <div className="v5-ways-app" aria-label="Example: the Obsession website">
+      <div className="v5-ways-app" aria-label="The Obsession website">
         <p className="v5-ways-ask">{way.ask}</p>
         <ul className="v5-ways-chips">
           {way.recipes.map((r, k) => (
@@ -134,7 +134,7 @@ function WayObject({ way }: { way: Way }) {
   }
   if (way.kind === 'chat') {
     return (
-      <div className="v5-ways-chat" aria-label="Example: a chat with your own agent">
+      <div className="v5-ways-chat" aria-label="A chat with your own agent">
         <pre className="v5-ways-setup">
           <code className="v5-ways-typed">{way.setup}</code>
         </pre>
