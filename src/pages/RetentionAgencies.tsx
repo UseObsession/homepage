@@ -16,8 +16,8 @@ import './RetentionAgencies.css'
 /* /use-cases/leak-checks-for-retention-agencies, drawn in James's format from his pieces (src/legacy/james/components):
    what any store sends a new customer after a sign-up, a text opt-in and a basket, and what never comes, for the stores
    an agency pitches and keeps. 10 steps in 3 phases, each beside its app window, follow 1 invented store, Larch & Lye,
-   from the pitch list to the month's report; the real proof (1,500 runs and Brand G) follows step 4. The words are the
-   content file's (content/usecases); the app windows' rows and numbers are here. The form is early access (FinalCta). */
+   from the pitch list to the month's report; the real run (Brand G) follows step 4. The words are the
+   content file's (content/usecases); the app windows' rows and numbers are here. The form is FinalCta's. */
 
 const phases = study.how?.steps ?? []
 const step = (phase: number, i: number) => phases[phase].steps[i]
@@ -212,7 +212,7 @@ export function RetentionAgencies() {
                   </div>
                   <div className="uc-ready">
                     <span>
-                      Ready to look up<small>Each store as New customer · US</small>
+                      Ready to sign up<small>A persona per store, as New customer · US</small>
                     </span>
                     <b>
                       <Count to={40} /> stores
@@ -303,7 +303,7 @@ export function RetentionAgencies() {
                     <div className="uc-id">
                       <div className="uc-row uc-between">
                         <span className="uc-mh">Larch & Lye</span>
-                        <span className="tag idle">Account 3E9A</span>
+                        <span className="tag idle">Persona 3E9A</span>
                       </div>
                       <dl className="uc-idrows">
                         <div>
@@ -436,7 +436,7 @@ export function RetentionAgencies() {
               {study.found && (
                 <Reveal className="uc-inout uc-real">
                   <div>
-                    <p className="kicker">Is this real?</p>
+                    <p className="kicker">What a real run found</p>
                     <h3 className="h2">{study.found.heading}</h3>
                     <p className="muted">{study.found.line}</p>
                   </div>
@@ -459,7 +459,7 @@ export function RetentionAgencies() {
               </div>
 
               <Step n={5} title={step(1, 0).title} line={step(1, 0).line} pick={step(1, 0).example}>
-                <Win title="Record · Larch & Lye">
+                <Win title="Event log · Larch & Lye">
                   <div className="uc-verdict">
                     <span className="uc-lab">3 leaks</span>
                     <b>The pop up promised 15% off. No code came, no text came, and the basket got no reminder.</b>
@@ -495,7 +495,7 @@ export function RetentionAgencies() {
                     </div>
                   </div>
                   <div className="uc-row uc-end">
-                    <span className="uc-btn">Copy record link</span>
+                    <span className="uc-btn">Copy event link</span>
                   </div>
                 </Win>
               </Step>
@@ -511,7 +511,7 @@ export function RetentionAgencies() {
                           <th className="new">Leak</th>
                           <th className="new">Seen</th>
                           <th className="new">What happened</th>
-                          <th className="new">Receipt</th>
+                          <th className="new">Event</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -595,7 +595,7 @@ export function RetentionAgencies() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="uc-small">The first row is from the pitch, so the before is on record from day 1.</p>
+                  <p className="uc-small">The first row is from the pitch, so the before is in the event log from day 1.</p>
                 </Win>
               </Step>
 
@@ -610,7 +610,7 @@ export function RetentionAgencies() {
                     {[
                       ['09:00', 'Theme update goes live; the agency tells Obsession'],
                       ['09:20', 'A fresh sign up through the 15% pop up'],
-                      ['10:20', 'No code after 1 hour: the fact reaches the webhook'],
+                      ['10:20', 'No code after 1 hour: the result reaches the webhook'],
                       ['11:05', 'The agency reconnects the pop up to the welcome email'],
                       ['11:30', 'Checked again: code in 39 seconds'],
                     ].map(([t, e], i) => (
@@ -627,7 +627,7 @@ export function RetentionAgencies() {
                     <p>
                       <b>Obsession</b> <span className="uc-small">#larch-and-lye</span>
                       <br />
-                      After this morning’s theme update, the pop up takes the email but sends no code. Record linked.
+                      After this morning’s theme update, the pop up takes the email but sends no code. Event linked.
                     </p>
                   </div>
                 </Win>
@@ -757,7 +757,7 @@ export function RetentionAgencies() {
                 <div>
                   <p className="kicker">The opener</p>
                   <h3 className="h2">Their own emails and your fix, in 1 email.</h3>
-                  <p className="muted">The record shows what the store sends a new customer today. Your mockup shows what it would send with you.</p>
+                  <p className="muted">The event log shows what the store sends a new customer today. Your mockup shows what it would send with you.</p>
                   <div className="uc-mail">
                     <p className="uc-mail-head">
                       From <b>Maya, your agency</b> to <b>Clara Holt, Larch & Lye</b> · Subject <b>Larch & Lye’s 15% code</b>
@@ -770,11 +770,11 @@ export function RetentionAgencies() {
                     <p>I’ve mocked up the welcome email and basket reminder we’d send instead. Worth 15 minutes?</p>
                     <p>Maya</p>
                     <p className="uc-att">
-                      <span>Record: Larch & Lye, 2 to 4 Nov</span>
+                      <span>Event log: Larch & Lye, 2 to 4 Nov</span>
                       <span>Mockup: Larch & Lye welcome</span>
                     </p>
                   </div>
-                  <p className="uc-small">Written by your strategist, from the store’s record.</p>
+                  <p className="uc-small">Written by your strategist, from the store’s event log.</p>
                 </div>
                 <div className="uc-phone-wrap">
                   <p className="kicker">Your mockup</p>

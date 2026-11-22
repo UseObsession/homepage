@@ -1,8 +1,11 @@
+import { CONTACT_EMAIL } from '../site'
 import type { Capture, ExConsole, Faq, Meta } from '../types'
 
-/* /lookup: a site's entry in the index, looked up by its own domain (pages/Lookup.tsx), told the way a search engine
-   would tell it: what the index holds of the site behind the login, not who collected it. One exact domain in, at most
-   one entry out: no list, no browsing, no page per brand. The page itself is indexed (Seun, 14 Nov: in the sitemap and llms.txt, with its
+/* /lookup: the store lookup, one blueprint of the toolkit (mystery shopping, /blueprints/mystery-shopper) offered as a
+   free lookup (23 Nov 2026, the 21 Nov position): a persona with its own inbox signs up at an online store as a new
+   customer, stops before payment and keeps every email, timestamped. The reader gets a report on their own store, looked
+   up by its domain (pages/Lookup.tsx). Never "the index", "entry", "record" or "early access" in reader copy; the code
+   names (entry, indexing, fromIndex) stay. One exact domain in, at most one report out: no list, no browsing, no page per brand. The page itself is indexed (Seun, 14 Nov: in the sitemap and llms.txt, with its
    FAQ as FAQPage), and owns "klaviyo email audit" ("klaviyo flow audit" stays with /blog/audit-prospect-email-without-klaviyo-login) (docs/SEARCH.md §2); the
    entries it sends never are: each opens only from a link in the site owner's inbox.
    The card comes from the Edge Function store-lookup in the obsession-index Supabase project (lib/lookup.ts), which
@@ -17,19 +20,20 @@ export type LookupPage = {
   pill: string
   headline: string
   sub: string
-  /* Under the box (James, 13 Nov): the site's 1,500 line in its exact words; 84 of 170 abandoned checkouts in the
-     index's entries with no email in their 48 hours (49%); every email event in the index on 13 Nov (4,196). */
+  /* Under the box (James, 13 Nov): the site's 1,500 line in its exact words; 84 of 170 abandoned checkouts our personas
+     ran with no email in their 48 hours (49%); every email they kept by 13 Nov (4,196). */
   figures: { value: string; label: string }[]
   /* The hero's picture: the sample store's answers, as an entry shows them. */
   preview: { title: string; tag: string }
   /* Under the hero, for every visitor before any email (Seun and James, 14 Nov): what a new customer got from the
-     stores in the index after each step, from the index's totals (content/lookupSample sampleTotals). It leads with the
+     stores our personas shopped after each step, from their totals (content/lookupSample sampleTotals). It leads with the
      drop, never the welcome: most stores send one, and half go quiet after a basket or a checkout. */
   drop: { heading: string; line: string; asOf: string; got: (pct: number) => string; none: (pct: number) => string; close: string; button: string }
   /* A store we haven't indexed (14 Nov): what the owner can check tonight, under the request to add it. */
   selfCheck: { heading: string; line: string; steps: { title: string; line: string }[]; note: string }
-  /* An agency can't open a store's entry (it goes only to someone at the store), so it gets early access with the
-     agency offer (lib/join offerOf: a source with "agenc" gives 'clients'). James and Seun, 14 Nov. */
+  /* An agency can't open a store's report (it goes only to someone at the store), so it runs the mystery shopping
+     blueprint on the Free plan, then at volume, with each brand's OK (lib/join offerOf: a source with "agenc" gives
+     'clients'). James and Seun, 14 Nov; reworded 23 Nov. */
   agencies: { link: string; heading: string; line: string; points: string[]; capture: Capture }
   /* The sample store's whole entry, in the same console a found site gets. */
   sample: { heading: string; line: string }
@@ -40,7 +44,7 @@ export type LookupPage = {
   indexing: { heading: string; line: string; items: { title: string; line: string }[] }
   faq: Faq
   final: { heading: string; line: string; button: string }
-  /* Above the closing call: the same data for any company, the other 2 uses, to early access. */
+  /* Above the closing call: the toolkit and the mystery shopping blueprint this page runs, to the blueprint's page. */
   others: { line: string; link: string; to: string }
   form: {
     label: string
@@ -121,25 +125,25 @@ export const lookupPage: LookupPage = {
     description:
       'Look up your store’s welcome, basket and checkout emails as a new customer gets them: which arrive, how fast and what’s broken, with no Klaviyo login.',
     answer:
-      'The store lookup is a Klaviyo email audit from the customer’s side. It shows what your store actually sends a new customer after a sign-up, a product view, a basket and a checkout, whichever email tool sends it. It needs an email at your own site and no login, and each email in the entry is dated and checked against every store in Obsession’s index of what companies show only to signed-up customers.',
+      'The store lookup is a Klaviyo email audit from the customer’s side. It shows what your online store actually sends a new customer after a sign-up, a product view, a basket and a checkout, whichever email tool sends it. It runs Obsession’s mystery shopping blueprint, a ready-made job Obsession runs on any store. A persona with its own inbox signs up as a new customer, stops before payment and keeps every email, timestamped and set beside every other store Obsession has shopped. It needs an email at your own site and no login.',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Look up your site', path: '/lookup' },
+      { name: 'Store lookup', path: '/lookup' },
     ],
   },
   pill: 'Store lookup',
   headline: 'See what your online store sends a new customer.',
-  sub: 'The screens, emails, prices and offers your store shows only to signed-up customers, step by step and dated, set against every store in the index. Type your email at your site and we’ll send you the entry.',
+  sub: 'The store lookup is a Klaviyo email audit from the customer’s side, built on Obsession’s mystery shopping blueprint. A persona, an AI agent with its own inbox, signs up at your store as a new customer and leaves a basket and a checkout before payment. Every email that follows is kept, timestamped and set beside every other store we’ve shopped. Type your email at your site and we’ll send you the report.',
   figures: [
     { value: '1,500', label: 'sign-ups, baskets and checkouts at real companies' },
     { value: '1 in 2', label: 'abandoned checkouts got no reminder within 48 hours' },
-    { value: '4,196', label: 'emails kept as they arrived, and counting' },
+    { value: '4,196', label: 'emails kept as they arrived, timestamped, and counting' },
   ],
-  preview: { title: 'hollin.example', tag: 'Sample entry' },
+  preview: { title: 'hollin.example', tag: 'Sample report' },
   drop: {
     heading: 'The welcome comes. After a basket or a checkout, nearly 1\u00a0in\u00a02 stores go quiet.',
-    line: 'What a new customer got from the stores in the index after each step. Where does your store sit?',
-    asOf: 'Every sign-up, product view, basket and checkout in the index, as of 13 Nov 2026.',
+    line: 'What a new customer got after each step, across every store our personas have shopped. Where does your store sit?',
+    asOf: 'Every sign-up, product view, basket and checkout our personas ran, as of 13 Nov 2026.',
     got: (pct) => `${pct}% sent an email`,
     none: (pct) => `${pct}% sent nothing`,
     close: 'Each checkout that gets no reminder is a shopper who typed their email and left. See whether yours get one.',
@@ -157,70 +161,70 @@ export const lookupPage: LookupPage = {
     note: 'For each email, note when it came and whether your first name and any code work. Note too which never came.',
   },
   agencies: {
-    link: 'At an ecommerce agency? Look up the stores you run or pitch',
-    heading: 'Looking up a client, or a store you’re pitching?',
-    line: 'An entry only goes to someone at the store itself. For agencies, early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the brand’s OK. We check each agency before we set up access.',
+    link: 'At an ecommerce agency? Run it on every client and every store you pitch',
+    heading: 'Run the same check on every client store, and every store you pitch.',
+    line: 'A lookup report goes only to someone at the store itself. If you do email, retention or conversion work for ecommerce brands, use Obsession’s mystery shopping blueprint instead. It’s a ready-made job Obsession runs on every store you name, with each brand’s OK. Try it on the Free plan, then run it on 300 stores or 3,000, every week. We check each agency before we set up access.',
     points: [
       'Win the pitch: open with what the brand’s own store sent a new customer, across a list of 300 brands or 3,000, sorted by what each one’s emails are missing.',
       'Keep the client: the before picture on day one, then a fresh sign-up every week. A flow that stops working shows up in your report that week, with a screenshot of each step.',
       'Grow the account: the gaps outside your current work, such as texts never set up or a checkout that sends nothing, each with the email or screenshot the client can open.',
-      'Every store already in the index, in a table you already use, like Clay or Google Sheets, or through our API and MCP for your own tools and AI agents.',
+      'Report where you work: a row per store in Clay or Google Sheets, an alert in Slack, or a PDF per client. Your own tools and AI assistants such as Claude get every event through our API and MCP.',
     ],
-    capture: { kind: 'waitlist', source: 'lookup-agencies', button: 'Request early access', interest: 'any' },
+    capture: { kind: 'waitlist', source: 'lookup-agencies', button: 'Start free', interest: 'any' },
   },
   sample: {
-    heading: 'A whole entry, for our sample store',
-    line: 'This is the entry for hollin.example, our sample store. It opens on what to change first. Below that sit the emails after each step, the offers and the campaigns, each against the index. Search lists every step and every email, with a copy you can open.',
+    heading: 'A full report, for our sample store',
+    line: 'This is the report for hollin.example, our sample store. It opens on what to change first, then the emails after each step, the offers and the campaigns, each set beside every store we’ve shopped. Search lists every step and every email, with a copy you can open.',
   },
   steps: {
-    heading: 'How you get your entry',
+    heading: 'How you get your report',
     items: [
-      { title: 'Type your email at your site', line: 'you@yourstore.com for yourstore.com. The entry only goes to someone at the site it describes.' },
-      { title: 'We look your site up', line: 'If it’s in the index, the link leaves at once. If it isn’t, leave your email and we’ll add it.' },
-      { title: 'Open the link', line: 'It opens your entry, the page the index keeps for your store: what to change first, every finding with its proof, and every email as it arrived. It works for 7 days.' },
+      { title: 'Type your email at your site', line: 'you@yourstore.com for yourstore.com. The report only goes to someone at the site it describes.' },
+      { title: 'We look your store up', line: 'If a persona has already shopped your store, the link leaves at once. If not, leave your email and one signs up as a new customer.' },
+      { title: 'Open the link', line: 'It opens your store’s report: what to change first, every finding with its evidence, and every email as it arrived. It works for 7 days.' },
     ],
   },
   checks: {
-    heading: 'What an entry checks',
-    line: 'What your store shows a signed-up customer, step by step and dated, with each finding next to the change to make.',
-    every: 'In every entry',
+    heading: 'What your report checks',
+    line: 'What your store shows a signed-up customer, step by step and timestamped, with each finding next to the change to make.',
+    every: 'In every report',
     request: 'On request',
     items: [
-      { title: 'What your store shows behind the login', line: 'Every screen, email and offer your store gave our account after a sign-up, a basket and a checkout, each one dated.', every: true },
-      { title: 'What to change first', line: 'Every finding next to the change it asks for, ranked against how many stores in the index already do it.', every: true },
+      { title: 'What your store shows a new customer', line: 'Every screen, email and offer your store gave our persona after a sign-up, a basket and a checkout, each one timestamped.', every: true },
+      { title: 'What to change first', line: 'Every finding next to the change it asks for, ranked by how many other stores already do it.', every: true },
       { title: 'Your emails after each step', line: 'The welcome, product view, basket and checkout emails: whether one comes, how fast, and what’s wrong in it.', every: true },
       { title: 'Your offers', line: 'Every code and discount your emails give a new customer, where it came and when it ended.', every: true },
       { title: 'Your campaigns', line: 'How often your store emails after that, on which days and in which languages.', every: true },
-      { title: 'Can an AI shopper buy from you', line: 'An AI agent tries to find, read, compare and buy your products, and the entry shows where it stops.', every: false },
+      { title: 'Can an AI shopper buy from you', line: 'An AI agent tries to find, read, compare and buy your products, and the report shows where it stops.', every: false },
       { title: 'A fresh sign-up every week', line: 'A new account runs every step again each week, so a flow that stops working shows up that week, beside the week it last worked.', every: false },
       { title: 'Prices and stock every morning', line: 'Your prices, stock and delivery promises, and your competitors’, read every morning the way a new customer sees them.', every: false },
       { title: 'Beside the leaders in your category', line: 'Your store next to the biggest names you compete with, the same steps read the same way, so you see what they send that you don’t.', every: false },
     ],
   },
   indexing: {
-    heading: 'How we check a site',
-    line: 'Our accounts sign up and shop your store the way a new customer would, then stay subscribed and keep everything it shows and sends, day after day. Every store is read the same way, the index is built for millions of companies, and a store already in it starts with its history on day one.',
+    heading: 'How a persona shops your store',
+    line: 'A persona is an AI agent with its own inbox, phone number and browser. It signs up and shops your store the way a new customer would, then stays subscribed and keeps everything the store shows and sends, day after day. Every store is read the same way, the blueprint is built for millions of stores, and a store our personas have already shopped comes with its history from the first day.',
     items: [
-      { title: 'A new customer’s steps', line: 'Sign up, look at a product, leave a basket, start a checkout. Every screen and email that follows is dated from its step.' },
-      { title: 'Kept as it arrived', line: 'Every screen and email, with links, tracking images, and our account’s name and address taken out.' },
-      { title: 'Never a real order', line: 'Our accounts stop before payment. Every email in an entry was sent to one of them, never to your customers.' },
-      { title: 'An AI shopper, on request', line: 'An AI agent tries to find, read, compare and buy your products, and the entry shows the stage where it stops.' },
+      { title: 'A new customer’s steps', line: 'Sign up, look at a product, leave a basket, start a checkout. Every screen and email that follows is timestamped from its step.' },
+      { title: 'Kept as it arrived', line: 'Every screen and email, with links, tracking images, and our persona’s name and address taken out.' },
+      { title: 'Never a real order', line: 'Our personas stop before payment. Every email in a report was sent to one of them, never to your customers.' },
+      { title: 'An AI shopper, on request', line: 'An AI agent tries to find, read, compare and buy your products, and the report shows the stage where it stops.' },
     ],
   },
   faq: {
-    heading: 'Questions about your entry',
+    heading: 'Questions about your report',
     items: [
       {
         q: 'What is the store lookup?',
-        a: 'The store lookup is a Klaviyo email audit from the customer’s side. It shows what your store actually sends a new customer after a sign-up, a product view, a basket and a checkout, whichever email tool sends it, Klaviyo or another. Each email is dated and checked for how fast it came and what’s wrong in it, against every store in the index.',
+        a: 'The store lookup is a Klaviyo email audit from the customer’s side. It shows what your store actually sends a new customer after a sign-up, a product view, a basket and a checkout, whichever email tool sends it, Klaviyo or another. Each email is timestamped and checked for how fast it came and what’s wrong in it, beside every store Obsession has shopped.',
       },
       {
         q: 'How is it different from a Klaviyo flow audit?',
-        a: 'A Klaviyo flow audit reads your flows from inside the account: triggers, filters, delays and revenue. Your entry shows the other side, what a new customer actually receives. A flow that looks live but never sends shows up as a missing email, and a broken first name or a placeholder shows up in the email itself.',
+        a: 'A Klaviyo flow audit reads your flows from inside the account: triggers, filters, delays and revenue. Your report shows the other side, what a new customer actually receives. A flow that looks live but never sends shows up as a missing email, and a broken first name or a placeholder shows up in the email itself.',
       },
       {
         q: 'Do you need my Klaviyo or Shopify login?',
-        a: 'No. Your entry comes from what your store sent our own accounts, so it works whichever email platform you use: Klaviyo, Shopify Email, Omnisend, Mailchimp or another.',
+        a: 'No. Your report comes from what your store sent our own personas, so it works whichever email platform you use: Klaviyo, Shopify Email, Omnisend, Mailchimp or another.',
       },
       {
         q: 'How do I test my abandoned cart email myself?',
@@ -229,26 +233,40 @@ export const lookupPage: LookupPage = {
       },
       {
         q: 'I run an ecommerce agency. Can I look up a client’s store?',
-        a: 'Not from this box, because an entry only goes to someone at the store itself. Early access looks up every store already in the index, and adds up to 5 stores you run or pitch, with the brand’s OK. We check each agency before we set up access.',
+        a: 'Not from this box, because a report only goes to someone at the store itself. Agencies run the mystery shopping blueprint on every client and every store they pitch, with the brand’s OK. Try it on the Free plan, then run it on 300 stores or 3,000, every week. We check each agency before we set up access.',
         link: { label: 'Obsession for agencies', to: '/agencies' },
       },
-      { q: 'Why does it need an email at my site?', a: 'So an entry only goes to someone at the site it describes. The address has to be at the domain you look up, and the link goes to that address.' },
+      {
+        q: 'How does the store lookup relate to Obsession?',
+        a: 'Obsession is the toolkit for AI agents: inboxes, phone numbers and browsers, plus messaging and a sandbox to run code, on one API and one bill. The store lookup runs one of its blueprints, mystery shopping, a ready-made job Obsession runs for teams who don’t write code. Pick it and Obsession shops any store you choose, every week, with results in Slack, a sheet or your CRM.',
+        link: { label: 'The mystery shopping blueprint', to: '/blueprints/mystery-shopper' },
+      },
+      {
+        q: 'Can developers run this check from their own code?',
+        a: 'Yes. Create a persona with an inbox through the API, SDKs or MCP and send it to any store. Every email reaches your webhook about 50 ms after it lands, and each step lands in your event log. Start on the Free plan, with no credit card.',
+        link: { label: 'Obsession for developers', to: '/developers' },
+      },
+      { q: 'Why does it need an email at my site?', a: 'So a report only goes to someone at the site it describes. The address has to be at the domain you look up, and the link goes to that address.' },
       { q: 'How long does the link work?', a: '7 days. After that, look up your site again and we’ll send a new one.' },
-      { q: 'My site isn’t in the index. Can you add it?', a: 'Yes. Look it up, leave your work email, and we’ll add it. You can name your other sites in the same form.' },
-      { q: 'Can AI agents buy from my store?', a: 'Ask for the check in the form under your entry. Our agent tries to find, read, compare and buy your products, and your entry shows the stage where it stops and why.' },
+      { q: 'My store hasn’t been shopped yet. Can you add it?', a: 'Yes. Look it up and leave your work email, and a persona signs up as a new customer. You can name your other sites in the same form.' },
+      { q: 'Can AI agents buy from my store?', a: 'Ask for the check in the form under your report. Our agent tries to find, read, compare and buy your products, and your report shows the stage where it stops and why.' },
       {
         q: 'When do you call an email missing?',
-        a: 'We read each step at 4, 8, 12, 24 and 48 hours, because every store runs its reminders on its own clock. We call an email missing once its window has closed, never before. The account stays subscribed after that, so your entry keeps filling with the store’s campaigns, codes and offers.',
+        a: 'We read each step at 4, 8, 12, 24 and 48 hours, because every store runs its reminders on its own clock. We call an email missing once its window has closed, never before. The persona stays subscribed after that, so your report keeps filling with the store’s campaigns, codes and offers.',
         link: { label: 'When to send abandoned cart emails', to: '/blog/abandoned-cart-email-sequence' },
       },
-      { q: 'Where do the numbers next to each finding come from?', a: 'From every store in the index that took the same step: how many of them do it, and how fast half of them are.' },
-      { q: 'Will you place orders on my store?', a: 'No. Our accounts stop before payment and never place an order.' },
-      { q: 'Do you see my customers or their data?', a: 'No. Every email in an entry was sent to one of our own accounts. We never see your customers, their orders or their emails.' },
-      { q: 'Can I have my entry taken down?', a: 'Yes. Email james@useobsession.com from an address at your site and we’ll remove it from the index.' },
+      { q: 'Where do the numbers next to each finding come from?', a: 'From every store our personas have taken through the same step: how many of them do it, and how fast half of them are.' },
+      { q: 'Will you place orders on my store?', a: 'No. Our personas stop before payment and never place an order.' },
+      { q: 'Do you see my customers or their data?', a: 'No. Every email in a report was sent to one of our own personas. We never see your customers, their orders or their emails.' },
+      { q: 'Can I have my report taken down?', a: `Yes. Email ${CONTACT_EMAIL} from an address at your site and we’ll remove it.` },
     ],
   },
-  final: { heading: 'See your site’s entry', line: 'Type your email at your site and the link comes to your inbox.', button: 'Look up your site' },
-  others: { line: 'The same data for any company: watch your competitors, or open a pitch with a prospect’s own emails.', link: 'Request early access', to: '/#join' },
+  final: { heading: 'See your store’s report', line: 'Type your email at your site and the link comes to your inbox.', button: 'Look up your store' },
+  others: {
+    line: 'The store lookup runs one blueprint of Obsession, the toolkit for AI agents. Pick mystery shopping and Obsession shops your store, your competitors’ or every client’s, every week.',
+    link: 'See the mystery shopping blueprint',
+    to: '/blueprints/mystery-shopper',
+  },
   form: {
     label: 'Your site’s domain',
     placeholder: 'yoursite.com',
@@ -256,7 +274,7 @@ export const lookupPage: LookupPage = {
     emailPlaceholder: 'you',
     button: 'Send me the link',
     busy: 'Looking up your site',
-    opening: 'Opening your site’s entry',
+    opening: 'Opening your store’s report',
     help: 'We email the link to this address. It has to be at your own site.',
     example: 'Example:',
     exampleDomain: 'hollin.example',
@@ -272,7 +290,7 @@ export const lookupPage: LookupPage = {
   },
   sent: {
     headline: 'Check your inbox',
-    line: (email, domain) => `We’ve sent a link to ${email}. It opens ${domain}’s entry in the index and works for 7 days.`,
+    line: (email, domain) => `We’ve sent a link to ${email}. It opens ${domain}’s report and works for 7 days.`,
     note: 'Not there in a few minutes? Check your spam folder, or look up your site again.',
   },
   console: {
@@ -280,20 +298,20 @@ export const lookupPage: LookupPage = {
     modes: { search: 'Search', insights: 'Insights' },
     buttons: { search: 'Look up' },
     tryLabel: { search: 'Other sites' },
-    groups: { persona: 'Persona', wall: 'Wall', kind: 'Kind' },
-    tabs: { facts: 'Facts', evidence: 'Evidence', record: 'Record' },
+    groups: { persona: 'Persona', wall: 'Step', kind: 'Kind' },
+    tabs: { facts: 'Facts', evidence: 'Evidence', record: 'Event' },
     output: { search: 'Events' },
     hint: '',
     none: 'Nothing here for these choices. Pick another.',
-    fromIndex: 'From the index',
+    fromIndex: 'Already shopped',
     newRun: '',
-    notCovered: 'Not in the index yet',
+    notCovered: 'Not shopped yet',
     unindexed: { title: '', line: '', cta: '' },
-    said: 'The site’s entry in Obsession’s index. Insights answers 4 questions from its events, one for each step our account took. Search lists the events, what our account did and each email the site sent, with the facts read from it; open one to see its clean copy and its record. Evidence shows the clean copies, one after another.',
+    said: 'The store’s report from Obsession’s mystery shopping blueprint. Insights answers 4 questions from its events, one for each step the persona took. Search lists the events, what the persona did and each email the store sent, with the facts read from it; open one to see its clean copy and its details. Evidence shows the clean copies, one after another.',
     ready: () => '',
   },
   entry: {
-    indexed: (from, to) => (from === to ? `indexed ${from}` : `indexed ${from} to ${to}`),
+    indexed: (from, to) => (from === to ? `checked ${from}` : `checked ${from} to ${to}`),
     latest: (day) => `latest email ${day}`,
     persona: 'New customer',
     wall: 'Sign-up',
@@ -316,7 +334,7 @@ export const lookupPage: LookupPage = {
     faults: { blank_name: 'Greeting with a blank first name', placeholder: 'A placeholder where words should be' },
     head: { subject: 'Subject', arrived: 'Arrived', after: 'After' },
     proof: 'Clean copy: links and tracking images taken out, and the address it went to.',
-    scope: 'This entry holds only what your site sent to our own accounts, with their names and addresses taken out.',
+    scope: 'Your site sent every one of these emails to our own personas. Their names and addresses are taken out.',
   },
   insights: {
     heading: 'What your store sent',
@@ -337,7 +355,7 @@ export const lookupPage: LookupPage = {
         cart: 'Send a basket reminder',
         checkout: 'Send a checkout reminder',
       },
-      reminderLine: (pct, runs, wait) => `${pct}% of ${runs} stores in the index send one${wait ? `, half of those ${wait}` : ''}.`,
+      reminderLine: (pct, runs, wait) => `${pct}% of ${runs} stores we’ve shopped send one${wait ? `, half of those ${wait}` : ''}.`,
       blank: 'Add the first name',
       placeholder: 'Fill in the placeholder',
       fix: {
@@ -365,9 +383,9 @@ export const lookupPage: LookupPage = {
     languages: (list) => `Written in ${list}.`,
   },
   missing: {
-    headline: (domain) => `We haven’t indexed ${domain} yet.`,
-    line: 'Leave your work email and we’ll add your site to the index.',
-    button: 'Add my site',
+    headline: (domain) => `We haven’t shopped ${domain} yet.`,
+    line: 'Leave your work email and a persona signs up at your store as a new customer.',
+    button: 'Add my store',
   },
   update: {
     headline: 'Ask for a fuller check',
@@ -375,6 +393,6 @@ export const lookupPage: LookupPage = {
     button: 'Ask for the check',
   },
   another: 'Look up another site',
-  takedown: 'Your site, and you want its entry taken down? Email',
-  takedownEmail: 'james@useobsession.com',
+  takedown: 'Want your store’s report taken down? Email',
+  takedownEmail: CONTACT_EMAIL,
 }

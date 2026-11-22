@@ -19,6 +19,11 @@ export type RecipeId =
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'listings'
   | 'adcheck' | 'partners'
   | 'support-bot' | 'voice-agent' | 'outbound-agent' | 'sales-agent' | 'vendor-agent' | 'resolution' | 'disclosure' | 'drift'
+  /* Wave 2 (23 Nov 2026): the 11 blueprints from competitors' customer stories (_research/seo/blueprints-22nov/PLAN.md). */
+  | 'missed-call' | 'reminders' | 'callback' | 'documents' | 'codes' | 'inbox-agent' | 'imessage' | 'prior-auth' | 'loads'
+  | 'invoices' | 'eval'
+  /* Buy, book and order (23 Nov 2026, _research/seo/agentic-commerce-23nov/PLAN.md). */
+  | 'agent-checkout' | 'travel' | 'reorder' | 'ledger'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
 /* The 5 readers, each with its own hue (styles/accents.css: [data-reader] sets --s-accent and --s-accent-glow). */
 export type ReaderId = AudienceId | 'developers'
@@ -83,7 +88,8 @@ export type HeroScreen = { tab: string; screen: ScreenName; line: string } & ({ 
    holds, erases, types the second and rests there (content/console.ts). The console is either category tabs of app
    screens (`screens`, Home) or example runs (`demos`, the audience pages and Developers). */
 export type Hero = {
-  pill: string
+  /* Optional: Home's hero has none, since its form's line says the same (23 Nov 2026). */
+  pill?: string
   /* Where the pill goes. Without it, the pill links to the open source code (nav.github). */
   pillTo?: string
   headline: string
@@ -551,11 +557,19 @@ export type CardGrid = {
 export type PersonaStart = {
   primary: Cta
   chip: { code: string; copy: string; copied: string }
+  /* The hero's two doors (23 Nov 2026): developers start from code (the chip and the primary button), teams that don't
+     code start from a blueprint (a plain line and the secondary button), so both readers see their way in at once. */
+  doors?: { dev: { label: string; cta?: Cta }; noCode: { label: string; line: string; cta?: Cta } }
+  /* The hero's email form (23 Nov 2026, Seun: "cta should collect email and form in the hero", then "I still want that
+     two paths for developers and teams"): when set, the hero draws hero.capture as its main action and, under it, the
+     two doors as path cards, each a whole link to its `cta` (the API, the blueprints). */
+  form?: boolean
 }
 /* The line drawings of Home's sections (components/persona/icons), on a 16px grid in the nav's style. */
 export type PersonaIcon =
   | 'mail' | 'phone' | 'chat' | 'browser' | 'sandbox' | 'persona'
   | 'sleep' | 'home' | 'person' | 'users' | 'cap' | 'stop' | 'webhook' | 'record' | 'clock' | 'code' | 'retry' | 'domain'
+  | 'check' | 'key' | 'flask' | 'cart'
 /* The pieces as 1 ruled sheet (HomePieces): each its icon, name, 1 line, the call that starts it, and `to`, its page
    (content/piecePaths.ts); the whole cell links there. `whole` draws the cell solid: the persona, every piece in one. */
 export type HomePieces = {
@@ -568,6 +582,8 @@ export type HomePieces = {
 export type PersonaAnatomy = {
   heading: string
   line?: string
+  /* The page that tells more (22 Nov 2026: every Home section ends on a way to learn more). */
+  link?: Cta
   parts: { name: string; line: string; eg: string }[]
 }
 /* Recipes as tiles (PersonaRecipes). `reader` gives a tile its hue (styles/accents.css); `live` makes the big tile;
@@ -575,6 +591,7 @@ export type PersonaAnatomy = {
 export type PersonaRecipes = {
   heading: string
   line?: string
+  link?: Cta
   items: { name: string; line: string; status: string; live?: boolean; reader: ReaderId; link: Cta }[]
 }
 /* For developers (PersonaBuild): the claim, its line and link beside the code. Where events go is HomeHow. */
@@ -585,31 +602,48 @@ export type PersonaBuild = {
   codeLabel: string
   code: string
 }
-/* A box or a label in Home's loop picture: its name, then its line. */
-type HowLabel = { name: string; line: string }
-/* How it works on Home (HomeHowItWorks, #how): the claim and its line, then the loop as 1 picture, wide on a desktop and
-   tall on a phone. Set up once, then 3 stops round a ring: something happens, it's saved in your event log, it reaches
-   your agent (on our runtime or your servers) or a person; what the agent does next goes round again. Live call audio
-   crosses the ring straight to the voice agent and never touches the log. `loop` holds the picture's words, each line
-   wrapped to its box, and `label` says the whole picture in words (screen readers, llms-full.txt). Under it, the link
-   to every channel's code on /developers. */
+/* How it works on Home (HomeHowItWorks, #how), redrawn 22 Nov 2026: set up once, then three stops (something happens, it's
+   saved in your event log, it reaches your agent or a person) and the way back (what the agent does next is a new event),
+   with one example per buyer played through them. */
 export type HomeHow = {
   heading: string
   line: string
   loop: {
+    /* The whole picture in words, for screen readers and llms-full.txt. */
     label: string
-    setup: HowLabel
-    then: string
-    happens: HowLabel
+    setup: { name: string; line: string }
+    /* The three stops, in order, and the verbs on the wires between them. */
+    happens: { name: string; line: string }
+    log: { name: string; line: string }
+    reach: { name: string; line: string }
     saved: string
-    log: HowLabel
-    reaches: string
-    agent: HowLabel
-    /* Where the agent runs, or the person it reaches: `name` over `line` on the wide picture, `short` on the tall one. */
-    places: { name: string; line: string; short: string }[]
-    acts: HowLabel
-    /* Live call audio: `name` over `line` on the wave, `log` under the event log; the tall picture says `note`, then `log`. */
-    audio: { name: string; line: string; note: string; log: string }
+    sent: string
+    /* Where an event reaches: the agent on our runtime, the agent on your servers, or a person. */
+    places: { id: 'runtime' | 'servers' | 'person'; name: string; line: string }[]
+    next: string
+    audio: string
+    /* One example per type of blueprint (23 Nov 2026: the six jobs, each at the volume a real team runs it), played
+       through the loop: the team and its company, how much comes in, what comes in, the events just before it (the
+       stream it sits in), the place it reaches, what happens there, the event it adds next (none when a person
+       decides), and the week's total. Event names are delivery.ts's; every company and number is an example. */
+    examplesLabel: string
+    exampleTag: string
+    pause: string
+    play: string
+    examples: {
+      who: string
+      kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train' | 'buy'
+      reader: 'sales' | 'agencies' | 'developers' | 'founders' | 'marketing'
+      org: string
+      scale: string
+      from: string
+      before: { at: string; kind: string; text: string }[]
+      in: { at: string; kind: string; text: string }
+      place: 'runtime' | 'servers' | 'person'
+      does: string
+      out?: { at: string; kind: string; text: string }
+      tally: string
+    }[]
   }
   link: Cta
 }
@@ -681,15 +715,26 @@ export type Page = {
   personaRecipes?: PersonaRecipes
   personaBuild?: PersonaBuild
   homeHow?: HomeHow
+  homeProblem?: HomeProblem
+  /* Home's blueprints (components/persona/HomeBlueprints, 22 Nov 2026): the six types of blueprints as cards; each card's
+     words come from content/kitPaths and content/kits. */
+  homeBlueprints?: HomeBlueprints
+  homeTeams?: HomeTeams
   homeUseCase?: HomeUseCase
 }
 
 /* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.
    A recipe comes with all its infrastructure already set up; `kit` is what choosing it spins up. */
+/* Since the 22 Nov call a blueprint's group is its type: the six jobs AI agents do (content/kitPaths), so the hub, the
+   form's chips, the footer and every grid sort by the same six names. */
 export type RecipeGroup =
-  | 'Watch other companies'
-  | 'Check your own journeys'
-  | 'Check your AI agents'
+  | 'Talk to customers'
+  | 'Test sign-up and agents'
+  | 'Build agent products'
+  | 'Work behind logins'
+  | 'Watch the market'
+  | 'Train and test agents'
+  | 'Buy, book and order'
 export type Recipe = {
   id: RecipeId
   slug: string
@@ -701,6 +746,9 @@ export type Recipe = {
   gets: string
   /* What choosing it sets up, a few words each (agent ID, inboxes, numbers, browsers, schedule, screenshots of every step). */
   kit: string[]
+  /* The developer door (23 Nov 2026): what a developer gets in one line, the call that starts the blueprint or hooks into
+     it (8 lines at most), and the events it writes to the event log, each with a real event name from content/delivery. */
+  build?: { line: string; code: string; events: { kind: string; text: string }[] }
   meta: Meta
   hero: { headline: string; sub: string; screen: ScreenName; capture: Capture }
   /* The recipe's 1 buyer (21 Nov 2026: the buyer study sold each recipe to its 1 buyer, and James approved each), named
@@ -831,6 +879,9 @@ export type RecipesIndexPage = {
   meta: Meta
   hero: { headline: string; sub: string }
   groups: { group: RecipeGroup; line: string }[]
+  /* The six types of blueprints the hub groups by (22 Nov call); each type's name, blueprints and pieces come from
+     content/kitPaths and content/kits. These are the words around them. */
+  types: { label: string; more: string; runsOn: string }
   hub: { heading: string; line: string; inputs: string[]; outputs: string[]; guide: { label: string; to: string } }
   faq: Faq
   final: Final
@@ -987,6 +1038,9 @@ export type ResourcesPage = {
 export type UseCasesIndexPage = {
   meta: Meta
   hero: IndexHero
+  /* Since 22 Nov: every use case and team page under the kit whose job it does (pages/UseCases.tsx), in kitLinks' order. */
+  byKit: { kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train' | 'buy'; paths: string[] }[]
+  orbit: { label: string; caption: string }
   group: LinkGroup
   /* The two guides that set out every job an AI customer does, each row linking the guide. */
   guides: LinkGroup & { rows: { label: string; to: string; line: string }[] }
@@ -1176,4 +1230,68 @@ export type BlueprintJourneys = {
   defaults: string[]
   tiers: { base: number; each: Record<string, number> }[]
   round: { step: number; smallStep: number; wholeFrom: number }
+}
+
+/* Home's problem and answer (22 Nov 2026, components/persona/HomeProblem), right after the hero: an AI agent can think but
+   not act until it's equipped, as a new hire is on day one. One example agent's ID card, on its own (what it can think,
+   what it can't do yet) and equipped by Obsession (each ability unlocked by the piece that gives it, each linking that
+   piece), beside the blueprints for teams who'd rather have the job done. */
+export type HomeProblem = {
+  heading: string
+  line: string
+  states: { alone: string; equipped: string; label: string }
+  card: {
+    name: string
+    role: string
+    think: { label: string; items: string[] }
+    act: { label: string; locked: string; with: string; items: { ability: string; piece: PieceIdLite; name: string; to: string }[] }
+    ids: { label: string; none: string; value: string }[]
+    online: string
+    offline: string
+    event: { label: string; none: string; at: string; name: string; text: string }
+  }
+  blueprints: { title: string; line: string; slugs: string[]; runs: string; out: string; link: Cta }
+  caption: string
+  link: Cta
+}
+export type PieceIdLite = 'email' | 'phone' | 'messaging' | 'browser' | 'sandbox' | 'personas'
+
+/* Home's blueprints (components/persona/HomeBlueprints): the heading, line, the unit after each type's count, the word
+   after how many more a type holds, and the link to every blueprint. */
+/* Home's section for teams that don't write code (HomeTeams, #teams, 23 Nov 2026): a team picks its job and sees one
+   blueprint's window teach the three steps (pick it, fill in the blanks, results where you work), with the KPIs it
+   moves; then what every blueprint comes with. The blueprint's name and line come from its own file, by slug. */
+export type HomeTeamsTone = 'ok' | 'warn' | 'fail' | 'info'
+export type HomeTeams = {
+  heading: string
+  line: string
+  teamsLabel: string
+  steps: { pick: string; fill: string; get: string }
+  open: string
+  /* The same results in the team's own tools: the format never matters (Seun, 23 Nov 2026). */
+  formats: { label: string; items: string[] }
+  kpisLabel: string
+  exampleTag: string
+  teams: {
+    id: string
+    name: string
+    reader: 'sales' | 'agencies' | 'developers' | 'founders' | 'marketing'
+    slug: string
+    /* The job in one sentence: plain words, and the blanks the team fills in ({ v }). */
+    sentence: (string | { v: string })[]
+    note?: string
+    result: { where: string; app: string; at: string; title: string; lines: { tone: HomeTeamsTone; text: string }[] }
+    kpis: string[]
+  }[]
+  includes: { heading: string; items: { icon: PersonaIcon; name: string; line: string }[] }
+  primary: Cta
+  secondary: Cta
+  free: string
+}
+export type HomeBlueprints = {
+  heading: string
+  line: string
+  unit: { one: string; many: string }
+  more: string
+  all: { label: string; to: string }
 }

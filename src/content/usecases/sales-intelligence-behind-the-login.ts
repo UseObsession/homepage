@@ -1,12 +1,18 @@
+import { kitPathOf } from '../kitPaths'
+import { personaCostLine, plans } from '../prices'
 import type { UseCaseStudy } from '../types'
 
-/* Sales intelligence from behind the login (/use-cases/sales-intelligence-behind-the-login), 12 Nov 2026 (Task 4,
-   James's brief, built by Seun): revenue teams at B2B software companies get what their prospects, customers and
-   competitors show only to the people who sign up, in their CRM, Clay, Slack or their own AI agent. The hub for the 12
-   revenue team guides: each role's card links its guide, and the rest list under Guides for this job. Not ecommerce
-   (Seun, 12 Nov): the example vendor sells to banks, airlines, apps, insurers and telecoms, and "By what you sell"
-   covers every kind of B2B software. The switch line keeps to the live site ("a new platform since 2 October", the
-   sender checked). Tessaly, its accounts, its competitors and every figure are invented, and `fine` says so. */
+/* Sales intelligence for B2B revenue teams (/use-cases/sales-intelligence-behind-the-login, the address kept), 22 Nov 2026
+   rewrite for the toolkit position: a persona (its own inbox, number and browser) signs up at every prospect, customer
+   and competitor a revenue team names, and every email, text, chat reply and broken step lands in their CRM, Clay, Slack
+   or their own AI agent. Account watch runs it, Prospect intelligence before a first call, Lead response checks on the
+   team's own forms. Part of the Watch the market kit. The hub for the 12 revenue team guides: each role's card links its
+   guide. Not ecommerce (Seun, 12 Nov): the example vendor sells to banks, airlines, apps, insurers and telecoms, and "By
+   what you sell" covers 9 groups of B2B software. No competitor names outside comparisons (22 Nov brief). Tessaly,
+   its accounts, its competitors and every figure are invented, and `fine` says so. Prices come from prices.ts. */
+
+const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
+const planWords = `the Free plan, then ${fees.slice(0, -1).join(', ')} or ${fees[fees.length - 1]} a month`
 
 export const study: UseCaseStudy = {
   name: 'Sales intelligence for revenue teams',
@@ -14,11 +20,11 @@ export const study: UseCaseStudy = {
 
   meta: {
     path: '/use-cases/sales-intelligence-behind-the-login',
-    title: 'Sales intelligence for B2B revenue teams: behind the login',
+    title: 'Sales intelligence for B2B revenue teams, from AI agents',
     description:
-      'What prospects, customers and competitors show only to people who sign up: the platform behind each email, broken steps and price changes, each dated.',
+      'AI agents sign up at every prospect, customer and competitor and keep each email, text, platform switch and broken step, dated, in your CRM, Clay or Slack.',
     answer:
-      'Sales intelligence from behind the login is what your prospects, customers and competitors show only to the people who sign up. That means every email and text and the platform that sent it, their checkout and chat replies, and the steps that break. Obsession keeps it for every account and competitor you name, each fact dated with its email or screenshot, in your CRM, Clay, Slack or your own AI agent.',
+      'Obsession gives B2B revenue teams AI agents that sign up at every prospect, customer and competitor you name. Each is a persona with its own inbox, number and browser. Every email and text and the platform that sent it, every chat reply and every broken step lands dated in your CRM, Clay, Slack or your own AI agent.',
     ogImage: '/og/sales-intelligence-behind-the-login.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -29,9 +35,9 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Early access',
-    headline: 'Sales intelligence from behind the login.',
-    sub: 'Every email and text your accounts and competitors send new customers, with the platform that sent it, plus their checkout, chat replies and broken steps. Each dated with its screenshot, for revenue teams at B2B software companies.',
+    pill: 'Watch the market blueprints',
+    headline: 'Sales intelligence from AI agents signed up at every account.',
+    sub: 'Obsession gives B2B revenue teams AI agents that sign up at every prospect, customer and competitor you name. Every email and text and the platform that sent it, every chat reply and every broken step lands dated in your CRM, Clay or Slack.',
     example: { chips: ['Tessaly, a customer messaging platform', '412 target accounts', '60 renewals', '3 competitors'] },
     flow: [
       {
@@ -41,24 +47,25 @@ export const study: UseCaseStudy = {
         foot: 'Any company, in any industry',
       },
       {
-        label: 'What comes back',
-        title: 'Every fact, dated',
-        items: ['Every email and text, and its platform', 'Checkout and chat replies', 'Silences and broken steps', 'Competitors’ prices, plans and offers'],
-        foot: 'Each with its email or screenshot',
+        label: 'Obsession',
+        title: 'A persona at each company',
+        items: ['Its own inbox and number', 'A browser that keeps its logins', 'Account watch runs it', 'Says it’s an AI'],
+        foot: 'Free while it waits',
       },
       {
         label: 'Where it lands',
         title: 'Where your team works',
         items: ['Fields in your CRM', 'A Clay column', 'A Slack digest or a webhook', 'Your AI SDR, by API or MCP'],
-        foot: 'Nothing to install',
+        foot: 'Each fact dated, with its email or screenshot',
       },
     ],
     capture: {
       kind: 'waitlist',
       source: 'usecase-revenue-hero',
-      button: 'Request early access',
-      interest: 'prospect',
+      button: 'Start free',
+      interest: 'account-watch',
     },
+    secondary: { label: 'See the blueprint', to: '/blueprints/account-watch' },
   },
 
   how: {
@@ -76,8 +83,8 @@ export const study: UseCaseStudy = {
             example: 'Tessaly sends 412 target accounts from its CRM, 60 customers renewing this quarter and 3 competitors: Marrowby, Pellcast and Quorley.',
           },
           {
-            title: 'Pick who signs up',
-            line: 'The customer profile and country to sign up as. A new subscriber and a trial user are sent different emails and offers.',
+            title: 'Define who signs up',
+            line: 'Each persona is a customer you define, by profile and country. A new subscriber and a trial user are sent different emails and offers.',
             example: 'A new subscriber in the US and the UK at each account, and a trial user at each competitor.',
           },
           {
@@ -88,10 +95,10 @@ export const study: UseCaseStudy = {
         ],
       },
       {
-        title: 'Obsession signs up and keeps watching',
-        line: 'Through each company’s public sign-up page, like any new subscriber, and the accounts stay open for months.',
+        title: 'Account watch signs up and keeps watching',
+        line: 'A persona joins through each company’s public sign-up page, like any new subscriber, and stays signed up for months.',
         screen: 'switch',
-        chips: ['Its own inbox', 'Its own phone number', 'Says it’s AI', 'Stops before payment'],
+        chips: ['Its own inbox', 'Its own number', 'Says it’s an AI', 'Stops before payment'],
         steps: [
           {
             title: 'Every email and text, with its platform',
@@ -115,7 +122,7 @@ export const study: UseCaseStudy = {
 
   problem: {
     heading: 'Every rep now gets the same public research in seconds.',
-    sub: 'AI tools read an account’s website, news, filings and job posts for every seller in your market, from ZoomInfo’s company data to Exa’s web search. None of it shows what the account sends the people who sign up. These signals do.',
+    sub: 'AI tools read an account’s website, news, filings and job posts for every seller in your market. None of it shows what the account sends the people who sign up. These signals do.',
     items: [
       { title: 'A new platform', line: 'An account’s emails or texts start coming from another provider, read from the message itself, not a script tag.' },
       { title: 'Silence', line: 'A welcome, onboarding or renewal email stops, or a support reply never comes.' },
@@ -128,8 +135,8 @@ export const study: UseCaseStudy = {
   },
 
   fit: {
-    heading: 'Whatever you sell, your competitors are covered.',
-    line: 'If your product touches what your prospects’ customers see, your accounts and your own customers are covered too.',
+    heading: 'Whatever you sell, a persona can follow your competitors.',
+    line: 'If your product touches what your prospects’ customers see, it can follow your accounts and your own customers too.',
     items: [
       { title: 'Email, SMS and customer messaging', line: 'Every message an account sends, and the platform behind it. You hear the week its emails start coming from a new one.' },
       { title: 'Loyalty, reviews and referrals', line: 'Loyalty, review request and referral emails, and the app that sent them. You hear when review requests stop after a move.' },
@@ -208,7 +215,7 @@ export const study: UseCaseStudy = {
           {
             label: 'RevOps and AI agents',
             title: 'Fields only a customer can fill',
-            line: 'Sending platform, welcome delay, reply time and broken steps arrive as CRM fields, so you can see them in conversion rates. Your AI SDR looks up the same facts over MCP, the protocol AI agents use to call tools.',
+            line: 'Sending platform, welcome delay, reply time and broken steps arrive as CRM fields, so you can see them in conversion rates. Your AI SDR reads the same facts over MCP, the protocol AI agents use to call tools.',
             example: 'At an identity vendor: Kittiwake Bank, new sending platform since 2 Oct, login code email in 40 seconds, AI chat answers.',
             link: { label: 'CRM data enrichment fields', to: '/blog/crm-data-enrichment-fields' },
           },
@@ -229,8 +236,8 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'Seat prices beside the public page',
-        line: 'The price a signed-up buyer is quoted for a team, at each competitor.',
-        example: 'The yearly price for 40 seats at all 3 competitors, side by side, as each quotes it to a signed-up buyer.',
+        line: 'The price each competitor shows a signed-up buyer for a team.',
+        example: 'The yearly price for 40 seats at all 3 competitors, side by side, as each shows it to a signed-up buyer.',
       },
       {
         title: 'A talk track, then your CRM',
@@ -243,15 +250,15 @@ export const study: UseCaseStudy = {
   more: {
     recipe: {
       label: 'The blueprint',
-      title: 'Prospect intelligence',
-      line: 'What each account on your list sends its customers, dated, before the first call.',
-      cta: { label: 'Learn more', to: '/blueprints/prospect-intelligence' },
+      title: 'Account watch',
+      line: 'A persona at every account you sell to, and each change dated on the account in your CRM.',
+      cta: { label: 'See the blueprint', to: '/blueprints/account-watch' },
     },
     sample: {
-      label: '1 real run',
-      title: 'Sample data',
-      line: 'One real record: every email a company sent a new customer, with the time it arrived and its screenshot.',
-      cta: { label: 'See it', to: '/sample-output' },
+      label: 'Before the first call',
+      title: 'Prospect intelligence',
+      line: 'What each account on your list sends its customers, dated, back in Clay, your CRM or a sheet.',
+      cta: { label: 'See the blueprint', to: '/blueprints/prospect-intelligence' },
     },
   },
 
@@ -261,42 +268,45 @@ export const study: UseCaseStudy = {
     heading: 'What revenue teams ask.',
     items: [
       {
-        q: 'What is sales intelligence from behind the login?',
-        a: 'Sales intelligence from behind the login is what your prospects, customers and competitors show only to the people who sign up. That means every email and text and the platform that sent it, their checkout and chat replies, and the steps that break. Obsession keeps it for every account and competitor you name, each fact dated with its email or screenshot.',
-      },
-      {
         q: 'Where does the data come from, and is it legal?',
-        a: 'From real sign-ups. Obsession signs up through each company’s public sign-up page, like any new subscriber, and keeps each account open for months. It does only what any customer can, says it’s an AI when it talks to a person, stops before payment and goes up to an identity check, never past it.',
+        a: 'From real sign-ups. A persona joins through each company’s public sign-up page, like any new subscriber, and keeps the account open for months. It does only what any customer can, says it’s an AI when it talks to a person, stops before payment and stops at any identity check.',
         link: { label: 'The rules every agent keeps', to: '/agents' },
       },
       {
-        q: 'How is it different from Exa, ZoomInfo, BuiltWith and Klue?',
-        a: 'Exa searches the web for your team and its agents in seconds. ZoomInfo holds company data, contacts and intent. BuiltWith lists the tools a website has installed. Klue and Crayon keep what competitors publish. Obsession keeps what a company sends the people who sign up, each fact dated with its email or screenshot, so most teams use it beside them.',
+        q: 'How is it different from the sales tools we already have?',
+        a: 'Search tools read the public web for your team and its agents. Company databases hold company data, contacts and intent. Technology profilers list the tools a website has installed. Battlecard tools keep what competitors publish. Obsession keeps what a company sends the people who sign up, each fact dated with its email or screenshot, so most teams use it beside them.',
         link: { label: 'How Obsession compares', to: '/compare' },
       },
       {
-        q: 'Does it cover mobile apps, texts and chat?',
-        a: 'Yes. It signs up on the web, iOS or Android. Texts are kept beside emails, and chat and support answers are kept word for word, each dated.',
+        q: 'Does it cover mobile, texts and chat?',
+        a: 'Yes. It signs up in phone and desktop browsers, with its own mobile number. Texts are kept beside emails, and chat and support answers are kept word for word, each dated.',
       },
       {
-        q: 'Does an account know we looked it up?',
-        a: 'No. Anyone can see that a company is covered, and since when, but never who asked.',
+        q: 'Does an account know we’re watching?',
+        a: 'It sees a new subscriber, which says it’s an AI if a person asks. Which accounts you follow, and why, stays in your own event log, and nobody else can read it.',
+      },
+      {
+        q: 'Can it time our own speed to lead?',
+        a: 'Yes. Lead response checks fill in your own forms as a new lead and time the first email, text and call back, so you can see it in meetings booked and pipeline.',
+        link: { label: 'See the blueprint', to: '/blueprints/lead-leaks' },
       },
       {
         q: 'How is it priced?',
-        a: 'Priced per call or per company watched, never per token, and every key has a spending cap you set. Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
+        a: `${personaCostLine} It costs nothing while it waits, and each blueprint is billed on the pieces it uses. Start on ${planWords}.`,
+        link: { label: 'See pricing', to: '/pricing' },
       },
     ],
   },
 
   final: {
-    heading: 'Which accounts should we look up first?',
-    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
+    heading: 'Put a persona at every account you sell to.',
+    sub: 'Start with the accounts renewing soonest, so you can see what it does to opportunities, pipeline and win rate.',
     capture: {
       kind: 'waitlist',
       source: 'usecase-revenue-final',
-      button: 'Request early access',
-      interest: 'prospect',
+      button: 'Start free',
+      interest: 'account-watch',
     },
+    link: { label: 'See the Watch the market blueprints', to: kitPathOf.watch },
   },
 }

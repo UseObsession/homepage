@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Support bot check (/recipes/support-bot-check). Check your AI agents; Home's "AI agent checks" tile links here.
+/* Support bot check (/blueprints/support-bot-check). Check your AI agents; Home's "AI agent checks" tile links here.
    Screen: botcheck (the 07:00 run on chat, email and the portal; the refund window says 30 days on chat where the
    policy says 14; the portal's promised email never arrives).
    The persona version (20 Nov 2026): a persona you define (a new buyer, a buyer with an order, someone about to cancel)
@@ -15,7 +15,7 @@ export const recipe: Recipe = {
   id: 'support-bot',
   slug: 'support-bot-check',
   name: 'Support bot check',
-  group: 'Check your AI agents',
+  group: 'Talk to customers',
   line: 'A persona asks your support bot, and competitors’, what your team hears most, keeping every answer.',
   gets: 'Every answer and wait, word for word, beside your policy page as it read that minute.',
   kit: [
@@ -49,7 +49,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-support-bot-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'support-bot',
     },
   },
@@ -186,10 +186,12 @@ export const recipe: Recipe = {
       {
         q: 'Do you need our logins or code?',
         a: 'No. The persona uses your bot the way anyone does, from its own inbox and number. A portal account or a helpdesk export only if you give them.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
       },
       {
         q: 'Does the persona say it’s an AI?',
         a: 'When a person joins the chat or replies by email, the persona tells them it’s an AI. With the bot itself, your event log keeps both sides word for word.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Will our bot’s vendor bill us for the tests?',
@@ -198,22 +200,29 @@ export const recipe: Recipe = {
       {
         q: 'Which bots can Support bot check cover?',
         a: 'Support bot check covers any bot a person can reach, from a vendor or built in house: site chat, a help centre, email, a portal, WhatsApp or text.',
+        link: { label: 'See messaging for AI agents', to: '/messaging' },
       },
       {
         q: 'Can Support bot check cover a client’s bot?',
         a: 'Yes, with the client’s agreement. Each Support bot check carries your agency’s name, and the client can open every transcript.',
+      },
+      {
+        q: 'What does Support bot check cost?',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours for chat and your portal, an inbox, and texts or WhatsApp where you add them. The month grows with the questions you ask and the channels you add.',
+        link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],
   },
 
   final: {
     heading: 'Hear what your support bot tells customers, before they tell you.',
-    sub: 'Tell us which bot to ask and who the persona should be. We’ll set up your first run with you.',
+    sub: 'Try it on the Free plan with the questions your support team hears most.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-support-bot-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'support-bot',
     },
+    link: { label: 'More blueprints to talk to customers', to: '/blueprints/talk-to-customers' },
   },
 }

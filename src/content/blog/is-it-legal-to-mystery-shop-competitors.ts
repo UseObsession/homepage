@@ -16,7 +16,7 @@ import type { BlogPost } from './types'
    customers section uses the words of the /agents page. thornvale.example is invented. No dashes.
    11 Nov 2026 (SEO revamp wave 1): answer, Obsession's lines, the agents section and the call to action moved to the live
    position (the web behind the login, early access; an Obsession agent is a customer that says it's an AI, as /agents
-   says). Still general information, never legal advice. */
+   says). Still general information, never legal advice. 22 Nov 2026: Obsession's lines moved to the toolkit position. */
 
 const CA9_PERPLEXITY = 'https://cdn.ca9.uscourts.gov/datastore/opinions/2026/08/04/26-1444.pdf'
 const USC_1839 = 'https://www.law.cornell.edu/uscode/text/18/1839'
@@ -54,7 +54,7 @@ export const post: BlogPost = {
   description:
     'Mystery shopping competitors is usually legal through public paths, as yourself. How deception, terms and trade secrets change that, for AI agents too.',
   answer:
-    'In the US, the UK and the EU, mystery shopping a competitor is usually legal through the paths any customer uses, as yourself. The risk comes from deceiving staff, breaking terms your company accepted, taking trade secrets or getting into systems nobody let you into, and the same questions apply to AI agents. Obsession keeps what each competitor shows only to its customers, collected through public forms by agents that say they’re AI, dated and looked up by API, MCP (the standard way AI agents call tools) or a table.',
+    'In the US, the UK and the EU, mystery shopping a competitor is usually legal through the paths any customer uses, as yourself. The risk comes from deceiving staff, breaking terms your company accepted, taking trade secrets or getting into systems nobody let you into, and the same questions apply to AI agents. Obsession is the toolkit for AI agents, and its agents sign up through public forms, say they’re AI and keep every competitor email and page, dated.',
   primaryKeyword: 'is it legal to mystery shop competitors',
   keywords: [
     'is mystery shopping legal',
@@ -64,9 +64,9 @@ export const post: BlogPost = {
     'is mystery shopping legal in the uk',
     'is it legal to sign up for a competitor’s free trial',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-01',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 15,
   order: 2,
   authors: [
@@ -346,19 +346,19 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-customers', text: 'How Obsession agents keep to these lines' },
     {
       kind: 'p',
-      text: '**An Obsession agent is a customer that says it’s an AI.** It signs up, starts trials and asks for quotes the way any customer can, with its own inbox, phone number and browser. It works for the company that sends it, at any company it is sent to, competitors included. Some people call this an AI customer, a term [what AI customers are](/blog/ai-customers) explains.',
+      text: '**An agent on Obsession is a persona, an AI agent with its own inbox, phone number and browser under one name, and it says it’s an AI.** It signs up, starts trials and asks for quotes the way any customer can. It works for the company that sends it, at any company it is sent to, competitors included. [AI agents as customers](/blog/ai-customers) explains the idea.',
     },
     {
       kind: 'p',
-      text: 'Every Obsession agent keeps what any customer would see, and says it’s an AI when it talks to a person. It never uses fake payment details, never gets round a CAPTCHA or a bot block and never clicks paid ads at volume. Any company can write to seun@useobsession.com to keep Obsession’s agents off its site, as the [page for companies an Obsession agent visits](/agents) sets out.',
+      text: 'Every Obsession agent keeps what any customer would see, and says it’s an AI when it talks to a person. It stops at any identity check, and before payment unless given the customer’s own card. It never uses fake payment details, never gets round a CAPTCHA or a bot block and never clicks paid ads at volume. Any company can write to seun@useobsession.com to keep Obsession’s agents off its site, as the [page for companies an Obsession agent visits](/agents) sets out.',
     },
     {
       kind: 'p',
-      text: 'Where a company puts a CAPTCHA or a bot check in front of a step, the report names the step it couldn’t test. Each email, page and price is kept exactly as it arrived, with the time it came.',
+      text: 'Where a company puts a CAPTCHA or a bot check in front of a step, the event log names the step it couldn’t test. Each email, page and price is kept exactly as it arrived, with the time it came.',
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Compliance teams use it for [opt-out compliance](/use-cases/opt-out-and-cancel-checks-for-compliance-teams): each cancel step and every message sent after an unsubscribe or a STOP, dated. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill, and every email, page and price its agents receive lands in one event log. Compliance teams use it for [opt-out compliance](/use-cases/opt-out-and-cancel-checks-for-compliance-teams): each cancel step and every message sent after an unsubscribe or a STOP, dated.',
     },
     {
       kind: 'list',
@@ -367,7 +367,7 @@ export const post: BlogPost = {
         '[Price watch](/blueprints/price-watch) checks every competitor’s prices, offers and delivery each morning, plus the codes they only send subscribers.',
         '[Trial teardown](/blueprints/trial-teardown) starts a competitor’s free trial and logs every onboarding email, prompt and offer, day by day.',
         'To [track competitor emails](/blueprints/email-sms-tracking), Obsession subscribes to every brand on your list and sets their emails side by side: who sends most, and who discounts first.',
-        'The [Mystery shopper](/blueprints/mystery-shopper) blueprint goes through your own business, or a client’s, as a customer does, from the first click to the last email.',
+        'The [Mystery shopping](/blueprints/mystery-shopper) blueprint goes through your own business, or a client’s, as a customer does, from the first click to the last email.',
       ],
     },
     {
@@ -376,9 +376,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Every email, text and offer your competitors send their signed-up customers, each dated with a screenshot and collected by agents that say they’re AI. Look up any competitor, and one not covered yet is added the day you ask.',
-      to: '/marketing',
-      label: 'Request early access',
+      text: 'Not building agents? Pick a blueprint, and Obsession runs it. Competitor tracking signs up to every competitor you name and keeps each email, text and offer they send, dated, through agents that say they’re AI.',
+      to: '/blueprints/competitor-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'ask-a-lawyer', text: 'When to ask a lawyer' },

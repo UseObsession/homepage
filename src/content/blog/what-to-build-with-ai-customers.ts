@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* The why series, Spec I (24 Oct 2026): what to build with AI customers, the developer use cases. It owns "what to build
    with ai agents" (primary) and "what can you build with ai agents", "ai agents in production examples", "ai agent
@@ -17,7 +16,8 @@ import { AI_CUSTOMER } from '../glossary'
    Hard limits on 24 Oct 2026: no repository, package, install command, MCP or API address is printed, and the reader is
    never told to run anything of ours. Build 7 links no recipe, because the live recipes make no spam folder claim.
    Left out on purpose: Milled (its pricing page returned 403), ChatGPT agent (retired), any Obsession price.
-   lumenrow.example and every value in the examples are invented. No dashes. */
+   lumenrow.example and every value in the examples are invented. No dashes.
+   22 Nov 2026: moved to the toolkit position (pieces, personas, calls and events in place of the 5 verbs). */
 
 const MCP = 'https://modelcontextprotocol.io/docs/getting-started/intro'
 const SHOPIFY_AGENTIC = 'https://help.shopify.com/en/manual/online-sales-channels/agentic-storefronts'
@@ -38,12 +38,12 @@ const BB_PRICING = 'https://www.browserbase.com/pricing'
 export const post: BlogPost = {
   slug: 'what-to-build-with-ai-customers',
   title: 'What to build with AI agents: 10 production builds for developers',
-  dek: '10 systems developers build on agents that sign up, wait and keep evidence, each with what fires it, the calls it makes, the facts it returns and where they land.',
+  dek: '10 systems developers build on AI agents that sign up, wait and act, each with what fires it, the pieces it uses, what comes back and where it lands.',
   metaTitle: 'What to build with AI agents: 10 builds developers can ship',
   description:
-    'What to build with AI agents that are customers of other companies: 10 production builds, the calls each makes, the facts it returns and where they land.',
+    'What to build with AI agents that sign up, wait and act: 10 production builds, the pieces each one uses, the events it returns and where they land.',
   answer:
-    'Developers can build 10 kinds of production system with AI agents that stay customers of other companies, from sign up and login code tests on every deploy to competitor feeds, prospect facts in Clay and AI disclosure checks. Each calls a few of 5 verbs, lookup, facts, evidence, index and notify, and sends dated facts with their evidence to a test run, a webhook, Slack, a CRM or Clay. Obsession runs those 5 verbs over the API and MCP and keeps what any company shows only to its customers, every email, page and transcript dated with its proof.',
+    'Developers can build 10 kinds of production system with AI agents that need an inbox, a phone number and a browser of their own, from sign-up and login code tests on every deploy to competitor feeds, prospect facts in Clay and AI disclosure checks. Each one makes its agent an inbox, a number or a browser in one call, then gets events such as email.received and page.visited at a webhook, the address its code listens on. Obsession is the toolkit for AI agents that gives every piece through one API and one bill.',
   primaryKeyword: 'what to build with ai agents',
   keywords: [
     'what to build with ai agents',
@@ -54,9 +54,9 @@ export const post: BlogPost = {
     'mcp server project ideas',
     'ai agent examples',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 10,
   order: 20,
   authors: [
@@ -67,8 +67,8 @@ export const post: BlogPost = {
     art: {
       kind: 'report',
       title: 'lumenrow.example · 1 week of builds',
-      period: 'A software company’s AI customers, by what fired each one',
-      cols: ['Fired by', 'Build', 'Facts land in'],
+      period: 'A software company’s AI agents, by what fired each one',
+      cols: ['Fired by', 'Build', 'Lands in'],
       rows: [
         { name: 'Deploy 4.18', cells: ['Sign up test', 'CI: passed'], tone: 'ok' },
         { name: 'Help article edit', cells: ['Support bot test', 'Slack: 1 wrong answer'], tone: 'fail' },
@@ -79,8 +79,8 @@ export const post: BlogPost = {
         { name: 'Trial, day 3', cells: ['Trial log', 'Battlecard: 20% off'], tone: 'info' },
       ],
       notes: [
-        'An example week at an invented company, showing 7 of the 10 builds.',
-        'Each fact links to the email, page or transcript behind it.',
+        'An example week at an invented company.',
+        'Each result links to the email, page or transcript behind it.',
       ],
     },
   },
@@ -88,74 +88,74 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Engineers and technical founders who want agents to sign up, wait and report what companies send their customers need a customer that lasts. [What AI customers are](/blog/ai-customers) defines the term, [why developers need AI customers](/blog/long-running-ai-agents) covers the engineering behind them, and [AI customers for developers](/blog/ai-customers-for-developers) prices the parts.',
+      text: 'Engineers and technical founders who want agents to sign up, wait and act on what companies send need an agent that lasts. [AI agents as customers](/blog/ai-customers) explains the idea, [long-running AI agents](/blog/long-running-ai-agents) covers the engineering behind them, and [the developer guide](/blog/ai-customers-for-developers) prices the parts.',
     },
     {
       kind: 'p',
-      text: 'Each build has 4 things a team decides before writing code: what fires it, which calls it makes, which facts it returns and where those facts land.',
+      text: 'Each build has 4 decisions a team makes before writing code: what fires it, which pieces it uses, what comes back and where the results land.',
     },
 
-    { kind: 'h2', id: 'what-it-gives', text: 'What an AI customer gives an agent' },
+    { kind: 'h2', id: 'what-it-gives', text: 'What an agent needs to act as a customer' },
     {
       kind: 'p',
-      text: `${AI_CUSTOMER.definition} An agent on its own works for minutes inside a session. An AI customer adds the parts a customer relationship needs.`,
+      text: 'An agent on its own works for minutes inside a session. To stay a customer for weeks, it needs the parts a customer relationship needs.',
     },
     {
       kind: 'list',
       items: [
-        '**An identity:** an inbox, a phone number and a browser that a company treats as a customer, created for the job.',
-        '**Time:** it stays a customer for weeks or months, and wakes when the company sends something or a check comes due.',
-        '**Evidence:** every email, text, page and transcript kept as it arrived, with the time and, for email, the DKIM result checked on arrival.',
+        '**An identity.** An inbox, a phone number and a browser that a company treats as a customer, made for the job.',
+        '**Time.** It stays a customer for weeks or months, free while it waits, and wakes when the company sends something or a check comes due.',
+        '**Every event kept.** Every email, text, page and transcript, in order, with the time it arrived and, for email, the DKIM result (the signature check that shows which domain sent it).',
       ],
     },
     {
       kind: 'p',
-      text: 'An AI customer system exposes this as a few calls. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its [developer page](/developers) names 5 verbs, and each of the 10 builds uses some of them.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A [persona](/personas) puts the pieces under one identity, free while it waits. Its [developer page](/developers) shows the calls, and each of the 10 builds uses a few of them.',
     },
     {
       kind: 'list',
       items: [
-        '**lookup:** which companies the shared record already covers, and since when.',
-        '**facts:** what a company did, as facts, each with its evidence.',
-        '**evidence:** the raw email, page or transcript behind a fact.',
-        '**index:** add a company not yet covered, or follow one already in the index.',
-        '**notify:** new facts pushed to your webhook, Slack or CRM as they land.',
+        '**obsession.personas.create():** an inbox, a number and a browser under one identity, in one call.',
+        '**obsession.inboxes.create() and obsession.numbers.create():** a single inbox, or a US or UK number, for a build that needs one piece.',
+        '**obsession.browsers.create():** a cloud browser that keeps its logins, with a home connection included.',
+        '**obsession.sandboxes.create():** a computer to run code, billed only while the CPU works.',
+        '**obsession.blueprints.run():** one of the ready jobs, such as the support bot check, run on the same pieces.',
       ],
     },
     {
       kind: 'p',
-      text: 'An agent reaches them through [MCP](' +
+      text: 'Each piece reports back as an event: email.received, sms.received, call.received, page.visited, sandbox.finished or blueprint.result. An agent reaches the calls through [MCP](' +
         MCP +
-        '), the open source standard for connecting AI applications to external systems, and code reaches them through the API or a webhook. The same build can then serve a CI pipeline, a product feature or a sales agent. [How AI customers work](/blog/how-ai-customers-work) explains the sign up, the sleep and the evidence step by step.',
+        '), the open source standard for connecting AI applications to external systems, added with claude mcp add obsession. Code reaches them through the API or a webhook, so the same build can serve a CI pipeline, a product feature or a sales agent. [How an agent signs up and waits](/blog/how-ai-customers-work) explains each step.',
     },
 
     { kind: 'h2', id: 'builds', text: 'What to build with AI agents: 10 builds' },
     {
       kind: 'table',
-      caption: 'The 10 builds by what fires them, the calls each makes and where its facts land',
-      cols: ['Build', 'Fired by', 'Calls', 'Facts land in'],
+      caption: 'The 10 builds by what fires them, the pieces each uses and where its results land',
+      cols: ['Build', 'Fired by', 'Pieces', 'Lands in'],
       rows: [
-        ['1. Sign up and login tests', 'A deploy', 'index, facts, notify', 'The CI run'],
-        ['2. Shopping agent readiness', 'Each morning', 'index, facts, evidence', 'A weekly sheet'],
-        ['3. Price and offer agents', 'Each morning, a competitor’s email', 'lookup, index, notify', 'The pricing agent'],
-        ['4. Competitor feeds', 'A competitor’s email or text', 'lookup, facts, index, notify', 'Your app, as JSON'],
-        ['5. Prospect facts', 'A new row in Clay or a CRM', 'lookup, index, facts, evidence', 'Clay or the CRM'],
-        ['6. Support bot tests', 'Each morning, each edit', 'index, facts, evidence', 'The article’s owner'],
-        ['7. Inbox placement', 'Each of your own sends', 'index, facts, notify', 'A deliverability dashboard'],
-        ['8. Partner code checks', 'Each Monday', 'index, facts, evidence', 'The partnerships tracker'],
-        ['9. Trial teardowns', 'A competitor’s trial emails', 'lookup, index, facts', 'A battlecard'],
-        ['10. AI disclosure checks', 'Each morning', 'index, evidence, notify', 'A compliance log'],
+        ['1. Sign up and login tests', 'A deploy', 'Persona: inbox, number, browser', 'The CI run'],
+        ['2. Shopping agent readiness', 'Each morning', 'Browser', 'A weekly sheet'],
+        ['3. Price and offer agents', 'Each morning, a competitor’s email', 'Browser, inbox', 'The pricing agent'],
+        ['4. Competitor feeds', 'A competitor’s email or text', 'A persona per competitor', 'Your app, as JSON'],
+        ['5. Prospect facts', 'A new row in Clay or a CRM', 'Persona: inbox, browser', 'Clay or the CRM'],
+        ['6. Support bot tests', 'Each morning, each edit', 'Browser, inbox', 'The article’s owner'],
+        ['7. Inbox placement', 'Each of your own sends', 'Inbox, browser', 'A deliverability dashboard'],
+        ['8. Partner code checks', 'Each Monday', 'Browser', 'The partnerships tracker'],
+        ['9. Trial teardowns', 'A competitor’s trial emails', 'Persona: inbox, browser', 'A battlecard'],
+        ['10. AI disclosure checks', 'Each morning', 'Browser, number, inbox', 'A compliance log'],
       ],
     },
 
     { kind: 'h3', id: 'sign-up-tests', text: '1. Sign up, login codes and magic links on every deploy' },
     {
       kind: 'p',
-      text: 'A deploy hook starts a fresh AI customer with a new inbox and a real number. It signs up, enters the login code from the text, follows the sign in link in the email and reads every email the release sends, then posts a pass or a fail the pipeline can act on before the launch email goes. It meets the product as a new customer does, outside the team’s test accounts. Run it against production after each deploy as well as staging, because each environment can send through its own email and SMS providers.',
+      text: 'A deploy hook creates a fresh persona with a new inbox and its own number. It signs up, enters the login code from the text, follows the sign in link in the email and reads every email the release sends, then posts a pass or a fail the pipeline can act on before the launch email goes. It meets the product as a new customer does, outside the team’s test accounts. Run it against production after each deploy as well as staging, because each environment can send through its own email and SMS providers.',
     },
     {
       kind: 'p',
-      text: '**Facts:** “Login code by text in 8 seconds”, “Sign in link arrived in 6 seconds and opened the account”. **A pass:** every code within 60 seconds and every link resolving. [Website audit](/blueprints/website-audit) runs this after every release, and [Delivery monitoring](/blueprints/delivery-monitoring) follows the first 14 days in each country.',
+      text: '**What comes back:** “Login code by text in 8 seconds”, “Sign in link arrived in 6 seconds and opened the account”. **A pass:** every code within 60 seconds and every link resolving. [QA on your own flows](/blueprints/website-audit) runs this after every release, and [Delivery monitoring](/blueprints/delivery-monitoring) follows the first 14 days in each country.',
     },
 
     { kind: 'h3', id: 'shopping-agents', text: '2. Shopping agent readiness' },
@@ -171,27 +171,27 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'AI answers about price can drift from the page. In a study Product.ai ran and [Business Insider reported](' +
         PRODUCT_AI +
-        '), 85% of 913 checkable price answers matched the current or listed price. **Facts:** “Page price £52, AI answer £64”, “Basket reached checkout”. **A pass:** page, feed and answer agree on price and stock. [Agentic commerce for merchants](/blog/agentic-commerce-for-merchants) covers what to fix.',
+        '), 85% of 913 checkable price answers matched the current or listed price. **What comes back:** “Page price £52, AI answer £64”, “Basket reached checkout”. **A pass:** page, feed and answer agree on price and stock. [Agentic commerce for merchants](/blog/agentic-commerce-for-merchants) covers what to fix.',
     },
 
     { kind: 'h3', id: 'price-offer', text: '3. Price and offer agents' },
     {
       kind: 'p',
-      text: 'A pricing agent that responds to competitors needs what competitors show customers, including the codes they send only to subscribers. Each morning the build checks each competitor’s prices, offers and delivery, and the AI customer on each competitor’s list wakes when a code arrives. The agent drafts a response and a person approves it, and each proposal carries the email or page that prompted it.',
+      text: 'A pricing agent that responds to competitors needs what competitors show customers, including the codes they send only to subscribers. Each morning the build checks each competitor’s prices, offers and delivery, and the persona on each competitor’s list wakes when a code arrives. The agent drafts a response and a person approves it, and each proposal carries the email or page that prompted it.',
     },
     {
       kind: 'p',
-      text: '**Facts:** “Pro plan cut from $49 to $39 a month”, “Subscriber code SAVE20 arrived, 20% off”. **A pass:** every change reported the day it happens, with a before and after. [Price watch](/blueprints/price-watch) runs it as a blueprint.',
+      text: '**What comes back:** “Pro plan cut from $49 to $39 a month”, “Subscriber code SAVE20 arrived, 20% off”. **A pass:** every change reported the day it happens, with a before and after. [Price watch](/blueprints/price-watch) runs it as a blueprint.',
     },
 
     { kind: 'h3', id: 'competitor-feeds', text: '4. Competitor feeds in a marketing tool' },
     {
       kind: 'p',
-      text: 'In a marketing tool, competitor tracking becomes a product feature. Users name their competitors, and the app shows every email, text, offer and price change those competitors send. One AI customer per competitor, shared across every user who watches it, gives a new user the history on day one. The app asks lookup first, reads facts for the history, and starts AI customers for the competitors nobody watches yet. A notify webhook then posts each new fact as JSON, keyed so a redelivered event is stored once.',
+      text: 'In a marketing tool, competitor tracking becomes a product feature. Users name their competitors, and the app shows every email, text, offer and price change those competitors send. One persona per competitor, shared across every user who watches it, gives a new user the history on day one. The app creates a persona for each competitor nobody watches yet and subscribes once to the event log. Each email.received and sms.received event then reaches the app as JSON, keyed so a redelivered event is stored once.',
     },
     {
       kind: 'p',
-      text: '**Facts:** “4 emails this week, 2 with offers”, “Welcome offer changed from 10% to 15%”. **A pass:** each new email in the feed within minutes of arriving. [Competitor tracking](/blueprints/competitor-tracking) is the blueprint behind it.',
+      text: '**What comes back:** “4 emails this week, 2 with offers”, “Welcome offer changed from 10% to 15%”. **A pass:** each new email in the feed within minutes of arriving. [Competitor tracking](/blueprints/competitor-tracking) is the blueprint behind it.',
     },
 
     { kind: 'h3', id: 'prospect-facts', text: '5. Prospect facts in a sales agent or Clay' },
@@ -199,7 +199,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Agents already act as buyers to test companies. Clay’s team [ran agents that submitted 6,346 demo and contact forms](' +
         CLAY +
-        ') and waited to see who replied. The build puts the customer side of each account on the record: for every new row, an AI customer joins the newsletter or starts the trial, keeps what arrives, and the gap lands next to the contact.',
+        ') and waited to see who replied. The build adds the customer side of each account. For every new row, a persona joins the newsletter or starts the trial, keeps what arrives, and the gap lands next to the contact.',
     },
     {
       kind: 'stat',
@@ -210,7 +210,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “No welcome email in 7 days”, “Opted in to texts, none arrived”. **A pass:** a verdict only once the sign up is confirmed, the spam folder checked and the full window watched. [Prospect intelligence](/blueprints/prospect-intelligence) writes the verdict and a proof link back to Clay.',
+      text: '**What comes back:** “No welcome email in 7 days”, “Opted in to texts, none arrived”. **A pass:** a verdict only once the sign up is confirmed, the spam folder checked and the full window watched. [Prospect intelligence](/blueprints/prospect-intelligence) writes the verdict and a proof link back to Clay.',
     },
 
     { kind: 'h3', id: 'support-bot', text: '6. Customer-side tests of your own support bot' },
@@ -222,19 +222,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “Chat said 60 day returns, the policy says 30”, “Handoff to a person in 4 minutes”. **A pass:** every answer matches the policy page. [Support bot check](/blueprints/support-bot-check) runs it daily, and [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy) gives the questions for a check by hand.',
+      text: '**What comes back:** “Chat said 60 day returns, the policy says 30”, “Handoff to a person in 4 minutes”. **A pass:** every answer matches the policy page. [Support bot check](/blueprints/support-bot-check) runs it daily, and [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy) gives the questions for a check by hand.',
     },
 
     { kind: 'h3', id: 'inbox-placement', text: '7. Inbox placement monitoring' },
     {
       kind: 'p',
-      text: 'Email teams need to know where their own sends land. AI customers subscribed to the company’s list on Gmail inboxes record the Gmail tab each campaign and each account email arrives in, with its DKIM result. Gmail’s [sender guidelines](' +
+      text: 'Email teams need to know where their own sends land. An inbox subscribed to the company’s own list keeps each campaign and account email with the time it arrived and its DKIM result. For the Gmail tab, the persona’s browser stays signed in to a Gmail address the team owns and reads which tab each send lands in. Gmail’s [sender guidelines](' +
         GMAIL_SENDERS +
         ') require senders of 5,000 or more messages a day to Gmail accounts to authenticate with SPF, DKIM and DMARC, require every sender to keep the spam rate reported in Postmaster Tools below 0.3%, and recommend keeping it below 0.10%.',
     },
     {
       kind: 'p',
-      text: '**Facts:** “Black Friday launch: Promotions, DKIM pass”, “Order confirmation: Primary, DKIM pass”. **A pass:** authentication passes and each send lands in the tab it was meant for, with a notify call the day one doesn’t.',
+      text: '**What comes back:** “Black Friday launch: Promotions, DKIM pass”, “Order confirmation: Primary, DKIM pass”. **A pass:** authentication passes and each send lands in the tab it was meant for, with an event at your webhook the day one doesn’t.',
     },
 
     { kind: 'h3', id: 'partner-codes', text: '8. Partner and affiliate code checks' },
@@ -244,17 +244,17 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “SPRING15 expired 12 days ago, still on 3 partner pages”, “Link lost its affiliate tag on redirect”. **A pass:** every live code works and every link keeps its tag. [Partner checks](/blueprints/partner-checks) drafts a note to each partner for the team’s OK.',
+      text: '**What comes back:** “SPRING15 expired 12 days ago, still on 3 partner pages”, “Link lost its affiliate tag on redirect”. **A pass:** every live code works and every link keeps its tag. [Partner checks](/blueprints/partner-checks) drafts a note to each partner for the team’s OK.',
     },
 
     { kind: 'h3', id: 'trials', text: '9. Trial teardowns' },
     {
       kind: 'p',
-      text: 'Product and sales teams want to see how a competitor brings a new user in. The build starts each competitor’s free trial with its own inbox and browser, signs in like a new user and logs every onboarding email, prompt and offer until the trial ends. Where a trial asks for a card, it uses one the team funds.',
+      text: 'Product and sales teams want to see how a competitor brings a new user in. The build starts each competitor’s free trial with its own inbox and browser, signs in like a new user and logs every onboarding email, prompt and offer until the trial ends. Where a trial asks for a card, the agent stops unless the team gives it the team’s own card.',
     },
     {
       kind: 'p',
-      text: '**Facts:** “Day 3: 20% off annual if upgraded within 48 hours”, “Day 13: trial ending email”. **A pass:** every email of the trial logged in order, to its last day. [Trial teardown](/blueprints/trial-teardown) is the blueprint.',
+      text: '**What comes back:** “Day 3: 20% off annual if upgraded within 48 hours”, “Day 13: trial ending email”. **A pass:** every email of the trial logged in order, to its last day. [Trial teardown](/blueprints/trial-teardown) is the blueprint.',
     },
 
     { kind: 'h3', id: 'ai-disclosure', text: '10. AI disclosure checks' },
@@ -268,7 +268,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**Facts:** “Chat: AI notice in the first message”, “Phone: no notice before the first answer”. **A pass:** an AI notice first, a truthful answer when asked and a person within the target time. [AI disclosure check](/blueprints/ai-disclosure-check) keeps a dated record of every check.',
+      text: '**What comes back:** “Chat: AI notice in the first message”, “Phone: no notice before the first answer”. **A pass:** an AI notice first, a truthful answer when asked and a person within the target time. [AI disclosure check](/blueprints/ai-disclosure-check) keeps every check in the event log, dated.',
     },
 
     { kind: 'h2', id: 'options', text: 'Ways to build them, compared', compare: true },
@@ -313,27 +313,27 @@ export const post: BlogPost = {
           'Teams building their own system',
         ],
         [
-          'Obsession (ours): 5 verbs over MCP, the API and SDKs',
-          'What any company shows only to customers\nShared history from day one',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
-          'Builds that must stay a customer of many companies, with proof',
+          'Obsession (ours): [Email](/email), [Phone](/phone), [Browser](/browser), [Sandbox](/sandbox) and [Personas](/personas)',
+          'Every piece on one key, webhook and bill\nPersonas that wait free for weeks',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment unless given your own card\nNever gets round a CAPTCHA',
+          'Builds that need several pieces under one identity, for weeks',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If a build has to stay a customer of many companies for months, as builds 3, 4, 5 and 9 do, use Obsession, which keeps what any company shows only to its customers, dated with the email or screenshot. Testing tools and synthetic monitors suit builds 1 and 6 on a team’s own product, run from its own test code, and archives suit browsing competitors’ campaigns. The waiting and evidence the longer builds rely on are covered in [why developers need AI customers](/blog/long-running-ai-agents).',
+      text: 'If a build needs an inbox, a number and a browser under one identity for weeks, as builds 3, 4, 5 and 9 do, use Obsession, with every piece on one key and one bill and every event in one log. Testing tools and synthetic monitors suit builds 1 and 6 on a team’s own product, run from its own test code, and archives suit browsing competitors’ campaigns. The waiting the longer builds rely on is covered in [long-running AI agents](/blog/long-running-ai-agents).',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
     {
       kind: 'list',
       items: [
-        '**A bot wall or a CAPTCHA stops an AI customer,** and the report names the step it couldn’t test.',
+        '**An agent on Obsession never gets round a CAPTCHA or a bot block, and stops at any identity check.** The event log keeps the step where it stopped.',
         '**A new customer sees what new customers get.** Long standing customers can receive other emails and other inbox placement.',
-        '**Some builds need a real purchase,** on a card the owner funds.',
-        '**It records what a company sends and shows.** Why the company sent it sits in that company’s own systems.',
+        '**Some builds need a real purchase.** The agent stops before payment unless it is given the team’s own card.',
+        '**It keeps what a company sends and shows.** Why the company sent it sits in that company’s own systems.',
       ],
     },
 
@@ -344,15 +344,15 @@ export const post: BlogPost = {
       items: [
         '**Pick the build closest to a decision someone makes every week,** such as holding a release or answering a competitor’s price.',
         '**Write its pass mark before the first run.**',
-        '**Decide where its facts land:** the CI run, a webhook, Slack, a CRM or Clay.',
+        '**Decide where its results land:** the CI run, a webhook, Slack, a CRM or Clay.',
         '**Start with 5 to 10 companies and 1 channel,** then widen it once the pass marks hold.',
       ],
     },
     {
       kind: 'cta',
-      text: 'Build on what any company shows only to its customers: 5 verbs over MCP, the API and TypeScript and Python SDKs (lookup, facts, evidence, index and notify), each fact dated with its email or screenshot. The runtime is open source.',
-      to: '/developers',
-      label: 'See the API and MCP',
+      text: 'An inbox, a phone number, a browser and a sandbox for each agent, on one key, one webhook and one bill. The Free plan includes 3 inboxes, 1 number and 10 browser hours, with no credit card.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about what to build with AI agents' },
@@ -369,19 +369,25 @@ export const post: BlogPost = {
         },
         {
           q: 'What are good MCP server ideas?',
-          a: 'Good MCP servers give an agent something it can’t find on the web, such as what companies send their customers. An AI customer server answers lookup, facts and evidence calls, so an agent in Claude or Cursor can ask what a competitor emailed this week and get the email itself.',
+          a: 'Good MCP servers give an agent something it can’t do alone, such as receive an email, take a text or stay signed in to a website. Obsession’s MCP server gives an agent in Claude or Cursor its own inbox, number and browser, added with claude mcp add obsession.',
         },
         {
-          q: 'What is an AI customer?',
-          a: AI_CUSTOMER.definition,
+          q: 'What is a persona?',
+          a: 'An AI agent with its own inbox, phone number and browser under one identity, made in one call. It is free while it waits, wakes in 50 ms when something arrives, and every event lands in one event log.',
+          link: { label: 'See how it works', to: '/personas' },
         },
         {
           q: 'Do these builds need a large model on every run?',
-          a: 'No. The first run on a platform is an agent’s, and its trace compiles into a program of code, typed questions and small agents. A small model answers the typed questions, and a frontier model learns new platforms and catches the odd case.',
+          a: 'No. Most steps are code you write against the pieces, such as filling a form or reading a code from a text. A model is needed only where the agent reads a page or writes a reply, and you can bring your own model key.',
         },
         {
-          q: 'How do the facts reach my tools?',
-          a: 'Through MCP for an agent, an HTTP API for code, or a webhook that pushes each new fact as it lands, on to a CI run, Slack, a CRM or Clay.',
+          q: 'How do the results reach my tools?',
+          a: 'Through MCP for an agent, the API for code, or a webhook that receives each event as it lands, such as email.received or blueprint.result, and passes it to a CI run, Slack, a CRM or Clay.',
+        },
+        {
+          q: 'What does it cost?',
+          a: 'The Free plan includes 3 inboxes, 3,000 emails, 1 number, 10 browser hours and 10 sandbox hours, with no credit card. Paid plans are $20, $99 or $499 a month, and past that each piece is billed at its list rate, such as $0.50 an inbox a month or $0.10 a browser hour.',
+          link: { label: 'See pricing', to: '/pricing' },
         },
       ],
     },

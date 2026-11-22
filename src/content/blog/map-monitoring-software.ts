@@ -22,7 +22,8 @@ import type { BlogPost } from './types'
    2022), which cites paras 187 and 189 of the EU Guidelines on vertical restraints. Brand policies read on their own pages:
    Gaia Herbs (last updated 1 Nov 2025), Star (Middleby foodservice brands, effective Jan 2021) and Carlson Labs.
    Obsession's lines use the live price watch recipe and member prices use case words only. kestrel.example and every
-   price in the two pictures are invented. British English, numerals, no dashes. */
+   price in the two pictures are invented. British English, numerals, no dashes. 22 Nov 2026: Obsession lines moved to
+   the toolkit position (personas, the price watch blueprint, prices.ts). */
 
 const BRAND_ALIGNMENT = 'https://www.brandalignment.com/map-monitoring-software/'
 const GROWBYDATA = 'https://growbydata.com/enforce-map/'
@@ -52,17 +53,17 @@ const CARLSON = 'https://www.carlsonlabs.com/pages/imap-policy'
 export const post: BlogPost = {
   slug: 'map-monitoring-software',
   title: 'MAP monitoring software for brands in 2026: catch prices below minimum advertised price',
-  dek: '12 MAP monitoring tools grouped by job, with what each reads, the proof it keeps and its price on 14 November 2026. Beside them, Obsession keeps the price resellers show only to signed-up customers, in the cart, behind the login and in the inbox.',
+  dek: '12 MAP monitoring tools grouped by job, with what each reads, the proof it keeps and its price on 14 November 2026. Beside them, Obsession’s price watch blueprint keeps the price resellers show only to signed-up customers, in the cart, behind the login and in the inbox.',
   metaTitle: 'MAP monitoring software for brands: 12 tools by job, 2026',
   description:
     'MAP monitoring software for brands, by job and price: enforcement tools, price trackers with MAP, and prices resellers hide in carts, logins and emails.',
   answer:
-    'MAP monitoring software checks the prices resellers advertise for a brand’s products against its minimum advertised price (MAP), and records each listing below it with the seller, the time and a screenshot. Brand Alignment, GrowByData and TrackStreet also send the notices, and Pricefy, Prisync and Price2Spy add MAP to a price tracker. Obsession keeps the price a signed-up customer is shown at each reseller, from the basket to the member price and the emailed code, each dated with its screenshot or the email.',
+    'MAP monitoring software checks the prices resellers advertise for a brand’s products against its minimum advertised price (MAP), and records each listing below it with the seller, the time and a screenshot. Brand Alignment, GrowByData and TrackStreet also send the notices, and Pricefy, Prisync and Price2Spy add MAP to a price tracker. On Obsession, the toolkit for AI agents, a persona signs up at each reseller and keeps the price a signed-up customer is shown, from the basket to the member price and the emailed code, each dated.',
   primaryKeyword: 'map monitoring software',
   keywords: ['minimum advertised price monitoring software', 'map tracking software', 'map price monitoring software', 'map monitoring tool'],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-14',
-  updated: '2026-11-14',
+  updated: '2026-11-22',
   readingMinutes: 20,
   order: 8,
   authors: [
@@ -420,17 +421,17 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, the standard way AI agents call tools, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its [price watch](/blueprints/price-watch) blueprint sends a persona, an AI agent with its own inbox, number and browser under one name, to each reseller you name.',
     },
     {
       kind: 'p',
-      text: 'For a brand’s MAP team, that means the price a signed-up customer is shown at each reseller you name. It keeps the member price after a login and each code and offer that arrives by email or text, each beside the public price, and, if you choose, the basket total with delivery. It tells your team the morning a reseller’s price drops below yours, behind the login as well as on the page, and sends each change by webhook, a message to your system the day a price moves. Each account joins the way any customer can, says it’s AI when it talks to a person, goes up to an identity check and stops before payment.',
+      text: 'For a brand’s MAP team, that means the price a signed-up customer is shown at each reseller. The persona keeps the member price after a login and each code and offer that arrives by email or text, each beside the public price, and, if you choose, the basket total with delivery. It tells your team the morning a reseller’s price drops below yours, behind the login as well as on the page, and sends each change by webhook, a message to your system the day a price moves. Each persona joins the way any customer can, says it’s an AI when it talks to a person, stops at any identity check and stops before payment. Every price lands in your event log, dated.',
     },
 
     { kind: 'h2', id: 'your-store-and-resellers', text: 'How do you track hidden prices at your store, the category leaders and every reseller?' },
     {
       kind: 'p',
-      text: 'Start with your own online store. Obsession keeps what your store sends a new customer: the welcome code and every offer after it, each dated. Your team sees your own lowest price beside the price you set. Then set your resellers beside the biggest retailers in your category, read the same way: the shelf price, the basket total, the member price and the code a new customer gets.',
+      text: 'Start with your own online store. Obsession’s [mystery shopping](/blueprints/mystery-shopper) blueprint keeps what your store sends a new customer, from the welcome code to every offer after it, each dated. Your team sees your own lowest price beside the price you set. Then set your resellers beside the biggest retailers in your category, read the same way: the shelf price, the basket total, the member price and the code a new customer gets.',
     },
     {
       kind: 'p',
@@ -451,13 +452,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps going after the first read. Prices, stock and delivery are read every morning in [price watch](/blueprints/price-watch), and a fresh sign-up can run every step again each week, as in [leak checks for ecommerce stores](/use-cases/leak-checks-for-ecommerce-stores). It works the same for one company or a list of 3,000, on an index built for millions of companies.',
+      text: 'It keeps going after the first read. Prices, stock and delivery are read every morning in [price watch](/blueprints/price-watch), and a fresh sign-up can run every step again each week, as in [leak checks for ecommerce stores](/use-cases/leak-checks-for-ecommerce-stores). It works the same for one company or a list of 3,000, with a persona per company that is free while it waits.',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which MAP monitoring software to choose' },
     {
       kind: 'p',
-      text: 'Use Obsession when your MAP team needs the price a signed-up customer is shown at each reseller, from the basket to the emailed code, dated with the screenshot or the email. Use a MAP monitoring tool for the public listings, the notices and the escalation.',
+      text: 'Use Obsession’s price watch blueprint when your MAP team needs the price a signed-up customer is shown at each reseller, from the basket to the emailed code, dated with the screenshot or the email. Use a MAP monitoring tool for the public listings, the notices and the escalation.',
     },
     {
       kind: 'list',
@@ -473,9 +474,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Member prices and coupons beside public ones, at every retailer you track, each dated with its screenshot.',
-      to: '/use-cases/member-prices-for-price-intelligence',
-      label: 'Request early access',
+      text: 'Price watch: every morning a persona signs in at each reseller and reads member prices and subscriber codes beside the public price, each dated with the screenshot before and after.',
+      to: '/blueprints/price-watch',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'compared', text: 'The 12 MAP tools and Obsession, side by side', compare: true },
@@ -506,8 +507,8 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Price watch](/blueprints/price-watch), [Member prices](/use-cases/member-prices-for-price-intelligence)',
           'The price a signed-up customer is shown after the basket, the login and the email, dated with the screenshot or the email',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Keeps the price, the screenshot and the email, with notices left to your MAP tool',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment and at any identity check, with notices left to your MAP tool',
           'Codes and member prices at every reseller, every morning',
         ],
       ],

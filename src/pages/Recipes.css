@@ -47,108 +47,6 @@
 .s-ri-jump__link:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
 .s-ri-jump__link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
 
-/* ---- The jobs ----------------------------------------------------------------------------------------------------- */
-
-.s-ri-jobs {
-  display: grid;
-  padding-bottom: var(--ob-space-section);
-}
-.s-ri-job {
-  display: grid;
-  grid-template-columns: var(--s-split);
-  gap: var(--ob-space-16) var(--s-split-gap);
-  padding-block: var(--ob-space-40);
-  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
-  /* A jump lands with the job's rule clear of the sticky nav. */
-  scroll-margin-top: var(--ob-space-64);
-}
-/* A job reached from the nav takes focus without a ring round the whole row, as #main does (site.css). */
-.s-ri-job:focus { outline: none; }
-.s-ri-job:last-child { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
-.s-ri-job__head {
-  display: grid;
-  align-content: start;
-  gap: var(--ob-space-12);
-  /* The job's name sits level with the first recipe's name. */
-  padding-top: var(--ob-space-12);
-}
-.s-ri-job__name {
-  margin: 0;
-  font: var(--ob-type-h3);
-  letter-spacing: var(--ob-type-h3-tracking);
-  color: var(--ob-text);
-  text-wrap: balance;
-}
-.s-ri-job__line {
-  margin: 0;
-  max-width: 36ch;
-  font: var(--ob-type-small);
-  letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
-  text-wrap: pretty;
-}
-
-/* The rows bleed 16px past the column, so their words line up with the job's name while the hover layer has room. */
-.s-ri-job__list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--ob-space-4) var(--ob-space-16);
-  margin: 0 calc(var(--ob-space-16) * -1);
-  padding: 0;
-  list-style: none;
-}
-.s-ri-job__list > li { display: grid; }
-.s-ri-item {
-  display: grid;
-  align-content: start;
-  gap: var(--ob-space-6);
-  padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-20);
-  border-radius: var(--ob-radius-sm);
-  color: var(--ob-text);
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
-}
-.s-ri-item__name {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--ob-space-8);
-  font: var(--ob-type-title);
-  letter-spacing: var(--ob-type-title-tracking);
-}
-.s-ri-item__arrow {
-  flex: none;
-  width: var(--ob-icon-sm);
-  height: var(--ob-icon-sm);
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  color: var(--ob-text-3);
-  transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
-}
-.s-ri-item__line {
-  font: var(--ob-type-small);
-  letter-spacing: var(--ob-type-small-tracking);
-  color: var(--ob-text-2);
-  text-wrap: pretty;
-}
-@media (hover: hover) and (pointer: fine) {
-  .s-ri-item:hover { background-color: var(--ob-state-hover); }
-  .s-ri-item:hover .s-ri-item__arrow { color: var(--ob-text); translate: var(--ob-space-2) 0; }
-}
-.s-ri-item:active { background-color: var(--ob-state-pressed); transition-duration: var(--ob-dur-fast); }
-.s-ri-item:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset-inset); }
-
-@media (max-width: 1079.98px) {
-  .s-ri-job__list { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 859.98px) {
-  .s-ri-job { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-8); padding-block: var(--ob-space-32); }
-  .s-ri-job__head { padding-top: 0; margin-bottom: var(--ob-space-8); }
-}
-
 /* ---- Where the companies come from, and where the proof goes ------------------------------------------------------ */
 
 .s-section.s-ri-hub { padding-top: 0; }
@@ -234,4 +132,112 @@
   .s-ri-flow__core { grid-template-columns: auto; grid-template-rows: var(--ob-space-32) auto var(--ob-space-32); justify-items: center; padding: var(--ob-space-12) 0; }
   .s-ri-flow__wire { width: var(--ob-border-hair); height: 100%; }
   .s-ri-flow__mark { width: var(--ob-space-64); height: var(--ob-space-64); }
+}
+
+/* ---- The six types (22 Nov 2026) ------------------------------------------------------------------------------------
+   Each type a numbered section: on the left its icon, name, what its blueprints do, the pieces the job uses and the link
+   to its page; on the right its blueprints as cards on the raised surface. Every link's chevron steps right on hover. */
+
+.s-ri-jump__link { gap: var(--ob-space-8); padding-inline: var(--ob-space-12) var(--ob-space-16); }
+.s-ri-jump__ic { display: grid; place-items: center; width: 18px; height: 18px; color: var(--ob-text-3); }
+.s-ri-jump__ic svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+
+.s-ri-types { display: grid; padding-bottom: var(--ob-space-section); }
+.s-ri-type {
+  display: grid;
+  grid-template-columns: var(--s-split);
+  gap: var(--ob-space-24) var(--s-split-gap);
+  padding-block: var(--ob-space-56, var(--ob-space-48));
+  border-top: var(--ob-border-hair) solid var(--ob-line-subtle);
+  scroll-margin-top: var(--ob-space-64);
+}
+.s-ri-type:focus { outline: none; }
+.s-ri-type:last-child { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-ri-type__head {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-content: start;
+  column-gap: var(--ob-space-16);
+  row-gap: var(--ob-space-12);
+}
+.s-ri-type__num { grid-column: 1 / -1; margin: 0; font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); }
+.s-ri-type__ic { display: grid; place-items: center; width: 44px; height: 44px; border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: var(--ob-radius-md); background: var(--ob-surface); color: var(--ob-text); box-shadow: var(--ob-shadow-1, none); }
+.s-ri-type__ic svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.s-ri-type__name { align-self: center; margin: 0; font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); color: var(--ob-text); text-wrap: balance; }
+.s-ri-type__line { grid-column: 1 / -1; margin: 0; max-width: 40ch; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+.s-ri-type__pieces { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: var(--ob-space-6); margin: 0; padding: 0; list-style: none; }
+.s-ri-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  min-height: 26px;
+  padding: 0 var(--ob-space-8);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-caption);
+  color: var(--ob-text-2);
+}
+.s-ri-chip svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.s-ri-type__more {
+  grid-column: 1 / -1;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  margin-top: var(--ob-space-4);
+  font: var(--ob-type-small);
+  color: var(--ob-text);
+  text-decoration: underline;
+  text-decoration-color: var(--ob-line-strong);
+  text-underline-offset: 4px;
+}
+.s-ri-chev {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+}
+
+.s-ri-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-12); margin: 0; padding: 0; list-style: none; align-content: start; }
+.s-ri-cards > li { display: grid; }
+.s-ri-card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--ob-space-8);
+  padding: var(--ob-space-20);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(var(--ob-tint-rgb), 0.05), transparent 60%),
+    var(--ob-surface);
+  color: var(--ob-text);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color var(--ob-dur-base) var(--ob-ease-out), transform var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-ri-card__name { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-12); font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); }
+.s-ri-card__name .s-ri-chev { color: var(--ob-text-3); }
+.s-ri-card__line { font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+.s-ri-card__runs { display: flex; gap: var(--ob-space-4); padding-top: var(--ob-space-8); border-top: var(--ob-border-hair) solid var(--ob-line-subtle, var(--ob-line)); }
+.s-ri-card__piece { display: grid; place-items: center; width: 26px; height: 26px; border-radius: var(--ob-radius-sm); background: var(--ob-bg); border: var(--ob-border-hair) solid var(--ob-line); color: var(--ob-text-2); }
+.s-ri-card__piece svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.s-ri-card:focus-visible,
+.s-ri-type__more:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); }
+@media (hover: hover) and (pointer: fine) {
+  .s-ri-card:hover { border-color: var(--ob-line-strong); transform: translateY(-2px); }
+  .s-ri-card:hover .s-ri-chev,
+  .s-ri-type__more:hover .s-ri-chev { translate: 3px 0; color: var(--ob-text); }
+  .s-ri-type__more:hover { text-decoration-color: var(--ob-text); }
+}
+@media (max-width: 900px) {
+  .s-ri-type { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .s-ri-cards { grid-template-columns: minmax(0, 1fr); }
+  .s-ri-type { padding-block: var(--ob-space-40); }
 }

@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* QA on your own flows (/recipes/website-audit; the slug is kept, renamed from Website audit on 20 Nov 2026 to match
+/* QA on your own flows (/blueprints/website-audit; the slug is kept, renamed from Website audit on 20 Nov 2026 to match
    Home's tile). Check your own journeys. Screen: ship.
    The persona version (20 Nov, James): after every release, or every morning, a new persona you define signs up to
    your own product (or a client's, with their OK) on its own inbox and number, from the country you choose. It enters
@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'audit',
   slug: 'website-audit',
   name: 'QA on your own flows',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'A persona signs up to your product after every release and finds the step that breaks.',
   gets: 'Every step of every release as a new user meets it, screenshotted, and the step that broke.',
   kit: [
@@ -47,7 +47,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-website-audit-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'audit',
     },
   },
@@ -152,14 +152,17 @@ export const recipe: Recipe = {
       {
         q: 'How do I catch a broken sign up or checkout before users report it?',
         a: 'Send a new persona through it after every release. It signs up, enters each login code, opens every email and link and goes to checkout. Each step is dated with its screenshot, and a break reaches Slack in minutes.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'How is this different from our tests?',
         a: 'Your tests check the code. A persona meets the flow as a new user does: the text on its own number, the email in its own inbox, the link and the code, from the country you choose.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
       },
       {
         q: 'Does it need access to our code?',
         a: 'No. The persona uses your product like any new user. A deploy hook starts each run, or it runs on a schedule.',
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'Does it place real orders?',
@@ -177,17 +180,23 @@ export const recipe: Recipe = {
         q: 'Can an agency run it on client sites?',
         a: 'Yes, with each client’s OK. Every client gets its own run, every morning or after each release.',
       },
+      {
+        q: 'What does QA on your own flows cost?',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours on phone and desktop, an inbox, and a number for each login code. Each release starts a run, so the month grows with how often you ship.',
+        link: { label: 'See the cloud browser', to: '/browser' },
+      },
     ],
   },
 
   final: {
     heading: 'Catch the break before your 08:00 email goes.',
-    sub: 'Early access includes a persona on your next release, set up with the founders.',
+    sub: 'Try it on the Free plan on your next release.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-website-audit-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'audit',
     },
+    link: { label: 'More blueprints to test sign-up and agents', to: '/blueprints/test-sign-up-and-agents' },
   },
 }

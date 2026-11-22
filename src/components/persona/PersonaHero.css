@@ -1,10 +1,14 @@
-/* Home's hero (PersonaHero.tsx): 1 centred column, then the 3 facts on a ruled row at the container's width. */
+/* Home's hero (PersonaHero.tsx): the full first screen, 1 centred column in the middle of its height, then the 3 facts
+   in one strip at its foot. Taller content simply grows the screen; nothing is cut. */
 
 .s-ph {
   position: relative;
-  padding-block: clamp(48px, 7vw, 104px) clamp(56px, 7vw, 96px);
+  display: grid;
+  min-height: calc(100svh - var(--ob-nav-h, 64px));
+  padding-block: clamp(24px, 4vh, 56px) clamp(32px, 5vh, 56px);
   overflow-x: clip;
 }
+.s-ph-wrap { display: grid; grid-template-rows: 1fr auto; align-items: center; row-gap: var(--ob-space-24); }
 /* 1 soft light behind the headline on ink; paper has none (--s-spot is transparent there, styles/tones.css). */
 .s-ph::before {
   content: "";
@@ -19,8 +23,9 @@
   pointer-events: none;
 }
 .s-ph { isolation: isolate; }
-/* The hero's own bottom space is the gap to the first section. */
-.s-ph + .s-section { padding-top: 0; }
+/* The first section opens on its own ground (Home.tsx) with the section's full air; the hero keeps its own air below the
+   facts strip, so the band's edge reads as the break between them. */
+.s-ph + .s-section { padding-top: var(--ob-space-section); }
 
 /* 1 track the wrap's width, never wider: the chip's code would otherwise widen it to the code's length on a phone. */
 .s-ph-words {
@@ -119,18 +124,147 @@
 .s-ph-chip-copy.is-copied { color: var(--ob-text); }
 .s-ph-chip-copy svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 
+/* The two doors: 2 equal raised cards, each its reader's colour as a faint glow from the top corner (styles/accents.css),
+   a label with its icon, how that reader starts (the code, or the job in plain words) on 1 row of the chip's height,
+   and its button across the card. Left-aligned inside, so both cards read the same way. */
+.s-ph-doors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ob-space-12);
+  width: min(100%, 860px);
+  margin-top: var(--ob-space-8);
+  text-align: left;
+}
+.s-ph-door {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto var(--ob-btn-height-lg, 48px) auto;
+  gap: var(--ob-space-12);
+  align-content: start;
+  min-width: 0;
+  padding: var(--ob-space-16);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-surface);
+  box-shadow: var(--ob-shadow-2, var(--ob-shadow-3));
+}
+.s-ph-door::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -80% 30% 45% -30%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-rest, 40%), transparent), transparent);
+  pointer-events: none;
+}
+.s-ph-door-k {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  margin: 0;
+  font: 500 14px / 1.3 var(--ob-font-sans);
+  color: var(--ob-text);
+}
+.s-ph-door-ic { display: grid; place-items: center; width: 24px; height: 24px; border-radius: var(--ob-radius-sm); border: var(--ob-border-hair) solid var(--ob-line); color: var(--s-accent, var(--ob-text-2)); }
+.s-ph-door-ic svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.s-ph-door .s-ph-chip { width: 100%; }
+/* The code runs past the card's edge on narrow cards: it scrolls, and a fade says there is more. */
+.s-ph-door .s-ph-chip-code { -webkit-mask-image: linear-gradient(90deg, black 85%, transparent); mask-image: linear-gradient(90deg, black 85%, transparent); }
+/* The job in plain words: no box, so the code on the other card reads as code and this reads as a sentence. */
+.s-ph-door-line {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 var(--ob-space-4);
+  font: 400 15px / 1.4 var(--ob-font-sans);
+  color: var(--ob-text-2);
+  text-wrap: pretty;
+}
+.s-ph-door-btn { width: 100%; justify-content: center; }
+@media (max-width: 720px) {
+  .s-ph-doors { grid-template-columns: minmax(0, 1fr); }
+  .s-ph-door { grid-template-rows: auto auto auto; }
+  .s-ph-door-line { padding-block: var(--ob-space-4); }
+}
+
 .s-ph-note {
   margin: 0;
   font: 500 14.5px / 1.4 var(--ob-font-sans);
   color: var(--ob-text-2);
 }
 
-/* The 3 facts: a ruled row at the container's width, the facts split by hairlines. */
+/* The email form at the form's own width, centred; then the scale line and the two ways in, centred under it. */
+.s-ph-form { display: grid; justify-items: center; gap: var(--ob-space-16); width: 100%; margin-top: var(--ob-space-8); }
+.s-ph-capture { margin-inline: auto; }
+/* The form's own lines (the plan line, an error, the privacy line) sit centred under the centred box. */
+.s-ph-capture :is(.ob-pill-foot, .s-capture__privacy) { justify-content: center; padding-inline-start: 0; text-align: center; }
+.s-ph-form .s-ph-note { margin-top: var(--ob-space-4); font-weight: 400; color: var(--s-read, var(--ob-text-2)); }
+/* The two paths under the form: 2 raised cards at the facts' width, each its reader's colour as a faint glow from the
+   top corner (styles/accents.css), the whole card a link: its label, how that reader starts (the code, or the job in
+   plain words), then its action with a chevron that steps right on hover. */
+.s-ph-paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-12); width: min(100%, 860px); margin-top: var(--ob-space-8); text-align: left; }
+.s-ph-path {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  padding: var(--ob-space-16) var(--ob-space-20);
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight), var(--ob-shadow-2);
+  color: inherit;
+  text-decoration: none;
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-ph-path::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -80% 30% 45% -30%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-rest, 40%), transparent), transparent);
+  pointer-events: none;
+}
+.s-ph-path-code {
+  align-self: center;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: var(--ob-space-8) var(--ob-space-12);
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-bg-sunken);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  font: 400 13px / 1.5 var(--ob-font-mono);
+  color: var(--ob-text);
+  -webkit-mask-image: linear-gradient(90deg, black 82%, transparent);
+  mask-image: linear-gradient(90deg, black 82%, transparent);
+}
+.s-ph-path-line { align-self: center; font: 400 15px / 1.45 var(--ob-font-sans); color: var(--ob-text-2); text-wrap: pretty; }
+.s-ph-path-go { display: inline-flex; align-items: center; gap: var(--ob-space-4); font: 500 14px / 1.3 var(--ob-font-sans); color: var(--ob-text); }
+.s-ph-chev { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-base) var(--ob-ease-out); }
+.s-ph-path:hover { translate: 0 -2px; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-text-3) inset, var(--ob-highlight), var(--ob-shadow-3); }
+.s-ph-path:hover .s-ph-chev { translate: 3px 0; }
+.s-ph-path:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+@media (max-width: 720px) {
+  .s-ph-paths { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-ph-path:hover { translate: none; }
+  .s-ph-path:hover .s-ph-chev { translate: none; }
+}
+
+/* The 3 facts: one rounded strip at the doors' width, centred under them, the facts split by hairlines. */
 .s-ph-facts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin: clamp(48px, 6vw, 80px) 0 0;
-  border-bottom: var(--ob-border-hair) solid var(--ob-line);
+  width: min(100%, 860px);
+  margin: 0 auto;
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1);
+  overflow: hidden;
 }
 .s-ph-fact {
   display: grid;
@@ -160,7 +294,7 @@
     grid-template-columns: minmax(0, 9ch) minmax(0, 1fr);
     align-items: baseline;
     gap: var(--ob-space-16);
-    padding: var(--ob-space-16) 0;
+    padding: var(--ob-space-16) var(--ob-space-20);
     text-align: left;
   }
   .s-ph-fact + .s-ph-fact { border-left: 0; border-top: var(--ob-border-hair) solid var(--ob-line); }

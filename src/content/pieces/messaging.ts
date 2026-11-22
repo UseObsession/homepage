@@ -48,6 +48,27 @@ export const messaging: PiecePage = {
     code,
   },
 
+  scene: {
+    heading: 'One agent on WhatsApp, iMessage, Slack and Telegram.',
+    line: 'Customers write where they already are, and your team works in Slack. The same agent answers each, under one name, with one history.',
+    steps: [
+      { icon: 'chat', label: 'A guest writes on WhatsApp' },
+      { icon: 'chat', label: 'Another writes on iMessage' },
+      { icon: 'users', label: 'Your team asks in Slack' },
+      { icon: 'record', label: 'One agent, one history' },
+    ],
+    who: 'Noor, the concierge agent at saltmarsh.example',
+    note: 'WhatsApp, iMessage and Slack, one agent',
+    fleet: '80 agents · 4 apps each',
+    rows: [
+      { at: '08:02', kind: 'message.received', text: 'WhatsApp: “Is late checkout still free on Sunday?”' },
+      { at: '08:02', kind: 'message.received', text: 'iMessage: “Can you book us a taxi for 6am?”' },
+      { at: '08:03', kind: 'page.visited', text: 'taxi.example/book · 06:00 pickup · screenshot saved' },
+      { at: '08:05', kind: 'message.received', text: 'Slack, #front-desk: “Who asked for the 6am taxi?”' },
+      { at: '08:05', kind: 'blueprint.result', text: 'All three answered in 3 min, each in its own app', tone: 'ok' },
+    ],
+    caption: 'A guest on WhatsApp, another on iMessage and the team in Slack, answered by one agent. Saltmarsh is an invented example.',
+  },
   can: {
     heading: 'Your agent answers on the apps people open first.',
     line: 'Each app connects in one call, and your code handles them all alike.',
@@ -104,6 +125,6 @@ export const messaging: PiecePage = {
 
   final: {
     heading: 'Put your agent where people already message.',
-    capture: { kind: 'waitlist', button: 'Request early access', interest: 'any', source: 'piece-messaging' },
+    capture: { kind: 'waitlist', button: 'Start free', interest: 'any', source: 'piece-messaging' },
   },
 }

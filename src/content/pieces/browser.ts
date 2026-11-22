@@ -46,6 +46,27 @@ export const browser: PiecePage = {
     code,
   },
 
+  scene: {
+    heading: 'A browser that stays signed in, month after month.',
+    line: 'Many scripts sign in from scratch on every run. A persona’s browser keeps its session and its history, so day 30 starts where day 1 left off, and every page is kept with a screenshot.',
+    steps: [
+      { icon: 'browser', label: 'It signs in once, with its own inbox' },
+      { icon: 'clock', label: 'It comes back every morning' },
+      { icon: 'record', label: 'Every page kept with a screenshot' },
+      { icon: 'check', label: 'Still signed in on day 30' },
+    ],
+    who: 'A buyer persona at portal.supplier.example',
+    note: 'Still signed in on day 30',
+    fleet: '1,000 profiles · every morning',
+    rows: [
+      { at: '1 Nov · 07:00', kind: 'page.visited', text: 'portal.supplier.example/login · code sent to its inbox' },
+      { at: '1 Nov · 07:00', kind: 'email.received', text: 'Your sign-in code is 274019' },
+      { at: '1 Nov · 07:01', kind: 'page.visited', text: 'Trade prices · 1,240 items · screenshot saved' },
+      { at: '15 Nov · 07:00', kind: 'page.visited', text: 'Same session · 38 prices changed since yesterday' },
+      { at: '30 Nov · 07:00', kind: 'page.visited', text: 'Still signed in · no new code needed', tone: 'ok' },
+    ],
+    caption: 'Signed in once on 1 November and still signed in on the 30th, every page kept. The supplier portal is an invented example.',
+  },
   can: {
     heading: 'Your agent uses any site the way a person does.',
     line: 'It opens pages, clicks, types and fills in forms, on sites that have no API.',
@@ -55,7 +76,7 @@ export const browser: PiecePage = {
       { title: 'Your own tools', line: 'Playwright, Puppeteer and browser agents connect with one URL, over the Chrome DevTools Protocol.' },
       { title: 'Watch it live', line: 'Watch any session from your own browser, or take over a step.' },
       { title: 'A screenshot of every page', line: 'Each page can be kept as a dated screenshot of what your agent saw.' },
-      { title: 'A full screen when a site needs one', line: 'The stealth browser runs with a real screen, for sites that turn a headless browser away.' },
+      { title: 'A full screen when a site needs one', line: 'The stealth browser runs a full desktop browser, for sites built to work only in one.' },
     ],
   },
 
@@ -70,7 +91,7 @@ export const browser: PiecePage = {
     heading: 'The browser finishes what a site starts in email and text.',
     line: 'One API key and one bill cover every piece.',
     items: [
-      { piece: 'email', line: 'Confirm a sign up from the browser with a link in the agent’s own inbox.' },
+      { piece: 'email', line: 'Confirm a sign-up from the browser with a link in the agent’s own inbox.' },
       { piece: 'phone', line: 'Finish a text check on the agent’s own number.' },
       { piece: 'messaging', line: 'Tell someone on WhatsApp or iMessage what the browser found.' },
       { piece: 'sandbox', line: 'Work through what the browser downloads, such as a CSV export, in a sandbox.' },
@@ -95,7 +116,7 @@ export const browser: PiecePage = {
       },
       {
         q: 'Is it a headless browser for AI agents?',
-        a: 'The standard browser runs headless, the cheapest way to run many sessions. The stealth browser runs with a full screen, for sites that turn headless browsers away.',
+        a: 'The standard browser runs headless, the cheapest way to run many sessions. The stealth browser runs a full desktop browser, for sites built to work only in one. Neither gets round a CAPTCHA or a bot block.',
       },
       {
         q: 'What does a browser cost?',
@@ -106,6 +127,6 @@ export const browser: PiecePage = {
 
   final: {
     heading: 'Give your agent a browser that stays signed in.',
-    capture: { kind: 'waitlist', button: 'Request early access', interest: 'any', source: 'piece-browser' },
+    capture: { kind: 'waitlist', button: 'Start free', interest: 'any', source: 'piece-browser' },
   },
 }

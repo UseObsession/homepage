@@ -16,7 +16,8 @@ import type { BlogPost } from './types'
    (_research/seo/plan/ai-customers/facts.json): Clay's 6,346 form test, the CMA's guidance, the AI Act pages, and the
    Product.ai study as republished by DNYUZ. Persona weeks come from _research/money-icps/ and _research/sales-teams/.
    Left out on purpose: Reddit quotes (the pages wouldn't load), Gartner figures (bot wall), any Obsession price, the 93%
-   and 128 stores, any PilotX figure. The companies in the illustration are invented. No dashes. */
+   and 128 stores, any PilotX figure. The companies in the illustration are invented. No dashes.
+   22 Nov 2026 (the toolkit position): Obsession's lines name personas and blueprints. */
 
 const SF_SERVICE = 'https://www.salesforce.com/news/stories/ai-service-agents-improve-customer-satisfaction/'
 const KL_TIMING = 'https://www.klaviyo.com/blog/when-to-send-black-friday-emails'
@@ -40,7 +41,7 @@ export const post: BlogPost = {
   description:
     'AI agents for marketing teams, sales and agencies: what competitors, prospects and clients send their customers, the weekly checks and what to do next.',
   answer:
-    'AI agents for marketing teams, sales teams, agencies and CX teams can do one job their other tools can’t: be a customer of a competitor, a prospect, a client or the team’s own company, and keep what it sends and shows. That gives marketing its competitors’ offers, sales a view of how each prospect treats its customers and agencies every client’s flows. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, and teams look it up in a table, through the API or over MCP, the standard way AI agents call tools.',
+    'AI agents for marketing teams, sales teams, agencies and CX teams can do one job their other tools can’t: be a customer of a competitor, a prospect, a client or the team’s own company, and keep what it sends and shows. That gives marketing its competitors’ offers, sales a view of how each prospect treats its customers and agencies every client’s flows. On Obsession, a persona, an AI agent with its own inbox, number and browser, signs up as that customer, and blueprints such as Competitor tracking run the checks for any team.',
   primaryKeyword: 'ai agents for marketing teams',
   keywords: [
     'ai for sales teams',
@@ -50,9 +51,9 @@ export const post: BlogPost = {
     'ai for marketing teams',
     'ai for customer experience teams',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 9,
   order: 10,
   authors: [
@@ -62,8 +63,8 @@ export const post: BlogPost = {
   hero: {
     art: {
       kind: 'report',
-      title: 'Monday 09:00 · what 4 teams’ AI customers found',
-      period: '1 week of AI customers, read on Monday morning',
+      title: 'Monday 09:00 · what 4 teams’ personas found',
+      period: '1 week of personas’ events, read on Monday morning',
       cols: ['Team', 'The question', 'What came back'],
       rows: [
         { name: 'Marketing', cells: ['larkfield.example’s first offer', 'Sunday 19:00, 25% off, subscribers only'], tone: 'info' },
@@ -88,7 +89,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Companies already put AI agents on their side of the conversation. Salesforce’s own [survey of service teams, published in May 2026](' +
         SF_SERVICE +
-        '), found 66% of customer service organisations use agentic AI, up from 39% in 2025. [AI customers](/blog/ai-customers) put an agent on the customer’s side: each becomes a customer of a company, waits for what arrives and keeps it as evidence.',
+        '), found 66% of customer service organisations use agentic AI, up from 39% in 2025. [AI agents as customers](/blog/ai-customers) work on the customer’s side: each signs up at a company, waits for what arrives and keeps it in an event log.',
     },
     {
       kind: 'stat',
@@ -105,8 +106,8 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'Each team’s customer question, the proxy it uses today, and what an AI customer brings back',
-      cols: ['Team', 'The question', 'Answered today with', 'An AI customer brings back'],
+      caption: 'Each team’s customer question, the proxy it uses today, and what an agent as a customer brings back',
+      cols: ['Team', 'The question', 'Answered today with', 'An agent as a customer brings back'],
       rows: [
         ['Marketing', 'What competitors send their subscribers', 'Ad libraries and forwarded newsletters', 'Every email, text and code, dated'],
         ['Sales', 'What a prospect does to its customers', 'Install data and intent signals', 'A dated fact the prospect can open'],
@@ -116,7 +117,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer’s answer arrives as the thing itself: the email with its time, the page as it showed, the chatbot’s words. A manager, a client or a prospect can open it and check.',
+      text: 'An agent’s answer arrives as the thing itself: the email with its time, the page as it showed, the chatbot’s words. A manager, a client or a prospect can open it and check.',
     },
 
     { kind: 'h2', id: 'marketing', text: 'AI agents for marketing teams' },
@@ -162,7 +163,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**That week:** open each first email with the fact and a link the prospect can open, fix the routing rule behind a slow reply, and update the battlecard. Use prospects’ public sign ups only, because a test demo request to a prospect takes up a seller’s time. The full case is in [why B2B sales teams need AI customers](/blog/ai-customers-for-b2b-sales-teams), on speed to lead, and [why companies that sell to Shopify brands need AI customers](/blog/ai-customers-for-ecommerce-vendors), on Shopify store leads.',
+      text: '**That week:** open each first email with the fact and a link the prospect can open, fix the routing rule behind a slow reply, and update the battlecard. Use prospects’ public sign ups only, because a test demo request to a prospect takes up a seller’s time. The full case is in [the speed to lead guide for B2B sales teams](/blog/ai-customers-for-b2b-sales-teams) and [the store leads guide for companies that sell to Shopify brands](/blog/ai-customers-for-ecommerce-vendors).',
     },
 
     { kind: 'h2', id: 'agencies', text: 'AI for agencies' },
@@ -179,20 +180,20 @@ export const post: BlogPost = {
       items: [
         '**What a prospect’s store sends a new customer, before the pitch.** Sign up through its public pop up, opt in to texts and leave a basket, with no login. A pass: you open the call with the prospect’s own emails and their times.',
         '**Whether every client’s flows fired this week.** With each client’s OK, run a new customer through every client store each week and after every theme, app or flow change. A pass: each flow arrives within its delay, with its content filled in.',
-        '**What every client’s competitors sent.** Keep an AI customer on each competitor’s list. A pass: the month’s competitor emails sit in the client report, dated.',
+        '**What every client’s competitors sent.** Keep a persona on each competitor’s list. A pass: the month’s competitor emails sit in the client report, dated.',
       ],
     },
     {
       kind: 'p',
       text: '**That week:** fix a broken flow before the client sees it, add a page on what customers received to each report, and open the pitch with the prospect’s finding. A retainer runs from $3,000 to $10,000 a month or more in [Darkroom’s October 2026 cost guide](' +
         DARKROOM +
-        '), so 1 client kept for a year is worth $36,000 to $120,000. The first 2 checks are set out by hand in [show clients every flow fired](/blog/show-clients-every-flow-fired) and [audit a prospect’s email without a Klaviyo login](/blog/audit-prospect-email-without-klaviyo-login). The full case for each kind of agency is in [why retention agencies need AI customers](/blog/ai-customers-for-retention-agencies), [why CRO and performance agencies need AI customers](/blog/ai-customers-for-cro-agencies) and [why Shopify Plus agencies need AI customers](/blog/ai-customers-for-shopify-plus-agencies).',
+        '), so 1 client kept for a year is worth $36,000 to $120,000. The first 2 checks are set out by hand in [show clients every flow fired](/blog/show-clients-every-flow-fired) and [audit a prospect’s email without a Klaviyo login](/blog/audit-prospect-email-without-klaviyo-login). The guides for [retention agencies](/blog/ai-customers-for-retention-agencies), [CRO and performance agencies](/blog/ai-customers-for-cro-agencies) and [Shopify Plus agencies](/blog/ai-customers-for-shopify-plus-agencies) set out the full case.',
     },
     {
       kind: 'cta',
-      text: 'Open every pitch with the prospect’s own emails, and show each client what its store and its competitors send their signed-up customers, every message dated with a screenshot.',
-      to: '/agencies',
-      label: 'Request early access',
+      text: 'Open every pitch with the prospect’s own emails, and show each client what its store and its competitors send new customers. Mystery shopping runs it every week, each message dated with a screenshot.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'ecommerce-cx', text: 'AI for ecommerce and CX teams' },
@@ -218,13 +219,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**That week:** send each fail to its owner (the flow to whoever runs the email platform, the code to the promotions lead, the bot’s answer to whoever edits its sources), test again the same day, and keep the evidence for the review after the sale. The [Black Friday checklist](/blog/black-friday-checklist-new-customer) gives the 12 tests in full, and [how AI customers find revenue leaks](/blog/ai-customers-find-revenue-leaks) puts a price on a missing message. The full case for each is in [why ecommerce brands need AI customers](/blog/ai-customers-for-ecommerce-brands) and [why CX teams need AI customers](/blog/ai-customers-for-cx-teams).',
+      text: '**That week:** send each fail to its owner (the flow to whoever runs the email platform, the code to the promotions lead, the bot’s answer to whoever edits its sources), test again the same day, and keep the evidence for the review after the sale. The [Black Friday checklist](/blog/black-friday-checklist-new-customer) gives the 12 tests in full, and [the revenue leaks guide](/blog/ai-customers-find-revenue-leaks) puts a price on a missing message. The full case for each is in the guides for [ecommerce brands](/blog/ai-customers-for-ecommerce-brands) and [CX teams](/blog/ai-customers-for-cx-teams).',
     },
     {
       kind: 'cta',
-      text: 'What any store sends a new customer after a sign-up, a basket and a checkout, yours and every competitor’s, each message dated with the email or screenshot.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Every email and text a store sends a new customer after a sign-up, a basket and a checkout, and every chatbot answer, yours and every competitor’s. Mystery shopping and Support bot check run them every week, each message dated.',
+      to: '/blueprints',
+      label: 'Browse blueprints',
     },
 
     { kind: 'h2', id: 'start', text: 'Start this week' },
@@ -241,7 +242,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Past a handful of companies, or a check every day, the hours grow faster than the team. At that point, use Obsession. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, for as long as your team follows it, and your team looks each company up in a table, through the API or over MCP. Its [competitor tracking](/blueprints/competitor-tracking), [prospect intelligence](/blueprints/prospect-intelligence), [mystery shopper](/blueprints/mystery-shopper) and [support bot check](/blueprints/support-bot-check) blueprints run these checks across every company you name. The options, with prices, a brief and a payback sum, are in [hire AI customers](/blog/hire-ai-customers).',
+      text: 'Past a handful of companies, or a check every day, the hours grow faster than the team. At that point, use Obsession. Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to. Its [Competitor tracking](/blueprints/competitor-tracking), [Prospect intelligence](/blueprints/prospect-intelligence), [Mystery shopping](/blueprints/mystery-shopper) and [Support bot check](/blueprints/support-bot-check) blueprints run these checks across every company you name, and each result lands in Slack, the CRM or a sheet. The options, with prices, a brief and a payback sum, are in [the hiring guide](/blog/hire-ai-customers).',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
@@ -266,23 +267,23 @@ export const post: BlogPost = {
         },
         {
           q: 'How can AI help sales teams?',
-          a: 'Beyond research and drafting, AI customers give a seller a dated fact about what each prospect does to its own customers, and test how fast the seller’s own team answers a demo request.',
+          a: 'Beyond research and drafting, an agent as a customer gives a seller a dated fact about what each prospect does to its own customers, and test how fast the seller’s own team answers a demo request.',
         },
         {
           q: 'How do agencies use AI agents?',
-          a: 'Agencies use AI customers to see a prospect’s emails before a pitch without a login, to check every client’s flows each week with the client’s OK, and to put competitors’ emails in client reports.',
+          a: 'Agencies send AI agents as customers to see a prospect’s emails before a pitch without a login, to check every client’s flows each week with the client’s OK, and to put competitors’ emails in client reports.',
         },
         {
           q: 'Can AI agents test our customer journey?',
-          a: 'Yes. An AI customer signs up, leaves a basket, uses the code, asks the chatbot and waits for each email, then reports what arrived and when, with the evidence.',
+          a: 'Yes. A persona signs up, leaves a basket, uses the code, asks the chatbot and waits for each email, then reports what arrived and when, with the email or page behind each.',
         },
         {
-          q: 'Do AI customers replace our marketing and sales tools?',
-          a: 'No. Analytics, email platforms, CRMs and data providers keep their jobs. AI customers add what a company sends its customers, which those tools can’t see.',
+          q: 'Do AI agents replace our marketing and sales tools?',
+          a: 'No. Analytics, email platforms, CRMs and data providers keep their jobs. AI agents as customers add what a company sends its customers, which those tools can’t see.',
         },
         {
           q: 'Is it legal to sign up to a competitor’s emails with an AI agent?',
-          a: 'An AI customer uses the public sign up any customer can use, says it is an AI when it talks to a person and uses no fake payment details. Rules differ by country and by use, so take legal advice for your case.',
+          a: 'An agent on Obsession uses the public sign up any customer can use, says it’s an AI when it talks to a person, uses no fake payment details and stops at any identity check. Rules differ by country and by use, so take legal advice for your case.',
         },
       ],
     },

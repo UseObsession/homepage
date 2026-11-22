@@ -1,7 +1,6 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
-/* /glossary/login-wall: the term the whole index rests on. "data behind login" stays with Home (docs/SEARCH.md §2);
+/* /glossary/login-wall: the term the web behind the login rests on. "data behind login" stays with Home (docs/SEARCH.md §2);
    this page owns the definition of a login wall and links Home for the category. */
 export const ref: ReferencePage = {
   kind: 'term',
@@ -70,7 +69,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'who-reads-it', text: 'Who needs what sits behind it' },
     {
       kind: 'p',
-      text: 'Anyone whose decisions depend on what other companies do to their customers. Marketing and CRM teams compare a competitor’s first 30 days of emails with their own. Pricing teams need the [member price](/glossary/member-price), not only the public one. Compliance teams need proof that a cancel flow and an unsubscribe work. Agencies open a pitch with a prospect’s own emails, and AI agents need the same facts to answer questions about a named company.',
+      text: 'Teams whose work depends on what competitors show their own customers. Marketing and CRM teams compare a competitor’s first 30 days of emails with their own. Pricing teams need the [member price](/glossary/member-price), not only the public one. Compliance teams need the dated screens and emails that show a cancel flow and an unsubscribe work. Agencies open a pitch with a prospect’s own emails, and AI agents need the same facts to answer questions about a named company.',
     },
     { kind: 'h2', id: 'how-its-kept', text: 'How what sits behind a login wall is kept' },
     {
@@ -79,18 +78,18 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} Each account stays open for as long as you follow the company, so every new email, price and offer lands dated the day it arrives, and the history builds from the first day.`,
+      text: 'Obsession’s [cloud browser](/browser) signs up as a customer and a persona’s inbox keeps what arrives. Every new email, price and offer lands in the event log dated the day it arrives.',
     },
     {
       kind: 'p',
-      text: 'An Obsession agent never gets round a CAPTCHA or a bot block, and never goes past an identity check. Where a site puts one in front of a step, the record names the step it couldn’t reach. The lines every agent keeps are on [the page for companies an agent visits](/agents).',
+      text: 'An Obsession agent never gets round a CAPTCHA or a bot block, and never goes past an identity check. Where a site puts one in front of a step, the event log names the step it couldn’t reach. The lines every agent keeps are on [the page for companies an agent visits](/agents).',
     },
     {
       kind: 'faq',
       items: [
         {
           q: 'Is a login wall the same as a paywall?',
-          a: 'A paywall is one kind of login wall: it asks for payment before showing an article or a product. A login wall is any step that turns a visitor into a customer, free sign-ups and quote forms included.',
+          a: 'A paywall is one type of login wall: it asks for payment before showing an article or a product. A login wall is any step that turns a visitor into a customer, free sign-ups and quote forms included.',
         },
         {
           q: 'Can Google index content behind a login wall?',
@@ -106,6 +105,7 @@ export const ref: ReferencePage = {
   ],
   sources: [],
   related: [
+    '/browser',
     'the-web-behind-the-login',
     '/glossary/the-web-behind-the-login',
     '/glossary/member-price',

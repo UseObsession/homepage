@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/customer-journey-benchmarking: for a journey or CX lead at a bank, card issuer, insurer or telecom, and
    product teams at software companies. "customer journey testing" stays with its owner (docs/SEARCH.md §2); this page
@@ -64,7 +63,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} A journey benchmark then becomes a standing comparison, with every step up to an identity check kept with its screenshot and every email after it dated as it lands.`,
+      text: 'Obsession’s [Mystery shopping](/blueprints/mystery-shopper) blueprint turns a journey benchmark into a standing comparison, with every step up to an identity check logged with its screenshot and every email after it dated as it lands.',
     },
     {
       kind: 'p',
@@ -83,7 +82,7 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Can an automated agent run a bank’s account opening?',
-          a: 'Up to the identity check. An Obsession agent never goes past one. The record of the run names the step it stopped at, and every screen and email before it is kept.',
+          a: 'Up to the identity check. An Obsession agent never goes past one. The event log names the step it stopped at, and every screen and email before it is kept.',
           link: { label: 'What every Obsession agent keeps to', to: '/agents' },
         },
       ],

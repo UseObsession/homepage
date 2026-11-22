@@ -39,7 +39,7 @@ export const post: BlogPost = {
   description:
     'Agency client retention for ecommerce agencies: show each brand what its customers got each week, with the services to sell and the case in your numbers.',
   answer:
-    'Agency client retention comes down to what a brand can see, so the ecommerce agencies that stand out show each client what its customers got this week, before the client finds a problem. Each check becomes a service an agency can sell, run at every client’s store, its competitors and the pages behind its ads, with each email and screenshot kept with its time. Obsession keeps what every client store, competitor and ad page shows a new customer, dated with the email or screenshot, by API, MCP or a table.',
+    'Agency client retention comes down to what a brand can see, so the ecommerce agencies that stand out show each client what its customers got this week, before the client finds a problem. Each check becomes a service an agency can sell, run at every client’s store, its competitors and the pages behind its ads, with each email and screenshot kept with its time. Obsession’s blueprints run each check as a new customer at every client store, competitor and ad page, and keep each email and screenshot with its time.',
   primaryKeyword: 'agency client retention',
   keywords: [
     'marketing agency client management',
@@ -52,7 +52,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-29',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 17,
   order: 0,
   authors: [
@@ -63,7 +63,7 @@ export const post: BlogPost = {
     art: {
       kind: 'report',
       title: 'northgate.example · Monday sweep',
-      period: 'Week of 26 October · an AI customer at each store',
+      period: 'Week of 26 October · an AI agent at each store',
       cols: ['Client', 'Customers got', 'Status'],
       rows: [
         { name: 'Fernhill', cells: ['Every email on time', 'Pass'], tone: 'ok' },
@@ -159,11 +159,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. At each client’s store they run up to 4 journeys: sign up, browse, leave a basket and start a checkout. Each journey has its own inbox, so a reminder that never came, came 10 hours late or dropped the price shows up with its time. Where a store puts a CAPTCHA or bot check in front of a step, the record names the step it couldn’t reach.',
+      text: 'On Obsession, each client store gets up to 4 journeys: sign up, browse, leave a basket and start a checkout. Each journey is its own persona, an AI agent with its own inbox, number and browser under one name. A reminder that never came, came 10 hours late or dropped the price shows up with its time. Where a store puts a CAPTCHA or bot check in front of a step, the result names the step it couldn’t reach.',
     },
     {
       kind: 'p',
-      text: 'The page and the cart break too. On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. Shopping on a phone as a signed-out new customer, it found problems such as these:',
+      text: 'The page and the cart break too. A check on a phone, as a signed-out new customer, turns up problems such as these.',
     },
     {
       kind: 'list',
@@ -178,13 +178,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each of these could have been the line in a client’s weekly note, found by the agency before the brand’s own customers met it.',
+      text: 'Each of these can be the line in a client’s weekly note, found by the agency before the brand’s own customers meet it.',
     },
 
     { kind: 'h2', id: 'services-menu', text: 'Productized agency services, by agency type' },
     {
       kind: 'p',
-      text: 'A productized agency service is a fixed piece of work with a set scope, schedule and price, sold the same way to every client. Each service here is a check run as a new customer of the client’s store, its competitors or the pages behind its ads. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. Each check is run by an Obsession agent, a customer that says it’s an AI ([how the data is collected](/blog/ai-customers)).',
+      text: 'A productized agency service is a fixed piece of work with a set scope, schedule and price, sold the same way to every client. Each service here is a check run as a new customer of the client’s store, its competitors or the pages behind its ads. Each check is an Obsession blueprint, run by a persona that says it’s an AI when it talks to a person ([why agents get their own inbox, number and browser](/blog/why-ai-customers-matter)).',
     },
     {
       kind: 'p',
@@ -214,28 +214,28 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each agency type sells the services that sit closest to the work it is already paid for. Each one links to the Obsession blueprint behind it: a ready-made check with its steps, its schedule and what it reports.',
+      text: 'Each agency type sells the services that sit closest to the work it is already paid for. Each one links to the Obsession blueprint behind it, a ready job with its steps, its schedule and what it reports.',
     },
     { kind: 'h3', id: 'retention', text: 'Retention and email agencies' },
     {
       kind: 'list',
       items: [
-        '**A weekly flow log** ([Mystery shopper](/blueprints/mystery-shopper)). An AI customer signs up, leaves a basket and starts a checkout at each client store every week and after every launch. The client sees what arrived, when and what never came, beside the email platform’s revenue report, in the format set out in [proof that every flow fired](/blog/show-clients-every-flow-fired).',
-        '**Welcome and Black Friday code checks** ([Website audit](/blueprints/website-audit)). The pop-up code and each sale code are tried at checkout on the days that matter, Friday 27 November 2026 included. The client sees each code accepted or refused, with the screenshot.',
-        '**A competitor watch** ([Email and SMS tracking](/blueprints/email-sms-tracking)). An AI customer on each competitor’s list keeps every email and offer it sends. The client sees its competitors’ Black Friday plans as they land, beside its own.',
+        '**A weekly flow log** ([Mystery shopping](/blueprints/mystery-shopper)). A persona signs up, leaves a basket and starts a checkout at each client store every week and after every launch. The client sees what arrived, when and what never came, beside the email platform’s revenue report, in the format set out in [proof that every flow fired](/blog/show-clients-every-flow-fired).',
+        '**Welcome and Black Friday code checks** ([QA on your own flows](/blueprints/website-audit)). The pop-up code and each sale code are tried at checkout on the days that matter, Friday 27 November 2026 included. The client sees each code accepted or refused, with the screenshot.',
+        '**A competitor watch** ([Email and SMS tracking](/blueprints/email-sms-tracking)). A persona on each competitor’s list keeps every email and offer it sends. The client sees its competitors’ Black Friday plans as they land, beside its own.',
         '**What AI assistants tell shoppers** ([Listings and AI answers](/blueprints/listings-ai-answers)). Every Monday, the questions shoppers ask ChatGPT and other assistants about the brand, with each wrong answer traced to the page it came from. The method is in [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store).',
       ],
     },
     {
       kind: 'p',
-      text: 'For an ecommerce retention agency, these sit on top of the flows and campaigns it already runs. The full case is in [why a retention marketing agency needs AI customers](/blog/ai-customers-for-retention-agencies).',
+      text: 'For an ecommerce retention agency, these sit on top of the flows and campaigns it already runs. The full case is in [what retention agencies check for their clients](/blog/ai-customers-for-retention-agencies).',
     },
     { kind: 'h3', id: 'cro', text: 'CRO agencies' },
     {
       kind: 'list',
       items: [
-        '**Release checks** ([Website audit](/blueprints/website-audit)). After every release, a fresh customer signs up, fills in each form, opens every email and link, and goes through checkout. The client sees a pass or a break for each step, with the screenshot.',
-        '**The pop-up and the code at checkout** ([Website audit](/blueprints/website-audit)). Each test variant’s pop-up is signed up through and its code tried at checkout, every morning the test runs. A variant that stops sending its code is found before anyone calls the test, as step 5 of the [ecommerce CRO audit template](/blog/ecommerce-cro-audit-template) describes.',
+        '**Release checks** ([QA on your own flows](/blueprints/website-audit)). After every release, a fresh customer signs up, fills in each form, opens every email and link, and goes through checkout. The client sees a pass or a break for each step, with the screenshot.',
+        '**The pop-up and the code at checkout** ([QA on your own flows](/blueprints/website-audit)). Each test variant’s pop-up is signed up through and its code tried at checkout, every morning the test runs. A variant that stops sending its code is found before anyone calls the test, as step 5 of the [ecommerce CRO audit template](/blog/ecommerce-cro-audit-template) describes.',
         '**Offers and prices after each deadline** ([Price watch](/blueprints/price-watch)). Every competitor’s prices, offers and delivery terms are checked each morning beside the client’s own, so the morning after a sale ends shows who moved first.',
         '**Competitor offers** ([Competitor tracking](/blueprints/competitor-tracking)). Each competitor’s emails, offers, price changes and public ads on one timeline per competitor, for the next round of test ideas.',
       ],
@@ -251,13 +251,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The case for CRO and paid ads agencies in full is in [why CRO and performance agencies need AI customers](/blog/ai-customers-for-cro-agencies).',
+      text: 'The case for CRO and paid ads agencies in full is in [landing page monitoring for CRO agencies](/blog/ai-customers-for-cro-agencies).',
     },
     { kind: 'h3', id: 'shopify-plus', text: 'Shopify Plus and build agencies' },
     {
       kind: 'list',
       items: [
-        '**Every release checked as a customer** ([Website audit](/blueprints/website-audit)). A new customer runs sign-up, forms, emails and checkout after each deploy. The client sees the release pass, or the break with its screenshot, before its own customers meet it.',
+        '**Every release checked as a customer** ([QA on your own flows](/blueprints/website-audit)). A new customer runs sign-up, forms, emails and checkout after each deploy. The client sees the release pass, or the break with its screenshot, before its own customers meet it.',
         '**Chat and AI agent answers that changed overnight** ([Drift watch](/blueprints/drift-watch)). The store’s chat or AI agent is asked its hardest questions every morning and within the hour of any update. The client sees every answer that changed, with the before and after.',
         '**The store’s chat and AI agent** ([Support bot check](/blueprints/support-bot-check), [Sales agent check](/blueprints/sales-agent-check)). The chat is asked what customers ask about refunds, delivery, prices and stock, and each answer is checked against the policy and the price list. The client sees each wrong answer with the right one drafted. The questions to start with are in [how to test a chatbot on your store](/blog/test-store-chatbot-returns-policy).',
       ],
@@ -266,7 +266,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A renewal check before each review** ([Mystery shopper](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking)). A week before a client’s review or renewal, AI customers take the store’s full journey again and shop its 2 closest competitors. The account lead walks into the call with what changed for the client’s customers since the last review, what was fixed, and what its competitors now offer. A slipping account shows up here before the client says so.',
+        '**A renewal check before each review** ([Mystery shopping](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking)). A week before a client’s review or renewal, personas take the store’s full journey again and shop its 2 closest competitors. The account lead walks into the call with what changed for the client’s customers since the last review, what was fixed, and what its competitors now offer. A slipping account shows up here before the client says so.',
         '**A monthly check for brands that won’t pay a full retainer.** The same sign-up, basket and checkout once a month, with a short note of what changed. It keeps a smaller brand on the books and makes the step up to a retainer an easy one.',
       ],
     },
@@ -283,7 +283,7 @@ export const post: BlogPost = {
         kind: 'flow',
         title: 'northgate.example · weekly routine',
         steps: [
-          { label: 'Sweep', detail: 'An AI customer at each client store', tone: 'info' },
+          { label: 'Sweep', detail: 'A persona at each client store', tone: 'info' },
           { label: 'Report', detail: 'Monday: each finding with its email, screenshot and time', tone: 'info' },
           { label: 'Fix', detail: 'The owner fixes it, with the client’s OK', tone: 'info' },
           { label: 'Re-check', detail: 'The same check again, for the before and after', tone: 'ok' },
@@ -298,7 +298,7 @@ export const post: BlogPost = {
         '**The Monday report.** One page per client: what its customers got, each finding with the email or screenshot and the time it was seen, and who owns each fix.',
         '**A before and after for every fix.** The same sign-up, basket or checkout runs again once the fix is live, so the report shows the break and the fix side by side.',
         '**An alert the morning a check fails.** Checks run weekly and after every launch, or as often as the agency sets, and a failed one reaches the account lead that morning.',
-        '**Reading times on the agency’s clock.** Read at 4, 12, 24 or 48 hours, or keep the AI customers watching for weeks. Call an email missing only once the chosen window has closed, 48 hours for most flows.',
+        '**Reading times on the agency’s clock.** Read at 4, 12, 24 or 48 hours, or keep the personas watching for weeks. Call an email missing only once the chosen window has closed, 48 hours for most flows.',
         '**In the agency’s name.** Reports can carry the agency’s name and logo for every brand it serves.',
         '**From 10 clients to 300.** The routine stays the same as the client list grows.',
       ],
@@ -309,14 +309,14 @@ export const post: BlogPost = {
       art: {
         kind: 'log',
         title: 'larkspur.example · a fix',
-        who: 'An AI customer working for Northgate, the store’s agency',
+        who: 'A persona working for Northgate, the store’s agency',
         status: { tone: 'ok', text: 'Fixed' },
         rows: [
           { time: 'Sat 09:10', text: 'Starts a checkout, leaves before paying', detail: 'Email typed in, a £64 candle set', tone: 'info' },
           { time: 'Mon 09:10', text: 'No reminder in 48 hours', detail: 'Inbox and spam both empty', tone: 'fail' },
           { time: 'Mon 11:30', text: 'Cause found', detail: 'A flow filter left from the summer sale', tone: 'info' },
           { time: 'Mon 14:20', text: 'Fix live', detail: 'Approved by the client at 14:05', tone: 'info' },
-          { time: 'Tue 09:00', text: 'Same checkout, new AI customer', detail: 'Email typed in, the same candle set', tone: 'info' },
+          { time: 'Tue 09:00', text: 'Same checkout, a fresh persona', detail: 'Email typed in, the same candle set', tone: 'info' },
           { time: 'Tue 10:02', text: 'Reminder arrives', detail: 'The item, its price and a link back', tone: 'ok' },
         ],
         foot: 'The next report carries both runs, so the client sees the break and the fix side by side.',
@@ -324,16 +324,16 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For an agency, every client store, competitor and live ad runs on one routine:',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. For an agency, every client store, competitor and live ad runs on one routine.',
     },
     {
       kind: 'list',
       items: [
-        '**An Obsession agent for each job at each store.** Each has its own inbox, phone number and browser, so every email traces back to the one action that triggered it.',
+        '**A persona for each job at each store.** Each has its own inbox, phone number and browser, so every email traces back to the one action that triggered it.',
         '**Everything a customer meets.** The emails, the page behind each ad, prices and offers, the basket, checkout and codes, the store’s chat and AI agent, and what AI assistants say about the brand.',
         '**Bot checks.** Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test, so the agency knows exactly what to check by hand.',
-        '**Scale.** It runs at 300, 1,000 or 5,000 brands a month. It is built for millions of companies, each looked up in one call, and every store stays followed for as long as the agency wants.',
-        '**Pricing.** Priced per call or per company watched, never per token, with a spending cap on every key.',
+        '**Scale.** It runs at 300, 1,000 or 5,000 brands a month, and each persona is free while it waits, so every store stays followed for as long as the agency wants.',
+        '**Pricing.** Free to start, then $20, $99 or $499 a month, with each blueprint billed on the pieces it uses, up to any spend cap the agency sets.',
       ],
     },
 
@@ -362,7 +362,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Set the yearly cost of any option against those totals, whether it is a person’s hours or a tool. At the low end, keeping 1 client for 3 more months brings in $9,000 before a single add-on is sold. [AI customers at scale](/blog/ai-customers-at-scale) works out the cost of each AI customer line by line.',
+      text: 'Set the yearly cost of any option against those totals, whether it is a person’s hours or a tool. At the low end, keeping 1 client for 3 more months brings in $9,000 before a single add-on is sold. [What AI agents cost per month](/blog/ai-customers-at-scale) works out the cost of each one line by line.',
     },
 
     { kind: 'h2', id: 'options', text: 'Ways to check every client, compared', compare: true },
@@ -406,9 +406,9 @@ export const post: BlogPost = {
           'Shop floors, phone lines and websites',
         ],
         [
-          'Obsession (ours): [Delivery monitoring](/blueprints/delivery-monitoring), [Mystery shopper](/blueprints/mystery-shopper), [Website audit](/blueprints/website-audit), [Ad landing check](/blueprints/ad-landing-check), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch)',
+          'Obsession (ours): [Delivery monitoring](/blueprints/delivery-monitoring), [Mystery shopping](/blueprints/mystery-shopper), [QA on your own flows](/blueprints/website-audit), [Ad landing check](/blueprints/ad-landing-check), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch)',
           'What every client store, its competitors and its ads show a new customer, every email and screenshot kept as it arrived',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Leaves the fix and the client call to the agency',
           'Every client checked as a customer each week, with proof the client can open',
         ],
@@ -416,10 +416,10 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your agency wants to see every client’s store as a new customer each week, use Obsession. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. Each finding comes with its time, and each fix with a before and after. The same routine covers each client’s competitors and the page behind every live ad. A QA monitor suits a minute-by-minute alert on one checkout, the platform’s report stays the source for revenue, and a mystery shopping firm covers a shop floor. With 5 clients or fewer whose stores rarely change, the team can run the checks by hand.',
+      text: 'If your agency wants to see every client’s store as a new customer each week, use Obsession’s blueprints. Each keeps every email and screenshot with its time, in Slack, a sheet or the API. Each finding comes with its time, and each fix with a before and after. The same routine covers each client’s competitors and the page behind every live ad. A QA monitor suits a minute-by-minute alert on one checkout, the platform’s report stays the source for revenue, and a mystery shopping firm covers a shop floor. With 5 clients or fewer whose stores rarely change, the team can run the checks by hand.',
     },
 
-    { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI customers' },
+    { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need weekly checks' },
     {
       kind: 'list',
       items: [
@@ -445,23 +445,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Agencies start in early access, onboarding teams now, and the Obsession team helps each one set up its first batch: the client stores, the journeys at each and where the reports go. Once your own list runs, your agency chooses when to read each store: at 4, 12, 24 or 48 hours, or for as long as it wants to keep watching.',
+      text: 'Agencies start on the Free plan and pick a blueprint for each check, then set the client stores, the journeys at each and where the reports go. Once the list runs, your agency chooses when to read each store, at 4, 12, 24 or 48 hours, or for as long as it wants to keep watching.',
     },
     {
       kind: 'cta',
       text: 'For retention agencies: open every pitch with the store’s own emails. See what any store sends a new customer after the pop-up and a basket, each email dated as it arrived, at the stores you pitch, the clients you keep and their competitors.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
     {
       kind: 'cta',
       text: 'For CRO and performance agencies: see what each brand’s funnel sends after the sign-up, from the pop-up’s code to the basket and checkout reminders, each dated. Use it before the pitch and before and after every test.',
-      to: '/use-cases/funnel-qa-for-cro-agencies',
-      label: 'Request early access',
-    },
-    {
-      kind: 'p',
-      text: 'The [store lookup’s agency access](/lookup#agencies) covers those 5: every store already in the index, plus up to 5 client stores added, each read again every week.',
+      to: '/blueprints/website-audit',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about agency client retention' },
@@ -501,7 +497,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the figures',
-      text: 'On 26 October 2026 an Obsession agent walked client stores that Shopify agencies and freelance experts show on their own sites, as far as the first checkout page. No store, brand or agency is named. Northgate, its clients, the times and every figure in the business case are invented.',
+      text: 'The problems listed are examples of what a phone check as a new customer can find. Northgate, its clients, the times and every figure in the business case are invented.',
     },
   ],
 

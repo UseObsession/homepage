@@ -23,7 +23,8 @@ import type { BlogPost } from './types'
    Left out on purpose: anything from SpartanLeadz; our own send results; the site's 93% and 128 stores; any PilotX audit
    figure; strategist hour estimates from our files; Recharge and Smile (pages blocked or dated); Meta's Ad Library
    details (its help page didn't open). Every brand in the 2 illustrations, the 1 in 2 and 1 in 3 rates and the $800
-   Klaviyo bill are invented. Buyer words; no dashes. */
+   Klaviyo bill are invented. Buyer words; no dashes. 22 Nov 2026: Obsession lines moved to the toolkit position
+   (personas, blueprints, prices.ts). */
 
 const SPARKTORO = 'https://sparktoro.com/blog/digital-agency-new-business-still-a-concern-referrals-still-rule-for-lead-gen-and-are-sales-pipelines-finally-recovering/'
 const AMI = 'https://agencymanagementinstitute.com/wp-content/uploads/2026/05/Agency-Core-2026_Executive-Summary.pdf'
@@ -73,7 +74,7 @@ export const post: BlogPost = {
   description:
     'How to get email marketing clients for a retention agency: which brands to target, where to find them, the first message, pricing and the pipeline sum.',
   answer:
-    'To get email marketing clients, choose brands that can pay a retainer and send from a platform you work in, sign up to each as a new customer, and open with a dated finding the owner can check on their phone, such as a welcome email that never arrived. Find them through client and partner referrals, the Klaviyo and Shopify partner directories, technology partners, content and events, and cold email built on store data, then run the audit after the first call and price the proposal from it. Obsession keeps what any store you name sends a new subscriber, dated with the email itself, by API, MCP or a table.',
+    'To get email marketing clients, choose brands that can pay a retainer and send from a platform you work in, sign up to each as a new customer, and open with a dated finding the owner can check on their phone, such as a welcome email that never arrived. Find them through client and partner referrals, the Klaviyo and Shopify partner directories, technology partners, content and events, and cold email built on store data, then run the audit after the first call and price the proposal from it. Obsession’s prospect intelligence blueprint sends a persona to sign up at every store you name and keeps what each sends a new subscriber, dated.',
   primaryKeyword: 'how to get email marketing clients',
   keywords: [
     'how to find email marketing clients',
@@ -86,7 +87,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   order: 17,
   authors: [
@@ -186,19 +187,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each prospect needs its own addresses, a phone number and 48 hours of watching, which suits about 5 prospects at a time. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its [retention agency use case](' +
+      text: 'By hand, each prospect needs its own addresses, a phone number and 48 hours of watching, which suits about 5 prospects at a time. Obsession, the toolkit for AI agents, runs the check for you with a persona per store, an AI agent with its own inbox, number and browser under one name. Its [retention agency use case](' +
         USE_CASE +
         ') runs the same check on any store you name. The method behind that check is [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
     {
       kind: 'cta',
-      text: 'Open every pitch with the store’s own emails, and the ones that never came. See what any store sends a new customer after a sign-up, a text opt-in and a basket, each message dated with the email itself. Agencies start in early access, onboarding teams now.',
+      text: 'Open every pitch with the store’s own emails, and the ones that never came. See what any store sends a new customer after a sign-up, a text opt-in and a basket, each message dated with the email itself.',
       to: USE_CASE,
-      label: 'Request early access',
+      label: 'See how it works',
     },
     {
       kind: 'p',
-      text: 'To check 300 brands rather than one, early access looks up every store already in Obsession’s index. It sorts the list by what each brand’s emails are missing ([agency access on the store lookup](/lookup#agencies)).',
+      text: 'To check 300 brands rather than one, the [prospect intelligence](/blueprints/prospect-intelligence) blueprint runs a persona at every brand on the list and sorts it by what each brand’s emails are missing.',
     },
 
     { kind: 'h2', id: 'where-to-find', text: 'Where to find email marketing clients', compare: true },
@@ -282,15 +283,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies), [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking)',
           'Leak checks: what each store sends a new customer after a sign-up, a text opt-in and a basket, dated\nProspect intelligence: a verdict and a proof link per company\nEmail and SMS tracking: each competitor’s emails and texts',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Doesn’t find contacts or email addresses',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Finds no contacts or email addresses, and stops before payment',
           'What a real customer gets at every brand on a pitch list, kept as proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your agency needs a dated finding at every brand on a pitch list, use Obsession. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. An agency that wins enough work through referrals and partner agencies needs none of the paid tools in the table.',
+      text: 'If your agency needs a dated finding at every brand on a pitch list, use Obsession’s prospect intelligence blueprint. A persona keeps what each brand sends a new customer, dated with the email or screenshot, in Clay, your CRM or a sheet. An agency that wins enough work through referrals and partner agencies needs none of the paid tools in the table.',
     },
     { kind: 'h3', id: 'referrals', text: 'Referrals from clients and partner agencies' },
     {
@@ -503,9 +504,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Open a pitch on the prospect’s own emails, and the ones that never came. Every brand on your pitch list comes back with what its customers get, dated with a screenshot, in Clay, your CRM or a sheet.',
-      to: '/agencies',
-      label: 'Request early access',
+      text: 'Prospect intelligence: open a pitch on the prospect’s own emails, and the ones that never came. Every brand on your pitch list comes back with what its customers get, dated with a screenshot, in Clay, your CRM or a sheet.',
+      to: '/blueprints/prospect-intelligence',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Common questions' },

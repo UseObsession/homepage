@@ -1,18 +1,18 @@
 import type { Recipe } from '../types'
 
-/* Drift watch (/recipes/drift-watch). Check your AI agents. The persona version (20 Nov 2026): the same persona you
+/* Drift watch (/blueprints/drift-watch). Check your AI agents. The persona version (20 Nov 2026): the same persona you
    define asks the reader's AI agent their hardest cases every morning and within the hour of any vendor release, model
    update or prompt edit; it lives as long as they hold it, so every replay comes from the same person and answers
    compare like for like. Every answer comes back word for word, and every one that changed is shown before and after.
    Every replay is tagged, agreed with the vendor, so none is billed. With the agent, the page says what the event log
    shows; when a person takes over, the persona tells them it's an AI. No vendor or product names: Vendor A. The run is
-   an example (the `drift` screen: 37 of 40 before Vendor A's update at 23:20, 28 of 40 at 00:10, 9 newly failing). */
+   an example (the `drift` screen: 37/40 before Vendor A's update at 23:20, 28/40 at 00:10, 9 newly failing). */
 
 export const recipe: Recipe = {
   id: 'drift',
   slug: 'drift-watch',
   name: 'Drift watch',
-  group: 'Check your AI agents',
+  group: 'Train and test agents',
   line: 'A persona asks your AI agent your hardest cases daily and after every update, and shows what changed.',
   gets: 'Every answer that changed, found the day it changed, with its before and after.',
   kit: [
@@ -46,7 +46,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-drift-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'drift',
     },
   },
@@ -71,9 +71,9 @@ export const recipe: Recipe = {
     report: 'Slack, and every answer in a table',
     kit: ['Persona · UK, the same each replay', '1 inbox', 'Your 40 cases', 'Tagged as tests, never billed'],
     events: [
-      { time: '2 Oct 07:00', text: 'The morning replay: 37 of 40 cases pass, 92.5%, inside your baseline of 90 to 100%.' },
+      { time: '2 Oct 07:00', text: 'The morning replay: 92.5% of your 40 cases pass, inside your baseline of 90 to 100%.' },
       { time: '2 Oct 23:20', text: 'Vendor A ships an update to your bot.' },
-      { time: '3 Oct 00:10', text: 'The persona replays every case, 50 minutes later. 28 of 40 pass: 70%.' },
+      { time: '3 Oct 00:10', text: 'The persona replays all 40 cases, 50 minutes later. 70% pass, down from 92.5%.' },
       { time: '3 Oct 00:12', text: '9 cases that passed that morning now fail. Asked about refunds: “Yes, up to 30 days.” Your rule is 14.' },
       { time: '3 Oct 00:14', text: 'Delivery “is free” where you charge £4.95, the warranty is “1 year” where yours is 2, and “Anything else?” comes 3 times after “No”.' },
     ],
@@ -85,7 +85,7 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Pick your hardest cases',
-      line: 'Refunds, delivery, codes, a person on request: each with the rule that decides it.',
+      line: 'Refunds, delivery, codes, a person when asked: each with the rule that decides it.',
     },
     {
       title: 'Approve the baseline',
@@ -191,19 +191,26 @@ export const recipe: Recipe = {
       {
         q: 'Does the persona say it’s an AI?',
         a: 'It tells a person it’s an AI when it talks to one. With your AI agent, your event log keeps both sides word for word, before and after.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       { q: 'Is a passed replay a guarantee?', a: 'No. It is a dated event in your event log, showing what your agent said on each case that day.' },
+      {
+        q: 'What does Drift watch cost?',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours for chat and your portal, an inbox, and call minutes if you add a phone line. The month grows with the cases you replay and how often your vendor ships updates.',
+        link: { label: 'See the cloud browser', to: '/browser' },
+      },
     ],
   },
 
   final: {
     heading: 'Know which answers an update changed within the hour.',
-    sub: 'Tell us which agent to watch and your hardest cases. We’ll set up the first replay with you.',
+    sub: 'Try it on the Free plan with the cases your bot must always get right.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-drift-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'drift',
     },
+    link: { label: 'More blueprints to train and test agents', to: '/blueprints/train-and-test-agents' },
   },
 }

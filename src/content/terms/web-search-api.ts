@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/web-search-api: for an engineer choosing a search API for an agent. "best web search api" stays with its
    owner (docs/SEARCH.md §2); this page owns the definition. Each API is described from its own docs, read 11 Nov 2026.
@@ -71,7 +70,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} An agent calls it beside a search API, to set what a company shows the customers who signed up next to what it publishes.`,
+      text: 'Obsession’s [cloud browser](/browser) and inboxes give an agent the other half beside a search API: what a company shows the customers who signed up, next to what it publishes.',
     },
     {
       kind: 'faq',

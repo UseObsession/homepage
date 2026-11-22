@@ -15,7 +15,8 @@ import type { BlogPost } from './types'
    stores, any claim about how fast a feed or catalogue updates beyond what Google's and Meta's own pages say (Meta's help
    pages on out of stock items did not load, so nothing rests on them), and the vendor docs that put the lag at 30 to 90
    minutes. The Quality Score rule and landing page experience come from Google's own page, not from vendor claims of
-   what each point costs. Buyer words (sign up, basket, pop up); no dashes. */
+   what each point costs. Buyer words (sign up, basket, pop up); no dashes. 
+   22 Nov 2026: moved to the toolkit position (the ad landing check blueprint; no early access). */
 
 const LEBESGUE = 'https://lebesgue.io/?p=15192'
 const FINAL_URL = 'https://support.google.com/google-ads/answer/16230205'
@@ -39,7 +40,7 @@ export const post: BlogPost = {
   description:
     'For stores and agencies: Final URL expansion and sold out products send paid clicks to pages that can’t sell. Check where every ad lands each morning.',
   answer:
-    'To check where your ads land after Final URL expansion, open every live Google and Meta ad’s link on your phone each morning and confirm the page loads, the product is in stock, the offer, price and code match the ad, and the tracking doesn’t break the page. If you run AI Max or Performance Max, also read the Landing pages report or the Expanded Final URL assets tab, and add URL exclusions for pages that shouldn’t take paid traffic. Obsession keeps what every live ad’s landing page shows a customer each morning, from the offer and price to the stock, dated with the screenshot.',
+    'To check where your ads land after Final URL expansion, open every live Google and Meta ad’s link on your phone each morning and confirm the page loads, the product is in stock, the offer, price and code match the ad, and the tracking doesn’t break the page. If you run AI Max or Performance Max, also read the Landing pages report or the Expanded Final URL assets tab, and add URL exclusions for pages that shouldn’t take paid traffic. On Obsession the ad landing check blueprint opens every live ad’s page from its link each morning and keeps what it shows, from the offer and price to the stock, dated with the screenshot.',
   primaryKeyword: 'final url expansion',
   keywords: [
     'final url expansion',
@@ -52,9 +53,9 @@ export const post: BlogPost = {
     'landing page check',
     'landing page audit checklist',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   order: 7,
   authors: [
@@ -66,7 +67,7 @@ export const post: BlogPost = {
     workspace: 'company',
     art: {
       kind: 'flow',
-      title: 'northmark.example · morning check, Wednesday 08:02',
+      title: 'Morning check, 08:02',
       status: { tone: 'fail', text: '£36 of clicks since 14:00' },
       steps: [
         { label: 'Meta ad', detail: 'Trail trainer, 20% off this week', tone: 'ok' },
@@ -85,7 +86,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Two things send paid clicks to pages that can’t sell. The first is Final URL expansion in Google Ads, which can send a click to a page you never put in the ad. It [turns on with AI Max](' +
+      text: 'Two causes send paid clicks to pages that can’t sell. The first is Final URL expansion in Google Ads, which can send a click to a page you never put in the ad. It [turns on with AI Max](' +
         AI_MAX +
         ') in Search campaigns. In Performance Max it is [on by default](' +
         PMAX_FUE +
@@ -296,13 +297,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. For the ads and hours beyond a check by hand, use Obsession’s Ad landing check. It opens every live ad’s page from its link on a phone and a desktop each morning, or more often in a sale, checks that the page loads, the offer and price match and the product is in stock, and drafts the fix (a pause or a new link) for your OK.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. For the ads and hours beyond a check by hand, its [Ad landing check](/blueprints/ad-landing-check) blueprint opens every live ad’s page from its link on a phone and a desktop each morning, or more often in a sale. It checks that the page loads, the offer and price match and the product is in stock, and drafts the fix, a pause or a new link, for your OK.',
     },
     {
       kind: 'cta',
-      text: 'What every live ad’s landing page shows a customer each morning: whether it loads, the offer, the price and the stock, opened from the ad’s own link so no click is paid for. Teams start in early access.',
+      text: 'What every live ad’s landing page shows a customer each morning: whether it loads, the offer, the price and the stock, opened from the ad’s own link so no click is paid for.',
       to: '/blueprints/ad-landing-check',
-      label: 'Request early access',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'for-agencies', text: 'Running the morning check for clients' },
@@ -312,9 +313,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'After the ad, what each brand’s funnel sends: the pop-up’s code, the welcome email and the basket and checkout reminders, each dated, at every brand you pitch or test. Performance and CRO agencies start in early access.',
+      text: 'After the ad, what each brand’s funnel sends: the pop-up’s code, the welcome email and the basket and checkout reminders, each dated, at every brand you pitch or test.',
       to: '/use-cases/funnel-qa-for-cro-agencies',
-      label: 'Request early access',
+      label: 'See how it works',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

@@ -1,0 +1,64 @@
+/* A team's use cases (Team.tsx): cards on the alternate ground, each with its kit as a small badge, the use case, 1 line,
+   and what runs it: the blueprint for teams who don't code and the pieces it uses. */
+
+.t-uses__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ob-space-16);
+}
+.t-use {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-12);
+  padding: var(--ob-space-24);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+  background:
+    radial-gradient(120% 70% at 0% 0%, rgba(var(--ob-tint-rgb), 0.05), transparent 60%),
+    var(--ob-surface);
+}
+.t-use__kit {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  padding: 3px var(--ob-space-8) 3px 4px;
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  color: var(--ob-text-2);
+  text-decoration: none;
+  transition: border-color var(--ob-dur-fast) var(--ob-ease-out), color var(--ob-dur-fast) var(--ob-ease-out);
+}
+.t-use__kit-ic { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--ob-bg); color: var(--ob-text); }
+.t-use__kit-ic svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.t-use__name { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.t-use__line { font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+.t-use__runs { display: flex; flex-wrap: wrap; gap: var(--ob-space-6); margin-top: var(--ob-space-4); padding-top: var(--ob-space-12); border-top: var(--ob-border-hair) solid var(--ob-line-subtle, var(--ob-line)); }
+.t-use__bp,
+.t-use__piece {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-4);
+  min-height: 26px;
+  padding: 0 var(--ob-space-8);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-caption);
+  text-decoration: none;
+  transition: border-color var(--ob-dur-fast) var(--ob-ease-out), background-color var(--ob-dur-fast) var(--ob-ease-out);
+}
+.t-use__bp { color: var(--ob-text); background: rgba(var(--ob-tint-rgb), 0.08); }
+.t-use__bp svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.t-use__piece { color: var(--ob-text-2); border: var(--ob-border-hair) solid var(--ob-line); }
+.t-use :focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) {
+  .t-use__kit:hover { border-color: var(--ob-line-strong); color: var(--ob-text); }
+  .t-use__bp:hover { background: rgba(var(--ob-tint-rgb), 0.14); }
+  .t-use__piece:hover { border-color: var(--ob-line-strong); color: var(--ob-text); }
+}
+@media (max-width: 960px) { .t-uses__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .t-uses__list { grid-template-columns: 1fr; } .t-use { padding: var(--ob-space-20); } }

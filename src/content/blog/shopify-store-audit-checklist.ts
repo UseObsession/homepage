@@ -13,12 +13,13 @@ import type { BlogPost } from './types'
    PageSpeed Insights, Search Console), Microsoft Clarity and its docs, Contentsquare pricing (Hotjar's pricing page
    redirects there), Screaming Frog, Ahrefs, Semrush, Pingdom, Checkly, Datadog, the Shopify App Store listings for CRO
    Guru and Checkout Doctor, cro.media's Shopify Partner Directory listing, and Baymard. Obsession is described only from
-   /recipes/website-audit, /recipes/mystery-shopper, /recipes/delivery-monitoring and
+   /blueprints/website-audit, /blueprints/mystery-shopper, /blueprints/delivery-monitoring and
    /use-cases/leak-checks-for-ecommerce-stores as read that day. The 2 Shopify Community threads returned 403, so their
    words are carried from _research/seo/library/ads_pages_journeys.json.
    Left out on purpose: the Black Friday checklist's 12 tests (linked, not repeated), any PilotX audit figure, the 93% and
    128 stores, the $410 lamp, unverified vendor lag figures, Blackbelt Commerce (its audit page redirected to a blog post,
-   so no price could be read) and FixMyStore (its listing returned 404). Buyer words (sign up, basket, pop up); no dashes. */
+   so no price could be read) and FixMyStore (its listing returned 404). Buyer words (sign up, basket, pop up); no dashes.
+   22 Nov 2026: Obsession lines moved to the toolkit position (personas, blueprints, prices.ts). */
 
 const BAYMARD = 'https://baymard.com/lists/cart-abandonment-rate'
 const BEHAVIOUR = 'https://help.shopify.com/en/manual/reports-and-analytics/shopify-reports/report-types/default-reports/behaviour-reports'
@@ -62,7 +63,7 @@ export const post: BlogPost = {
   description:
     'A Shopify store audit in 2 halves: read your conversion funnel, GA4 and speed data, then test sign up, codes, checkout and emails as a new customer.',
   answer:
-    'A Shopify store audit has 2 halves: read your own data (Shopify’s conversion rate breakdown, GA4, session recordings, PageSpeed Insights, a crawler and Search Console) to find the step, device and page where visitors stop, then shop the store as a new customer on a phone to test the sign up, welcome code, basket, checkout, payment methods, discount codes and every email. When sales drop, find the step in the data first, then reproduce it as a customer on the same device. For the second half after every release, Obsession keeps every email, code and page the store shows a new customer, dated with the email or screenshot.',
+    'A Shopify store audit has 2 halves: read your own data (Shopify’s conversion rate breakdown, GA4, session recordings, PageSpeed Insights, a crawler and Search Console) to find the step, device and page where visitors stop, then shop the store as a new customer on a phone to test the sign up, welcome code, basket, checkout, payment methods, discount codes and every email. When sales drop, find the step in the data first, then reproduce it as a customer on the same device. For the second half after every release, Obsession’s QA on your own flows blueprint sends a persona through the store as a new customer and keeps every email, code and page, dated.',
   primaryKeyword: 'shopify store audit',
   keywords: [
     'shopify store audit checklist',
@@ -76,9 +77,9 @@ export const post: BlogPost = {
     'shopify discount code not working',
     'shopify website monitoring',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   order: 12,
   authors: [
@@ -281,13 +282,13 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'A test by hand covers 1 inbox, 1 device and 1 moment. A theme publish, an app update or a discount edit can break a step the day after you test it, and [Shopify Status](' +
         STATUS +
-        ') notes that issues affecting a small share of stores may not appear there. Obsession runs that test after every change. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. On your own store, its [website audit](/blueprints/website-audit) signs up as a fresh customer after every release or every morning, fills in every form, opens every email and link, and tries your checkout.',
+        ') notes that issues affecting a small share of stores may not appear there. Obsession, the toolkit for AI agents, runs that test after every change. On your own store, its [QA on your own flows](/blueprints/website-audit) blueprint sends a fresh persona, an AI agent with its own inbox, number and browser under one name, after every release or every morning. It fills in every form, opens every email and link, and takes your checkout up to payment.',
     },
     {
       kind: 'cta',
-      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Stores start in early access.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'QA on your own flows: a persona signs up, fills in every form and takes checkout up to payment after every release, and every email and step lands in your event log, dated.',
+      to: '/blueprints/website-audit',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'sales-dropped', text: 'When sales or conversion rate drop' },
@@ -444,17 +445,17 @@ export const post: BlogPost = {
           'A redesign or a growth plan',
         ],
         [
-          'Obsession (ours): [Website audit](/blueprints/website-audit), [Mystery shopper](/blueprints/mystery-shopper), [Delivery monitoring](/blueprints/delivery-monitoring)',
+          'Obsession (ours): [QA on your own flows](/blueprints/website-audit), [Mystery shopping](/blueprints/mystery-shopper), [Delivery monitoring](/blueprints/delivery-monitoring)',
           'Every email, link and code a new customer meets after every release or each morning, kept with its time',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Sees what a new customer receives, and names any step behind a CAPTCHA',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment and at any CAPTCHA, and names the step',
           'What a customer gets after every change, for stores that change often or run paid traffic',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your store changes often or runs paid traffic, use Obsession to put a new customer through it after every change, with every email and checkout step kept as it happened. For one store that changes rarely and runs little paid traffic, the free tools and a monthly test by hand cover the audit, and no paid tool is needed.',
+      text: 'If your store changes often or runs paid traffic, use Obsession’s QA on your own flows blueprint to put a new persona through it after every change, with every email and checkout step kept as it happened. For one store that changes rarely and runs little paid traffic, the free tools and a monthly test by hand cover the audit, and no paid tool is needed.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
@@ -472,7 +473,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'A real UK skincare store’s record from September 2026: every email with the time it arrived, every screenshot, and a £40 basket that got no reminder in 48 hours. Every format it comes in, side by side.',
+      text: 'A real run at a UK skincare store in September 2026: every email with the time it arrived, every screenshot, and a £40 basket that got no reminder in 48 hours. Every format it comes in, side by side.',
       to: '/sample-output',
       label: 'See sample data',
     },
@@ -487,7 +488,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How do I audit my Shopify store for free?',
-          a: 'Read Shopify’s conversion rate breakdown, GA4, Microsoft Clarity, PageSpeed Insights and Search Console, then test the store on your phone as a new customer. The only possible cost is a fee on a real test order. To run the customer half after every change, Obsession keeps every email, code and page a store shows a new customer, each dated.',
+          a: 'Read Shopify’s conversion rate breakdown, GA4, Microsoft Clarity, PageSpeed Insights and Search Console, then test the store on your phone as a new customer. The only possible cost is a fee on a real test order. To run the customer half after every change, Obsession’s QA on your own flows blueprint sends a persona that keeps every email, code and page a store shows a new customer, each dated.',
         },
         {
           q: 'Why is my Shopify store not getting sales?',

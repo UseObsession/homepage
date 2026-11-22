@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/upgrade-prompt: the definition query for the messages that ask a free user to pay. No outside facts:
    a plain definition, with the trial teardown recipe and the software use case for the job. */
@@ -66,11 +65,11 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For upgrade prompts, that means each prompt as the user met it, with its wording, offer and trial day. The emails that pushed the same offer sit beside it.`,
+      text: 'Obsession’s [Trial teardown](/blueprints/trial-teardown) blueprint logs each prompt as the user met it, with its wording, offer and trial day. The emails that pushed the same offer sit beside it.',
     },
     {
       kind: 'p',
-      text: '[Trial teardown](/blueprints/trial-teardown), a ready-made collection, gathers every email, prompt, limit and offer in a competitor’s trial by trial day.',
+      text: 'A 14-day trial still takes 14 days to see in full, but every competitor’s trial runs at once, and nobody on your team has to log in each morning.',
     },
     {
       kind: 'faq',

@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/web-bot-auth: for an engineer whose agent visits other companies' sites, and the site teams who see it.
    It identifies which company's agent is visiting; it is not a login. Facts from Cloudflare's developer docs, the IETF
@@ -84,11 +83,11 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} Every Obsession agent is a declared agent, and says it’s an AI when it talks to a person.`,
+      text: 'Every Obsession agent runs as a [persona](/personas) and is a [declared agent](/agents): it says it’s an AI when it talks to a person.',
     },
     {
       kind: 'p',
-      text: 'An Obsession agent never gets round a CAPTCHA or a bot block. Where a site puts one in front of a step, the record of that visit names the step it couldn’t reach. The full set of lines is on [the page for companies an Obsession agent visits](/agents).',
+      text: 'An Obsession agent never gets round a CAPTCHA or a bot block. Where a site puts one in front of a step, the event log names the step it couldn’t reach. The full set of lines is on [the page for companies an Obsession agent visits](/agents).',
     },
     {
       kind: 'faq',
@@ -126,6 +125,7 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    '/personas',
     '/glossary/declared-agent',
     '/glossary/headless-browser',
     '/glossary/web-scraping',

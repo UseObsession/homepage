@@ -13,15 +13,19 @@ export const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 /* A blog hub's anchor on /blog: "Mystery shopping" > mystery-shopping. */
 export const categoryId = (c: string) => c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
-/* Each hub reads in the colour of the reader it serves (styles/accents.css): stores in founders' indigo, competitors in
-   marketing's violet, agencies in orchid, AI agents in developers' cobalt, and Behind the login (what the index holds,
-   how it fills, and the guides for developers and agent builders; the "AI customers" hub until the 11 Nov revamp) in
-   tide, the 1 hue no other hub uses. Colour marks the reader, never status. */
+/* Each hub reads in the colour of the reader it serves (styles/accents.css), and since 22 Nov 2026 the hubs are the kits
+   (content/kitPaths.ts), so the blog tells the same story as the site: talking to customers in sales' hue, testing your
+   own sign-up and agents in founders' indigo, building agent products and working behind logins in developers' cobalt,
+   watching the market in marketing's violet, agencies in orchid, training agents in tide, and buying, booking and ordering in founders' indigo. Colour marks the reader,
+   never status. */
 const HUB_READER: Record<string, string> = {
-  'Behind the login': 'sales',
-  'Check your own journeys': 'founders',
-  'Watch other companies': 'marketing',
+  'Talk to customers': 'sales',
+  'Test sign-up and agents': 'founders',
+  'Build agent products': 'developers',
+  'Work behind logins': 'developers',
+  'Watch the market': 'marketing',
   'For agencies': 'agencies',
-  'Check your AI agents': 'developers',
+  'Train and test agents': 'sales',
+  'Buy, book and order': 'founders',
 }
 export const readerOf = (category: string) => HUB_READER[category] ?? 'founders'

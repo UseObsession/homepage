@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-export type QA = { q: string; a: ReactNode }
+export type QA = { q: string; a: ReactNode; link?: { label: string; to: string } }
 export type Item = { title: string; line: string }
 
 export const pricingAnswer =

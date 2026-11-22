@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/member-price: the definition query for a member price. "member only pricing" stays with its own post
    (docs/SEARCH.md §2); this page owns "what is a member price" and links the price watch recipe and use case. */
@@ -69,11 +68,11 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For member prices, that means the public price and the member price for the same product side by side. Each is dated with a screenshot of the page that showed it, for as long as you follow the competitor.`,
+      text: 'Obsession’s [Price watch](/blueprints/price-watch) blueprint, run from the [cloud browser](/browser), logs the public price and the member price for the same product side by side. Each is dated with a screenshot of the page that showed it.',
     },
     {
       kind: 'p',
-      text: '[Price watch](/blueprints/price-watch), a ready-made collection, gathers competitors’ public and member prices each morning as a customer in your country. [Member prices for price intelligence](/use-cases/member-prices-for-price-intelligence) shows the same data at work for a pricing team.',
+      text: 'It reads both prices each morning, as a customer in your country, at every competitor you name. [Member prices for price intelligence](/use-cases/member-prices-for-price-intelligence) shows it at work for a pricing team tracking a basket across retailers.',
     },
     {
       kind: 'faq',
@@ -99,6 +98,7 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    '/browser',
     '/glossary/signed-in-price',
     '/glossary/rate-parity',
     '/glossary/login-wall',

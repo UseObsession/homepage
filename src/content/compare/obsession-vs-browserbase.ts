@@ -1,28 +1,27 @@
+import { prices } from '../prices'
 import type { ReferencePage } from '../reference'
 import { ENTITY } from '../site'
 
-/* /compare/obsession-vs-browserbase. Every Browserbase fact is from its own pages, read 11 Nov 2026
-   (_research/seo/pagetypes-11nov/research/dev_apis.json; the home page, contexts docs and pricing re-read the same
-   day). Browserbase gives a developer's agent cloud browsers; Obsession returns what companies showed signed-up
-   customers, already collected. Its CAPTCHA claim is stated as its own; Obsession's line is the one on /agents. */
+/* /compare/obsession-vs-browserbase (22 Nov 2026 rewrite, the pieces position). Browserbase's facts: its home and
+   identity pages as read for _research/commercial-view-21nov/research/B_browsers_web_agents.json (21 Nov 2026), its
+   pricing page re-read 22 Nov 2026. The angle: the browser piece against theirs, home connection included with no
+   charge per GB, then the inbox and number for every login code, under one identity. Its CAPTCHA claim is stated as its
+   own; Obsession's lines are /agents'. Obsession's prices come from prices.ts. */
 
 const BB = 'https://www.browserbase.com/'
-const BB_CONTEXTS = 'https://docs.browserbase.com/features/contexts'
-const BB_MCP = 'https://docs.browserbase.com/integrations/mcp/setup'
+const BB_IDENTITY = 'https://www.browserbase.com/identity'
 const BB_PRICING = 'https://www.browserbase.com/pricing'
 
 export const ref: ReferencePage = {
   kind: 'compare',
   name: 'Obsession vs Browserbase',
   company: 'Browserbase',
-  line: 'Browserbase gives your agent cloud browsers to drive. Obsession returns what companies showed signed-up customers, dated.',
+  line: 'Browserbase runs cloud browsers for AI agents. Obsession gives an agent a browser, plus its own inbox and phone number.',
   meta: {
     path: '/compare/obsession-vs-browserbase',
-    title: 'Obsession vs Browserbase: cloud browsers, data behind login',
-    description:
-      'Obsession vs Browserbase: Browserbase runs cloud browsers your agent drives; Obsession keeps what companies show only to signed-up customers, dated.',
-    answer:
-      'In Obsession vs Browserbase, Browserbase runs cloud browsers your agent drives and Obsession keeps what companies show only to signed-up customers. Browserbase browsers log in, navigate and keep login state between sessions while your code runs; Obsession has already collected the emails after a sign-up, member prices, trial limits and cancel offers, each dated with a screenshot. Teams use Browserbase to run their own flows and Obsession for what companies send and show their customers, kept over time.',
+    title: 'Obsession vs Browserbase (2026): browsers or the whole agent',
+    description: `Obsession vs Browserbase: both give AI agents a cloud browser. Obsession’s is ${prices.browser.amount} an hour, no charge per GB, with an inbox and number for codes.`,
+    answer: `Browserbase and Obsession both give AI agents a cloud browser that your code drives and that keeps its logins. Browserbase adds search, fetch and tools to get past bot checks. Obsession adds the agent’s own inbox and phone number for every login code, under one identity. Its browser hour is ${prices.browser.amount}, home connection included, with no charge per GB.`,
     ogImage: '/og/compare-obsession-vs-browserbase.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -30,88 +29,102 @@ export const ref: ReferencePage = {
       { name: 'Obsession vs Browserbase', path: '/compare/obsession-vs-browserbase' },
     ],
   },
-  title: 'Obsession vs Browserbase: cloud browsers beside what companies show only to customers',
-  dek: 'Browserbase is the browser your code drives, for as long as it runs. Obsession is the record of what each company sent and showed its customers, kept for months.',
+  title: 'Obsession vs Browserbase: a cloud browser, and the inbox and number beside it',
+  dek: 'Browserbase runs cloud browsers for AI agents at high volume. Obsession gives an agent a browser too, then its own email address and phone number for every code a site sends.',
   primaryKeyword: 'obsession vs browserbase',
-  keywords: ['browserbase vs obsession', 'browserbase contexts login', 'headless browser for ai agents', 'browserbase pricing'],
-  checked: '2026-11-11',
-  readingMinutes: 6,
+  keywords: ['browserbase vs obsession', 'browserbase pricing', 'browserbase proxy pricing', 'browserbase contexts login'],
+  checked: '2026-11-22',
+  readingMinutes: 5,
   reader: 'developers',
   art: {
     kind: 'report',
-    title: 'northwind.example',
-    period: 'Example: Northwind is an invented company',
-    cols: ['The job', 'Browserbase', 'Obsession'],
+    title: 'One AI agent’s pieces',
+    period: 'From Browserbase’s own pages, read 21 and 22 Nov 2026',
+    cols: ['Piece', 'Browserbase', 'Obsession'],
     rows: [
-      { name: 'A browser your agent drives', cells: ['25 to 250+ at once', 'Not its job'], tone: 'info' },
-      { name: 'Login kept between runs', cells: ['Contexts save cookies', 'Accounts open for months'], tone: 'info' },
-      { name: 'Who writes the steps', cells: ['Your code, with Stagehand', 'Done for you'], tone: 'info' },
-      { name: 'Day 3 email after sign-up', cells: ['Not described', '20% off, 09:14, DKIM pass'], tone: 'ok' },
-      { name: 'Signed-in price history', cells: ['Not described', 'Each change, dated'], tone: 'ok' },
+      { name: 'Cloud browser', cells: ['$0.10 to $0.12 an hour', `${prices.browser.amount} an hour`], tone: 'info' },
+      { name: 'Logins kept between sessions', cells: ['Yes, with Contexts', 'Yes'], tone: 'info' },
+      { name: 'Home or proxy connection', cells: ['$10 to $12 a GB past the plan', 'Included, no charge per GB'], tone: 'ok' },
+      { name: 'Sandbox to run code', cells: ['Yes, Sandboxes', `${prices.sandbox.amount} an active vCPU hour`], tone: 'info' },
+      { name: 'Email inbox for codes', cells: ['Not on its pages', `${prices.inbox.amount} an inbox a month`], tone: 'ok' },
+      { name: 'Phone number for text codes', cells: ['Not on its pages', `${prices.number.amount} a number a month`], tone: 'ok' },
+      { name: 'One identity for all of it', cells: ['Not on its pages', 'A persona, free while it waits'], tone: 'ok' },
     ],
-    notes: ['Browserbase’s column follows its own pages, read 11 November 2026. Not described means its pages don’t say.'],
+    notes: ['Not on its pages means Browserbase’s pages don’t describe it. Its hour is $0.12 on Developer and $0.10 on Startup.'],
   },
   blocks: [
-    { kind: 'h2', id: 'what-each-is', text: 'What Browserbase and Obsession are' },
-    { kind: 'h3', id: 'browserbase', text: 'Browserbase: cloud browsers for your agents' },
+    { kind: 'h2', id: 'what-browserbase-does', text: 'What Browserbase does well' },
     {
       kind: 'p',
-      text: `As of 11 November 2026, [Browserbase’s home page](${BB}) reads “Give your agents access to the whole web” and “Browserbase makes the web as reliable and programmable as APIs”. Its products include cloud browsers, Stagehand (its SDK for browser agents), Search and Fetch APIs, Functions, Sandboxes and Agent Identity. It says an agent “logs in, navigates, and pulls data from any website, login walls included”, and that Agent Identity gets agents “past anti-bot systems, CAPTCHAs, and authentication walls”.`,
+      text: `As listed on 21 November 2026, [Browserbase’s home page](${BB}) reads “Give your agents access to the whole web.” It says it runs more than 35 million browser sessions a month across 10,000 customers, including Ramp, Microsoft and Lovable. Its products include cloud browsers, Stagehand for browser automation, Search and Fetch APIs, Functions, Sandboxes and Agent Identity.`,
     },
     {
       kind: 'p',
-      text: `[Contexts](${BB_CONTEXTS}) keep a browser’s cookies, localStorage and IndexedDB between sessions to “maintain login states across multiple sessions without needing to log in repeatedly”, and they “live indefinitely”, though a site may still expire its own cookies or log a session out. Its pages don’t describe keeping the emails a company sends after a sign-up or a dated history of what a company showed.`,
+      text: `[Its identity page](${BB_IDENTITY}) lists Web Bot Auth, a signature that tells a site which company’s agent is visiting. It also lists logins through 1Password and a Contexts API that keeps a session’s logins between runs. The home page says Agent Identity gets agents “past anti-bot systems, CAPTCHAs, and authentication walls”. Its pages don’t describe an email inbox or a phone number for the agent.`,
     },
-    { kind: 'h3', id: 'obsession', text: 'Obsession: what the browsing found, already kept' },
     {
       kind: 'p',
-      text: `${ENTITY} You don’t write the sign-up steps, run an inbox per account or store the captures: you name a company and look up what it sends and shows its customers, from the first day it was covered.`,
+      text: `On [its pricing page](${BB_PRICING}), as listed on 22 November 2026, Free is $0 for 1 browser hour. Developer is $20 a month for 100 hours and 1 GB of proxy data. Startup is $99 a month for 500 hours and 5 GB. Past those, an hour is $0.12 or $0.10 and proxy data $12 or $10 a GB. Scale is priced on request.`,
     },
 
-    { kind: 'h2', id: 'at-a-glance', text: 'Browserbase and Obsession at a glance', compare: true },
+    { kind: 'h2', id: 'what-obsession-gives', text: 'What Obsession gives the same agent' },
+    { kind: 'p', text: ENTITY },
+    {
+      kind: 'p',
+      text: `Its [browser](/browser) keeps its logins between sessions and connects through a home internet connection. Your agent drives it with Playwright, Puppeteer or any Chrome DevTools Protocol tool. A browser hour is ${prices.browser.amount}, home connection included, with no charge per GB.`,
+    },
+    {
+      kind: 'p',
+      text: 'When a site sends a login code, the agent’s own inbox or number receives it, and the code is read out for it. The browser carries on with the next step, with no person in the loop.',
+    },
+
+    { kind: 'h2', id: 'side-by-side', text: 'Browserbase and Obsession side by side', compare: true },
     {
       kind: 'table',
       compare: true,
-      caption: `Browserbase’s row is from its own pages and [its pricing page](${BB_PRICING}), read 11 November 2026. Obsession’s row is from [the developer page](/developers).`,
-      cols: ['Option', 'What it holds', 'How it’s read', 'Freshness and history', 'Price as listed', 'Best for'],
+      caption: `Browserbase’s row is from its own pages and [its pricing page](${BB_PRICING}), read 21 and 22 November 2026. Obsession’s row is from [pricing](/pricing).`,
+      cols: ['Option', 'What it does well', 'Price', 'Where it stops', 'Best for'],
       rows: [
         [
-          'Browserbase: Browsers, Stagehand, Fetch, Search, Agent Identity',
-          'Browser sessions your code runs, with replays',
-          'API, Stagehand SDK and an MCP server',
-          'Live, while a session runs\nContexts keep login state',
-          'Free: 1 browser hour\nDeveloper $20 a month\nStartup $99 a month',
-          'Agents that must act in a browser',
+          'Browserbase: Browsers, Stagehand, Search, Fetch, Sandboxes, Agent Identity',
+          'Browsers at high volume, with logins kept, session replays and tools for bot checks',
+          'Free: 1 browser hour\nDeveloper $20 a month\nStartup $99 a month\nProxy data $10 to $12 a GB',
+          'No email inbox or phone number on its pages',
+          'Agents that live in the browser',
         ],
         [
-          'Obsession (ours): Search, Insights, Watch, API and MCP',
-          'Emails, member prices, trial limits, quotes, cancel offers',
-          '5 verbs over MCP, the API and SDKs, or a table',
-          'Kept from the first sign-up\nEach fact dated with its screenshot',
-          'Early access, onboarding teams now\nPriced per call or per company watched',
-          'What a company shows only to customers',
+          'Obsession (ours): Browser, Email, Phone, Messaging, Sandbox, Personas',
+          'A browser that stays signed in, plus the inbox and number for every code',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Never gets round a CAPTCHA or a bot block',
+          'Agents that sign up, confirm a code and come back',
         ],
       ],
     },
 
-    { kind: 'h2', id: 'when-to-use', text: 'When to use Browserbase, and when to use Obsession' },
+    { kind: 'h2', id: 'when-to-use', text: 'When to use each' },
     {
       kind: 'list',
       items: [
-        '**Use Browserbase** when your agent has to act: fill a form, book something, test your own sign-up flow, or work inside a site for a user. You write the steps, and its browsers run them at scale with replays to debug.',
-        '**Use Obsession** when you need what companies send and show their customers over time: the emails in a competitor’s first week, the [member price](/glossary/member-price) a signed-in customer pays, the limits on a free plan and the offer in a [cancel flow](/glossary/cancel-flow). Those arrive over days and weeks, long after a browser session ends.',
-        '**Build or look up.** A [headless browser](/glossary/headless-browser) can collect the same facts if you write and maintain the steps for every company, keep an inbox for each account and store every capture with its date. Obsession does that for any company you name.',
+        '**Use Browserbase** when your agent lives in the browser at high volume and needs tools to get past bot checks and CAPTCHAs, which its pages describe.',
+        '**Use Obsession** when the agent also needs its own email address and phone number. It signs up, reads the confirmation code and comes back next week still signed in.',
+        '**Watch the bill per GB.** A browser agent that loads heavy pages pays for proxy data on Browserbase past its plan. On Obsession the home connection is part of the hour.',
       ],
     },
 
-    { kind: 'h2', id: 'together', text: 'Using Browserbase and Obsession together' },
+    { kind: 'h2', id: 'one-identity', text: 'A browser, inbox and number under one name' },
     {
       kind: 'p',
-      text: `Browserbase hosts an [MCP server](${BB_MCP}); Obsession’s install line is on [the developer page](/developers). An agent can look up a competitor’s onboarding emails and trial limits with Obsession, then use a Browserbase session to act on your own product, for example to check your sign-up against what the competitor showed.`,
+      text: 'obsession.personas.create({ inbox: true, phone: "US", browser: true }) gives one agent all three. A persona is an AI agent with its own inbox, number and browser under one name. Your Playwright or Puppeteer script connects to its browser by URL, and the steps it runs stay yours.',
     },
     {
       kind: 'p',
-      text: 'The two take different lines on bot defences. An Obsession agent says it’s an AI when it talks to a person and never gets round a CAPTCHA or a bot block; where a site puts one in front of a step, the record names the step it couldn’t reach. The lines are on [the page for companies an agent visits](/agents), and one company’s whole record is in [the sample data](/sample-output).',
+      text: 'A persona costs nothing while it waits, so a fleet of them can hold their logins for weeks. Each page it opens arrives in your event log as page.visited, beside every email.received and sms.received, in order and dated.',
+    },
+    {
+      kind: 'note',
+      title: 'What every Obsession agent keeps to',
+      text: 'It says it’s an AI when it talks to a person. It stops before payment unless given the customer’s own payment card, and never uses fake payment details. It never gets round a CAPTCHA or a bot block, stops at any identity check and never clicks paid ads at volume. The full lines are on [the page for companies an agent visits](/agents).',
     },
 
     {
@@ -119,41 +132,43 @@ export const ref: ReferencePage = {
       items: [
         {
           q: 'Is Obsession a Browserbase alternative?',
-          a: 'Not for running browsers: use Browserbase when your agent has to act in a site. Obsession is the data a browser would collect from companies’ customer side, kept and dated, so you look it up instead of building the collection.',
+          a: 'For the browser, yes. Both give an AI agent a cloud browser that keeps its logins. Obsession adds the agent’s own inbox and phone number on the same key. If your agent must get past CAPTCHAs or bot checks, Browserbase describes tools for that, and an Obsession agent never does it.',
         },
         {
-          q: 'Can Browserbase keep a login?',
-          a: 'Yes. Its contexts save cookies, localStorage and IndexedDB between sessions, so an agent can skip a login, and contexts live until you delete them. A site can still expire its cookies or log a session out.',
+          q: 'Does Browserbase charge for proxy data?',
+          a: 'Yes. Its pricing page lists 1 GB on Developer and 5 GB on Startup, then $12 or $10 a GB, as listed on 22 November 2026. Obsession’s browser hour includes its home connection, with no charge per GB.',
         },
         {
-          q: 'Does Browserbase keep the emails a company sends?',
-          a: 'Its pages don’t describe it. Obsession keeps every email a company sends a new subscriber, dated as it arrived, with its sender checked.',
+          q: 'Can my browser agent get login codes by email and text?',
+          a: 'On Obsession, yes. Each agent can have its own inbox and number, the code is read out of the email or text, and it reaches your webhook as email.received or sms.received. Browserbase’s pages don’t describe an inbox or a number.',
+          link: { label: 'See the email piece', to: '/email' },
         },
         {
           q: 'How much does each cost?',
-          a: 'Browserbase lists a free plan with 1 browser hour and 15 minute sessions, Developer at $20 a month, Startup at $99 a month and custom Scale plans, read on 11 November 2026. Obsession is in early access and is priced per call or per company watched, never per token.',
+          a: `Browserbase lists Free with 1 browser hour, Developer at $20 a month, Startup at $99 a month and Scale on request, read on 22 November 2026. Obsession is free to start, then $20, $99 or $499 a month. Its browser hour is ${prices.browser.amount}, an inbox ${prices.inbox.amount} a month and a number ${prices.number.amount} a month.`,
+          link: { label: 'See pricing', to: '/pricing' },
         },
       ],
     },
   ],
   sources: [
     { title: 'Browserbase: give your agents access to the whole web', publisher: 'Browserbase', url: BB },
-    { title: 'Contexts', publisher: 'Browserbase docs', url: BB_CONTEXTS },
+    { title: 'Agent Identity', publisher: 'Browserbase', url: BB_IDENTITY },
     { title: 'Pricing', publisher: 'Browserbase', url: BB_PRICING },
-    { title: 'MCP server setup', publisher: 'Browserbase docs', url: BB_MCP },
   ],
   related: [
-    'can-ai-agents-log-in-to-websites',
-    'scrape-data-behind-login',
+    '/browser',
+    '/email',
+    '/phone',
+    '/personas',
+    '/developers',
+    '/compare/obsession-vs-agentmail',
     '/compare/obsession-vs-firecrawl',
     '/compare/obsession-vs-exa',
+    'can-ai-agents-log-in-to-websites',
+    'long-running-ai-agents',
     '/glossary/headless-browser',
     '/glossary/web-bot-auth',
-    '/glossary/declared-agent',
-    '/glossary/login-wall',
-    'long-running-ai-agents',
-    'ai-customers-for-developers',
-    '/developers',
     '/agents',
   ],
 }

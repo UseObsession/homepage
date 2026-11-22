@@ -3,7 +3,8 @@ import { ENTITY } from '../site'
 
 /* /alternatives/crayon. Every tool fact is from the tool's own pages, read 11 Nov 2026
    (_research/seo/pagetypes-11nov/research/ci_panels.json; Crayon, Klue, Kompyte, Contify, Visualping and AlphaSense
-   re-read the same day). */
+   re-read the same day; Visualping re-read 22 Nov 2026, unchanged). Obsession's side (22 Nov): the Competitor tracking
+   and Trial teardown blueprints. */
 
 const CRAYON = 'https://www.crayon.co/'
 const CRAYON_PRICING = 'https://www.crayon.co/pricing'
@@ -18,14 +19,14 @@ export const ref: ReferencePage = {
   kind: 'alternatives',
   name: 'Crayon alternatives',
   company: 'Crayon',
-  line: 'Win-loss and battlecard platforms, page monitors, market news and what competitors show customers, each by its job.',
+  line: 'Win-loss and battlecard platforms, page monitors, market news and a persona at each competitor, each by its job.',
   meta: {
     path: '/alternatives/crayon',
-    title: 'Crayon alternatives for monitoring competitors, by the job',
+    title: 'Crayon alternatives (2026): 6 options to monitor competitors',
     description:
-      'Crayon alternatives by job: win-loss and battlecards, competitor tracking, page monitors, market news, and what competitors show only to customers, priced.',
+      'Crayon alternatives by job: win-loss and battlecards, competitor tracking, page monitors, market news, and a persona at each competitor, with each price.',
     answer:
-      'The best Crayon alternative depends on the job: Klue for battlecards run together with win-loss interviews, Kompyte for competitor tracking inside Semrush, Visualping for alerts when chosen pages change, and Contify or AlphaSense for market news and research. For what competitors show only to signed-up customers, such as trial limits, onboarding emails, member prices and cancel offers, Obsession keeps it dated and looked up by API, MCP or a table.',
+      'The best Crayon alternative depends on the job: Klue for battlecards run together with win-loss interviews, Kompyte for competitor tracking inside Semrush, Visualping for alerts when chosen pages change, and Contify or AlphaSense for market news and research. For what competitors show new customers, such as trial limits, onboarding emails, member prices and cancel offers, Obsession’s Competitor tracking blueprint signs a persona up at each one and dates every step.',
     ogImage: '/og/alternatives-crayon.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -34,8 +35,8 @@ export const ref: ReferencePage = {
       { name: 'Crayon', path: '/alternatives/crayon' },
     ],
   },
-  title: 'Crayon alternatives: by job, including what competitors show only to customers',
-  dek: 'Crayon watches what competitors publish and alerts your team. These tools do parts of that job differently, and one sees what competitors show the people who sign up.',
+  title: 'Crayon alternatives: every option by job, with its price',
+  dek: 'Crayon watches what competitors publish and alerts your team. These tools do parts of that job differently, and one signs up to see what competitors show new customers.',
   primaryKeyword: 'crayon alternatives',
   keywords: ['crayon alternative', 'alternatives to crayon', 'crayon competitive intelligence', 'crayon competitors'],
   checked: '2026-11-11',
@@ -65,9 +66,9 @@ export const ref: ReferencePage = {
       },
       {
         name: 'Obsession',
-        who: 'Behind the login',
-        nodes: ['Any competitor you name', 'Trials, emails, prices, offers', 'API, MCP or a table'],
-        links: ['keeps, dated', 'looked up by'],
+        who: 'Competitor tracking blueprint',
+        nodes: ['Competitors you name', 'A persona at each one', 'Slack, a sheet or the API'],
+        links: ['joined by', 'sent to'],
         lit: 1,
         ours: true,
       },
@@ -83,8 +84,8 @@ export const ref: ReferencePage = {
     {
       kind: 'list',
       items: [
-        `**A quote, not a price.** [Its pricing page](${CRAYON_PRICING}) has a “Request an Estimate” form, priced as “tailored to the needs of your competitive intelligence program”.`,
-        '**Win-loss as well as monitoring.** A team that also wants buyer interviews may look at a platform that runs both.',
+        `**A quote, with no list price.** [Its pricing page](${CRAYON_PRICING}) has a “Request an Estimate” form, priced as “tailored to the needs of your competitive intelligence program”.`,
+        '**Win-loss as well as monitoring.** A team that also wants buyer interviews may look at a tool that runs both.',
         '**What competitors publish.** Its pages describe monitoring competitors and don’t describe signing up to their products, their onboarding emails or the limits on their free plans.',
       ],
     },
@@ -98,7 +99,7 @@ export const ref: ReferencePage = {
       rows: [
         [
           'Klue: Compete Agent, battlecards, win-loss',
-          'CI and win-loss interviews on one platform',
+          'CI and win-loss interviews in one tool',
           'Not listed\nDemo only',
           'Trials and onboarding not described',
           'Teams adding win-loss',
@@ -132,11 +133,11 @@ export const ref: ReferencePage = {
           'Strategy and research teams',
         ],
         [
-          'Obsession (ours): Search, Insights, Watch, API and MCP',
-          'Trials, onboarding emails, member prices, cancel offers',
-          'Early access, onboarding teams now\nPriced per call or per company watched',
-          'Stops before payment and any identity check',
-          'Evidence of what competitors show customers',
+          'Obsession (ours): Competitor tracking and Trial teardown blueprints',
+          'A persona at each competitor: trials, emails, prices, offers',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment and at any identity check',
+          'Evidence of what competitors show new customers',
         ],
       ],
     },
@@ -155,10 +156,17 @@ export const ref: ReferencePage = {
       kind: 'p',
       text: `[Contify](${CONTIFY}) draws on “over 1 Mn+ vetted sources, including news, company websites, SEC filings, social, and more”. [AlphaSense](${ALPHASENSE}) searches filings, earnings transcripts, news and “300,000+ transcripts of one-on-one calls with industry experts”.`,
     },
-    { kind: 'h3', id: 'behind-the-login', text: 'For what competitors show only to signed-up customers' },
+    { kind: 'h3', id: 'personas', text: 'For what competitors show new customers' },
+    { kind: 'p', text: ENTITY },
     {
       kind: 'p',
-      text: `${ENTITY} Insights asks one question, such as what each competitor’s free plan includes or what it offers a cancelling customer, across your list of competitors and answers with a row per company, so a [battlecard](/glossary/battlecard) shows the [trial limit](/glossary/trial-limit) and the [save offer](/glossary/save-offer) with the screenshot behind each.`,
+      text: 'For this job, teams pick the [Competitor tracking blueprint](/blueprints/competitor-tracking), or the [Trial teardown blueprint](/blueprints/trial-teardown) for software competitors. A persona, an AI agent with its own inbox and number under one name, signs up at each competitor on the same day. Each keeps the [trial limit](/glossary/trial-limit), the onboarding emails and the [save offer](/glossary/save-offer), so a [battlecard](/glossary/battlecard) shows each one with the screenshot behind it.',
+    },
+    {
+      kind: 'cta',
+      text: 'A persona at each competitor, every email, offer and price dated.',
+      to: '/blueprints/competitor-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'choose', text: 'Which Crayon alternative to choose' },
@@ -169,7 +177,7 @@ export const ref: ReferencePage = {
         '**You want competitor tracking inside your SEO and marketing suite:** Kompyte.',
         '**You only need an alert when a public page changes:** Visualping.',
         '**You want market news, filings and expert calls:** Contify or AlphaSense.',
-        '**You need what competitors show their customers, with proof, in your tools or AI agent:** Obsession, beside whichever CI tool you keep.',
+        '**You need what competitors show new customers, with proof, in your tools or AI agent:** Obsession, beside whichever CI tool you keep.',
       ],
     },
     {
@@ -177,7 +185,7 @@ export const ref: ReferencePage = {
       items: [
         {
           q: 'What is the best Crayon alternative?',
-          a: 'It depends on the job: Klue for win-loss with battlecards, Kompyte for tracking inside Semrush, Visualping for page changes, Contify or AlphaSense for market news, and Obsession for what competitors show only to signed-up customers.',
+          a: 'It depends on the job: Klue for win-loss with battlecards, Kompyte for tracking inside Semrush, Visualping for page changes, Contify or AlphaSense for market news, and Obsession for what competitors show a persona that signs up as a new customer.',
         },
         {
           q: 'How much does Crayon cost?',
@@ -185,11 +193,11 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Does Crayon track competitors’ emails or trials?',
-          a: 'Its pages describe monitoring competitors and alerting your team, and don’t describe signing up to a competitor’s product or keeping its emails. Obsession keeps both, each dated with its screenshot or the raw email.',
+          a: 'Its pages describe monitoring competitors and alerting your team, and don’t describe signing up to a competitor’s product or keeping its emails. Obsession’s personas do both, and each email and screen lands dated in your event log.',
         },
         {
           q: 'Can I use Obsession with Crayon?',
-          a: 'Yes. Obsession’s facts reach your tools over the API, MCP or a webhook, each linked to its receipt, so a CI team can add them to the battlecards it keeps in Crayon.',
+          a: 'Yes. Obsession’s events reach your tools over the API, MCP (the standard way AI agents call tools) or a webhook, each with its screenshot or email, so a CI team can add them to the battlecards it keeps in Crayon.',
           link: { label: 'See the API and MCP', to: '/developers' },
         },
       ],
@@ -217,6 +225,7 @@ export const ref: ReferencePage = {
     'recipe:competitor-tracking',
     'recipe:trial-teardown',
     '/use-cases/trial-checks-for-software-companies',
+    '/personas',
     '/sales',
   ],
 }

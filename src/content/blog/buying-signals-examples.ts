@@ -21,7 +21,8 @@ import type { BlogPost } from './types'
    listed), Salesforce's State of Sales time figures (not on its page), any "switch" claim beyond the live site's line
    that an account's emails have come from a new platform. Obsession is described in the words of /sales, the prospect
    intelligence and account watch recipes, site.ts and /compare/obsession-vs-exa. Brightloom, Harrowgate and Pellmell are
-   invented, at .example addresses, as are every time, code and opener in the pictures. No dashes. */
+   invented, at .example addresses, as are every time, code and opener in the pictures. No dashes. 
+   22 Nov 2026: moved to the toolkit position (the prospect intelligence and account watch blueprints, a persona per account). */
 
 const BOMBORA = 'https://bombora.com/'
 const G2 = 'https://sell.g2.com/buyer-intent'
@@ -48,7 +49,7 @@ export const post: BlogPost = {
   description:
     'Buying signals examples for SDR managers by source: intent, site visits, hiring, funding, and what each account sends its own customers, with an opener.',
   answer:
-    'Buying signals examples fall into six groups by source: research intent, website visits, job changes and hiring, funding and news, technology installs, and what an account sends its own customers. The first five suggest an account may be ready to buy; the sixth, such as a welcome email that stopped, shows the exact step a vendor’s product would fix, with a date, and only the account’s customers see it. Obsession keeps what each account you name sends its customers, dated with the email or screenshot, by API, MCP (the standard way AI agents call tools) or a table.',
+    'Buying signals examples fall into six groups by source: research intent, website visits, job changes and hiring, funding and news, technology installs, and what an account sends its own customers. The first five suggest an account may be ready to buy; the sixth, such as a welcome email that stopped, shows the exact step a vendor’s product would fix, with a date, and only the account’s customers see it. On Obsession the prospect intelligence blueprint signs an AI agent up as a customer at each account you name and keeps what it sends, dated with the email or screenshot.',
   primaryKeyword: 'buying signals examples',
   keywords: [
     'buying signals in sales',
@@ -59,9 +60,9 @@ export const post: BlogPost = {
     'sdr buying signals',
     'customer facing signals',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 17,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -154,7 +155,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each of these reads what an account researches, publishes, installs or announces. None of their pages describes signing up as the account’s customer and keeping what the account sends. Teams on the same feed see the same surge or funding round on the same morning, so their first lines sound alike. [Obsession vs Exa](/compare/obsession-vs-exa) sets out what Exa holds and what sits behind a sign-up.',
+      text: 'Each of these reads what an account researches, publishes, installs or announces. None of their pages describes signing up as the account’s customer and keeping what the account sends. Teams on the same feed see the same surge or funding round on the same morning, so their first lines sound alike. [Obsession vs Exa](/compare/obsession-vs-exa) sets out what Exa searches and what an agent with its own inbox receives.',
     },
 
     { kind: 'h2', id: 'customer-signals', text: 'B2B buying signals in what an account sends its customers' },
@@ -411,15 +412,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For [sales teams](/sales), it keeps each of these customer-facing signals for every account you name, every morning, from the welcome email and the cart reminder to support replies and the platform behind each email. [Prospect intelligence](/blueprints/prospect-intelligence) writes each fact, its date and a screenshot link back to the same rows in Clay, your CRM or a sheet. [Exa](' +
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its blueprints are ready jobs Obsession runs for any team. For [sales teams](/sales), a persona, an AI agent with its own inbox, number and browser, signs up at every account you name and keeps each of these customer-facing signals every morning, from the welcome email and the cart reminder to support replies and the platform behind each email. [Prospect intelligence](/blueprints/prospect-intelligence) writes each fact, its date and a screenshot link back to the same rows in Clay, your CRM or a sheet. [Exa](' +
         EXA +
-        ') gives reps and their agents the public web in one call; Obsession gives them what an account shows only to its customers, and an agent can call both. Start with the 50 accounts your SDRs most want to win, so you can see what it does to reply rates, meetings booked and opportunities.',
+        ') gives reps and their agents the public web in one call, and an agent on Obsession receives what an account sends its customers, so many teams use both. Start with the 50 accounts your SDRs most want to win, so you can see what it does to reply rates, meetings booked and opportunities.',
     },
     {
       kind: 'cta',
       text: 'What each account and competitor sends its own customers, ready before the call. Welcome, cart and trial emails, texts, codes and support answers, each dated with its screenshot.',
-      to: '/sales',
-      label: 'Request early access',
+      to: '/blueprints/prospect-intelligence',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'tools', text: 'Buying signal sources compared', compare: true },
@@ -479,15 +480,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Account watch](/blueprints/account-watch)',
           'What each account you name sends its customers: welcome, cart and trial emails, texts, codes, support replies, sending platform',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'An account not yet covered starts its history the day it is added\nEvery journey stops short of paying',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'History starts the day a persona signs up\nStops before payment and at any identity check',
           'Openers and account order for vendors whose product touches their prospects’ customers',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For what each account sends its own customers, use Obsession. It keeps every welcome, cart and trial email, text, checkout code, support reply and sending platform, dated, for every account you name and for as long as you follow it. Bombora and G2 show which accounts are researching your category, and Dealfront shows which companies read your own pages. UserGems tracks job changes and other people signals, BuiltWith shows the tools a site runs, and Exa gives an agent the public web in one call. By hand covers 20 to 50 priority accounts well.',
+      text: 'For what each account sends its own customers, use Obsession’s prospect intelligence blueprint. It keeps every welcome, cart and trial email, text, checkout code, support reply and sending platform, dated, for every account you name and for as long as you follow it. Bombora and G2 show which accounts are researching your category, and Dealfront shows which companies read your own pages. UserGems tracks job changes and other people signals, BuiltWith shows the tools a site runs, and Exa gives an agent the public web in one call. By hand covers 20 to 50 priority accounts well.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
@@ -496,13 +497,13 @@ export const post: BlogPost = {
       items: [
         '**One profile sees one customer’s view.** A new UK subscriber on a phone sees what the account shows new UK subscribers on phones. Record the profile, the country and the device with every signal.',
         '**A quiet email counts as missing only once its window closes.** Set the window per signal before the check starts, and re-check before an SDR writes.',
-        '**Checks stop before payment.** Signals that need a real order, such as a delivery email, stay with your own customers’ feedback.',
+        '**A persona stops before payment unless given your own card.** Signals that need a real order, such as a delivery email, stay with your own customers’ feedback.',
         '**Software trials come with terms.** Read them before starting a trial for research, and use it as a prospect would.',
       ],
     },
     {
       kind: 'p',
-      text: 'Once an account becomes a customer, the same outside view becomes an early warning. [Churn risk indicators](/blog/churn-risk-indicators) covers that for customer success teams, and [external account signals](/blueprints/account-watch) puts each change on the account in your CRM. Start with one signal that matches the step your product runs, check it at 20 accounts this week, and write first to the ones with a dated gap. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'Once an account becomes a customer, the same outside view becomes an early warning. [Churn risk indicators](/blog/churn-risk-indicators) covers that for customer success teams, and [external account signals](/blueprints/account-watch) puts each change on the account in your CRM. Start with one signal that matches the step your product runs, check it at 20 accounts this week, and write first to the ones with a dated gap. [The sales intelligence use case](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',

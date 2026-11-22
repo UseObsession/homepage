@@ -4,7 +4,7 @@ import type { BlogPost } from './types'
    each one past the click. Readers: marketing, growth and paid media teams at brands, and the agencies that run their
    ads. Demand: Google autocomplete US and UK, 11 Nov (how to see competitor ads, on facebook, meta, linkedin, tiktok,
    see competitors google ads, competitor ad monitoring, competitor ad tracking). Serves recipe:ad-tracking,
-   recipe:ad-landing-check and /marketing; the Obsession lines use those pages' own words (read 11 Nov at the branch).
+   recipe:ad-landing-check and /marketing; the Obsession lines use those pages' words (22 Nov).
    Read at the source on 11 Nov 2026: Meta's "About the Meta Ad Library" help page and the Ad Library's own home page and
    FAQ; Google's Ads transparency help page, the Ads Transparency Center's home, an ad details page and its FAQ (the
    landing page answers are quoted from it); LinkedIn's Ad Library, its targeting and impressions page and the Page ads
@@ -39,7 +39,7 @@ export const post: BlogPost = {
   description:
     'For marketing teams and agencies: see competitor ads in the Meta, Google, LinkedIn and TikTok libraries, step by step, then follow each ad past the click.',
   answer:
-    'To see competitor ads, search each competitor’s name or website in the free ad libraries: Meta’s for Facebook and Instagram, Google’s Ads Transparency Center, LinkedIn’s Ad Library and TikTok’s Commercial Content Library. Each shows the ad and when it ran, so open each ad’s landing page from its link, sign up where it offers a code and log what arrives. Obsession keeps what each competitor shows and sends after its ads, such as the welcome code and every email that follows, each dated with its screenshot.',
+    'To see competitor ads, search each competitor’s name or website in the free ad libraries: Meta’s for Facebook and Instagram, Google’s Ads Transparency Center, LinkedIn’s Ad Library and TikTok’s Commercial Content Library. Each shows the ad and when it ran, so open each ad’s landing page from its link, sign up where it offers a code and log what arrives. Obsession’s ad tracking blueprint follows each competitor ad to its page and code, signs up and keeps every email that follows, dated with its screenshot.',
   primaryKeyword: 'how to see competitor ads',
   keywords: [
     'how to see competitor ads',
@@ -49,10 +49,10 @@ export const post: BlogPost = {
     'how to see competitor ads on linkedin',
     'how to see competitor ads on tiktok',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   order: 5,
   published: '2026-11-11',
-  updated: '2026-11-14',
+  updated: '2026-11-22',
   readingMinutes: 12,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -325,13 +325,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its Ad tracking blueprint, a ready-made collection of checks, reads the ads competitors run in public each morning and follows each one to its page, price and code. Where an ad offers a code for signing up, it signs up and keeps what arrives, so [marketing teams](/marketing) see every new offer beside the ad that led to it.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its [ad tracking](/blueprints/ad-tracking) blueprint, a ready job Obsession runs, reads the ads competitors run in public each morning and follows each one to its page, price and code. Where an ad offers a code for signing up, a persona, an AI agent with its own inbox and number, signs up and keeps what arrives. [Marketing teams](/marketing) see every new offer beside the ad that led to it. The agent opens each page from the library’s link and never clicks paid ads at volume.',
     },
     {
       kind: 'cta',
-      text: 'Every competitor ad followed past the click: the page, the code and the emails a new customer gets, dated with each screenshot, for every competitor you name. Teams start in early access.',
+      text: 'Every competitor ad followed to its page and code, then every email a new customer gets after signing up, dated with each screenshot.',
       to: '/marketing',
-      label: 'Request early access',
+      label: 'See how it works',
     },
 
     { kind: 'h2', id: 'tools-compared', text: 'Tools for competitor ad monitoring, compared', compare: true },
@@ -384,15 +384,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Ad tracking](/blueprints/ad-tracking), [Ad landing check](/blueprints/ad-landing-check)',
           'Every competitor ad followed to its page, price and code, then the sign-up and every email that arrives, dated with screenshots',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'No history before a competitor is added',
-          'What any competitor shows and sends after its ads, by API, MCP or a table',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'History starts the day a competitor is added; never clicks paid ads at volume',
+          'What any competitor shows and sends after its ads, in Slack, a sheet or the API',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For what a competitor shows and sends after its ads, Obsession is built for the job. It keeps the code on the page, the sign-up and every email after it, for any competitor you name and for as long as you follow them. [Foreplay](' +
+      text: 'For what a competitor shows and sends after its ads, use Obsession’s ad tracking blueprint. It keeps the code on the page, the sign-up and every email after it, for any competitor you name, for as long as its persona stays subscribed. [Foreplay](' +
         FOREPLAY +
         ') fits a library of saved ads, and AdSpy fits searching Facebook and Instagram ads with their comments. PiPiADS fits TikTok product research, and [Motion](' +
         MOTION_HOME +
@@ -435,7 +435,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can an AI agent track competitor ads?',
-          a: 'For the public part, yes. Meta’s Ad Library API covers political ads and ads delivered in the EU. Web search APIs such as Exa, Tavily and Firecrawl give agents the public web, what any visitor can read. Obsession gives agents what a competitor shows and sends after the sign-up, through its API or MCP, the standard way AI agents call tools.',
+          a: 'For the public part, yes. Meta’s Ad Library API covers political ads and ads delivered in the EU. Web search APIs give agents the public web, what any visitor can read. Obsession gives an agent its own browser, inbox and number, so it can sign up where an ad offers a code and keep every email that follows. It works through the API or MCP, the standard way AI agents call tools.',
           link: { label: 'Exa alternatives, sorted by job', to: '/blog/exa-alternatives' },
         },
       ],

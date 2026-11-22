@@ -1,0 +1,133 @@
+/* app-reminders: Fernhill PT / Blueprints / Appointment reminders (23 Nov 2026). An invented group of 8 physical
+   therapy clinics, on Monday afternoon. Top: Tuesday's 312 bookings as 1 bar, confirmed (ink), moved (hatched) and still
+   quiet (the empty track), with the 2 steps that filled it: 312 texts at 10:00, 52 calls at 16:00. Below: 5 of
+   Riverside's 41 Tuesday rows, each step in its own column (the text and its reply, the call if one was needed, where it
+   ended). Totals add up: texts bring 241 confirmed and 19 moved; calls to the 52 still quiet bring 33 and 6; so 274,
+   25 and 13.
+   The 1 thing: text first, call only the quiet ones, and the calendar fills in by itself.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38 | bar card 48..126 | rows 136..352 (head 28, column
+   heads 22, rows 33) | note and toast 360..400. Columns 38 | 84 | 150 | 84 | rest.
+   Story (5.2 s): the rows land; at 10:00 the texts go and the bar fills to 241 and 19 as the replies land, row by row;
+   the 2 quiet rows say No reply; at 16:00 the calls go, 1 confirms, 1 doesn't answer and gets a second text; the bar
+   fills to 274 and 25; the toast.
+   The bar's 2 counts are registered numbers (--rm-c, --rm-m), so the bar animates in any capture.
+   Motion only with .play and only under prefers-reduced-motion: no-preference. Rest state (no .play) = the finished
+   scene. */
+@property --rm-c{syntax:"<number>";inherits:true;initial-value:274}
+@property --rm-m{syntax:"<number>";inherits:true;initial-value:25}
+
+.app-reminders .ax-main{grid-template-columns:minmax(0,1fr);padding:14px;gap:10px}
+.app-reminders .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-reminders .ax-clients a.on i{background:var(--fg-2)}
+.app-reminders .ax-clients a.rm-more{color:var(--fg-3)}
+.app-reminders .ax-clients a.rm-more i{background:none;box-shadow:0 0 0 1px var(--line-3) inset}
+
+/* ---------- head: the blueprint, its schedule, the assistant it runs as ---------- */
+.app-reminders .rm-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-reminders .rm-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-reminders .rm-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-reminders .rm-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-reminders .rm-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-reminders .rm-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- Tuesday's bookings, as 1 bar ---------- */
+.app-reminders .rm-sum{display:grid;gap:9px;padding:11px 12px 10px;border-radius:10px;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-reminders .rm-sh{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+.app-reminders .rm-sh>b{font:600 13px/1 var(--sans);color:var(--fg)}
+.app-reminders .rm-sh>span{font:400 11.5px/1 var(--sans);color:var(--fg-3)}
+.app-reminders .rm-sh>.rm-today{margin-left:auto;color:var(--fg-2)}
+.app-reminders .rm-today b{font:500 11.5px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+
+/* the bar: the track is everyone booked (still quiet shows as the empty part); confirmed in ink, moved hatched after it */
+.app-reminders .rm-bar{--rm-c:274;--rm-m:25;position:relative;height:10px;border-radius:5px;overflow:hidden;background:rgb(var(--fg-rgb) / .03);box-shadow:0 0 0 1px var(--line-3) inset}
+.app-reminders .rm-bar i{position:absolute;top:0;bottom:0}
+.app-reminders .rm-bc{left:0;width:calc(var(--rm-c) / 312 * 100%);background:var(--fg)}
+.app-reminders .rm-bm{left:calc(var(--rm-c) / 312 * 100%);width:calc(var(--rm-m) / 312 * 100%);
+  background:repeating-linear-gradient(135deg,var(--fg-2) 0 2px,transparent 2px 4px);box-shadow:1px 0 0 var(--panel-2) inset}
+
+/* the key, with each count, and the 2 steps that filled the bar */
+.app-reminders .rm-lg{display:flex;align-items:center;gap:16px;height:18px;white-space:nowrap}
+.app-reminders .rm-lg>span{display:inline-flex;align-items:center;gap:6px;font:400 11.5px/1 var(--sans);color:var(--fg-2)}
+.app-reminders .rm-k{display:block;width:9px;height:9px;border-radius:2px}
+.app-reminders .rm-kc{background:var(--fg)}
+.app-reminders .rm-km{background:repeating-linear-gradient(135deg,var(--fg-2) 0 2px,transparent 2px 4px);box-shadow:0 0 0 1px var(--line-3) inset}
+.app-reminders .rm-kq{box-shadow:0 0 0 1px var(--line-3) inset}
+.app-reminders .rm-nb{display:inline-grid;justify-items:end;font:500 12px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-reminders .rm-nb i{grid-area:1/1;font-style:normal}
+.app-reminders .rm-nb .n0,.app-reminders .rm-nb .n1{opacity:0}
+.app-reminders .rm-lg>.rm-steps{margin-left:auto}
+.app-reminders .rm-step{display:inline-flex;align-items:center;height:18px;padding:0 7px;border-radius:5px;font:400 11px/1 var(--mono);color:var(--fg-2);
+  background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset;font-variant-numeric:tabular-nums}
+
+/* ---------- Riverside's rows: each step in its own column ---------- */
+.app-reminders .rm-ls{border-radius:10px;overflow:hidden;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-reminders .rm-lh{display:flex;align-items:center;gap:8px;height:28px;padding:0 12px;white-space:nowrap;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-reminders .rm-lh b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-reminders .rm-lh em{font:400 11px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+.app-reminders .rm-lh span{margin-left:auto;font:400 11px/1 var(--sans);color:var(--fg-3)}
+
+.app-reminders .rm-r{display:grid;grid-template-columns:38px 84px 150px 84px minmax(0,1fr);align-items:center;column-gap:8px;height:33px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-reminders .rm-r5{box-shadow:none}
+.app-reminders .rm-cols{height:22px;background:rgb(var(--fg-rgb) / .02)}
+.app-reminders .rm-cols span{font:500 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-reminders .rm-r time{font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-reminders .rm-p,.app-reminders .rm-c{display:grid;gap:4px;min-width:0;white-space:nowrap}
+.app-reminders .rm-p b{font:500 11.5px/1 var(--mono);color:var(--fg)}
+.app-reminders .rm-p small{font:400 11px/1 var(--sans);color:var(--fg-3)}
+.app-reminders .rm-c b{font:400 11.5px/1 var(--sans);color:var(--fg);overflow:hidden;text-overflow:ellipsis}
+.app-reminders .rm-c small{font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-reminders .rm-tx b{font-size:11px}
+.app-reminders .rm-q b{font-family:var(--sans);font-size:11.5px;color:var(--fg-3)}
+.app-reminders .rm-na{font:400 12px/1 var(--mono);color:var(--line-3)}
+
+/* where it ended: "Texted" while it waits, then the outcome; only the outcome shows at rest */
+.app-reminders .rm-st{display:inline-grid}
+.app-reminders .rm-st>span{grid-area:1/1;display:inline-flex;align-items:center;gap:6px;font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.ilwrap .app-reminders .rm-st svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-reminders .rm-st .v0{opacity:0;font-weight:400;color:var(--fg-3)}
+/* the 1 still to reach: a quiet band, as the other screens mark what needs you */
+.app-reminders .rm-r5{background:rgb(var(--fg-rgb) / .045)}
+
+/* ---------- foot: the 2 lines it keeps, the toast ---------- */
+.app-reminders .rm-note{position:absolute;left:14px;bottom:14px;height:40px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:4px;
+  font-size:11px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-reminders .rm-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-reminders .rm-note span{grid-column:2}
+.app-reminders .rm-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-reminders .rm-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-reminders .rm-toast b{font-weight:500;color:var(--fg)}
+.app-reminders .rm-toast p span{color:var(--fg-3)}
+
+/* ---------- motion: only with .play, only when the reader allows it ---------- */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes rm-fill{0%{--rm-c:0;--rm-m:0}40%{--rm-c:241;--rm-m:19}62%{--rm-c:241;--rm-m:19}100%{--rm-c:274;--rm-m:25}}
+  @keyframes rm-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes rm-in{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+  @keyframes rm-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-3px)}}
+  @keyframes rm-on{from{opacity:1}to{opacity:1}}
+  @keyframes rm-dim{from{opacity:.35}to{opacity:.35}}
+  @keyframes rm-lit{0%{opacity:.35;background-color:rgb(var(--fg-rgb) / .05)}40%{opacity:1;background-color:rgb(var(--fg-rgb) / .16)}100%{opacity:1;background-color:rgb(var(--fg-rgb) / .05)}}
+  @keyframes rm-home{from{transform:none}}
+  @keyframes rm-gap{from{opacity:0}}
+  @keyframes rm-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. the rows land, each saying Texted */
+  .appx-il.play.app-reminders .rm-r:not(.rm-cols){animation:rm-land .45s var(--ease) var(--rm-t) both}
+  .appx-il.play.app-reminders .rm-st .v0{animation:rm-on .01s linear both,rm-out .25s var(--ob-ease-in) var(--rm-e) forwards}
+  .appx-il.play.app-reminders .rm-st .v1{animation:rm-in .3s var(--ease) var(--rm-e) both}
+  .appx-il.play.app-reminders .rm-st .v1 .st-landed .sig-sq{animation:rm-home .55s var(--snap) var(--rm-e) both}
+  .appx-il.play.app-reminders .rm-st .v1 .st-landed .sig-gap{animation:rm-gap .3s var(--ease) calc(var(--rm-e) + .15s) both}
+  .appx-il.play.app-reminders .rm-c:not(.rm-na){animation:rm-in .35s var(--ease) var(--rm-c-t) both}
+
+  /* 2. 10:00: the texts go, the replies fill the bar to 241 and 19; 16:00: the calls take it to 274 and 25 */
+  .appx-il.play.app-reminders .rm-bar{animation:rm-fill 3.4s var(--ease) .9s both}
+  .appx-il.play.app-reminders .rm-s1{animation:rm-dim .01s linear both,rm-lit 1s var(--ease) .9s both}
+  .appx-il.play.app-reminders .rm-s2{animation:rm-dim .01s linear both,rm-lit 1s var(--ease) 3s both}
+  .appx-il.play.app-reminders .rm-nb .n0{animation:rm-on .01s linear both,rm-out .2s var(--ob-ease-in) 1.1s forwards}
+  .appx-il.play.app-reminders .rm-nb .n1{animation:rm-in .25s var(--ease) 1.15s both,rm-out .2s var(--ob-ease-in) 3.6s forwards}
+  .appx-il.play.app-reminders .rm-nb .n2{animation:rm-in .25s var(--ease) 3.65s both}
+
+  /* 3. the toast */
+  .appx-il.play.app-reminders .rm-toast{animation:rm-toast .45s var(--ease) 4.7s both}
+}

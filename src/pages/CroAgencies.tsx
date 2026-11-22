@@ -14,7 +14,7 @@ import { Count, Play, Step, Win } from '../legacy/james/components/UseCase'
 import './RetentionAgencies.css'
 import './EcommerceStores.css'
 
-/* /use-cases/funnel-qa-for-cro-agencies (9 Nov rewrite): the record of what each brand's funnel sends after a sign-up,
+/* /use-cases/funnel-qa-for-cro-agencies (22 Nov rewrite): the event log of what each brand's funnel sends after a sign-up,
    from the pitch to November's readout, told through Ferrow Coffee (invented) in 10 steps beside their app windows, with
    Brand G, the 1 real run, after step 4. Drawn from James's pieces inside his wrapper with the retention and ecommerce
    pages' classes. The words are the content file's (content/usecases); the app windows' rows and numbers are here. */
@@ -180,7 +180,7 @@ export function CroAgencies() {
               </div>
 
               <Step n={1} title={step(0, 0).title} line={step(0, 0).line} pick={step(0, 0).example}>
-                <Win title="Look up · Add brands">
+                <Win title="New list · Add brands">
                   <ul className="uc-ins">
                     <li className="sel">
                       Paste a list<small>Names or websites</small>
@@ -213,7 +213,7 @@ export function CroAgencies() {
                   </div>
                   <div className="uc-ready">
                     <span>
-                      Ready to look up<small>Not in the index yet? Watch it</small>
+                      Ready to sign up<small>A persona per brand, as New customer · US</small>
                     </span>
                     <b>
                       <Count to={12} /> brands
@@ -223,7 +223,7 @@ export function CroAgencies() {
               </Step>
 
               <Step n={2} title={step(0, 1).title} line={step(0, 1).line} pick={step(0, 1).example}>
-                <Win title="Watch · Pipeline: November · Set up">
+                <Win title="New check · Pipeline: November · Set up">
                   <div className="uc-cfg">
                     <div>
                       <div className="uc-fld">
@@ -297,7 +297,7 @@ export function CroAgencies() {
                         </div>
                       </div>
                       <div className="uc-fld">
-                        <p className="uc-lab">New facts</p>
+                        <p className="uc-lab">Results</p>
                         <div className="uc-field uc-dd">Webhook · Slack #new-business</div>
                       </div>
                     </div>
@@ -311,7 +311,7 @@ export function CroAgencies() {
                     <div className="uc-id">
                       <div className="uc-row uc-between">
                         <span className="uc-mh">Ferrow Coffee</span>
-                        <span className="tag idle">Account 5B2C</span>
+                        <span className="tag idle">Persona 5B2C</span>
                       </div>
                       <dl className="uc-idrows">
                         <div>
@@ -363,7 +363,7 @@ export function CroAgencies() {
               </Step>
 
               <Step n={4} title={step(0, 3).title} line={step(0, 3).line} pick={step(0, 3).example}>
-                <Win title="Insights · Pipeline: November">
+                <Win title="Report · Pipeline: November">
                   <ul className="uc-tiles">
                     {[
                       ['Pop-up off the ad’s offer', 4, 'bad'],
@@ -419,7 +419,7 @@ export function CroAgencies() {
               {study.found && (
                 <Reveal className="uc-inout uc-real">
                   <div>
-                    <p className="kicker">From our own runs</p>
+                    <p className="kicker">What a real run found</p>
                     <h3 className="h2">{study.found.heading}</h3>
                     <p className="muted">{study.found.line}</p>
                   </div>
@@ -478,7 +478,7 @@ export function CroAgencies() {
                   </div>
                   <div className="uc-row uc-end">
                     <span className="uc-btn alt">Add to the teardown</span>
-                    <span className="uc-btn">Copy evidence link</span>
+                    <span className="uc-btn">Copy event link</span>
                   </div>
                 </Win>
               </Step>
@@ -671,7 +671,7 @@ export function CroAgencies() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="uc-small">The first row is the check from the pitch, so the before is on record from day 1.</p>
+                  <p className="uc-small">The first row is the check from the pitch, so the before is in the event log from day 1.</p>
                 </Win>
               </Step>
 
@@ -732,7 +732,7 @@ export function CroAgencies() {
                 <div>
                   <p className="kicker">The opener</p>
                   <h3 className="h2">Their own funnel and your first test, in 1 email.</h3>
-                  <p className="muted">The record shows what a new customer gets today. Your plan shows what you’d change first.</p>
+                  <p className="muted">The event log shows what a new customer gets today. Your plan shows what you’d change first.</p>
                   <div className="uc-mail">
                     <p className="uc-mail-head">
                       From <b>Jonah, your agency</b> to <b>Sam Ortega, Ferrow Coffee</b> · Subject <b>Your 20% ad, and a 15% pop-up</b>
@@ -745,11 +745,11 @@ export function CroAgencies() {
                     <p>I’ve attached the slide and the first test we’d run. Worth walking through on Thursday?</p>
                     <p>Jonah</p>
                     <p className="uc-att">
-                      <span>Record: Ferrow Coffee, 2 to 4 Nov</span>
+                      <span>Event log: Ferrow Coffee, 2 to 4 Nov</span>
                       <span>Plan: after the sign-up</span>
                     </p>
                   </div>
-                  <p className="uc-small">Written by your audit lead, from the brand’s record.</p>
+                  <p className="uc-small">Written by your audit lead, from the brand’s event log.</p>
                 </div>
                 <div className="uc-phone-wrap">
                   <p className="kicker">Your plan</p>

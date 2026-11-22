@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Listings and AI answers (/recipes/listings-ai-answers). Check your own journeys. The persona version (20 Nov 2026,
+/* Listings and AI answers (/blueprints/listings-ai-answers). Check your own journeys. The persona version (20 Nov 2026,
    James): a persona you define, a buyer in each town the reader serves, asks the AI assistants what buyers ask, the
    official way and from a clean history, and checks every map, directory and review site, every Monday and within a
    day of any price change, launch or rename. Each wrong fact is traced to the page the answer cites and asked again
@@ -12,7 +12,7 @@ export const recipe: Recipe = {
   id: 'listings',
   slug: 'listings-ai-answers',
   name: 'Listings and AI answers',
-  group: 'Check your own journeys',
+  group: 'Watch the market',
   line: 'A persona checks AI answers and listings, and traces each wrong fact to its page.',
   gets: 'Every answer AI assistants and listings give about you, each wrong fact traced to its source.',
   kit: [
@@ -46,7 +46,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-listings-ai-answers-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'listings',
     },
   },
@@ -78,7 +78,7 @@ export const recipe: Recipe = {
       { time: 'Week 2, Mon', text: 'Directory B unchanged. Assistant C still says 9.' },
       { time: 'Week 3, Mon', text: 'Directory B updated. Asked again, Assistant C says Leeds opens at 8.' },
     ],
-    finding: 'Assistant C gave Leeds the wrong hours because Directory B did. 4 of 6 Leeds listings were wrong or missing.',
+    finding: 'Assistant C gave Leeds the wrong hours because Directory B did. Maps and 2 review sites were wrong or missing too.',
     fix: 'Each wrong fact in your Monday email with the page it came from, closed the week the answer changed.',
     ledger: 'Every answer kept with the page it cites.',
   },
@@ -176,6 +176,7 @@ export const recipe: Recipe = {
       {
         q: 'Which AI assistants does it ask?',
         a: 'The ones your buyers use, asked the official way. A persona in each town you serve asks from a clean history, so it gets the answer a local buyer gets.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Can it ask about our competitors too?',
@@ -183,17 +184,23 @@ export const recipe: Recipe = {
       },
       { q: 'Does it change our listings?', a: 'No. It reads them and names what’s wrong. The changes stay with your team.' },
       { q: 'What does it need from us?', a: 'Your details, approved once, and the questions your buyers ask.' },
+      {
+        q: 'What does Listings and AI answers cost?',
+        a: 'It runs on browser hours, billed at list rates, each from the town it asks from. The month grows with your locations and the assistants and listings you check.',
+        link: { label: 'See the cloud browser', to: '/browser' },
+      },
     ],
   },
 
   final: {
-    heading: 'Be right wherever buyers and AI look you up.',
-    sub: 'Tell us your locations, and we’ll set up a persona in each town with you.',
+    heading: 'Be right wherever buyers and AI assistants find you.',
+    sub: 'Try it on the Free plan with your busiest location.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-listings-ai-answers-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'listings',
     },
+    link: { label: 'More blueprints to watch the market', to: '/blueprints/watch-the-market' },
   },
 }

@@ -1,0 +1,46 @@
+/* The kits' orbit (KitOrbit.tsx), in the design system's tokens. */
+
+.k-orbit { margin: 0; display: grid; gap: var(--ob-space-16); }
+.k-orbit svg { display: block; width: 100%; height: auto; overflow: visible; }
+.k-orbit__glow-in { stop-color: var(--ob-success); stop-opacity: 0.16; }
+.k-orbit__glow-out { stop-color: var(--ob-success); stop-opacity: 0; }
+.k-orbit__ring { fill: none; stroke: var(--ob-line); stroke-width: 1; }
+.k-orbit__ring--out { stroke: var(--ob-line-strong); stroke-dasharray: 2 6; }
+.k-orbit__spoke path { fill: none; stroke: var(--ob-line-strong); stroke-width: 1; }
+.k-orbit__pulse { fill: var(--ob-success); }
+.k-orbit__piece circle { fill: var(--ob-bg); stroke: var(--ob-line-strong); stroke-width: 1; }
+.k-orbit .ob-glyph { fill: none; stroke: var(--ob-text-2); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.k-orbit__core circle { fill: var(--ob-surface-raised, var(--ob-surface)); stroke: var(--ob-line-strong); stroke-width: 1; }
+.k-orbit__name { font: 600 18px/1 var(--ob-font-sans); fill: var(--ob-text); letter-spacing: -0.01em; }
+.k-orbit__sub { font: 400 12px/1 var(--ob-font-mono); fill: var(--ob-text-3); letter-spacing: 0.02em; }
+.k-orbit__halo { fill: rgba(var(--ob-tint-rgb), 0.04); stroke: none; }
+.k-orbit__node { fill: var(--ob-bg); stroke: var(--ob-text-2); stroke-width: 1; }
+.k-orbit__kit .ob-glyph { stroke: var(--ob-text); }
+.k-orbit__label { font: 500 14px/1 var(--ob-font-sans); fill: var(--ob-text); letter-spacing: -0.005em; }
+.k-orbit__cap {
+  font: var(--ob-type-caption);
+  letter-spacing: var(--ob-type-caption-tracking);
+  color: var(--ob-text-3);
+  text-align: center;
+}
+
+/* On a phone the labels would shrink past reading: the kit cards under the orbit carry the names. */
+@media (max-width: 640px) {
+  .k-orbit__label { display: none; }
+}
+
+@keyframes k-orbit-in {
+  from { opacity: 0; scale: 0.9; }
+  to { opacity: 1; scale: 1; }
+}
+@keyframes k-orbit-turn { to { rotate: 360deg; } }
+@media (prefers-reduced-motion: no-preference) {
+  .k-orbit[data-armed]:not(.is-in) :is(.k-orbit__kit, .k-orbit__piece, .k-orbit__spoke) { opacity: 0; }
+  .k-orbit.is-in :is(.k-orbit__kit, .k-orbit__piece, .k-orbit__spoke) {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: k-orbit-in var(--ob-dur-slow, 0.5s) var(--ob-ease-out) both;
+    animation-delay: calc(200ms + var(--i) * 90ms);
+  }
+  .k-orbit.is-in .k-orbit__spin { animation: k-orbit-turn 90s linear infinite; }
+}

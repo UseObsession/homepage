@@ -1,19 +1,19 @@
-/* The early access form's words: the line under every form and the card that opens once the email is saved
-   (components/CaptureForm, components/JoinCard, lib/join.ts). Since 9 Nov every form is early access, never a
-   waitlist and never a free check: API and MCP keys, and up to 5 companies, stores or agents to start with, set up
-   with the founders (22 Nov 2026: no lookups, no "already covered"). A page's offer only changes the brands question and the thank
-   you. The `free` words are what a form of kind 'mystery' or 'verify' shows; they say early access too.
+/* The sign-up form's words: the line under every form and the card that opens once the email is saved
+   (components/CaptureForm, components/JoinCard, lib/join.ts). Since 22 Nov every form starts the Free plan, never a
+   waitlist and never a free check: API and MCP keys, and up to 5 sites, stores or agents to start with, set up with
+   the founders (no lookups, no "already covered"). A page's offer only changes the brands question and the thank
+   you. The `free` words are what a form of kind 'mystery' or 'verify' shows; they say Free plan too.
 
    Offers, worked out from the form (lib/join.ts offerOf):
    - clients: an agency page.
    - store: a store page (a form of kind 'mystery').
-   - agents: an AI agent page (a form of kind 'verify'), or an AI agent recipe's form.
-   - own: a recipe that checks their own journeys.
-   - companies: a recipe that watches other companies, and the marketing, sales and compare pages.
+   - agents: an AI agent page (a form of kind 'verify'), or an AI agent blueprint's form.
+   - own: a blueprint that checks their own journeys.
+   - companies: a blueprint that watches other companies, and the marketing, sales and compare pages.
    - accounts: never a page's; the brands question for a sales team.
    - api: the developers' page.
    - any: everywhere else.
-   - index, reindex: the store lookup (pages/Lookup), for a site we haven't indexed and one we have. Their card asks for
+   - index, reindex: the store lookup (pages/Lookup), for a site we haven't checked and one we have. Their card asks for
      the company's other sites, starting with the one looked up, and has a heading of its own (`head`).
    {list}, {first}, {email} and {n} are filled in. */
 
@@ -32,10 +32,10 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'client-site.com',
       add: 'Add another client',
     },
-    micro: 'Onboarding a limited number of teams. Name up to 5 clients to start with.',
+    micro: 'Free plan, no credit card. Name up to 5 clients to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
-      micro: 'Onboarding a limited number of teams. Early access adds up to 5 clients for you.',
+      micro: 'Free plan, no credit card. We add up to 5 clients for you.',
       help: 'Up to 5 client websites you run or pitch, with the owner’s OK. A persona joins each one and keeps everything it is sent.',
       done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
@@ -47,10 +47,10 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'your-store.com',
       add: 'Add a competitor',
     },
-    micro: 'Onboarding a limited number of teams. Name the store to start with.',
+    micro: 'Free plan, no credit card. Name the store to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
-      micro: 'Onboarding a limited number of teams. Early access adds up to 5 stores for you.',
+      micro: 'Free plan, no credit card. We add up to 5 stores for you.',
       help: 'Yours, a competitor’s, or a client’s with their OK. A persona signs up and leaves a basket, and keeps everything each store sends. Up to 5 in all.',
       done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
@@ -62,10 +62,10 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'Chat page, phone or website',
       add: 'Add another agent',
     },
-    micro: 'Onboarding a limited number of teams. Name the AI agent to start with.',
+    micro: 'Free plan, no credit card. Name the AI agent to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
-      micro: 'Onboarding a limited number of teams. Early access adds up to 5 AI agents for you.',
+      micro: 'Free plan, no credit card. We add up to 5 AI agents for you.',
       help: 'Its chat page, phone number or website. Yours, a competitor’s, or a client’s with their OK. A persona asks it what people ask and keeps every answer, word for word. Up to 5.',
       done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
@@ -77,7 +77,7 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'your-site.com',
       add: 'Add a competitor',
     },
-    micro: 'Onboarding a limited number of teams. Name the site to start with.',
+    micro: 'Free plan, no credit card. Name the site to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   companies: {
@@ -87,7 +87,7 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'competitor.com',
       add: 'Add a company',
     },
-    micro: 'Onboarding a limited number of teams. Name up to 5 companies to start with.',
+    micro: 'Free plan, no credit card. Name up to 5 companies to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   /* A sales team, asked by who they are (lib/join askOf), never by a page. */
@@ -98,18 +98,18 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'account.com',
       add: 'Add an account',
     },
-    micro: 'Onboarding a limited number of teams. Name up to 5 accounts or prospects to start with.',
+    micro: 'Free plan, no credit card. Name up to 5 accounts or prospects to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   api: {
     ask: {
-      title: 'Which companies should we look up first?',
-      help: 'Up to 5. If one isn’t covered yet, we add it.',
+      title: 'Which sites will your agents work with first?',
+      help: 'Up to 5, such as a site your agent signs up to or a portal it signs in to.',
       placeholder: 'company.com',
-      add: 'Add a company',
+      add: 'Add a site',
     },
-    micro: 'Onboarding a limited number of teams to the API and MCP.',
-    done: 'We’ll email {email} to set up API access, with {list} ready.',
+    micro: 'Free plan, no credit card. We set up your API key and MCP with you.',
+    done: 'We’ll email {email} to set up your API key and MCP, starting with {list}.',
     none: 'We’ll email {email} to set up API access.',
   },
   any: {
@@ -119,30 +119,30 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'company.com',
       add: 'Add a site',
     },
-    micro: 'Onboarding a limited number of teams.',
+    micro: 'Free plan, no credit card. We set up your API key and MCP with you.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   index: {
     head: 'Your site is on our list.',
     ask: {
       title: 'Which sites does your company run?',
-      help: 'Up to 5, starting with the one you looked up. We index each one as a new customer would meet it.',
+      help: 'Up to 5, starting with the one you entered. A persona signs up to each one as a new customer would.',
       placeholder: 'yourotherstore.com',
       add: 'Add another site',
     },
     micro: 'We use your email only for this site and the others you name.',
-    done: 'We’ll email {email} as each one joins the index: {list}.',
+    done: 'We’ll email {email} as each one is checked: {list}.',
   },
   reindex: {
-    head: 'We’ll index your site again.',
+    head: 'We’ll check your site again.',
     ask: {
-      title: 'Which sites should we index again?',
-      help: 'Up to 5, starting with the one you looked up. We sign up again as a new customer and keep what each one sends.',
+      title: 'Which sites should we check again?',
+      help: 'Up to 5, starting with the one you entered. A persona signs up again as a new customer and keeps what each one sends.',
       placeholder: 'yourotherstore.com',
       add: 'Add another site',
     },
     micro: 'We use your email only for this site and the others you name.',
-    done: 'We’ll email {email} as each one is indexed again: {list}.',
+    done: 'We’ll email {email} as each one is checked again: {list}.',
   },
 }
 
@@ -171,13 +171,13 @@ export const clientAsks: Record<string, { title?: string; help: string }> = {
   'Retention, email and SMS': { help: 'Up to 5 stores you run or pitch, with the owner’s OK. A persona signs up and keeps every email and text.' },
   CRO: { help: 'Up to 5 stores you run or pitch, with the owner’s OK. A persona goes from landing page to checkout.' },
   'Performance and paid media': {
-    title: 'Which client brands should we follow from ad to checkout?',
-    help: 'Up to 5 brands you run ads for or pitch, with the owner’s OK. A persona clicks through and records where each ad lands.',
+    title: 'Which client brands’ ads should we check?',
+    help: 'Up to 5 brands you run ads for or pitch, with the owner’s OK. A persona opens each ad’s landing page and checks the offer, price and stock.',
   },
   'Shopify build': { help: 'Up to 5 stores you’ve built or are launching, with the owner’s OK. A persona signs up after each change and keeps what each one sends.' },
 }
 
-/* The recipes most people like them start with, shown first (never ticked for them): by agency type, else by role. */
+/* The blueprints most people like them start with, shown first (never ticked for them): by agency type, else by role. */
 export const suggested: Record<string, string[]> = {
   'agency:Retention, email and SMS': ['email-sms', 'mystery', 'competitor'],
   'agency:CRO': ['mystery', 'audit', 'adcheck'],
@@ -193,11 +193,11 @@ export const suggested: Record<string, string[]> = {
 
 export const join = {
   privacy: { text: 'We keep what you tell us to set up your access and email you about Obsession.', link: 'Privacy notice', to: '/privacy' },
-  head: { title: 'You’re on the early access list.', step: (n: number, of: number) => `${n} of ${of}` },
+  head: { title: 'Let’s set up your account.', step: (n: number, of: number) => `${n} of ${of}` },
   role: {
     title: 'What best describes you?',
     help: 'So the rest fits what you do.',
-    agency: 'What kind of agency?',
+    agency: 'What does your agency do?',
     optional: 'Optional',
     errors: { role: 'Pick the closest.', agency: 'Pick the closest kind.' },
   },
@@ -226,15 +226,15 @@ export const join = {
     },
   },
   recipes: {
-    title: 'What data do you want first?',
+    title: 'What should your agents do first?',
     suggested: 'Suggested for you',
     help: 'Pick any.',
     helpPicked: 'Pick any. We ticked the one you were reading.',
     error: 'Pick at least 1.',
   },
   useCase: {
-    label: 'What do you want to look up, and why?',
-    placeholder: 'Name the companies and the data you need.',
+    label: 'What will your agents do?',
+    placeholder: 'The job, and the pieces or blueprints it needs.',
   },
   actions: { next: 'Continue', back: 'Back', finish: 'Finish', edit: 'Change your answers', resume: 'Finish setting up' },
   done: {
@@ -244,7 +244,7 @@ export const join = {
   },
   saved: { failed: 'Some answers didn’t save.', retry: 'Try again' },
   /* The thank you's list of what they told us. */
-  sum: { you: 'You', site: 'Website', brands: 'To add', agents: 'AI agents', recipes: 'Data' },
-  /* Another form on a page where the sign up already happened. */
-  joined: 'You’re on the early access list as {email}.',
+  sum: { you: 'You', site: 'Website', brands: 'To add', agents: 'AI agents', recipes: 'Blueprints' },
+  /* Another form on a page where the sign-up already happened. */
+  joined: 'We have your email, {email}, and we’ll set you up.',
 }

@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* The AI customers series, article 4 (24 Oct 2026): hiring AI customers. It owns "hire ai agent", "hire ai customers" and
    "ai customers vs mystery shoppers". Readers: ecommerce, CX, marketing and agency leads, and founders, deciding whether a
@@ -14,7 +13,8 @@ import { AI_CUSTOMER } from '../glossary'
    library (_research/seo/plan/ai-customers/facts.json, 24 Oct 2026): T-ROC, Secret View, ChatGPT's cloud browser, Datadog's
    synthetics docs, Klaviyo's 2026 benchmarks. Datadog's pricing page didn't show its synthetic monitoring prices in full,
    so no Datadog price is quoted. Left out on purpose: Milled (its pages returned 403), forum quotes, ChatGPT agent (retired),
-   any Obsession price, the 93% and 128 stores, any PilotX figure. ashgrove.example and its revenue are invented. No dashes. */
+   any PilotX figure, the 93% and 128 stores. ashgrove.example and its revenue are invented. No dashes.
+   22 Nov 2026: Obsession lines moved to the toolkit position; its prices come from prices.ts. */
 
 const KLAVIYO_BENCH = 'https://www.klaviyo.com/products/email-marketing/benchmarks'
 const TROC = 'https://trocglobal.com/mystery-shopping-cost/'
@@ -36,20 +36,20 @@ export const post: BlogPost = {
   description:
     'How to hire an AI agent as a customer: the jobs it does, how it compares with mystery shoppers, audits and monitoring, the brief and the payback sum.',
   answer:
-    'Hire an AI agent as a customer for a job only a customer can do, such as checking that a welcome code works at checkout, and brief it with the companies, a pass mark per check, a cadence and where results go. A human mystery shopper suits service in person, and a monthly check by hand suits a business that rarely changes. For jobs that need any company, weeks of waiting and the original evidence, use Obsession, which keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table.',
+    'Hire an AI agent as a customer for a job only a customer can do, such as checking that a welcome code works at checkout, and brief it with the companies, a pass mark per check, a cadence and where results go. A human mystery shopper suits service in person, and a monthly check by hand suits a business that rarely changes. For jobs that need any company, weeks of waiting and the original email or page, use Obsession, the toolkit for AI agents, where a persona with its own inbox, number and browser signs up, waits and keeps every event, dated.',
   primaryKeyword: 'hire ai agent',
   keywords: [
     'hire ai customers',
     'how to hire an ai agent',
-    'ai customers vs mystery shoppers',
+    'ai agents vs mystery shoppers',
     'ai mystery shopper',
     'mystery shopper alternative',
     'mystery shopping cost',
     'ai agent vs human',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 9,
   order: 6,
   authors: [
@@ -67,7 +67,7 @@ export const post: BlogPost = {
         { name: 'Agency audit', cells: ['The flow’s settings', 'Live, set to send after 1 hour'], tone: 'ok' },
         { name: 'Scripted test', cells: ['Basket page, every hour', 'Passed every run'], tone: 'ok' },
         { name: 'AI browser agent', cells: ['Left a basket, 1 session', 'Ended before any email'], tone: 'info' },
-        { name: 'AI customer', cells: ['Left a basket, then waited', 'Arrived after 26 hours, no photo'], tone: 'late' },
+        { name: 'AI agent as customer', cells: ['Left a basket, then waited', 'Arrived after 26 hours, no photo'], tone: 'late' },
       ],
       notes: [
         'An example on an invented store.',
@@ -79,11 +79,11 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Teams that need a customer’s view of their own company, a client, a competitor or a prospect can hire for it in 9 ways, from doing nothing to AI customers. Each suits a different job, and how often the job runs decides what each one costs.',
+      text: 'Teams that need a customer’s view of their own company, a client, a competitor or a prospect can hire for it in 9 ways, from doing nothing to hiring AI customers, meaning AI agents hired as customers. Each suits a different job, and how often the job runs decides what each one costs.',
     },
     {
       kind: 'p',
-      text: `[AI customers](/blog/ai-customers) are the agents built for a customer’s job. ${AI_CUSTOMER.definition}`,
+      text: 'On Obsession, the hire is a persona: an AI agent with its own inbox, phone number and browser under one name. It signs up, waits as long as the job needs and keeps every email and page in one event log, dated. [AI agents as customers](/blog/ai-customers) covers what such an agent sees.',
     },
     {
       kind: 'p',
@@ -99,7 +99,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer is hired to stand on the other side, as a customer of the company your team names, and it reports to your team. The job decides whether it is the right hire. Some jobs suit a person, a tool you already pay for, or no check at all.',
+      text: 'An AI agent hired as a customer stands on the other side, as a customer of the company your team names, and it reports to your team. The job decides whether it is the right hire. Some jobs suit a person, a tool you already pay for, or no check at all.',
     },
 
     { kind: 'h2', id: 'choose', text: 'How to choose: 3 questions' },
@@ -107,29 +107,29 @@ export const post: BlogPost = {
       kind: 'list',
       ordered: true,
       items: [
-        '**Whose customer must it be?** Your own company, a client with their OK, a competitor, a prospect or a partner. Audits read your own account, and synthetic monitoring scripts your own site. Mystery shoppers and AI customers can be customers of any company.',
+        '**Whose customer must it be?** Your own company, a client with their OK, a competitor, a prospect or a partner. Audits read your own account, and synthetic monitoring scripts your own site. Mystery shoppers and AI agents hired as customers can be customers of any company.',
         '**How long must it stay?** A visit or a page load answers questions about 1 moment. Welcome series, reminders, price changes and renewals arrive over days or weeks, and only a customer that stays receives them.',
         '**What must it keep?** An opinion, a pass or fail, or the original email and page. A client, a manager or a prospect can open the original and check it.',
       ],
     },
     {
       kind: 'p',
-      text: 'If the answers are any company, weeks or months, and the original, use Obsession, which keeps what any company shows only to its customers, dated with the email or screenshot. Where the answers are your own site, 1 moment and an opinion, another option suits the job better.',
+      text: 'If the answers are any company, weeks or months, and the original, use Obsession. A persona waits as long as the job needs and keeps every email, text and page in one event log, dated. Where the answers are your own site, 1 moment and an opinion, another option suits the job better.',
     },
 
-    { kind: 'h2', id: 'jobs', text: 'The jobs to hire AI customers for' },
+    { kind: 'h2', id: 'jobs', text: 'Jobs for an AI agent hired as a customer' },
     {
       kind: 'list',
       items: [
         '**Your own company:** the welcome code arrives and works at checkout, each reminder arrives on time with the product, the chatbot quotes the current policy, and a demo request gets a reply inside your target.',
         '**Clients, with their OK:** every flow fires each week and after each theme, app or flow change.',
-        '**Competitors:** every email, text, offer and price, from the day the AI customer joins.',
+        '**Competitors:** every email, text, offer and price, from the day the agent joins.',
         '**Prospects:** what each one sends its own customers, through its public sign up, before the first call.',
         '**Partners and AI assistants:** the codes deals sites show, and what assistants tell shoppers about your company.',
       ],
     },
 
-    { kind: 'h2', id: 'vs-mystery-shoppers', text: 'AI customers vs mystery shoppers' },
+    { kind: 'h2', id: 'vs-mystery-shoppers', text: 'AI agents vs mystery shoppers' },
     {
       kind: 'p',
       text: 'A human mystery shopper is a trained person who visits as a customer and reports on the visit: how staff spoke, how long the queue was, whether the store matched the brand. [T-ROC’s 2026 cost guide](' +
@@ -147,20 +147,20 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer covers the digital side over time: the sign up, the welcome series, the reminders, the code at checkout, the chatbot and the price changes. It stays for weeks, works at any number of companies and keeps each email and page as it arrived. It has no view of a shop floor and brings no human judgement of tone.',
+      text: 'An AI agent hired as a customer covers the digital side over time: the sign up, the welcome series, the reminders, the code at checkout, the chatbot and the price changes. It stays for weeks, works at any number of companies and keeps each email and page as it arrived. It has no view of a shop floor and brings no human judgement of tone.',
     },
     {
       kind: 'p',
       text: 'AI mystery shopper services sit between the two. [S-PRO’s suite](' +
         SPRO +
-        ') runs autonomous shopper agents across public and private customer journeys and backs each score with a transcript, a screenshot and a timestamp. Its page lists no price and doesn’t say how long its test identities are kept.',
+        ') runs autonomous shopper agents across public and private customer journeys and backs each score with a transcript, a screenshot and a timestamp. Its page lists no price and doesn’t say how long its test identities are kept. [AI mystery shopping tools compared](/blog/best-ai-mystery-shopping-tools) sets out the other services.',
     },
     {
       kind: 'p',
-      text: 'A store with branches often needs both: people for the shop floor and the phone call, AI customers for everything that arrives afterwards.',
+      text: 'A store with branches often needs both: people for the shop floor and the phone call, AI agents for everything that arrives afterwards.',
     },
 
-    { kind: 'h2', id: 'options', text: 'AI customers vs the other options', compare: true },
+    { kind: 'h2', id: 'options', text: 'AI agents vs the other options', compare: true },
     {
       kind: 'p',
       text: 'We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
@@ -222,10 +222,10 @@ export const post: BlogPost = {
           'Scored journeys at services with branches',
         ],
         [
-          'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking), [Prospect intelligence](/blueprints/prospect-intelligence)',
-          'What any company shows only to customers, for months: every email, offer and price, dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
+          'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking), [Prospect intelligence](/blueprints/prospect-intelligence), [Email](/email), [Browser](/browser)',
+          'A persona per company with its own inbox, number and browser, keeping every email, offer and price for months, dated',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment, at any CAPTCHA and at any identity check',
           'What a real customer gets at any company, for months',
         ],
       ],
@@ -259,7 +259,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'A hiring brief for AI customers, filled in for an invented store',
+      caption: 'A hiring brief for an AI agent as a customer, filled in for an invented store',
       cols: ['Field', 'What to write', 'Example: ashgrove.example'],
       rows: [
         ['The job', '1 question only a customer can answer', 'Does the basket reminder arrive on time?'],
@@ -267,7 +267,7 @@ export const post: BlogPost = {
         ['Journeys', 'What the customer does', 'Sign up, leave a basket, use the code'],
         ['Pass marks', 'What arrives, by when, with what', 'Reminder within 2 hours, with the product'],
         ['Cadence', 'How often, and which changes trigger a run', 'Daily, and after every theme or flow edit'],
-        ['Hand over', 'What the hire needs from you', 'Domains, pass marks, a funded card for orders'],
+        ['Hand over', 'What the hire needs from you', 'Domains, pass marks, your own card for orders'],
         ['Results go to', 'Where the team already works', 'The store checks channel in Slack'],
         ['Owner of each fail', '1 named person per journey', 'Email lead for flows, ecommerce lead for codes'],
         ['Review', 'A date to judge the hire', '30 days after the first run'],
@@ -275,15 +275,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Hand over more than a list of names: the pass marks, the questions customers ask your chatbot and the policy pages that answer them, your release dates and code freeze, the client’s OK for any client store, a funded card if a job needs a real order, and the test addresses to leave out of your reporting.',
+      text: 'Hand over more than a list of names: the pass marks, the questions customers ask your chatbot and the policy pages that answer them, your release dates and code freeze, the client’s OK for any client store, your own payment card if a job needs a real order, and the test addresses to leave out of your reporting.',
     },
     {
       kind: 'p',
-      text: 'Obsession keeps what any company you name shows only to its customers, every email, offer and price dated with its proof, for as long as you follow the company.',
+      text: 'Obsession runs this brief as a blueprint. Mystery shopping, competitor tracking and prospect intelligence each send a persona per company and land every email, text and page in one event log, dated, for as long as you keep them running.',
     },
     {
       kind: 'cta',
-      text: 'See what the hire returns: a real UK skincare store’s record from September 2026, every email and screenshot dated, and a £40 basket left at 02:57 that got no reminder.',
+      text: 'See what the hire returns: a real run at a UK skincare store in September 2026, every email and screenshot dated, and a £40 basket left at 02:57 that got no reminder.',
       to: '/sample-output',
       label: 'See sample data',
     },
@@ -333,21 +333,21 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Priced per visit at T-ROC’s $40 to $65 for a basic retail shop, the same 120 checks a month would cost $4,800 to $7,800 and need about 4 to 7 faults a year to break even. For the yearly cost of AI customers, use a quote, or the retail cost of running your own from [AI customers at scale](/blog/ai-customers-at-scale).',
+      text: 'Priced per visit at T-ROC’s $40 to $65 for a basic retail shop, the same 120 checks a month would cost $4,800 to $7,800 and need about 4 to 7 faults a year to break even. On Obsession, the yearly cost is the pieces the personas use: a waiting persona is free, an inbox is $0.50 a month and a browser hour $0.10, on the Free plan or $20, $99 or $499 a month. [AI agent cost per month](/blog/ai-customers-at-scale) works through each line.',
     },
     {
       kind: 'p',
       text: 'Hours become the limit as the job grows. An agency checking 4 journeys a week at 20 client stores needs about 86 hours a month by hand, or $3,257 at the same wage. For an agency, the value in line 1 is a retainer: 1 client kept for a year at the $3,000 to $10,000 a month or more in Darkroom’s guide is worth $36,000 to $120,000.',
     },
 
-    { kind: 'h2', id: 'when-not', text: 'When not to hire AI customers' },
+    { kind: 'h2', id: 'when-not', text: 'When not to hire an AI agent as a customer' },
     {
       kind: 'list',
       items: [
         '**A business that rarely changes,** runs no paid traffic and has few competitors. A new address, a phone and a sheet once a month cover it.',
         '**Service in person.** A human mystery shopper judges a shop floor, a phone call and the staff.',
         '**Uptime of your own pages at every hour.** Synthetic monitoring alerts within minutes when a scripted path fails.',
-        '**Last year’s competitor campaigns.** An AI customer holds what arrives from the day it joins, so earlier mail needs an archive that already covered the brand.',
+        '**Last year’s competitor campaigns.** An AI agent holds what arrives from the day it joins, so earlier mail needs an archive that already covered the brand.',
         '**A single lookup.** An AI browser agent answers it in 1 session.',
         '**A strategy reset.** An agency audit reads the setup from inside the account and brings a plan.',
       ],
@@ -359,39 +359,41 @@ export const post: BlogPost = {
       items: [
         '**A new customer sees what new customers get.** Long standing subscribers and past buyers may receive other emails.',
         '**It reports what arrived, and not why.** The cause of a missing email sits in the company’s own tools.',
-        '**It stops at a bot wall or a CAPTCHA,** and names the step it couldn’t test.',
+        '**It never gets round a bot wall or a CAPTCHA,** and the event log names the step where it stopped.',
+        '**It stops at any identity check and before payment,** unless you give it your own card, and it never uses fake payment details.',
+        '**It says it’s an AI** whenever it talks to a person.',
         '**Client stores need the client’s OK.** Competitors and prospects get only the public sign up any customer can use. This is not legal advice.',
       ],
     },
     {
       kind: 'cta',
-      text: 'The emails and texts your store and your competitors send after a sign-up, a basket and a checkout, each dated, so a broken code or a silent basket shows up the day it happens.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Mystery shopping: personas sign up, fill a basket and stop before payment at your store and your competitors’, and every email and text lands in your event log, dated, so a broken code or a silent basket shows up the day it happens.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
-    { kind: 'h2', id: 'questions', text: 'Questions about hiring AI customers' },
+    { kind: 'h2', id: 'questions', text: 'Questions about hiring an AI agent as a customer' },
     {
       kind: 'faq',
       items: [
         {
           q: 'What does it mean to hire an AI agent?',
-          a: 'It means giving an AI agent 1 defined job, the access it needs, a standard to meet and a schedule, and judging it on results. AI customers are AI agents hired for 1 job: being a customer of a company and keeping what it sends.',
+          a: 'It means giving an AI agent 1 defined job, the access it needs, a standard to meet and a schedule, and judging it on results. An AI agent hired as a customer has 1 job: being a customer of a company and keeping what it sends.',
         },
         {
-          q: 'Can AI customers replace mystery shoppers?',
-          a: 'For digital journeys that run over days and weeks, AI customers cover what a single visit can’t. For service in person, tone and the shop floor, a human mystery shopper is the right hire.',
+          q: 'Can an AI agent replace a mystery shopper?',
+          a: 'For digital journeys that run over days and weeks, an AI agent covers what a single visit can’t. For service in person, tone and the shop floor, a human mystery shopper is the right hire.',
         },
         {
           q: 'How much does a mystery shopper cost?',
           a: 'T-ROC’s 2026 guide puts an institutional quality shop at $50 to $200 and a basic 15 minute retail shop at $40 to $65. Secret View lists €29.99 to €49.99 per shopper, before shop credit.',
         },
         {
-          q: 'What should a brief for AI customers include?',
+          q: 'What should the brief for an AI agent include?',
           a: 'The job, the companies, the journeys, a written pass mark for each, the cadence, where results go, who owns each fail and a date to review the hire.',
         },
         {
-          q: 'How often should AI customers check?',
+          q: 'How often should the agent check?',
           a: 'Daily for journeys that earn money and change often, and again after every change to a theme, app, flow, price or chatbot. Weekly suits a store that changes rarely.',
         },
         {
@@ -399,7 +401,7 @@ export const post: BlogPost = {
           a: 'For 1 to 3 companies checked once a month, a new address, a phone and a sheet cover the job.',
         },
         {
-          q: 'Do I need permission to use AI customers on a client’s store?',
+          q: 'Do I need permission to send an AI agent to a client’s store?',
           a: 'Get the client’s OK before checking its store. For competitors and prospects, use only the public sign up any customer can use, and take legal advice for your own case.',
         },
       ],

@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Prospect intelligence (/recipes/prospect-intelligence; /recipes/prospect-research redirects here). Watch other
+/* Prospect intelligence (/blueprints/prospect-intelligence; /recipes/prospect-research redirects here). Watch other
    companies. Screen: pack. Home's tile calls it "Agency prospect audits".
    The persona version (20 Nov 2026): a persona the reader defines signs up, opts in to texts and asks the chat at every
    company on their list, waits, and brings back what each prospect sent, or never sent, to open a pitch with. It works
@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'prospect',
   slug: 'prospect-intelligence',
   name: 'Prospect intelligence',
-  group: 'Watch other companies',
+  group: 'Watch the market',
   line: 'A persona signs up at each prospect and brings back what they send, for your pitch.',
   gets: 'A finding and an event log link on every row, back in Clay, your CRM or a sheet.',
   kit: [
@@ -47,7 +47,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-prospect-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'prospect',
     },
   },
@@ -135,12 +135,12 @@ export const recipe: Recipe = {
     { k: 'What counts', v: 'For example: no text within 14 days, no welcome email within an hour' },
     { k: 'Persona', v: 'Subscriber, trial user or buyer, in each prospect’s country' },
     { k: 'How long', v: '7, 14 or 30 days, then again on a schedule' },
-    { k: 'Afterwards', v: 'Stop, or keep reading and hear when a gap closes' },
+    { k: 'When the window ends', v: 'Stop, or read again on a schedule and hear when a gap closes' },
     { k: 'Companies', v: 'A Clay table, a sheet, a CSV or the API' },
   ],
 
   faq: {
-    heading: 'Every finding stands up on its own, with a record the prospect can open.',
+    heading: 'Every finding stands up on its own, with a link the prospect can open.',
     items: [
       {
         q: 'What is prospect intelligence?',
@@ -153,10 +153,12 @@ export const recipe: Recipe = {
       {
         q: 'Does Prospect intelligence work with Clay and Google Sheets?',
         a: 'Yes. Prospect intelligence reads the companies from your table and writes the finding, the date and the event log link back as new columns on the same rows.',
+        link: { label: 'See how it works with Clay', to: '/use-cases/prospect-intelligence-with-clay' },
       },
       {
         q: 'Does Prospect intelligence contact their staff?',
         a: 'Only if you set it to. Prospect intelligence’s persona signs up, opts in and asks the site’s chat, and says it’s an AI when it talks to a person. Who asked is never shown.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'How do I know a gap is real?',
@@ -170,17 +172,23 @@ export const recipe: Recipe = {
         q: 'How many prospects can Prospect intelligence cover?',
         a: 'Prospect intelligence covers every company on your list at once, with a persona at each. Run one, or a fleet of thousands.',
       },
+      {
+        q: 'What does Prospect intelligence cost?',
+        a: 'It’s billed on the pieces it uses, at list rates: an inbox, a number and browser hours for each prospect’s persona. The month grows with the rows on your list and the steps you choose at each company.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
+      },
     ],
   },
 
   final: {
     heading: 'Write only to the prospects with the gap you fix.',
-    sub: 'Bring your list. We’ll set up the first personas with you.',
+    sub: 'Try it on the Free plan with the first rows of your list.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-prospect-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'prospect',
     },
+    link: { label: 'More blueprints to watch the market', to: '/blueprints/watch-the-market' },
   },
 }

@@ -2,7 +2,8 @@ import type { ReferencePage } from '../reference'
 import { ENTITY } from '../site'
 
 /* /compare/obsession-vs-panoramata. Every Panoramata fact is from its own pages, read 11 Nov 2026
-   (_research/seo/pagetypes-11nov/research/email_intel.json; the home page and pricing re-read the same day). */
+   (_research/seo/pagetypes-11nov/research/email_intel.json; the home page and pricing re-read the same day; pricing
+   re-read 22 Nov 2026, unchanged). Obsession's side (22 Nov): the toolkit, then the Competitor tracking blueprint. */
 
 const PANO = 'https://www.panoramata.co/'
 const PANO_PRICING = 'https://www.panoramata.co/pricing'
@@ -13,14 +14,14 @@ export const ref: ReferencePage = {
   kind: 'compare',
   name: 'Obsession vs Panoramata',
   company: 'Panoramata',
-  line: 'Panoramata tracks competitors’ campaigns across channels. Obsession keeps what any company shows signed-up customers.',
+  line: 'Panoramata tracks the competitors on your plan across channels. Obsession signs a persona up at any competitor you name.',
   meta: {
     path: '/compare/obsession-vs-panoramata',
-    title: 'Obsession vs Panoramata: competitor campaigns and beyond',
+    title: 'Obsession vs Panoramata (2026): a library or your own list',
     description:
-      'Obsession vs Panoramata: Panoramata tracks competitors’ newsletters, flows, ads and SMS; Obsession keeps what any company shows its customers, by API.',
+      'Obsession vs Panoramata: Panoramata tracks competitors’ emails, flows, ads and SMS from $99 a month. Obsession’s personas sign up and keep what they get.',
     answer:
-      'In Obsession vs Panoramata, Panoramata tracks competitors’ campaigns across channels and Obsession keeps what any company you name shows only to signed-up customers. Panoramata covers newsletters, flows, ads, landing pages, SMS and socials, from $99 a month for 20 competitors; Obsession keeps every email and text beside member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Panoramata suits a marketing team watching campaigns; Obsession suits teams and AI agents that need the whole customer side in their own tools.',
+      'Panoramata tracks competitors’ newsletters, flows, ads, landing pages, SMS and socials, from $99 a month for 20 competitors. Obsession is the toolkit for AI agents, and its Competitor tracking blueprint puts a persona at each competitor you name. Panoramata suits a marketing team watching campaigns on one screen. Obsession suits teams that want every email, text, offer and member price dated in their own tools.',
     ogImage: '/og/compare-obsession-vs-panoramata.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -28,12 +29,12 @@ export const ref: ReferencePage = {
       { name: 'Obsession vs Panoramata', path: '/compare/obsession-vs-panoramata' },
     ],
   },
-  title: 'Obsession vs Panoramata: competitor campaigns beside what companies show only to customers',
-  dek: 'Panoramata puts competitors’ campaigns across channels in one place. Obsession goes past the campaign to the prices, limits and offers a company shows signed-up customers.',
+  title: 'Obsession vs Panoramata: competitors’ campaigns, or a persona at each competitor',
+  dek: 'Panoramata puts competitors’ campaigns across channels in one place. Obsession signs a persona up at each competitor and keeps the emails, offers and prices it’s shown.',
   primaryKeyword: 'obsession vs panoramata',
   keywords: ['panoramata vs obsession', 'panoramata pricing', 'competitor email tracking', 'competitor sms tracking'],
   checked: '2026-11-11',
-  readingMinutes: 6,
+  readingMinutes: 5,
   reader: 'marketing',
   art: {
     kind: 'report',
@@ -60,17 +61,18 @@ export const ref: ReferencePage = {
       kind: 'p',
       text: `[Its pricing page](${PANO_PRICING}) lists Startup at $99 a month for 20 competitors, 6 months of history and email and ad libraries; Professional at $179 a month with unlimited competitors and history and SMS, landing page and flow libraries; Advanced at $399 a month; and Enterprise priced individually. It says “Panoramata MCP is included in all plans”. Its pages don’t describe member or signed-in prices, trial limits, quotes behind forms or cancel flows.`,
     },
-    { kind: 'h3', id: 'obsession', text: 'Obsession: the whole customer side of any company' },
+    { kind: 'h3', id: 'obsession', text: 'Obsession: a persona at each competitor' },
+    { kind: 'p', text: ENTITY },
     {
       kind: 'p',
-      text: `${ENTITY} The campaign is one part of it: the same record holds the price a signed-in customer pays, what the free plan allows and the offer someone gets when they try to leave, kept for as long as you follow the company.`,
+      text: 'For this job, teams pick the [Competitor tracking blueprint](/blueprints/competitor-tracking). A persona, an AI agent with its own inbox and number under one name, signs up at each competitor you name and keeps the account open. Every email, text, offer and price it’s sent lands in your event log, dated, with a screenshot. The [Ad tracking blueprint](/blueprints/ad-tracking) follows each public ad to its page, price and code.',
     },
 
     { kind: 'h2', id: 'at-a-glance', text: 'Panoramata and Obsession at a glance', compare: true },
     {
       kind: 'table',
       compare: true,
-      caption: 'Panoramata’s row is from its own pages, read 11 November 2026. Obsession’s row is from [Home](/) and [the developer page](/developers).',
+      caption: 'Panoramata’s row is from its own pages, read 11 November 2026. Obsession’s row is from [the blueprint page](/blueprints/competitor-tracking) and [pricing](/pricing).',
       cols: ['Option', 'What it holds', 'How it’s read', 'Freshness and history', 'Price as listed', 'Best for'],
       rows: [
         [
@@ -82,11 +84,11 @@ export const ref: ReferencePage = {
           'Marketing teams watching campaigns',
         ],
         [
-          'Obsession (ours): Search, Insights, Watch, API and MCP',
-          'Emails, texts, member prices, trial limits, cancel offers',
-          '5 verbs over MCP, the API and SDKs, or a table',
-          'Kept from the first sign-up\nEach fact dated with its screenshot',
-          'Early access, onboarding teams now\nPriced per call or per company watched',
+          'Obsession (ours): Competitor tracking, Email and SMS tracking and Ad tracking blueprints',
+          'Emails, texts, offers and member prices a persona is sent',
+          'Slack, a sheet, your CRM, or the API and MCP',
+          'Each event as it lands\nDated in your event log',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'The whole customer side, in your tools',
         ],
       ],
@@ -97,19 +99,25 @@ export const ref: ReferencePage = {
       kind: 'list',
       items: [
         '**Use Panoramata** for a marketing team that wants competitors’ campaigns on one screen: what they emailed, texted, advertised and launched this week, with alerts and a swipe file of examples.',
-        '**Use Obsession** when the question goes past the campaign: what a signed-in [member price](/glossary/member-price) is, where a free plan stops and the [upgrade prompt](/glossary/upgrade-prompt) appears, what a quote form gives one customer profile, and the [save offer](/glossary/save-offer) in the cancel flow. Those sit behind the [login wall](/glossary/login-wall), next to the emails.',
-        '**Use Obsession when an agent or a table needs the facts.** Each fact arrives over the API, MCP, a webhook or a Clay column, with its receipt: the raw email with its sender checked, or the page as captured.',
+        '**Use Obsession** when the question goes past the campaign: the signed-in [member price](/glossary/member-price), where a free plan stops and the [upgrade prompt](/glossary/upgrade-prompt) appears, and the [save offer](/glossary/save-offer) in the cancel flow. A persona sees each one behind the [login wall](/glossary/login-wall), next to the emails.',
+        '**Use Obsession when an agent or a table needs the facts.** Each event reaches your agent over MCP (the standard way AI agents call tools), a webhook or a sheet, with its screenshot or the original email.',
       ],
+    },
+    {
+      kind: 'cta',
+      text: 'A persona at each competitor, every email, offer and price dated.',
+      to: '/blueprints/competitor-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'together', text: 'Using Panoramata and Obsession together' },
     {
       kind: 'p',
-      text: 'A marketing team can keep Panoramata for the weekly campaign view and add Obsession for the questions its dashboard doesn’t answer: what a competitor charges members, what its trial allows and what it offers a cancelling customer. An agency can use both on a pitch: the campaigns from one, the prospect’s own emails and checkout offers from the other, each dated.',
+      text: 'A marketing team can keep Panoramata for the weekly campaign view and add Obsession for what its dashboard doesn’t show. That means what a competitor charges members, what its trial allows and what it offers a customer who cancels. An agency can use both on a pitch, with the campaigns from one and the prospect’s own emails and checkout offers from the other, each dated.',
     },
     {
       kind: 'p',
-      text: 'For every option in the same lane, see [Panoramata alternatives by job](/alternatives/panoramata) and [Obsession vs MailCharts](/compare/obsession-vs-mailcharts). For ad tools side by side, see [competitor ad tracking](/blog/competitor-ad-tracking-tools) tools compared by job. One store’s whole record is in [the sample data](/sample-output).',
+      text: 'For every option in the same lane, see [Panoramata alternatives by job](/alternatives/panoramata) and [Obsession vs MailCharts](/compare/obsession-vs-mailcharts). For ad tools side by side, see [competitor ad tracking](/blog/competitor-ad-tracking-tools) tools compared by job. A real run at a UK skincare store, every event dated, is in [the sample data](/sample-output).',
     },
 
     {
@@ -121,15 +129,15 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Does Panoramata have an MCP server?',
-          a: 'Yes. Its pricing page says Panoramata MCP is included in all plans. Obsession runs its 5 verbs over MCP, the API and SDKs, and also lands facts in Clay, Google Sheets or a webhook.',
+          a: 'Yes. Its pricing page says Panoramata MCP is included in all plans. Obsession connects to your agent over MCP too, with one API for every piece and blueprint, and sends results to Slack, Google Sheets or a webhook.',
         },
         {
           q: 'Does Panoramata show member prices or trial limits?',
-          a: 'Its pages don’t describe them. Obsession keeps the price a signed-in customer sees beside the public one, a free plan’s limits and when the upgrade prompt appears, each dated with a screenshot.',
+          a: 'Its pages don’t describe them. Obsession’s Competitor tracking blueprint keeps the price a signed-in persona sees beside the public one, and the Trial teardown blueprint keeps a free plan’s limits and when the upgrade prompt appears, each dated with a screenshot.',
         },
         {
           q: 'Which is better for an agency?',
-          a: 'Panoramata’s Advanced plan is aimed at agencies and companies with 10 or more markets to monitor. Obsession suits agencies that open pitches with a prospect’s own emails and checkout offers, for any brand they name, delivered into their own tools.',
+          a: 'Panoramata’s Advanced plan is aimed at agencies and companies with 10 or more markets to monitor. Obsession suits agencies that open pitches with a prospect’s own emails and checkout offers. They pick a blueprint, name the brands, and results land in their own tools.',
           link: { label: 'Obsession for agencies', to: '/agencies' },
         },
       ],
@@ -153,8 +161,10 @@ export const ref: ReferencePage = {
     'ecommerce-competitive-intelligence',
     'how-to-see-competitor-ads',
     'competitor-ad-tracking-tools',
+    'recipe:competitor-tracking',
     'recipe:email-sms-tracking',
     'recipe:ad-tracking',
+    '/personas',
     '/agencies',
     '/sample-output',
   ],

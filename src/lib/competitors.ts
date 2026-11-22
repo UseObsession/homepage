@@ -4,6 +4,8 @@
    named at all (Seun, the same day), and the blog gate fails a post that names it. Add a product's host here when a
    post first compares it. */
 const COMPETITOR_HOSTS = new Set([
+  // The pieces' neighbours (the bundle and piece comparisons, 22 Nov 2026)
+  'agentmail.to', 'agentphone.ai', 'twilio.com', 'browserbase.com', 'e2b.dev', 'goodcall.com', 'smith.ai', 'ruby.com',
   // AI mystery shopping and store checks
   'adstack.com', 'aistoreshopper.com', 'competitive-compass.com', 'convertica.org', 'cresta.com', 'customeroptix.com',
   'dealerdrivendata.com', 'gen.qa', 'implementai.io', 'intouchinsight.com', 'liveperson.com', 'localspyai.com',

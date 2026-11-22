@@ -7,7 +7,8 @@ import type { BlogPost } from './types'
    business answers for an AI agent even when a vendor supplies it, and EU AI Act Article 50, which applies from 2 Aug 2026.
    Thought leadership, not a review: the full by hand method is given free, with one scoring sheet (pass, wrong, made up, no
    handoff). Obsession appears only where testing by hand stops and in the 2 cta blocks (Request early access since 11 Nov 2026), as the site's own pages state it
-   (the support bot check page is an example run: no real result is claimed).
+   (the support bot check page is an example run: no real result is claimed). 22 Nov 2026: the blueprint buttons and
+   the toolkit lines replace early access and the index.
    Read at the source on 23 Oct 2026: the CMA guidance, the AI Act service desk (Articles 50 and 113), Gorgias docs (test
    conversations, how AI Agent works, intro), Tidio's own llm-info page, Shopify's Inbox listing and help pages (instant answers,
    discount combinations), Fin's testing guide, Adobe's forecast, and the Obsession recipe and verify pages. Moffatt v Air Canada:
@@ -57,9 +58,9 @@ export const post: BlogPost = {
     'chatbot return policy',
     'is my company liable for chatbot',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   order: 4,
   authors: [
@@ -139,7 +140,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'vendor-tools', text: 'AI customer service agent testing in Gorgias, Tidio, Fin and Shopify Inbox', compare: true },
     {
       kind: 'p',
-      text: 'Gorgias, Tidio and Fin each document a way to test a chatbot before customers use it, and each lets you check a draft before it goes live. We make Obsession, so every other option is described from its provider’s own pages as of 23 October 2026. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Gorgias, Tidio and Fin each document a way to test a chatbot before customers use it, and each lets you check a draft before it goes live. We make Obsession, so every other option is described from its provider’s own pages as of 23 October 2026. Obsession is the toolkit for AI agents, through one API and one bill, and its support bot check blueprint tests a live chatbot as a customer.',
     },
     {
       kind: 'p',
@@ -169,7 +170,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'These tools test the chatbot as you set it up. A test on the live site covers 4 things they leave out.',
+      text: 'These tools test the chatbot as you set it up. A test on the live site covers 4 checks they leave out.',
     },
     {
       kind: 'list',
@@ -182,7 +183,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Use the vendor’s test panel before a change goes live, and test the live chatbot as a customer after it does. To test the live chatbot every day on every channel, with each answer kept and dated, use Obsession. Its agent asks what your customers ask and says it’s an AI when it talks to a person, which is the way of collecting the term [AI customers](/blog/ai-customers) names.',
+      text: 'Use the vendor’s test panel before a change goes live, and test the live chatbot as a customer after it does. To test the live chatbot every day on every channel, with each answer kept and dated, pick Obsession’s [support bot check](/blueprints/support-bot-check) blueprint. A persona, an AI agent with its own inbox, number and browser under one name, asks what your customers ask and says it’s an AI when it talks to a person. Every answer lands in your event log beside the policy line it should match.',
     },
 
     { kind: 'h2', id: 'how-to-test', text: 'How to test a chatbot as a customer' },
@@ -311,9 +312,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What your store’s chatbot tells customers on each channel, word for word. Every answer is kept as a dated transcript beside the policy page it should match, with every test agreed with your vendor first.',
-      to: '/verify',
-      label: 'Request early access',
+      text: 'Support bot check: a persona asks your store’s chatbot what customers ask on each channel, and every answer lands in your event log as a dated transcript beside the policy page it should match.',
+      to: '/blueprints/support-bot-check',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'for-agencies', text: 'Running the test for client stores' },
@@ -327,9 +328,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Every email and text your store sends a new customer after a sign-up, a basket and a checkout, each with the time it arrived, and the ones that never come.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Mystery shopping: personas sign up, fill a basket and stop before payment at your store or a client’s, and every email and text lands in your event log with the time it arrived, beside the ones that never come.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

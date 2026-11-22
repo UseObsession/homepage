@@ -217,7 +217,15 @@ export function Faq({ items }: { items: QA[] }) {
             </button>
           </h3>
           <div className="faq-a">
-            <p>{item.a}</p>
+            <p>
+              {item.a}
+              {item.link && (
+                <>
+                  <br />
+                  <Link to={item.link.to}>{item.link.label} →</Link>
+                </>
+              )}
+            </p>
           </div>
         </div>
       ))}
@@ -225,15 +233,35 @@ export function Faq({ items }: { items: QA[] }) {
   )
 }
 
-/* withCompany asks for the company to watch before the email. Worked examples ask for the email only. */
-export function FinalCta({ title, line, source, withCompany = true }: { title: string; line: string; source: string; withCompany?: boolean }) {
+/* withCompany asks for the company to watch before the email. Worked examples ask for the email only. `button` and
+   `link` are the content file's (final.capture.button, final.link). */
+export function FinalCta({
+  title,
+  line,
+  source,
+  withCompany = true,
+  button,
+  link,
+}: {
+  title: string
+  line: string
+  source: string
+  withCompany?: boolean
+  button?: string
+  link?: { label: string; to: string }
+}) {
   return (
     <section className="section final" id="join">
       <div className="wrap">
         <Reveal className="final-in">
           <h2 className="h1 final-h">{title}</h2>
           <p className="lede">{line}</p>
-          <WaitlistForm source={source} withCompany={withCompany} />
+          <WaitlistForm source={source} withCompany={withCompany} button={button} />
+          {link && (
+            <Link className="btn-2" to={link.to}>
+              {link.label} →
+            </Link>
+          )}
         </Reveal>
       </div>
     </section>

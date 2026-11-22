@@ -1,0 +1,187 @@
+/* The scene (KitScene.tsx): a window of the product in the app screens' language (screens/templates.tsx), on the design
+   system's tokens. Two beats, to the camera bar: the steps light in turn while the log fills, then the camera leans in on
+   the finding, the other rows dim and the note draws. At rest (no script, reduced motion, after the beats) it is the
+   finished second beat. Nothing hides before the page's script arms the figure. */
+
+.k-scene { margin: 0; display: grid; gap: var(--ob-space-16); text-align: left; }
+
+.k-win {
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-xl);
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(var(--ob-tint-rgb), 0.07), transparent 62%),
+    var(--ob-surface);
+  box-shadow: var(--ob-shadow-3);
+  overflow: hidden;
+}
+
+/* ---- The bar: dots, breadcrumb, search ---- */
+.k-win__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-16);
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border-bottom: var(--ob-border-hair) solid var(--ob-line);
+}
+.k-win__dots { display: inline-flex; gap: 6px; }
+.k-win__dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--ob-line-strong); }
+.k-win__crumb { display: inline-flex; gap: var(--ob-space-8); font: var(--ob-type-small); color: var(--ob-text-2); min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.k-win__crumb b { font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.k-win__crumb span { color: var(--ob-text-3); }
+.k-win__search {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  padding: var(--ob-space-6) var(--ob-space-8) var(--ob-space-6) var(--ob-space-12);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-md);
+  font: var(--ob-type-small);
+  color: var(--ob-text-3);
+  white-space: nowrap;
+}
+.k-win__search svg { width: 14px; height: 14px; }
+.k-win__kbd { font: var(--ob-type-label-mono); padding: 1px var(--ob-space-6); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-xs); }
+
+/* ---- The body: the kit's steps beside the event log ---- */
+.k-win__body { display: grid; grid-template-columns: 236px minmax(0, 1fr); min-height: 320px; }
+.k-win__side {
+  list-style: none;
+  margin: 0;
+  padding: var(--ob-space-16) var(--ob-space-12);
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-4);
+  border-right: var(--ob-border-hair) solid var(--ob-line);
+}
+.k-win__step {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ob-space-12);
+  padding: var(--ob-space-8);
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text-2);
+}
+.k-win__ic { display: grid; place-items: center; width: 30px; height: 30px; border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-sm); background: var(--ob-bg); color: var(--ob-text-2); }
+.k-win__ic svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.k-win__step-text { display: grid; gap: 2px; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); text-wrap: balance; }
+.k-win__num { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); }
+
+.k-win__main { display: grid; grid-template-rows: auto auto auto 1fr auto; min-width: 0; padding: var(--ob-space-16) var(--ob-space-20); gap: var(--ob-space-8); }
+.k-win__head { display: flex; align-items: center; flex-wrap: wrap; gap: var(--ob-space-8) var(--ob-space-12); }
+.k-win__who { display: inline-flex; align-items: center; gap: var(--ob-space-8); font: var(--ob-type-small); color: var(--ob-text); }
+.k-win__live { width: 8px; height: 8px; border-radius: 50%; background: var(--ob-success); box-shadow: 0 0 0 3px var(--ob-success-bg); }
+.k-win__tag { margin-left: auto; font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); padding: 2px var(--ob-space-8); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-pill); }
+.k-win__tag--real { color: var(--ob-success); border-color: var(--ob-success-bg); }
+.k-win__titlebar { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: var(--ob-space-4) var(--ob-space-12); margin-top: var(--ob-space-8); }
+.k-win__title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.k-win__fleet { display: inline-flex; align-items: center; gap: var(--ob-space-6); margin: 0; font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-2); font-variant-numeric: tabular-nums; }
+.k-win__fleet svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.3; opacity: 0.8; }
+
+.k-win__rows { list-style: none; margin: 0; padding: 0; align-self: start; border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-lg); background: var(--ob-bg-sunken, var(--ob-bg)); overflow: hidden; }
+.k-win__row { display: grid; grid-template-columns: 7rem 9.5rem minmax(0, 1fr); align-items: baseline; gap: var(--ob-space-12); padding: var(--ob-space-8) var(--ob-space-12); }
+.k-win__row + .k-win__row { border-top: var(--ob-border-hair) solid var(--ob-line-subtle, var(--ob-line)); }
+.k-win__at { font: var(--ob-type-mono-sm); letter-spacing: var(--ob-type-mono-sm-tracking); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+.k-win__kind { justify-self: start; font: var(--ob-type-mono-sm); letter-spacing: var(--ob-type-mono-sm-tracking); color: var(--ob-text-2); padding: 1px var(--ob-space-6); border-radius: var(--ob-radius-xs); background: rgba(var(--ob-tint-rgb), 0.06); white-space: nowrap; }
+.k-win__text { font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text); text-wrap: pretty; }
+.k-win__row--ok .k-win__kind { color: var(--ob-success); background: var(--ob-success-bg); }
+.k-win__row--fail .k-win__kind { color: var(--ob-danger); background: var(--ob-danger-bg); }
+.k-win__row--fail .k-win__text { color: var(--ob-danger); }
+
+.k-win__status { position: relative; display: flex; align-items: center; gap: var(--ob-space-12); margin-top: var(--ob-space-8); padding: var(--ob-space-8) var(--ob-space-8) var(--ob-space-8) var(--ob-space-12); border-radius: var(--ob-radius-md); background: rgba(var(--ob-tint-rgb), 0.04); font: var(--ob-type-small); color: var(--ob-text-2); overflow: hidden; }
+.k-win__state { flex: none; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--ob-line-strong); border-top-color: var(--ob-text); }
+.k-scene.is-found .k-win__state { border: 0; background: var(--k-tone); box-shadow: 0 0 0 3px var(--k-tone-bg); scale: 0.72; }
+.k-win__pips { margin-left: auto; display: inline-flex; gap: 4px; }
+.k-win__pips i { width: 8px; height: 8px; border-radius: 2px; background: var(--ob-text); }
+.k-win__prog { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--ob-text-2); transform-origin: left center; opacity: 0.6; }
+
+/* Replay: the reader's control, quiet until hovered or focused. */
+.k-win__replay {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  padding: var(--ob-space-4) var(--ob-space-8);
+  border: 0;
+  border-radius: var(--ob-radius-sm);
+  background: transparent;
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset;
+  font: var(--ob-type-label-mono);
+  letter-spacing: var(--ob-type-label-mono-tracking);
+  color: var(--ob-text-3);
+  cursor: pointer;
+  transition: color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out), translate var(--ob-dur-base) var(--ob-ease-out);
+}
+.k-win__replay svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: rotate var(--ob-dur-slow, 0.5s) var(--ob-ease-out); }
+.k-win__replay:hover { color: var(--ob-text); background: rgba(var(--ob-tint-rgb), 0.06); translate: 0 -1px; }
+.k-win__replay:hover svg { rotate: -40deg; }
+.k-win__replay:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; color: var(--ob-text); }
+.k-ring { position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 1.5px var(--ob-text) inset; opacity: 0; pointer-events: none; }
+
+/* Beat 2: the finding lit in its tone, the other rows set back, the note drawn under the log. */
+.k-scene { --k-tone: var(--ob-success); --k-tone-bg: var(--ob-success-bg); }
+.k-scene[data-tone='fail'] { --k-tone: var(--ob-danger); --k-tone-bg: var(--ob-danger-bg); }
+.k-win__rows { transform-origin: 50% calc((var(--f) + 0.5) / var(--n) * 100%); transition: transform 900ms var(--ob-ease-out); }
+.k-win__row { transition: opacity var(--ob-dur-slow, 0.5s) var(--ob-ease-out), background-color var(--ob-dur-slow, 0.5s) var(--ob-ease-out), box-shadow var(--ob-dur-slow, 0.5s) var(--ob-ease-out); }
+.k-scene.is-found .k-win__row:not(.is-found) { opacity: 0.55; }
+.k-scene.is-found .k-win__row.is-found { background: color-mix(in srgb, var(--k-tone-bg) 70%, transparent); box-shadow: inset 2px 0 0 var(--k-tone); }
+.k-win__note { display: flex; align-items: center; gap: var(--ob-space-8); margin: var(--ob-space-4) 0 0; align-self: start; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text); transition: opacity var(--ob-dur-slow, 0.5s) var(--ob-ease-out), translate var(--ob-dur-slow, 0.5s) var(--ob-ease-out); }
+.k-win__note i { flex: none; width: 28px; height: 1px; background: color-mix(in srgb, var(--k-tone) 70%, transparent); }
+.k-win__note span { padding: 4px 10px; border-radius: var(--ob-radius-pill); background: color-mix(in srgb, var(--k-tone) 10%, transparent); box-shadow: 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--k-tone) 30%, transparent) inset; text-wrap: balance; }
+.k-scene:not(.is-found) .k-win__note { opacity: 0; translate: -4px 0; }
+
+.k-scene__cap { font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); text-align: center; text-wrap: balance; }
+
+/* ---- Tablets and phones: the steps sit above the log ---- */
+@media (max-width: 860px) {
+  .k-win__body { grid-template-columns: 1fr; min-height: 0; }
+  .k-win__side { grid-template-columns: repeat(2, minmax(0, 1fr)); border-right: 0; border-bottom: var(--ob-border-hair) solid var(--ob-line); }
+}
+@media (max-width: 600px) {
+  .k-win__search { display: none; }
+  .k-win__side { grid-template-columns: 1fr; padding: var(--ob-space-8); }
+  .k-win__main { padding: var(--ob-space-12); }
+  .k-win__row { grid-template-columns: auto minmax(0, 1fr); gap: var(--ob-space-4) var(--ob-space-12); }
+  .k-win__text { grid-column: 1 / -1; }
+  .k-win__pips { display: none; }
+  .k-win__replay { margin-left: auto; }
+}
+
+/* ---- Motion: beat 1 (steps light in turn, rows land, pips fill), then beat 2 (the lean-in) ---- */
+@keyframes k-rise {
+  from { opacity: 0; translate: 0 var(--ob-shift-sm, 6px); }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes k-step-pass {
+  0% { background-color: transparent; color: var(--ob-text-2); }
+  15%, 75% { background-color: rgba(var(--ob-tint-rgb), 0.08); color: var(--ob-text); }
+  100% { background-color: transparent; color: var(--ob-text-2); }
+}
+@keyframes k-pip {
+  from { opacity: 0.18; }
+  to { opacity: 1; }
+}
+@keyframes k-turn { to { rotate: 360deg; } }
+@keyframes k-prog { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes k-ring { from { opacity: 0.8; transform: scale(1); } to { opacity: 0; transform: scale(1.12); } }
+@media (prefers-reduced-motion: no-preference) {
+  .k-scene[data-armed] .k-win__step,
+  .k-scene[data-armed] .k-win__row,
+  .k-scene[data-armed] .k-win__note { opacity: 0; }
+  .k-scene[data-armed] .k-win__pips i { opacity: 0.18; }
+  .k-scene.is-in .k-win__step {
+    animation:
+      k-rise var(--ob-dur-slow, 0.5s) var(--ob-ease-out) backwards calc(var(--i) * 120ms),
+      k-step-pass calc(var(--n) * 80ms + 400ms) var(--ob-ease-out) both calc(600ms + var(--i) * var(--n) * 80ms);
+  }
+  .k-scene.is-in .k-win__row { animation: k-rise var(--ob-dur-slow, 0.5s) var(--ob-ease-out) backwards calc(600ms + var(--i) * 320ms); }
+  .k-scene.is-in .k-win__pips i { animation: k-pip 0.3s var(--ob-ease-out) backwards calc(700ms + var(--i) * 320ms); }
+  .k-scene.is-in:not(.is-found) .k-win__state { animation: k-turn 2.8s linear infinite; }
+  .k-scene.is-in.is-found .k-win__rows { transform: scale(1.03); }
+  .k-win__prog { animation: k-prog var(--run, 2.5s) linear both; }
+  .k-ring { animation: k-ring 600ms var(--ob-ease-out) both; }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 560px) {
+  .k-scene.is-in.is-found .k-win__rows { transform: none; }
+}

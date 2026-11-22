@@ -45,7 +45,7 @@ export const post: BlogPost = {
   description:
     'Retention agency client reporting a client can check: a weekly log that each flow reached a new customer, the hours it takes, and what it can’t prove.',
   answer:
-    'Retention agency client reporting a client can check is a weekly flow log: each flow’s email, the time it arrived, whether it fired on time, and the dates of any fix. It proves delivery only, and revenue stays in the email platform’s own report. Obsession keeps what each client store sends a new customer every week, every email exactly as it arrived, ready for the log.',
+    'Retention agency client reporting a client can check is a weekly flow log: each flow’s email, the time it arrived, whether it fired on time, and the dates of any fix. It proves delivery only, and revenue stays in the email platform’s own report. Obsession’s mystery shopping blueprint signs up to every client store each week and keeps every email exactly as it arrived, ready for the log.',
   primaryKeyword: 'retention agency client reporting',
   keywords: [
     'retention agency client reporting',
@@ -59,7 +59,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   order: 8,
   authors: [
@@ -254,7 +254,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Across a whole client list, Obsession keeps the same log. A fresh sign-up runs every step again each week, for every client at once, so a flow that stops working shows up that week ([agency access](/lookup#agencies)).',
+      text: 'Across a whole client list, Obsession’s [mystery shopping](/blueprints/mystery-shopper) blueprint fills the same log. A fresh sign-up runs every step again each week, for every client at once, so a flow that stops working shows up that week.',
     },
 
     { kind: 'h2', id: 'overclaiming', text: 'How to show clients email marketing value without overclaiming' },
@@ -297,15 +297,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. When the checks take too long by hand, use Obsession’s [leak checks for retention agencies](' +
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. When the checks take too long by hand, use it the way [retention agencies](' +
         USECASE +
-        '). An Obsession agent does the signing up with each client’s OK. Each store gets a real inbox and mobile number, a fresh sign up every week and after every launch you tell Obsession about, and every email kept as it arrived. The method is set out in [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
+        ') do. A persona, an AI agent with its own inbox, mobile number and browser under one name, signs up to each client store with the client’s OK. Each store gets a fresh sign-up every week and after every launch you tell Obsession about, and every email lands in the event log exactly as it arrived. The method is set out in [customer journey testing](/blog/ai-customers-find-revenue-leaks).',
     },
     {
       kind: 'cta',
       text: 'Show each client what its store sent a new customer this week, after a sign-up and a basket. Every email is dated as it arrived, linked and ready for the review call.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'start-here', text: 'First steps: the clients reviewed next' },
@@ -315,9 +315,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'See what every client store sends a new customer after a sign-up, a text opt-in and a basket, and what never came. A fresh sign-up runs after every launch. Agencies start in early access, onboarding teams now.',
+      text: 'Every client store’s emails after a sign-up, a text opt-in and a basket, and what never came, with a fresh sign-up after every launch. Billed on the pieces it uses, from the Free plan up.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      label: 'See how it works',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

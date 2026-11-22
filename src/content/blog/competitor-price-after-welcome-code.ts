@@ -19,7 +19,7 @@ import type { BlogPost } from './types'
    both quotes are from the 3 Oct 2026 pull on disk. Illustrative stores are invented at .example addresses and the
    sums in the table are exact. Buyer words (sign up, welcome email, basket, pop up, Promotions tab); no dashes.
    11 Nov 2026 (SEO revamp wave 1): title, dek, answer, Obsession's lines and the calls to action moved to the live
-   position (the web behind the login, early access); no free offer. */
+   position; 22 Nov: the toolkit and blueprints. No free offer. */
 
 const SHOPIFY_SALE = 'https://help.shopify.com/en/manual/products/details/product-pricing/sale-pricing'
 const SHOPIFY_COMBINE = 'https://help.shopify.com/en/manual/discounts/discount-combinations'
@@ -49,7 +49,7 @@ export const post: BlogPost = {
   description:
     'Competitor price monitoring apps on Shopify read the page price. Record what a first order pays: welcome code, stacking, shipping, texts and emails.',
   answer:
-    'To monitor a competitor’s real price on Shopify, record what a first order pays: the sale and compare at price, the welcome code and its terms, whether the code stacks with the sale, the free shipping threshold, bundles, member prices, texts and the emails after sign up. Price monitoring apps read the public page, and the code and the emails appear only after a customer signs up, so record them by hand before the competitor’s Black Friday offer goes live. Obsession keeps the price each competitor shows only to its customers, from the welcome code to every emailed offer, dated, by API, MCP (the standard way AI agents call tools) or a table.',
+    'To monitor a competitor’s real price on Shopify, record what a first order pays: the sale and compare at price, the welcome code and its terms, whether the code stacks with the sale, the free shipping threshold, bundles, member prices, texts and the emails after sign up. Price monitoring apps read the public page, and the code and the emails appear only after a customer signs up, so record them by hand before the competitor’s Black Friday offer goes live. Obsession’s price watch blueprint does it every morning, keeping each competitor’s welcome code, first order price and emailed offers, dated.',
   primaryKeyword: 'competitor price monitoring shopify',
   keywords: [
     'competitor price monitoring shopify',
@@ -58,9 +58,9 @@ export const post: BlogPost = {
     'competitor discount codes',
     'shopify competitors pricing',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-10-23',
-  updated: '2026-11-14',
+  updated: '2026-11-22',
   readingMinutes: 11,
   order: 5,
   authors: [
@@ -143,7 +143,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'tools', text: 'What Shopify competitor price monitoring apps record', compare: true },
     {
       kind: 'p',
-      text: 'Most price monitoring apps start from a link and read the page behind it. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table.',
+      text: 'Most price monitoring apps start from a link and read the page behind it. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026.',
     },
     {
       kind: 'list',
@@ -279,9 +279,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Every email a new customer gets from your store and your competitors after a sign-up, a basket and a checkout, each with the time it arrived, and the ones that never come.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Obsession’s mystery shopping blueprint signs up to your store and each competitor, and keeps every email after a sign-up, a basket and a checkout, with the time it arrived and the ones that never came.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'decision', text: 'Calculating the cost of matching a competitor’s offer' },
@@ -326,13 +326,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 10 competitors checked every morning, use Obsession’s [Price watch](/blueprints/price-watch), which keeps each competitor’s prices, codes and emailed offers, dated, for as long as you follow them.',
+      text: 'For 10 competitors checked every morning, use Obsession’s [price watch](/blueprints/price-watch) blueprint. A persona, an AI agent with its own inbox, number and browser, signs up to each competitor and keeps its prices, codes and emailed offers, dated, in one event log. It is billed on the pieces it uses, and each persona is free while it waits.',
     },
     {
       kind: 'cta',
-      text: 'Every competitor’s emails, texts, offers and prices, as their signed-up customers get them, each dated with a screenshot. Look up any competitor, and one not covered yet is added the day you ask.',
-      to: '/marketing',
-      label: 'Request early access',
+      text: 'Each competitor’s welcome code, first order price and emailed offers, every morning until Cyber Monday, dated with a screenshot.',
+      to: '/blueprints/price-watch',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

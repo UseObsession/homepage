@@ -1,0 +1,6 @@
+/* The piece at work (PieceScene.tsx): the window sits on the crosshair ground the heroes use, at the hero window's
+   width, so the piece page reads like the blueprint and team pages. */
+.s-pk-scene__stage { max-width: 1040px; margin: var(--ob-space-32) auto 0; padding: var(--ob-space-24) 0; }
+@media (max-width: 600px) {
+  .s-pk-scene__stage { margin-top: var(--ob-space-24); padding: 0; }
+}

@@ -10,6 +10,7 @@
    The site's own pages (Recipes index, Sample output, Privacy, Agents, 404, Resources, Use cases, Blog) live in
    site.ts, sample.ts and resources.ts; the 2 reference hubs (/alternatives, /glossary) in reference.ts. */
 import { sample } from './sample'
+import { teamPathSet } from './teamPaths'
 import { agentsPage, notFoundPage, privacyPage, recipesPage } from './site'
 import type { BlogPost } from './blog/types'
 import type { ReferenceKind, ReferencePage } from './reference'
@@ -33,31 +34,19 @@ export const pages = Object.fromEntries(Object.entries(pageFiles).map(([file, p]
    Each recipe's job (group), name and address come from its own file, and content/nav builds its groups from this list,
    so every surface names and groups a recipe the same way. */
 const ORDER: RecipeId[] = [
-  /* Watch other companies: rivals, prospects and accounts, as their customer */
-  'competitor',
-  'ads',
-  'email-sms',
-  'prices',
-  'trial',
-  'prospect',
-  'account-watch',
-  /* Check your own journeys: your own ads, funnel, checkout and partners, as a customer */
-  'mystery',
-  'adcheck',
-  'speed',
-  'partners',
-  'audit',
-  'delivery',
-  'listings',
-  /* Check your AI agents */
-  'support-bot',
-  'voice-agent',
-  'outbound-agent',
-  'sales-agent',
-  'vendor-agent',
-  'resolution',
-  'disclosure',
-  'drift',
+  /* By type of blueprint (content/kitPaths order), the most pulled first in each. */
+  /* Talk to customers */
+  'missed-call', 'reminders', 'callback', 'documents', 'voice-agent', 'support-bot', 'disclosure',
+  /* Test sign-up and agents */
+  'mystery', 'audit', 'codes', 'speed', 'delivery', 'adcheck', 'partners',
+  /* Build agent products */
+  'inbox-agent', 'imessage', 'outbound-agent', 'sales-agent',
+  /* Work behind logins */
+  'prior-auth', 'loads', 'invoices', 'prices', 'trial', 'account-watch',
+  /* Watch the market */
+  'competitor', 'email-sms', 'ads', 'prospect', 'listings',
+  /* Train and test agents */
+  'eval', 'drift', 'vendor-agent', 'resolution',
 ]
 const rank = (id: RecipeId) => {
   const i = ORDER.indexOf(id)
@@ -86,7 +75,11 @@ const studyRank = (path: string) => {
   const i = STUDY_ORDER.indexOf(path)
   return i === -1 ? STUDY_ORDER.length : i
 }
-export const studies: UseCaseStudy[] = Object.values(studyFiles).sort((a, b) => studyRank(a.meta.path) - studyRank(b.meta.path))
+/* The 4 industry pages the nav's Teams column links are team pages since 22 Nov (content/teams), so their old study files
+   are left out here: one page per address. */
+export const studies: UseCaseStudy[] = Object.values(studyFiles)
+  .filter((s) => !teamPathSet.has(s.meta.path))
+  .sort((a, b) => studyRank(a.meta.path) - studyRank(b.meta.path))
 export const studyByPath: Record<string, UseCaseStudy | undefined> = Object.fromEntries(studies.map((s) => [s.meta.path, s]))
 /* The file each worked example came from, by its address. */
 export const studyFileOf: Record<string, string> = Object.fromEntries(Object.entries(studyFiles).map(([file, s]) => [s.meta.path, nameOf(file)]))
@@ -106,7 +99,10 @@ export const blogLive = posts.length > 0
 /* The reference pages (content/reference.ts): comparisons in the order /compare lists them, alternatives likewise, and
    the glossary A to Z. A page's file is named for the last part of its address (the prerender checks). */
 const REF_ORDER: Record<ReferenceKind, string[]> = {
-  compare: ['exa', 'firecrawl', 'tavily', 'parallel', 'browserbase', 'mailcharts', 'panoramata', 'klue'].map((s) => `/compare/obsession-vs-${s}`),
+  compare: [
+    '/compare/agentmail-twilio-browserbase-e2b',
+    ...['agentmail', 'browserbase', 'exa', 'firecrawl', 'tavily', 'parallel', 'mailcharts', 'panoramata', 'klue'].map((s) => `/compare/obsession-vs-${s}`),
+  ],
   alternatives: ['mailcharts', 'panoramata', 'klue', 'crayon', 'competiscan'].map((s) => `/alternatives/${s}`),
   term: [],
 }

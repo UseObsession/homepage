@@ -40,12 +40,12 @@ export const post: BlogPost = {
   description:
     'AI voice agent testing platforms compared: Coval, Hamming, Cekura, Vapi and Retell, with prices, and how to test the live line as a real caller.',
   answer:
-    'AI voice agent testing checks what a voice agent says and does on a call: whether it picks up, understands the caller, gives the right answer and hands over to a person. Coval, Hamming and Cekura put the agent through simulated callers before launch and score its live calls once it launches, and Vapi and Retell test agents built on their own platforms. Obsession rings your live number each morning as an AI caller and keeps every call recorded and dated beside your price list, by API or MCP (the way AI agents call tools).',
+    'AI voice agent testing checks what a voice agent says and does on a call: whether it picks up, understands the caller, gives the right answer and hands over to a person. Coval, Hamming and Cekura put the agent through simulated callers before launch and score its live calls once it launches, and Vapi and Retell test agents built on their own platforms. Obsession’s Voice agent check rings your live number each morning as an AI caller with its own phone number, and keeps every call recorded and dated beside your price list.',
   primaryKeyword: 'ai voice agent testing',
   keywords: ['ai voice agent testing platform', 'automated ai voice agent testing', 'voice agent testing'],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-11-01',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -263,7 +263,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to.',
     },
     {
       kind: 'p',
@@ -279,13 +279,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every call comes from an Obsession agent, a customer that says it’s an AI, as [what every Obsession agent will and won’t do](/agents) sets out. Collecting as a customer this way is what the term [AI customers](/blog/ai-customers) names. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Every call comes from a persona that says it’s an AI, as [what every Obsession agent will and won’t do](/agents) sets out, and [AI agents as customers](/blog/ai-customers) explains what one sees. Each call lands in your event log as a call.ended event, with the recording and transcript, and costs $0.012 a minute on a $2 a month number.',
     },
     {
       kind: 'cta',
-      text: 'What your AI receptionist and voice line tell callers, word for word. Every call is kept as a dated recording and transcript beside the price list it should match, yours and your competitors’.',
-      to: '/verify',
-      label: 'Request early access',
+      text: 'What your AI receptionist and voice line tell callers, word for word. Voice agent check keeps every call as a dated recording and transcript beside the price list it should match.',
+      to: '/blueprints/voice-agent-check',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'compared', text: 'AI voice agent testing platforms compared', compare: true },
@@ -339,7 +339,7 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Voice agent check](/blueprints/voice-agent-check), [AI disclosure check](/blueprints/ai-disclosure-check), [Resolution check](/blueprints/resolution-check)',
           'The live number rung every morning, every call recorded, transcribed and dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Calls the numbers your company gives it',
           'What callers hear on the live line, every day',
         ],
@@ -375,7 +375,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What is the best AI voice agent testing platform?',
-          a: 'It depends on the job. Coval publishes monthly plans from $100, Cekura charges $0.25 a test minute with 300 free credits, and Hamming runs very large simulations on sales-led plans. Vapi and Retell test agents built on their own platforms. To call the live number as a real caller every morning, Obsession rings it and keeps every call recorded and dated.',
+          a: 'It depends on the job. Coval publishes monthly plans from $100, Cekura charges $0.25 a test minute with 300 free credits, and Hamming runs very large simulations on sales-led plans. Vapi and Retell test agents built on their own platforms. To call the live number as a real caller every morning, Obsession’s Voice agent check rings it and keeps every call recorded and dated.',
         },
         {
           q: 'How does automated AI voice agent testing work?',
@@ -386,8 +386,8 @@ export const post: BlogPost = {
           a: 'On 1 November 2026, Cekura listed $0.25 per voice testing minute with no base fee, and Coval $100 a month for 100 simulation minutes. Hamming asked teams to contact it. Vapi includes testing and simulation in every plan, and Retell bills test calls at its production rates.',
         },
         {
-          q: 'Do AI customers say they’re AI on a test call?',
-          a: 'Yes. Every Obsession caller says at the start of every call that it’s an AI, who it works for and that the call is recorded. It speaks in a voice used with consent. Voice agent check also checks that the receptionist says it’s AI, and AI disclosure check does the same on every channel, every day.',
+          q: 'Do AI test callers say they’re AI on a test call?',
+          a: 'Yes. Every Obsession persona says at the start of every call that it’s an AI, who it works for and that the call is recorded. It speaks in a voice used with consent. Voice agent check also checks that the receptionist says it’s AI, and AI disclosure check does the same on every channel, every day.',
           link: { label: 'AI disclosure check', to: '/blueprints/ai-disclosure-check' },
         },
         {
@@ -429,5 +429,5 @@ export const post: BlogPost = {
     { title: 'Testing pricing', publisher: 'Retell AI Docs', url: RETELL_PRICING },
   ],
 
-  related: ['/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'recipe:resolution-check', 'best-ai-chatbot-testing-tools'],
+  related: ['/use-cases/ai-receptionist', '/use-cases/ai-agent-evaluation', '/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'recipe:resolution-check', 'best-ai-chatbot-testing-tools'],
 }

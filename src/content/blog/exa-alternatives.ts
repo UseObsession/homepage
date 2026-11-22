@@ -14,7 +14,8 @@ import type { BlogPost } from './types'
    and Exa Connect partners). Jina's pricing page shows no dollar figure in its readable text, so no price is printed.
    Brave's line on the Bing Search APIs is left out (not checked on Microsoft's own page). The 100,000-search table is
    list price times volume, worked from each pricing page. pinecrate.example and its offer are invented, as on
-   /developers. No MCP command printed: mcp.useobsession.com had no DNS record on 11 Nov. British English, no dashes. */
+   /developers. No MCP command printed: mcp.useobsession.com had no DNS record on 11 Nov. British English, no dashes.
+   22 Nov 2026: moved to the toolkit position (an inbox, a number and a signed-in browser beside any search API). */
 
 const EXA_HOME = 'https://exa.ai/'
 const EXA_SEARCH = 'https://exa.ai/products/search'
@@ -52,7 +53,7 @@ export const post: BlogPost = {
   description:
     'Exa alternatives sorted by job and priced from each provider’s own pages: SERP APIs, agent search, extraction, research, lists and data behind a login.',
   answer:
-    'The best Exa alternatives depend on the job: Serper for Google results, Tavily, Linkup or Brave for agent search, Firecrawl or Jina Reader for clean page text, and Parallel for research and monitoring. Exa stays a strong default for search by meaning over its own index of 100 billion documents. For what a company shows only to its customers, Obsession keeps each email, member price and cancel offer dated with a screenshot, looked up by API or MCP (the standard way AI agents call tools).',
+    'The best Exa alternatives depend on the job: Serper for Google results, Tavily, Linkup or Brave for agent search, Firecrawl or Jina Reader for clean page text, and Parallel for research and monitoring. Exa stays a strong default for search by meaning over its own index of 100 billion documents. For what a company sends after a sign-up, Obsession gives an agent its own inbox, phone number and a browser that stays signed in, and many teams use it beside a search API.',
   primaryKeyword: 'exa alternatives',
   keywords: [
     'exa ai alternatives',
@@ -62,9 +63,9 @@ export const post: BlogPost = {
     'tavily alternatives open source',
     'tavily alternatives self hosted',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 18,
   order: 4,
   authors: [
@@ -81,8 +82,8 @@ export const post: BlogPost = {
         { label: 'Page extraction', answer: 'The same pricing page, as clean markdown.', verdict: { tone: 'info', text: 'Public page' } },
         { label: 'Deep research', answer: 'A cited summary of the pricing page and 2 reviews.', verdict: { tone: 'info', text: 'Public pages' } },
         {
-          label: 'Obsession',
-          answer: 'The day 10 email, 9 Oct at 09:04: 25% off a yearly plan, with its screenshot.',
+          label: 'Agent on Obsession',
+          answer: 'The day 10 email in its own inbox, 9 Oct at 09:04: 25% off a yearly plan.',
           verdict: { tone: 'ok', text: 'Sent to trial users' },
         },
       ],
@@ -317,7 +318,7 @@ export const post: BlogPost = {
           ') combines AI inference with web search and live crawling for structured research, with citations on every output.',
         '**Price as listed:** [Search costs $1 per 1,000 requests](' +
           PARALLEL_PRICING +
-          ') with 10 results, Extract costs $1 per 1,000 URLs, Task from $5 per 1,000 runs and Monitor from $3 per 1,000 checks. There is $5 free a month with a payment method on file, up to $80 at sign-up, and free web search through its MCP server with no account.',
+          ') with 10 results, Extract costs $1 per 1,000 URLs, Task from $5 per 1,000 runs and Monitor from $3 per 1,000 checks. There is $5 free a month with a payment method on file, up to $80 at sign-up, and free web search through its MCP server, the standard way AI agents call tools, with no account.',
         '**Where it stops:** Monitor watches what appears on the web. Its pages don’t describe watching what a signed-up account receives.',
         '**Best for:** long research and ongoing monitoring at a low price per call.',
       ],
@@ -362,29 +363,29 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. It gives an agent its own [inbox](/email), a [phone number](/phone) for texts and login codes, and a [browser](/browser) that stays signed in for weeks, under one identity as a [persona](/personas).',
     },
     {
       kind: 'p',
-      text: 'Search APIs index what companies publish, and extraction APIs read a page on request. Obsession keeps accounts open at each company for months, competitors included. It files what each one sends and shows its customers, dated, for as long as anyone follows the company. Search for what a company publishes; Obsession for what it sends and shows its customers. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Search APIs index what companies publish, and extraction APIs read a page on request. An agent on Obsession signs up the way any customer can, waits free for weeks, and receives every email and text the company sends next, each one dated. Exa covers what a company publishes and the persona covers what it sends, so many teams use both.',
     },
     {
       kind: 'p',
-      text: 'Developers reach it through [5 verbs over the API and MCP](/developers), with TypeScript and Python SDKs:',
+      text: 'Developers reach it through [the API and MCP](/developers), added to Claude Code with claude mcp add obsession:',
     },
     {
       kind: 'list',
       items: [
-        '**lookup:** is a company covered, and since when.',
-        '**facts:** what the company showed its customers, by kind and date.',
-        '**evidence:** the raw email or page behind a fact.',
-        '**index:** add a company not covered yet.',
-        '**notify:** each new fact at your webhook, the moment it lands.',
+        '**obsession.personas.create():** an inbox, a number and a browser under one identity, in one call.',
+        '**obsession.browsers.create():** a browser that keeps its logins, with a home connection and no charge per GB.',
+        '**email.received and sms.received:** each email and text at your webhook about 50 ms after it lands.',
+        '**page.visited:** each page the browser opened, with a screenshot.',
+        '**obsession.blueprints.run():** a ready job, such as the trial teardown, run on the same pieces.',
       ],
     },
     {
       kind: 'p',
-      text: 'An agent asked what pinecrate.example offers trial users on day 10 gets the [day 10 email itself](/blueprints/trial-teardown), with the time it arrived and its screenshot. Teams without an agent read the same facts on the website, or as a table in Clay, Baserow or Google Sheets. The [sample data](/sample-output) shows a real store’s record in every format it comes in.',
+      text: 'An agent asked what pinecrate.example offers trial users on day 10 reads the day 10 email in its own inbox, with the time it arrived. Any team can pick the [trial teardown blueprint](/blueprints/trial-teardown), and Obsession runs it and sends each email to Slack or a sheet. The [sample data](/sample-output) shows a real store’s sign-ups and baskets in every format they come in.',
     },
 
     { kind: 'h2', id: 'when-exa', text: 'When Exa is still the right answer' },
@@ -432,11 +433,11 @@ export const post: BlogPost = {
         ['Exa Websets', 'Lists of companies and people with enrichment columns', '$49 or $449 a month', '100 or 1,000 results per list by plan', 'Sales lists for Clay or a CRM'],
         ['Parallel FindAll', 'Lists of entities with citations and confidence scores', 'A cost per run plus a cost per match', 'Price set by the generator picked', 'A list builder as an API'],
         [
-          'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Trial teardown](/blueprints/trial-teardown), 5 verbs over the [API and MCP](/developers)',
-          'What any company shows only to customers: emails, texts, member prices, trial limits, cancel offers, each dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Public pages left to the search API it works beside',
-          'Agents that answer about named companies with what customers are sent',
+          'Obsession (ours): [Browser](/browser), [Email](/email), [Personas](/personas), [Trial teardown](/blueprints/trial-teardown)',
+          'An inbox, a number and a browser that stays signed in for weeks, every email and text dated',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'No web search of its own; works beside a search API',
+          'Agents that sign up and receive what companies send',
         ],
       ],
     },
@@ -444,12 +445,12 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'which-to-choose', text: 'Which Exa alternative to choose' },
     {
       kind: 'p',
-      text: 'Use Obsession when an agent or a team needs what companies show only to their customers. That means the emails and texts after a sign-up, the member price, the trial’s limits and the offer in the cancel flow, at any company you name. Each one is dated with its screenshot and kept for as long as you follow the company. For what the open web publishes, pick by job:',
+      text: 'Use Obsession when an agent needs to sign up, receive the emails and texts that follow, or stay signed in to a site for weeks. That covers the welcome series, the member price, the trial’s day 10 offer and the cancel flow, each event dated with its email or screenshot. For what the open web publishes, pick by job:',
     },
     {
       kind: 'list',
       items: [
-        '**Data behind the login, at any company:** Obsession, beside any search API. [How Obsession compares with search engines, email archives and panels](/compare) sets out where each one stops.',
+        '**An inbox, a phone number and a signed-in browser, at any company:** Obsession, beside any search API. [How Obsession compares with search engines, email archives and panels](/compare) sets out where each one stops.',
         '**Cheapest Google results:** Serper, from $0.30 per 1,000 at volume, or SerpAPI for many engines.',
         '**Search built for agents:** Tavily for search and crawling from one provider, Linkup for cited answers, or Brave for an independent index.',
         '**A named page as clean text:** Firecrawl, including pages behind your own login, or Jina Reader for quick reads.',
@@ -461,9 +462,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: '5 verbs for your agents and your code: what any company shows only to its customers, as typed facts, each with the raw email or page behind it.',
-      to: '/developers',
-      label: 'See the API and MCP',
+      text: 'An inbox, a phone number and a browser that stays signed in, for every agent, on one key and one bill. Keep Exa or any alternative for search, and give the agent the rest here.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'faq', text: 'Questions about Exa alternatives' },
@@ -472,7 +473,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What are the best Exa alternatives?',
-          a: 'It depends on the job. On 11 November 2026, Serper listed Google results from $0.30 per 1,000 at volume. Tavily and Linkup sold search built for agents at about $5 to $8 per 1,000, and Brave Search API charged $5 per 1,000 from its own index. Firecrawl and Jina Reader turned pages into clean text, and Parallel sold search at $1 per 1,000 with research and monitoring. For what a company shows only to its customers, Obsession keeps each email, member price and trial limit dated with a screenshot.',
+          a: 'It depends on the job. On 11 November 2026, Serper listed Google results from $0.30 per 1,000 at volume. Tavily and Linkup sold search built for agents at about $5 to $8 per 1,000, and Brave Search API charged $5 per 1,000 from its own index. Firecrawl and Jina Reader turned pages into clean text, and Parallel sold search at $1 per 1,000 with research and monitoring. For what a company sends after a sign-up, Obsession gives an agent its own inbox, number and signed-in browser.',
         },
         {
           q: 'What is a good Exa Websets alternative?',
@@ -492,12 +493,12 @@ export const post: BlogPost = {
         },
         {
           q: 'Can Exa or Firecrawl see data behind a login?',
-          a: 'Exa’s pages describe the public web plus data on companies, people and places, and partner data through Exa Connect. Firecrawl’s Interact signs in with credentials your team holds and reads the pages behind that login for the length of a session. Neither describes receiving the emails and texts a company sends after a sign-up. Obsession keeps those, with member prices, trial limits and cancel offers, at any company you name.',
+          a: 'Exa’s pages describe the public web plus data on companies, people and places, and partner data through Exa Connect. Firecrawl’s Interact signs in with credentials your team holds and reads the pages behind that login for the length of a session. Neither describes receiving the emails and texts a company sends after a sign-up. Obsession gives an agent its own inbox, phone number and a browser that stays signed in for weeks, so it receives those emails and texts itself.',
           link: { label: 'See the API and MCP', to: '/developers' },
         },
         {
           q: 'How is Obsession different from Exa?',
-          a: 'Exa searches its own index of the web and its company, people and place data. Obsession keeps accounts open at companies for months and returns what each one sent and showed its customers. That means emails, texts, member prices, trial limits and cancel offers, each dated with its screenshot or the raw email. An agent can call both, Exa for what a company publishes and Obsession for what it sends its customers.',
+          a: 'Exa searches its own index of the web and its company, people and place data. Obsession gives an agent its own inbox, phone number and a browser that stays signed in, so it can sign up at a company and receive what it sends, each email and text dated. An agent can call both, Exa for what a company publishes and Obsession for what it sends its customers.',
           link: { label: 'How Obsession compares', to: '/compare' },
         },
       ],

@@ -17,7 +17,7 @@ type Props = {
   button?: string
 }
 
-export function WaitlistForm({ source, withCompany = false, button = 'Request early access' }: Props) {
+export function WaitlistForm({ source, withCompany = false, button = 'Start free' }: Props) {
   const id = useId()
   const [step, setStep] = useState<'company' | 'email' | 'done'>(withCompany ? 'company' : 'email')
   const [company, setCompany] = useState('')
@@ -136,7 +136,7 @@ export function WaitlistForm({ source, withCompany = false, button = 'Request ea
           {error}
         </p>
       ) : (
-        step === 'email' && <p className="wl-consent">Onboarding a limited number of teams. We’ll use your email only about early access.</p>
+        step === 'email' && <p className="wl-consent">Free plan, no credit card. We’ll use your email only to set up your account.</p>
       )}
     </form>
   )

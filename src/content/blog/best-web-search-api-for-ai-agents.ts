@@ -56,7 +56,7 @@ export const post: BlogPost = {
   description:
     'The best web search API for AI agents, compared: Exa, Tavily, Brave, Perplexity, Parallel, SerpApi, Serper and Google grounding on price and freshness.',
   answer:
-    'The best web search API for AI agents depends on the job: Serper for Google’s results from $0.30 per 1,000 searches, Exa and Parallel for page text sized for a model, Tavily and Linkup for a cited answer in one call, and Brave or You.com for an independent index. Their pages describe search over the open web, and none describes keeping what a company sends its signed-up customers. For that, Obsession keeps what companies show only to customers, such as emails, member prices and cancel offers, each dated with a screenshot and looked up by API or MCP (the standard way AI agents call tools).',
+    'The best web search API for AI agents depends on the job: Serper for Google’s results from $0.30 per 1,000 searches, Exa and Parallel for page text sized for a model, Tavily and Linkup for a cited answer in one call, and Brave or You.com for an independent index. Each reads the public web. For pages an agent must sign in to, and the codes and emails that follow, Obsession gives it a browser that stays signed in, with its own inbox and phone number.',
   primaryKeyword: 'best web search api for ai agents',
   keywords: [
     'best web search api for ai agents',
@@ -66,10 +66,10 @@ export const post: BlogPost = {
     'search api for ai agents',
     'google search api for ai agents',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   order: 6,
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 21,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -105,15 +105,15 @@ export const post: BlogPost = {
           links: ['sent to', 'searches'],
         },
         {
-          name: 'Behind the login',
+          name: 'Signed in, as itself',
           who: 'Obsession',
-          nodes: ['Your agent', 'Obsession', 'Signed-up accounts'],
-          links: ['looks up', 'kept from'],
+          nodes: ['Your agent', 'Obsession', 'Sites behind a login'],
+          links: ['uses', 'signs in to'],
           lit: 1,
           ours: true,
         },
       ],
-      foot: 'Search APIs return what their indexes hold from the open web. Obsession keeps what companies send and show to signed-up customers, each dated with a screenshot.',
+      foot: 'Search APIs return what their indexes hold from the open web. Obsession gives an agent a browser that stays signed in, with its own inbox and number for the codes.',
     },
   },
 
@@ -496,11 +496,11 @@ export const post: BlogPost = {
           'Teams on Gemini or Microsoft Foundry',
         ],
         [
-          'Obsession (ours): lookup, facts, evidence, index, notify; [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Trial teardown](/blueprints/trial-teardown)',
-          'What companies show only to customers, dated with a screenshot',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Every step short of paying, at any company your team names',
-          'Emails, member prices, trial limits and cancel offers, kept over time',
+          'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch)',
+          'A browser that stays signed in for weeks, with its own inbox and number for codes and replies',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Pairs with a search API for the public web; stops at identity checks and CAPTCHAs',
+          'Agents that sign up, stay signed in and read what arrives',
         ],
       ],
     },
@@ -581,37 +581,36 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. A web search API answers what a company publishes. Obsession answers what it sends and shows its customers, kept for as long as anyone follows the company, so an agent calls each for its own half of the question.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. For pages behind a login, an agent gets a [browser that stays signed in](/browser) for weeks, plus an [inbox](/email) and a [phone number](/phone) for the codes and emails that follow, all under one persona. A web search API answers what a company publishes. The agent’s own browser and inbox reach what the company shows signed-in customers, so the agent uses each for its own half of the question.',
     },
     {
       kind: 'p',
-      text: '[Obsession’s API and MCP](/developers) give an agent 5 verbs, the same over MCP, the HTTP API and TypeScript and Python SDKs:',
+      text: '[Obsession’s API and MCP](/developers) give an agent each piece in one call, the same over MCP, the HTTP API and TypeScript and Python SDKs.',
     },
     {
       kind: 'list',
       items: [
-        '**lookup:** is a company covered, and since when.',
-        '**facts:** what it showed its customers, by kind, step and date.',
-        '**evidence:** the raw email or page behind a fact.',
-        '**index:** add a company not yet covered.',
-        '**notify:** each new fact sent to a webhook, an address in your app that receives it the moment it lands.',
+        '**obsession.browsers.create({ home: "US" })** starts a browser that keeps its logins, on a home connection.',
+        '**obsession.inboxes.create()** gives the agent its own address. Each new email reaches your webhook, an address in your app that receives it the moment it lands, as email.received.',
+        '**obsession.numbers.create({ country: "US" })** gives it a number. Each text arrives as sms.received.',
+        '**obsession.personas.create({ inbox: true, phone: "US", browser: true })** puts all three under one identity, free while it waits.',
       ],
     },
     {
       kind: 'p',
-      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. [The sample data](/sample-output) shows one real store’s record in every format it comes in.',
+      text: 'A browser hour is $0.10 with the home connection included and no charge per GB. An inbox is $0.50 a month and a US number $2 a month. The Free plan includes 10 browser hours, 3 inboxes and 1 number ([every rate](/pricing/rates)).',
     },
     {
       kind: 'cta',
-      text: 'What companies show only signed-up customers, as data for your agents. Emails, member prices, trial limits, quotes and offers, each dated with a screenshot, behind 5 verbs over MCP, the API and SDKs.',
-      to: '/developers',
-      label: 'See the API and MCP',
+      text: 'Give your agent a browser that stays signed in, plus its own inbox and number, in one call. Free plan, no credit card.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'choose', text: 'Which to choose, by job' },
     {
       kind: 'p',
-      text: 'Use Obsession when your agent has to answer what a named company sends or shows its customers. That means the welcome offer, the member price, the trial’s limits and the save offer, each dated, for as long as anyone follows the company. Search APIs answer what companies publish, and an agent that needs both calls one of each. For the public web:',
+      text: 'Use Obsession when your agent has to sign in, stay signed in, or receive a code, an email or a text. Search APIs answer what companies publish, and an agent that needs both uses one of each. For the public web:',
     },
     {
       kind: 'list',
@@ -627,7 +626,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Exa vs Tavily vs Firecrawl vs Parallel](/blog/exa-vs-tavily-vs-firecrawl) puts 4 of them head to head with a worked example, and [Exa alternatives](/blog/exa-alternatives) sorts every option by job. [How Obsession compares with search engines, email archives and panels](/compare) shows what each of them holds past the login.',
+      text: '[Exa vs Tavily vs Firecrawl vs Parallel](/blog/exa-vs-tavily-vs-firecrawl) puts 4 of them head to head with a worked example, and [Exa alternatives](/blog/exa-alternatives) sorts every option by job. [Obsession compared](/compare) sets its pieces beside Exa, Browserbase and others.',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about web search APIs for AI agents' },
@@ -636,7 +635,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What is the best web search API for AI agents?',
-          a: 'It depends on the job. Serper is the cheapest way to get Google’s results, and Exa and Parallel return page text and excerpts sized for a model. Tavily and Linkup return search and a cited answer in one call, and Brave and You.com run independent indexes. For what a company shows only to signed-up customers, such as its emails, member prices and cancel offers, Obsession keeps each one dated with a screenshot, by API or MCP.',
+          a: 'It depends on the job. Serper is the cheapest way to get Google’s results, and Exa and Parallel return page text and excerpts sized for a model. Tavily and Linkup return search and a cited answer in one call, and Brave and You.com run independent indexes. For pages behind a login, and the codes and emails that follow, Obsession gives an agent a browser that stays signed in, with its own inbox and number.',
         },
         {
           q: 'What is the cheapest web search API for an LLM?',
@@ -660,7 +659,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can a web search API see data behind a login?',
-          a: 'Their pages describe search over the open web and, for Exa, partner data. A welcome email, a member price, a trial’s limits and a save offer reach only a signed-up customer, so none of them reaches a search index. Obsession collects them at any company a team names, each item dated with a screenshot.',
+          a: 'Their pages describe search over the open web and, for Exa, partner data. A welcome email, a member price, a trial’s limits and a save offer reach only a signed-up customer, so none of them reaches a search index. An agent reaches them by signing up itself, with Obsession’s browser, inbox and number, and keeping what arrives.',
           link: { label: 'The web behind the login', to: '/blog/the-web-behind-the-login' },
         },
       ],

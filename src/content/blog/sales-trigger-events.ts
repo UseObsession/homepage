@@ -25,7 +25,8 @@ import type { BlogPost } from './types'
    third-party blogs describe them). Obsession is described in the words of /sales (the platform behind an account's
    emails, support answers and how fast), the account watch, prospect intelligence and price watch recipes, the CRO
    agencies use case (codes rejected at checkout) and site.ts. Harbourline, Quillmere, Tolland and Brackwell are
-   invented, at .example addresses, as is every offer, price and time in the pictures. No dashes. */
+   invented, at .example addresses, as is every offer, price and time in the pictures. No dashes. 
+   22 Nov 2026: moved to the toolkit position (the account watch blueprint and a persona per target account). */
 
 const CRUNCHBASE = 'https://www.crunchbase.com/'
 const USERGEMS = 'https://www.usergems.com/'
@@ -46,7 +47,7 @@ export const post: BlogPost = {
   description:
     'Sales trigger events examples for ABM teams: funding and new leaders, plus a target account’s new offers, prices and emails, each with its proof and play.',
   answer:
-    'Sales trigger events examples include funding rounds, new leaders and hiring pushes, and changes in what a target account sends its own customers, such as a new offer or a price change. Each one gives ABM and demand gen teams a dated reason to move the account up a tier, change its ads and brief its sales rep. Obsession keeps the emails, prices and offers each target account shows only to its customers, dated with the screenshot, by API, MCP (the standard way AI agents call tools) or a table.',
+    'Sales trigger events examples include funding rounds, new leaders and hiring pushes, and changes in what a target account sends its own customers, such as a new offer or a price change. Each one gives ABM and demand gen teams a dated reason to move the account up a tier, change its ads and brief its sales rep. On Obsession the account watch blueprint keeps an AI agent signed up as a customer at each target account and dates every new offer, price and email it receives.',
   primaryKeyword: 'sales trigger events examples',
   keywords: [
     'sales trigger events',
@@ -56,9 +57,9 @@ export const post: BlogPost = {
     'trigger events for target accounts',
     'sales trigger event tools',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 16,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -342,15 +343,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For ABM and demand gen teams, [Prospect intelligence](/blueprints/prospect-intelligence) and [Account watch](/blueprints/account-watch) keep a customer account open at each target account and date each change in what it sends customers. That covers a new offer, a price, an email that stops, and the email platform behind each email and the week it changes. Each fact lands on the account in the CRM, in a table or at a webhook, for as long as you follow it. You can then see what each trigger does to pipeline sourced, MQL to SQL conversion and cost per opportunity. [Exa](' +
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its blueprints are ready jobs Obsession runs for any team. For ABM and demand gen teams, [Account watch](/blueprints/account-watch) and [Prospect intelligence](/blueprints/prospect-intelligence) keep a persona, an AI agent with its own inbox, number and browser, signed up at each target account, and date each change in what it receives. That covers a new offer, a price, an email that stops, and the email platform behind each email and the week it changes. Each result lands on the account in the CRM, in a table or at a webhook, for as long as you follow it. You can then see what each trigger does to pipeline sourced, MQL to SQL conversion and cost per opportunity. [Exa](' +
         EXA +
-        ') gives agents the public web, funding and hiring triggers included, and Obsession gives them what each account sends the people who sign up; [the two work together](/compare/obsession-vs-exa).',
+        ') gives agents the public web, funding and hiring triggers included, and an agent on Obsession receives what each account sends the people who sign up. [Many teams use both](/compare/obsession-vs-exa).',
     },
     {
       kind: 'cta',
-      text: 'What every target account sends its customers, from new offers and prices to the platform behind each email, dated with its screenshot and on the account’s record.',
-      to: '/#join',
-      label: 'Request early access',
+      text: 'What every target account sends its customers, from new offers and prices to the platform behind each email, dated with its screenshot and on the account in your CRM.',
+      to: '/blueprints/account-watch',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'tools', text: 'Sales trigger event tools compared', compare: true },
@@ -409,16 +410,16 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Account watch](/blueprints/account-watch), [Prospect intelligence](/blueprints/prospect-intelligence), [Price watch](/blueprints/price-watch)',
-          'What each target account shows only to its customers, each dated: offers, prices, emails, texts, support answers, the email platform',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'An account not yet covered starts its history the day it is added\nSign-ups, baskets and checkouts stop short of paying',
+          'What each target account sends a customer, each dated: offers, prices, emails, texts, support answers, the email platform',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'History starts the day a persona signs up\nStops before payment and at any identity check',
           'Triggers in what an account sends its customers, for as long as you follow it',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For triggers in what an account sends its own customers, use Obsession. It keeps new offers, price changes, new onboarding emails, the email platform behind each email and steps that break, dated, for every target account you name. Exa finds public triggers across a whole list on a schedule, and Crunchbase covers funding rounds, leadership hires and funding forecasts. UserGems covers job changes among 30+ native signals, Bombora shows which accounts are researching your category, and BuiltWith shows the technology on their websites. Each answers a different question about the same account.',
+      text: 'For triggers in what an account sends its own customers, use Obsession’s account watch blueprint. It dates new offers, price changes, new onboarding emails, the email platform behind each email and steps that break, dated, for every target account you name. Exa finds public triggers across a whole list on a schedule, and Crunchbase covers funding rounds, leadership hires and funding forecasts. UserGems covers job changes among 30+ native signals, Bombora shows which accounts are researching your category, and BuiltWith shows the technology on their websites. Each answers a different question about the same account.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
@@ -427,13 +428,13 @@ export const post: BlogPost = {
       items: [
         '**A trigger is a reason to reach out, never a signed deal.** Weigh it with fit, intent and what the account says on the first call.',
         '**One customer profile sees one customer’s view.** A US subscriber sees what the account shows US subscribers. Record the profile and the country with every trigger.',
-        '**Every sign-up, basket and checkout stops short of paying.** Emails after a first order, and anything behind an identity check, stay with real customers and your own customer research.',
+        '**A persona stops before payment unless it is given your own card, and stops at any identity check.** Emails after a first order stay with real customers and your own customer research.',
         '**Read each site’s terms first.** Nothing here is legal advice.',
       ],
     },
     {
       kind: 'p',
-      text: 'Start with the 20 accounts most likely to buy this quarter, record a baseline this week, and pick the 3 triggers your product answers best. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'Start with the 20 accounts most likely to buy this quarter, record a baseline this week, and pick the 3 triggers your product answers best. [The sales intelligence use case](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
@@ -469,7 +470,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How do you track trigger events for target accounts?',
-          a: 'Public triggers come from funding databases, job change tracking, intent data, technology lookup tools and web search APIs such as Exa. Triggers in what an account sends its customers need a customer account at each target. That means an inbox and phone number, a dated baseline and a weekly check of every email, price and page. Obsession’s Account watch keeps those accounts open and dates each change.',
+          a: 'Public triggers come from funding databases, job change tracking, intent data, technology lookup tools and web search APIs such as Exa. Triggers in what an account sends its customers need a customer account at each target. That means an inbox and phone number, a dated baseline and a weekly check of every email, price and page. Obsession’s account watch blueprint keeps a persona signed up at each account and dates each change.',
           link: { label: 'Account watch', to: '/blueprints/account-watch' },
         },
         {

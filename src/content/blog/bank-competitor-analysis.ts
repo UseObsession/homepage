@@ -20,7 +20,8 @@ import type { BlogPost } from './types'
    Corporate Insight's panel method (only a podcast says it), Upwork fintech tester posts (403), the FCA Handbook pages
    (they render only in a browser). Obsession is described in the words of the banks use case page, the competitor
    tracking and support bot check recipes, site.ts and /compare. Lantern, Saltmarsh and Fennick are invented, at .example
-   addresses, as are every rate, offer and answer in the pictures. No dashes. General information, never legal advice. */
+   addresses, as are every rate, offer and answer in the pictures. No dashes. General information, never legal advice.
+   22 Nov 2026: Obsession lines moved to the toolkit position (personas, blueprints, prices.ts). */
 
 const FCA_CASH = 'https://www.fca.org.uk/publications/multi-firm-reviews/fca-update-cash-savings-september-2024'
 const BOE_QUOTED = 'https://www.bankofengland.co.uk/statistics/details/further-details-about-quoted-household-interest-rates-data'
@@ -54,7 +55,7 @@ export const post: BlogPost = {
   description:
     'Bank competitor analysis template for product and journey teams: rates, offers, onboarding and chat answers, where each comes from and what it misses.',
   answer:
-    'A bank competitor analysis compares competing banks’, card issuers’ and fintechs’ products, rates, fees, offers, onboarding steps, apps and service answers, each dated with its screenshot or email. Rate tables and regulators’ data cover advertised rates, while the rate an applicant is offered, offers after the application form and the emails that follow reach only someone who applies. Obsession keeps what each bank you name shows only to its customers, from those offers and emails to chat answers, dated, by API, MCP (the standard way AI agents call tools) or a table.',
+    'A bank competitor analysis compares competing banks’, card issuers’ and fintechs’ products, rates, fees, offers, onboarding steps, apps and service answers, each dated with its screenshot or email. Rate tables and regulators’ data cover advertised rates, while the rate an applicant is offered, offers after the application form and the emails that follow reach only someone who applies. On Obsession, the toolkit for AI agents, a persona applies at each bank you name up to the identity check and keeps those offers, emails and chat answers, dated.',
   primaryKeyword: 'bank competitor analysis',
   keywords: [
     'bank competitor analysis template',
@@ -64,10 +65,10 @@ export const post: BlogPost = {
     'credit card promotion comparison',
     'bank mystery shopping',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   order: 3,
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 15,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -347,17 +348,17 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For [journey checks at banks and fintechs](/use-cases/journey-checks-for-banks-and-fintechs), it keeps each competitor’s offers after the form, every email and text that follows, account opening up to the identity check and chat answers, word for word. [Exa](' +
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. For [journey checks at banks and fintechs](/use-cases/journey-checks-for-banks-and-fintechs), a persona, an AI agent with its own inbox, number and browser under one name, keeps each competitor’s offers after the form, every email and text that follows, account opening up to the identity check and chat answers, word for word. [Exa](' +
         EXA +
         ') and [Firecrawl](' +
         FIRECRAWL +
-        ') give AI agents the public web, rate pages included. Obsession gives them what a bank shows only to its customers, kept for as long as anyone follows the bank, and an agent can call both.',
+        ') give AI agents the public web, rate pages included. Obsession gives an agent the inbox, number and browser to see what a bank shows only to its customers, and an agent can call both.',
     },
     {
       kind: 'cta',
       text: 'Every step of account opening up to the identity check, each email and text after it and every chat answer, at your bank and your competitors. Each one is dated with its screenshot or transcript.',
       to: '/use-cases/journey-checks-for-banks-and-fintechs',
-      label: 'Request early access',
+      label: 'See how it works',
     },
 
     { kind: 'h2', id: 'tools', text: 'Banking competitive analysis tools compared', compare: true },
@@ -416,15 +417,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Support bot check](/blueprints/support-bot-check)',
           'Keeps what each bank and fintech you name shows only to its customers: offers after the form, every email and text, account opening up to the identity check, chat answers',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'A bank not yet covered starts its history the day it is added\nOffers priced from a credit file stay with panels',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'History starts the day a persona applies\nStops at the identity check, so credit-file offers stay with panels',
           'What a new customer gets from each competitor, on every channel, for as long as you follow it',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For what each competitor shows only to its customers, use Obsession, which keeps it dated for every bank and fintech you name, for as long as you follow them. That covers the offer after the application form, every email after it, each step of account opening up to the identity check and chat answers. Moneyfacts and Bankrate answer advertised rate questions directly, and the FDIC, the CFPB and the Bank of England give official benchmarks and card terms for free. Comperemedia and Competiscan cover the mail and prescreened offers their panels receive, and Corporate Insight benchmarks competitors’ websites and apps through its analysts.',
+      text: 'For what each competitor shows only to its customers, use Obsession’s competitor tracking blueprint, which keeps it dated for every bank and fintech you name, for as long as you follow them. That covers the offer after the application form, every email after it, each step of account opening up to the identity check and chat answers. Moneyfacts and Bankrate answer advertised rate questions directly, and the FDIC, the CFPB and the Bank of England give official benchmarks and card terms for free. Comperemedia and Competiscan cover the mail and prescreened offers their panels receive, and Corporate Insight benchmarks competitors’ websites and apps through its analysts.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
@@ -442,7 +443,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Sample data from a real UK store in September 2026: 4 test customers, every inbox watched for 48 hours, and the record in every format it comes in.',
+      text: 'Sample data from a real UK store in September 2026: 4 sign-ups and baskets, every inbox watched for 48 hours, in every format the data comes in.',
       to: '/sample-output',
       label: 'See sample data',
     },

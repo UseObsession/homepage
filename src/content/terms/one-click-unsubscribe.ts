@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/one-click-unsubscribe: the definition query. "one click unsubscribe requirements" and "law" stay with
    their own post (docs/SEARCH.md §2); this page owns "what is one-click unsubscribe" and how it works. */
@@ -67,7 +66,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} Because each email is kept raw with its sender checked, its unsubscribe headers and DKIM result sit beside the time it arrived, for your brand and for competitors’. Any email that still arrives after an unsubscribe is kept the same way, the evidence behind [opt-out compliance](/use-cases/opt-out-and-cancel-checks-for-compliance-teams).`,
+      text: 'Obsession’s [Delivery monitoring](/blueprints/delivery-monitoring) blueprint keeps each email raw with its sender checked, so its unsubscribe headers and DKIM result sit beside the time it arrived, for your brand and for competitors’. Any email that still arrives after an unsubscribe is logged too, the evidence behind [opt-out and cancel checks](/use-cases/opt-out-and-cancel-checks-for-compliance-teams).',
     },
     {
       kind: 'faq',

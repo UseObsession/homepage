@@ -15,7 +15,8 @@ import type { BlogPost } from './types'
    product view at 51%), printed as percentages, never tallies. The plan's "most of those within
    minutes" is left out: the brief's list of printable figures doesn't carry it. Subject lines and the template are
    invented patterns on brackenmoor.example; no real brand's email is copied. Not used: a Shopify Community reply on
-   identification (its author isn't marked as Shopify staff), third-party benchmark round-ups. British English, no dashes. */
+   identification (its author isn't marked as Shopify staff), third-party benchmark round-ups. British English, no dashes.
+   22 Nov 2026: the figures stay; Obsession is never called the index (they come from its mystery shopping runs). */
 
 const BROWSE = 'https://help.klaviyo.com/hc/en-us/articles/115002775252'
 const ONSITE = 'https://help.klaviyo.com/hc/en-us/articles/115005076767'
@@ -31,12 +32,12 @@ const SH_ABANDON = 'https://shopify.dev/docs/api/admin-graphql/latest/objects/Ab
 export const post: BlogPost = {
   slug: 'browse-abandonment-email',
   title: 'Browse abandonment emails: what stores send after a product view, and what to fix',
-  dek: 'About a third of the stores in Obsession’s index send an email after a shopper looks at a product and leaves (13 November 2026). Who that email can reach, what a good one says, when to skip it and how to test yours with a new address.',
+  dek: 'About a third of the stores Obsession shopped send an email after a shopper looks at a product and leaves (13 November 2026). Who that email can reach, what a good one says, when to skip it and how to test yours with a new address.',
   metaTitle: 'Browse abandonment email: what stores send and what to fix',
   description:
     'Browse abandonment email for online stores: who it can reach, how many stores send one after a product view, what a good one says and how to test yours.',
   answer:
-    'A browse abandonment email is the automated email an online store sends after a shopper views a product and leaves without adding it to the basket. It shows that product, its price and a link back, and it reaches only an identified visitor, a shopper the store can already match to an email address. Obsession keeps what each store sends a new customer after a sign-up, a product view, a basket and a checkout, dated, and the store lookup shows your own store’s entry.',
+    'A browse abandonment email is the automated email an online store sends after a shopper views a product and leaves without adding it to the basket. It shows that product, its price and a link back, and it reaches only an identified visitor, a shopper the store can already match to an email address. Obsession’s mystery shopping blueprint sends a persona, an AI agent with its own inbox under one name, to view a product at your store and keeps every email that follows, dated.',
   primaryKeyword: 'browse abandonment email',
   keywords: [
     'browse abandonment email',
@@ -47,9 +48,9 @@ export const post: BlogPost = {
     'browse abandonment email subject lines',
     'browse abandonment email template',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-11-14',
-  updated: '2026-11-16',
+  updated: '2026-11-22',
   readingMinutes: 12,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -65,7 +66,7 @@ export const post: BlogPost = {
         { label: 'Wait', detail: 'The flow holds the email for 2 hours', tone: 'info' },
         { label: 'Email arrives', detail: '22:41: the throw, £68 and a link back', tone: 'ok' },
       ],
-      foot: 'About a third of the stores in Obsession’s index send an email after a product view (13 November 2026).',
+      foot: 'About a third of the stores Obsession shopped send an email after a product view (13 November 2026).',
     },
   },
 
@@ -76,7 +77,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The email reaches only an identified visitor, a shopper whose browser the store has already matched to an email address. In Obsession’s index of what stores send new customers, 33% of stores sent an email after a product view and 67% sent none, as of 13 November 2026. The welcome series doesn’t count.',
+      text: 'The email reaches only an identified visitor, a shopper whose browser the store has already matched to an email address. In Obsession’s mystery shopping runs, 33% of stores sent an email after a product view and 67% sent none, as of 13 November 2026. The welcome series doesn’t count.',
     },
 
     { kind: 'h2', id: 'what-it-is', text: 'What is a browse abandonment email?' },
@@ -162,11 +163,11 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'how-many-send', text: 'How many stores send a browse abandonment email?' },
     {
       kind: 'p',
-      text: 'About a third. The index reads every store the same way. A new account takes each step, and its inbox is read at 4, 8, 12, 24 and 48 hours after it. A slow email still counts as sent, but the welcome series from the sign-up doesn’t count after a later step.',
+      text: 'About a third. Obsession’s mystery shopping runs read every store the same way. A new persona takes each step, and its inbox is read at 4, 8, 12, 24 and 48 hours after it. A slow email still counts as sent, but the welcome series from the sign-up doesn’t count after a later step.',
     },
     {
       kind: 'table',
-      caption: 'Share of stores that sent an email after each step, Obsession’s index, 13 November 2026',
+      caption: 'Share of stores that sent an email after each step, Obsession’s mystery shopping runs, 13 November 2026',
       cols: ['Step', 'Sent an email', 'Sent none'],
       rows: [
         ['Sign-up', '89%', '11%'],
@@ -334,11 +335,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your online store is already in Obsession’s index, the [store lookup](/lookup) shows what it sent after a product view, without the wait. Type an email at your store’s own address, and its entry comes to that inbox. It shows every email after a sign-up, a product view, a basket and a checkout. Each one is dated, read at 4, 8, 12, 24 and 48 hours and set against every other store in the index.',
+      text: 'Obsession, the toolkit for AI agents, runs the same test for you with its [mystery shopping](/blueprints/mystery-shopper) blueprint. A persona signs up, views a product and leaves, and every email after a sign-up, a product view, a basket and a checkout lands in your event log, dated and read at 4, 8, 12, 24 and 48 hours.',
     },
     {
       kind: 'p',
-      text: 'Agencies that do email, retention or conversion work can [look up the stores they run or pitch](/lookup#agencies). Early access looks up every store already in the index and adds up to 5 stores an agency runs or pitches, with the brand’s OK. We check each agency before we set up access.',
+      text: 'Agencies that do email, retention or conversion work run the same blueprint at every store they run or pitch, with the brand’s OK, one persona per store.',
     },
 
     { kind: 'h2', id: 'every-week', text: 'How do you know your browse abandonment email still sends next month?' },
@@ -348,19 +349,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each test is one store, one browser and a 48 hour wait. The index reads every store the same way and its accounts stay subscribed, so each store’s entry keeps filling with the emails that follow. With a weekly check, a fresh sign-up runs [every step again each week](/use-cases/leak-checks-for-ecommerce-stores), so a browse abandonment email that stops shows up that week, beside the week it last arrived. The index is built for millions of companies.',
+      text: 'By hand, each test is one store, one browser and a 48 hour wait. On Obsession, each persona stays subscribed, so your event log keeps filling with the emails that follow. With a weekly check, a fresh sign-up runs [every step again each week](/use-cases/leak-checks-for-ecommerce-stores), so a browse abandonment email that stops shows up that week, beside the week it last arrived. A persona is free while it waits.',
     },
     {
       kind: 'cta',
-      text: 'See whether your store sends an email after a product view, how long it takes to arrive and how that compares with every other store in the index.',
-      to: '/lookup',
-      label: 'Look up your store',
+      text: 'Mystery shopping: a persona views a product at your store and leaves, and every email that follows lands in your event log, dated, with how long it took to arrive.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'stores-and-clients', text: 'How do you check browse emails for your store, the leaders and your clients?' },
     {
       kind: 'p',
-      text: 'For your own online store, the [store lookup](/lookup) shows whether a browse abandonment email arrived after a product view, and what it said, beside every other store in the index. With Obsession, you can set your store beside the biggest stores in your category. You see which of them send one, how long they wait and what the email shows.',
+      text: 'For your own online store, the mystery shopping blueprint shows whether a browse abandonment email arrived after a product view, and what it said. With Obsession’s [competitor tracking](/blueprints/competitor-tracking) blueprint, you can set your store beside the biggest stores in your category. You see which of them send one, how long they wait and what the email shows.',
     },
     {
       kind: 'list',
@@ -378,7 +379,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
+      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, with a persona per store that is free while it waits. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },
@@ -419,7 +420,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'The Klaviyo help pages cited were updated between 24 and 30 October 2026. Shopify’s help pages show no date, and the wording cited is as it stood on 14 November 2026. The store figures cover every product view, sign-up, basket and checkout in Obsession’s index as of 13 November 2026. Since 16 November 2026 the welcome series doesn’t count as an email after a product view, a basket or a checkout. The subject lines and the template are invented examples on a made-up store, and copy no real brand’s email. Help pages change, so check the page before you act.',
+      text: 'The Klaviyo help pages cited were updated between 24 and 30 October 2026. Shopify’s help pages show no date, and the wording cited is as it stood on 14 November 2026. The store figures cover every product view, sign-up, basket and checkout in Obsession’s mystery shopping runs as of 13 November 2026. Since 16 November 2026 the welcome series doesn’t count as an email after a product view, a basket or a checkout. The subject lines and the template are invented examples on a made-up store, and copy no real brand’s email. Help pages change, so check the page before you act.',
     },
   ],
 

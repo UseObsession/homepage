@@ -1,6 +1,7 @@
-/* A recipe's own page (pages/RecipePage). The hero is the shared centred hero (sections/Hero.css); every other section
-   is the claim (and at most 1 line) over its content, or beside it on wide screens (.s-rp--split). Design system tokens
-   only; spacing on the 4px grid; site classes start s-rp. */
+/* A blueprint's own page (pages/RecipePage). The hero is the shared centred hero (sections/Hero.css); every other section
+   is the claim (and at most 1 line) over its content, or beside it on wide screens (.s-rp--split). The kit badge, the
+   "Runs on" chips and the kit's link are components/blueprint/blueprint.css. Design system tokens only; spacing on the
+   8px grid; site classes start s-rp. */
 
 /* ---- Hero ------------------------------------------------------------------------------------------------------- */
 
@@ -55,9 +56,17 @@
   .s-rp--split .s-head { margin-bottom: 0; }
 }
 
-/* What it sets up: the claim sits level with the middle of the window. */
-@media (min-width: 1080px) {
-  .s-rp-kit .s-rp__in { align-items: center; }
+/* ---- How it runs: the steps as a rail beside the window of what it sets up, under the claim and its pieces ------- */
+
+.s-rp-how__grid {
+  display: grid;
+  grid-template-columns: var(--s-split);
+  gap: var(--ob-space-40) var(--s-split-gap);
+  align-items: start;
+}
+.s-rp-how__kit { min-width: 0; }
+@media (max-width: 1079.98px) {
+  .s-rp-how__grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* The run: the console takes the full width under its claim; the run's name sits close above the window, on the
@@ -66,50 +75,67 @@
 .s-rp-run .s-console-label { justify-self: start; margin-bottom: var(--ob-space-12); }
 .s-rp-run .s-console-win { margin-top: 0; }
 
-/* ---- Steps: 4 in a row, each under its own rule ------------------------------------------------------------------ */
+/* ---- Steps: 1 rail, each step's number in a ring joined to the next by a hairline ------------------------------- */
 
 .s-rp-steps {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--ob-space-40) var(--ob-space-32);
+  grid-template-columns: minmax(0, 1fr);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .s-rp-steps__item {
+  position: relative;
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-columns: var(--ob-space-24) minmax(0, 1fr);
+  column-gap: var(--ob-space-16);
+  row-gap: var(--ob-space-4);
   align-content: start;
-  gap: var(--ob-space-8);
-  padding-top: var(--ob-space-20);
-  border-top: var(--ob-border-hair) solid var(--ob-line);
+  padding-bottom: var(--ob-space-32);
+}
+.s-rp-steps__item:last-child { padding-bottom: 0; }
+/* The hairline from this step's ring to the next one's. */
+.s-rp-steps__item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: var(--ob-space-32);
+  bottom: var(--ob-space-8);
+  left: calc(var(--ob-space-12) - var(--ob-border-hair) / 2);
+  width: var(--ob-border-hair);
+  background: var(--ob-line);
 }
 .s-rp-steps__n {
-  margin-bottom: var(--ob-space-8);
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: var(--ob-space-24);
+  height: var(--ob-space-24);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: 50%;
   font: var(--ob-type-mono-sm);
-  letter-spacing: var(--ob-type-mono-sm-tracking);
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
-  color: var(--ob-text-3);
+  color: var(--ob-text-2);
 }
 .s-rp-steps__title {
   margin: 0;
-  font: var(--ob-type-title);
-  letter-spacing: var(--ob-type-title-tracking);
+  min-height: var(--ob-space-24);
+  display: flex;
+  align-items: center;
+  font: var(--ob-type-body);
+  font-weight: var(--ob-weight-medium);
+  letter-spacing: -0.01em;
   color: var(--ob-text);
   text-wrap: balance;
 }
 .s-rp-steps__line {
+  grid-column: 2;
   margin: 0;
+  max-width: 52ch;
   font: var(--ob-type-small);
   letter-spacing: var(--ob-type-small-tracking);
   color: var(--s-read, var(--ob-text-2));
   text-wrap: pretty;
-}
-@media (max-width: 1079.98px) {
-  .s-rp-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 519.98px) {
-  .s-rp-steps { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-32); }
 }
 
 /* ---- What it checks: 1 row per group, its name on the left, its checks in 2 columns on the right --------------- */
@@ -160,7 +186,7 @@
   .s-rp-group { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-16); padding-block: var(--ob-space-24); }
 }
 
-/* ---- What you can change: the recipe's settings under the steps, on the ink chapter, 1 rule a row --------------- */
+/* ---- What you can change: the blueprint's settings under the steps, 1 rule a row ------------------------------ */
 
 .s-rp-change { margin-top: var(--ob-space-64); }
 .s-rp-change__h {

@@ -5,27 +5,40 @@ import { Crumbs } from '../components/Crumbs'
 import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
+import { blueprintPieces, pieceChips } from '../content/blueprint-ui'
 import { catalog } from '../content/catalog'
-import { jobLabel, jobAnchor as slug } from '../content/nav'
+import { kitLinks } from '../content/kitPaths'
+import { kits } from '../content/kits'
 import { recipePage } from '../content/recipe-page'
+import { PersonaGlyph } from '../components/persona/icons'
 import { recipesPage as page } from '../content/site'
 import '../components/sections/Hero.css'
 import './Recipes.css'
 
-/* /recipes: every recipe, a ready-made collection from the web behind the login, grouped by the 3 jobs (site.ts
-   recipesPage). The centred hero, with the jobs as quiet jump links and the product's Recipes picker under them (the
-   page's 1 product object); then 1 row per job, its name and line on the left and its recipes as link rows on the
-   right; then where the companies come from and where the data lands; questions; early access. Nothing moves but the
-   hero's load sequence and the rows' hover. */
+/* /blueprints (22 Nov 2026): every blueprint, grouped by the six types of blueprints, one per job AI agents do (the 22 Nov
+   call: the kits became these types). The centred hero keeps James's blueprint console under the types as jump links;
+   then 1 section per type, numbered: its icon, name, what its blueprints do, the pieces the job uses and the link to the
+   type's page on the left, and its blueprints as cards on the right (name, line, the pieces each runs on, a chevron that
+   steps right on hover); then where the companies come from and where the data lands; questions; the form. Nothing moves
+   but the hero's load sequence and the cards' hover. Words: content/site.ts (recipesPage), each type from
+   content/kitPaths and content/kits, each blueprint from its own file. */
 
 /* A numeral never ends a line apart from its word. */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
-/* Each job's section carries its anchor (content/nav jobAnchor), so the nav's Recipes menu lands on it: /recipes#watch-other-companies.
-   It takes focus when reached that way (App.tsx ScrollManager), so the keyboard carries on from the job. */
+/* The pieces' names, for the cards' screen-reader line. */
+const UI = { inputs: 'Add companies from', outputs: 'Results go to' }
+const bySlug = Object.fromEntries(catalog.recipes.map((r) => [r.slug, r]))
+const kitOf = Object.fromEntries(kits.map((k) => [k.id, k]))
+const anchorOf = (path: string) => path.split('/').pop() ?? ''
 
-/* The jump links' name, for screen readers. */
-const UI = { jobs: 'Blueprints by job', inputs: 'Add companies from', outputs: 'Results go to' }
+function Chev({ className }: { className: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path d="M6 3.5 10.5 8 6 12.5" />
+    </svg>
+  )
+}
 
 function Arrow({ className }: { className: string }) {
   return (
@@ -37,7 +50,9 @@ function Arrow({ className }: { className: string }) {
 
 export function Recipes() {
   const id = useId()
-  const groups = page.groups.map((g) => ({ ...g, items: catalog.recipes.filter((r) => r.group === g.group) })).filter((g) => g.items.length)
+  const types = kitLinks
+    .map((k) => ({ ...k, page: kitOf[k.id], items: (kitOf[k.id]?.blueprints?.slugs ?? []).map((sl) => bySlug[sl]).filter(Boolean) }))
+    .filter((t) => t.items.length)
 
   return (
     <>
@@ -49,12 +64,15 @@ export function Recipes() {
               {page.hero.headline}
             </h1>
             <p className="s-hero-sub s-ri-hero__sub">{page.hero.sub}</p>
-            <nav className="s-ri-jump" aria-label={UI.jobs}>
+            <nav className="s-ri-jump" aria-label={page.types.label}>
               <ul>
-                {groups.map((g) => (
-                  <li key={g.group}>
-                    <a className="s-ri-jump__link" href={`#${slug(g.group)}`}>
-                      {jobLabel(g.group)}
+                {types.map((t) => (
+                  <li key={t.id}>
+                    <a className="s-ri-jump__link" href={`#${anchorOf(t.path)}`}>
+                      <span className="s-ri-jump__ic" aria-hidden="true">
+                        <PersonaGlyph name={t.icon} />
+                      </span>
+                      {t.name}
                     </a>
                   </li>
                 ))}
@@ -67,24 +85,49 @@ export function Recipes() {
         </div>
       </section>
 
-      <div className="s-wrap s-ri-jobs">
-        {groups.map((g) => (
-          <section className="s-ri-job" id={slug(g.group)} key={g.group} aria-labelledby={`${slug(g.group)}-h`} tabIndex={-1}>
-            <header className="s-ri-job__head">
-              <h2 className="s-ri-job__name" id={`${slug(g.group)}-h`}>
-                {jobLabel(g.group)}
+      <div className="s-wrap s-ri-types">
+        {types.map((t, i) => (
+          <section className="s-ri-type" id={anchorOf(t.path)} key={t.id} aria-labelledby={`${id}-${t.id}`} tabIndex={-1}>
+            <header className="s-ri-type__head">
+              <p className="s-ri-type__num">{String(i + 1).padStart(2, '0')}</p>
+              <span className="s-ri-type__ic" aria-hidden="true">
+                <PersonaGlyph name={t.icon} />
+              </span>
+              <h2 className="s-ri-type__name" id={`${id}-${t.id}`}>
+                {t.name}
               </h2>
-              <p className="s-ri-job__line">{tie(g.line)}</p>
+              <p className="s-ri-type__line">{tie(t.page?.blueprints?.line ?? t.line)}</p>
+              <ul className="s-ri-type__pieces" aria-label={page.types.runsOn}>
+                {(t.page?.pieces.items ?? []).map((p) => (
+                  <li key={p.piece} className="s-ri-chip">
+                    <PersonaGlyph name={pieceChips[p.piece].icon} />
+                    {pieceChips[p.piece].name}
+                  </li>
+                ))}
+              </ul>
+              <Link className="s-ri-type__more" to={t.path}>
+                {page.types.more}
+                <Chev className="s-ri-chev" />
+              </Link>
             </header>
-            <ul className="s-ri-job__list">
-              {g.items.map((r) => (
+            <ul className="s-ri-cards">
+              {t.items.map((r) => (
                 <li key={r.id}>
-                  <Link className="s-ri-item" to={`/blueprints/${r.slug}`}>
-                    <span className="s-ri-item__name">
+                  <Link className="s-ri-card" to={`/blueprints/${r.slug}`}>
+                    <span className="s-ri-card__name">
                       {r.name}
-                      <Arrow className="s-ri-item__arrow" />
+                      <Chev className="s-ri-chev" />
                     </span>
-                    <span className="s-ri-item__line">{tie(r.line)}</span>
+                    <span className="s-ri-card__line">{tie(r.line)}</span>
+                    <span className="s-ri-card__runs">
+                      <span className="sr-only">{`${page.types.runsOn}: `}</span>
+                      {['personas' as const, ...(blueprintPieces[r.slug] ?? [])].map((p) => (
+                        <span className="s-ri-card__piece" key={p} title={pieceChips[p].name}>
+                          <PersonaGlyph name={pieceChips[p].icon} />
+                          <span className="sr-only">{pieceChips[p].name}</span>
+                        </span>
+                      ))}
+                    </span>
                   </Link>
                 </li>
               ))}

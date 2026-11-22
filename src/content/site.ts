@@ -4,7 +4,7 @@ import type { AgentsPage, Llms, NotFoundPage, PrivacyPage, RecipesIndexPage } fr
 
 /* Site pages: the Recipes index (/recipes), the privacy notice (/privacy), the page for companies an agent visits
    (/agents), the 404 page and the llms.txt intro. Since 20 Nov every one says what Home says: Obsession gives AI agents
-   a persona on the web and keeps them running, from a recipe, the API or MCP; early access, never a waitlist. The agents
+   a persona on the web and keeps them running, from a blueprint, the API or MCP; the Free plan, never a waitlist. The agents
    appear only where a page says where the data comes from (/agents). The lines every agent keeps (obsession/system.md):
    the event log is never changed, who asked stays private unless they choose to be named, and the law (an agent says it's
    AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, never
@@ -26,7 +26,7 @@ const SENTENCE =
   'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. Use one piece, put them together as a persona, or pick a blueprint and Obsession runs the job.'
 
 /* What Obsession is, as an entity: the line every engine and profile repeats (llms.txt's summary, the Organization and
-   WebSite JSON-LD, docs/SEARCH.md 2). Since 21 Nov the pieces an agent needs through one API, plus recipes; never AI
+   WebSite JSON-LD, docs/SEARCH.md 2). Since 21 Nov the pieces an agent needs through one API, plus blueprints; never AI
    customers. */
 export const ENTITY =
   'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to.'
@@ -41,7 +41,7 @@ export const recipesPage: RecipesIndexPage = {
     description:
       'Ready-made AI agent templates, called blueprints: pick one, say where results go, and Obsession runs it, from mystery shopping to competitor tracking.',
     answer:
-      'Obsession blueprints are ready-made AI agent templates that we run for you, or jobs you bring yourself. Each says who the persona is, where it goes, what it brings back and how results reach your event log.',
+      'Blueprints are ready-made AI agent templates that run on Obsession’s pieces. Pick one, say where results go, and each result lands in your event log, Slack, a sheet or your CRM.',
     ogImage: '/og/recipes.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -50,23 +50,21 @@ export const recipesPage: RecipesIndexPage = {
   },
 
   hero: {
-    headline: 'Pick a blueprint. Say where your personas go.',
-    sub: 'Obsession blueprints are ready-made AI agent templates that we run for you, or jobs you bring yourself. Each says who the persona is, where it goes, what it brings back and how results reach your event log.',
+    headline: 'Pick a blueprint. Obsession runs the job.',
+    sub: 'Blueprints are ready-made AI agent templates that run on Obsession’s pieces. They come in seven types, one for each job AI agents do. Pick one, say where results go, and pay only for the pieces it uses.',
   },
 
+  /* The recipes' own `group` field, kept for their data; since the 22 Nov call the hub groups by the six types below. */
+  types: { label: 'Blueprints by job', more: 'See the pieces and prices', runsOn: 'Runs on' },
+
   groups: [
-    {
-      group: 'Watch other companies',
-      line: 'Competitors’, prospects’ and accounts’ emails, prices, trials and offers, each dated with its screenshot.',
-    },
-    {
-      group: 'Check your own journeys',
-      line: 'A persona goes through your own sign up, checkout and lead forms, and keeps everything that follows, with the time each arrived.',
-    },
-    {
-      group: 'Check your AI agents',
-      line: 'A persona talks to support chats, voice lines and sales agents, and keeps every answer word for word with the time.',
-    },
+    { group: 'Talk to customers', line: 'Calls, texts and messages answered, confirmed and followed up, on your own numbers.' },
+    { group: 'Test sign-up and agents', line: 'Your own sign-up, codes, emails and forms, checked as a new customer meets them.' },
+    { group: 'Build agent products', line: 'Starters for agents that answer their own inbox, texts and messages.' },
+    { group: 'Work behind logins', line: 'Portals signed in for weeks, statuses and documents collected every day.' },
+    { group: 'Watch the market', line: 'Competitors’ emails, prices, trials and ads, dated.' },
+    { group: 'Train and test agents', line: 'Your agent scored on real tasks, every night and after every update.' },
+    { group: 'Buy, book and order', line: 'Supplies reordered, trips booked and every receipt kept, paid with the card you give it.' },
   ],
 
   hub: {
@@ -90,15 +88,15 @@ export const recipesPage: RecipesIndexPage = {
       },
       {
         q: 'Can I change a blueprint?',
-        a: 'Yes: who the persona is, where it goes, how often it runs, how long it waits for replies and where its results go.',
+        a: 'Yes. You set who the persona is, where it goes, how often it runs, how long it waits for replies and where its results go.',
       },
       {
         q: 'What does a blueprint cost?',
-        a: 'Its runs count toward what your plan covers at list rates, then as you go, with model tokens on top, so you pay only for what runs. Each blueprint’s page shows a typical month at 3 sizes, such as per store, competitor or voice agent. Every blueprint starts with a free run.',
+        a: 'It is billed on the pieces it uses, at list rates, toward what your plan covers, with model tokens on top. Each blueprint’s page shows a typical month at 3 sizes, such as per store, competitor or voice agent.',
       },
       {
         q: 'Can I try an AI agent template for free?',
-        a: 'Yes. Every blueprint starts with a free run, such as 1 store shopped or 3 test calls to 1 voice agent. Pick a paid plan when you want it on a schedule.',
+        a: 'Yes. Try any blueprint on the Free plan, with no credit card, within its allowances. Pick a paid plan when you want it on a schedule.',
       },
       {
         q: 'Can I run a blueprint from my own code?',
@@ -108,20 +106,20 @@ export const recipesPage: RecipesIndexPage = {
   },
 
   final: {
-    heading: 'Which blueprint should we set up first?',
+    heading: 'Pick the first job for Obsession to run.',
     capture: {
       kind: 'waitlist',
       source: 'recipes-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'any',
     },
   },
 }
 
-/* /privacy. UK GDPR article 13, plainly: who is responsible, what the early access form keeps (and any company the
-   reader asks us to add or check), why, the legal basis, how long, who sees it, transfers, rights and the ICO, and the
-   contact. 9 Nov: only the retired words changed (waitlist, free mystery shop, free AI agent check); the legal meaning
-   is the same. Before it ships the founders confirm: the controller's legal name and address (CONTROLLER), the mailbox
+/* /privacy. UK GDPR article 13, plainly: who is responsible, what the sign-up form keeps (and any site the
+   reader names for their agents), why, the legal basis, how long, who sees it, transfers, rights and the ICO, and the
+   contact. 9 Nov and 22 Nov: only the retired words changed (waitlist, free checks, early access, "add or check a
+   company"); the legal meaning is the same. Before it ships the founders confirm: the controller's legal name and address (CONTROLLER), the mailbox
    (CONTACT_EMAIL), the 12 month retention, and that the sheet sits on a company account covered by the provider's
    data terms. */
 export const privacyPage: PrivacyPage = {
@@ -129,9 +127,9 @@ export const privacyPage: PrivacyPage = {
     path: '/privacy',
     title: 'Privacy notice: what Obsession keeps from its forms and why',
     description:
-      'What Obsession keeps when you request early access or ask it to add or check a company, why, how long, who sees it, and how to see, change or delete it.',
+      'What Obsession keeps when you sign up and name the sites your agents start with, why, how long, who sees it, and how to see, change or delete it.',
     answer:
-      'Obsession keeps the email, name, company, website, role, brands, blueprints and use case you give when you request early access, including any company you ask it to add or check, plus the page you used. It uses them to tell you about Obsession, set up what you asked for and decide what to build, never sells them, and deletes them 12 months after you sign up or the day you ask.',
+      'Obsession keeps the email, name, company, website, role, brands, blueprints and use case you give when you sign up, including any site you name for your agents, plus the page you used. It uses them to tell you about Obsession, set up your account and decide what to build. It never sells them, and deletes them 12 months after you sign up or the day you ask.',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Privacy', path: '/privacy' },
@@ -139,8 +137,8 @@ export const privacyPage: PrivacyPage = {
   },
 
   headline: 'We keep what you type into our forms, and never sell it.',
-  sub: 'This notice covers the early access form, any company you ask us to add or check, and Google Analytics on useobsession.com, under UK data protection law.',
-  updated: '9 November 2026',
+  sub: 'This notice covers the sign-up form, any site you name for your agents, and Google Analytics on useobsession.com, under UK data protection law.',
+  updated: '22 November 2026',
 
   sections: [
     {
@@ -155,11 +153,11 @@ export const privacyPage: PrivacyPage = {
     {
       id: 'what',
       heading: 'We keep what you type, and the page you typed it on.',
-      lines: ['When you request early access, including any company you ask us to add or check, we keep:'],
+      lines: ['When you sign up, including any site you name for your agents, we keep:'],
       list: [
         'Your email address, name, company and its website',
         'What you do (a brand, an agency and its kind, a marketing or sales team, a developer) and, if you tap it, how many clients or how big the team',
-        'The brands, companies or AI agents you name for us to add, check or watch (web addresses, or an AI agent’s phone number), if you name any',
+        'The brands, companies or AI agents you name for your personas to start with (web addresses, or an AI agent’s phone number), if you name any',
         'The blueprints you pick',
         'What you tell us you’d like to test, if you do',
         keepArrivedFrom
@@ -169,12 +167,12 @@ export const privacyPage: PrivacyPage = {
     },
     {
       id: 'browser',
-      heading: 'We add nothing about your device to your sign up.',
+      heading: 'We add nothing about your device to your sign-up.',
       lines: [
         'Our website host and form service see your device’s IP address, as they do on any website. We don’t keep it with your details.',
         'We use no advertising cookies. Your light or dark choice, and your answer about Google Analytics, are saved in your own browser.',
         'While you finish signing up, your answers wait in your browser for up to 24 hours, so a reload or another page doesn’t lose them.',
-        'You don’t have to give us anything. Without an email address, we can’t add you to the early access list.',
+        'You don’t have to give us anything. Without an email address, we can’t set up your account.',
       ],
     },
     {
@@ -207,7 +205,7 @@ export const privacyPage: PrivacyPage = {
         'Tell you about Obsession',
         'Set up what you asked for first',
         'Decide who we call first, from your answers',
-        'Add or check the companies you asked for, and send you what we find',
+        'Run the blueprints you picked on the sites you named, and send you the results',
         'Decide what we build next, from what people tell us they need',
         'Keep our forms safe from bots and abuse',
       ],
@@ -217,9 +215,9 @@ export const privacyPage: PrivacyPage = {
       heading: 'Your consent covers our emails, and you can withdraw it at any time.',
       lines: [
         `Emails about Obsession: your consent, given when you sign up. Withdraw it whenever you like by replying to any email from us or writing to ${CONTACT_EMAIL}.`,
-        'Your early access, and any company you ask us to add or check: you asked us for it, so we use your details to deliver it (the legal basis is contract).',
+        'Your account, and any site you name for your agents: you asked us for it, so we use your details to deliver it (the legal basis is contract).',
         'Your name, company, website, role, brands, blueprints and use case: our legitimate interest in setting up what you asked for, replying to you and deciding what to build. The sizes, brands and your use case are optional.',
-        'To prepare your first run we may read your company’s website and public profile. We look up your company, not you.',
+        'To set up your account we may read your company’s website and public profile. We look up your company, not you.',
         'Keeping the forms safe: our legitimate interest in stopping spam and abuse.',
         'Google Analytics: your consent, given on the cookie card. Withdraw it with Cookie settings at the foot of any page.',
         'We make no automated decisions about you.',
@@ -232,10 +230,10 @@ export const privacyPage: PrivacyPage = {
     },
     {
       id: 'who-sees',
-      heading: 'Only the founders of Obsession read your sign up.',
+      heading: 'Only the founders of Obsession read your sign-up.',
       lines: ['We never sell your details or share them for anyone else’s marketing. These providers store or send them for us:'],
       list: [
-        'The spreadsheet and email service that holds the early access list',
+        'The spreadsheet and email service that holds sign-ups',
         'Our website host',
         'Google, for Google Analytics, only if you allow it',
       ],
@@ -275,19 +273,23 @@ export const privacyPage: PrivacyPage = {
   ],
 }
 
-/* /agents, linked by every agent at competitors and prospects ("Saw an Obsession agent?") and from every footer. For the
-   company an agent visited: the agents are how Obsession collects what companies show signed-up customers, so this is
-   the 1 page that explains them. What an agent is, that it's declared, what it does and never does, what it keeps, how
-   to ask us anything or keep agents off a site. Who asked is never named without their OK. Never "AI customer". */
+/* /agents, linked by every Obsession agent when it talks to a person ("Saw an Obsession agent?") and from every footer.
+   Rewritten 23 Nov 2026 for the 21 Nov position: an Obsession agent is an AI agent a team runs on Obsession, with its own
+   inbox, phone number and browser. Two readers land here: a company whose site an agent signed up to, and a person an
+   agent emailed, texted or called for a business. The page states the product lines first (says it's an AI; texts and
+   calls only people who gave the business their number; signs in only with logins its team gives it; stops at any
+   identity check, and before payment unless given its team's own card; never gets round a CAPTCHA or a bot block; every
+   step in the team's event log), then how to ask us anything or keep agents off a site. Who asked for a visit is never
+   named without their OK. Never "AI customer", "record" or the index. */
 export const agentsPage: AgentsPage = {
   meta: {
     path: '/agents',
     title: 'Saw an Obsession agent? What it does and how to opt out',
     description:
-      'An Obsession agent signs up, starts trials and asks for quotes the way any customer can, and says it’s an AI. What it keeps, and how to opt out.',
+      'An Obsession agent is an AI agent with its own inbox, phone number and browser, and it always says it’s an AI. What it does and never does, and how to opt out.',
     /* The sub, then the contact in full: an assistant that quotes this answer away from the page still says where to
        write. Its first sentence is the "Obsession agent" term in the JSON-LD (lib/jsonld.ts). */
-    answer: `An Obsession agent signs up, starts trials and asks for quotes the way any customer can, with its own inbox, phone number and browser. Any company can write to ${CONTACT_EMAIL} with a question about an agent, or to keep Obsession’s agents off its site.`,
+    answer: `An Obsession agent is an AI agent that a team runs on Obsession, with its own inbox, phone number and browser. It identifies itself as an AI to anyone it speaks to, and every step it takes is kept in its team’s event log. Any company can write to ${CONTACT_EMAIL} with a question about an agent, or to keep Obsession’s agents off its site.`,
     ogImage: '/og/agents.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -296,16 +298,16 @@ export const agentsPage: AgentsPage = {
   },
 
   pill: 'Saw an Obsession agent?',
-  headline: 'An Obsession agent is a customer that says it’s an AI.',
-  sub: 'An Obsession agent signs up, starts trials and asks for quotes the way any customer can, with its own inbox, phone number and browser. Write to us with any question about it, or to keep our agents off your site.',
+  headline: 'An Obsession agent is an AI agent, and it always says so.',
+  sub: 'An Obsession agent is an AI agent that a team runs on Obsession, with its own inbox, phone number and browser. It identifies itself as an AI to anyone it speaks to, and every step it takes is kept in its team’s event log. Write to us with any question about an agent, or to keep our agents off your site.',
 
   sections: [
     {
       id: 'what',
-      heading: 'It collects what a company shows its signed-up customers.',
+      heading: 'It works for the team that runs it.',
       lines: [
-        `${SENTENCE} Each persona signs up, reads what arrives, starts trials, asks for quotes and uses the site’s chat, as anyone can, and can keep its account open for months.`,
-        'Everything it keeps is dated and kept exactly as it arrived, so nobody has to take its word for what happened.',
+        `${SENTENCE} A team gives its agent a persona: an inbox, a phone number and a browser under one identity.`,
+        'The agent uses them for that team’s job. Its jobs include answering the team’s customers, following up enquiries, chasing documents, and signing up to websites as a new customer to see what they send.',
       ],
     },
     {
@@ -313,52 +315,65 @@ export const agentsPage: AgentsPage = {
       id: 'declared',
       heading: 'It never pretends to be a person.',
       lines: [
-        'When it talks to a person, by chat, email or phone, it says it’s an AI agent from Obsession and links to this page.',
-        'Who asked for the visit stays private unless they choose to be named.',
+        'When it talks to a person, by chat, email, text or phone, it says it’s an AI agent running on Obsession and links to this page.',
+        'It texts and calls only people who gave the business their number. Who asked for a visit to your site stays private unless they choose to be named.',
       ],
     },
     {
       id: 'never',
-      heading: 'What no Obsession agent does, whoever asked for it.',
-      lines: ['Every agent keeps to the law, and nothing in the event log is ever changed. It never:'],
+      heading: 'What no Obsession agent does, whoever runs it.',
+      lines: ['Every agent keeps to the law and to these operating rules. It never:'],
       list: [
         'Pretends to be a person when it talks to one',
+        'Texts or calls anyone who hasn’t given the business their number',
+        'Signs in to an account it has no right to',
+        'Goes past an identity check',
+        'Pays for anything without its team’s own payment card',
         'Uses fake payment details',
         'Gets round a CAPTCHA or a bot block',
         'Clicks paid ads at volume',
-        'Changes what it found: every receipt is kept as it arrived',
+        'Edits an event once it’s kept',
       ],
     },
     {
       id: 'keeps',
-      heading: 'It keeps what any customer would see.',
+      heading: 'Every step it takes is kept in its team’s event log.',
       lines: [
-        'The pages, emails, texts and chat answers it receives, with their times and signatures. It never signs in to an account that isn’t its own, and sees nothing inside your systems.',
+        'Each page, email, text, call and chat answer it handles is timestamped and kept exactly as it arrived, so nobody has to take its word for what happened.',
+        'It signs in only with logins its team gives it, never to an account it has no right to, and sees nothing inside your systems. At an identity check it stops, and the event log keeps what the check asked for. At checkout it stops before payment unless its team gives it their own payment card.',
       ],
     },
     {
       id: 'opt-out',
-      heading: '1 email keeps our agents off your site.',
+      heading: 'One email keeps our agents off your site.',
       lines: [
-        `Write to ${CONTACT_EMAIL} with your web address. We stop every agent there and keep them off it.`,
-        'Unsubscribing its email address, or texting STOP to its number, works too, as it would for anyone.',
-        'Ask us anything else as well: what an agent did on your site, and when. We name who asked only with their OK.',
+        `Write to ${CONTACT_EMAIL} with your web address. We stop every Obsession agent there and keep them off it.`,
+        'If an agent texted or emailed you, reply STOP to its number or unsubscribe from its emails, as you would with any business.',
+        'Ask us anything else as well: what an agent did on your site, and when. We name who asked for a visit only with their OK.',
       ],
     },
   ],
 
-  /* The questions a company asks after an agent signs up (_research/seo/research-questions.md), answered only with what
-     this page already says. FAQPage JSON-LD follows them (meta.ts). */
+  /* The questions a company or a person asks after an agent contacts them (_research/seo/research-questions.md),
+     answered only with what this page already says. FAQPage JSON-LD follows them (meta.ts). */
   faq: {
-    heading: 'An agent on your site always has a company behind it.',
+    heading: 'Every Obsession agent has a company behind it.',
     items: [
       {
         q: 'Who sent the AI agent that signed up to my site?',
-        a: `Obsession did. Its agents say they’re AI when they talk to a person, link to this page, and never name who asked for the visit without their OK. Write to ${CONTACT_EMAIL} with the email address or number it used, and we tell you what it did and when.`,
+        a: `A team that runs its agent on Obsession. Every Obsession agent says it’s an AI when it talks to a person and links to this page, and we never name who asked for a visit without their OK. Write to ${CONTACT_EMAIL} with the email address or number it used, and we tell you what it did and when.`,
+      },
+      {
+        q: 'An AI agent texted or called me. Why?',
+        a: `An Obsession agent texts and calls only people who gave the business their number, for example to confirm a booking or reply to an enquiry. Reply STOP to end the texts, or write to ${CONTACT_EMAIL} with the number it used.`,
       },
       {
         q: 'Is there a real company behind an AI agent on my checkout?',
-        a: 'For an Obsession agent, yes: Obsession, which answers any question about it. It never uses fake payment details.',
+        a: 'Yes. A team runs every Obsession agent, and Obsession answers any question about it. At checkout it stops before payment unless that team gives it their own payment card, and it never uses fake payment details.',
+      },
+      {
+        q: 'Can an Obsession agent sign in to my systems?',
+        a: 'Only with logins its team gives it, such as a portal account the team already holds. It never signs in to an account it has no right to, and it stops at any identity check.',
       },
       {
         q: 'How do I keep Obsession’s AI agents off my site?',
@@ -366,7 +381,7 @@ export const agentsPage: AgentsPage = {
       },
       {
         q: 'Will an Obsession agent contact my staff?',
-        a: 'Only the way a customer would, through your chat, email or phone, and it says it’s an AI agent from Obsession the moment it does.',
+        a: 'Only the way a customer would, through your chat, email or phone, and it says it’s an AI agent the moment it does.',
       },
     ],
   },
@@ -380,7 +395,7 @@ export const agentsPage: AgentsPage = {
   },
 }
 
-/* The 404 page (dist/404.html, noindex). It carries the early access form, so the nav's call to action has somewhere to
+/* The 404 page (dist/404.html, noindex). It carries the sign-up form, so the nav's call to action has somewhere to
    land, and a link to /agents for anyone who mistyped the link an agent gave them. */
 export const notFoundPage: NotFoundPage = {
   meta: {
@@ -401,24 +416,24 @@ export const notFoundPage: NotFoundPage = {
   capture: {
     kind: 'waitlist',
     source: '404',
-    button: 'Request early access',
+    button: 'Start free',
     interest: 'any',
   },
 }
 
 /* llms.txt: `summary` is the 1 line under the title (the blockquote); `intro` is the paragraph before the page list.
    Plain and complete for answer engines, in Home's story (21 Nov): the pieces, the persona that bundles them, the API,
-   MCP and pricing, the recipes, the red lines, the 1 real run and early access. The intro names every recipe: the prerender fails the build when a
-   recipe's name is missing from it. */
+   MCP and pricing, the blueprints, the red lines, the 1 real run and the Free plan. The intro names every blueprint: the prerender fails the build
+   when a blueprint's name is missing from it. */
 export const llms: Llms = {
   summary: ENTITY,
   intro: [
     'Obsession gives AI agents the pieces they need on the web, through one API and one bill. Email: inboxes agents send and receive from. Phone: numbers, texts and calls. Messaging: iMessage lines, WhatsApp for support, sales, bookings and notifications, Slack and Telegram. Browser: a cloud browser whose sessions keep their logins, with a home connection. Sandbox: a computer to run code, started only when a task needs one. A company can take one piece, such as email, or all of them.',
     'A persona puts the pieces under one identity: an inbox, a number, its channels, a browser profile and a sandbox when needed. It lives on an actor runtime, so it costs nothing while it waits, answers a new message in about 50 ms without starting a machine, runs on a schedule, stops at any identity check, stops before payment unless you give it your own payment card, and every page, email, text and call it sees lands in your event log, each dated, with screenshots. It says it’s an AI when it talks to a person.',
     `Developers use the pieces through the API, SDKs and MCP, so their own agents call them as tools. Events reach webhooks, Clay, Zapier, HubSpot, Baserow and Supabase. Each piece is priced on its own (useobsession.com/pricing): an inbox costs ${prices.inbox.amount} a month (the Free plan includes ${plans.find((pl) => pl.id === 'free')?.allowances.inbox}), a US number ${prices.number.amount} a month, a browser ${prices.browser.amount} an hour and a sandbox ${prices.sandbox.amount} a vCPU hour, and an idle persona costs nothing. Every plan pays the same list rates, and a paid plan’s fee covers a set amount of that usage, from $${plans.find((pl) => pl.id === 'developer')?.monthly} a month, which covers $${plans.find((pl) => pl.id === 'developer')?.covers}, to $${plans.find((pl) => pl.id === 'scale')?.monthly}, which covers $${plans.find((pl) => pl.id === 'scale')?.covers}. Model tokens are priced per million like any piece, from ${prices.tokensIn.amount} per million input tokens on Auto, or nothing with your own key.`,
-    'Blueprints are jobs that run on Obsession beside the pieces, each with a free run, then counted toward what your plan covers at list rates, with each page showing what a typical month costs: ours, ready to run for teams with no engineers, or your own task or computation, with nothing to host. Every result lands in the same event log developers subscribe to, and reaches a spreadsheet, Clay, a Claude agent or the Obsession dashboard. They cover other companies (competitor tracking, ad tracking, email and SMS tracking, price watch, trial teardown, prospect intelligence, account watch), your own flows (mystery shopping for ecommerce brands and their agencies, QA on your own flows, lead response checks, ad landing check, partner checks, delivery monitoring, listings and AI answers), and the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
+    'Blueprints are jobs that run on Obsession beside the pieces: ours, ready to run for teams with no engineers, or your own task, with nothing to host. Try any blueprint on the Free plan. After that, its runs count toward what your plan covers at list rates, and each blueprint’s page shows what a typical month costs. Every result lands in the same event log developers subscribe to, and reaches Slack, email, a CRM, Clay, a spreadsheet, a PDF report or a Claude agent; for any other tool, Obsession builds the integration. Blueprints come in seven types. Talk to customers: missed call text back, appointment reminders, speed-to-lead callback, document chaser, voice agent check, support bot check, AI disclosure check. Test sign-up and agents: mystery shopping for ecommerce brands and their agencies, QA on your own flows, sign-in code check, delivery monitoring, lead response checks, ad landing check, partner checks. Build agent products: inbox agent, iMessage assistant, outbound agent check, sales agent check. Work behind logins: prior authorization status, load tracking, invoice collector, price watch, trial teardown, account watch. Watch the market: competitor tracking, email and SMS tracking, ad tracking, prospect intelligence, listings and AI answers. Train and test agents: nightly agent evaluation, drift watch, vendor agent check, resolution check. Buy, book and order: agent checkout test, travel booking agent, supplier reorder agent, order and receipt matching.',
     `Every persona says it’s an AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, and never clicks paid ads at volume. Any company can write to ${CONTACT_EMAIL} to keep personas off its site.`,
-    'The sample data at useobsession.com/sample-output is a real run from September 2026: a UK skincare store, 4 personas with 1 inbox each, every inbox watched for 48 hours. A £40 basket left at 02:57 on 22 September and a checkout left at 03:11 got no reminder.',
-    'Obsession is in early access, onboarding a limited number of teams.',
+    'The sample data at useobsession.com/sample-output is a real mystery shopping run at a UK skincare store in September 2026: every email, text, screen and price the run kept, in each format a result can land in.',
+    'Teams start on the Free plan, with no credit card, and Obsession sets up their API key and MCP with them.',
   ].join(' '),
 }

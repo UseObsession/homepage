@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/llm-grounding: for an engineer building an agent that answers about named companies. The definition and
    the grounding sources are Google Cloud's own (Vertex AI docs), read 11 Nov 2026. */
@@ -64,7 +63,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} An agent grounds an answer in those facts with one call over the [API or MCP](/developers), and cites the dated email or screenshot itself.`,
+      text: 'Obsession’s [cloud browser](/browser) and inboxes give an agent a source of its own: the dated email or screenshot a company showed a customer. The agent reads it over the [API or MCP](/developers) and cites it.',
     },
     {
       kind: 'faq',

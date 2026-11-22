@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* Draft, 31 Oct 2026, written to _research/seo/plan/use-cases-1nov/PLAN_ecommerce.md (Seun's go, 31 Oct). It owns
    "agentic ai use cases in ecommerce" and its neighbours (Google autocomplete, US and UK, 31 Oct:
@@ -17,7 +16,8 @@ import { AI_CUSTOMER } from '../glossary'
    Read at source on 31 Oct 2026: Meta's Muse launch post (8 Sep 2026), Shop's personal agents help page, Shopify's
    agentic storefronts help page, Google's UCP help page, Adobe's holiday forecast (28 Sep 2026), Klaviyo's 2026
    benchmarks, CustomerOptix's and T-ROC's mystery shopping pages (T-ROC dated 4 May 2026), Shopify's SimGym help page,
-   and the Visualping, Panoramata and Owletter pricing pages. fernwick.example is invented. No dashes. */
+   and the Visualping, Panoramata and Owletter pricing pages. fernwick.example is invented. No dashes.
+   22 Nov 2026: Obsession lines moved to the toolkit position (personas, blueprints, prices.ts). */
 
 const MUSE = 'https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/'
 const SHOP_AGENTS = 'https://help.shop.app/en/shop/shopping/personal-agents'
@@ -43,19 +43,18 @@ export const post: BlogPost = {
   description:
     'Agentic AI use cases in ecommerce: 27 jobs an agent does as a customer for Shopify brands and agencies, from abandoned checkouts to competitors’ prices.',
   answer:
-    'Agentic AI use cases in ecommerce come from three kinds of AI agent: the store’s own agents, shoppers’ agents, and agents that work for a brand or agency as a customer of any store. Only the third stays a new customer of a store for months and keeps what it sends, from the welcome code at checkout to a competitor’s real price, with each email and page as proof. Obsession keeps what any store shows only to its customers, yours or a competitor’s, dated with the email or screenshot, so brands catch a broken flow the day it breaks and agencies open pitches with proof.',
+    'Agentic AI use cases in ecommerce come from three kinds of AI agent: the store’s own agents, shoppers’ agents, and agents that work for a brand or agency as a customer of any store. Only the third stays a new customer of a store for months and keeps what it sends, from the welcome code at checkout to a competitor’s real price, with each email and page kept as it arrived. Obsession gives each of those agents its own inbox, phone number and browser under one identity, so brands catch a broken flow the day it breaks and agencies open pitches with the store’s own emails.',
   primaryKeyword: 'agentic ai use cases in ecommerce',
   keywords: [
     'ai use cases in ecommerce',
     'ai in ecommerce examples',
     'how to use ai in ecommerce',
     'intelligent agents in ecommerce',
-    'ai customer use cases in ecommerce',
     'agentic ai in ecommerce',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-10-31',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 10,
   order: 1,
   authors: [
@@ -80,26 +79,26 @@ export const post: BlogPost = {
           links: ['asks', 'finds, prepares a checkout'],
         },
         {
-          name: 'An AI customer',
+          name: 'A customer-side agent',
           who: 'Works for a brand or its agency',
-          nodes: ['Brand or agency', 'AI customer', 'Any store'],
+          nodes: ['Brand or agency', 'Its persona', 'Any store'],
           links: ['hires', 'signs up, waits, keeps'],
           lit: 1,
           ours: true,
         },
       ],
-      foot: 'Only the AI customer comes back with what the store sent a new customer: the email, the price and the page, each kept as it arrived. Fernwick is an invented store.',
+      foot: 'Only the customer-side agent comes back with what the store sent a new customer: the email, the price and the page, each kept as it arrived. Fernwick is an invented store.',
     },
   },
 
   blocks: [
     {
       kind: 'p',
-      text: 'Agentic AI use cases in ecommerce come from three kinds of AI agent: the store’s own agents, shoppers’ agents, and AI customers that work for a brand or agency at any store. Agentic AI is AI that carries out a task on its own, such as answering a shopper, filling a basket or placing an order.',
+      text: 'Agentic AI use cases in ecommerce come from three kinds of AI agent: the store’s own agents, shoppers’ agents, and customer-side agents that work for a brand or agency at any store. Agentic AI is AI that carries out a task on its own, such as answering a shopper, filling a basket or placing an order.',
     },
     {
       kind: 'p',
-      text: 'The store’s agents and the shoppers’ agents get most of the coverage. AI customers do a job neither can. They sign up to a store as a new customer, wait and keep what it sends and shows. That covers the welcome email and the pop-up code at checkout, the reminder after an abandoned checkout and a competitor’s price after its welcome code.',
+      text: 'The store’s agents and the shoppers’ agents get most of the coverage. Customer-side agents do a job neither can. They sign up to a store as a new customer, wait and keep what it sends and shows. That covers the welcome email and the pop-up code at checkout, the reminder after an abandoned checkout and a competitor’s price after its welcome code.',
     },
     {
       kind: 'p',
@@ -135,35 +134,33 @@ export const post: BlogPost = {
         ADOBE +
         ') that traffic from AI services to US retail sites, counted as shoppers clicking a link, will rise 130% year on year over the 2026 holiday season. On Black Friday it expects a rise of 95%. The [agent ready website](/blog/agent-ready-website) checks show what a shopper’s agent meets on a store, and [agentic commerce](/blog/agentic-commerce-for-merchants) covers what is live.',
     },
-    { kind: 'h3', id: 'ai-customers', text: 'AI customers' },
+    { kind: 'h3', id: 'customer-side', text: 'Agents that shop as a customer for a brand' },
     {
       kind: 'p',
-      text: '**' +
-        AI_CUSTOMER.definition +
-        '** It works for the brand or its agency, at any store either one names, the brand’s own included. The term is explained in full in [what AI customers are](/blog/ai-customers), and [AI customer service agent vs AI customer](/blog/ai-customer-service-agent-vs-ai-customer) sets it beside the store’s own support agent.',
+      text: 'A customer-side agent works for a brand or its agency, at any store either one names, the brand’s own included. On Obsession it is a persona: an AI agent with its own inbox, phone number and browser under one name. [AI agents as customers](/blog/ai-customers) covers what such an agent sees, and a [comparison with the store’s own support agent](/blog/ai-customer-service-agent-vs-ai-customer) sets the two side by side.',
     },
 
-    { kind: 'h2', id: 'how-it-works', text: 'How an AI customer does the job' },
+    { kind: 'h2', id: 'how-it-works', text: 'How a customer-side agent does the job' },
     {
       kind: 'list',
       ordered: true,
       items: [
-        '**Its own identity.** An inbox, a mobile number and a browser, used for one store only.',
+        '**Its own identity.** A persona with an inbox, a mobile number and a browser, used for one store only.',
         '**It signs up.** Through the pop-up, the footer form or the checkout, the way any shopper does.',
-        '**It sleeps.** Nothing runs between emails, so it can stay on a store’s list for months.',
+        '**It waits.** A persona is free while it waits, so it can stay on a store’s list for months.',
         '**It wakes and keeps.** When the welcome email, a reminder or a price change arrives, it keeps it exactly as it arrived, with the time.',
-        '**It reports.** The brand or agency reads the result at 4, 12, 24 or 48 hours, or keeps it watching for as long as it wants.',
+        '**It reports.** Every email, page and price lands in one event log, dated. The brand or agency reads the result at 4, 12, 24 or 48 hours, in Slack, a sheet or its CRM.',
       ],
     },
     {
       kind: 'p',
-      text: 'Each step, and why a waiting AI customer costs almost nothing, is set out in [how AI customers work](/blog/how-ai-customers-work).',
+      text: 'Each step, from the form to every email that follows, is set out in [how an AI agent signs up as a customer](/blog/how-ai-customers-work).',
     },
 
     { kind: 'h2', id: 'brands', text: 'Use cases for ecommerce brands' },
     {
       kind: 'p',
-      text: 'A brand points AI customers at three places: its own store, its competitors’ stores, and the AI assistants and shoppers’ agents that now stand between the two. The full case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
+      text: 'A brand points customer-side agents at three places: its own store, its competitors’ stores, and the AI assistants and shoppers’ agents that now stand between the two. The full case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
     },
     { kind: 'h3', id: 'own-store', text: 'Your own store: find your revenue leaks' },
     {
@@ -181,7 +178,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'Jobs for AI customers on a brand’s own store, with what each one does and what comes back',
+      caption: 'Jobs for customer-side agents on a brand’s own store, with what each one does and what comes back',
       cols: BRAND_COLS,
       rows: [
         [
@@ -198,7 +195,7 @@ export const post: BlogPost = {
           'Each reminder, its timing and the item it named',
           'Weekly, monthly or after every release',
           'CRM or retention lead',
-          'Runs on: [Mystery shopper](/blueprints/mystery-shopper)\nGuide: [abandoned cart email not sending](/blog/ai-customers-find-revenue-leaks)',
+          'Runs on: [Mystery shopping](/blueprints/mystery-shopper)\nGuide: [abandoned cart email not sending](/blog/ai-customers-find-revenue-leaks)',
         ],
         [
           'Sale and launch codes',
@@ -206,11 +203,11 @@ export const post: BlogPost = {
           'Every code that fails at checkout, with the screenshot',
           'After every release, or every morning',
           'Ecommerce lead',
-          'Runs on: [Website audit](/blueprints/website-audit)\nGuide: [Black Friday checklist](/blog/black-friday-checklist-new-customer)',
+          'Runs on: [QA on your own flows](/blueprints/website-audit)\nGuide: [Black Friday checklist](/blog/black-friday-checklist-new-customer)',
         ],
         [
           'A theme publish or flow edit',
-          'A new AI customer signs up and fills a basket within the hour',
+          'A new persona signs up and fills a basket within the hour',
           'Each break, within the hour of the change',
           'After every theme, app, flow or ad change',
           'Founder or ecommerce lead',
@@ -250,22 +247,22 @@ export const post: BlogPost = {
         ],
         [
           'Order, dispatch and refund emails',
-          'Places a real order on a budget the brand sets',
+          'Places a real order with the brand’s own card',
           'Confirmation, dispatch, delivery and refund, each timed',
           'Once, monthly or after every release',
           'Operations lead',
-          'Runs on: [Mystery shopper](/blueprints/mystery-shopper)',
+          'Runs on: [Mystery shopping](/blueprints/mystery-shopper)',
         ],
       ],
     },
     { kind: 'h3', id: 'competitors', text: 'Your competitors: watch your competitors' },
     {
       kind: 'p',
-      text: 'A competitor’s site shows its public price. A new customer on its list sees more: the welcome code, the price after it, the reminder offer and the sale emailed to subscribers before the site shows it. An AI customer joins through the same public pop-up and keeps each email with its date.',
+      text: 'A competitor’s site shows its public price. A new customer on its list sees more: the welcome code, the price after it, the reminder offer and the sale emailed to subscribers before the site shows it. A customer-side agent joins through the same public pop-up and keeps each email with its date.',
     },
     {
       kind: 'table',
-      caption: 'Jobs for AI customers at a brand’s competitors, each from the public sign-up any shopper can use',
+      caption: 'Jobs for customer-side agents at a brand’s competitors, each from the public sign-up any shopper can use',
       cols: BRAND_COLS,
       rows: [
         [
@@ -306,18 +303,18 @@ export const post: BlogPost = {
           'A verdict on each journey, side by side',
           'Once, monthly or after every release',
           'Head of ecommerce',
-          'Runs on: [Mystery shopper](/blueprints/mystery-shopper)\nGuide: [AI mystery shopping tools](/blog/best-ai-mystery-shopping-tools)',
+          'Runs on: [Mystery shopping](/blueprints/mystery-shopper)\nGuide: [AI mystery shopping tools](/blog/best-ai-mystery-shopping-tools)',
         ],
       ],
     },
     { kind: 'h3', id: 'ai-assistants', text: 'AI assistants and shoppers’ agents' },
     {
       kind: 'p',
-      text: 'Shoppers ask ChatGPT and other assistants which store to buy from, and some send an agent to prepare the checkout. An AI customer asks the same questions and takes the same checkout, so the brand sees what both meet.',
+      text: 'Shoppers ask ChatGPT and other assistants which store to buy from, and some send an agent to prepare the checkout. A customer-side agent asks the same questions and takes the same checkout up to payment, so the brand sees what both meet.',
     },
     {
       kind: 'table',
-      caption: 'Jobs for AI customers with the AI assistants, shoppers’ agents and partners that send shoppers to a store',
+      caption: 'Jobs for customer-side agents with the AI assistants, shoppers’ agents and partners that send shoppers to a store',
       cols: BRAND_COLS,
       rows: [
         [
@@ -330,11 +327,11 @@ export const post: BlogPost = {
         ],
         [
           'Whether a shopper’s agent can buy',
-          'Goes through checkout as a new customer after each release',
+          'Takes checkout up to payment as a new customer after each release',
           'Every step passed or broken, with the screenshot',
           'After every release',
           'Head of ecommerce or digital',
-          'Runs on: [Website audit](/blueprints/website-audit)\nGuide: [agent ready website](/blog/agent-ready-website)',
+          'Runs on: [QA on your own flows](/blueprints/website-audit)\nGuide: [agent ready website](/blog/agent-ready-website)',
         ],
         [
           'Affiliate and creator codes',
@@ -350,7 +347,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'agencies', text: 'Use cases for ecommerce agencies' },
     {
       kind: 'p',
-      text: 'Retention, CRO and Shopify Plus agencies point the same AI customers at the stores they pitch, the stores they keep and the stores they launch. Each job ends in something a client or prospect can open: the email, the screenshot and the time.',
+      text: 'Retention, CRO and Shopify Plus agencies point the same customer-side agents at the stores they pitch, the stores they keep and the stores they launch. Each job ends in something a client or prospect can open: the email, the screenshot and the time.',
     },
     {
       kind: 'p',
@@ -363,7 +360,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'Jobs for AI customers that help an agency win a brand, each ending in something the prospect can open',
+      caption: 'Jobs for customer-side agents that help an agency win a brand, each ending in something the prospect can open',
       cols: AGENCY_COLS,
       rows: [
         [
@@ -407,7 +404,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'Jobs for AI customers that help an agency keep a brand, each finding in the client’s hands first',
+      caption: 'Jobs for customer-side agents that help an agency keep a brand, each finding in the client’s hands first',
       cols: AGENCY_COLS,
       rows: [
         [
@@ -432,7 +429,7 @@ export const post: BlogPost = {
           'What changed since the last review',
           'A week before each review',
           'Agency account lead',
-          'Runs on: [Mystery shopper](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking)\nGuide: [agency client retention](/blog/ecommerce-agency-client-retention-with-ai-customers)',
+          'Runs on: [Mystery shopping](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking)\nGuide: [agency client retention](/blog/ecommerce-agency-client-retention-with-ai-customers)',
         ],
       ],
     },
@@ -443,7 +440,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'Jobs for AI customers when a store launches, moves to Shopify Plus or a new email tool, or gets fixed',
+      caption: 'Jobs for customer-side agents when a store launches, moves to Shopify Plus or a new email tool, or gets fixed',
       cols: AGENCY_COLS,
       rows: [
         [
@@ -452,7 +449,7 @@ export const post: BlogPost = {
           'A pass, or the break with its screenshot',
           'After every deploy',
           'Shopify Plus agency',
-          'Runs on: [Website audit](/blueprints/website-audit)\nGuide: [Shopify launch checklist](/blog/ai-customers-for-shopify-plus-agencies)',
+          'Runs on: [QA on your own flows](/blueprints/website-audit)\nGuide: [Shopify launch checklist](/blog/ai-customers-for-shopify-plus-agencies)',
         ],
         [
           'Emails after a migration',
@@ -468,7 +465,7 @@ export const post: BlogPost = {
           'The break and the fix, side by side',
           'Once the fix is live',
           'Fixer or developer',
-          'Runs on: [Website audit](/blueprints/website-audit)\nGuide: [Shopify store audit](/blog/shopify-store-audit-checklist)',
+          'Runs on: [QA on your own flows](/blueprints/website-audit)\nGuide: [Shopify store audit](/blog/shopify-store-audit-checklist)',
         ],
       ],
     },
@@ -476,34 +473,35 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'first-job', text: 'How to use AI in ecommerce, by role' },
     {
       kind: 'p',
-      text: 'The first job is the one closest to the number each role owns, with the page where its team can request early access.',
+      text: 'The first job is the one closest to the number each role owns, with the blueprint that runs it.',
     },
     {
       kind: 'table',
       caption: 'The first job by ecommerce role, with where to start',
-      cols: ['Role', 'First job', 'Where to start'],
+      cols: ['Role', 'First job', 'Blueprint'],
       rows: [
-        ['Store founder', 'Your welcome, basket and checkout, shopped as a new customer', '[Request early access](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['Head of ecommerce', 'Every sale code tried at checkout before the next sale', '[Request early access](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['CRM or retention lead', 'The abandoned checkout flow, timed to the minute', '[Request early access](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['Growth or performance lead', 'The pop-up and welcome code a paid visitor meets', '[Request early access](/use-cases/leak-checks-for-ecommerce-stores)'],
-        ['Retention agency', 'The stores you pitch or keep, each as a new customer', '[Request early access](/use-cases/leak-checks-for-retention-agencies)'],
-        ['CRO or performance agency', 'The pop-up and code behind each brand’s live ads', '[Request early access](/use-cases/funnel-qa-for-cro-agencies)'],
-        ['Shopify Plus agency', 'A client store, signed up to after the next release', '[Request early access](/use-cases/funnel-qa-for-cro-agencies)'],
-        ['Shopify fixer', 'The break on a store you are quoting for', '[Request early access](/agencies)'],
+        ['Store founder', 'Your welcome, basket and checkout, shopped as a new customer', '[Mystery shopping](/blueprints/mystery-shopper)'],
+        ['Head of ecommerce', 'Every sale code tried at checkout before the next sale', '[QA on your own flows](/blueprints/website-audit)'],
+        ['CRM or retention lead', 'The abandoned checkout flow, timed to the minute', '[Mystery shopping](/blueprints/mystery-shopper)'],
+        ['Growth or performance lead', 'The pop-up and welcome code a paid visitor meets', '[Ad landing check](/blueprints/ad-landing-check)'],
+        ['Retention agency', 'The stores you pitch or keep, each as a new customer', '[Mystery shopping](/blueprints/mystery-shopper)'],
+        ['CRO or performance agency', 'The pop-up and code behind each brand’s live ads', '[Ad landing check](/blueprints/ad-landing-check)'],
+        ['Shopify Plus agency', 'A client store, signed up to after the next release', '[QA on your own flows](/blueprints/website-audit)'],
+        ['Shopify fixer', 'The break on a store you are quoting for', '[QA on your own flows](/blueprints/website-audit)'],
       ],
     },
 
-    { kind: 'h2', id: 'hands-over', text: 'What an AI customer does, and where it hands over' },
+    { kind: 'h2', id: 'hands-over', text: 'What a customer-side agent does, and where it stops' },
     {
       kind: 'p',
-      text: 'An AI customer does what any shopper can. It signs up, browses, builds a basket and chats with the store’s assistant. It stays on the store’s list for months and keeps every email, page and price as it arrived.',
+      text: 'A customer-side agent does what any shopper can. It signs up, browses, builds a basket and chats with the store’s assistant. It stays on the store’s list for months and keeps every email, page and price as it arrived.',
     },
     {
       kind: 'list',
       items: [
-        '**Bot checks.** A CAPTCHA is a puzzle that blocks automated visitors. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test.',
-        '**Payment.** It never uses fake payment details. It spends only on a card capped at a budget the brand sets, for a job it approved, like a test order on its own store that the AI customer refunds. With no budget, every checkout stops before payment.',
+        '**Bot checks.** A CAPTCHA is a puzzle that blocks automated visitors. The agent never gets round a CAPTCHA or a bot block, and the event log names the step where it stopped.',
+        '**Identity checks.** It stops at any identity check.',
+        '**Payment.** It stops before payment unless the brand gives it its own card, such as for a test order on its own store. It never uses fake payment details.',
         '**People.** It says it’s an AI whenever it talks to a person, by chat, email or phone.',
         '**The cause.** It sees what any shopper sees. Why a store sent something sits in the store’s own tools: the Klaviyo flow, the Shopify settings, the app.',
       ],
@@ -512,17 +510,17 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'scale', text: 'Scale and cost' },
     {
       kind: 'p',
-      text: 'An AI customer waiting on a store’s list costs almost nothing, because it sleeps until the store sends something. Each line of the cost is worked out in [AI agent cost per month](/blog/ai-customers-at-scale).',
+      text: 'A persona waiting on a store’s list is free while it waits. It pays for the pieces it uses, such as $0.50 an inbox a month and $0.10 a browser hour. Each line of the cost is worked out in [AI agent cost per month](/blog/ai-customers-at-scale).',
     },
     {
       kind: 'p',
-      text: 'For an agency, the same AI customers check 300, 1,000 or 5,000 brands a month, and the system is built for millions.',
+      text: 'An agency runs a fleet of personas, one per store, across 300, 1,000 or 5,000 brands a month, and every event lands in the same log.',
     },
     {
       kind: 'p',
-      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. The [sample data](/sample-output) shows a real UK skincare store’s record from September 2026, where a £40 basket left at 02:57 got no reminder.',
+      text: 'The [sample data](/sample-output) shows a real run at a UK skincare store in September 2026: 4 sign-ups and baskets, and a £40 basket left at 02:57 on 22 September that got no reminder.',
     },
-    { kind: 'p', text: 'Teams start in early access, priced per call or per company watched, with a spending cap on every key.' },
+    { kind: 'p', text: 'Teams start on the Free plan, with no credit card. Paid plans are $20, $99 or $499 a month, each with a spend cap, and a blueprint is billed on the pieces it uses.' },
 
     { kind: 'h2', id: 'compared', text: 'Ways to see what a store sends its customers, compared', compare: true },
     {
@@ -572,17 +570,17 @@ export const post: BlogPost = {
           'Browsing competitors’ campaigns',
         ],
         [
-          'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Website audit](/blueprints/website-audit), [Ad landing check](/blueprints/ad-landing-check), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Listings and AI answers](/blueprints/listings-ai-answers)',
-          'Keeps what any store shows only to its customers, competitors included, each dated with the email or screenshot',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Leaves the fix to the store’s team or agency',
+          'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [QA on your own flows](/blueprints/website-audit), [Ad landing check](/blueprints/ad-landing-check), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Listings and AI answers](/blueprints/listings-ai-answers)',
+          'A persona per store with its own inbox, number and browser, every email, page and price kept in one event log',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment and at any CAPTCHA, and leaves the fix to the store’s team',
           'Every store a brand or agency names, checked as a customer',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your brand or agency needs to see what a store sends a new customer, its own or a competitor’s, every week and after every change, use Obsession. SimGym suits a theme comparison before a launch, and an email archive suits browsing competitors’ campaigns. A human mystery shopper suits a shop floor or a one-off website test.',
+      text: 'Obsession gives every AI agent its own phone, inbox and browser, on one API and one bill. If your brand or agency needs to see what a store sends a new customer, its own or a competitor’s, every week and after every change, pick its mystery shopping blueprint and Obsession runs it. SimGym suits a theme comparison before a launch, and an email archive suits browsing competitors’ campaigns. A human mystery shopper suits a shop floor or a one-off website test.',
     },
 
     { kind: 'h2', id: 'start', text: 'Start this week' },
@@ -592,21 +590,21 @@ export const post: BlogPost = {
       items: [
         'Pick the store and the journey with the most riding on it this month, such as the welcome flow before the next sale.',
         'Write the pass mark first: the welcome email within 5 minutes with the pop-up’s code, and the first abandoned checkout reminder within the flow’s delay plus 1 hour.',
-        'Set the reading time: 4, 12, 24 or 48 hours, or as long as the AI customers should keep watching.',
+        'Set the reading time: 4, 12, 24 or 48 hours, or as long as the personas should keep watching.',
         'Fix what fails, then run the same sign-up or checkout again so the before and after sit side by side.',
       ],
     },
     {
       kind: 'cta',
-      text: 'What any store sends a new customer after a sign-up, a basket and a checkout, yours and every competitor’s, each message dated with the email or screenshot.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Mystery shopping: personas sign up, fill a basket and stop before payment at your store or any competitor’s, and every email and text they get lands in your event log, dated.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
     {
       kind: 'cta',
       text: 'For retention agencies: open every pitch with the store’s own emails, and the ones that never came, from the pop-up and its code to the welcome email and the basket reminder, each message dated.',
       to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      label: 'See how it works',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about agentic AI in ecommerce' },
@@ -614,33 +612,33 @@ export const post: BlogPost = {
       kind: 'faq',
       items: [
         {
-          q: 'How is an AI customer different from a store’s AI chat?',
-          a: 'A store’s AI chat works for the store and answers its shoppers. An AI customer works for a brand or its agency and is one of those shoppers. It asks the chat the hard questions and checks each answer against the store’s policy.',
+          q: 'How is a customer-side agent different from a store’s AI chat?',
+          a: 'A store’s AI chat works for the store and answers its shoppers. A customer-side agent works for a brand or its agency and is one of those shoppers. It asks the chat the hard questions and checks each answer against the store’s policy.',
           link: { label: 'How to test a chatbot on your store', to: '/blog/test-store-chatbot-returns-policy' },
         },
         {
           q: 'How is it different from Shopify’s SimGym?',
-          a: 'SimGym’s AI shoppers browse a Shopify theme, add to cart and describe what they found, before a theme change is published. An AI customer signs up, takes the code to checkout and keeps every email that follows, at any store, competitors included.',
+          a: 'SimGym’s AI shoppers browse a Shopify theme, add to cart and describe what they found, before a theme change is published. A customer-side agent signs up, takes the code to checkout and keeps every email that follows, at any store, competitors included.',
           link: { label: 'Shopify SimGym review', to: '/blog/shopify-simgym-review-ai-shoppers-vs-ai-customers' },
         },
         {
           q: 'How is it different from a shopper’s own AI agent?',
-          a: 'A shopper’s agent, such as Meta’s Muse, works for one person and finishes that person’s purchase. An AI customer works for a brand or agency and stays a customer of the stores the brand names for months. It keeps each email and page it receives, with the time it arrived.',
+          a: 'A shopper’s agent, such as one linked to Shop, works for one person and finishes that person’s purchase. A customer-side agent works for a brand or agency and stays a customer of the stores the brand names for months. It keeps each email and page it receives, with the time it arrived.',
         },
         {
-          q: 'Does an AI customer place orders?',
-          a: 'Only on a card capped at a budget the brand sets, for a job it approved, like a test order on its own store that the AI customer refunds. With no budget, every checkout stops before payment, and it never uses fake payment details.',
+          q: 'Does a customer-side agent place orders?',
+          a: 'Only with the brand’s own payment card, for a job it approved, such as a test order on its own store. Otherwise every checkout stops before payment, and it never uses fake payment details.',
         },
         {
-          q: 'Does an AI customer say it’s AI?',
+          q: 'Does a customer-side agent say it’s AI?',
           a: 'Yes. When it talks to a person, by chat, email or phone, it says it’s an AI agent and links to a page that explains what it is.',
         },
         {
           q: 'What are some examples of AI in ecommerce?',
-          a: 'Today’s examples include a support chat answering a returns question, an assistant writing product descriptions, Meta’s Muse paying at checkout with Link and an AI customer timing a store’s abandoned checkout flow. The first two work for the store, the third for the shopper and the fourth for the brand or its agency.',
+          a: 'Today’s examples include a support chat answering a returns question, an assistant writing product descriptions, Meta’s Muse paying at checkout with Link and a customer-side agent timing a store’s abandoned checkout flow. The first two work for the store, the third for the shopper and the fourth for the brand or its agency.',
         },
         {
-          q: 'Can an AI customer check a competitor’s store?',
+          q: 'Can a customer-side agent check a competitor’s store?',
           a: 'Yes. It joins through the public sign-up any shopper can use and keeps every email, code and price the competitor sends a new customer.',
           link: { label: 'Competitor email tracking tools compared', to: '/blog/competitor-email-tracking-tools' },
         },

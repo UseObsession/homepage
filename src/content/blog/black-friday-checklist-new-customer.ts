@@ -37,7 +37,7 @@ export const post: BlogPost = {
   description:
     'Test your store the way a new customer meets it before Black Friday: the pop up, welcome code, texts, basket and checkout reminders, ads, chat and orders.',
   answer:
-    'To check a store before Black Friday, test it as a new customer: from an email address and phone number your store has never seen, sign up through the pop up, check that the welcome email and its code arrive and that the code works at checkout, opt in to texts, leave a basket and a checkout, and wait for each reminder. Run the 12 tests before your code freeze, again after any theme, app or flow change, and on the morning the sale goes live. Obsession keeps every email, code and page your store and your competitors show a new customer, dated with the email or screenshot, every week and after every change.',
+    'To check a store before Black Friday, test it as a new customer: from an email address and phone number your store has never seen, sign up through the pop up, check that the welcome email and its code arrive and that the code works at checkout, opt in to texts, leave a basket and a checkout, and wait for each reminder. Run the 12 tests before your code freeze, again after any theme, app or flow change, and on the morning the sale goes live. Obsession’s Mystery shopping blueprint sends a persona through your store and your competitors’ every week and after every change, and dates every email, code and page.',
   primaryKeyword: 'black friday checklist',
   keywords: [
     'shopify black friday checklist',
@@ -50,9 +50,9 @@ export const post: BlogPost = {
     'how to test abandoned cart flow',
     'when is black friday 2026',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   order: 0,
   authors: [
@@ -280,7 +280,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Before you run all 12 by hand, try the [store lookup](/lookup). If your online store is in Obsession’s index, its entry already holds the welcome, basket and checkout tests, dated. The account stays subscribed through Black Friday, so the sale’s emails and codes land in the same entry.',
+      text: 'To keep the 12 tests running through the sale, [Mystery shopping](/blueprints/mystery-shopper) keeps a persona subscribed to your store, so every Black Friday email and code lands in the same event log, dated.',
     },
 
     { kind: 'h2', id: 'what-it-cant-tell-you', text: 'Limits of testing by hand' },
@@ -309,13 +309,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 1 store, a new inbox and an assistant that summarises what arrived cover the tests. For 20 client stores every week, the task caps and the lack of stored emails limit the method. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. To run the 12 tests on many stores every week, use Obsession.',
+      text: 'For 1 store, a new inbox and an assistant that summarises what arrived cover the tests. For 20 client stores every week, the task caps and the lack of stored emails limit the method. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. To run the 12 tests on many stores every week, use Obsession. Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to. Its [Mystery shopping](/blueprints/mystery-shopper) blueprint gives each store a persona that signs up, waits and keeps every email.',
     },
     {
       kind: 'cta',
-      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, every week and after every change. Stores start in early access.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, every week and after every change. Mystery shopping runs the 12 tests for you.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'for-agencies', text: 'Running the tests on client and prospect stores' },
@@ -331,13 +331,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What every store you pitch or keep sends a new customer after a sign-up, a text opt-in and a basket, each message dated, and what never came. Agencies start in early access.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      text: 'What every store you pitch or keep sends a new customer after a sign-up, a text opt-in and a basket, each message dated, and what never came. Prospect intelligence covers the stores you pitch, and Mystery shopping the clients you keep.',
+      to: '/blueprints',
+      label: 'Browse blueprints',
     },
     {
       kind: 'p',
-      text: 'Ecommerce agencies look up client and prospect stores through [early access](/lookup#agencies), once we’ve checked the agency. That covers every store already in the index, and up to 5 more you run or pitch, with the brand’s OK.',
+      text: 'Ecommerce agencies run the tests across every client and prospect store on one bill, a persona per store, free while it waits. Client stores need the brand’s OK.',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

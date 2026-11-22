@@ -1,0 +1,264 @@
+/* Home's problem and answer (HomeProblem.tsx): an AI agent's ID card in two states (data-state "alone" or "equipped")
+   beside the blueprints lane, in the design system's tokens and the product windows' language. Without the script, and
+   under reduced motion, the card sits equipped and nothing moves. */
+
+.h-pr__head { max-width: 48rem; }
+.h-pr__fig { margin: var(--ob-space-40) 0 0; display: grid; gap: var(--ob-space-16); }
+.h-pr__stage { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--ob-space-20); align-items: stretch; }
+
+/* ---- The ID card ---- */
+.h-pr__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ob-space-20);
+  padding: var(--ob-space-24);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-xl);
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(var(--ob-tint-rgb), 0.07), transparent 62%),
+    var(--ob-surface);
+  box-shadow: var(--ob-shadow-3);
+}
+.h-pr__switch {
+  align-self: flex-start;
+  justify-self: start;
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-pill);
+  background: var(--ob-bg);
+}
+.h-pr__opt {
+  min-height: 32px;
+  padding: 0 var(--ob-space-12);
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background: transparent;
+  color: var(--ob-text-3);
+  font: var(--ob-type-caption);
+  cursor: pointer;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+}
+.h-pr__opt[aria-pressed='true'] { background: var(--ob-surface-raised, var(--ob-surface)); color: var(--ob-text); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong); }
+.h-pr__opt:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .h-pr__opt[aria-pressed='false']:hover { color: var(--ob-text); } }
+
+.h-pr__who { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; align-items: center; gap: var(--ob-space-12); }
+.h-pr__avatar { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: var(--ob-border-hair) solid var(--ob-line-strong); background: var(--ob-bg); color: var(--ob-text); }
+.h-pr__avatar svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.h-pr__name { display: grid; gap: 2px; min-width: 0; }
+.h-pr__name b { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.h-pr__name span { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.h-pr__online {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  min-height: 26px;
+  padding: 0 var(--ob-space-10, var(--ob-space-12));
+  border-radius: var(--ob-radius-pill);
+  background: var(--ob-success-bg);
+  color: var(--ob-success);
+  font: var(--ob-type-caption);
+  white-space: nowrap;
+}
+.h-pr__status { display: grid; }
+.h-pr__status > span { grid-area: 1 / 1; }
+.h-pr__online i { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--ob-success); }
+.h-pr__online i::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--ob-success); opacity: 0; }
+
+.h-pr__ids { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-8); margin: 0; }
+.h-pr__ids > div { display: grid; gap: 2px; padding: var(--ob-space-12); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-md); background: var(--ob-bg); min-width: 0; }
+.h-pr__ids dt { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; color: var(--ob-text-3); }
+.h-pr__ids dd { display: grid; margin: 0; min-width: 0; }
+.h-pr__ids dd > span { grid-area: 1 / 1; font: var(--ob-type-small); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.h-pr__none { color: var(--ob-text-3); }
+.h-pr__ids dd > .h-pr__val { font-family: var(--ob-font-mono, ui-monospace, monospace); color: var(--ob-text); }
+
+.h-pr__cols { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr); gap: var(--ob-space-24); }
+.h-pr__label { margin: 0 0 var(--ob-space-8); font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; color: var(--ob-text-3); }
+.h-pr__think ul, .h-pr__act ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.h-pr__think li { display: flex; align-items: center; gap: var(--ob-space-8); min-height: 36px; font: var(--ob-type-small); color: var(--ob-text-2); }
+.h-pr__think .h-pr__mark--yes { color: var(--ob-text-3); }
+.h-pr__mark { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* An ability: its lock or check, what the agent can do, the piece that gives it, and the chevron to that piece. */
+.h-pr__ability {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto 16px;
+  align-items: center;
+  gap: var(--ob-space-10, var(--ob-space-12));
+  min-height: 40px;
+  padding: 0 var(--ob-space-8);
+  margin: 0 calc(var(--ob-space-8) * -1);
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text);
+  text-decoration: none;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.h-pr__ability:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 0; }
+.h-pr__state { display: grid; }
+.h-pr__state > svg { grid-area: 1 / 1; }
+.h-pr__mark--lock { color: var(--ob-text-3); }
+.h-pr__act .h-pr__mark--yes { color: var(--ob-success); }
+.h-pr__ability-text { font: var(--ob-type-small); }
+.h-pr__via { display: grid; justify-items: end; }
+.h-pr__via > span { grid-area: 1 / 1; }
+.h-pr__locked { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.h-pr__piece {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  min-height: 24px;
+  padding: 0 var(--ob-space-8);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-caption);
+  color: var(--ob-text-2);
+  white-space: nowrap;
+}
+.h-pr__piece svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.h-pr__with { color: var(--ob-text-3); }
+.h-pr__chev { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; color: var(--ob-text-3); transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out); }
+
+/* The two states. Equipped: checks, the pieces, the email and number, ready for work. On its own: locks, "Can't yet",
+   "None" and no light. */
+.h-pr__stage[data-state='equipped'] .h-pr__mark--lock,
+.h-pr__stage[data-state='equipped'] .h-pr__locked,
+.h-pr__stage[data-state='equipped'] .h-pr__none,
+.h-pr__stage[data-state='alone'] .h-pr__act .h-pr__mark--yes,
+.h-pr__stage[data-state='alone'] .h-pr__piece,
+.h-pr__stage[data-state='alone'] .h-pr__val,
+.h-pr__stage[data-state='alone'] .h-pr__on,
+.h-pr__stage[data-state='equipped'] .h-pr__off { opacity: 0; visibility: hidden; }
+.h-pr__stage[data-state='alone'] .h-pr__ability-text { color: var(--ob-text-3); }
+.h-pr__stage[data-state='alone'] .h-pr__online { background: transparent; color: var(--ob-text-3); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); }
+.h-pr__stage[data-state='alone'] .h-pr__online i { background: var(--ob-text-3); }
+.h-pr__stage[data-state='alone'] .h-pr__avatar { border-style: dashed; color: var(--ob-text-3); }
+
+/* The latest event at the foot of the card: none on its own; the login code once equipped. */
+.h-pr__event {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ob-space-12);
+  margin-top: auto;
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-bg);
+}
+.h-pr__event-label { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; color: var(--ob-text-3); }
+.h-pr__event-body { display: grid; min-width: 0; }
+.h-pr__event-body > span { grid-area: 1 / 1; min-width: 0; }
+.h-pr__event-body .h-pr__none { font: var(--ob-type-small); }
+.h-pr__event-row { display: flex; align-items: center; gap: var(--ob-space-12); min-width: 0; }
+.h-pr__event-row i { width: 7px; height: 7px; flex: none; border-radius: 50%; background: var(--ob-success); }
+.h-pr__event-at, .h-pr__event-name { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); white-space: nowrap; }
+.h-pr__event-at { color: var(--ob-text-3); }
+.h-pr__event-name { color: var(--ob-text); }
+.h-pr__event-text { min-width: 0; font: var(--ob-type-caption); color: var(--ob-text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---- The blueprints lane ---- */
+.h-pr__bps {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-12);
+  padding: var(--ob-space-24);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-bg-sunken, var(--ob-bg));
+}
+.h-pr__bps-title { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.h-pr__bps-line { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.h-pr__bp-list { list-style: none; margin: var(--ob-space-4) 0 0; padding: 0; display: grid; gap: var(--ob-space-8); }
+.h-pr__bp {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  gap: var(--ob-space-6);
+  padding: var(--ob-space-16);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-surface);
+  color: var(--ob-text);
+  text-decoration: none;
+  transition: border-color var(--ob-dur-base) var(--ob-ease-out), transform var(--ob-dur-base) var(--ob-ease-out);
+}
+.h-pr__bp::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -60% 40% 40% -30%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-rest, 50%), transparent), transparent);
+  pointer-events: none;
+}
+.h-pr__bp-name::before { content: ''; flex: none; order: -1; width: 8px; height: 8px; border-radius: 2px; background: var(--s-accent, var(--ob-text-3)); }
+.h-pr__bp:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+.h-pr__bp-name { display: flex; align-items: center; gap: var(--ob-space-10, var(--ob-space-12)); font: var(--ob-type-body); font-weight: var(--ob-weight-medium, 500); }
+.h-pr__bp-name .h-pr__chev { margin-left: auto; }
+.h-pr__bp-line { font: var(--ob-type-caption); color: var(--ob-text-2); text-wrap: pretty; }
+.h-pr__bp-runs { display: flex; gap: var(--ob-space-4); }
+.h-pr__bp-piece { display: grid; place-items: center; width: 24px; height: 24px; border-radius: var(--ob-radius-sm); border: var(--ob-border-hair) solid var(--ob-line); background: var(--ob-bg); color: var(--ob-text-2); }
+.h-pr__bp-piece svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.h-pr__out { margin: var(--ob-space-4) 0 0; font: var(--ob-type-caption); color: var(--ob-text-3); text-wrap: pretty; }
+.h-pr__bps-all { justify-self: start; display: inline-flex; align-items: center; gap: var(--ob-space-6); font: var(--ob-type-small); color: var(--ob-text); text-decoration: underline; text-decoration-color: var(--ob-line-strong); text-underline-offset: 4px; }
+.h-pr__bps-all .h-pr__chev { color: currentColor; }
+.h-pr__bps-all:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .h-pr__ability:hover { background: rgba(var(--ob-tint-rgb), 0.06); }
+  .h-pr__ability:hover .h-pr__chev,
+  .h-pr__bp:hover .h-pr__chev,
+  .h-pr__bps-all:hover .h-pr__chev { translate: 3px 0; color: var(--ob-text); }
+  .h-pr__bp:hover { border-color: var(--ob-line-strong); transform: translateY(-2px); }
+  .h-pr__bps-all:hover { text-decoration-color: var(--ob-text); }
+}
+
+.h-pr__cap { font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); text-align: center; text-wrap: balance; }
+.h-pr__more { display: inline-flex; align-items: center; gap: var(--ob-space-6); margin-top: var(--ob-space-24); font: var(--ob-type-small); color: var(--ob-text); text-decoration: underline; text-decoration-color: var(--ob-line-strong); text-underline-offset: 4px; }
+.h-pr__more svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-base) var(--ob-ease-out); }
+.h-pr__more:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .h-pr__more:hover svg { translate: 0 3px; } }
+
+/* ---- Narrow screens: the lane under the card; then the card's two lists stack ---- */
+@media (max-width: 960px) { .h-pr__stage { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 640px) {
+  .h-pr__card, .h-pr__bps { padding: var(--ob-space-16); }
+  .h-pr__cols { grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-16); }
+  .h-pr__who { grid-template-columns: 44px minmax(0, 1fr); }
+  .h-pr__online { grid-column: 1 / -1; justify-self: start; }
+  .h-pr__ids { grid-template-columns: minmax(0, 1fr); }
+  .h-pr__ability { grid-template-columns: 18px minmax(0, 1fr) 16px; row-gap: 2px; padding-block: var(--ob-space-8); }
+  .h-pr__via { grid-column: 2; grid-row: 2; justify-items: start; }
+  .h-pr__ability .h-pr__chev { grid-column: 3; grid-row: 1 / span 2; }
+}
+
+/* ---- Motion: the switch to equipped unlocks the abilities in turn; one quiet loop, the ready light ---- */
+@keyframes h-pr-ready {
+  0% { opacity: 0.6; transform: scale(1); }
+  70%, 100% { opacity: 0; transform: scale(2.4); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .h-pr__stage.has-motion .h-pr__mark,
+  .h-pr__stage.has-motion .h-pr__locked,
+  .h-pr__stage.has-motion .h-pr__piece,
+  .h-pr__stage.has-motion .h-pr__none,
+  .h-pr__stage.has-motion .h-pr__val,
+  .h-pr__stage.has-motion .h-pr__ability-text,
+  .h-pr__stage.has-motion .h-pr__online,
+  .h-pr__stage.has-motion .h-pr__on,
+  .h-pr__stage.has-motion .h-pr__off,
+  .h-pr__stage.has-motion .h-pr__avatar {
+    transition: opacity 380ms var(--ob-ease-out), visibility 0s linear, color 380ms var(--ob-ease-out), background-color 380ms var(--ob-ease-out), box-shadow 380ms var(--ob-ease-out), translate 380ms var(--ob-ease-out);
+  }
+  .h-pr__stage.has-motion[data-state='equipped'] .h-pr__act li :is(.h-pr__mark, .h-pr__locked, .h-pr__piece, .h-pr__ability-text) { transition-delay: calc(var(--i) * 150ms); }
+  .h-pr__stage.has-motion[data-state='equipped'] .h-pr__val { transition-delay: 950ms; }
+  .h-pr__stage.has-motion[data-state='equipped'] .h-pr__online,
+  .h-pr__stage.has-motion[data-state='equipped'] .h-pr__on,
+  .h-pr__stage.has-motion[data-state='equipped'] .h-pr__avatar { transition-delay: 1100ms; }
+  .h-pr__stage.has-motion[data-state='equipped'] .h-pr__event .h-pr__val { transition-delay: 1350ms; }
+  .h-pr__stage.has-motion[data-state='alone'] .h-pr__piece { translate: 6px 0; }
+  .h-pr__stage[data-state='equipped'] .h-pr__online i::after { animation: h-pr-ready 2.8s var(--ob-ease-out) infinite; }
+}

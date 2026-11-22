@@ -64,7 +64,7 @@ export const post: BlogPost = {
   description:
     'How to find ecommerce clients for a CRO or Shopify agency: fit signals, where to look, a first message brands can check, qualifying and the pipeline sum.',
   answer:
-    'To find ecommerce clients for CRO work, filter a store database for brands with about 500 or more orders a month, live paid ads and a recent change such as a new theme, find the founder or head of ecommerce on LinkedIn, and open with a specific finding about their own store that they can check on a phone. Referrals from clients and partner agencies were the top 2 sources of new business for agencies in 2025, so build them alongside outreach. Obsession keeps what each brand on a list shows a new customer after its live ad, dated with the email or screenshot.',
+    'To find ecommerce clients for CRO work, filter a store database for brands with about 500 or more orders a month, live paid ads and a recent change such as a new theme, find the founder or head of ecommerce on LinkedIn, and open with a specific finding about their own store that they can check on a phone. Referrals from clients and partner agencies were the top 2 sources of new business for agencies in 2025, so build them alongside outreach. Obsession’s Prospect intelligence blueprint sends a persona through each brand on a list, from its live ad to checkout, and dates every email and page.',
   primaryKeyword: 'how to find ecommerce clients',
   keywords: [
     'how to get ecommerce clients',
@@ -77,7 +77,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 15,
   order: 16,
   authors: [
@@ -306,13 +306,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, each brand needs a phone, a new email address for any sign up, a sheet and up to 48 hours of checking the inbox, so the hours grow with every brand on the list. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) shows what follows a brand’s live ad, from the pop up’s offer to the code at checkout, each step dated.',
+      text: 'By hand, each brand needs a phone, a new email address for any sign up, a sheet and up to 48 hours of checking the inbox, so the hours grow with every brand on the list. Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to. Its [Prospect intelligence](/blueprints/prospect-intelligence) blueprint shows what follows each brand’s live ad, from the pop up’s offer to the code at checkout, each step dated, and [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies) shows it at work.',
     },
     {
       kind: 'cta',
-      text: 'See what each brand’s funnel sends after the sign up: the pop up’s offer, the welcome email and its code, and the reminders, each dated with the email itself. Look up the brands you pitch before the first message. Agencies start in early access, onboarding teams now.',
-      to: '/use-cases/funnel-qa-for-cro-agencies',
-      label: 'Request early access',
+      text: 'See what each brand’s funnel sends after the sign up: the pop up’s offer, the welcome email and its code, and the reminders, each dated with the email itself. Prospect intelligence runs it on every brand you pitch before the first message.',
+      to: '/blueprints/prospect-intelligence',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'qualify', text: 'Qualifying and the first call' },
@@ -465,21 +465,21 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies)',
           'What each prospect shows a new customer, from the pop up’s code to checkout, with a verdict and a dated proof link',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Supplies no contact data, and leaves the list, the message and the call to you',
-          'What a real customer gets at each prospect, as opening findings across a long list',
+          'What a new customer gets at each prospect, as opening findings across a long list',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your agency needs a checked finding at every brand on a long list, use Obsession. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. For an agency that writes to 10 to 20 brands a quarter, the by hand method and a Store Leads or BuiltWith list cover the work, with Sales Navigator or Apollo for the people. An agency whose referrals fill its calendar needs none of the paid tools. Partner directories suit agencies with a record on the platform.',
+      text: 'If your agency needs a checked finding at every brand on a long list, use Obsession. A persona per brand signs up, waits and keeps every email and page in one event log, a row per brand in Clay, your CRM or a sheet. For an agency that writes to 10 to 20 brands a quarter, the by hand method and a Store Leads or BuiltWith list cover the work, with Sales Navigator or Apollo for the people. An agency whose referrals fill its calendar needs none of the paid tools. Partner directories suit agencies with a record on the platform.',
     },
     {
       kind: 'cta',
-      text: 'Open a pitch on what each prospect sends its signed-up customers, from the welcome email to the reminder that never came. Each fact is dated with a screenshot, in Clay, your CRM or a sheet.',
-      to: '/agencies',
-      label: 'Request early access',
+      text: 'Open a pitch on what each prospect sends a new customer, from the welcome email to the reminder that never came. Each step is dated with a screenshot, in Clay, your CRM or a sheet.',
+      to: '/blueprints',
+      label: 'Pick a blueprint',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },

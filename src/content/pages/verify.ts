@@ -2,23 +2,23 @@ import { consoleHeading } from '../console'
 import { explorer } from '../explorer'
 import type { ExRead, ExRow, Explorer, Page } from '../types'
 
-/* /verify (9 Nov rewrite): what AI agents tell customers, as data. Support chats, voice lines, sales agents and outbound
-   callers, yours and your competitors', each answer kept as a dated transcript or call beside the page it should match:
-   Home's "Support answers" wall. The page reads: hero with Home's explorer on AI agents > what's in it > your vendor
-   grades its own agent > every kind of agent > the recipes > is this real (our count, Brand G) > questions > early access.
-   No real AI agent run has happened yet: every company and conversation is invented, at a .example address, and the
-   hero's note says so. */
+/* /verify (22 Nov 2026 revamp): check your own AI agents as a customer, the check job's page. A persona chats with your
+   support bot, calls your voice line, emails your sales agent and answers your outbound caller, and keeps each answer
+   word for word beside the page it should match. The 8 check blueprints run it. The page reads: hero with the console on
+   AI agents > what's kept > your vendor grades its own agent > every type of agent > the blueprints > Brand G, the 1
+   real run > questions > Start free. Every company and conversation is invented, at a .example address, and the hero's
+   note says so. */
 
 const access = {
   kind: 'waitlist',
-  button: 'Request early access',
+  button: 'Start free',
   interest: 'support-bot',
 } as const
 
-/* The hero's object: Home's explorer (content/explorer.ts), on AI agents, in the same shape: each row is an event in
-   the company's timeline, its facts are its reads (a transcript's quoted terms, the responder, prices), and the walls
-   are the schema's: a conversation, a call, a cancel, the open web. Insights asks 1 question across a group of
-   companies' agents. Every company is invented. */
+/* The hero's object: the console (content/explorer.ts), on AI agents, in the same shape: each row is an event in the
+   company's event log, its facts are its reads (a transcript's quoted terms, the responder, prices), and the chips are
+   the channels: chat, call, cancel, page. Insights asks 1 question across a group's own agents. Every company is
+   invented. Its words (badges, buttons, chip labels) are set here. */
 const LLM = 'gemini-read@2026-11-09'
 const said = (text: string, quoted: ExRow[]): ExRead => ({ kind: 'transcript', text, value: { quoted }, reader: LLM })
 const agent = (name: string, by: string): ExRead => ({ kind: 'responder', text: name, value: { responder: name, by }, reader: 'rules/tags@3' })
@@ -26,15 +26,38 @@ const listed = (text: string, items: { name: string; price: string }[]): ExRead 
 
 const agents: Explorer = {
   ...explorer,
-  placeholder: { search: 'Any company’s website', insights: 'Ask about a group of AI agents' },
-  said: 'An example of Obsession’s console, on invented companies. Search a company and choose the persona, the wall and the kind: each row is an event in its timeline, an AI agent’s answer in a chat or on a call beside the pages it should match, with the facts read from it and the transcript or recording behind it. Insights asks one question across a group of companies’ AI agents and writes a report with a row for each.',
+  placeholder: { search: 'Your company’s website', insights: 'Ask about your AI agents' },
+  groups: { ...explorer.groups, wall: 'Channel' },
+  tabs: { facts: 'Facts', evidence: 'Evidence', record: 'Event' },
+  none: 'Nothing on this channel for this persona yet. Pick another.',
+  fromIndex: 'From your event log · 0.3 s',
+  newRun: 'New check · first answers in minutes',
+  notCovered: 'Not checked yet',
+  unindexed: {
+    title: 'No answers from its agents yet.',
+    line: 'Check it, and a persona asks its chat, phone line and inbox what a customer would. Every answer lands here.',
+    cta: 'Check it',
+  },
+  insight: {
+    waiting: 'Agents appear here as they answer.',
+    inIndex: 'Checked',
+    watch: 'Check',
+    watching: 'Checking',
+    notIn: 'Not checked yet',
+    missing: (n: number, [one, many]: [string, string]) => (n === 1 ? `1 ${one} isn’t checked yet.` : `${n} ${many} aren’t checked yet.`),
+    watchAll: (n: number) => (n === 1 ? 'Check it' : `Check all ${n}`),
+    allWatched: (persona: string) => `Checking as ${persona}. Its answers join this report as they arrive.`,
+    collecting: (d: number, n: number) => `Asking · ${d} of ${n}`,
+    done: (n: number, c: number) => `${n} agents asked · ${c} answered`,
+  },
+  said: 'An example of Obsession’s console, on invented companies. Pick a company, the persona and the channel. Each row is an event in its event log, such as an AI agent’s answer in a chat or on a call. It sits beside the page it should match, with the transcript or recording behind it. Insights asks one question across a group of your own agents and writes a report with a row for each.',
   companies: [
     {
       domain: 'online-bank.example',
       kind: 'Bank',
       covered: true,
       personas: ['New saver · UK', 'Existing customer · UK'],
-      walls: ['Conversation', 'Call', 'Cancel', 'Open'],
+      walls: ['Chat', 'Call', 'Cancel', 'Page'],
       kinds: [
         { label: 'Chats', kind: 'Chat' },
         { label: 'Calls', kind: 'Call' },
@@ -43,7 +66,7 @@ const agents: Explorer = {
       views: [
         {
           persona: 'New saver · UK',
-          wall: 'Conversation',
+          wall: 'Chat',
           events: [
             { at: '4 Nov 09:19', dir: 'act', kind: 'Act', text: 'Asked in chat if the 4.6% rate is fixed' },
             {
@@ -96,7 +119,7 @@ const agents: Explorer = {
         },
         {
           persona: 'New saver · UK',
-          wall: 'Open',
+          wall: 'Page',
           events: [
             {
               at: '4 Nov 09:20',
@@ -140,7 +163,7 @@ const agents: Explorer = {
       kind: 'Dental clinic',
       covered: true,
       personas: ['New patient · London'],
-      walls: ['Call', 'Open'],
+      walls: ['Call', 'Page'],
       kinds: [
         { label: 'Calls', kind: 'Call' },
         { label: 'Pages', kind: 'Page' },
@@ -168,7 +191,7 @@ const agents: Explorer = {
         },
         {
           persona: 'New patient · London',
-          wall: 'Open',
+          wall: 'Page',
           events: [
             {
               at: '3 Nov 07:55',
@@ -192,7 +215,7 @@ const agents: Explorer = {
       kind: 'Software',
       covered: true,
       personas: ['Prospect · 50 seats'],
-      walls: ['Form', 'Open'],
+      walls: ['Form', 'Page'],
       kinds: [
         { label: 'Emails', kind: 'Email' },
         { label: 'Texts', kind: 'Text' },
@@ -248,7 +271,7 @@ const agents: Explorer = {
         },
         {
           persona: 'Prospect · 50 seats',
-          wall: 'Open',
+          wall: 'Page',
           events: [
             {
               at: '5 Nov 11:30',
@@ -271,33 +294,33 @@ const agents: Explorer = {
   insights: [
     {
       label: 'Chat vs terms',
-      kind: 'Banks',
-      question: 'Which UK banks’ chat agents quote terms their own rate page doesn’t?',
+      kind: 'Banking brands',
+      question: 'Which of our banking brands’ chat agents quote terms our rate pages don’t?',
       persona: 'New saver · UK',
-      plan: ['Find 5 UK banks with a chat agent', 'Look each one up in the index', 'Write the report'],
-      cols: ['Bank', 'What chat said', 'Rate page'],
+      plan: ['Pick the 5 brands’ chat agents', 'Ask each the same 3 questions', 'Write the report'],
+      cols: ['Brand', 'What chat said', 'Rate page'],
       sources: [
         { domain: 'online-bank.example', cells: ['4.6%, fixed', '4.6% variable'], evidence: 'Chat 4 Nov, 09:20: “Yes, 4.6% is fixed for 12 months.” Rate page, same minute: variable.' },
         { domain: 'app-bank.example', cells: ['5.0% for 12 months', '5.0% for 12 months'], evidence: 'Chat 4 Nov, 10:02, matched the rate page word for word.' },
         { domain: 'savings-bank.example', cells: ['4.8%, take money out any time', '4.8%, 30 days’ notice'], evidence: 'Chat 5 Nov, 08:44: “You can take money out any time.” The terms page says 30 days’ notice.' },
         { domain: 'high-street-bank.example', cells: ['Passed to a person', '4.2%'], evidence: 'Chat 5 Nov, 12:10: passed to a person after 3 questions. The person quoted 4.2%, as the page does.' },
-        { domain: 'credit-union.example' },
+        { domain: 'business-bank.example' },
       ],
-      noun: ['bank', 'banks'],
-      watched: 'Watching. Its chat answers arrive here.',
-      answer: '2 of the 4 banks in the index have a chat agent that quotes terms their rate page doesn’t.',
+      noun: ['brand', 'brands'],
+      watched: 'Checking. Its chat answers arrive here.',
+      answer: 'Two chat agents quote terms their own rate page doesn’t.',
       stats: [
-        { v: '2 of 4', l: 'chat differs from the page' },
-        { v: '1 of 4', l: 'passed to a person' },
+        { v: '2', l: 'chat agents differ from the page' },
+        { v: '1', l: 'passed to a person' },
         { v: '11 min', l: 'longest wait for a person' },
       ],
     },
     {
       label: 'Phone prices',
       kind: 'Dental clinics',
-      question: 'Which London dental clinics’ AI receptionists quote a price their list doesn’t?',
+      question: 'Which of our London clinics’ AI receptionists quote a price our list doesn’t?',
       persona: 'New patient · London',
-      plan: ['Find 5 London clinics with an AI receptionist', 'Look each one up in the index', 'Write the report'],
+      plan: ['Pick the 5 clinics’ phone lines', 'Call each as a new patient', 'Write the report'],
       cols: ['Clinic', 'Aligner consult, phone vs list', 'Difference'],
       sources: [
         { domain: 'dental-clinic.example', cells: ['Free vs £50', '£50 less by phone'], evidence: 'Call 3 Nov, 08:01: “The aligner consult is free.” Price list that morning: £50.' },
@@ -307,25 +330,27 @@ const agents: Explorer = {
         { domain: 'bright-teeth.example' },
       ],
       noun: ['clinic', 'clinics'],
-      watched: 'Watching. Its phone quote arrives here.',
-      answer: '2 of the 4 clinics in the index quote a different price by phone than on their list.',
+      watched: 'Checking. Its phone quote arrives here.',
+      answer: 'Two receptionists quote a different price by phone than the list.',
       stats: [
-        { v: '2 of 4', l: 'differ from the list' },
+        { v: '2', l: 'receptionists differ from the list' },
         { v: '£50', l: 'largest gap' },
-        { v: '1 of 4', l: 'texted the price after' },
+        { v: '1', l: 'texted the price after' },
       ],
     },
   ],
 }
 
+const SUB =
+  'Pick a blueprint, and Obsession runs it. A persona is an AI agent with its own inbox, number and browser. It chats with your support bot, calls your voice line and emails your sales agent as a customer. Every answer lands in your event log, word for word, beside the page it should match.'
+
 export const page: Page = {
   meta: {
     path: '/verify',
-    title: 'What AI agents tell customers, word for word · Obsession',
+    title: 'Check your AI agents as a customer: chat, voice and email',
     description:
-      'Obsession records what AI agents tell customers: support chats, voice lines, sales agents and outbound callers, yours and competitors’, each answer dated.',
-    answer:
-      'Obsession records what AI agents tell customers, as dated transcripts and call recordings. It asks support chats, voice lines, sales agents and outbound callers what a customer asks, yours and your competitors’, and keeps each answer beside the page it should match.',
+      'Obsession checks your support bot, voice agent and sales agents as a customer, on chat, phone and email. Every answer is kept word for word. Start free.',
+    answer: SUB,
     ogImage: '/og/verify.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -334,11 +359,12 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'Early access',
-    pillTo: '#join',
-    headline: 'What AI agents tell customers, word for word.',
-    sub: 'Support chats, voice lines, sales agents and outbound callers, yours and your competitors’. Every answer kept as a dated transcript or call, beside the page it should match.',
+    pill: 'Test your sign-up and AI agents',
+    pillTo: '/blueprints/test-sign-up-and-agents',
+    headline: 'Ask your AI agents what your customers ask, every day.',
+    sub: SUB,
     capture: { ...access, source: 'verify-hero' },
+    secondary: { label: 'See the blueprint', to: '/blueprints/support-bot-check' },
     note: 'Every company and conversation in the console below is an example.',
     proof: [],
     consoleHeading,
@@ -347,25 +373,24 @@ export const page: Page = {
   explorer: agents,
 
   dataKinds: {
-    kicker: 'What’s in it?',
+    kicker: 'Kept for every check',
     heading: 'Every answer, and what happened after it.',
     items: [
       { title: 'The conversation itself', line: 'Every chat transcript and call recording, word for word, with the time of each reply.', eg: 'Chat 09:20 · “Yes, 4.6% is fixed”' },
-      { title: 'The answer beside the page', line: 'Each answer next to the policy, price list or terms it should match, captured the same minute.', eg: 'Chat: fixed rate · page: variable' },
+      { title: 'The answer beside the page', line: 'Each answer next to the policy, price list or terms it should match, captured the same minute.', eg: 'Chat says fixed · page says variable' },
       { title: 'The wait for a person', line: 'How long each channel takes to hand a customer to a person, if it does.', eg: 'Chat 41 s · voice line 6 min' },
       { title: 'What it promised', line: 'Whether the email, refund, callback or booking it promised ever came.', eg: 'Email promised · none 6 hours later' },
-      { title: 'What it sends unasked', line: 'Every email, text and call an AI SDR or outbound caller sends a prospect, with the time.', eg: 'Text at 03:12 · “30% off this week”' },
-      { title: 'The day it changes', line: 'The same questions asked every day, so a new answer shows the day it starts.', eg: '37 of 40 the same, then 28' },
+      { title: 'What it sends unasked', line: 'Every email, text and call your AI SDR or outbound caller sends a prospect, with the time.', eg: 'Text at 03:12 · “30% off this week”' },
+      { title: 'The day it changes', line: 'The same questions asked every day, so a new answer shows the day it starts.', eg: 'Same answer for 9 days, new on day 10' },
     ],
   },
 
   gap: {
     heading: 'Your vendor grades its own agent. Obsession keeps what the customer heard.',
-    sub: 'Asked on the real channels, yours and your competitors’, as the customer profiles you pick.',
+    sub: 'Asked on your real channels, as the customers you pick.',
     rows: [
       { today: 'Your vendor tests its agent in its own simulator', obsession: 'Answers from your real chat, phone line and inbox, as a customer gets them' },
-      { today: 'Transcripts show what the bot said', obsession: 'What happened after: the refund, the email, the booking' },
-      { today: 'You guess what a competitor’s agent says', obsession: 'Its answers on rates, prices and refunds, dated, beside yours' },
+      { today: 'Transcripts show what the bot said', obsession: 'What happened after, from the refund to the email and the booking' },
       { today: 'You hear from a complaint, days later', obsession: 'A changed answer at your webhook, the day it changes' },
       { today: 'Screenshots in a folder', obsession: 'Each answer with its transcript or recording and the time, ready for legal or your vendor' },
     ],
@@ -376,58 +401,60 @@ export const page: Page = {
     label: 'Pick an agent',
     items: [
       { name: 'Support bots and help desks', line: 'The same question on chat, email and your portal, each answer beside your policy.', recipes: ['support-bot', 'resolution', 'drift', 'disclosure'] },
-      { name: 'Voice receptionists and call agents', line: 'Every call recorded: the price it quoted, the booking and the wait for a person.', recipes: ['voice-agent', 'disclosure', 'drift'] },
+      { name: 'Voice receptionists and call agents', line: 'Every call recorded, with the price it quoted, the booking and the wait for a person.', recipes: ['voice-agent', 'disclosure', 'drift'] },
       { name: 'AI SDRs and outbound callers', line: 'Every email, text and call it sends a prospect, with the time, the offer and what follows STOP.', recipes: ['outbound-agent', 'disclosure'] },
-      { name: 'Shopping and sales agents', line: 'The prices, stock and delivery it quotes, beside your store, through to checkout.', recipes: ['sales-agent', 'drift'] },
-      { name: 'Competitors’ agents', line: 'What a competitor’s chat and phone line tell any customer, dated, beside your own.', recipes: ['competitor', 'support-bot'] },
+      { name: 'Shopping and sales agents', line: 'The prices, stock and delivery it quotes, beside your store, up to payment.', recipes: ['sales-agent', 'drift'] },
       { name: 'Agents you’re about to buy', line: 'Your hardest cases on each shortlisted vendor’s agent, side by side, with the vendor’s agreement.', recipes: ['vendor-agent', 'drift'] },
     ],
   },
 
   recipes: {
     heading: 'Start from the blueprint that fits the agent.',
-    ids: ['support-bot', 'voice-agent', 'outbound-agent', 'sales-agent', 'vendor-agent', 'resolution', 'disclosure', 'drift'],
+    ids: ['support-bot', 'voice-agent', 'sales-agent', 'outbound-agent', 'resolution', 'disclosure', 'drift', 'vendor-agent'],
   },
 
-  /* Is this real: our own runs and Brand G, the 1 real record, as Home has them. No AI agent run is claimed. */
+  /* The 1 real run: Brand G, the September store check. No AI agent run is claimed. */
   proof: {
-    heading: '1,500 sign-ups, baskets and checkouts run at real companies, and counting.',
-    line: 'Brand G, a real skincare store, is one: a £40 basket left at 02:57 on 22 Sep, and no reminder 48 hours later. Its whole record is the sample data. Chats and calls are kept the same way, each reply with its time.',
-    cta: { label: 'See the sample data', to: '/sample-output' },
+    heading: 'A £40 basket left at 02:57. No reminder in 48 hours.',
+    line: 'Brand G, a real skincare store, on 22 Sep. Every email is kept with the time it arrived, beside its screenshot. Chats and calls with your agents are kept the same way, each reply with its time.',
+    cta: { label: 'See sample data', to: '/sample-output' },
   },
 
   faq: {
-    heading: 'Before you request access.',
+    heading: 'Questions from teams who run AI agents.',
     items: [
       {
-        q: 'What does Obsession record from AI agents?',
-        a: 'Obsession records what AI agents tell customers, as dated transcripts and call recordings. It asks support chats, voice lines, sales agents and outbound callers what a customer asks, yours and your competitors’, and keeps each answer beside the page it should match.',
-      },
-      {
-        q: 'Can I see what a competitor’s AI agent says?',
-        a: 'Yes, as its customer. Obsession asks a competitor’s chat or phone line what any customer can ask, and keeps every answer exactly as it arrived.',
+        q: 'What does Obsession check?',
+        a: 'It asks your support bot, voice agent, sales agent and outbound caller what a customer asks, on chat, phone and email. Every answer is kept word for word beside the page it should match, so you can watch regressions, complaints and time to detect a change.',
       },
       {
         q: 'How is this different from our vendor’s own tests?',
-        a: 'Your vendor’s tests run inside its own tools, often with simulated customers. Obsession asks on your real channels, as a customer, and keeps what came after: the email, the refund, the booking.',
+        a: 'Your vendor’s tests run inside its own tools, often with simulated customers. Obsession asks on your real channels, as a customer. It keeps what came after, such as the email, the refund or the booking.',
       },
       {
         q: 'Do you need our logins or code?',
-        a: 'No. Obsession uses the chat page, phone number and inbox any customer can. A test account on your portal only if you give one.',
+        a: 'No. Obsession uses the chat page, phone number and inbox any customer can use. It signs in to your portal only with a test account you give it.',
       },
       {
         q: 'Does it say it’s an AI?',
-        a: 'Yes, at the start of every chat and call, and it says calls are recorded. Every recording is kept exactly as made. Conversations with your own agents are tagged as tests, agreed with your vendor first.',
+        a: 'Yes, at the start of every chat and call, and it says calls are recorded. Each check is tagged as a test, agreed with your vendor first. It stops before payment and at any identity check.',
       },
       {
-        q: 'What does early access include?',
-        a: 'API and MCP access, lookups of every company already covered, and up to 5 companies added to the index for you. We’re onboarding a limited number of teams, and you set it up with the founders.',
+        q: 'Which blueprints check our sign-up too?',
+        a: 'Mystery shopping, lead response checks and QA on your own flows test every step a new customer takes, from the sign-up form to the first email.',
+        link: { label: 'Every blueprint that tests sign-up and agents', to: '/blueprints/test-sign-up-and-agents' },
+      },
+      {
+        q: 'What does it cost?',
+        a: 'Start on the Free plan, with no credit card. A blueprint is billed on the pieces it uses, such as the calls, texts, emails and browser hours each check takes.',
+        link: { label: 'See pricing', to: '/pricing' },
       },
     ],
   },
 
   final: {
-    heading: 'Which AI agent should we ask first?',
+    heading: 'Which AI agent should we check first?',
     capture: { ...access, source: 'verify-final' },
+    link: { label: 'Browse blueprints', to: '/blueprints' },
   },
 }

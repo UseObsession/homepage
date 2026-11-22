@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* The AI customers series, article 6 (24 Oct 2026): how AI customers find revenue leaks. It owns "customer journey
    testing" (primary), "abandoned cart email not sending" and "revenue leaks". Readers: store owners and growth leads,
@@ -60,7 +59,7 @@ export const post: BlogPost = {
   description:
     'Customer journey testing as a new customer: where revenue leaks hide in stores, lead forms and AI agents, what a pass looks like, and what one costs you.',
   answer:
-    'Customer journey testing finds revenue leaks where a company’s own reports can’t: a test customer signs up with its own inbox, phone number and browser, waits, opens every email, text and reply, and checks each one against what was promised. The leaks it finds are steps that fail without an error, such as a welcome text that never arrives, a code refused at checkout, a basket reminder hours late, a chatbot quoting the wrong policy or a demo form nobody answers. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, so every step of your store, lead form or AI agent is on record every week and after every change.',
+    'Customer journey testing finds revenue leaks where a company’s own reports can’t: a test customer signs up with its own inbox, phone number and browser, waits, opens every email, text and reply, and checks each one against what was promised. The leaks it finds are steps that fail without an error, such as a welcome text that never arrives, a code refused at checkout, a basket reminder hours late, a chatbot quoting the wrong policy or a demo form nobody answers. On Obsession a persona, an AI agent with its own inbox, number and browser, runs these checks every week and after every change, and every email, text and page lands in one event log, dated.',
   primaryKeyword: 'customer journey testing',
   keywords: [
     'revenue leaks',
@@ -71,9 +70,9 @@ export const post: BlogPost = {
     'shopify abandoned cart email not sending',
     'customer experience testing',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 11,
   order: 7,
   authors: [
@@ -83,9 +82,8 @@ export const post: BlogPost = {
   hero: {
     art: {
       kind: 'log',
-      title: 'saltmarsh.example · 1 AI customer’s first 2 days',
+      title: 'saltmarsh.example · a new customer’s 2 days',
       who: 'A new customer of an invented store, checked against the store’s own promises',
-      status: { tone: 'fail', text: '3 failed, 1 late' },
       rows: [
         { time: 'Mon 10:00', text: 'Signs up through the pop up', detail: 'Promised 15% off, by email and by text', tone: 'ok' },
         { time: 'Mon 10:03', text: 'Welcome email arrives', detail: 'With the code SALT15, 3 minutes after sign up', tone: 'ok' },
@@ -144,7 +142,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `${AI_CUSTOMER.definition} Because it is a customer, it receives what a new customer receives, at your company or any other. [What AI customers are](/blog/ai-customers) defines the term in full.`,
+      text: 'A test customer can be a person, or an AI agent with its own inbox, phone number and browser. Because it is a customer, it receives what a new customer receives, at your company or any other. [AI agents as customers](/blog/ai-customers) explains the idea in full.',
     },
 
     { kind: 'h2', id: 'online-stores', text: 'Online stores' },
@@ -263,15 +261,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What your AI agents tell customers, word for word, on every channel: each answer kept as a dated transcript beside the page it should match.',
-      to: '/verify',
-      label: 'Request early access',
+      text: 'What your support bot tells customers, word for word, each answer kept as a dated transcript beside the policy page it should match, every morning.',
+      to: '/blueprints/support-bot-check',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'customer-journey-testing', text: 'Customer journey testing, step by step' },
     {
       kind: 'p',
-      text: 'Customer journey testing is going through your own journeys as a new customer and checking each promise against what arrives, and when. An AI customer runs it in 5 steps, and a person can run each one by hand.',
+      text: 'Customer journey testing is going through your own journeys as a new customer and checking each promise against what arrives, and when. An AI agent with its own identity runs it in 5 steps, and a person can run each one by hand.',
     },
     { kind: 'h3', id: 'promise', text: '1. Write down each promise and its deadline' },
     {
@@ -304,7 +302,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI customer runs the same 5 steps, waits days or weeks at almost no cost and keeps every message as it arrived, as [how AI customers work](/blog/how-ai-customers-work) explains. Obsession keeps the result for any store you name, every week and after every change, each step dated with the email or screenshot.',
+      text: 'An AI agent runs the same 5 steps, waits days or weeks for free and keeps every message as it arrived, as [how an agent signs up and waits](/blog/how-ai-customers-work) explains. On Obsession that agent is a [persona](/personas), and the [Mystery shopping](/blueprints/mystery-shopper) blueprint runs it at any store you name, every week and after every change, each step dated with the email or screenshot.',
     },
 
     { kind: 'h2', id: 'your-number', text: 'What a silent step costs' },
@@ -325,7 +323,7 @@ export const post: BlogPost = {
       caption: 'The sum worked once, with invented figures on an invented store. Put your own flow report’s numbers in each row.',
       art: {
         kind: 'price',
-        title: 'saltmarsh.example · a silent basket reminder',
+        title: 'saltmarsh.example · a silent reminder',
         rows: [
           { label: 'Basket reminder revenue', value: '£27,000', note: 'Last 30 days, from the flow report' },
           { label: 'Revenue a day', value: '£900', note: '£27,000 ÷ 30' },
@@ -337,7 +335,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Halving the gap between checks halves the expected cost of a break, so set the interval from this figure. For sale week, use last year’s Black Friday week from the same report.',
+      text: 'The same sum grows with the business. Take an example input of 3% of revenue from the basket reminder, where your flow report has the real share. A 15 day silence then costs a £500M+ brand about £310,000, a £100M+ brand about £62,000 and a £20M+ brand about £12,000, at the cautious half. Halving the gap between checks halves the expected cost of a break, so set the interval from this figure. For sale week, use last year’s Black Friday week from the same report.',
     },
     {
       kind: 'p',
@@ -366,7 +364,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A human mystery shopper is the right check where judgement matters, such as a shop floor, the tone of a phone call or a delivery at the door ([AI customers and mystery shoppers](/blog/hire-ai-customers) compares the two).',
+      text: 'A human mystery shopper is the right check where judgement matters, such as a shop floor, the tone of a phone call or a delivery at the door ([AI agents and human mystery shoppers](/blog/hire-ai-customers) compares the two).',
     },
     {
       kind: 'p',
@@ -416,9 +414,9 @@ export const post: BlogPost = {
           'CX and conduct reviews',
         ],
         [
-          'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Website audit](/blueprints/website-audit), [Lead leaks](/blueprints/lead-leaks), [Support bot check](/blueprints/support-bot-check)',
+          'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [QA on your own flows](/blueprints/website-audit), [Lead response checks](/blueprints/lead-leaks), [Support bot check](/blueprints/support-bot-check)',
           'Every email, text and reply a new customer gets, kept dated with its proof',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'The cause sits in your own tools',
           'What a real customer gets, weekly and after every change',
         ],
@@ -427,8 +425,8 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'What any store sends a new customer after a sign-up, a basket and a checkout, yours and every competitor’s, each message dated with the email or screenshot.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
@@ -438,7 +436,7 @@ export const post: BlogPost = {
         '**A test shows what arrived.** The cause of a silent step sits in your own tools: the flow, the trigger, the routing rule or the pages the bot reads.',
         '**A new customer sees what new customers get.** A long standing subscriber can receive other emails, in another Gmail tab.',
         '**1 run is 1 customer at 1 moment.** Repeat runs show whether a failure happens every time or now and then.',
-        '**An AI customer stops at a bot wall or a CAPTCHA,** and records the step it couldn’t test.',
+        '**An AI agent on Obsession never gets round a CAPTCHA or a bot block, and stops at any identity check.** The event log keeps the step where it stopped.',
       ],
     },
     {
@@ -475,15 +473,16 @@ export const post: BlogPost = {
           a: 'After every change to a theme, app, form, flow, discount or bot, every week for each journey end to end, and before peak dates such as Black Friday on Friday 27 November 2026.',
         },
         {
-          q: 'Can AI customers test B2B lead forms?',
-          a: 'Yes. An AI customer fills in the demo or contact form as a prospect, says it is an AI to anyone it talks to, and times the first reply on every channel.',
+          q: 'Can an AI agent test B2B lead forms?',
+          a: 'Yes. An AI agent fills in the demo or contact form as a prospect, says it is an AI to anyone it talks to, and times the first reply by email, text and phone. The lead response checks blueprint runs it every week.',
+          link: { label: 'See the blueprint', to: '/blueprints/lead-leaks' },
         },
       ],
     },
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Business Insider’s report of the Product.ai study is cited through DNYUZ’s republication, because Business Insider wasn’t reachable. The store in the illustrations and every figure in the cost example are invented. The September store check on the sample output page is a real record of our own, and the other tests are set out for you to run. For legal questions about AI agents, take advice for your own case.',
+      text: 'Business Insider’s report of the Product.ai study is cited through DNYUZ’s republication, because Business Insider wasn’t reachable. The store in the illustrations and every figure in the cost example are invented. The September store check on the sample output page is a real run of our own, and the other tests are set out for you to run. For legal questions about AI agents, take advice for your own case.',
     },
   ],
 

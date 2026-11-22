@@ -1,14 +1,19 @@
+import { kitPathOf } from '../kitPaths'
+import { personaCostLine, plans } from '../prices'
 import type { UseCaseStudy } from '../types'
 
-/* Consumer promotions data for funds (/use-cases/consumer-promotions-data-for-funds), 12 Nov 2026: what consumer brands
-   send and show their customers (offer emails and texts, the flows after a sign-up or a basket, discount depth, how
-   often each brand sends, public prices), as point-in-time data for fund analysts, sell-side and private equity,
-   delivered by the API, MCP, Supabase, a webhook or a sheet. The plan and search phrases are in the Obsession folder,
-   _research/seo/usecases-compliance-funds-12nov/. Scope follows System §4: fund compliance rejects agents that log in,
-   request quotes or talk to staff, so this page covers what arrives after a sign-up and public prices, never signed-in
-   prices or quotes. System §1: history can't be backfilled and the clock starts the day collection starts, said here as
-   "every week from today becomes history". Ticker mapping isn't on the site, so it isn't here. Harrowgate and its
-   competitors are invented, and `fine` says so. The agents appear only in the answer on where the data comes from. */
+/* Consumer promotions data for funds (/use-cases/consumer-promotions-data-for-funds), 22 Nov 2026 rewrite for the toolkit
+   position: a persona (its own inbox and number, and a browser for public pages) joins each brand's email and text list
+   and keeps every offer with the time it was seen, as point-in-time data for fund analysts, sell-side and private
+   equity, by API, MCP, Supabase, a webhook or a sheet. Email and SMS tracking and Price watch run it. Part of the Watch
+   the market kit. Scope (System §4): fund compliance rejects agents that log in, request quotes or talk to staff, so
+   this page covers what arrives after a sign-up and public prices, never signed-in prices or quotes. History can't be
+   backfilled, said here as "every week from today becomes history". The search phrase "alternative data for investors"
+   stays in the hero's first sentence. Harrowgate and its competitors are invented, and `fine` says so. Prices come from
+   prices.ts. */
+
+const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
+const planWords = `the Free plan, then ${fees.slice(0, -1).join(', ')} or ${fees[fees.length - 1]} a month`
 
 export const study: UseCaseStudy = {
   name: 'Consumer promotions data for funds',
@@ -16,11 +21,11 @@ export const study: UseCaseStudy = {
 
   meta: {
     path: '/use-cases/consumer-promotions-data-for-funds',
-    title: 'Alternative data for investors: consumer promotions, dated',
+    title: 'Consumer promotions data for funds, collected by AI agents',
     description:
-      'What consumer brands offer their customers, as point-in-time data: every email, text and price dated the day it was seen, from any brand you name.',
+      'AI agents join the email and text lists of the brands you name and keep every offer and public price as point-in-time data, dated the moment it arrives.',
     answer:
-      'Alternative data for investors includes what consumer companies offer their own customers: discount depth, free delivery, new offers and how often they send them. Obsession collects it from any brand you name as point-in-time data, with every email, text and price kept with the time it was seen. History builds from the day you start, delivered by API, MCP or a table.',
+      'Alternative data for investors includes what consumer companies offer their own customers: discount depth, free delivery, new offers and how often they send them. Obsession’s AI agents join the lists of every brand you name and keep each email, text and public price with the time it was seen. History builds from the day you start, delivered by API, MCP or a table.',
     ogImage: '/og/consumer-promotions-data-for-funds.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -31,9 +36,9 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Early access',
+    pill: 'Watch the market blueprints',
     headline: 'Consumer brands’ offers, as point-in-time data for investors.',
-    sub: 'Every offer email and text, the flows after a sign-up or a basket, discount depth and how often each brand sends. From any brand you name, each fact kept with the time it was seen.',
+    sub: 'Alternative data for investors includes what consumer companies offer their own customers: discount depth, free delivery, new offers and how often they send them. Obsession’s AI agents join the lists of every brand you name and keep each email, text and public price with the time it was seen.',
     example: { chips: ['Harrowgate, a listed apparel retailer', '2 competitors', 'Email, texts and prices'] },
     flow: [
       {
@@ -43,10 +48,10 @@ export const study: UseCaseStudy = {
         foot: 'Any brand, not a fixed panel',
       },
       {
-        label: 'What comes back',
-        title: 'Every offer, as it was seen',
-        items: ['Discount depth and type', 'How often each brand sends', 'Free delivery and new offers', 'The email or text behind each'],
-        foot: 'Each with the time it was seen',
+        label: 'Obsession',
+        title: 'A persona on each brand’s list',
+        items: ['An inbox per brand', 'A number per brand', 'A browser for public prices', 'Timed on arrival'],
+        foot: 'Free while it waits',
       },
       {
         label: 'Where it lands',
@@ -58,9 +63,10 @@ export const study: UseCaseStudy = {
     capture: {
       kind: 'waitlist',
       source: 'usecase-funds-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'email-sms',
     },
+    secondary: { label: 'See the blueprint', to: '/blueprints/email-sms-tracking' },
   },
 
   how: {
@@ -90,7 +96,7 @@ export const study: UseCaseStudy = {
         ],
       },
       {
-        title: 'Obsession collects it',
+        title: 'Email and SMS tracking collects it',
         line: 'Each fact keeps the time it was first seen, with the email, text or page behind it.',
         screen: 'promos',
         chips: ['An inbox per brand', 'A number per brand', 'Timed on arrival', 'Kept as it arrived'],
@@ -129,6 +135,7 @@ export const study: UseCaseStudy = {
 
   outputs: {
     heading: 'What analysts, quant teams and private equity do with it.',
+    sub: 'Each use shows up in coverage, history and time to insight, where you can watch it.',
     groups: [
       {
         items: [
@@ -145,7 +152,7 @@ export const study: UseCaseStudy = {
           {
             title: 'Diligence a target and its market',
             line: 'What a target offers its customers, beside its competitors.',
-            example: 'Asked “Who discounted deepest before Black Friday?”, Insights answered with 3 brands, ranked.',
+            example: 'Asked “Who discounted deepest before Black Friday?”, the analyst’s own AI agent ranked the brands, each with its email.',
           },
           {
             title: 'Add a channel to a dataset',
@@ -161,14 +168,14 @@ export const study: UseCaseStudy = {
     recipe: {
       label: 'The blueprint',
       title: 'Email and SMS tracking',
-      line: 'Every email and text the brands on your list send a subscriber, side by side: who sends most, and who discounts first.',
-      cta: { label: 'Learn more', to: '/blueprints/email-sms-tracking' },
+      line: 'Every email and text the brands on your list send a subscriber, side by side, and who discounts first.',
+      cta: { label: 'See the blueprint', to: '/blueprints/email-sms-tracking' },
     },
     sample: {
-      label: '1 real run',
-      title: 'Sample data',
-      line: 'Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.',
-      cta: { label: 'See it', to: '/sample-output' },
+      label: 'Beside it',
+      title: 'Price watch',
+      line: 'Each morning’s public prices at every brand, dated, with the screenshot before and after.',
+      cta: { label: 'See the blueprint', to: '/blueprints/price-watch' },
     },
   },
 
@@ -177,10 +184,6 @@ export const study: UseCaseStudy = {
   faq: {
     heading: 'What funds and analysts ask.',
     items: [
-      {
-        q: 'What does Obsession do for investors?',
-        a: 'Alternative data for investors includes what consumer companies offer their own customers: discount depth, free delivery, new offers and how often they send them. Obsession collects it from any brand you name as point-in-time data, with every email, text and price kept with the time it was seen. History builds from the day you start, delivered by API, MCP or a table.',
-      },
       {
         q: 'How far back does the history go?',
         a: 'To the day collection starts for each brand, and it grows every week after. Nothing is backfilled, because nobody can see last month’s email today. Discretionary funds, sell-side analysts and private equity read it from the first week; quant teams start the clock now for the history they test later.',
@@ -192,24 +195,30 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Where does the data come from?',
-        a: 'From real sign-ups. Obsession’s agents subscribe to each brand’s emails and texts the way any customer can and keep what arrives. They use their own addresses and numbers, never a real customer’s, and never sign in to an account, ask for a quote or talk to staff.',
+        a: 'From real sign-ups. A persona joins each brand’s emails and texts the way any customer can and keeps what arrives, with its own address and number, never a real customer’s. It reads public prices, and never signs in to an account, asks for a quote or talks to staff.',
         link: { label: 'The lines every agent keeps', to: '/agents' },
       },
       {
         q: 'Can we choose the brands?',
-        a: 'Yes. Any brand you name, in the countries you pick. A brand not covered yet is added on request, and its history starts that day.',
+        a: 'Yes. Any brand you name, in the countries you pick. A persona joins its list that day, and its history starts then.',
+      },
+      {
+        q: 'How is it priced?',
+        a: `${personaCostLine} It costs nothing while it waits, and each blueprint is billed on the pieces it uses. Start on ${planWords}.`,
+        link: { label: 'See pricing', to: '/pricing' },
       },
     ],
   },
 
   final: {
-    heading: 'Which brands should we start the clock on?',
-    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders on a call.',
+    heading: 'Start the clock on every brand you cover.',
+    sub: 'Start with one brand and its competitors, so you can see the coverage and history before you add the rest.',
     capture: {
       kind: 'waitlist',
       source: 'usecase-funds-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'email-sms',
     },
+    link: { label: 'See the Watch the market blueprints', to: kitPathOf.watch },
   },
 }

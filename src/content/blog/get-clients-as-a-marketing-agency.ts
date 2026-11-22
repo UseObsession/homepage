@@ -20,7 +20,7 @@ export const post: BlogPost = {
   description:
     'How to get clients as a marketing agency: become a customer of each ecommerce brand you pitch, then open with one finding, its time and a screenshot.',
   answer:
-    'To get clients as a marketing agency, become a customer of each ecommerce brand you pitch and open with one finding from its store, with its time and a screenshot. A finding the brand can check in its own inbox, such as a welcome code that never arrived, sets the pitch apart from every agency promising growth. Obsession keeps what each brand sends a new customer, dated with the email or screenshot, at 300, 1,000 or 5,000 brands a month.',
+    'To get clients as a marketing agency, become a customer of each ecommerce brand you pitch and open with one finding from its store, with its time and a screenshot. A finding the brand can check in its own inbox, such as a welcome code that never arrived, sets the pitch apart from every agency promising growth. Obsession’s Mystery shopping blueprint sends an AI agent with its own inbox and browser to every brand on the list and returns each email dated, at 300, 1,000 or 5,000 brands a month.',
   primaryKeyword: 'how to get clients as a marketing agency',
   keywords: [
     'how to get clients as a creative agency',
@@ -31,7 +31,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-29',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 16,
   order: 0,
   authors: [
@@ -45,11 +45,11 @@ export const post: BlogPost = {
       status: { tone: 'ok', text: 'Each pitch its own' },
       steps: [
         { label: 'Pick', detail: '300 brands with a reason to buy now', tone: 'info' },
-        { label: 'Shop', detail: 'An AI customer for each job: sign-up, basket, checkout', tone: 'ok' },
+        { label: 'Shop', detail: 'An AI agent for each job: sign-up, basket, checkout', tone: 'ok' },
         { label: 'Read', detail: 'At 4, 12, 24 or 48 hours: what each store sent', tone: 'ok' },
         { label: 'Pitch', detail: 'Each proposal opens with that brand’s finding', tone: 'ok' },
       ],
-      foot: 'An example on an invented agency. Read each brand at the hour that suits the pitch, and the same AI customers keep checking the brands that sign.',
+      foot: 'An example on an invented agency. Read each brand at the hour that suits the pitch, and the same agents keep checking the brands that sign.',
     },
   },
 
@@ -89,7 +89,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. At each prospect’s store they run up to 4 journeys: sign up, browse, leave a basket and start a checkout. Each journey has its own inbox, and each is scored against written criteria the agency sets, such as a first reminder within 4 hours with the item and its price shown in it.',
+      text: 'On Obsession, the [Mystery shopping](/blueprints/mystery-shopper) blueprint runs up to 4 journeys at each prospect’s store: sign up, browse, leave a basket and start a checkout. Each journey has its own inbox, and each is scored against written criteria the agency sets, such as a first reminder within 4 hours with the item and its price shown in it.',
     },
 
     { kind: 'h2', id: 'by-hand', text: 'What checking prospects by hand costs an agency founder' },
@@ -115,7 +115,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'prospecting-process', text: 'The prospecting process, step by step' },
     {
       kind: 'p',
-      text: 'Write each pass mark down before the first brand, so a manager or an AI customer runs the steps the same way every time.',
+      text: 'Write each pass mark down before the first brand, so a manager or an AI agent runs the steps the same way every time.',
     },
 
     { kind: 'h3', id: 'pick', text: '1. Pick brands with a reason to buy now' },
@@ -204,7 +204,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'agency-types', text: 'What each agency type checks first' },
     {
       kind: 'p',
-      text: 'Every agency type follows the same workflow and starts from the part of the store it is paid to fix. The page and cart findings in the table come from 26 October 2026, when an Obsession agent walked the client stores that Shopify agencies and freelance experts list on their own sites. These are the stores the agencies chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page.',
+      text: 'Every agency type follows the same workflow and starts from the part of the store it is paid to fix. The page and cart findings in the table come from 26 October 2026, when an agent walked the client stores that Shopify agencies and freelance experts list on their own sites. These are the stores the agencies chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page.',
     },
     {
       kind: 'table',
@@ -234,7 +234,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For a creative or paid social agency, the strongest opener is the gap between the ad and the page. Set the offer, price or product the ad shows against what a new customer meets after the click. That is how to get clients as a creative agency with a phone and the brand’s live ad. The full case by agency type is in [why retention agencies need AI customers](/blog/ai-customers-for-retention-agencies) and [why CRO and performance agencies need AI customers](/blog/ai-customers-for-cro-agencies).',
+      text: 'For a creative or paid social agency, the strongest opener is the gap between the ad and the page. Set the offer, price or product the ad shows against what a new customer meets after the click. That is how to get clients as a creative agency with a phone and the brand’s live ad. The full case by agency type is in [AI agents for retention agencies](/blog/ai-customers-for-retention-agencies) and [AI agents for CRO and performance agencies](/blog/ai-customers-for-cro-agencies).',
     },
 
     { kind: 'h2', id: 'simulate-customers', text: 'Simulate different customers at one brand' },
@@ -244,7 +244,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'AI customers split the work. Each is an agent with its own inbox, phone number and browser that signs up or shops the way any customer can, so each email traces back to one action ([what AI customers are](/blog/ai-customers)). An agency can send 5 or more to one brand, each doing one thing:',
+      text: 'AI agents as customers split the work. Each has its own inbox, phone number and browser and signs up or shops the way any customer can, so each email traces back to one action. On Obsession each one is a [persona](/personas), every piece under one identity. An agency can send 5 or more to one brand, each doing one thing:',
     },
     {
       kind: 'list',
@@ -260,12 +260,12 @@ export const post: BlogPost = {
     },
     {
       kind: 'art',
-      caption: '5 AI customers at one invented store, each doing one thing from its own inbox and browser, read at 4 hours.',
+      caption: '5 AI agents at one invented store, each doing one thing from its own inbox and browser, read at 4 hours.',
       art: {
         kind: 'report',
-        title: 'corriebrook.example · 5 AI customers, 1 brand',
+        title: 'corriebrook.example · 5 agents, 1 brand',
         period: 'Started Monday 09:00 from the UK · read at 4 hours',
-        cols: ['AI customer', 'What it did', 'What came back', 'When'],
+        cols: ['Agent', 'What it did', 'What came back', 'When'],
         rows: [
           { name: 'Subscriber', cells: ['Signed up', 'Welcome, 10% code', '3 min'], tone: 'ok' },
           { name: 'Basket', cells: ['Left a candle', 'Reminder with price', '45 min'], tone: 'ok' },
@@ -274,7 +274,7 @@ export const post: BlogPost = {
           { name: 'Chatbot', cells: ['Asked: by Friday?', '2 days, policy 3 to 5', '1 min'], tone: 'fail' },
         ],
         notes: [
-          'Each AI customer has its own inbox, phone number and browser, so each email traces back to one action.',
+          'Each agent has its own inbox, phone number and browser, so each email traces back to one action.',
           'The checkout row gets its verdict at 48 hours.',
           'Corriebrook and every result here are invented.',
         ],
@@ -292,18 +292,18 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For an agency, Obsession’s [prospect intelligence](/blueprints/prospect-intelligence) covers every brand on a pitch list:',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. For an agency, its [Mystery shopping](/blueprints/mystery-shopper) and [Prospect intelligence](/blueprints/prospect-intelligence) blueprints cover every brand on a pitch list, and Obsession runs them for the agency’s team:',
     },
     {
       kind: 'list',
       items: [
-        '**As many Obsession agents as the job needs.** Each has its own inbox, phone number and browser, and does one thing at each brand.',
+        '**As many personas as the job needs.** Each has its own inbox, phone number and browser, and does one thing at each brand.',
         '**An agent in the right country.** Each one shops from the US or the UK, to match the brand’s market.',
         '**CAPTCHAs, the puzzles that check a visitor is a person.** Each report names any step a CAPTCHA kept it from testing, so the agency knows exactly what to check by hand.',
         '**Reports on the agency’s clock.** Read at 4, 12, 24 or 48 hours, or keep each brand followed for weeks or months. A brand hiring now can get its first finding within hours, and a client gets weekly or monthly checks.',
         '**In the agency’s name.** Reports can carry the agency’s name and logo for the brands it serves.',
-        '**Scale.** It runs at 300 brands a month, 1,000 or 5,000. It is built for millions of companies, each looked up in one call. Every brand stays followed for as long as the agency wants, with each new email dated the day it arrives.',
-        '**Pricing.** Priced per call or per company watched, never per token, with a spending cap on every key.',
+        '**Scale.** It runs at 300 brands a month, 1,000 or 5,000. Personas wait for free between emails, and every brand stays followed for as long as the agency wants, with each new email dated in the event log.',
+        '**Pricing.** Each run is billed on the pieces it uses, from $0.50 an inbox a month, on the Free plan or at $20, $99 or $499 a month, with a spending cap on every key.',
       ],
     },
 
@@ -329,7 +329,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'One client won is worth $4,500 to $7,500 over 3 months and $9,000 to $15,000 over 6. Over 12 months it is worth $18,000 to $30,000. Checking 300 brands a month by hand takes 75 to 125 hours of a founder’s or a manager’s time, every month. With AI customers running the checks, the work changes in 4 ways:',
+      text: 'One client won is worth $4,500 to $7,500 over 3 months and $9,000 to $15,000 over 6. Over 12 months it is worth $18,000 to $30,000. Checking 300 brands a month by hand takes 75 to 125 hours of a founder’s or a manager’s time, every month. With personas running the checks, the work changes in 4 ways:',
     },
     {
       kind: 'list',
@@ -337,22 +337,22 @@ export const post: BlogPost = {
         '**Time back.** The 75 to 125 hours a month go to proposals, calls and client work.',
         '**Every brand checked.** All 300 pitches open with what that brand’s own store sent a new customer, and when, instead of the few a founder has time to check by hand.',
         '**Written for one brand.** Each finding is about that brand’s own store, so no two pitches read the same.',
-        '**A service after the win.** The same AI customers keep checking the client every week or every month, which the agency can sell.',
+        '**A service after the win.** The same personas keep checking the client every week or every month, which the agency can sell.',
       ],
     },
 
     { kind: 'h2', id: 'after-the-win', text: 'After the win: checks to sell to every client' },
     {
       kind: 'p',
-      text: 'The AI customers that found the opening finding can stay on as the client’s customers. Each of these checks is a service an agency can sell to the brands it works with:',
+      text: 'The personas that found the opening finding can stay on as the client’s customers. Each of these checks is a service an agency can sell to the brands it works with:',
     },
     {
       kind: 'list',
       items: [
         '**A weekly check before the client report.** Every flow checked as a customer, so the Monday report shows what fired. The format is in [a weekly flow log for clients](/blog/show-clients-every-flow-fired).',
         '**A Black Friday code check.** The pop-up code and each sale code tried at checkout on the days that matter, Friday 27 November 2026 included.',
-        '**A competitor watch.** Every email, offer and price the client’s competitors send a new customer.',
-        '**Ad landing checks.** The page behind each live ad, followed to checkout after every launch.',
+        '**A competitor watch.** Every email, offer and price the client’s competitors send a new customer, with [Competitor tracking](/blueprints/competitor-tracking).',
+        '**Ad landing checks.** The page behind each live ad, followed to checkout after every launch, with the [Ad landing check](/blueprints/ad-landing-check).',
         '**What AI assistants say about the brand,** checked against the live store.',
       ],
     },
@@ -401,20 +401,20 @@ export const post: BlogPost = {
           'A one-off look at a page or a form',
         ],
         [
-          'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies), [Funnel QA for CRO agencies](/use-cases/funnel-qa-for-cro-agencies)',
+          'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [Prospect intelligence](/blueprints/prospect-intelligence), [Email](/email)',
           'What every brand on the list sends a new customer, from the pop-up to checkout, each email dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Leaves the message and the call to the agency',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment and at CAPTCHAs; the message and the call stay with the agency',
           'Every brand on a long list checked as a customer, then weekly client checks',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your agency pitches dozens or hundreds of brands a month and needs a first finding within 4 hours of a job post, use Obsession. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. Its reports can carry the agency’s name, and the same checks carry on weekly or monthly after the win. For 5 brands a week, the steps by hand cover it. A trained manager suits a steady list once the steps are written down, and a browser agent suits a one-off look at a page.',
+      text: 'If your agency pitches dozens or hundreds of brands a month and needs a first finding within 4 hours of a job post, use Obsession. Its personas sign up at every brand on the list, and each email lands in one event log, dated, with results in a sheet, Slack or your CRM. Its reports can carry the agency’s name, and the same checks carry on weekly or monthly after the win. For 5 brands a week, the steps by hand cover it. A trained manager suits a steady list once the steps are written down, and a browser agent suits a one-off look at a page.',
     },
 
-    { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI customers for prospecting' },
+    { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI agents for prospecting' },
     {
       kind: 'list',
       items: [
@@ -428,19 +428,19 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'start', text: 'Start with 5 brands this week' },
     {
       kind: 'p',
-      text: 'Pick 5 brands with a dated reason to buy: a job post, a new hire, a launch or Black Friday. Sign each one up by hand on Monday morning, or name them to Obsession, and send the first finding before the brand hires someone else. Agencies start in early access, onboarding teams now, and the Obsession team helps each one set up its first batch: the brands, the journeys at each and where the reports go. Once your own list runs, you choose when to read: 4, 12, 24 or 48 hours, or as long as you want to keep watching.',
+      text: 'Pick 5 brands with a dated reason to buy: a job post, a new hire, a launch or Black Friday. Sign each one up by hand on Monday morning, or pick the Mystery shopping blueprint, and send the first finding before the brand hires someone else. Any blueprint runs on the Free plan, and past its allowances each run is billed on the pieces it uses. You choose when to read: 4, 12, 24 or 48 hours, or as long as you want to keep watching.',
     },
     {
       kind: 'cta',
-      text: 'For retention agencies: open every pitch with the store’s own emails. See what any store sends a new customer after the pop-up and a basket, each email dated as it arrived, for the stores you pitch and the clients you keep.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      text: 'For retention agencies: Mystery shopping signs up at every store you pitch and returns each email after the pop-up and a basket, dated as it arrived, for the stores you pitch and the clients you keep.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
     {
       kind: 'cta',
       text: 'For CRO and performance agencies: see what each brand’s funnel sends after the sign-up, from the pop-up’s code to the basket and checkout reminders, each dated. Use it before the pitch and before and after every test.',
       to: '/use-cases/funnel-qa-for-cro-agencies',
-      label: 'Request early access',
+      label: 'See how it works',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about getting agency clients' },
@@ -476,7 +476,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the figures',
-      text: 'On 26 October 2026 an Obsession agent walked client stores that Shopify agencies and freelance experts list on their own sites, as far as the first checkout page. No store, brand or agency is named. The agency, the brand, the times and the retainer in the examples are invented.',
+      text: 'On 26 October 2026 an agent walked client stores that Shopify agencies and freelance experts list on their own sites, as far as the first checkout page. No store, brand or agency is named. The agency, the brand, the times and the retainer in the examples are invented.',
     },
   ],
 
@@ -496,5 +496,5 @@ export const post: BlogPost = {
     { title: 'Using cloud browser in ChatGPT', publisher: 'OpenAI Help Center', url: CLOUD_BROWSER, date: '2026-10-28' },
   ],
 
-  related: ['klaviyo-experts-win-upwork-jobs-from-shopify-brands', 'how-to-find-ecommerce-clients', 'show-clients-every-flow-fired', 'recipe:prospect-intelligence', '/use-cases/prospect-intelligence-with-clay'],
+  related: ['klaviyo-experts-win-upwork-jobs-from-shopify-brands', 'how-to-find-ecommerce-clients', 'show-clients-every-flow-fired', 'recipe:mystery-shopper', 'recipe:prospect-intelligence', '/agencies', '/use-cases/prospect-intelligence-with-clay'],
 }

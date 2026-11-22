@@ -21,7 +21,8 @@ import type { BlogPost } from './types'
    republication of Business Insider, and Adobe's forecast of 28 Sep 2026.
    Left out on purpose: Walmart's Instant Checkout conversion figure (second hand, and Wired can't be reached), the
    allowlisting link in the shopping research post (it points to a retired help page), any PilotX figure, the 93%.
-   Thistlebrook, Oatfell and Brackenby are invented stores. No dashes. */
+   Thistlebrook, Oatfell and Brackenby are invented stores. No dashes. 22 Nov 2026: Obsession lines moved to the toolkit
+   position (personas, blueprints, prices.ts); the 1,500 line is out. */
 
 const ADOBE = 'https://news.adobe.com/news/2026/09/adobe-us-holiday-shopping-season-to-hit-record'
 const MERCHANTS = 'https://chatgpt.com/merchants/'
@@ -53,7 +54,7 @@ export const post: BlogPost = {
   description:
     'ChatGPT shopping for brands: how ChatGPT picks products from feeds, pages and reviews, and how to check what it tells shoppers about your products.',
   answer:
-    'ChatGPT shopping is ChatGPT answering “what should I buy” with products, prices and reasons, which it picks using product data, pages on the web and what the shopper asked. Answers change from one run to the next, so a brand checks what ChatGPT says about its products repeatedly, logged out and against its live store. To track what ChatGPT tells shoppers about your products, Obsession asks the same shopping questions every week and keeps each answer, dated, with the page it cites.',
+    'ChatGPT shopping is ChatGPT answering “what should I buy” with products, prices and reasons, which it picks using product data, pages on the web and what the shopper asked. Answers change from one run to the next, so a brand checks what ChatGPT says about its products repeatedly, logged out and against its live store. To track what ChatGPT tells shoppers about your products, Obsession’s listings and AI answers blueprint asks the same shopping questions every week and keeps each answer, dated, with the page it cites.',
   primaryKeyword: 'chatgpt shopping',
   keywords: [
     'chatgpt shopping research',
@@ -64,9 +65,9 @@ export const post: BlogPost = {
     'chatgpt shopping mode',
     'how to get your product recommended by chatgpt',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-11-01',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   order: 1,
   authors: [
@@ -320,19 +321,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill, and its [listings and AI answers](/blueprints/listings-ai-answers) blueprint runs this check for teams with no engineers.',
     },
     {
       kind: 'p',
-      text: 'For ChatGPT shopping, Obsession asks ChatGPT and the other assistants your shoppers use the same questions every Monday, each the official way and from a clean history. It keeps each answer with its date and the page it cites, traces a wrong price to that page and asks again until the answer changes. It also signs up to your store, uses the welcome code and leaves a basket, so the price and offer a shopper meets after the answer are kept too.',
+      text: 'For ChatGPT shopping, the blueprint asks ChatGPT and the other assistants your shoppers use the same questions every Monday, each the official way and from a clean history. It keeps each answer with its date and the page it cites, traces a wrong price to that page and asks again until the answer changes. A persona, an AI agent with its own inbox, number and browser under one name, also signs up to your store. It uses the welcome code and leaves a basket before payment, so the price and offer a shopper meets after the answer land in your event log too.',
     },
     {
       kind: 'p',
-      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Every agent says it’s an AI when it talks to a person, and none gets round a CAPTCHA or a bot block, as the [agents page](/agents) sets out. Collecting as a customer this way is what the term [AI customers](/blog/ai-customers) names. The wider case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
+      text: 'Every persona says it’s an AI when it talks to a person, and none gets round a CAPTCHA or a bot block, as the [agents page](/agents) sets out. The wider case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
     },
     {
       kind: 'cta',
-      text: 'A real UK skincare store’s record from September 2026: 4 test customers, every inbox watched for 48 hours, and a £40 basket that got no reminder. It comes as a PDF, a sheet, Clay or JSON.',
+      text: 'A real run at a UK skincare store in September 2026: 4 sign-ups and baskets, every inbox watched for 48 hours, and a £40 basket that got no reminder. It comes as a PDF, a sheet, Clay or JSON.',
       to: '/sample-output',
       label: 'See sample data',
     },
@@ -358,9 +359,9 @@ export const post: BlogPost = {
           'A daily count across many prompts and products',
         ],
         [
-          'Obsession (ours): [Listings and AI answers](/blueprints/listings-ai-answers), [store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
-          'ChatGPT asked every week, each answer dated, then what your store sends a new customer',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Obsession (ours): [Listings and AI answers](/blueprints/listings-ai-answers), [Mystery shopping](/blueprints/mystery-shopper)',
+          'ChatGPT asked every week, each answer dated, then what your store sends a new customer, in one event log',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'OpenAI decides what ChatGPT shows',
           'What shoppers are told, and what your store then gives them',
         ],
@@ -368,7 +369,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your brand needs to know what ChatGPT tells shoppers about your products every week, and whether your store then gives them the same price and offer, use Obsession. Profound and Peec AI suit a daily count of how often products appear across hundreds of questions, which they call prompts. A check by hand suits a first look at 10 to 20 questions.',
+      text: 'If your brand needs to know what ChatGPT tells shoppers about your products every week, and whether your store then gives them the same price and offer, use Obsession’s listings and AI answers blueprint. Profound and Peec AI suit a daily count of how often products appear across hundreds of questions, which they call prompts. A check by hand suits a first look at 10 to 20 questions.',
     },
 
     { kind: 'h2', id: 'start', text: 'Start this week' },
@@ -384,9 +385,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'OpenAI says ChatGPT purchases are completed on merchants’ own websites or apps, so start with what shoppers meet on yours: every email and text your store sends after a sign-up, a basket and a checkout, each with the time it arrived.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'OpenAI says ChatGPT purchases are completed on merchants’ own websites or apps, so start with what shoppers meet on yours. Mystery shopping sends personas through your store, and every email and text after a sign-up, a basket and a checkout lands in your event log with the time it arrived.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about ChatGPT shopping' },

@@ -31,7 +31,8 @@ import type { BlogPost } from './types'
    email (dated 25 June 2025); Competera's competitive data page (its data feeds Competera's pricing AI, no own
    recommendation claim); Minderest's home and InSite pages; Lengow's NetRivals page; Omnia Retail's home page;
    Skuuudle's home page and price scraping article; Wiser's home page (no trendline claim any more). The 26 Oct walk
-   of client stores stays (kept by PR #63). */
+   of client stores stays (kept by PR #63).
+   22 Nov 2026 (the toolkit position): Obsession's lines point at Price watch and /browser; the 26 Oct walk is cut. */
 
 const PRICEMOLE = 'https://pricemole.io/'
 const PRICEMOLE_PRICING = 'https://pricemole.io/pricing'
@@ -68,12 +69,12 @@ const WISER = 'https://www.wiser.com/'
 export const post: BlogPost = {
   slug: 'best-competitor-price-tracking-tools',
   title: 'Competitor price tracking tools and comparison software for ecommerce in 2026, by job',
-  dek: '14 competitor price tracking tools grouped by the job they do, from free plans for a few products to managed services for large retailers. Every price is as each company listed it on 14 November 2026, beside Obsession, which keeps the price a new customer pays at each competitor.',
+  dek: '14 competitor price tracking tools grouped by the job they do, from free plans for a few products to managed services for large retailers. Every price is as each company listed it on 14 November 2026, beside Obsession’s Price watch, which reads member prices and subscriber codes at each competitor every morning.',
   metaTitle: 'Competitor price tracking tools and comparison software',
   description:
-    'Competitor price tracking tools and comparison software for ecommerce, compared by job and price, beside the price each competitor shows only to customers.',
+    'Competitor price tracking tools and comparison software for ecommerce, compared by job and price, beside member prices and codes read by a signed-in agent.',
   answer:
-    'Competitor price tracking tools read competitors’ product pages on a schedule and alert your team when a price changes. By job, Prisync and PriceMole track public prices at scale, Pricefy starts free, and Price2Spy and Priceva say they read cart and login prices. Obsession keeps the codes and member prices each competitor shows only to customers, and the basket total with a code applied, dated, by API, MCP (the standard way AI agents call tools) or a table.',
+    'Competitor price tracking tools read competitors’ product pages on a schedule and alert your team when a price changes. By job, Prisync and PriceMole track public prices at scale, Pricefy starts free, and Price2Spy and Priceva say they read cart and login prices. Obsession’s Price watch blueprint signs in at each competitor as an AI agent and reads member prices, subscriber codes and delivery every morning, each change dated with screenshots.',
   primaryKeyword: 'competitor price tracking tools',
   keywords: [
     'competitor price tracking software',
@@ -89,9 +90,9 @@ export const post: BlogPost = {
     'best price monitoring software',
     'price tracking software',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-10-28',
-  updated: '2026-11-14',
+  updated: '2026-11-22',
   readingMinutes: 24,
   order: 4,
   authors: [
@@ -164,8 +165,8 @@ export const post: BlogPost = {
         '**How often?** Pricefy’s free plan reads prices once a day and its paid plans twice. Prisync reads 3 times a day on its URL plans, PriceMole 4 times and Price2Spy up to 8 times on Premium. Visualping checks a single page as often as every 2 minutes on its larger plans. In a sale week, when competitors change prices daily, read more often.',
         '**Do you need MAP checks?** MAP monitoring checks that retailers keep to the minimum advertised price a brand sets. It sits on Prisync’s $399 Platinum plan, Pricefy’s $189 Business plan and Price2Spy’s Basic plan, and Wiser sells MAP monitoring to brands. [MAP monitoring software](/blog/map-monitoring-software) compares the tools built for it.',
         '**Prices in the cart or behind a login?** Some retailers show the full price only in the cart, once delivery is counted, or to a signed-in account. Price2Spy and Priceva say they read both, Visualping checks pages behind a login your team holds, and PriceMole lists login support on its $499 plan in the Shopify App Store. Read each competitor’s terms first.',
-        '**Codes, member prices and emailed offers?** Price2Spy can capture promotional codes as an extra field on its Premium plan, Competera lists coupon codes among its data, and Particl and Panoramata keep competitors’ marketing emails. None of the 14 tools’ pages describes signing up as a new customer and recording the price after the welcome code. Obsession keeps each subscriber code, each [member price](/glossary/member-price) and every emailed offer, dated with a screenshot, and can fill a basket to record the total with the code applied, stopping before payment.',
-        '**Alerts, and where the data lands?** Prisync sends daily or instant email alerts by plan, with Excel reports and API access at 20% on top. PriceMole’s Shopify plans connect Claude or ChatGPT through MCP, and PriceMole and Pricefy push new prices back to Shopify. Obsession sends each change to Slack, a sheet, Clay, a webhook (a message to your own system the moment a price moves) or the API.',
+        '**Codes, member prices and emailed offers?** Price2Spy can capture promotional codes as an extra field on its Premium plan, Competera lists coupon codes among its data, and Particl and Panoramata keep competitors’ marketing emails. None of the 14 tools’ pages describes signing up as a new customer and recording the price after the welcome code. Obsession’s [Price watch](/blueprints/price-watch) does it with a persona, an AI agent with its own inbox and browser under one name. It joins each list, reads each [member price](/glossary/member-price) every morning and can fill a basket to record the total with the code applied, stopping before payment.',
+        '**Alerts, and where the data lands?** Prisync sends daily or instant email alerts by plan, with Excel reports and API access at 20% on top. PriceMole’s Shopify plans connect Claude or ChatGPT through MCP (the standard way AI agents call tools), and PriceMole and Pricefy push new prices back to Shopify. Price watch sends each change to Slack, a sheet, Clay, a webhook (a message to your own system the moment a price moves) or the API.',
       ],
     },
     {
@@ -486,36 +487,37 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'what-a-customer-saw', text: 'What did a new customer meet past the product page?' },
+    { kind: 'h2', id: 'what-a-customer-saw', text: 'What can a new customer meet past the product page?' },
     {
       kind: 'p',
-      text: 'On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. A shopper could see a problem at most of these stores.',
+      text: 'The price on the product page is the start of a new customer’s order. Between that page and payment, a store can change what the order costs:',
     },
     {
       kind: 'list',
       items: [
-        'The most common problem was an offer on the page or top bar that the cart or checkout did not honour: free shipping or delivery, a subscription price or a free gift. One store still showed a sale banner the day after the sale ended.',
-        'Some carts added a charge the shopper had not chosen, such as a shipping protection line already switched on. In others, a package protection line appeared after the shopper went to checkout and came back.',
-        'At other stores it walked, the agent saw prices or free-delivery thresholds in mixed currencies for a visitor in the United States. These depend on where the visitor is, so a price read from one country is one view of it.',
+        'An offer on the page or top bar that the cart or checkout doesn’t honour, such as free delivery, a subscription price or a free gift.',
+        'A sale banner still showing the day after the sale ends.',
+        'A charge the shopper didn’t choose, such as a shipping protection line already switched on in the cart.',
+        'Prices or free-delivery thresholds that change with the visitor’s country, so a price read from one country is one view of it.',
       ],
     },
     {
       kind: 'p',
-      text: 'Most of these sit between the product page and the payment page. A tracker reading the product page records the offer as shown. Seeing whether the cart honours it takes a cart step, which Price2Spy and Priceva say they offer, or a customer.',
-    },
-    {
-      kind: 'p',
-      text: 'The agencies chose the stores, so the patterns describe the stores they show. Each store was checked from one country and stopped before payment. For what a finished record looks like, see the [sample data](/sample-output) from a real UK store.',
+      text: 'A tracker reading the product page records the offer as shown. Seeing whether the cart honours it takes a cart step, which Price2Spy and Priceva say they offer, or an agent that shops as a customer and stops before payment. For what a finished result looks like, see the [sample data](/sample-output) from a real UK store.',
     },
 
     { kind: 'h2', id: 'your-prices', text: 'How do you see what competitors charge a new customer, beside your own prices?' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to.',
     },
     {
       kind: 'p',
-      text: 'For your own company, Obsession reads your prices, stock and delivery every morning the way a new customer sees them, beside every email your store sends a new subscriber. With Obsession, you can set your prices beside the biggest companies in your category, read the same way. That covers the public price, the member price, delivery and the code each one emails its list, with every change dated and its before and after screenshots.',
+      text: 'For prices, a pricing team picks the [Price watch](/blueprints/price-watch) blueprint. A persona opens an account at each competitor and joins its email list, in the country you choose. Each morning it reads public and member prices, offers, delivery and the codes sent only to subscribers, beside your own prices. Every change lands in Slack, a sheet, Clay or a webhook, with before and after screenshots.',
+    },
+    {
+      kind: 'p',
+      text: 'Developers can build their own on the [browser](/browser) piece: a cloud browser that stays signed in, with a home connection, at $0.10 a browser hour. Each persona’s inbox catches the codes, and every page and email lands in the same event log.',
     },
     {
       kind: 'list',
@@ -532,18 +534,18 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps going on its own. [Price watch](/blueprints/price-watch) reads prices, stock and delivery every morning, so a changed member price shows up the next day. A fresh sign-up can run [every step again each week](/use-cases/leak-checks-for-ecommerce-stores), so a new welcome code shows up that week. It works the same for one company or a list of 3,000, on an index built for millions of companies.',
+      text: 'Price watch runs every morning, or every hour in a sale week, for 3 competitors or 3,000. A persona waits at each competitor between reads, so a changed member price shows up the next morning with its date. A fresh sign-up can run [every step again each week](/use-cases/leak-checks-for-ecommerce-stores), so a new welcome code shows up that week. The blueprint is billed on the pieces it uses.',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which competitor price comparison software fits each job?' },
     {
       kind: 'p',
-      text: 'Use Obsession when your company needs the price each competitor shows only to its customers. That means the code sent to new subscribers, each member price and every emailed offer, read each morning, and the basket total with delivery and the code applied if you choose. Each is kept with a dated screenshot for as long as you follow the competitor. A public price tracker is the right pick for a team watching list prices across many competitors every day.',
+      text: 'Use Obsession’s Price watch when your team needs the price a subscriber or a signed-in member gets at each competitor. That means the code sent to new subscribers, each member price and every emailed offer, read each morning, and the basket total with delivery and the code applied if you choose. Each change stays in your event log with dated screenshots. A public price tracker is the right pick for a team watching list prices across many competitors every day.',
     },
     {
       kind: 'list',
       items: [
-        '**The price a new customer pays at each competitor:** Obsession’s Price watch checks every competitor’s prices, offers and delivery each morning, plus the codes each competitor emails its subscribers. Each change arrives with a before and after screenshot.',
+        '**The price a new customer pays at each competitor:** Obsession’s Price watch, signed in as a persona, reads each competitor’s prices, offers, delivery and subscriber codes every morning. Each change arrives with a before and after screenshot.',
         '**List prices across hundreds or thousands of products:** Prisync or PriceMole, or Pricefy from $49 a month for 100 SKUs.',
         '**A team watching a few competitors:** Pricefy’s free plan for up to 50 SKUs, Priceva’s for up to 20 products, or Visualping from $14 a month for a handful of pages.',
         '**Prices in the cart or behind a login:** Price2Spy or Priceva, after reading each competitor’s terms.',
@@ -555,9 +557,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Member prices beside public ones, at every retailer you track. See the price a signed-in member sees, the welcome coupon and the offers that follow by email, per store, each dated with its screenshot.',
-      to: '/use-cases/member-prices-for-price-intelligence',
-      label: 'Request early access',
+      text: 'Every competitor’s prices, including the ones only members see. Price watch reads public and member prices, delivery and subscriber codes each morning, and dates every change with before and after screenshots.',
+      to: '/blueprints/price-watch',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'compared', text: 'The 14 competitor price comparison tools and Obsession, side by side', compare: true },
@@ -594,11 +596,11 @@ export const post: BlogPost = {
         ['Skuuudle', 'Managed collection down to the zip code or store', '$10,000 to $1 million a year', 'No self-serve plan', 'A price data budget in the tens of thousands'],
         ['Wiser', 'Marketplace price and MAP monitoring, free snapshot', 'Not listed\nFree snapshot', 'Sold through its team', 'A free first look, then a quote'],
         [
-          'Obsession (ours): [Price watch](/blueprints/price-watch), [Competitor tracking](/blueprints/competitor-tracking), [Member prices](/use-cases/member-prices-for-price-intelligence)',
-          'Subscriber codes, member prices and emailed offers each morning, and the basket total with a code if you choose, at any competitor you name',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Reports each change, with repricing left to your own tools',
-          'The price a new customer pays at each competitor, kept as proof',
+          'Obsession (ours): [Price watch](/blueprints/price-watch), [Competitor tracking](/blueprints/competitor-tracking), [Browser](/browser)',
+          'Member prices, subscriber codes and delivery each morning, signed in as a persona at any competitor you name',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Reports each change, with repricing left to your own tools; stops before payment',
+          'The price a new customer pays at each competitor, dated with screenshots',
         ],
       ],
     },
@@ -609,15 +611,15 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What is the best competitor price tracking software for ecommerce?',
-          a: 'The best competitor price tracking software depends on the job. For what a new customer is offered at each competitor (the subscriber code, the member price, every emailed offer and, if you choose, the basket total with the code applied), Obsession keeps it dated with a screenshot. On 14 November 2026, Prisync and PriceMole listed plans from $99 a month for public prices across hundreds to thousands of products. Pricefy, Priceva and Visualping had free plans, and Price2Spy and Priceva said they read prices behind a login or in the cart.',
+          a: 'The best competitor price tracking software depends on the job. For what a new customer is offered at each competitor, Obsession’s Price watch reads the subscriber code, the member price and every emailed offer each morning, each dated with a screenshot. On 14 November 2026, Prisync and PriceMole listed plans from $99 a month for public prices across hundreds to thousands of products. Pricefy, Priceva and Visualping had free plans, and Price2Spy and Priceva said they read prices behind a login or in the cart.',
         },
         {
           q: 'What is competitor price comparison software?',
-          a: 'Competitor price comparison software sets your price for each product beside each competitor’s price for the same product, so a pricing team sees where it is cheaper or dearer. Prisync shows this as a price position comparison on every paid plan, and Minderest’s browser extension colour-codes whether a retailer’s price is higher or lower than yours. Obsession adds what each competitor shows only to customers: the member price, the codes sent to subscribers and, if you choose, the basket total with the code applied.',
+          a: 'Competitor price comparison software sets your price for each product beside each competitor’s price for the same product, so a pricing team sees where it is cheaper or dearer. Prisync shows this as a price position comparison on every paid plan, and Minderest’s browser extension colour-codes whether a retailer’s price is higher or lower than yours. Obsession’s Price watch adds what a signed-in customer sees: the member price, the codes sent to subscribers and, if you choose, the basket total with the code applied.',
         },
         {
           q: 'What is the best price monitoring software?',
-          a: 'The best price monitoring software depends on what you monitor. For retailers kept to MAP, Prisync’s Platinum plan, Pricefy’s Business plan, Price2Spy and Wiser list MAP monitoring. For competitor prices across thousands of products, Prisync, PriceMole and Pricefy read pages several times a day. For marketplaces, Omnia Retail, NetRivals and Wiser read them as a source. For the price a new customer pays after the welcome code, Obsession keeps it dated with a screenshot.',
+          a: 'The best price monitoring software depends on what you monitor. For retailers kept to MAP, Prisync’s Platinum plan, Pricefy’s Business plan, Price2Spy and Wiser list MAP monitoring. For competitor prices across thousands of products, Prisync, PriceMole and Pricefy read pages several times a day. For marketplaces, Omnia Retail, NetRivals and Wiser read them as a source. For the price a new customer pays after the welcome code, Obsession’s Price watch reads it each morning, dated with a screenshot.',
         },
         {
           q: 'Is there free price monitoring software?',
@@ -633,7 +635,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What are competitor price monitoring services?',
-          a: 'They are companies that collect competitors’ prices for your team and deliver them as a feed or a dashboard, usually priced by quote. Skuuudle lists $10,000 to $1 million a year and Competera bills per SKU delivered. Omnia Retail, Minderest, Wiser and NetRivals price after a demo. Price intelligence firms that want the prices retailers show only to members can add Obsession’s member prices at every retailer they track.',
+          a: 'They are companies that collect competitors’ prices for your team and deliver them as a feed or a dashboard, usually priced by quote. Skuuudle lists $10,000 to $1 million a year and Competera bills per SKU delivered. Omnia Retail, Minderest, Wiser and NetRivals price after a demo. Price intelligence firms that want member prices can run Obsession’s Price watch at every retailer they track, with a persona signed in at each.',
           link: { label: 'Member price intelligence', to: '/use-cases/member-prices-for-price-intelligence' },
         },
         {
@@ -646,7 +648,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How does Obsession track competitor prices?',
-          a: 'An Obsession agent, a customer that says it’s an AI, signs up to each competitor with its own inbox. It records the code each competitor sends new subscribers, each member price and every emailed offer, and, if you choose, fills a basket to record the total with delivery and the code applied, stopping before payment. Each is dated with a screenshot. Obsession’s Price watch checks every competitor’s prices, offers and delivery each morning and reports each change with a before and after screenshot. Teams start in early access, priced per call or per company watched.',
+          a: 'A persona, an AI agent with its own inbox, number and browser under one name, opens an account at each competitor and joins its email list. It says it’s an AI when it talks to a person. Each morning the Price watch blueprint reads public and member prices, offers, delivery and the codes sent to subscribers. It can fill a basket to record the total with the code applied, stopping before payment. Each change lands in your event log with before and after screenshots. Teams start on the Free plan, then $20, $99 or $499 a month, and a blueprint is billed on the pieces it uses.',
           link: { label: 'Price watch', to: '/blueprints/price-watch' },
         },
       ],

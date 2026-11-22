@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/triggered-flow: the definition query for an automated series started by a customer's action, from
    Klaviyo's own help docs. "abandoned cart email not sending" stays with its post (docs/SEARCH.md §2). */
@@ -70,7 +69,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For a triggered flow, that means each email and text with the minute it arrived after the action that started it. The wait between messages is measured from the inbox.`,
+      text: 'Obsession’s [Mystery shopping](/blueprints/mystery-shopper) blueprint logs each email and text with the minute it arrived after the action that started it, measured from a persona’s [inbox](/email).',
     },
     {
       kind: 'faq',
@@ -102,6 +101,7 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    '/email',
     'ecommerce-email-marketing-benchmarks',
     '/glossary/welcome-series',
     '/glossary/abandoned-cart-email',

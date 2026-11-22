@@ -25,13 +25,13 @@ export const recipe: Recipe = {
   id: 'mystery',
   slug: 'mystery-shopper',
   name: 'Mystery shopping',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'Personas shop a store as new shoppers and show every email, text and missing reminder.',
   gets: 'Every email and text a store sends a new shopper, dated, and the reminders that never came.',
   kit: [
-    'A persona per journey, at your store or each client store',
+    'A persona for each journey: sign up, browse, basket and checkout',
     'Its own inbox, phone number and home connection',
-    'Sign up, browse, basket and checkout',
+    'Your store, or each client store with its owner’s OK',
     'Stops before payment and at any identity check',
     'Waiting as long as you choose, waking on each email and text',
     'A report per store, every message dated',
@@ -59,7 +59,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-mystery-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'mystery',
     },
   },
@@ -153,7 +153,7 @@ export const recipe: Recipe = {
       items: [
         {
           title: 'Before payment',
-          line: 'By default. Give it your card, or a client’s, and it completes the order.',
+          line: 'By default. Give it your own card, or a client’s with their OK, and it completes the order.',
         },
         { title: 'At an ID check', line: 'It stops there, and the event log keeps what the check asked for.' },
         { title: 'With a person', line: 'If anyone writes or calls, it says it’s an AI.' },
@@ -165,7 +165,7 @@ export const recipe: Recipe = {
     heading: 'Every store’s journeys land in your event log and the tools you already use.',
     items: [
       { format: 'A report per store', line: 'Every step and message, timed, from sign up to the last email, ready to share.' },
-      { format: 'The receipts', line: 'Screenshots, each raw email with its sender checked, and texts as received.' },
+      { format: 'Screenshots and raw emails', line: 'Every step on screen, each raw email with its sender checked, and every text as received.' },
       { format: 'The silences', line: 'A reminder that never came, with the inbox and the hours it was watched.' },
       { format: 'Week on week', line: 'Each run beside the one before, so a change stands out.' },
       { format: 'One table', line: 'A row per store in Clay, Baserow or Supabase.' },
@@ -178,12 +178,12 @@ export const recipe: Recipe = {
     { k: 'Journeys', v: 'Sign up, browse, basket, checkout and texts' },
     { k: 'Persona', v: 'A first-time shopper in Manchester on a phone, or your own' },
     { k: 'Waiting', v: 'As long as you choose, 48 hours by default' },
-    { k: 'Payment', v: 'Stops before payment, or pays with a card you provide' },
+    { k: 'Payment', v: 'Stops before payment, or pays with your own card' },
     { k: 'How often', v: 'Monthly, weekly or daily, for every journey you tick' },
   ],
 
   table: {
-    heading: '2 of 3 client stores sent no basket reminder in 48 hours.',
+    heading: 'The candles and outdoor gear clients sent no basket reminder in 48 hours.',
     line: 'The same journeys at each client store, by the same persona, in the same week.',
     cols: ['Homeware client', 'Candles client', 'Outdoor gear client'],
     rows: [
@@ -201,6 +201,7 @@ export const recipe: Recipe = {
       {
         q: 'What is an AI mystery shopper?',
         a: 'A persona run by AI agents that shops a store as a new shopper. It has its own name, inbox, phone number and home connection, and brings back every page, email and text, each dated.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Is this mystery shopping software or a service?',
@@ -213,6 +214,7 @@ export const recipe: Recipe = {
       {
         q: 'How many stores can I check?',
         a: 'As many as you like. Each shop counts toward what your plan covers at list rates. The months above show 30, 150 and 500 client stores, or 1 store shopped monthly, weekly or daily. For reports in your own brand, see the Enterprise plan on the pricing page.',
+        link: { label: 'See pricing', to: '/pricing' },
       },
       {
         q: 'How often should it run?',
@@ -221,6 +223,7 @@ export const recipe: Recipe = {
       {
         q: 'Do my clients need to agree?',
         a: 'Yes. Each client store is shopped with its owner’s OK. The personas shop the way anyone can, stop before payment and at any identity check, and say they’re an AI when they talk to a person.',
+        link: { label: 'Obsession for agencies', to: '/agencies' },
       },
       {
         q: 'How is this different from a shopper simulation?',
@@ -229,10 +232,16 @@ export const recipe: Recipe = {
       {
         q: 'Is the September run real?',
         a: 'Yes. In September 2026 personas took 4 journeys at Brand G, a skincare store, name hidden, and every inbox was watched for 48 hours. Every event from it is in the sample output.',
+        link: { label: 'See the sample output', to: '/sample-output' },
+      },
+      {
+        q: 'Can I see what a store sends before I start?',
+        a: 'Yes. The store lookup runs on this blueprint. Type your email at your store’s own address, and we send you that store’s report: every email it sent a new customer, timestamped and set beside every other store we’ve shopped.',
+        link: { label: 'Look up your store', to: '/lookup' },
       },
       {
         q: 'Does it place real orders?',
-        a: 'Only if you say so. By default every journey stops before payment. Give a persona a payment card, yours or a client’s, and it completes the order, so the confirmation and every email after it join your event log.',
+        a: 'Only if you say so. By default every journey stops before payment. Give a persona your own payment card, or a client’s with their OK, and it completes the order, so the confirmation and every email after it join your event log.',
       },
       {
         q: 'Can I compare a store with its competitors?',
@@ -242,17 +251,23 @@ export const recipe: Recipe = {
         q: 'How long does a persona wait after a shop?',
         a: 'As long as you choose. A persona stays yours until you let it go, so it can come back months later as the same shopper, and every new email joins your event log the day it arrives.',
       },
+      {
+        q: 'What does mystery shopping cost?',
+        a: 'It’s billed on the pieces it uses, at list rates: an inbox, a number and browser hours for each persona that shops. After the basket, the persona waits for every email at no charge, so you can watch as long as you choose.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
+      },
     ],
   },
 
   final: {
-    heading: 'Which stores should your first personas shop?',
-    sub: 'Tell us your store, or your client stores, and the shopper. We’ll set up your first personas with you.',
+    heading: 'Find the reminder your store, or a client’s, never sends.',
+    sub: 'Try it on the Free plan on your own store, or a client store with its owner’s OK.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-mystery-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'mystery',
     },
+    link: { label: 'More blueprints to test sign-up and agents', to: '/blueprints/test-sign-up-and-agents' },
   },
 }

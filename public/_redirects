@@ -76,6 +76,51 @@
 /resources/                   /resources                      301
 /use-cases/                   /use-cases                      301
 
+# Each live blueprint's old address, 1 line each (22 Nov 2026, the revamp): one 301 hop, with and without the slash.
+/recipes/account-watch /blueprints/account-watch 301
+/recipes/account-watch/ /blueprints/account-watch 301
+/recipes/ad-landing-check /blueprints/ad-landing-check 301
+/recipes/ad-landing-check/ /blueprints/ad-landing-check 301
+/recipes/ad-tracking /blueprints/ad-tracking 301
+/recipes/ad-tracking/ /blueprints/ad-tracking 301
+/recipes/ai-disclosure-check /blueprints/ai-disclosure-check 301
+/recipes/ai-disclosure-check/ /blueprints/ai-disclosure-check 301
+/recipes/competitor-tracking /blueprints/competitor-tracking 301
+/recipes/competitor-tracking/ /blueprints/competitor-tracking 301
+/recipes/delivery-monitoring /blueprints/delivery-monitoring 301
+/recipes/delivery-monitoring/ /blueprints/delivery-monitoring 301
+/recipes/drift-watch /blueprints/drift-watch 301
+/recipes/drift-watch/ /blueprints/drift-watch 301
+/recipes/email-sms-tracking /blueprints/email-sms-tracking 301
+/recipes/email-sms-tracking/ /blueprints/email-sms-tracking 301
+/recipes/lead-leaks /blueprints/lead-leaks 301
+/recipes/lead-leaks/ /blueprints/lead-leaks 301
+/recipes/listings-ai-answers /blueprints/listings-ai-answers 301
+/recipes/listings-ai-answers/ /blueprints/listings-ai-answers 301
+/recipes/mystery-shopper /blueprints/mystery-shopper 301
+/recipes/mystery-shopper/ /blueprints/mystery-shopper 301
+/recipes/outbound-agent-check /blueprints/outbound-agent-check 301
+/recipes/outbound-agent-check/ /blueprints/outbound-agent-check 301
+/recipes/partner-checks /blueprints/partner-checks 301
+/recipes/partner-checks/ /blueprints/partner-checks 301
+/recipes/price-watch /blueprints/price-watch 301
+/recipes/price-watch/ /blueprints/price-watch 301
+/recipes/prospect-intelligence /blueprints/prospect-intelligence 301
+/recipes/prospect-intelligence/ /blueprints/prospect-intelligence 301
+/recipes/resolution-check /blueprints/resolution-check 301
+/recipes/resolution-check/ /blueprints/resolution-check 301
+/recipes/sales-agent-check /blueprints/sales-agent-check 301
+/recipes/sales-agent-check/ /blueprints/sales-agent-check 301
+/recipes/support-bot-check /blueprints/support-bot-check 301
+/recipes/support-bot-check/ /blueprints/support-bot-check 301
+/recipes/trial-teardown /blueprints/trial-teardown 301
+/recipes/trial-teardown/ /blueprints/trial-teardown 301
+/recipes/vendor-agent-check /blueprints/vendor-agent-check 301
+/recipes/vendor-agent-check/ /blueprints/vendor-agent-check 301
+/recipes/voice-agent-check /blueprints/voice-agent-check 301
+/recipes/voice-agent-check/ /blueprints/voice-agent-check 301
+/recipes/website-audit /blueprints/website-audit 301
+/recipes/website-audit/ /blueprints/website-audit 301
 # Recipes were renamed blueprints on 21 Nov 2026 (James): every old recipe address goes to its blueprint for good.
 /recipes                      /blueprints                     301
 /blueprints/                  /blueprints                     301
@@ -93,3 +138,13 @@
 /blueprints/:slug/            /blueprints/:slug               301
 /use-cases/:slug/             /use-cases/:slug                301
 /recipes/:slug                /blueprints/:slug               301
+
+# The kits became six types of blueprints (22 Nov 2026); the preview addresses go to their new homes.
+/kits /blueprints 301
+/kits/ /blueprints 301
+/kits/talk-to-customers /blueprints/talk-to-customers 301
+/kits/test-sign-up-and-agents /blueprints/test-sign-up-and-agents 301
+/kits/build-agent-products /blueprints/build-agent-products 301
+/kits/work-behind-logins /blueprints/work-behind-logins 301
+/kits/watch-the-market /blueprints/watch-the-market 301
+/kits/train-and-test-agents /blueprints/train-and-test-agents 301

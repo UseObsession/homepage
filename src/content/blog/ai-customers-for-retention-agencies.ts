@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
 
 /* The why series, Spec B (24 Oct 2026): why retention agencies need AI customers. It owns "klaviyo agency ai" (primary),
    with "ai for klaviyo", "ai agent for klaviyo", "retention marketing agency", "email marketing agency for ecommerce",
@@ -23,7 +22,8 @@ import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
    a second read). The 4 r/agency posts come from the research library (read live on 3 Oct 2026; Reddit can't be
    fetched). Left out on purpose: Milled (pricing page 403), Attentive (help page 403), Gartner, ChatGPT agent, any
    Obsession price, customer or result, the site's 93% and 128 stores, any PilotX figure, the offers' sales wording.
-   pennycress.example, hartwick.example, the 20 client agency and its timings are invented. No dashes. */
+   pennycress.example, hartwick.example, the 20 client agency and its timings are invented. No dashes.
+   22 Nov 2026: moved to the toolkit position (personas and the mystery shopping blueprint; plans from prices.ts). */
 
 const CALLRAIL = 'https://www.searchenginejournal.com/rundowns/2026-marketing-agency-playbook-data-backed-ai-pivots-that-ignite-growth'
 const DARKROOM = 'https://www.darkroomagency.com/observatory/retention-marketing-cost-email-sms-2026'
@@ -62,7 +62,7 @@ export const post: BlogPost = {
   description:
     'Klaviyo agency AI for proof: what each client’s customers received, from the welcome email to the basket reminder, dated, with competitors and prospects.',
   answer:
-    'The most useful AI for a Klaviyo agency shows each client what its customers received, from the welcome email to the basket reminder, kept exactly as it arrived. Klaviyo, Postscript and Attentive report what was sent, and a client keeps paying for what it can see. Obsession keeps what each client, competitor and prospect sends a new customer, dated as it arrived, by API, MCP or a table.',
+    'The most useful AI for a Klaviyo agency shows each client what its customers received, from the welcome email to the basket reminder, kept exactly as it arrived. Klaviyo, Postscript and Attentive report what was sent, and a client keeps paying for what it can see. On Obsession the mystery shopping blueprint signs up to each client, competitor and prospect store as a new customer and keeps every email and text in one event log, dated.',
   primaryKeyword: 'klaviyo agency ai',
   keywords: [
     'klaviyo agency ai',
@@ -75,7 +75,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   order: 13,
   authors: [
@@ -85,7 +85,7 @@ export const post: BlogPost = {
   hero: {
     art: {
       kind: 'report',
-      title: 'pennycress.example · What your customers received',
+      title: 'pennycress.example · What arrived',
       period: 'October 2026, as a new customer each week',
       cols: ['Message', 'Expected', 'What arrived'],
       rows: [
@@ -106,7 +106,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'A retention agency runs email and SMS for ecommerce brands, usually on Klaviyo, Postscript or Attentive, and is paid a monthly retainer to keep each client’s programme earning. AI customers show the agency each client’s programme as a new customer receives it, checked every week and kept as evidence. [What AI customers are](/blog/ai-customers) defines the term, and [why AI customers matter](/blog/why-ai-customers-matter) makes the case for every company.',
+      text: 'A retention agency runs email and SMS for ecommerce brands, usually on Klaviyo, Postscript or Attentive, and is paid a monthly retainer to keep each client’s programme earning. An AI agent that signs up as a customer shows the agency each client’s programme as a new customer receives it, checked every week, with every message kept. [AI agents as customers](/blog/ai-customers) explains the idea, and [the case for every company](/blog/why-ai-customers-matter) sets out why it matters beyond agencies.',
     },
     {
       kind: 'p',
@@ -155,7 +155,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'A client’s platform reports what it sent and what that earned. [Klaviyo’s flow analytics](' +
         KL_FLOWS +
-        ') show delivered, opened, clicked, converted and skipped messages and the revenue attributed over 30 days. 4 things stay outside that view.',
+        ') show delivered, opened, clicked, converted and skipped messages and the revenue attributed over 30 days. 4 parts of the programme stay outside that view.',
     },
     {
       kind: 'list',
@@ -204,7 +204,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The client’s side of the sum is its flow revenue a day × the days a break goes unnoticed, which average half the gap between checks: about 15 days with a monthly report and 3.5 with a weekly check. [How AI customers find revenue leaks](/blog/ai-customers-find-revenue-leaks) works it from a flow report.',
+      text: 'The client’s side of the sum is its flow revenue a day × the days a break goes unnoticed, which average half the gap between checks: about 15 days with a monthly report and 3.5 with a weekly check. [The revenue leaks guide](/blog/ai-customers-find-revenue-leaks) works it from a flow report.',
     },
     {
       kind: 'p',
@@ -217,7 +217,7 @@ export const post: BlogPost = {
       caption: 'The payback worked once for an invented agency with example timings. The hourly rate is the BLS median wage and the retainers are Darkroom’s range. Put your own numbers in each row.',
       art: {
         kind: 'price',
-        title: 'An agency with 20 clients · the routine by hand',
+        title: 'An agency with 20 clients, by hand',
         rows: [
           { label: 'Each client, each week', value: '48 minutes', note: '3 journeys at 6, 3 competitors at 10' },
           { label: 'A year, 20 clients', value: '832 hours', note: '16 hours a week × 52' },
@@ -230,7 +230,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Put any tool’s yearly price in place of the hours. [AI customers at scale](/blog/ai-customers-at-scale) prices an AI customer line by line, at about $2 a month for one that watches one company’s email at published retail prices.',
+      text: 'Put any tool’s yearly price in place of the hours. On Obsession a persona is free while it waits, an inbox costs $0.50 a month and emails $0.40 per 1,000, so one store’s welcome, basket and checkout emails cost cents a month to keep. [The fleet guide](/blog/ai-customers-at-scale) prices hundreds of stores line by line.',
     },
 
     { kind: 'h2', id: 'workload', text: 'The workload of checking by hand' },
@@ -250,7 +250,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `${CUSTOMER_SIDE_OBSERVABILITY.definition} For an agency, [customer-side observability](/blog/customer-side-observability) is a routine set once per client: a pass mark for each message written before the first run, a cadence, and a named owner for each fail.`,
+      text: `Testing a store’s emails, texts, prices, pages and chat the way customers meet them, with every step dated, is called customer-side observability. For an agency, [customer-side observability](/blog/customer-side-observability) is a routine set once per client: a pass mark for each message written before the first run, a cadence, and a named owner for each fail.`,
     },
     {
       kind: 'table',
@@ -265,16 +265,15 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'jobs', text: 'What AI customers do for a retention agency' },
-    { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
+    { kind: 'h2', id: 'jobs', text: 'What AI agents as customers do for a retention agency' },
     {
       kind: 'p',
-      text: 'An agency gives each client store, each competitor and each prospect its own AI customer, with the client’s OK for its store. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For a retention agency, that is what each client’s customers received, from the pop up to the basket reminder, kept for as long as the agency follows the store.',
+      text: 'An agency gives each client store, each competitor and each prospect its own persona, an AI agent with its own inbox, number and browser under one name, with the client’s OK for its store. It signs up, opts in to texts, leaves a basket and waits, and every email and text lands in one event log, dated. For a retention agency, that is what each client’s customers received, from the pop-up to the basket reminder, kept for as long as the agency follows the store.',
     },
     { kind: 'h3', id: 'client-flows', text: '1. Every client’s flows, every week' },
     {
       kind: 'p',
-      text: '**The check:** a new customer signs up through the pop up, opts in to texts, leaves a basket and starts a checkout at each client store, every week and after each launch. **A pass:** each message arrives inside its deadline, with the code and the product filled in. **That week:** the strategist fixes a break before the client sees it, finds the cause with [an email marketing audit](/blog/email-marketing-audit), and logs when it was found, fixed and checked again. Obsession’s [Mystery shopper](/blueprints/mystery-shopper) goes through a client’s business as a customer does, from the first click to the last email.',
+      text: '**The check:** a new customer signs up through the pop up, opts in to texts, leaves a basket and starts a checkout at each client store, every week and after each launch. **A pass:** each message arrives inside its deadline, with the code and the product filled in. **That week:** the strategist fixes a break before the client sees it, finds the cause with [an email marketing audit](/blog/email-marketing-audit), and logs when it was found, fixed and checked again. The [Mystery shopping](/blueprints/mystery-shopper) blueprint goes through a client’s business as a customer does, from the first click to the last email.',
     },
     { kind: 'h3', id: 'report-page', text: '2. A page for the client report' },
     {
@@ -284,7 +283,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'competitors', text: '3. Every competitor, before Black Friday' },
     {
       kind: 'p',
-      text: '**The check:** an AI customer on the list of each competitor a client names, logging every email, text, offer and code from the day it joins. **A pass:** each competitor’s first Black Friday send is dated, with its offer. **That week:** the account lead collects 3 competitors per client before early November, and after Cyber Monday sends [a one page Black Friday competitor report](/blog/black-friday-competitor-email-report-template). [Email and SMS tracking](/blueprints/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side.',
+      text: '**The check:** a persona on the list of each competitor a client names, logging every email, text, offer and code from the day it joins. **A pass:** each competitor’s first Black Friday send is dated, with its offer. **That week:** the account lead collects 3 competitors per client before early November, and after Cyber Monday sends [a one page Black Friday competitor report](/blog/black-friday-competitor-email-report-template). [Email and SMS tracking](/blueprints/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side.',
     },
     { kind: 'h3', id: 'prospects', text: '4. Every prospect, before the pitch' },
     {
@@ -327,7 +326,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each shift changes what a customer receives while the platform’s reports look the same. An AI customer on every client’s list records what arrived, whether a person or an agent wrote it, and the agency’s judgement works from that record.',
+      text: 'Each shift changes what a customer receives while the platform’s reports look the same. A persona on every client’s list keeps what arrived, whether a person or an agent wrote it, and the agency’s judgement works from what customers got.',
     },
 
     { kind: 'h2', id: 'options', text: 'Retention agency options compared', compare: true },
@@ -379,26 +378,26 @@ export const post: BlogPost = {
           'One off checks of a form',
         ],
         [
-          'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Email and SMS tracking](/blueprints/email-sms-tracking), [Competitor tracking](/blueprints/competitor-tracking), [Prospect intelligence](/blueprints/prospect-intelligence)',
+          'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [Email and SMS tracking](/blueprints/email-sms-tracking), [Competitor tracking](/blueprints/competitor-tracking), [Prospect intelligence](/blueprints/prospect-intelligence)',
           'What clients, competitors and prospects send a new customer, every email and text kept as it arrived',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
-          'What customers get at every client, competitor and prospect, kept as proof',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment unless given your card\nNever gets round a CAPTCHA',
+          'What customers get at every client, competitor and prospect, every week',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'Use Obsession when your agency needs to show every client what its customers received, beside its competitors, and to open pitches on each prospect’s own emails. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. For a handful of clients whose flows rarely change, a sheet and a new address are enough. The options combine: the platform reports revenue, the audit finds causes, a placement test checks a big send, and Obsession keeps what each new customer received. [Hiring AI customers](/blog/hire-ai-customers) sets out how to brief each check.',
+      text: 'Use Obsession when your agency needs to show every client what its customers received, beside its competitors, and to open pitches on each prospect’s own emails. Pick a blueprint and Obsession runs it, with results in Slack, a sheet or the client report. For a handful of clients whose flows rarely change, a sheet and a new address are enough. The options combine: the platform reports revenue, the audit finds causes, a placement test checks a big send, and Obsession keeps what each new customer received. [How to brief each check](/blog/hire-ai-customers) sets out the questions to answer first.',
     },
 
-    { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI customers' },
+    { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI agents as customers' },
     {
       kind: 'list',
       items: [
         '**A handful of clients whose flows rarely change.** At 5 clients the weekly routine takes about 4 hours, and a sheet and a new address cover it.',
         '**The question is why a flow failed.** The cause sits inside the account, where an audit finds it.',
-        '**Last year’s competitor emails.** An AI customer holds what arrives from the day it joins, so an earlier Black Friday needs a library that already covered the brand.',
+        '**Last year’s competitor emails.** A persona holds what arrives from the day it joins, so an earlier Black Friday needs a library that already covered the brand.',
         '**Placement across mailbox providers before a big send.** A seed test, which sends to mailboxes the vendor controls, answers it.',
         '**A client that hasn’t agreed to tests on its store.** Its competitors can be watched until it does.',
       ],
@@ -411,20 +410,20 @@ export const post: BlogPost = {
       items: [
         'Pick the 3 clients whose retainers come up for review next, and write a pass mark for the welcome, basket and checkout messages from each flow’s own delay.',
         'Run each journey once as a new customer, with a new address for each, and log what arrived after 48 hours.',
-        'Ask each client for 3 competitors and sign up to them now, before the teasers and early access sends of early November.',
+        'Ask each client for 3 competitors and sign up to them now, before Black Friday on 27 November and Cyber Monday on 30 November.',
         'Add a page called “What your customers received” to the next monthly report, with every email linked as it arrived.',
         'Time the hours, multiply by the client list, and put the total into the payback sum.',
       ],
     },
     {
       kind: 'cta',
-      text: 'Open every pitch with the store’s own emails, and the ones that never came. See what any store sends a new customer after a sign-up, a text opt-in and a basket, each message dated with the email itself, for the stores you pitch, the clients you keep and their competitors. Agencies start in early access, onboarding teams now.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      text: 'Open every pitch with the store’s own emails, and the ones that never came. The mystery shopping blueprint signs up to the stores you pitch, the clients you keep and their competitors, and keeps every email and text, dated.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
     {
       kind: 'p',
-      text: 'Retention agencies start through [early access on the store lookup](/lookup#agencies): every store already in the index, and up to 5 client or prospect stores added, with the brand’s OK.',
+      text: 'Every blueprint can be tried on the Free plan, and the [retention agency use case](/use-cases/leak-checks-for-retention-agencies) sets the same checks out across a client list.',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI for retention agencies' },
@@ -437,7 +436,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is there an AI agent for Klaviyo?',
-          a: 'Yes. Klaviyo’s AI page lists Composer, a marketing agent that builds marketing for the brand’s review, and Customer Agent, which it calls “The AI customer service agent that already knows your customers”. Both work inside the brand’s account. An AI customer works outside it, as a subscriber of the store, and records what arrived.',
+          a: 'Yes. Klaviyo’s AI page lists Composer, a marketing agent that builds marketing for the brand’s review, and Customer Agent, which it calls “The AI customer service agent that already knows your customers”. Both work inside the brand’s account. An AI agent as a customer works outside it, as a subscriber of the store, and keeps what arrived.',
         },
         {
           q: 'What should an email marketing reporting template include?',
@@ -445,7 +444,12 @@ export const post: BlogPost = {
         },
         {
           q: 'What AI tools can an email marketing agency use?',
-          a: 'For building and sending, the platform’s own agents, such as Klaviyo’s Composer and Postscript’s Shopper, and AI assistants for drafting. For checking, AI customers, which sign up to each client store, competitor and prospect and keep every email and text as it arrived.',
+          a: 'For building and sending, the platform’s own agents, such as Klaviyo’s Composer and Postscript’s Shopper, and AI assistants for drafting. For checking, AI agents that sign up to each client store, competitor and prospect as customers and keep every email and text as it arrived, such as Obsession’s mystery shopping blueprint.',
+        },
+        {
+          q: 'What does the mystery shopping blueprint cost?',
+          a: 'A blueprint is billed on the pieces it uses, such as $0.50 an inbox a month, $0.40 per 1,000 emails and $0.10 a browser hour. The Free plan includes 3 inboxes and 10 browser hours, then plans are $20, $99 or $499 a month.',
+          link: { label: 'See pricing', to: '/pricing' },
         },
         {
           q: 'How much does a Klaviyo agency cost?',

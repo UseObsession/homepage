@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/cancel-flow: the definition query for the steps between a cancel button and a confirmation.
    "dark patterns subscription cancellation" and "subscription trap law uk" stay with their own posts
@@ -79,7 +78,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For a cancel flow, that means each screen from the cancel button to the confirmation, the offer made on the way and every email after it. Each is dated, so a change to the flow shows up as a new version beside the old one. Compliance teams keep it as evidence ([opt-out and cancel checks](/use-cases/opt-out-and-cancel-checks-for-compliance-teams)).`,
+      text: 'Obsession’s [Delivery monitoring](/blueprints/delivery-monitoring) blueprint walks each screen from the cancel button to the confirmation and logs the offer made on the way and every email after it. Each is dated, so a changed flow shows up as a new version beside the old one. Compliance teams keep it as evidence ([opt-out and cancel checks](/use-cases/opt-out-and-cancel-checks-for-compliance-teams)).',
     },
     {
       kind: 'faq',

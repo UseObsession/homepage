@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
 
 /* The why series, Spec D (24 Oct 2026): why CX teams need AI customers. It owns "ai customer service quality assurance"
    (primary) and "ai agent qa", "ai chatbot testing", "how to evaluate an ai chatbot", "ai voice agent testing" and "ai
@@ -19,7 +18,7 @@ import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
    page, Salesforce's survey and personal agents piece, the BLS handbook, the CMA guidance, and the AI Act Service Desk
    (Articles 50, 99, 113). From the verified library (facts.json): HubSpot, Decagon, Cloudflare's verified bots docs,
    Moffatt v Air Canada (McCarthy Tétrault, Fox Business), Product.ai, T-ROC. Obsession is described from /verify and the 6
-   AI agent recipes. MaestroQA now redirects to Rippit, whose page no longer describes QA, so it is left out.
+   AI agent blueprints (22 Nov). MaestroQA now redirects to Rippit, whose page no longer describes QA, so it is left out.
    Left out on purpose: Gartner, ChatGPT agent, any PilotX figure, the site's 93% and 128 stores, vendor performance
    claims beyond HubSpot's dated one, US state chatbot laws (summaries conflict), the "signed" wording on /verify.
    larkfield.example and every figure in the 2 illustrations are invented. No dashes. */
@@ -62,7 +61,7 @@ export const post: BlogPost = {
   description:
     'AI customer service quality assurance for CX teams: what QA inside the help desk misses, what a wrong answer costs, and how to check every answer each day.',
   answer:
-    'AI customer service quality assurance matters because a company answers for its AI agent as it would for an employee, and the agent’s answers can change after any prompt edit, help article update or vendor release. QA inside the help desk scores conversations customers have already had, while a check from the customer side asks the agent what customers ask, on chat, email and phone, every day and within the hour of each update. Obsession keeps what AI agents tell customers, word for word, each answer a dated transcript beside the page it should match, for your own agents and your competitors’.',
+    'AI customer service quality assurance matters because a company answers for its AI agent as it would for an employee, and the agent’s answers can change after any prompt edit, help article update or vendor release. QA inside the help desk scores conversations customers have already had, while a check from the customer side asks the agent what customers ask, on chat, email and phone, every day and within the hour of each update. Obsession’s support bot check and voice agent check blueprints ask your agents what customers ask every day and keep each answer as a dated transcript beside the page it should match.',
   primaryKeyword: 'ai customer service quality assurance',
   keywords: [
     'ai customer service quality assurance',
@@ -73,9 +72,9 @@ export const post: BlogPost = {
     'ai agent monitoring',
     'chatbot quality assurance',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   order: 15,
   authors: [
@@ -86,7 +85,7 @@ export const post: BlogPost = {
     art: {
       kind: 'runs',
       title: 'larkfield.example · 1 returns question, 3 days, 3 channels',
-      prompt: 'I’m an AI customer. How long do I have to return an order?',
+      prompt: 'I’m an AI agent. How long do I have to return an order?',
       runs: [
         { label: 'Mon 07:00 · chat', answer: '30 days from delivery.', verdict: { tone: 'ok', text: 'Matches policy' } },
         { label: 'Mon 19:10 · chat', answer: '60 days from delivery.', verdict: { tone: 'fail', text: 'Policy says 30' } },
@@ -102,7 +101,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Heads of support and CX, CX operations leads and QA leads run AI agents that answer customers on chat, email and the phone. With AI customers, their team hears what those agents tell people from the customer’s side. [What AI customers are](/blog/ai-customers) defines the term, and [why AI customers matter](/blog/why-ai-customers-matter) makes the case for every company.',
+      text: 'Heads of support and CX, CX operations leads and QA leads run AI agents that answer customers on chat, email and the phone. An AI agent that acts as a customer lets their team hear what those agents tell people, from the customer’s side. [Why AI agents need their own inbox, phone number and browser](/blog/why-ai-customers-matter) explains the pieces such an agent uses.',
     },
 
     { kind: 'h2', id: 'their-world', text: 'How CX teams run AI agents' },
@@ -229,7 +228,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Set that payback against what the check costs. By hand, a daily run of 20 questions on 3 channels takes about 3 hours, or about $16,800 a year over 260 working days at the same wage, which the low case covers by month 9 and the high case in month 3. [What AI customers cost to run](/blog/ai-customers-at-scale) is worked out line by line from published prices.',
+      text: 'Set that payback against what the check costs. By hand, a daily run of 20 questions on 3 channels takes about 3 hours, or about $16,800 a year over 260 working days at the same wage, which the low case covers by month 9 and the high case in month 3. [What AI agents cost to run](/blog/ai-customers-at-scale) is worked out line by line from published prices.',
     },
 
     { kind: 'h2', id: 'workload', text: 'AI agent QA by hand, and as a routine' },
@@ -243,7 +242,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `Run as a routine, this work is [customer-side observability](/blog/customer-side-observability). ${CUSTOMER_SIDE_OBSERVABILITY.definition} For a CX team it has 3 parts, written before the first check.`,
+      text: 'Run as a routine, the work has 3 parts for a CX team, written before the first check.',
     },
     {
       kind: 'list',
@@ -254,15 +253,14 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'jobs', text: 'What AI customers do for CX teams' },
-    { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
+    { kind: 'h2', id: 'jobs', text: 'What AI agents as customers do for CX teams' },
     {
       kind: 'p',
-      text: 'A CX team uses AI customers as customers of its own company. They say they are AI, ask the company’s AI agents what customers ask on the channels customers use, and keep each answer with its time and channel. An AI customer service agent works for the company and answers its customers. An AI customer works for the CX team as one of those customers, as [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out.',
+      text: 'A CX team uses AI agents as customers of its own company. Each one is a persona, an AI agent with its own inbox, phone number and browser under one name. It says it’s an AI, asks the company’s AI agents what customers ask on the channels customers use, and keeps each answer with its time and channel. An AI customer service agent works for the company and answers its customers. A persona works for the CX team as one of those customers, as [the difference between the two](/blog/ai-customer-service-agent-vs-ai-customer) sets out.',
     },
     {
       kind: 'table',
-      caption: '6 jobs for AI customers in a CX team, each with its check, its pass mark and what the team does with the result that week',
+      caption: '6 jobs a CX team’s personas run, each with its check, its pass mark and what the team does with the result that week',
       cols: ['Job', 'The check', 'A pass', 'That week'],
       rows: [
         [
@@ -305,15 +303,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these checks today. It keeps what any company shows only to its customers, each dated with the email or screenshot, and for a CX team that means what the company’s AI agents tell customers on chat, email and phone, word for word, every day, each answer kept beside the page it should match. Each check covers whether the agent answers right, hands over to a person and says it’s an AI. For a store’s chat checked by hand, [how to test your store’s chatbot](' +
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Each of the 6 checks is a blueprint Obsession runs on its pieces, with a number for the voice line, an inbox for email and a browser for chat. Every answer lands in the event log word for word, dated, beside the page it should match. Each check covers whether the agent answers right, hands over to a person and says it’s an AI. For a store’s chat checked by hand, [how to test your store’s chatbot](' +
         BOT_TEST +
         ') gives the questions and a scoring sheet.',
     },
     {
       kind: 'cta',
       text: 'What your AI agents tell customers, word for word: support chats, voice lines and sales agents, yours and your competitors’, each answer kept as a dated transcript beside the page it should match.',
-      to: '/verify',
-      label: 'Request early access',
+      to: '/blueprints/support-bot-check',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },
@@ -406,7 +404,7 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check), [Drift watch](/blueprints/drift-watch), [AI disclosure check](/blueprints/ai-disclosure-check), [Resolution check](/blueprints/resolution-check), [Vendor agent check](/blueprints/vendor-agent-check)',
           'Asks on live channels daily and after updates, and keeps each answer as a dated transcript',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'The reason behind an answer sits in the agent’s own logs',
           'What customers are told on every channel, after every update, kept as proof',
         ],
@@ -425,7 +423,7 @@ export const post: BlogPost = {
         ') simulates customer personas for regression and production testing.',
     },
 
-    { kind: 'h2', id: 'when-not', text: 'When a CX team doesn’t need AI customers' },
+    { kind: 'h2', id: 'when-not', text: 'When a CX team doesn’t need daily checks' },
     {
       kind: 'list',
       items: [
@@ -453,7 +451,7 @@ export const post: BlogPost = {
       kind: 'cta',
       text: 'Support chats, voice lines, sales agents and outbound callers: every answer kept as a dated transcript or call beside the page it should match, from the first day you follow them.',
       to: '/verify',
-      label: 'Request early access',
+      label: 'See how it works',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI agent QA' },
@@ -462,7 +460,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What is AI customer service quality assurance?',
-          a: 'AI customer service quality assurance is checking that an AI agent’s answers to customers are correct, follow policy and reach a person when they should. QA tools score past conversations, and AI customers ask the agent what customers ask, every day and after every update.',
+          a: 'AI customer service quality assurance is checking that an AI agent’s answers to customers are correct, follow policy and reach a person when they should. QA tools score past conversations, and AI agents acting as customers ask the agent what customers ask, every day and after every update.',
         },
         {
           q: 'How do you evaluate an AI chatbot?',
@@ -478,7 +476,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What is AI agent monitoring?',
-          a: 'AI agent monitoring is tracking what an AI agent says and does once it is live. Engineering tools watch its traces and errors, QA tools score its conversations, and AI customers check its answers from the customer’s side.',
+          a: 'AI agent monitoring is tracking what an AI agent says and does once it is live. Engineering tools watch its traces and errors, QA tools score its conversations, and AI agents acting as customers check its answers from the customer’s side.',
         },
         {
           q: 'How often should a CX team test its AI agent?',

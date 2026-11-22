@@ -8,7 +8,7 @@ import type { BlogPost } from './types'
    questions in the customer's words, 3 runs on each assistant, a dated and country-tagged log, scored as appearance
    rate and accuracy against the store's own pages, never a rank), then what to fix, then the paid tools fairly.
    Obsession is named once in the body (the disclosure, where the by-hand method stops) plus the 2 cta blocks (since
-   11 Nov 2026: See sample data, and Request early access on /agencies beside the agencies section).
+   22 Nov 2026: See sample data, and See the blueprint for agencies).
    Taken off the table on purpose: rank tracking, and an AI visibility tool for anyone whose own check still shows
    unfixed wrong claims.
    Read at the source on 23 Oct 2026: Search Engine Journal on SparkToro and Gumshoe.ai, PPC Land on Lily Ray, DNYUZ's
@@ -53,7 +53,7 @@ export const post: BlogPost = {
   description:
     'See what ChatGPT says about your brand: ask 15 customer questions 3 times on ChatGPT, Perplexity and Google, log each run, score appearance and accuracy.',
   answer:
-    'To check what ChatGPT says about your store, ask 10 to 20 questions in your customers’ words, 3 times on each assistant, and log the date and country. Then score 2 numbers: how often your store is named, and how many of the claims in the answers match your own pages. Obsession asks the assistants your customers use the same questions every week and keeps each answer, with its date and the page it cites.',
+    'To check what ChatGPT says about your store, ask 10 to 20 questions in your customers’ words, 3 times on each assistant, and log the date and country. Then score 2 numbers: how often your store is named, and how many of the claims in the answers match your own pages. Obsession’s Listings and AI answers blueprint asks the assistants your customers use the same questions every week and keeps each answer in one event log, with its date and the page it cites.',
   primaryKeyword: 'what does chatgpt say about my brand',
   keywords: [
     'what does chatgpt say about my brand',
@@ -66,9 +66,9 @@ export const post: BlogPost = {
     'ai search visibility',
     'track brand mentions in chatgpt',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 14,
   order: 9,
   authors: [
@@ -293,7 +293,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 23 October 2026. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Prices change, so confirm them on each page.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 23 October 2026. Obsession is the toolkit for AI agents, with an inbox, a phone number and a browser for every agent on one API and one bill, and blueprints for teams who pick a ready-made job. Prices change, so confirm them on each page.',
     },
     {
       kind: 'list',
@@ -320,11 +320,11 @@ export const post: BlogPost = {
         GOOGLE_GUIDE +
         '), so a tool reports what an assistant answered without access to the reasons. Rand Fishkin’s test for any provider is whether it [“shows their math”](' +
         SPARKTORO +
-        '). If you need each wrong answer traced to the page it cites and asked again until it changes, use Obsession’s [listings and AI answers check](/blueprints/listings-ai-answers). For a daily count of how often your brand is named across many prompts and countries, the visibility tools are built for that job.',
+        '). If you need each wrong answer traced to the page it cites and asked again until it changes, use Obsession’s [Listings and AI answers](/blueprints/listings-ai-answers) blueprint. For a daily count of how often your brand is named across many prompts and countries, the visibility tools are built for that job.',
     },
     {
       kind: 'cta',
-      text: 'A real UK skincare store’s record from September 2026: 4 test customers, every inbox watched for 48 hours, and a £40 basket that got no reminder. It comes as a PDF, a sheet, Clay or JSON.',
+      text: 'A real UK skincare store from September 2026: 4 sign-ups and baskets, every inbox watched for 48 hours, and a £40 basket that got no reminder. The results come as a PDF, a sheet, Clay or JSON.',
       to: '/sample-output',
       label: 'See sample data',
     },
@@ -357,9 +357,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What every client and prospect sends its signed-up customers, from the welcome email to the reminder that never came, each dated with a screenshot, ready to open a pitch or report straight to the client.',
-      to: '/agencies',
-      label: 'Request early access',
+      text: 'What every client’s store and the assistants that answer about it tell customers, asked again every week, each answer dated with the page it cites, ready to report straight to the client.',
+      to: '/blueprints/listings-ai-answers',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions-asked', text: 'Frequently asked questions' },

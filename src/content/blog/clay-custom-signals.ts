@@ -7,15 +7,15 @@ import type { BlogPost } from './types'
    company data, CRM enrichment and monitors of public signals.
    Reader: GTM engineers and RevOps at B2B software companies, first fit vendors whose product touches what their own
    accounts' customers see (email and SMS, loyalty, checkout and payments, help desk and AI support, messaging, identity
-   and onboarding). Persona key revops. Serves /developers; links /sales, /recipes/account-watch and the Clay use case,
+   and onboarding). Persona key revops. Serves /developers; links /sales, /blueprints/account-watch and the Clay use case,
    which owns the Clay prospect research workflow (docs/SEARCH.md §2), so the workflow itself is linked, never retaught.
    The H1 carries "Clay custom signals" word for word (the brief's later section: the primary phrase in the metaTitle,
    the H1, the first sentence, one H2 and one FAQ), so the spec's "Clay signals" H1 gains "custom".
    Every Clay line is from Clay's own docs, blog and signals page, read 11 Nov 2026. Exa is held to its own GTM use case,
    Websets and pricing pages, read the same day. The platform behind an email is said only as the live site says it
    (/sales: "Their emails have come from a new platform since 2 October"). Field
-   names are the reader's columns, built from the facts the site describes (company, kind, sentence, seen_at, receipt on
-   /developers; "No verdict" on /recipes/prospect-intelligence). Every account and figure in the pictures and tables is
+   names are the reader's columns, built from the event the site describes (id, type, created_at, data on
+   /developers; "No verdict" on /blueprints/prospect-intelligence). Every account and figure in the pictures and tables is
    invented at a .example address; the workload sums are example inputs. No dashes. */
 
 const CLAY_GTM = 'https://www.clay.com/blog/gtm-engineering'
@@ -36,7 +36,7 @@ export const post: BlogPost = {
   description:
     'Clay custom signals from Clay’s own docs, with a field table and routing rules to copy, plus a buying signal from what each account sends its customers.',
   answer:
-    'Clay custom signals watch a data source for every row of a Clay table, daily to quarterly, and add a row when the result changes, turning any enrichment into a trigger. Most run on public sources, such as job posts, funding news and website changes, that any team with the same tools can watch. Obsession adds what each account sends its own customers, such as whether its welcome email arrives, as dated facts with the email or screenshot on the same Clay rows.',
+    'Clay custom signals watch a data source for every row of a Clay table, daily to quarterly, and add a row when the result changes, turning any enrichment into a trigger. Most run on public sources, such as job posts, funding news and website changes, that any team with the same tools can watch. Obsession’s account watch blueprint adds what each account sends its own customers, such as whether its welcome email arrives, as dated columns on the same Clay rows.',
   primaryKeyword: 'clay custom signals',
   keywords: [
     'clay custom signals',
@@ -46,10 +46,10 @@ export const post: BlogPost = {
     'clay api enrichment',
     'gtm engineer',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   order: 16,
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 15,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -59,14 +59,14 @@ export const post: BlogPost = {
     art: {
       kind: 'log',
       title: 'larkfield.example in a Clay table',
-      who: 'One account’s facts, each one a row with its date',
+      who: 'One account’s events, each a row with its date',
       rows: [
-        { time: 'Mon 2 Nov 07:00', text: 'Domain added from the Clay table', detail: 'Covered since September, history returned', tone: 'info' },
+        { time: 'Mon 2 Nov 07:00', text: 'Domain added from the Clay table', detail: 'An agent signs up as a customer', tone: 'info' },
         { time: 'Mon 2 Nov 09:04', text: 'Welcome email arrived', detail: '38 seconds after sign-up, sender checked', tone: 'ok' },
         { time: 'Tue 3 Nov 02:57', text: 'Basket left before payment', detail: 'Window set to 48 hours', tone: 'info' },
         { time: 'Thu 5 Nov 02:57', text: 'No basket reminder in 48 hours', detail: 'Cart reminder live: no', tone: 'fail' },
         { time: 'Mon 9 Nov 17:23', text: 'Emails now sent by another platform', detail: 'Sender checked', tone: 'info' },
-        { time: 'Mon 9 Nov 17:24', text: 'fact.created posted to Clay', detail: 'Account owner alerted in Slack', tone: 'ok' },
+        { time: 'Mon 9 Nov 17:24', text: 'blueprint.result posted to Clay', detail: 'Account owner alerted in Slack', tone: 'ok' },
       ],
       foot: 'Example. Larkfield is invented. The platform change on 9 Nov is the signal; every row links its email or screenshot.',
     },
@@ -198,39 +198,38 @@ export const post: BlogPost = {
       text: '[Buying signals examples](/blog/buying-signals-examples) sets these beside the familiar ones, with how an SDR opens on each, and [sales trigger events](/blog/sales-trigger-events) gives the play to run for each change.',
     },
 
-    { kind: 'h2', id: 'api-enrichment', text: 'Clay API enrichment: a domain in, dated facts out' },
+    { kind: 'h2', id: 'api-enrichment', text: 'Clay API enrichment: a domain in, dated results out' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. MCP, the Model Context Protocol, is the standard way AI agents such as Claude call tools. Exa and search APIs like it give agents the public web, what any visitor can read. Obsession gives them what a company shows only to its customers, dated and kept for as long as anyone follows the company, as a column beside the ones a team already runs.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its [account watch](/blueprints/account-watch) blueprint gives each account a persona, an AI agent with its own inbox, number and browser under one name, that signs up as a customer and waits for what arrives. Web search APIs give agents the public web, what any visitor can read. A persona at each account adds what the account sends its customers, as a column beside the ones a team already runs.',
     },
     {
       kind: 'p',
-      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Facts reach a Clay table 3 ways, each described on [the developer page](/developers):',
+      text: 'Results reach a Clay table 3 ways, each described on [the developer page](/developers).',
     },
     {
       kind: 'list',
       items: [
         '**Pull, row by row.** [Clay’s HTTP API enrichment](' +
           CLAY_HTTP +
-          ') adds API data to existing rows, one row at a time, by GET, POST, PUT or DELETE. Point it at Obsession’s facts call with the row’s domain. Keep the key in an HTTP API (Headers) account, which Clay encrypts at the workspace level, and use Field paths to return to pick the fields you map. A conditional run skips rows without a domain.',
-        '**Push, as each fact lands.** Obsession’s notify call posts each new fact as JSON to a webhook, an address that receives data the moment it is sent. A Clay table started from Monitor webhook gives that address. [Clay’s webhook docs](' +
+          ') adds API data to existing rows, one row at a time, by GET, POST, PUT or DELETE. Point it at obsession.events.list for the row’s persona, filtered to blueprint.result. Keep the key in an HTTP API (Headers) account, which Clay encrypts at the workspace level, and use Field paths to return to pick the fields you map. A conditional run skips rows without a domain.',
+        '**Push, as each result lands.** Obsession posts each blueprint.result event as JSON to a webhook, an address that receives data the moment it is sent. A Clay table started from Monitor webhook gives that address. [Clay’s webhook docs](' +
           CLAY_WEBHOOK +
           ') cap a webhook source at 50,000 submissions, even after rows are deleted, unless an Enterprise plan turns on Auto-delete.',
-        '**Ask, before you build.** Claude, ChatGPT, Codex and Cursor call the same 5 verbs over [MCP](/glossary/model-context-protocol): lookup, facts, evidence, index and notify. A GTM engineer can ask what an account sent its customers this month before wiring a column.',
+        '**Ask, before you build.** Claude, ChatGPT, Codex and Cursor reach the same event log over [MCP](/glossary/model-context-protocol), the standard way AI agents call tools; in Claude Code it is claude mcp add obsession. A GTM engineer can ask what an account sent its customers this month before wiring a column.',
       ],
     },
     {
       kind: 'p',
-      text: 'Each fact carries the same fields whichever way it arrives, as the webhook example on the developer page shows:',
+      text: 'Each event carries the same fields whichever way it arrives, as the webhook example on the developer page shows.',
     },
     {
       kind: 'list',
       items: [
-        '**company:** the domain, such as larkfield.example.',
-        '**kind:** what the fact is about, such as an email or an offer.',
-        '**sentence:** the fact in one plain sentence.',
-        '**seen_at:** when it was seen, as a timestamp with its time zone.',
-        '**receipt:** the journey it came from, such as welcome or basket, the [DKIM](/glossary/dkim) result and a link to the raw email or page as captured. DKIM is a signature checked on arrival to prove which company sent an email.',
+        '**id:** the event’s own ID, so a row is never added twice.',
+        '**type:** what happened, such as email.received or blueprint.result.',
+        '**created_at:** when it landed, as a timestamp with its time zone.',
+        '**data:** the details, such as the sender, the subject and the thread, or the blueprint’s verdict with a link to the email or page as captured. A received email keeps its [DKIM](/glossary/dkim) result. DKIM is a signature checked on arrival to prove which company sent an email.',
       ],
     },
     {
@@ -265,7 +264,7 @@ export const post: BlogPost = {
         '**3 values, never 2.** A yes or no counts once the sign-up is confirmed, the spam folder is checked and the full window has passed. Until then the field reads No verdict, the same rule [Prospect intelligence](/blueprints/prospect-intelligence) uses before it calls a gap.',
         '**Date the fact, never the run.** Write seen_at into the field’s date column, so a re-run doesn’t make an old fact look new.',
         '**Never overwrite with a blank.** When an HTTP API column writes on to your CRM, turn on Remove empty fields from request, which Clay’s docs say prevents overwriting existing data with blank values.',
-        '**Keep the receipt beside the value.** A rep trusts a field they can open, and the link settles a disagreement in one click.',
+        '**Keep the email or screenshot beside the value.** A rep trusts a field they can open, and the link settles a disagreement in one click.',
       ],
     },
     {
@@ -316,7 +315,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'routing', text: 'Routing a change to the right owner' },
     {
       kind: 'p',
-      text: 'With a pull column, the change is found the way Clay’s 4-table pattern finds it: compare today’s value with the last one. For a structured field such as Welcome sent or Sending platform, a formula does it, as Clay’s docs advise, and a run condition sends the row on only when the value differs. With the webhook, each fact.created event is already the change, with its date, so the run history and lookup tables aren’t needed.',
+      text: 'With a pull column, the change is found the way Clay’s 4-table pattern finds it: compare today’s value with the last one. For a structured field such as Welcome sent or Sending platform, a formula does it, as Clay’s docs advise, and a run condition sends the row on only when the value differs. With the webhook, each blueprint.result event is already the change, with its date, so the run history and lookup tables aren’t needed.',
     },
     {
       kind: 'table',
@@ -413,8 +412,8 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Account watch](/blueprints/account-watch), [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking)',
           'What each account sends its own customers, dated with the email or screenshot',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Every step short of paying, at any company your team names',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at any identity check and before payment',
           'Signals about the problem your product fixes',
         ],
       ],
@@ -427,13 +426,13 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'start', text: 'How GTM engineers start' },
     {
       kind: 'p',
-      text: 'Start with the accounts your reps care about most, map 3 or 4 of the fields, and route one change to one owner. Open [the sample data](/sample-output) to see one real store’s record in every format it comes in, including the columns a sheet or Clay receives. Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you. From there you can see it in conversion rates from the fields your reps use, in data quality and in the adoption of every column your team builds. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'Start with the accounts your reps care about most, map 3 or 4 of the fields, and route one change to one owner. Open [the sample data](/sample-output) to see what real sign-ups at a UK skincare store received, in every format a sheet or Clay takes. The Free plan includes 3 inboxes, 1 number and 100,000 events, with no credit card. From there you can see it in conversion rates from the fields your reps use, in data quality and in the adoption of every column your team builds. [The revenue team use case](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
-      text: 'Dated columns in Clay for what each account sends its own customers: welcome emails, reminders, texts, offers and the platform behind them.',
-      to: '/#join',
-      label: 'Request early access',
+      text: 'A persona at each account signs up as a customer, and its welcome emails, reminders, texts and offers land as dated columns in Clay.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about Clay custom signals' },
@@ -462,12 +461,12 @@ export const post: BlogPost = {
         },
         {
           q: 'Which buying signals can a competitor’s team not copy?',
-          a: 'Signals from sources your team alone holds, such as your own product usage, and what each account sends its own customers. Those messages reach a signed-up customer’s inbox and phone, so a team needs an account at every company to see them. Obsession keeps those facts for any company a team names, each dated with the email or screenshot.',
+          a: 'Signals from sources your team alone holds, such as your own product usage, and what each account sends its own customers. Those messages reach a signed-up customer’s inbox and phone, so a team needs an account at every company to see them. Obsession’s account watch blueprint keeps a persona signed up at every account a team names, with each email and text dated.',
           link: { label: 'Account watch', to: '/blueprints/account-watch' },
         },
         {
           q: 'How do I see which platform sends a company’s emails?',
-          a: 'Sign up to its emails and read the headers of what arrives. The DKIM signature’s d= tag names the domain that signed the email, often the sending platform’s. Obsession records the platform behind each email it keeps, and the week that platform changes.',
+          a: 'Sign up to its emails and read the headers of what arrives. The DKIM signature’s d= tag names the domain that signed the email, often the sending platform’s. Obsession’s inbox keeps each email whole, headers included, so the week the sending service changes shows as a new value.',
         },
       ],
     },

@@ -15,7 +15,7 @@ import type { BlogPost } from './types'
    RFC 6585 (429), 18 U.S.C. 1030 at Cornell LII, the Van Buren opinion (3 June 2021) and the Ninth Circuit's hiQ
    opinion (18 April 2022) read from the courts' own PDFs, the Computer Misuse Act 1990 ss. 1 and 17 and UK GDPR
    Article 4 on legislation.gov.uk. Vendor docs are paraphrased, never quoted; quoted words are from statutes, court
-   opinions and RFCs. Obsession facts only in the live site's words (site.ts ENTITY, /developers, /agents). Quillon and
+   opinions and RFCs. Obsession facts only in the 22 Nov toolkit words (site.ts ENTITY, /browser, /agents). Quillon and
    Larkfield, and everything in both pictures, are invented. No dashes. */
 
 const RFC6265 = 'https://www.rfc-editor.org/rfc/rfc6265.html'
@@ -52,13 +52,13 @@ const MYSTERY_LAW = '/blog/is-it-legal-to-mystery-shop-competitors'
 
 export const post: BlogPost = {
   slug: 'scrape-data-behind-login',
-  title: 'How to scrape data behind a login: sessions, cookies, MFA, and when to use an index',
-  dek: 'Sign in once with your own account, save the session the site hands back, and send it with every request until it expires. It works the same in Python, Playwright, hosted browsers and n8n, and some jobs need an index of what companies send their customers.',
+  title: 'How to scrape data behind a login: sessions, cookies, MFA and login codes',
+  dek: 'Sign in once with your own account, save the session the site hands back, and send it with every request until it expires. It works the same in Python, Playwright, hosted browsers and n8n, and a site that sends codes needs an inbox and a number as well.',
   metaTitle: 'Scrape data behind a login: sessions and MFA for developers',
   description:
-    'Scrape data behind a login with your own account: Python sessions, Playwright storage state, CSRF, MFA, rate limits, the law, and when an index fits.',
+    'Scrape data behind a login with your own account: Python sessions, Playwright storage state, CSRF, MFA, rate limits, the law, and codes sent by text.',
   answer:
-    'To scrape data behind a login, sign in once with your own account, save the session the site sets, and send it with every request until it expires. Use a Python requests session for a plain form login or Playwright’s saved storage state for a JavaScript site, and plan for CSRF tokens, one-time codes and rate limits. For what many companies show their customers over weeks, Obsession keeps each email, price and offer dated with its screenshot, by API or MCP (how AI agents call tools).',
+    'To scrape data behind a login, sign in once with your own account, save the session the site sets, and send it with every request until it expires. Use a Python requests session for a plain form login or Playwright’s saved storage state for a JavaScript site, and plan for CSRF tokens, one-time codes and rate limits. For a login that keeps sending codes, Obsession gives the agent a cloud browser that keeps its session, with its own inbox and number to receive each code.',
   primaryKeyword: 'scrape data behind login',
   keywords: [
     'web scraping behind login',
@@ -69,9 +69,9 @@ export const post: BlogPost = {
     'how to scrape a website that requires login',
     'can web scraping be detected',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 16,
   order: 10,
   authors: [
@@ -316,7 +316,7 @@ export const post: BlogPost = {
         ') answers by jurisdiction.',
     },
 
-    { kind: 'h2', id: 'index', text: 'When an index is the better answer' },
+    { kind: 'h2', id: 'index', text: 'When a scraper isn’t enough' },
     {
       kind: 'p',
       text: 'A logged-in scraper answers one question well: what does this account show right now. Three jobs sit outside it.',
@@ -349,25 +349,25 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession covers those jobs with pieces an agent holds for months. Its [browser keeps its logins](/browser) between runs. Its own [inbox](/email) and [phone number](/phone) receive every login code, welcome email, text and renewal notice, and each one lands in one event log, dated with the email or a screenshot.',
     },
     {
       kind: 'p',
       text: 'Exa, Tavily and Firecrawl give AI agents the public web, the pages any visitor can read, and [Exa vs Tavily vs Firecrawl](' +
         SEARCH_APIS +
-        ') compares them. Playwright, Browserbase and Firecrawl’s profiles keep your own logins working. Obsession keeps what each company shows only to its customers, past the sign-up and the login, dated, for as long as anyone follows the company. An agent can call all of them: search for what a company publishes, a scraper for what your own account holds, and Obsession for what each company sends and shows its customers. [The web behind the login](' +
+        ') compares them. Playwright, Browserbase and Firecrawl’s profiles keep your own logins working. Obsession gives an agent the browser, the inbox and the number in one call, so it can sign up and stay signed in for weeks. An agent can call all of them, search for what a company publishes, a scraper for what your own account holds, and Obsession’s pieces for what each company sends its customers. [The web behind the login](' +
         BEHIND +
         ') explains what sits past each sign-up, login, form, checkout and cancel flow.',
     },
     {
       kind: 'p',
-      text: 'Agents reach it with 5 verbs: lookup, facts, evidence, index and notify. They work the same over MCP, the standard way AI agents call tools, the API, and SDKs in TypeScript and Python. The evidence verb returns the raw email with its DKIM result, a signature checked on arrival to prove which company sent it, or the page as captured, with its time. Notify posts each new fact to a webhook, an address on your server, the moment it lands. Each Obsession agent uses accounts of its own and tells any person it talks to that it’s an AI. No Obsession agent gets round a CAPTCHA or a bot block, as [the rules every Obsession agent keeps](/agents) set out. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Developers start with obsession.personas.create({ inbox: true, phone: "US", browser: true }), over MCP, the standard way AI agents call tools, the API, or SDKs in TypeScript and Python. Each page arrives as a page.visited event with its screenshot, and each email as email.received with its DKIM result, a signature checked on arrival to prove which company sent it. Events post to a webhook, an address on your server, the moment they land. A browser hour costs $0.10, with no charge per GB. Each persona uses accounts of its own and tells any person it talks to that it’s an AI. It stops at any identity check and never gets round a CAPTCHA or a bot block, as [the rules every Obsession agent keeps](/agents) set out.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Tools for scraping behind a login, compared', compare: true },
     {
       kind: 'p',
-      text: 'The options run from the site’s own export to your own code, hosted browsers, AI agents and an index. We make Obsession, so every other option is described from its provider’s own pages as of 11 November 2026.',
+      text: 'The options run from the site’s own export to your own code, hosted browsers, AI agents and a browser with its own inbox. We make Obsession, so every other option is described from its provider’s own pages as of 11 November 2026.',
     },
     {
       kind: 'table',
@@ -420,17 +420,17 @@ export const post: BlogPost = {
           'A scheduled job around a form login',
         ],
         [
-          'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Trial teardown](/blueprints/trial-teardown), [the API and MCP](/developers)',
-          'What each company shows only to customers, sign-up to cancel, dated with its screenshot',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Leaves your own account’s data to your export or scraper',
-          'Many companies followed for months, by API or MCP',
+          'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Trial teardown](/blueprints/trial-teardown)',
+          'A browser that keeps its logins, with its own inbox and number for every code, each event dated',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Never gets round a CAPTCHA; stops at any identity check',
+          'Many sign-ins kept alive for months, by API or MCP',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For what many companies send and show their customers over weeks, with each email and page kept as it arrived, use Obsession. For your own account’s data, start with the site’s export or API. Use a requests session for a server-rendered form login, and Playwright with saved storage state for a JavaScript site. Firecrawl Interact fits signed-in pages as markdown, and Browserbase Contexts fit many cloud browsers on saved logins. Browser Use fits tasks too varied to script, and n8n runs any of them on a schedule.',
+      text: 'For sign-ins kept alive for weeks across many sites, with every login code landing in the agent’s own inbox and number, use Obsession. For your own account’s data, start with the site’s export or API. Use a requests session for a server-rendered form login, and Playwright with saved storage state for a JavaScript site. Firecrawl Interact fits signed-in pages as markdown, and Browserbase Contexts fit many cloud browsers on saved logins. Browser Use fits tasks too varied to script, and n8n runs any of them on a schedule.',
     },
 
     { kind: 'h2', id: 'when-script', text: 'When your own script is enough' },
@@ -447,13 +447,13 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'start', text: 'Start with one signed-in page' },
     {
       kind: 'p',
-      text: 'Sign in by hand once, save the session, and write the marker check before anything else; it catches most failures before they become bad data. For what other companies send and show their customers, across as many companies as your agent asks about, connect Obsession through the API or MCP.',
+      text: 'Sign in by hand once, save the session, and write the marker check before anything else; it catches most failures before they become bad data. For sessions that must stay signed in across many companies, give the agent an Obsession browser, inbox and number through the API or MCP.',
     },
     {
       kind: 'cta',
-      text: 'Your agents look up what any company shows only to its customers, from the welcome email to the cancel offer. Each fact is dated with its screenshot. 5 verbs over MCP, the API and SDKs. Priced per call or per company watched, never per token.',
-      to: '/developers',
-      label: 'See the API and MCP',
+      text: 'Give your agent a browser that keeps its logins, with its own inbox and number for every code, from $0.10 a browser hour with no charge per GB.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about scraping behind a login' },
@@ -485,9 +485,9 @@ export const post: BlogPost = {
           a: 'Yes. Every request a logged-in scraper sends carries the account’s session, so the site knows which account made it, how often and from which network. Sites slow fast accounts with 429 responses and many run bot checks such as CAPTCHAs. Scrape at a person’s pace, keep one session per account, and stop when the site asks.',
         },
         {
-          q: 'When is an index better than a logged-in scraper?',
-          a: 'When the job is what many companies send and show their customers over weeks: welcome emails, texts, member prices, trial limits and cancel offers. Obsession keeps each one dated with its screenshot or the email itself, and agents look companies up through the API or MCP. Teams start in early access.',
-          link: { label: 'See sample data', to: '/sample-output' },
+          q: 'When does a scraper need an inbox and a phone number?',
+          a: 'When the site sends a one-time code, a magic link or the data itself by email or text, such as welcome emails, renewal notices and cancel offers. Obsession gives the agent its own inbox and number beside a browser that keeps its logins, and each code and message lands in one event log. It never gets round a CAPTCHA and stops at any identity check.',
+          link: { label: 'Browser for AI agents', to: '/browser' },
         },
       ],
     },
@@ -527,7 +527,7 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'n8n', url: N8N_PRICING },
   ],
 
-  related: [
+  related: ['/use-cases/prior-authorization-ai-agent', 
     '/browser',
     'can-ai-agents-log-in-to-websites',
     'the-web-behind-the-login',

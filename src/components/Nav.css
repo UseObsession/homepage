@@ -123,8 +123,8 @@
 .s-menu[hidden] { display: none; }
 /* The pointer crosses the 20px between the item and its menu without leaving the item. */
 .s-menu::before { content: ""; position: absolute; inset: calc(var(--ob-space-20) * -1) 0 auto; height: var(--ob-space-20); }
-.s-menu--products { width: 452px; padding: var(--ob-space-8); }
-.s-menu--solutions { width: 660px; padding: var(--ob-space-8); }
+.s-menu--products { width: 724px; padding: var(--ob-space-8); }
+.s-menu--solutions { width: 820px; padding: var(--ob-space-8); }
 .s-menu--resources { width: 548px; padding: var(--ob-space-8); }
 
 .s-menu__list { display: grid; gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; }
@@ -196,7 +196,16 @@
 .ob-menu__item.s-tool--compact { grid-template-columns: 28px minmax(0, 1fr); gap: var(--ob-space-8); padding-inline-end: var(--ob-space-8); }
 .s-tool--compact .s-tool__ic { width: 28px; height: 28px; }
 /* Solutions: use cases beside teams and industries. */
-.s-sm { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-8); }
+.s-sm { display: grid; grid-template-columns: minmax(0, 1fr) 196px 184px; gap: var(--ob-space-8); }
+.s-sm__col--teams { padding-inline-start: var(--ob-space-8); border-inline-start: var(--ob-border-hair) solid var(--ob-line-subtle); }
+/* Products (22 Nov): the 6 pieces in 2 columns on the left; the 2 ways in, and the prices, on a sunken side panel. */
+.s-pd { display: grid; grid-template-columns: minmax(0, 1fr) 224px; gap: var(--ob-space-8); }
+.s-pd__main { display: grid; align-content: start; }
+.s-pd__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-2); margin: 0; padding: 0; list-style: none; }
+.s-pd__side { display: grid; align-content: start; padding: var(--ob-space-4); border-radius: var(--ob-radius-md); background-color: var(--ob-bg-sunken); border: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.s-pd__prices { display: grid; margin-top: var(--ob-space-4); padding-top: var(--ob-space-4); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.ob-menu__item.s-tool--way { padding-inline-end: var(--ob-space-8); }
+.s-tool--way .s-tool__ic { background-color: var(--ob-surface); }
 .s-sm__col { display: grid; align-content: start; }
 /* Resources: the list, and the rest of the company in a quiet side column. */
 .s-xm { display: grid; grid-template-columns: minmax(0, 1fr) 204px; gap: var(--ob-space-8); }

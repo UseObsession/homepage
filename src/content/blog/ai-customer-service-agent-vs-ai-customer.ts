@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
 
 /* The AI customers series (24 Oct 2026): AI customer service agents and AI customers, side by side. It owns "ai customer
    service agent vs ai customer" and the questions around it ("what is an ai customer service agent", "is hubspot's
@@ -33,12 +32,12 @@ const DECAGON = 'https://decagon.ai/'
 export const post: BlogPost = {
   slug: 'ai-customer-service-agent-vs-ai-customer',
   title: 'AI customer service agents vs AI customers: who each one works for',
-  dek: 'An AI customer service agent works for a company and answers that company’s customers. An AI customer signs up to any company you name, your own included, and is one way Obsession collects what companies show only to customers.',
+  dek: 'An AI customer service agent works for a company and answers that company’s customers. An AI agent as a customer signs up and buys like anyone, for the team that sent it. On Obsession it runs as a persona with its own inbox, number and browser.',
   metaTitle: 'AI customer service agent vs AI customer: the difference',
   description:
-    'An AI customer service agent answers a company’s customers. An AI customer works for your company as a customer of any company you name. Where they meet.',
+    'An AI customer service agent answers a company’s customers. An AI agent as a customer signs up and buys like anyone, for the team that sent it.',
   answer:
-    'An AI customer service agent works for a company and answers that company’s customers. An AI customer works for your company and becomes a customer of any company you name, your own included, keeping what that company sends and shows it as evidence. They meet when an AI customer asks a company’s service agent what its customers ask, and Obsession keeps each answer word for word, dated, beside everything else that company shows only to its customers.',
+    'An AI customer service agent works for a company and answers that company’s customers. An AI agent as a customer works for the team that sent it, and signs up, books or buys at any company that team names. On Obsession that agent is a persona with its own inbox, phone number and browser, and the two meet when a persona asks a company’s service agent what its customers ask.',
   primaryKeyword: 'ai customer service agent vs ai customer',
   keywords: [
     'ai customer vs ai customer service agent',
@@ -49,9 +48,9 @@ export const post: BlogPost = {
     'personal ai agents',
     'test ai customer service agent',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 7,
   order: 2,
   authors: [
@@ -70,10 +69,10 @@ export const post: BlogPost = {
           links: ['deploys', 'answers'],
         },
         {
-          name: 'AI customer',
-          who: 'Obsession’s agents',
-          nodes: ['Your company', 'AI customer', 'Any company'],
-          links: ['hires', 'is a customer of'],
+          name: 'AI agent as a customer',
+          who: 'A persona on Obsession',
+          nodes: ['Your team', 'Persona', 'Any company'],
+          links: ['sends', 'signs up at'],
           lit: 1,
           ours: true,
         },
@@ -86,27 +85,27 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'The two names nearly match, and the overlap is real: HubSpot’s support product is called [Customer Agent](' +
         HUBSPOT_KB +
-        '), and search engines read “AI customer” as customer service. The difference is direction. Each kind of agent works for someone and faces someone else, and those two answers decide everything it can see.',
+        '), and search engines read “AI customer” as customer service. The difference is direction. Each of the two works for someone and faces someone else, and those two answers decide everything it can see.',
     },
     {
       kind: 'p',
-      text: 'An AI customer service agent is deployed by a company to answer the people who buy from it. An AI customer is hired by a company, or a team inside one, to be a customer: of its own business, to see what its customers get, or of a competitor, a prospect or a partner. The full definition is in [what AI customers are](/blog/ai-customers).',
+      text: 'An AI customer service agent is deployed by a company to answer the people who buy from it. An AI agent as a customer is sent by a team to be a customer. It might sign up at the team’s own company to see what its customers get, or at a competitor, a supplier or a partner. On Obsession it runs as a persona, an AI agent with its own inbox, phone number and browser under one name.',
     },
 
     { kind: 'h2', id: 'difference', text: 'The difference, line by line' },
     {
       kind: 'table',
-      caption: 'AI customer service agents and AI customers, compared on the same 8 points',
-      cols: ['Compared on', 'AI customer service agent', 'AI customer'],
+      caption: 'AI customer service agents and AI agents as customers, compared on the same 8 points',
+      cols: ['Compared on', 'AI customer service agent', 'AI agent as a customer'],
       rows: [
-        ['Works for', 'The company that deploys it', 'Your company, or a team in it'],
-        ['Faces', 'That company’s customers', 'A company you name: yours, a competitor, a prospect'],
-        ['Starts when', 'A customer writes or calls', 'Your team names a company'],
-        ['Lasts', 'One conversation', 'Months, asleep between events'],
+        ['Works for', 'The company that deploys it', 'The team that sends it'],
+        ['Faces', 'That company’s customers', 'A company the team names: its own, a competitor, a supplier'],
+        ['Starts when', 'A customer writes or calls', 'The team names a company and a job'],
+        ['Lasts', 'One conversation', 'Days or months, free while it waits'],
         ['Lives in', 'The company’s site, app and help desk', 'Its own inbox, phone number and browser'],
         ['Measured by', 'Resolutions and handle time', 'What arrived, when, against what was promised'],
-        ['Leaves behind', 'A resolved ticket', 'Evidence, kept as it arrived'],
-        ['Examples', 'HubSpot Customer Agent, Sierra, Decagon', 'Obsession’s agents'],
+        ['Leaves behind', 'A resolved ticket', 'Every email, text, call and page, dated'],
+        ['Examples', 'HubSpot Customer Agent, Sierra, Decagon', 'A persona on Obsession'],
       ],
     },
 
@@ -134,25 +133,28 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'ai-customers', text: 'What an AI customer does' },
-    { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
+    { kind: 'h2', id: 'agents-as-customers', text: 'What an AI agent as a customer does' },
+    {
+      kind: 'p',
+      text: 'An AI agent as a customer signs up, fills a basket, books, asks a question or calls, the way any customer can. Then it waits for what the company sends, and keeps all of it.',
+    },
     {
       kind: 'list',
       items: [
-        '**A real identity.** Its own inbox, phone number and browser, created for the job, never a real person’s.',
-        '**Time.** It stays a customer for weeks or months and waits for what arrives: the welcome, the reminder, the price change, the renewal.',
-        '**Evidence.** It keeps each email, text and page exactly as it arrived, with the time it arrived.',
+        '**Its own identity.** An inbox, a phone number and a browser that stays signed in, made for the job, never a real person’s.',
+        '**Time.** It stays a customer for days or months, free while it waits, and wakes in 50 ms when the welcome, the reminder or the renewal arrives.',
+        '**Every event kept.** Each email, text, call and page lands in one event log, in order, dated, with the email or screenshot.',
       ],
     },
     {
       kind: 'p',
-      text: `The practice it carries out has a name. ${CUSTOMER_SIDE_OBSERVABILITY.definition} Its view starts where a service agent’s ends: the emails, texts, prices, pages and checkout around the conversation, and the conversation itself as the customer had it ([customer-side observability](/blog/customer-side-observability)). AI customers are one way Obsession collects that record, at any company you name.`,
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. It gives every agent an inbox, a phone number and a browser, and a [persona](/personas) puts them under one identity. Teams that test their own emails, texts, pages and chat this way call it [customer-side observability](/blog/customer-side-observability), which starts where a service agent’s view ends.',
     },
 
     { kind: 'h2', id: 'where-they-meet', text: 'Where they meet: checking a service agent' },
     {
       kind: 'p',
-      text: 'The two face each other in one place: when an AI customer asks a company’s service agent the questions its customers ask. The company’s dashboard records that conversation from the inside. The AI customer records it from the customer’s side, and checks the answer against the company’s own policy page.',
+      text: 'The two meet when a persona asks a company’s service agent the questions its customers ask. The company’s dashboard keeps that conversation from the inside. The persona keeps it from the customer’s side, and the answer is checked against the company’s own policy page.',
     },
     {
       kind: 'art',
@@ -160,12 +162,12 @@ export const post: BlogPost = {
         kind: 'chat',
         title: 'Returns question · ivywell.example',
         turns: [
-          { from: 'customer', text: 'Hi, I’m an AI customer checking answers for Ivywell. How long do I have to return an order?', time: '07:00' },
+          { from: 'customer', text: 'Hi, I’m an AI agent checking answers for Ivywell. How long do I have to return an order?', time: '07:00' },
           { from: 'bot', name: 'Ivy, AI assistant', text: 'You have 60 days from delivery to return any item.', time: '07:00' },
         ],
         check: { tone: 'fail', label: 'Against the returns page', text: 'The policy says 30 days' },
       },
-      caption: 'An invented store’s own team hires an AI customer to check its chat. The AI customer says it’s an AI, asks what customers ask, and checks the answer against the store’s returns page.',
+      caption: 'An invented store’s own team sends a persona to check its chat. The persona says it’s an AI, asks what customers ask, and its answer is checked against the store’s returns page.',
     },
     {
       kind: 'quote',
@@ -185,21 +187,21 @@ export const post: BlogPost = {
           AI_ACT +
           '), AI systems that talk to people must be designed so people are told, and the Act [applies from 2 August 2026](' +
           AI_ACT_113 +
-          '). An AI customer says so in its first message, and the same check records whether the service agent says so too.',
-        '**Answers change without notice.** A prompt edit, a new help article or a model update can change what the agent says. A check every day and after every update catches it the day it happens. The method for a store is in [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy).',
+          '). An agent on Obsession says so in its first message, and the same check notes whether the service agent says so too.',
+        '**Answers change without notice.** A prompt edit, a new help article or a model update can change what the agent says. A check every morning and after every update catches it the day it happens. The method for a store is in [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy).',
       ],
     },
     {
       kind: 'cta',
-      text: 'Every answer your chat agent, voice line or AI sales agent gives a customer, word for word and dated, beside the page it should match, every day and after every update.',
-      to: '/verify',
-      label: 'Request early access',
+      text: 'Every answer your support bot gives a customer, word for word and dated, beside the policy page it should match, every morning and after every update.',
+      to: '/blueprints/support-bot-check',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'personal-agents', text: 'Personal AI agents' },
     {
       kind: 'p',
-      text: 'A third kind of AI agent now joins the same conversations: a personal agent, sent by one individual to deal with a company on their behalf. Cloudflare describes such agents as [generally directed by an end user instead of a single company or entity](' +
+      text: 'A third AI agent now joins the same conversations: a personal agent, sent by one individual to deal with a company on their behalf. Cloudflare describes such agents as [generally directed by an end user instead of a single company or entity](' +
         CLOUDFLARE_AGENTS +
         '). Salesforce writes that [consumers are starting to hand a wide variety of work to personal AI agents](' +
         SALESFORCE_PERSONAL +
@@ -226,39 +228,39 @@ export const post: BlogPost = {
             links: ['sends', 'asks'],
           },
           {
-            name: 'AI customer',
-            who: 'Works for a company, for months',
-            nodes: ['Your company', 'AI customer', 'Any company'],
-            links: ['hires', 'is a customer of'],
+            name: 'AI agent as a customer',
+            who: 'Works for a team, for days or months',
+            nodes: ['Your team', 'Persona', 'Any company'],
+            links: ['sends', 'signs up at'],
             lit: 1,
             ours: true,
           },
         ],
       },
-      caption: 'Who sends each kind of AI agent, and who it faces. A personal agent acts for one individual, one task at a time. An AI customer works for a company and stays a customer of every company that company names.',
+      caption: 'Who sends each AI agent, and who it faces. A personal agent acts for one individual, one task at a time. An AI agent as a customer works for a team and stays a customer of every company that team names.',
     },
     {
       kind: 'p',
-      text: 'A personal agent and an AI customer both stand on the customer’s side, and they work for different people. A personal agent works for one individual and finishes that person’s task, such as chasing a delayed order. An AI customer works for a company: it stays a customer of every company that company names, its own included, and keeps what it receives as evidence. More personal agents also means more of a company’s questions arrive from agents, which makes what its service agent tells them worth checking.',
+      text: 'A personal agent and an AI agent as a customer both stand on the customer’s side, and they work for different people. A personal agent works for one individual and finishes that person’s task, such as chasing a delayed order. An AI agent as a customer works for a team. It signs up wherever that team points it, its own company included, and keeps every event. Developers give both kinds the same pieces: an inbox, a number and a browser for each agent. More personal agents also means more of a company’s questions arrive from agents, which makes what its service agent tells them worth checking.',
     },
 
-    { kind: 'h2', id: 'by-team', text: 'Customer-side observability, team by team' },
+    { kind: 'h2', id: 'by-team', text: 'What each team sees from the customer’s side' },
     {
       kind: 'table',
-      caption: 'What a service agent’s own dashboard shows each team, and what AI customers working for that team add',
-      cols: ['Team', 'A service agent’s dashboard', 'What AI customers add'],
+      caption: 'What a service agent’s own dashboard shows each team, and what a persona working for that team adds',
+      cols: ['Team', 'A service agent’s dashboard', 'What a persona adds'],
       rows: [
-        ['CX and support', 'Resolutions, handle time, deflection', 'Whether answers match policy, daily and after updates'],
+        ['CX and support', 'Resolutions, handle time, deflection', 'Whether answers match policy, every morning and after updates'],
         ['Ecommerce', 'Chats about orders', 'Whether the welcome, reminder and code arrive as promised'],
         ['Marketing', 'Not covered', 'Every competitor’s emails, offers and prices as a customer gets them'],
         ['Sales', 'Not covered', 'How each prospect treats its own customers before the call'],
-        ['Agencies', 'Only what clients share', 'Every client’s journeys, checked as a customer, with evidence'],
-        ['Developers', 'Their own agent’s traces', 'Customer-side facts as a tool for their own agent'],
+        ['Agencies', 'Only what clients share', 'Every client’s sign-up, basket and checkout emails, every event kept'],
+        ['Developers', 'Their own agent’s traces', 'An inbox, number and browser for their own agent, on one API'],
       ],
     },
     {
       kind: 'p',
-      text: 'How each team puts this to work in a normal week is in [AI customers for commercial teams](/blog/ai-customers-for-commercial-teams), and the practice itself, with the checks and pass marks, is in [customer-side observability](/blog/customer-side-observability).',
+      text: 'How each team uses this in a normal week is in [the guide for commercial teams](/blog/ai-customers-for-commercial-teams). Testing your own journeys, with the checks and pass marks, is in [customer-side observability](/blog/customer-side-observability).',
     },
 
     { kind: 'h2', id: 'which', text: 'Which one you need' },
@@ -266,9 +268,9 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**To answer your customers faster, at any hour:** an AI customer service agent.',
-        '**To see what customers receive, from your company or from a competitor:** use Obsession. It keeps what any company you name shows only to its customers, including every email, offer and price and what its AI agents say, each dated with the email or screenshot.',
-        '**If you run a service agent:** both. The service agent answers; AI customers check what it tells people, every day and after every update.',
-        '**If you run no AI agent and watch 1 or 2 competitors:** a monthly check by hand covers it, and AI customers earn their place as the list or the pace grows.',
+        '**To see what customers receive, from your company or a competitor:** a persona on Obsession. It signs up and waits. Every email, text, call and page lands in one event log, dated, with the email or screenshot. Any team can pick a [blueprint](/blueprints), and Obsession runs it and sends the results.',
+        '**If you run a service agent:** both. The service agent answers; a persona checks what it tells people, every morning and after every update.',
+        '**If you run no AI agent and watch 1 or 2 competitors:** a monthly check by hand covers it, and a persona earns its place as the list or the pace grows.',
       ],
     },
 
@@ -277,8 +279,8 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**A service agent sees the conversations that reach it.** The welcome email that never arrived, the code refused at checkout and every competitor sit outside its view.',
-        '**An AI customer sees what any customer sees.** Why the company sent something sits inside the company’s own systems, and a bot wall or a CAPTCHA stops it, with the step it couldn’t test named in the report.',
-        '**Neither replaces the other.** One answers for the company; the other watches it as a customer.',
+        '**An AI agent as a customer sees what any customer sees.** Why the company sent something sits in the company’s own systems. It never gets round a CAPTCHA or a bot block, stops at any identity check, and the event log keeps the step where it stopped.',
+        '**Neither replaces the other.** One answers for the company; the other meets it as a customer.',
       ],
     },
 
@@ -292,21 +294,30 @@ export const post: BlogPost = {
         },
         {
           q: 'What is the difference between an AI customer and an AI customer service agent?',
-          a: 'Direction. An AI customer service agent works for a company and answers that company’s customers. An AI customer works for your company and becomes a customer of any company you name, your own included, keeping what that company sends and shows it as evidence.',
+          a: 'Direction. An AI customer service agent works for a company and answers that company’s customers. An AI agent as a customer works for the team that sent it. It signs up, books or buys at any company that team names, its own included, and keeps every email, text, call and page it gets.',
         },
         {
           q: 'Is HubSpot’s Customer Agent an AI customer?',
-          a: 'No. Despite the name, it is a customer service agent: HubSpot describes it as set up to automatically respond to customer questions using the company’s existing content.',
+          a: 'No. Despite the name, it is a customer service agent. HubSpot describes it as set up to automatically respond to customer questions using the company’s existing content.',
         },
         {
-          q: 'Can an AI customer test my AI customer service agent?',
-          a: 'Yes. It says it’s an AI, asks what your customers ask, keeps the transcript, and checks each answer against your policy pages, every day and after every update.',
+          q: 'Can an AI agent test my AI customer service agent?',
+          a: 'Yes. A persona says it’s an AI, asks what your customers ask, keeps the transcript and checks each answer against your policy pages, every morning and after every update. Teams who don’t code run it as the support bot check blueprint.',
+          link: { label: 'See the blueprint', to: '/blueprints/support-bot-check' },
         },
         {
           q: 'What is a personal AI agent?',
-          a: 'An AI agent directed by one individual to deal with a company on their behalf, such as chasing an order. It completes that person’s task. An AI customer works for a company, stays a customer for months and keeps the evidence.',
+          a: 'An AI agent directed by one individual to deal with a company on their behalf, such as chasing an order. It completes that person’s task. An AI agent as a customer works for a team, stays a customer for days or months and keeps every event.',
         },
-        { q: 'What is customer-side observability?', a: CUSTOMER_SIDE_OBSERVABILITY.definition },
+        {
+          q: 'What does an AI agent as a customer cost on Obsession?',
+          a: 'A persona is free while it waits; you pay for the pieces it uses, such as $0.50 an inbox a month and $0.10 a browser hour. The Free plan includes 3 inboxes, 1 number and 10 browser hours, and Developer is $20 a month.',
+          link: { label: 'See pricing', to: '/pricing' },
+        },
+        {
+          q: 'What is customer-side observability?',
+          a: 'Testing your own emails, texts, prices, pages and chat the way customers meet them, from outside, over days and weeks, with every step dated.',
+        },
       ],
     },
     {

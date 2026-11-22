@@ -21,7 +21,7 @@ import type { BlogPost } from './types'
    hour in a sale week if chosen), a basket filled to read the total and stopped before payment, a loyalty scheme that
    asks for identity details stops there, Insights as one question across many companies with a row each. Lumenskin,
    Dewhaus, Florabright, yourstore.example and every price, code and time in the tables and pictures are invented, and
-   their sums are exact. British English, numerals, no dashes. */
+   their sums are exact. British English, numerals, no dashes. Rewritten 22 Nov 2026 for the toolkit position. */
 
 const BAYMARD = 'https://baymard.com/lists/cart-abandonment-rate'
 const SHOPIFY_SALE = 'https://help.shopify.com/en/manual/products/details/product-pricing/sale-pricing'
@@ -47,7 +47,7 @@ export const post: BlogPost = {
   description:
     'Competitor price comparison template for ecommerce and pricing teams: list price, price after the welcome code, member price, delivery, stock, date read.',
   answer:
-    'A competitor price comparison template is a table that sets each competitor’s prices, delivery and stock beside yours, product by product, from the list price to the member price. The price after the welcome code and the member price appear only after a sign-up with a new email address or a free account. Obsession keeps each competitor’s subscriber codes, member prices and emailed offers, dated with a screenshot, by API, MCP (the standard way AI agents call tools) or a table.',
+    'A competitor price comparison template is a table that sets each competitor’s prices, delivery and stock beside yours, product by product, from the list price to the member price. The price after the welcome code and the member price appear only after a sign-up with a new email address or a free account. Obsession’s price watch blueprint keeps each competitor’s subscriber codes, member prices and emailed offers every morning, dated with a screenshot.',
   primaryKeyword: 'competitor price comparison template',
   keywords: [
     'competitor price comparison excel template free',
@@ -58,9 +58,9 @@ export const post: BlogPost = {
     'competitive pricing analysis',
     'competitor price comparison and analysis excel template',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-11-14',
-  updated: '2026-11-14',
+  updated: '2026-11-22',
   readingMinutes: 12,
   order: 7,
   authors: [
@@ -321,10 +321,10 @@ export const post: BlogPost = {
         ['Price2Spy', 'Cart and login prices, promo codes as a field', 'No prices listed\n14 days free', 'Extra details listed on Premium', 'Prices behind a cart or login step'],
         ['Visualping', 'Any page, behind a login your team holds', 'Free for 5 pages\n$14 a month for 10', 'Each page set up by hand', 'Pages your team picks one by one'],
         [
-          'Obsession (ours): [Price watch](/blueprints/price-watch), [Member prices](/use-cases/member-prices-for-price-intelligence)',
+          'Obsession (ours): [Price watch](/blueprints/price-watch), [Browser](/browser), [Email](/email)',
           'The subscriber code, the member price and every emailed offer, at any competitor you name',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Reports each change, with repricing left to your own tools',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment\nRepricing stays with your own tools',
           'Member prices and subscriber codes each morning, basket totals if you choose, with screenshots',
         ],
       ],
@@ -337,11 +337,11 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'keep-current', text: 'How do you keep the table current for your company, the leaders and your clients?' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For your company, [Price watch](/blueprints/price-watch) reads each competitor’s public and member prices, delivery and subscriber codes every morning. It reads from an account and a subscriber inbox in your country, and sets every change beside your own price.',
+      text: 'Obsession is the toolkit for AI agents, giving every agent an inbox, a phone number and a browser through one API and one bill. For your company, [Price watch](/blueprints/price-watch) reads each competitor’s public and member prices, delivery and subscriber codes every morning. It reads from an account and a subscriber inbox in your country, and sets every change beside your own price.',
     },
     {
       kind: 'p',
-      text: 'Your team can set its prices beside the biggest companies in its category, read the same way: the list price, the price after each welcome code and each member price, per country. Insights asks one question across many companies, such as which competitors show members a lower price than guests, and answers with a row per company. If you choose, Price watch fills a basket to read the total with delivery and codes applied, and stops before payment. Where a loyalty scheme asks for identity details, Obsession stops there and says so.',
+      text: 'Your team can set its prices beside the biggest companies in its category, read the same way: the list price, the price after each welcome code and each member price, per country. Every price lands in the event log with its date, so one sheet shows which competitors give members a lower price than guests, a row per company. If you choose, Price watch fills a basket to read the total with delivery and codes applied, and stops before payment. Where a loyalty scheme asks for identity details, Obsession stops there and says so.',
     },
     {
       kind: 'p',
@@ -363,13 +363,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps going on its own. Prices, stock and delivery are read every morning through [Price watch](/blueprints/price-watch), or every hour in a sale week. A fresh sign-up can run every step again each week through [leak checks for ecommerce stores](/use-cases/leak-checks-for-ecommerce-stores). It works the same for one company or a list of 3,000, on an index built for millions of companies. Each change lands as a row in your sheet, in Slack, in Clay or through the API.',
+      text: 'It keeps going on its own. Prices, stock and delivery are read every morning through [Price watch](/blueprints/price-watch), or every hour in a sale week. A fresh sign-up can run every step again each week through the [mystery shopping](/blueprints/mystery-shopper) blueprint. It works the same for one company or a list of 3,000, from 1 persona to a fleet of thousands. Each change lands as a row in your sheet, in Slack, in Clay or as an event your developers’ code receives.',
     },
     {
       kind: 'cta',
-      text: 'Fill the columns a public page leaves blank. Every competitor’s price after the welcome code, member price and emailed offers, per store and country, each dated with its screenshot.',
-      to: '/use-cases/member-prices-for-price-intelligence',
-      label: 'Request early access',
+      text: 'Not building agents? Pick a blueprint, and Obsession runs it. Price watch fills the columns a public page leaves blank, from each competitor’s price after the welcome code to its member price and emailed offers, per store and country, each dated with its screenshot.',
+      to: '/blueprints/price-watch',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'faq', text: 'Questions about competitor price comparison templates' },

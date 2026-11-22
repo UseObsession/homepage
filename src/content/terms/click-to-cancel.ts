@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/click-to-cancel: the definition query for click-to-cancel, with each jurisdiction's status as its own
    pages state it on 11 Nov 2026. "subscription trap law uk" and "dark patterns subscription cancellation" stay with
@@ -63,7 +62,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For click-to-cancel, that means each screen from the cancel button to the confirmation and every email after it, for your service and competitors’, each dated with its screenshot or the raw email. Compliance teams use it to prove their own flow ([opt-out and cancel checks](/use-cases/opt-out-and-cancel-checks-for-compliance-teams)).`,
+      text: 'Obsession’s [Delivery monitoring](/blueprints/delivery-monitoring) blueprint logs each screen from the cancel button to the confirmation and every email after it, for your service and competitors’, each dated with its screenshot or the raw email. Compliance teams use it to prove their own flow ([opt-out and cancel checks](/use-cases/opt-out-and-cancel-checks-for-compliance-teams)).',
     },
     {
       kind: 'faq',

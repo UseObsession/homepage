@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Voice agent check (/recipes/voice-agent-check). Check your AI agents. Screen: callcheck, drawn for an agency (its
+/* Voice agent check (/blueprints/voice-agent-check). Check your AI agents. Screen: callcheck, drawn for an agency (its
    client Dental group; 3 calls at 08:00; Call 2 quotes the aligner consult free where the price list says £50; a person
    after 1 min 12 s on hold). "Aligner" on screen and page, so no real product is named.
    The persona version (20 Nov 2026): personas you define (new patients, regulars, a business calling), each with its
@@ -19,7 +19,7 @@ export const recipe: Recipe = {
   id: 'voice-agent',
   slug: 'voice-agent-check',
   name: 'Voice agent check',
-  group: 'Check your AI agents',
+  group: 'Talk to customers',
   line: 'Personas call your voice agent, then wait days for the text, email and callback it promised.',
   gets: 'Every call recorded and transcribed, and every text, email and callback after it, or the silence.',
   kit: [
@@ -53,7 +53,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-voice-agent-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'voice-agent',
     },
   },
@@ -187,6 +187,7 @@ export const recipe: Recipe = {
       {
         q: 'What does Voice agent check test after the call ends?',
         a: 'It waits for every text, email and callback the call promised: 48 hours by default, or 2 working days when it promises “next business day” or similar, so a weekend never counts against it. A promise nothing followed is flagged.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
       },
       {
         q: 'How do we test a voice agent before it goes live?',
@@ -195,6 +196,7 @@ export const recipe: Recipe = {
       {
         q: 'Does the caller say it’s an AI?',
         a: 'When a person picks up or calls back, yes: the persona tells them it’s an AI, who it calls for and that the call is recorded. With your voice agent, the recording keeps both sides word for word.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Can Voice agent check call a competitor?',
@@ -212,17 +214,23 @@ export const recipe: Recipe = {
         q: 'Can an agency run Voice agent check for clients?',
         a: 'Yes, with each client’s agreement. The Voice agent check report carries your agency’s name and lands by 09:00.',
       },
+      {
+        q: 'What does Voice agent check cost?',
+        a: 'It’s billed on the pieces it uses, at list rates: a number for calls and texts, and an inbox. Calls are billed by the minute, and the days spent waiting for a callback cost nothing.',
+        link: { label: 'See phone numbers for AI agents', to: '/phone' },
+      },
     ],
   },
 
   final: {
     heading: 'See every callback your voice agent promises, and whether it came.',
-    sub: 'Tell us the number to call and who the callers should be. We’ll set up your first run with you.',
+    sub: 'Try it on the Free plan with 3 calls to your own number.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-voice-agent-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'voice-agent',
     },
+    link: { label: 'More blueprints to talk to customers', to: '/blueprints/talk-to-customers' },
   },
 }

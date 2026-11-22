@@ -13,7 +13,10 @@ export function PieceTogether({
   named,
   label,
   id,
+  kits,
 }: {
+  /* The kits that use this piece (content/kits), shown as a row under the links (22 Nov 2026: one story, one site). */
+  kits?: { label: string; links: { name: string; to: string }[] }
   together: PiecePage['together']
   /* Every piece's name and address, by id. */
   named: Record<PieceId, { name: string; path: string }>
@@ -48,6 +51,16 @@ export function PieceTogether({
             )
           })}
         </ul>
+        {kits && kits.links.length > 0 && (
+          <div className="s-pk-tog__kits">
+            <span className="s-pk-tog__kits-label">{kits.label}</span>
+            {kits.links.map((k) => (
+              <Link className="s-pk-tog__kit" to={k.to} key={k.to}>
+                {k.name}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )

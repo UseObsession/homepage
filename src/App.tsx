@@ -9,6 +9,8 @@ import { catalog } from './content/catalog'
 import { headFor } from './content/head'
 import { ctaFor, nav } from './content/nav'
 import { absolute, cleanPath } from './content/paths'
+import { kitLinks } from './content/kitPaths'
+import { casePathList, teamPathList, teamPathSet } from './content/teamPaths'
 import { pieceOrder, piecePaths } from './content/piecePaths'
 import { recipeWords, refWords, studyWords } from './content/words'
 import { JAMES_PATHS, isJamesPath } from './legacy/jamesPaths'
@@ -29,6 +31,7 @@ const Compare = page('Compare')
 const Sales = page('Sales')
 const Marketing = page('Marketing')
 const Developers = page('Developers')
+const NoCode = page('NoCode')
 const Verify = page('Verify')
 const Recipes = page('Recipes')
 const Recipe = page<{ slug: string }>('Recipe')
@@ -51,6 +54,10 @@ const PricingRates = page('PricingRates')
 const WebBehindTheLogin = page('WebBehindTheLogin')
 /* Each piece's own page (content/pieces), one component for all 6. */
 const Piece = page<{ path: string }>('Piece', 'PieceAt')
+/* Each type of blueprint's own page (content/kits, 22 Nov), one component for all 6, at /blueprints/SLUG. */
+const Kit = page<{ path: string }>('Kit', 'KitAt')
+/* Each team's page (content/teams, 22 Nov), one component for all 8, at the addresses the nav's Teams column links. */
+const Team = page<{ path: string }>('Team', 'TeamAt')
 const Agents = page('Agents')
 const NotFound = page('NotFound')
 const Reference = page<{ path: string }>('Reference', 'ReferenceAt')
@@ -59,6 +66,7 @@ const GlossaryHub = page('ReferenceHub', 'GlossaryHub')
 
 const RECIPES = new Set(catalog.recipes.map((r) => r.slug))
 const PIECES = new Set(Object.values(piecePaths))
+const KITS = new Set(kitLinks.map((k) => k.path))
 /* The worked examples the study system draws. The pages in James's format (legacy/jamesPaths) are their own pages at their own addresses. */
 const STUDIES = new Set(catalog.studies.map((s) => s.path).filter((p) => !isJamesPath(p)))
 const POSTS = new Set(catalog.posts.map((p) => p.slug))
@@ -71,6 +79,7 @@ const PAGES: Record<string, LazyPage> = {
   '/sales': Sales,
   '/marketing': Marketing,
   '/developers': Developers,
+  '/no-code': NoCode,
   '/verify': Verify,
   '/blueprints': Recipes,
   '/resources': Resources,
@@ -98,8 +107,10 @@ const PAGES: Record<string, LazyPage> = {
 function routeOf(path: string): { page: LazyPage; words?: { preload: () => Promise<unknown> } } {
   const p = cleanPath(path)
   const [, first, slug] = p.split('/')
+  if (teamPathSet.has(p)) return { page: Team }
   if (PAGES[p]) return { page: PAGES[p] }
   if (PIECES.has(p)) return { page: Piece }
+  if (KITS.has(p)) return { page: Kit }
   if (first === 'blueprints' && slug && RECIPES.has(slug)) return { page: Recipe, words: recipeWords(slug) }
   if (first === 'use-cases' && STUDIES.has(p)) return { page: UseCase, words: studyWords(p) }
   if (first === 'blog' && catalog.blogLive && slug && POSTS.has(slug)) return { page: BlogPost }
@@ -381,17 +392,14 @@ export function AppRoutes() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="agencies" element={<Agencies />} />
         <Route path="compare" element={<Compare />} />
         <Route path="compare/:slug" element={<ReferenceRoute base="compare" />} />
         <Route path="alternatives" element={<AlternativesHub />} />
         <Route path="alternatives/:slug" element={<ReferenceRoute base="alternatives" />} />
         <Route path="glossary" element={<GlossaryHub />} />
         <Route path="glossary/:slug" element={<ReferenceRoute base="glossary" />} />
-        <Route path="sales" element={<Sales />} />
-        <Route path="marketing" element={<Marketing />} />
         <Route path="developers" element={<Developers />} />
-        <Route path="verify" element={<Verify />} />
+        <Route path="no-code" element={<NoCode />} />
         <Route path="blueprints" element={<Recipes />} />
         <Route path="blueprints/:slug" element={<RecipeRoute />} />
         {/* Recipes were renamed blueprints (21 Nov 2026); the host answers the old addresses with a 301 first. */}
@@ -402,7 +410,6 @@ export function AppRoutes() {
         <Route path={JAMES_PATHS.prospect.slice(1)} element={<ProspectIntelligence />} />
         <Route path={JAMES_PATHS.price.slice(1)} element={<PriceIntelligence />} />
         <Route path={JAMES_PATHS.retention.slice(1)} element={<RetentionAgencies />} />
-        <Route path={JAMES_PATHS.stores.slice(1)} element={<EcommerceStores />} />
         <Route path={JAMES_PATHS.cro.slice(1)} element={<CroAgencies />} />
         <Route path="use-cases/web-behind-the-login" element={<WebBehindTheLogin />} />
         <Route path="use-cases/:slug" element={<UseCaseRoute />} />
@@ -416,6 +423,12 @@ export function AppRoutes() {
         <Route path="pricing/rates" element={<PricingRates />} />
         {pieceOrder.map((id) => (
           <Route key={id} path={piecePaths[id].slice(1)} element={<Piece key={id} path={piecePaths[id]} />} />
+        ))}
+        {[...teamPathList, ...casePathList].map((p) => (
+          <Route key={p} path={p.slice(1)} element={<Team key={p} path={p} />} />
+        ))}
+        {kitLinks.map((k) => (
+          <Route key={k.id} path={k.path.slice(1)} element={<Kit key={k.id} path={k.path} />} />
         ))}
         <Route path="agents" element={<Agents />} />
         <Route path="sample-report" element={<Navigate to="/sample-output" replace />} />

@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { Link } from 'react-router-dom'
 import type { PersonaAnatomy as Anatomy } from '../../content/types'
 import './blueprint.css'
 import './PersonaAnatomy.css'
@@ -20,16 +21,21 @@ function Slab() {
   )
 }
 
-export function PersonaAnatomy({ anatomy, id }: { anatomy: Anatomy; id?: string }) {
+export function PersonaAnatomy({ anatomy, id, tone }: { anatomy: Anatomy; id?: string; tone?: 'alt' }) {
   const hid = useId()
   return (
-    <section className="s-section s-bp-ruled s-pa" id={id} aria-labelledby={`${hid}-h`}>
+    <section className="s-section s-pa" id={id} data-tone={tone} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap s-pa-grid">
         <div className="s-pa-words">
           <h2 className="s-bp-h" id={`${hid}-h`}>
             {anatomy.heading}
           </h2>
           {anatomy.line && <p className="s-bp-line">{anatomy.line}</p>}
+          {anatomy.link && (
+            <Link className="s-bp-link" to={anatomy.link.to}>
+              {anatomy.link.label}
+            </Link>
+          )}
         </div>
         <figure className="s-pa-fig">
           <ol className="s-pa-stack">

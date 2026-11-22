@@ -51,7 +51,7 @@ export const post: BlogPost = {
   description:
     'ChatGPT can track competitor emails that reach a Gmail inbox you connect. A method for brands and agencies with 1 to 3 competitors, and its limits.',
   answer:
-    'Yes, ChatGPT can track competitor emails for 1 to 3 competitors, as can Claude, Gemini and Perplexity, by reading and comparing what reaches a Gmail inbox you connect. Each works as one person in one inbox, caps scheduled work and can’t read mail from before you signed up, and none of their help pages describes keeping each email as evidence. Obsession keeps every email any competitor you name sends its customers, dated as it arrived, by API, MCP (the standard way AI agents call tools) or a table.',
+    'Yes, ChatGPT can track competitor emails for 1 to 3 competitors, as can Claude, Gemini and Perplexity, by reading and comparing what reaches a Gmail inbox you connect. Each works as one person in one inbox, caps scheduled work and can’t read mail from before you signed up, and none of their help pages describes keeping each email as evidence. Obsession’s Email and SMS tracking blueprint keeps a persona on every competitor’s list, so each email and text lands dated in one event log.',
   primaryKeyword: 'can chatgpt track competitor emails',
   keywords: [
     'can chatgpt track competitor emails',
@@ -63,9 +63,9 @@ export const post: BlogPost = {
     'view competitor emails',
     'milled alternative',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 11,
   order: 3,
   authors: [
@@ -257,7 +257,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table.',
+      text: 'We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to.',
     },
 
     { kind: 'h3', id: 'good-at', text: 'What each assistant offers for this job' },
@@ -360,13 +360,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 20 competitors, use Obsession. Its [email and SMS tracking](/blueprints/email-sms-tracking) keeps every email each competitor sends, dated as it arrived, from the day the competitor is added. Its [developers page](/developers) covers the same job for teams building their own AI agents. For 1 to 3 competitors, a spare inbox and an assistant are enough.',
+      text: 'For 20 competitors, use Obsession. Its [Email and SMS tracking](/blueprints/email-sms-tracking) blueprint keeps a persona on each competitor’s list, so every email and text lands dated as it arrived, from the day the competitor is added. Developers can build the same on the [email](/email) piece, at $0.50 an inbox a month and $0.40 per 1,000 emails. For 1 to 3 competitors, a spare inbox and an assistant are enough.',
     },
     {
       kind: 'cta',
-      text: 'Every email, text and offer your competitors send their signed-up customers, each dated with a screenshot. Look up any competitor, and one not covered yet is added the day you ask.',
-      to: '/marketing',
-      label: 'Request early access',
+      text: 'Every email, text and offer your competitors send new subscribers, each dated with a screenshot. Email and SMS tracking keeps a persona on every list, for as many competitors as you name.',
+      to: '/blueprints/email-sms-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'for-agencies', text: 'For agencies: running the same test on a client’s store' },
@@ -380,9 +380,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Open every pitch and client report with the store’s own emails, and the ones that never came: what any store sends after a sign-up and a basket, each message dated and kept as it arrived.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      text: 'Open every pitch and client report with the store’s own emails, and the ones that never came. Mystery shopping keeps what any store sends after a sign-up and a basket, each message dated as it arrived.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'start-now', text: 'When to sign up before Black Friday' },

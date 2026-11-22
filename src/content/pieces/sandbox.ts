@@ -44,6 +44,26 @@ export const sandbox: PiecePage = {
     code,
   },
 
+  scene: {
+    heading: 'A computer for each agent, for the files it finds.',
+    line: 'An agent downloads a statement, a spreadsheet or a PDF and needs to work on it. The sandbox runs the code, sends back the result and keeps the output in the log.',
+    steps: [
+      { icon: 'mail', label: 'A report arrives by email' },
+      { icon: 'sandbox', label: 'The agent runs code on it' },
+      { icon: 'check', label: 'It checks every row' },
+      { icon: 'webhook', label: 'The answer goes to your system' },
+    ],
+    who: 'Ledger agent 7 at fenwick.example',
+    note: '1,204 rows checked in 1.8 seconds',
+    fleet: '3,000 runs today',
+    rows: [
+      { at: '06:00', kind: 'email.received', text: 'Daily settlement report · settlements.csv attached' },
+      { at: '06:00', kind: 'sandbox.finished', text: '1,204 rows checked in 1.8 s · 3 don’t match the bank', tone: 'ok' },
+      { at: '06:01', kind: 'email.sent', text: 'The 3 mismatches, row by row, to finance@fenwick.example' },
+      { at: '06:01', kind: 'webhook', text: 'Mismatch list sent to your accounting system' },
+    ],
+    caption: 'A report in, code run on it, and the rows that don’t match out, before anyone starts work. Fenwick is an invented example.',
+  },
   can: {
     heading: 'Your agent runs its own code, away from your systems.',
     line: 'A full Linux computer for each task, gone when the task is done.',
@@ -82,6 +102,7 @@ export const sandbox: PiecePage = {
       {
         q: 'What is a code sandbox for AI agents?',
         a: 'A computer in the cloud, set apart from your systems, where an agent runs the code it writes. It installs packages, reads and writes files and returns the results.',
+        link: { label: 'RL environments for AI agents', to: '/blueprints/train-and-test-agents' },
       },
       {
         q: 'Which languages can it run?',
@@ -104,6 +125,6 @@ export const sandbox: PiecePage = {
 
   final: {
     heading: 'Give your agent a computer for each task.',
-    capture: { kind: 'waitlist', button: 'Request early access', interest: 'any', source: 'piece-sandbox' },
+    capture: { kind: 'waitlist', button: 'Start free', interest: 'any', source: 'piece-sandbox' },
   },
 }

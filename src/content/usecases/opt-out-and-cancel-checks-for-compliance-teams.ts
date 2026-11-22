@@ -1,14 +1,18 @@
+import { kitPathOf } from '../kitPaths'
+import { personaCostLine, plans } from '../prices'
 import type { UseCaseStudy } from '../types'
 
-/* Opt-out and cancel checks for compliance teams (/use-cases/opt-out-and-cancel-checks-for-compliance-teams), 12 Nov
-   2026: what a subscription company shows a customer who leaves (each cancel step and save offer, renewal and
-   price-rise notices, every email after an unsubscribe and every text after STOP), at the reader's own company and the
-   competitors a regulator compares it with, looked up in Search or Insights, a table or a webhook. The plan, the search
-   phrases and the fact-check are in the Obsession folder, _research/seo/usecases-compliance-funds-12nov/. Every law and
-   date was read on its own page on 12 Nov (EUR-Lex, gov.uk, the FTC, Google, Yahoo, eCFR); the wording follows that
-   check (the UK date as gov.uk gives it, Gmail's 48 hours as a recommendation, no finding of illegality from the sweep).
-   Fernhill and its competitors are invented, and `fine` says so. The agents appear only in the answer on where the
-   evidence comes from. General information, never legal advice. */
+/* Opt-out and cancel checks for compliance teams (/use-cases/opt-out-and-cancel-checks-for-compliance-teams), 22 Nov 2026
+   rewrite for the toolkit position: a persona (its own browser, inbox and number) cancels, unsubscribes and texts STOP at
+   the reader's company and its competitors, and keeps each cancel step and every message after an opt-out in the event
+   log. Delivery monitoring and QA on your own flows run it; Email and SMS tracking covers competitors' lists. Part of the
+   Test sign-up and agents kit. The laws and dates were read on their own pages on 12 Nov (EUR-Lex, gov.uk, the FTC,
+   Google, Yahoo, eCFR; the research is in the Obsession folder, _research/seo/usecases-compliance-funds-12nov/) and are
+   kept word for word. Fernhill and its competitors are invented, and `fine` says so. General information, never legal
+   advice. Prices come from prices.ts. */
+
+const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
+const planWords = `the Free plan, then ${fees.slice(0, -1).join(', ')} or ${fees[fees.length - 1]} a month`
 
 export const study: UseCaseStudy = {
   name: 'Opt-out and cancel checks for compliance teams',
@@ -18,9 +22,9 @@ export const study: UseCaseStudy = {
     path: '/use-cases/opt-out-and-cancel-checks-for-compliance-teams',
     title: 'Opt-out compliance: proof cancel, unsubscribe and STOP work',
     description:
-      'Dated proof that cancel flows, unsubscribes and SMS STOP work, at your company and your competitors: each step’s screenshot and every message sent after.',
+      'AI agents cancel, unsubscribe and text STOP at your company and your competitors, and keep each step’s screenshot and every message sent after, dated.',
     answer:
-      'Opt-out compliance means proving that cancelling, unsubscribing and texting STOP work the way the law and your own terms say. Obsession keeps that proof for your company and your competitors: each step of the cancel flow with its screenshot, and every email or text that arrives after an opt-out. Each one is dated, and every email’s signature is checked on arrival.',
+      'Opt-out compliance means proving that cancelling, unsubscribing and texting STOP work the way the law and your own terms say. Obsession’s AI agents cancel, unsubscribe and text STOP at your company and your competitors, and keep every step and every message that follows, dated. Each is a persona with its own browser, inbox and number, and every email’s signature is checked on arrival.',
     ogImage: '/og/opt-out-and-cancel-checks-for-compliance-teams.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -31,9 +35,9 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Early access',
+    pill: 'Test sign-up and agents blueprints',
     headline: 'Proof for compliance teams that cancel, unsubscribe and STOP work.',
-    sub: 'Each step of the cancel flow with its screenshot, and every email or text that arrives after an unsubscribe or a STOP, with the time it came. At your company and the competitors a regulator compares you with, for as long as you follow them.',
+    sub: 'Opt-out compliance means proving that cancelling, unsubscribing and texting STOP work the way the law and your own terms say. Obsession’s AI agents cancel, unsubscribe and text STOP at your company and your competitors, and keep every step and every message that follows, dated.',
     example: { chips: ['Fernhill, a gym membership app', '3 competitors', 'Cancel, unsubscribe and STOP'] },
     flow: [
       {
@@ -43,24 +47,25 @@ export const study: UseCaseStudy = {
         foot: 'In the UK, the EU or the US',
       },
       {
-        label: 'What comes back',
-        title: 'Every step, dated',
-        items: ['Each cancel step and save offer', 'Renewal and price-rise notices', 'Every email after an unsubscribe', 'Every text after STOP'],
-        foot: 'Each with its screenshot or the message',
+        label: 'Obsession',
+        title: 'A persona at each company',
+        items: ['A browser for the cancel flow', 'An inbox for every email after', 'A number for every text after STOP', 'Kept for months'],
+        foot: 'Free while it waits',
       },
       {
         label: 'Where it lands',
-        title: 'Where your team works',
-        items: ['Search: one company', 'Insights: a question across many', 'A webhook, a sheet or the API'],
-        foot: 'An evidence file per company',
+        title: 'An evidence file per company',
+        items: ['Each cancel step and save offer', 'Every email after an unsubscribe', 'Every text after STOP', 'A webhook, a sheet or your event log'],
+        foot: 'Each with its screenshot or the message',
       },
     ],
     capture: {
       kind: 'waitlist',
       source: 'usecase-compliance-hero',
-      button: 'Request early access',
-      interest: 'email-sms',
+      button: 'Start free',
+      interest: 'delivery',
     },
+    secondary: { label: 'See the blueprint', to: '/blueprints/delivery-monitoring' },
   },
 
   how: {
@@ -70,7 +75,7 @@ export const study: UseCaseStudy = {
       {
         title: 'Set it up',
         line: 'Which companies, as which customer, and what each result is checked against.',
-        chips: ['Your company and any competitor', 'New member · UK', 'Monthly plan', 'Says it’s AI to a person'],
+        chips: ['Your company and any competitor', 'New member · UK', 'Monthly plan', 'Says it’s an AI to a person'],
         steps: [
           {
             title: 'Name the companies',
@@ -90,10 +95,10 @@ export const study: UseCaseStudy = {
         ],
       },
       {
-        title: 'Obsession follows each company',
+        title: 'A persona follows each company',
         line: 'It signs up, cancels, unsubscribes and texts STOP, then keeps everything that arrives after.',
         screen: 'optout',
-        chips: ['Its own inbox', 'Its own phone number', 'Its own browser', 'Says it’s AI'],
+        chips: ['Its own browser', 'Its own inbox', 'Its own number', 'Says it’s an AI'],
         steps: [
           {
             title: 'The cancel flow, step by step',
@@ -124,17 +129,18 @@ export const study: UseCaseStudy = {
       { title: 'Unsubscribes', line: 'Gmail and Yahoo require one-click unsubscribe from bulk senders. In the US, CAN-SPAM allows 10 business days.' },
       { title: 'Texts', line: 'In the US, a STOP reply revokes consent to marketing texts, and the FCC’s rule gives 10 business days to honour it.' },
     ],
-    answer: 'Tag and consent tools scan your pages. Obsession keeps what a customer gets after they leave: each step’s screenshot and every message itself, dated.',
+    answer: 'Tag and consent tools scan your pages. A persona keeps what a customer gets after they leave, each step’s screenshot and every message itself, dated.',
   },
 
   outputs: {
     heading: 'What compliance, legal and product teams do with it.',
+    sub: 'Each use shows up in audit readiness, findings and complaints, where you can watch it.',
     groups: [
       {
         items: [
           {
             title: 'Answer a regulator with dates',
-            line: 'Not with a description of how the flow should work.',
+            line: 'With the screenshots and the time each was taken.',
             example: 'Asked how cancelling worked in March, the team sent the 4 screenshots and their times in one file.',
           },
           {
@@ -145,7 +151,8 @@ export const study: UseCaseStudy = {
           {
             title: 'See where you stand',
             line: 'How many steps each competitor takes to cancel, and what each offers to stay.',
-            example: 'Asked “Which competitors make cancelling longer than signing up?”, Insights named Brackenridge and Calder Club, with the screens.',
+            example: 'Brackenridge and Calder Club take more steps to cancel than to sign up, with the screens to show it.',
+            link: { label: 'Email and SMS tracking', to: '/blueprints/email-sms-tracking' },
           },
           {
             title: 'Show the board what changed',
@@ -160,15 +167,15 @@ export const study: UseCaseStudy = {
   more: {
     recipe: {
       label: 'The blueprint',
-      title: 'Email and SMS tracking',
-      line: 'Every email and text a company sends a subscriber, on 1 timeline. When a watch ends, it texts STOP and checks the texts stop.',
-      cta: { label: 'Learn more', to: '/blueprints/email-sms-tracking' },
+      title: 'Delivery monitoring',
+      line: 'Personas time every message after each sign-up and opt-out, and flag any that should never have come.',
+      cta: { label: 'See the blueprint', to: '/blueprints/delivery-monitoring' },
     },
     sample: {
-      label: '1 real run',
-      title: 'Sample data',
-      line: 'Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.',
-      cta: { label: 'See it', to: '/sample-output' },
+      label: 'After every release',
+      title: 'QA on your own flows',
+      line: 'A new persona through your cancel flow after every release, each step screenshotted.',
+      cta: { label: 'See the blueprint', to: '/blueprints/website-audit' },
     },
   },
 
@@ -178,12 +185,8 @@ export const study: UseCaseStudy = {
     heading: 'What compliance teams ask.',
     items: [
       {
-        q: 'What does Obsession do for compliance teams?',
-        a: 'Opt-out compliance means proving that cancelling, unsubscribing and texting STOP work the way the law and your own terms say. Obsession keeps that proof for your company and your competitors: each step of the cancel flow with its screenshot, and every email or text that arrives after an opt-out. Each one is dated, and every email’s signature is checked on arrival.',
-      },
-      {
         q: 'Where does the evidence come from?',
-        a: 'From real subscriptions. Obsession’s agents sign up, cancel, unsubscribe and text STOP the way any customer can. They use the country and plan you choose, and keep each account open for months. They say they’re an AI when they talk to a person, never invent identity details and stop at an identity check.',
+        a: 'From real subscriptions. A persona signs up, cancels, unsubscribes and texts STOP the way any customer can, in the country and plan you choose, and keeps each account open for months. It says it’s an AI when it talks to a person, never invents identity details and stops at an identity check.',
         link: { label: 'The lines every agent keeps', to: '/agents' },
       },
       {
@@ -192,7 +195,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Is it legal to check a competitor’s cancel flow?',
-        a: 'Usually, when it goes through the same steps any customer can and says it’s an AI when a person asks. Our guide sets out the rules by country. It is general information, not legal advice, so check your own position with your lawyers.',
+        a: 'Usually, when a persona goes through the same steps any customer can and says it’s an AI when a person asks. Our guide sets out the rules by country. It is general information, not legal advice, so check your own position with your lawyers.',
         link: { label: 'Is it legal to mystery shop competitors?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
       },
       {
@@ -202,19 +205,25 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'How long does it watch after an opt-out?',
-        a: 'For as long as you follow the company. Emails and texts are kept the moment they arrive, so a message sent 3 days or 3 months after an unsubscribe is caught.',
+        a: 'For as long as you keep the persona. It waits for free, and its inbox and number stay live, so a message sent days or months after an unsubscribe is caught.',
+      },
+      {
+        q: 'How is it priced?',
+        a: `${personaCostLine} It costs nothing while it waits, and each blueprint is billed on the pieces it uses. Start on ${planWords}.`,
+        link: { label: 'See pricing', to: '/pricing' },
       },
     ],
   },
 
   final: {
-    heading: 'Which companies’ cancel flows should we look up first?',
-    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
+    heading: 'Keep proof that every cancel, unsubscribe and STOP works.',
+    sub: 'Start with your own cancel flow and one competitor’s, so you can see it in audit-ready evidence before a regulator asks.',
     capture: {
       kind: 'waitlist',
       source: 'usecase-compliance-final',
-      button: 'Request early access',
-      interest: 'email-sms',
+      button: 'Start free',
+      interest: 'delivery',
     },
+    link: { label: 'See the Test sign-up and agents blueprints', to: kitPathOf.test },
   },
 }

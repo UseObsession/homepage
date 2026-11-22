@@ -1,9 +1,13 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { Mark } from '../components/Logo'
+import { PersonaGlyph } from '../components/persona/icons'
 import { Faq } from '../components/sections/Faq'
+import { catalog } from '../content/catalog'
+import { kitLinks } from '../content/kitPaths'
 import { counts, figure, pricingPage as p, quantity, ratePer, type CalcPiece, type CalcQuantity, type PlanCard } from '../content/pricing'
 import { billing, listAmounts, plans, prices, type Price, type PriceKey } from '../content/prices'
+import { useInView } from '../hooks/useReveal'
 import { cheapestPlan } from '../lib/pricing/engine.js'
 import { NoticeHero } from './Notice'
 import '../components/sections/FinalCta.css'
@@ -32,12 +36,40 @@ function Arrow() {
 
 const priceOf = (key: PriceKey): Price => prices[key]
 
+/* A tick before a fact the reader can count on. */
+function Tick() {
+  return (
+    <svg className="s-pr-tick" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path d="M3.5 8.5 6.5 11.5 12.5 4.5" />
+    </svg>
+  )
+}
+
+/* Entrances play once, when a block first scrolls into view. Items hide for it only after the page's script has armed
+   the block, so the prerender, crawlers and readers without script get every word at once. */
+function useEntrance<T extends Element>(threshold: number) {
+  const { ref, inView } = useInView<T>(threshold)
+  const [armed, setArmed] = useState(false)
+  const [seen, setSeen] = useState(false)
+  useEffect(() => {
+    if (inView) setSeen(true)
+    else if (!seen) setArmed(true)
+  }, [inView, seen])
+  return { ref, armed, seen }
+}
+const delay = (n: number) => ({ ['--d' as string]: n }) as CSSProperties
+
 /* ---- The plans ---- */
 
-function PlanItem({ plan }: { plan: PlanCard }) {
+function PlanItem({ plan, i }: { plan: PlanCard; i: number }) {
   const id = useId()
   return (
-    <article role="listitem" className={plan.featured ? 'ob-card ob-card--raised s-pr-plan s-pr-plan--featured' : `ob-card s-pr-plan s-pr-plan--${plan.id}`} aria-labelledby={`${id}-name`}>
+    <article
+      role="listitem"
+      className={plan.featured ? 'ob-card ob-card--raised s-pr-plan s-pr-plan--featured' : `ob-card s-pr-plan s-pr-plan--${plan.id}`}
+      style={delay(i)}
+      aria-labelledby={`${id}-name`}
+    >
       <div className="s-pr-plan__top">
         <h2 className="s-pr-plan__name" id={`${id}-name`}>
           {plan.name}
@@ -78,7 +110,8 @@ function PlanItem({ plan }: { plan: PlanCard }) {
           )}
           {plan.includes.map((item) => (
             <li className="s-pr-plan__row" key={item}>
-              {tie(item)}
+              <Tick />
+              <span>{tie(item)}</span>
             </li>
           ))}
         </ul>
@@ -221,6 +254,9 @@ function PieceCard({ piece, on, toggle, texts, set }: CardProps) {
           <span className="ob-switch-thumb" />
         </span>
         <span className="ob-choice-text s-pr-piece__name" id={`${id}-name`}>
+          <span className="s-pr-piece__icon">
+            <PersonaGlyph name={piece.icon} />
+          </span>
           {piece.name}
         </span>
         <span className="ob-choice-desc s-pr-piece__line" id={`${id}-line`}>
@@ -364,6 +400,71 @@ function Calculator({ headId }: { headId: string }) {
   )
 }
 
+/* ---- What a job costs: 1 blueprint per type, its months from the pricing engine (content/catalog.ts) ---- */
+
+const recipeBySlug = Object.fromEntries(catalog.recipes.map((r) => [r.slug, r]))
+const kitByName = Object.fromEntries(kitLinks.map((k) => [k.name, k]))
+/* A month's estimate as the blueprint pages show it: whole dollars, or to the cent under $10. */
+const usd = (n: number) => (Number.isInteger(n) ? `$${figure(n)}` : `$${figure(Math.floor(n))}.${String(Math.round((n % 1) * 100)).padStart(2, '0')}`)
+const jobCards = p.jobs.picks.map((slug) => {
+  const r = recipeBySlug[slug]
+  if (!r) throw new Error(`pages/Pricing.tsx: no blueprint "${slug}" in the catalog (content/pricing.ts jobs.picks)`)
+  const kit = kitByName[r.group]
+  if (!kit) throw new Error(`pages/Pricing.tsx: the blueprint ${slug} is in "${r.group}", which is not a type in content/kitPaths.ts`)
+  const months = r.tiers.filter((t) => !t.free)
+  const featured = months.find((t) => t.featured) ?? months[months.length - 1]
+  return { r, kit, months, featured }
+})
+
+function Jobs({ headId }: { headId: string }) {
+  const j = p.jobs
+  const { ref, armed, seen } = useEntrance<HTMLUListElement>(0.12)
+  return (
+    <ul ref={ref} className={'s-pr-jobs' + (seen ? ' is-in' : '')} data-armed={armed ? '' : undefined} aria-labelledby={headId}>
+      {jobCards.map(({ r, kit, months, featured }, i) => (
+        <li key={r.slug} className="s-pr-jobs__item" data-reader={kit.reader} style={delay(i)}>
+          <Link className="s-pr-job" to={`/blueprints/${r.slug}`}>
+            <span className="s-pr-job__type">
+              <span className="s-pr-job__icon">
+                <PersonaGlyph name={kit.icon} />
+              </span>
+              {kit.name}
+            </span>
+            <span className="s-pr-job__name">
+              {r.name}
+              <svg className="s-pr-job__go" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M6 3.5 10.5 8 6 12.5" />
+              </svg>
+            </span>
+            <span className="s-pr-job__price">
+              <span className="s-pr-job__amount">{usd(featured.estimate)}</span> <span className="s-pr-job__per">{j.per}</span>
+            </span>
+            <span className="s-pr-job__covers">{tie(featured.covers)}</span>
+            <ol className="s-pr-job__range" aria-label={j.range}>
+              {months.map((t) => (
+                <li key={t.name} className={t === featured ? 'is-featured' : undefined}>
+                  <span className="s-pr-job__tier">{t.name}</span>
+                  <span className="s-pr-job__est">{usd(t.estimate)}</span>
+                </li>
+              ))}
+            </ol>
+          </Link>
+        </li>
+      ))}
+      <li className="s-pr-jobs__item s-pr-jobs__more" style={delay(jobCards.length)}>
+        <Link className="s-pr-job s-pr-job--more" to={j.more.link.to}>
+          <span className="s-pr-job__name">{j.more.heading}</span>
+          <span className="s-pr-job__covers">{tie(j.more.line(catalog.recipes.length))}</span>
+          <span className="s-pr-job__cta">
+            {j.more.link.label}
+            <Arrow />
+          </span>
+        </Link>
+      </li>
+    </ul>
+  )
+}
+
 /* ---- The page ---- */
 
 export function Pricing() {
@@ -371,13 +472,22 @@ export function Pricing() {
   const f = p.final
   return (
     <>
-      <NoticeHero pill={p.pill} headline={p.headline} sub={p.sub} />
+      <NoticeHero pill={p.pill} headline={p.headline} sub={p.sub}>
+        <ul className="s-pr-trust" aria-label={p.pill}>
+          {p.trust.map((t) => (
+            <li key={t}>
+              <Tick />
+              {t}
+            </li>
+          ))}
+        </ul>
+      </NoticeHero>
 
       <section className="s-section s-pr-plans" id="plans" aria-label={p.plans.label}>
         <div className="s-wrap s-wrap--wide">
           <div className="s-pr-grid" role="list">
-            {p.plans.items.map((plan) => (
-              <PlanItem plan={plan} key={plan.id} />
+            {p.plans.items.map((plan, i) => (
+              <PlanItem plan={plan} i={i} key={plan.id} />
             ))}
           </div>
           <p className="s-pr-extra s-pr-texting">{tie(p.plans.texting)}</p>
@@ -387,6 +497,18 @@ export function Pricing() {
               <span className="ob-btn-label">{p.plans.extra.link.label}</span>
             </Link>
           </p>
+        </div>
+      </section>
+
+      <section className="s-section s-pr-jobs-sec" id="blueprints" aria-labelledby={`${id}-jobs`}>
+        <div className="s-wrap s-wrap--wide">
+          <header className="s-head s-pr-head">
+            <h2 className="ob-type-h2" id={`${id}-jobs`}>
+              {tie(p.jobs.heading)}
+            </h2>
+            <p>{tie(p.jobs.line)}</p>
+          </header>
+          <Jobs headId={`${id}-jobs`} />
         </div>
       </section>
 

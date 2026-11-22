@@ -25,7 +25,7 @@ import type { BlogPost } from './types'
    (never named, Seun 28 Oct). larkmoor.example, wrenfield.example and every figure in the 3 illustrations are
    invented. Buyer words (sign up, welcome email, basket, pop up, Promotions tab, client); no dashes.
    11 Nov 2026 (SEO revamp wave 1): titles, answer, Obsession's lines, its comparison row and the calls to action moved to
-   the live position (the web behind the login, early access); no free offer, and no line implying one agency. */
+   the live position (the web behind the login, early access); no free offer, and no line implying one agency. Rewritten 22 Nov 2026 for the toolkit position. */
 
 const KLAVIYO_BENCH = 'https://www.klaviyo.com/products/email-marketing/benchmarks'
 const MC_AGENCIES = 'https://mailcharts.com/built-for/agencies'
@@ -65,12 +65,12 @@ const KL_TIMING = 'https://www.klaviyo.com/blog/when-to-send-black-friday-emails
 export const post: BlogPost = {
   slug: 'competitor-email-tracking-tools',
   title: 'The best competitor email tracking tools for brands and agencies in 2026, compared',
-  dek: 'Eleven tools for CRM leads, retention agencies and founders, grouped by what they collect and read on their own pages on 28 October 2026. Beside them, Obsession keeps every email any competitor you name sends its customers, dated as it arrived.',
+  dek: 'Eleven tools for CRM leads, retention agencies and founders, grouped by what they collect and read on their own pages on 28 October 2026. Beside them, Obsession’s email and SMS tracking blueprint keeps every email and text any competitor you name sends its customers, dated as it arrived.',
   metaTitle: 'Best competitor email tracking tools for brands and agencies',
   description:
     'Competitor email tracking tools for brands and agencies, by job and price, beside Obsession, which keeps every email a competitor sends its customers.',
   answer:
-    'By job, the best competitor email tracking tools are Milled or BadRep for campaigns competitors already sent, and Panoramata for many competitors’ emails, texts and ads. SendView, Sendsitive or Owletter follow a list of competitors you name, and for 1 to 3 competitors a spare inbox for each is enough. Obsession keeps every email any competitor you name sends its customers, basket reminders included, dated as it arrived, by API, MCP (the standard way AI agents call tools) or a table.',
+    'By job, the best competitor email tracking tools are Milled or BadRep for campaigns competitors already sent, and Panoramata for many competitors’ emails, texts and ads. SendView, Sendsitive or Owletter follow a list of competitors you name, and for 1 to 3 competitors a spare inbox for each is enough. Obsession’s email and SMS tracking blueprint keeps every email and text any competitor you name sends its customers, basket reminders included, dated as it arrived.',
   primaryKeyword: 'competitor email tracking tools',
   keywords: [
     'competitor email tracking',
@@ -86,9 +86,9 @@ export const post: BlogPost = {
     'email competitor analysis',
     'how to see competitors emails',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 20,
   order: 18,
   authors: [
@@ -411,7 +411,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-a-subscriber-got', text: 'What only a new subscriber sees' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Each Obsession agent has its own inbox, so it keeps every email a new subscriber gets after a sign-up, a basket and a checkout, and shows the ones that never came.',
+      text: 'Obsession is the toolkit for AI agents, giving every agent an inbox, a phone number and a browser through one API and one bill. Its email and SMS tracking blueprint gives each competitor a persona, an AI agent with its own inbox and number. It keeps every email a new subscriber gets after a sign-up, a basket and a checkout, and shows the ones that never came.',
     },
     {
       kind: 'art',
@@ -419,7 +419,7 @@ export const post: BlogPost = {
       art: {
         kind: 'log',
         title: 'wrenfield.example · 1 new subscriber, 4 days',
-        who: 'An Obsession agent with its own inbox, watched for 48 hours after each step',
+        who: 'A persona with its own inbox, watched for 48 hours after each step',
         status: { tone: 'fail', text: 'No checkout reminder' },
         rows: [
           { time: 'Mon 10:00', text: 'Signs up through the pop up', detail: 'Promised 10% off by email', tone: 'info' },
@@ -433,15 +433,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The inbox can be read at 4, 12, 24 or 48 hours, or watched for as long as you want, and an email is called missing only once the window you chose has closed. Where a store puts a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the record names the step it couldn’t reach.',
+      text: 'The inbox can be read at 4, 12, 24 or 48 hours, or watched for as long as you want, and an email is called missing only once the window you chose has closed. Where a store puts a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the event log names the step it couldn’t reach.',
     },
     {
       kind: 'p',
-      text: 'Each step in that example needed a customer to act first: sign up, leave a basket or leave a checkout. Galleries and campaign archives show a competitor’s newsletters well, and BadRep, MailCharts and Panoramata also hold flow emails for the brands they track. A reminder that never came is visible only to a customer who knows when it left the checkout. Seeing that takes an address that left the checkout itself: a spare inbox, a tracker address such as SendView’s, or an Obsession agent.',
+      text: 'Each step in that example needed a customer to act first: sign up, leave a basket or leave a checkout. Galleries and campaign archives show a competitor’s newsletters well, and BadRep, MailCharts and Panoramata also hold flow emails for the brands they track. A reminder that never came is visible only to a customer who knows when it left the checkout. Seeing that takes an address that left the checkout itself: a spare inbox, a tracker address such as SendView’s, or a persona on Obsession.',
     },
     {
       kind: 'p',
-      text: 'The same check runs on a brand’s own store. [Leak checks for ecommerce stores](/use-cases/leak-checks-for-ecommerce-stores) keep every email a new customer gets after a sign-up, a basket and a checkout, dated, and show the ones that never come.',
+      text: 'The same check runs on a brand’s own store. The [mystery shopping](/blueprints/mystery-shopper) blueprint keeps every email a new customer gets after a sign-up, a basket and a checkout, dated, and shows the ones that never come.',
     },
 
     { kind: 'h2', id: 'side-by-side', text: 'The 11 tools compared', compare: true },
@@ -567,11 +567,11 @@ export const post: BlogPost = {
           '1 to 25 named competitors, with analytics',
         ],
         [
-          'Obsession (ours): [Email tracking](/blueprints/email-sms-tracking), [Competitor tracking](/blueprints/competitor-tracking)',
-          'Every email any competitor you name sends a new customer, basket reminders included, dated as it arrived',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'History from the day each competitor is added',
-          'Every email a new subscriber gets from any competitor, and the reminders that never came, by API, MCP or a table',
+          'Obsession (ours): [Email and SMS tracking](/blueprints/email-sms-tracking), [Competitor tracking](/blueprints/competitor-tracking)',
+          'Every email and text any competitor you name sends a new customer, basket reminders included, dated as it arrived',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'History from the day each competitor is added\nStops at a CAPTCHA or bot block',
+          'Every email a new subscriber gets from any competitor, and the reminders that never came, in one event log',
         ],
       ],
     },
@@ -648,24 +648,24 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For 1 to 3 competitors, this method needs no paid tool. At 20 competitors it needs 20 addresses, a phone number for each and about 20 hours a month at 15 minutes a competitor, and it still can’t recover older mail. Obsession does that work for any number of competitors. Its [competitor tracking](/blueprints/competitor-tracking) keeps every email, offer and code each competitor sends a new subscriber on 1 timeline, dated the day it arrives, for as long as you follow them.',
+      text: 'For 1 to 3 competitors, this method needs no paid tool. At 20 competitors it needs 20 addresses, a phone number for each and about 20 hours a month at 15 minutes a competitor, and it still can’t recover older mail. Obsession does that work for any number of competitors. Its [competitor tracking](/blueprints/competitor-tracking) blueprint keeps every email, offer and code each competitor sends a new subscriber on 1 timeline, dated the day it arrives, for as long as you follow them.',
     },
     {
       kind: 'cta',
-      text: 'Every email, text and offer your competitors send their signed-up customers, each dated with a screenshot. Look up any competitor, and one not covered yet is added the day you ask.',
-      to: '/marketing',
-      label: 'Request early access',
+      text: 'Not building agents? Pick a blueprint, and Obsession runs it. Email and SMS tracking subscribes to every competitor you name and keeps each email and text they send, dated the day it arrives.',
+      to: '/blueprints/email-sms-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'by-job', text: 'Which tool fits which job' },
     {
       kind: 'p',
-      text: 'Use Obsession when your team needs every email any competitor you name sends its customers, kept exactly as it arrived and dated, for as long as you follow them. It starts the welcome series and the basket and checkout reminders, shows the ones that never came, and answers one question across many competitors by API, MCP or a table. A gallery is enough for design ideas, an archive for campaigns competitors already sent, and a spare inbox for 1 to 3 competitors.',
+      text: 'Use Obsession when your team needs every email any competitor you name sends its customers, kept exactly as it arrived and dated, for as long as you follow them. Its blueprints start the welcome series and the basket and checkout reminders, show the ones that never came, and send each email to your event log, a sheet or Slack. A gallery is enough for design ideas, an archive for campaigns competitors already sent, and a spare inbox for 1 to 3 competitors.',
     },
     {
       kind: 'list',
       items: [
-        '**Every email any competitor you name sends its customers, welcome and basket reminders included, dated for as long as you follow them:** Obsession, by API, MCP or a table.',
+        '**Every email any competitor you name sends its customers, welcome and basket reminders included, dated for as long as you follow them:** Obsession’s email and SMS tracking blueprint.',
         '**Design and copy ideas:** Really Good Emails or Email Love, both free.',
         '**What a category sent around a holiday:** Milled, with its holiday filters, or MailCharts, with its holiday examples.',
         '**Free browsing of a small set of brands, with promo codes shown:** Inbox Archive.',
@@ -699,9 +699,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Open every pitch with the store’s own emails, and the ones that never came. What any store sends after a sign-up and a basket, each message dated and kept as it arrived, for the stores you pitch, the clients you keep and their competitors.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      text: 'Open every pitch with the store’s own emails, and the ones that never came. Obsession’s mystery shopping blueprint keeps what any store sends after a sign-up and a basket, each message dated, for the stores you pitch, the clients you keep and their competitors.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Frequently asked questions' },
@@ -714,7 +714,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What is the best competitor email tracking tool?',
-          a: 'It depends on the job. For every email any competitor you name sends its customers, from the welcome series to the basket reminders, kept exactly as it arrived and looked up by API, MCP or a table, Obsession is the pick. Milled covers campaign history across many brands, and Panoramata puts emails, texts and ads in 1 place. SendView, Sendsitive, Competitor Inbox or Owletter follow a fixed list of competitors you name, and Really Good Emails or Email Love give design examples.',
+          a: 'It depends on the job. For every email any competitor you name sends its customers, from the welcome series to the basket reminders, kept exactly as it arrived, Obsession’s email and SMS tracking blueprint is the pick. Milled covers campaign history across many brands, and Panoramata puts emails, texts and ads in 1 place. SendView, Sendsitive, Competitor Inbox or Owletter follow a fixed list of competitors you name, and Really Good Emails or Email Love give design examples.',
         },
         {
           q: 'Is there a free competitor email monitoring tool?',

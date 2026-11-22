@@ -42,7 +42,7 @@ export const post: BlogPost = {
   description:
     'Competitive intelligence for product marketing: read each competitor’s launch through the emails, trial limits and offers it sends new customers, dated.',
   answer:
-    'Competitive intelligence for product marketing is tracking what competitors claim, launch, charge and send, to set positioning, plan launches and keep battlecards current. A launch page shows what a competitor says, and only a sign-up shows what it sends a new customer: the welcome email, trial limits, upgrade prompts and offers. Obsession keeps what each competitor you name shows its new customers, dated with the email or screenshot, by API, MCP (the standard way AI agents call tools) or a table.',
+    'Competitive intelligence for product marketing is tracking what competitors claim, launch, charge and send, to set positioning, plan launches and keep battlecards current. A launch page shows what a competitor says, and only a sign-up shows what it sends a new customer: the welcome email, trial limits, upgrade prompts and offers. Obsession’s Trial teardown blueprint starts each competitor’s trial with an AI agent of its own and keeps every email, limit and offer, dated in one event log.',
   primaryKeyword: 'competitive intelligence for product marketing',
   keywords: [
     'competitive intelligence product marketing',
@@ -52,10 +52,10 @@ export const post: BlogPost = {
     'competitor analysis positioning map',
     'what is competitive marketing intelligence',
   ],
-  category: 'Watch other companies',
+  category: 'Watch the market',
   order: 10,
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 14,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -313,13 +313,13 @@ export const post: BlogPost = {
 
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For product marketing, it keeps each competitor’s onboarding emails, trial limits, upgrade prompts, signed-in prices and offers by trial day, as the [trial teardown](/blueprints/trial-teardown) and [competitor tracking](/blueprints/competitor-tracking) blueprints show. A fresh run follows when a competitor changes its trial. Exa and search tools like it give reps and AI agents the public web in seconds. Obsession gives them what a competitor sends the people who sign up, as the [comparison with Exa](/compare/obsession-vs-exa) sets out. Each new email, limit and offer lands dated the day it arrives, so you can see it in your positioning, your battlecards and your win-loss against each competitor. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'Obsession is the toolkit for AI agents, and its blueprints run ready-made jobs for the teams who pick them. For product marketing, a persona, an AI agent with its own inbox, number and browser, keeps each competitor’s onboarding emails, trial limits, upgrade prompts, signed-in prices and offers by trial day, as the [trial teardown](/blueprints/trial-teardown) and [competitor tracking](/blueprints/competitor-tracking) blueprints show. A fresh run follows when a competitor changes its trial. Exa and search tools like it give reps and AI agents the public web in seconds. Obsession gives an agent its own inbox and a browser that stays signed in, so it keeps what a competitor sends the people who sign up, as the [comparison with Exa](/compare/obsession-vs-exa) sets out. Each new email, limit and offer lands dated the day it arrives, so you can see it in your positioning, your battlecards and your win-loss against each competitor. [Sales intelligence for B2B revenue teams](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
       text: 'Every competitor’s trial emails, limits, upgrade prompts and offers, each dated with the email or screenshot. A fresh run follows whenever a competitor changes its trial.',
-      to: '/#join',
-      label: 'Request early access',
+      to: '/blueprints/trial-teardown',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'options', text: 'Competitive intelligence options for product marketing', compare: true },
@@ -372,15 +372,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Trial teardown](/blueprints/trial-teardown), [Competitor tracking](/blueprints/competitor-tracking)',
           'Keeps what each competitor you name shows new customers: trial emails, limits, upgrade prompts, signed-in prices, offers',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'A competitor not yet covered starts its history the day it is added\nEvery journey stops short of paying',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'History starts the day each competitor is added\nEvery trial stops short of paying',
           'What a new customer gets from each competitor, launch by launch, for as long as you follow it',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For what each competitor sends and shows a new customer, use Obsession, which keeps it dated for every competitor you name, launch by launch. Klue, Crayon and Kompyte run the CI programme and put battlecards where reps work, and Klue and Clozd interview buyers about wins and losses. Visualping alerts you when a public launch or pricing page changes, and Exa gives AI agents the public web and partners’ company data, with its prices on [its pricing page](' +
+      text: 'For what each competitor sends and shows a new customer, use Obsession, whose personas keep it dated for every competitor you name, launch by launch. Klue, Crayon and Kompyte run the CI programme and put battlecards where reps work, and Klue and Clozd interview buyers about wins and losses. Visualping alerts you when a public launch or pricing page changes, and Exa gives AI agents the public web and partners’ company data, with its prices on [its pricing page](' +
         EXA_PRICING +
         ').',
     },

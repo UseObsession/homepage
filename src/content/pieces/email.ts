@@ -51,6 +51,27 @@ export const email: PiecePage = {
     code,
   },
 
+  scene: {
+    heading: 'Its own inbox, so the code comes to the agent.',
+    line: 'Most sign-ups send a link or a code by email. With its own address, the agent receives it, opens it and carries on, and every email after it stays in the thread.',
+    steps: [
+      { icon: 'browser', label: 'It signs up on a supplier portal' },
+      { icon: 'mail', label: 'The link lands in its own inbox' },
+      { icon: 'check', label: 'It opens the link and carries on' },
+      { icon: 'record', label: 'Every email after is kept' },
+    ],
+    who: 'Ada, the purchasing agent at northpine.example',
+    note: 'Sign-in link opened 4 seconds after arriving',
+    fleet: '500 inboxes · one per agent',
+    rows: [
+      { at: '10:02:11', kind: 'page.visited', text: 'supplier.example/register · ada@northpine.example · screenshot saved' },
+      { at: '10:02:19', kind: 'email.received', text: '“Confirm your email” · link inside' },
+      { at: '10:02:23', kind: 'page.visited', text: 'Link opened 4 s after it arrived · account active', tone: 'ok' },
+      { at: '10:40', kind: 'email.received', text: 'Your trade price list · PDF attached' },
+      { at: 'Fri 09:00', kind: 'email.received', text: '“Prices rise 6% on 1 December”' },
+    ],
+    caption: 'An agent with its own address signs up, confirms by email and keeps every message after. Northpine is an invented example.',
+  },
   can: {
     heading: 'An email inbox for AI agents, with every thread kept.',
     line: 'Everything a person does with an inbox, done through code.',
@@ -59,7 +80,7 @@ export const email: PiecePage = {
       { title: 'Send and receive', line: 'Plain text or HTML, to anyone. Replies land back in the same inbox.' },
       { title: 'Threads kept for you', line: 'Replies are grouped by conversation, so your agent reads the whole exchange first.' },
       { title: 'Attachments both ways', line: 'Send files, and get every file that arrives: invoices, PDFs, images and calendar invites.' },
-      { title: 'Codes read for you', line: 'Verification codes and confirm links are pulled out of each email, so a sign up finishes without a person.' },
+      { title: 'Codes read for you', line: 'Verification codes and confirm links are pulled out of each email, so a sign-up finishes without a person.' },
       { title: 'A webhook for every email', line: 'Your app gets each new message as it lands, with its thread and its files.' },
     ],
   },
@@ -89,6 +110,7 @@ export const email: PiecePage = {
       {
         q: 'What is an email API for AI agents?',
         a: 'An API that gives an agent its own inbox. The agent sends and receives email through code, and a webhook tells your app about each new message.',
+        link: { label: 'AgentMail, Twilio, Browserbase and E2B in one API', to: '/compare/agentmail-twilio-browserbase-e2b' },
       },
       {
         q: 'Can I use only the email API?',
@@ -111,6 +133,6 @@ export const email: PiecePage = {
 
   final: {
     heading: 'Give every agent its own inbox.',
-    capture: { kind: 'waitlist', button: 'Request early access', interest: 'any', source: 'piece-email' },
+    capture: { kind: 'waitlist', button: 'Start free', interest: 'any', source: 'piece-email' },
   },
 }

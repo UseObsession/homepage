@@ -238,6 +238,9 @@ const ICONS: Record<NavIcon, string> = {
   phone: '<rect x="4.5" y="1.5" width="7" height="13" rx="1.5"/><path d="M7 12.2h2"/>',
   browser: '<circle cx="8" cy="8" r="5.5"/><path d="M2.5 8h11M8 2.5c1.6 1.6 2.4 3.4 2.4 5.5S9.6 11.9 8 13.5C6.4 11.9 5.6 10.1 5.6 8S6.4 4.1 8 2.5Z"/>',
   sandbox: '<rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="m4.8 6.5 2 1.5-2 1.5M8.2 10h3"/>',
+  check: '<circle cx="8" cy="8" r="5.5"/><path d="m5.6 8.2 1.7 1.7 3.2-3.6"/>',
+  key: '<circle cx="5.5" cy="10.5" r="2.5"/><path d="m7.3 8.7 5.2-5.2M10.6 5.4l1.6 1.6M12 4l1.4 1.4"/>',
+  flask: '<path d="M6.2 2h3.6M6.8 2v4.2L3 12.6a1 1 0 0 0 .9 1.4h8.2a1 1 0 0 0 .9-1.4L9.2 6.2V2"/><path d="M4.6 10h6.8"/>',
 }
 function ToolIcon({ name }: { name: NavIcon }) {
   return (
@@ -653,30 +656,40 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
               {panel(
                 'products',
                 's-menu--products',
-                <>
-                  <ul className="s-menu__list s-tm__list" data-col>
-                    {products.items.map((t) => (
-                      <li key={t.to}>{toolRow(t)}</li>
-                    ))}
-                  </ul>
-                  <p className="s-menu__label s-menu__label--caps" id={`${ids.products}-int`}>
-                    {products.integrations.label}
-                  </p>
-                  <ul className="s-tm__grid" aria-labelledby={`${ids.products}-int`} data-col>
-                    {products.integrations.items.map((t) => (
-                      <li key={t.label}>{toolRow(t, ' s-tool--compact')}</li>
-                    ))}
-                  </ul>
-                  <hr className="ob-menu__sep" />
-                  {go(
-                    products.integrations.all.to,
-                    'ob-menu__item s-menu__all',
-                    <>
-                      {products.integrations.all.label}
-                      <Arrow />
-                    </>,
-                  )}
-                </>,
+                <div className="s-pd">
+                  <div className="s-pd__main" data-col>
+                    <p className="s-menu__label s-menu__label--caps" id={`${ids.products}-pieces`}>
+                      {products.piecesLabel}
+                    </p>
+                    <ul className="s-pd__grid" aria-labelledby={`${ids.products}-pieces`}>
+                      {products.items.map((t) => (
+                        <li key={t.to}>{toolRow(t, ' s-tool--compact')}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="s-pd__side" data-col>
+                    <p className="s-menu__label s-menu__label--caps" id={`${ids.products}-ways`}>
+                      {products.waysLabel}
+                    </p>
+                    <ul className="s-menu__list" aria-labelledby={`${ids.products}-ways`}>
+                      {products.ways.map((t) => (
+                        <li key={t.to}>{toolRow(t, ' s-tool--way')}</li>
+                      ))}
+                    </ul>
+                    <div className="s-pd__prices">
+                      {products.prices.map((p) =>
+                        go(
+                          p.to,
+                          'ob-menu__item s-menu__all',
+                          <>
+                            {p.label}
+                            <Arrow />
+                          </>,
+                        ),
+                      )}
+                    </div>
+                  </div>
+                </div>,
               )}
             </>,
           )}
@@ -689,18 +702,52 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
                 'solutions',
                 's-menu--solutions',
                 <div className="s-sm">
-                  {solutions.columns.map((c, k) => (
-                    <div className="s-sm__col" key={c.label} data-col>
-                      <p className="s-menu__label s-menu__label--caps" id={`${ids.solutions}-${k}`}>
-                        {c.label}
-                      </p>
-                      <ul className="s-menu__list" aria-labelledby={`${ids.solutions}-${k}`}>
-                        {c.items.map((t) => (
-                          <li key={t.to}>{toolRow(t)}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                  <div className="s-sm__col" data-col>
+                    <p className="s-menu__label s-menu__label--caps" id={`${ids.solutions}-kits`}>
+                      {solutions.kitsLabel}
+                    </p>
+                    <ul className="s-menu__list" aria-labelledby={`${ids.solutions}-kits`}>
+                      {solutions.kits.map((t) => (
+                        <li key={t.to}>{toolRow(t, ' s-tool--compact')}</li>
+                      ))}
+                    </ul>
+                    {go(
+                      solutions.kitsAll.to,
+                      'ob-menu__item s-menu__all',
+                      <>
+                        {solutions.kitsAll.label}
+                        <Arrow />
+                      </>,
+                    )}
+                  </div>
+                  <div className="s-sm__col s-sm__col--teams" data-col>
+                    <p className="s-menu__label s-menu__label--caps" id={`${ids.solutions}-teams`}>
+                      {solutions.teamsLabel}
+                    </p>
+                    <ul className="s-menu__list" aria-labelledby={`${ids.solutions}-teams`}>
+                      {solutions.teams.map((p) => (
+                        <li key={p.to}>{pageRow(p, ' s-xm__link')}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="s-sm__col s-sm__col--teams" data-col>
+                    <p className="s-menu__label s-menu__label--caps" id={`${ids.solutions}-cases`}>
+                      {solutions.useCasesLabel}
+                    </p>
+                    <ul className="s-menu__list" aria-labelledby={`${ids.solutions}-cases`}>
+                      {solutions.useCases.map((p) => (
+                        <li key={p.to}>{pageRow(p, ' s-xm__link')}</li>
+                      ))}
+                    </ul>
+                    {go(
+                      solutions.useCasesAll.to,
+                      'ob-menu__item s-menu__all',
+                      <>
+                        {solutions.useCasesAll.label}
+                        <Arrow />
+                      </>,
+                    )}
+                  </div>
                 </div>,
               )}
             </>,
@@ -735,7 +782,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
             </>,
           )}
 
-          {[nav.menus.developers, nav.menus.pricing].map((p) => (
+          {[nav.menus.developers, nav.menus.noCode, nav.menus.pricing].map((p) => (
             <li className="s-nav__plain" key={p.to}>
               <NavLink className="ob-nav__link" to={p.to} end onClick={close}>
                 {p.label}
@@ -783,9 +830,8 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
         role="region"
       >
         {[
-          { id: 'products', label: products.label, rows: products.items },
-          { id: 'integrations', label: products.integrations.label, rows: products.integrations.items },
-          ...solutions.columns.map((c, k) => ({ id: `solutions-${k}`, label: c.label, rows: c.items })),
+          { id: 'products', label: products.label, rows: [...products.items, ...products.ways] },
+          { id: 'kits', label: solutions.kitsLabel, rows: solutions.kits },
         ].map((sec) => (
           <section className="s-mnav__sec" aria-labelledby={`${ids.sheet}-${sec.id}`} key={sec.id}>
             <p className="s-mnav__head" id={`${ids.sheet}-${sec.id}`}>
@@ -799,12 +845,34 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
           </section>
         ))}
 
+        <section className="s-mnav__sec" aria-labelledby={`${ids.sheet}-cases`}>
+          <p className="s-mnav__head" id={`${ids.sheet}-cases`}>
+            {solutions.useCasesLabel}
+          </p>
+          <ul className="ob-mnav__list s-mnav__tools">
+            {[...solutions.useCases, solutions.useCasesAll].map((p) => (
+              <li key={p.to}>{pageRow(p, ' s-page--sheet')}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="s-mnav__sec" aria-labelledby={`${ids.sheet}-teams`}>
+          <p className="s-mnav__head" id={`${ids.sheet}-teams`}>
+            {solutions.teamsLabel}
+          </p>
+          <ul className="ob-mnav__list s-mnav__tools">
+            {solutions.teams.map((p) => (
+              <li key={p.to}>{pageRow(p, ' s-page--sheet')}</li>
+            ))}
+          </ul>
+        </section>
+
         <section className="s-mnav__sec" aria-labelledby={`${ids.sheet}-resources`}>
           <p className="s-mnav__head" id={`${ids.sheet}-resources`}>
             {resources.label}
           </p>
           <ul className="ob-mnav__list s-mnav__tools">
-            {[...resources.items, nav.menus.developers, nav.menus.pricing, ...resources.more.items].map((p) => (
+            {[...resources.items, nav.menus.developers, nav.menus.noCode, nav.menus.pricing, ...resources.more.items].map((p) => (
               <li key={p.to}>{pageRow(p, ' s-page--sheet')}</li>
             ))}
           </ul>

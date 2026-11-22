@@ -27,15 +27,16 @@ export const pieceAt = (path: string): PiecePage | undefined => pieces.find((p) 
 /* The words every piece page shares: the hero's tag and buttons, the price block's link to every price, the label on
    each link to another piece, the event log card's words, and how events reach you (#delivery: the claim, its line and
    the labels over the piece's events and the channels; the channels themselves and the line on a server that's down
-   are content/delivery.ts, the same words as Home, the recipe pages and /developers). */
+   are content/delivery.ts, the same words as Home, the blueprint pages and /developers). */
 export const pieceUi = {
-  pill: 'Early access',
-  primary: { label: 'Request early access', to: '#join' },
+  pill: 'Free plan, no credit card',
+  primary: { label: 'Start free', to: '#join' },
   secondary: { label: 'See pricing', to: '#pricing' },
   code: 'The code',
   allPrices: { label: 'See every price', to: '/pricing/rates' },
   prices: 'Prices',
   pieces: 'The other pieces',
+  kits: 'In these types of blueprints',
   log: 'Event log',
   shot: 'Kept with a screenshot',
   delivery: {

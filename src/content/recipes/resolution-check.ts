@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Resolution check (/recipes/resolution-check). Check your AI agents. Screen: resolution (Vendor A, billed in Sep; 19 of
+/* Resolution check (/blueprints/resolution-check). Check your AI agents. Screen: resolution (Vendor A, billed in Sep; 19 of
    100 billed resolutions not real, $18.81 of $99 at $0.99 each; case H-4471, "Done. $24 is on its way.", no refund in
    payments; the dispute pack under Vendor A terms 4.2).
    The persona version (20 Nov 2026): each resolution the reader's AI vendor bills is matched against the payments and
@@ -14,7 +14,7 @@ export const recipe: Recipe = {
   id: 'resolution',
   slug: 'resolution-check',
   name: 'Resolution check',
-  group: 'Check your AI agents',
+  group: 'Train and test agents',
   line: 'Every resolution your AI vendor bills, matched to what followed and tested by a persona.',
   gets: 'Every billed resolution beside what the customer got, and a dispute pack for the ones that weren’t real.',
   kit: [
@@ -23,7 +23,7 @@ export const recipe: Recipe = {
     'Your helpdesk and payments, connected by you',
     'Your vendor’s billing terms, rule by rule',
     'Every test tagged, agreed with your vendor',
-    'Every case dated, with its receipt',
+    'Every case dated, with the payment or ticket behind it',
   ],
 
   meta: {
@@ -48,7 +48,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-resolution-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'resolution',
     },
   },
@@ -83,7 +83,7 @@ export const recipe: Recipe = {
       { time: '3 Oct 10:10', text: '19 of the 100 weren’t real: refunds never made and problems that came back. $18.81 of the $99 billed.' },
     ],
     finding: '19 of the 100 resolutions Vendor A billed in September weren’t real: $18.81 of $99, where its own terms bill only what’s solved.',
-    fix: 'A dispute pack for all 19 under Vendor A’s terms 4.2, every case with its receipt. Sent to Vendor A after your OK.',
+    fix: 'A dispute pack for all 19 under Vendor A’s terms 4.2, every case with the payment or ticket behind it. Sent to Vendor A after your OK.',
     ledger: '100 billed resolutions read, every case dated.',
   },
 
@@ -134,7 +134,7 @@ export const recipe: Recipe = {
   ],
 
   outputs: {
-    heading: 'Every resolution that wasn’t real comes back with its events in your event log to challenge it.',
+    heading: 'Every resolution that wasn’t real comes back ready to challenge.',
     items: [
       { format: 'A line per resolution', line: 'Real or not, beside the payment, the ticket or the order.' },
       { format: 'The bot’s own words', line: 'What it promised, word for word and timed, beside what happened.' },
@@ -148,7 +148,7 @@ export const recipe: Recipe = {
     { k: 'Vendor', v: 'Your AI support vendor, which agrees the test tags first' },
     { k: 'Bot', v: 'Yours, or one you run for a client' },
     { k: 'Sample', v: 'For example: 100 billed resolutions a month, or every one' },
-    { k: 'Evidence', v: 'Your helpdesk export and payments tool, connected by you' },
+    { k: 'Connected tools', v: 'Your helpdesk export and payments tool, connected by you' },
     { k: 'Test asks', v: 'Refunds, cancellations, address changes and order edits' },
     { k: 'Test budget', v: 'A monthly cap you set, on your payment card' },
     { k: 'How often', v: 'Monthly, before you pay the bill' },
@@ -185,6 +185,7 @@ export const recipe: Recipe = {
       {
         q: 'Does Resolution check spend our money?',
         a: 'Only inside the test budget you set, on your own payment card, so the persona can ask for a refund on a real order on your store.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Will our vendor credit what we challenge?',
@@ -193,18 +194,25 @@ export const recipe: Recipe = {
       {
         q: 'Can Resolution check read a competitor’s bot?',
         a: 'Yes, for promises anyone can test: a cancelled trial, a promised email or a callback. A persona keeps the bot’s words and waits for what follows, 48 hours by default or as long as you set.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
+      },
+      {
+        q: 'What does Resolution check cost?',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours for test orders and chat, and an inbox. Test orders spend only your own test budget, and the month grows with the asks you test.',
+        link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],
   },
 
   final: {
     heading: 'Check what your AI vendor billed before you pay for it.',
-    sub: 'Tell us your vendor and when the next bill lands. We’ll set up the first check with you.',
+    sub: 'Try it on the Free plan before your next bill lands.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-resolution-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'resolution',
     },
+    link: { label: 'More blueprints to train and test agents', to: '/blueprints/train-and-test-agents' },
   },
 }

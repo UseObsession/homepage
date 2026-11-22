@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/competitive-intelligence: for a CI lead in product marketing. "competitive intelligence tools" stays
    with its owner, and "is competitive intelligence legal" with the legality post (docs/SEARCH.md §2); this page owns
@@ -63,11 +62,11 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'the-customer-source', text: 'How what competitors show customers is collected' },
     {
       kind: 'p',
-      text: `${ENTITY} For a CI team, the third source becomes a standing feed for every competitor at once.`,
+      text: 'Obsession’s [Competitor tracking](/blueprints/competitor-tracking) blueprint does the third job for every competitor at once: a persona signs up at each one, the way any customer can, and keeps the account open.',
     },
     {
       kind: 'p',
-      text: 'Each new email, price and offer lands dated the day it arrives, beside what the CI platform already holds. [Obsession vs Klue](/compare/obsession-vs-klue) shows how the two fit together.',
+      text: 'Each new email, price and offer lands in the event log dated the day it arrives, beside what the CI platform already holds. [Obsession vs Klue](/compare/obsession-vs-klue) shows how the two fit together.',
     },
     {
       kind: 'faq',

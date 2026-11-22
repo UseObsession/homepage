@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Partner checks (/recipes/partner-checks). Check your own journeys. For partnership and affiliate teams.
+/* Partner checks (/blueprints/partner-checks). Check your own journeys. For partnership and affiliate teams.
    Screen: partners (6 partners checked for link, code and offer on Mon 07:00; Deals site still shows SUMMER20, rejected
    in the basket; a note drafted in JO's thread, sent with your OK at 09:14). JO is always "your partnerships lead".
    The persona version (20 Nov 2026, James): each Monday a persona you define reads every partner's page as a visitor,
@@ -12,7 +12,7 @@ export const recipe: Recipe = {
   id: 'partners',
   slug: 'partner-checks',
   name: 'Partner checks',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'Each Monday a persona reads every partner’s page, follows your link and tries the code.',
   gets: 'Every partner’s link, code and offer each Monday, with a screenshot, and the ones out of date flagged.',
   kit: [
@@ -46,7 +46,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-partners-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'partners',
     },
   },
@@ -74,7 +74,7 @@ export const recipe: Recipe = {
       { time: 'Mon 07:00', text: '6 partner pages read: 3 affiliates and 3 partners, each with its own link and code.' },
       { time: 'Mon 07:08', text: 'Hiking blog and Run club pass. The links land, and HIKE15 and RUN15 take 15% off in your basket.' },
       { time: 'Mon 07:12', text: 'Deals site still shows your summer sale: 20% off with SUMMER20. In your basket, SUMMER20 is rejected.' },
-      { time: 'Mon 07:15', text: 'Gift guide, Podcast and Newsletter pass. 5 of 6 partners are current.' },
+      { time: 'Mon 07:15', text: 'Gift guide, Podcast and Newsletter pass. Deals site is the only partner out of date.' },
       {
         time: 'Mon 07:16',
         text: 'A note drafted in your partnerships lead’s thread: SUMMER20 ended 31 Aug, please use DEALS15, new banner attached.',
@@ -100,7 +100,7 @@ export const recipe: Recipe = {
       line: 'The link must keep the partner’s tag, and the code must work in your basket.',
     },
     {
-      title: 'Out of date? You hear Monday',
+      title: 'Anything out of date lands Monday',
       line: 'In Slack or a sheet, with the screenshot and a note drafted for your OK.',
     },
   ],
@@ -154,7 +154,7 @@ export const recipe: Recipe = {
 
   table: {
     heading: 'The link, the code and the offer at every partner.',
-    line: '5 partners current, 1 showing a code that ended on 31 Aug. A dead code is found within 7 days, or within a day if you read daily in a sale.',
+    line: 'Monday at 07:00: 5 partners current, 1 showing a code that ended on 31 Aug.',
     cols: ['Link', 'Code', 'Offer'],
     rows: [
       { label: 'Hiking blog', values: ['Lands', 'HIKE15 works', '15% off'] },
@@ -172,6 +172,7 @@ export const recipe: Recipe = {
       {
         q: 'How do I check my affiliates’ links and codes still work?',
         a: 'Send a persona to them every Monday. It follows each partner’s link, tries their code in a basket on your store and flags any link, code or banner that’s out of date.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Does Partner checks contact our partners?',
@@ -188,18 +189,25 @@ export const recipe: Recipe = {
       {
         q: 'How is Partner checks different from Ad landing check?',
         a: 'Partner checks follows the links other sites run for you. Ad landing check opens the pages your own ads point to.',
+        link: { label: 'See the blueprint', to: '/blueprints/ad-landing-check' },
+      },
+      {
+        q: 'What does Partner checks cost?',
+        a: 'It’s billed on the pieces it uses, at list rates: browser hours to read each partner page and try each code, and an inbox for partner newsletters. The month grows with your partner list, read once a week.',
+        link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],
   },
 
   final: {
     heading: 'Know every partner sends shoppers to a code that works.',
-    sub: 'Early access includes Partner checks on your partner list, read every Monday from the first week.',
+    sub: 'Try it on the Free plan with your partner list, read every Monday.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-partners-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'partners',
     },
+    link: { label: 'More blueprints to test sign-up and agents', to: '/blueprints/test-sign-up-and-agents' },
   },
 }

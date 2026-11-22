@@ -12,7 +12,8 @@ import type { BlogPost } from './types'
    ChatGPT agent name (retired; Forter's list is given as "Muse among them"). /recipes/ai-checkout-test isn't live, so it
    isn't linked. Obsession appears in the answer's last sentence, the disclosure and its recommendation, the full view line
    and 2 recipe lines in the live pages' words (28 Oct, _research/seo/recommend/STANDARD.md), the comparison's last row
-   and 2 cta blocks (11 Nov 2026: Request early access to /verify and the store page). harbourline.example is invented. */
+   and 2 cta blocks (11 Nov 2026: Request early access to /verify and the store page). harbourline.example is invented.
+   Rewritten 22 Nov 2026 for the toolkit position. */
 
 const MUSE = 'https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/'
 const ADOBE = 'https://news.adobe.com/news/2026/09/adobe-us-holiday-shopping-season-to-hit-record'
@@ -58,7 +59,7 @@ export const post: BlogPost = {
   description:
     'An agent ready website works for the AI agents that shop, book and call for your customers. 10 checks for the site, phone line and chat, and what to block.',
   answer:
-    'An agent ready website is one a customer’s AI agent can use: it can find the company, read the right price and reach checkout. Ten checks show what a customer’s agent gets on the website, the phone line and the support chat, so a company can decide which agents to block, allow or check first. Obsession keeps what any company’s site, chat and voice line tell a customer, word for word and dated, by API, MCP (the way AI agents call tools) or a table.',
+    'An agent ready website is one a customer’s AI agent can use: it can find the company, read the right price and reach checkout. Ten checks show what a customer’s agent gets on the website, the phone line and the support chat, so a company can decide which agents to block, allow or check first. Obsession’s blueprints run those checks as a customer on a schedule and keep what the site, chat and voice line tell each one, word for word and dated.',
   primaryKeyword: 'agent ready website',
   keywords: [
     'block ai agents',
@@ -68,9 +69,9 @@ export const post: BlogPost = {
     'ai agent traffic',
     'ai shopping agent verification',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-10-27',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 16,
   order: 0,
   authors: [
@@ -407,11 +408,11 @@ export const post: BlogPost = {
           'A one off fix list',
         ],
         [
-          'Obsession (ours): [Website audit](/blueprints/website-audit), [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check), [Listings and AI answers](/blueprints/listings-ai-answers)',
-          'Website audit: what the site shows and sends a new customer, after every release\nSupport bot check: your support bot’s answers on every channel, dated\nVoice agent check: calls to your AI receptionist, recorded and dated\nListings and AI answers: what AI assistants tell buyers, every Monday',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Bot and fraud settings stay with the security team',
-          'What a customer gets on the site, phone and chat, kept as proof',
+          'Obsession (ours): [QA on your own flows](/blueprints/website-audit), [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check), [Listings and AI answers](/blueprints/listings-ai-answers)',
+          'QA on your own flows: what the site shows and sends a new customer, after every release\nSupport bot check: your support bot’s answers on every channel, dated\nVoice agent check: calls to your AI receptionist, recorded and dated\nListings and AI answers: what AI assistants tell buyers, every Monday',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment and at any identity check\nBot and fraud settings stay with the security team',
+          'What a customer gets on the site, phone and chat, every answer kept and dated',
         ],
       ],
     },
@@ -463,19 +464,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its Voice agent check and Support bot check ask your AI receptionist and support bot what your customers ask, every morning, and set each answer beside your price list and policy.',
+      text: 'Obsession is the toolkit for AI agents, giving every agent an inbox, a phone number and a browser through one API and one bill. Its voice agent check and support bot check blueprints ask your AI receptionist and support bot what your customers ask, every morning, and set each answer beside your price list and policy.',
     },
     {
       kind: 'cta',
-      text: 'What AI agents tell your customers on chat and on the phone, word for word. Every answer is kept as a dated transcript or call beside the page it should match, yours and your competitors’.',
-      to: '/verify',
-      label: 'Request early access',
+      text: 'Not building agents? Pick a blueprint, and Obsession runs it. The voice agent check calls your AI receptionist every morning and keeps each answer as a dated recording beside the page it should match.',
+      to: '/blueprints/voice-agent-check',
+      label: 'See the blueprint',
     },
     {
       kind: 'cta',
-      text: 'Every email and text a new customer gets from your store after a sign-up, a basket and a checkout, each with the time it arrived, and what your competitors send beside it.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Every email and text a new customer gets from your store after a sign-up, a basket and a checkout, each with the time it arrived. Obsession’s QA on your own flows blueprint runs it after every release.',
+      to: '/blueprints/website-audit',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about agent ready websites' },
@@ -554,5 +555,6 @@ export const post: BlogPost = {
     'what-chatgpt-says-about-your-store',
     'test-store-chatbot-returns-policy',
     'recipe:website-audit',
+    'recipe:agent-checkout-test',
   ],
 }

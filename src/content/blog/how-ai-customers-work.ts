@@ -1,19 +1,13 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
-/* The AI customers series, article 2 of 9 (24 Oct 2026): how an AI customer works, from its identity to the evidence
-   it keeps. Readers: technical buyers, developers, ops and CX leads, and anyone who wants to know how a customer that
-   stays for months can be cheap enough to run at scale. It owns "how AI customers work" and the questions people ask
-   about agents: can an AI agent sign up, have an email address, have a phone number.
-   The life of an AI customer in 6 steps (identity, sign up, sleep, wake, keep, report), then each step with what makes
-   it work and where it stops, then how facts reach the reader's tools, shared history, limits and the FAQ. The
-   mechanism follows the design the site already states publicly (asleep costs nothing, learn once per platform, the
-   share of sign ups run as a plain request, a replayed script or an agent, 100,000 companies, built for millions, which
-   the founders confirmed on 24 Oct 2026). Obsession appears in up to 3 sentences where the article describes how it runs
-   these steps, and in the cta blocks.
-   Read on 24 Oct 2026: Cloudflare's Durable Objects pricing page (idle objects eligible for hibernation are not billed
-   for duration; requests $0.15 a million on Workers Paid), Google's sender guidelines, RFC 6376, Gmail's header help,
-   and the library in _research/seo/plan/ai-customers/facts.json. The store in the illustrations is invented. No dashes. */
+/* How an AI agent signs up as a customer (24 Oct 2026; retitled 22 Nov 2026 for the toolkit position, address kept).
+   Readers: developers and QA teams who want an agent to join a company the way a customer does, and anyone asking
+   whether an agent can sign up, hold an email address or a phone number. It owns "ai agent sign up".
+   The body walks one persona: inbox and number made, the sign-up in a browser that keeps its session, the code by text,
+   every email after, each event in the log, and where it stops (payment, identity checks, CAPTCHAs). Obsession prices
+   are from src/content/prices.ts (22 Nov 2026). Read on 24 Oct 2026: Cloudflare's Durable Objects pricing, Google's
+   sender guidelines, RFC 6376, Gmail's header help, Shopify's abandoned checkout help, Mailchimp on double opt-in.
+   The store in the illustrations is invented. No dashes. */
 
 const GMAIL_SENDERS = 'https://support.google.com/a/answer/81126?hl=en'
 const RFC_DKIM = 'https://www.rfc-editor.org/rfc/rfc6376'
@@ -23,31 +17,28 @@ const SHOPIFY_ABANDONED = 'https://help.shopify.com/en/manual/promoting-marketin
 const SHOPIFY_SECOND = 'https://help.shopify.com/en/manual/promoting-marketing/create-marketing/migrate-abandoned-checkout'
 const DOUBLE_OPTIN = 'https://mailchimp.com/help/about-double-opt-in/'
 const MCP = 'https://modelcontextprotocol.io/docs/getting-started/intro'
-const AGENTMAIL = 'https://docs.agentmail.to/welcome'
-const BROWSERBASE = 'https://docs.browserbase.com/introduction/what-is-browserbase'
 
 export const post: BlogPost = {
   slug: 'how-ai-customers-work',
-  title: 'How AI customers work: from a sign-up form to every email a company sends',
-  dek: 'An AI customer gets its own inbox, phone number and browser, signs up like any customer, sleeps until the company acts, and keeps what arrives, dated. It is one way Obsession collects what companies show only to customers, cheap enough to run at thousands of companies at once.',
-  metaTitle: 'How AI customers work: what companies send, kept as proof',
+  title: 'How an AI agent signs up as a customer: from the form to every email it gets',
+  dek: 'A persona is an AI agent with its own inbox, phone number and browser under one name. It signs up through a company’s public form, enters the code it is sent and keeps every email that follows, each step dated in one event log.',
+  metaTitle: 'How an AI agent signs up as a customer, from form to inbox',
   description:
-    'How AI customers work: an inbox, number and browser of their own, a public sign-up, sleep until the company acts, and each email kept as it arrived.',
+    'How an AI agent signs up as a customer: its own inbox and number, a browser that keeps the session, the code by text, and every email the company sends.',
   answer:
-    'An AI customer works in 6 steps: it gets its own inbox, phone number and browser, signs up through a company’s public forms, sleeps until the company sends something or a check is due, wakes, keeps what arrived as evidence, and reports each fact with a link to that evidence. Because it costs nothing while it sleeps and most sign ups run as programs, one system is built for millions of companies at once. Obsession collects its index this way, keeping what any company shows only to its customers, dated with the email or screenshot, for lookup by API, MCP or a table.',
-  primaryKeyword: 'how ai customers work',
+    'An AI agent signs up as a customer with an inbox, a phone number and a browser of its own, and enters the code the company sends like any new customer. It then waits for free, and every email that follows lands in one event log, dated. It stops before payment, at any identity check and at any CAPTCHA.',
+  primaryKeyword: 'ai agent sign up',
   keywords: [
     'can ai agents sign up',
     'can an ai agent have an email address',
-    'ai agent phone number',
-    'ai agent inbox',
-    'give your ai agent a phone number',
+    'ai agent verification code',
+    'ai agent signup',
     'dkim verification',
     'double opt in',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 8,
   order: 3,
   authors: [
@@ -56,138 +47,130 @@ export const post: BlogPost = {
   ],
   hero: {
     art: {
-      kind: 'flow',
-      title: 'The life of 1 AI customer at ivywell.example',
-      status: { tone: 'info', text: 'Asleep for most of its life' },
-      steps: [
-        { label: 'Identity', detail: 'A new Gmail address, a UK phone number and a browser, made for it', tone: 'ok' },
-        { label: 'Sign up', detail: 'The pop up form, then the link in the confirmation email', tone: 'ok' },
-        { label: 'Sleep', detail: 'No process runs and nothing is billed while it waits', tone: 'info' },
-        { label: 'Wake', detail: 'Tue 09:02: a basket reminder arrives in its inbox', tone: 'ok' },
-        { label: 'Keep', detail: 'The email as it arrived, its time, tab and verified sender', tone: 'ok' },
-        { label: 'Report', detail: '1 fact with a link to the email, in Slack and the owner’s AI agent', tone: 'ok' },
+      kind: 'log',
+      title: 'ivywell.example',
+      who: 'Persona for the basket journey, made Tue 3 Nov at 08:58',
+      status: { tone: 'info', text: 'Free while it waits' },
+      rows: [
+        { time: 'Tue 08:58', text: 'Inbox and US number made', detail: 'A new address and number, in one call', tone: 'info' },
+        { time: 'Tue 09:00', text: 'page.visited: sign-up form', detail: 'Filled in, the session kept in its browser', tone: 'ok' },
+        { time: 'Tue 09:01', text: 'sms.received: code 482913', detail: 'Entered in the same session', tone: 'ok' },
+        { time: 'Tue 09:02', text: 'email.received: welcome', detail: 'Code IVY10, Promotions tab', tone: 'ok' },
+        { time: 'Tue 09:05', text: 'Basket left at checkout', detail: 'Stopped before payment', tone: 'info' },
+        { time: 'Wed 09:10', text: 'email.received: reminder', detail: '24 hours after the basket', tone: 'late' },
       ],
-      foot: 'An example on an invented store. The same 6 steps run at every company an AI customer joins.',
+      foot: 'Each step is one event in the log, dated, and the persona waited for free between them. ivywell.example is an invented store.',
     },
   },
 
   blocks: [
     {
       kind: 'p',
-      text: 'An AI customer has to do what a person does over weeks: hold an address and a number, sign up, wait, notice what arrives and remember it. The hard part is doing that at thousands of companies at once without paying for thousands of people, or for thousands of AI models thinking all day.',
+      text: 'An AI agent can sign up as a customer the way a person does when it has an inbox, a phone number and a browser of its own. It joins a list, opens an account or starts a trial through the same public form, enters the code the company sends, and keeps every email that follows.',
     },
     {
       kind: 'p',
-      text: `The design that makes it work is simple to state. An AI customer is asleep almost all the time, and the outside world wakes it: an email arrives, a text lands, a scheduled check comes due. Asleep, it costs nothing. That is why one system is built to run 100,000 companies at once, and built for millions. The term itself is defined in [what AI customers are](/blog/ai-customers). ${AI_CUSTOMER.definition}`,
+      text: 'On Obsession that agent is a persona, an AI agent with its own inbox, number and browser under one name. It is free while it waits, wakes in 50 ms when a message lands, and each step it takes arrives as an event in one log, dated.',
     },
 
-    { kind: 'h2', id: 'lifecycle', text: 'The life of an AI customer' },
+    { kind: 'h2', id: 'lifecycle', text: 'From the form to the inbox' },
     {
       kind: 'list',
       ordered: true,
       items: [
-        '**Identity.** It is given its own [inbox](/email), [phone number](/phone) and [browser](/browser), and later the accounts it opens.',
-        '**Sign up.** It joins through the company’s public forms, the same ones any customer uses, and confirms by email or text where the company asks.',
-        '**Sleep.** It waits, with no process running, for as long as the watch lasts.',
-        '**Wake.** A new email, a text or a scheduled check wakes it.',
-        '**Keep.** It stores what arrived exactly as it arrived, with the time and, for email, the sender’s authentication.',
-        '**Report.** It turns what arrived into facts, each with a link to its evidence, and sends them where its owner works.',
+        '**An inbox and a number.** The persona gets a new email address and a US or UK phone number, made for the job.',
+        '**The sign-up.** Its browser opens the company’s public form and fills it in, keeping the session so the account stays signed in.',
+        '**The code.** The company texts or emails a code or a link, and the persona enters it.',
+        '**The wait.** Nothing runs while it waits, for a day or for months.',
+        '**Every email after.** The welcome, the reminder, the offer and the renewal each land in its inbox and wake it.',
+        '**Where it stops.** Payment, an identity check or a CAPTCHA ends the run, and the log names the step.',
       ],
     },
 
-    { kind: 'h2', id: 'identity', text: 'The identity: an inbox, a number and a browser' },
+    { kind: 'h2', id: 'identity', text: 'An inbox and a number, made for it' },
     {
       kind: 'p',
-      text: 'Each AI customer belongs to 1 company and 1 watch. Its inbox receives what a subscriber receives, and a Gmail inbox also shows which tab Gmail chose for each email. Its phone number receives texts and calls. Its browser opens pages, fills baskets and reaches checkout.',
+      text: 'The identity is created for the job and plainly belongs to whoever runs it. It never borrows a real person’s name, address or card. One call, obsession.personas.create({ inbox: true, phone: "US", browser: true }), returns the persona with its address, its number and a browser profile.',
     },
+    { kind: 'h3', id: 'one-per-journey', text: 'One persona per journey' },
     {
       kind: 'p',
-      text: 'The parts already exist as services built for AI agents: [AgentMail](' +
-        AGENTMAIL +
-        ') gives agents their own inboxes, and [Browserbase](' +
-        BROWSERBASE +
-        ') runs browsers for them. An AI customer adds the parts those services leave out: a customer’s life at one company, kept over months, and a record of what arrived.',
-    },
-    {
-      kind: 'p',
-      text: 'The identity is created for the job and plainly belongs to whoever runs it. It never borrows a real person’s name, address or card.',
-    },
-    { kind: 'h3', id: 'one-per-journey', text: 'One AI customer per journey' },
-    {
-      kind: 'p',
-      text: 'A customer who left a basket gets different emails from one who bought, and both differ from one who only joined the list. So each journey gets its own AI customer: one for the welcome, one for the basket, one that buys where the owner funds an order, and one for each market where prices and messages differ. Each keeps a clean history, so every finding names the journey it came from.',
+      text: 'A customer who left a basket gets different emails from one who only joined the list. So the welcome, the basket and each market get a persona of their own, and every event names the journey it came from.',
     },
 
-    { kind: 'h2', id: 'sign-up', text: 'Signing up, once per platform' },
+    { kind: 'h2', id: 'sign-up', text: 'Signing up in a browser that keeps the session' },
     {
       kind: 'p',
-      text: 'An AI customer signs up where any customer would: the pop up, the footer form, the checkout tick box, the trial form. Where the company uses double opt in, it opens the confirmation email and clicks the link, as [a subscriber must before being added](' +
-        DOUBLE_OPTIN +
-        ').',
+      text: 'The persona signs up where any customer would, on the pop-up, the footer form, the checkout tick box or the trial form. Its browser keeps the cookies and the signed-in session, so an account opened on day 1 is still signed in on day 30. Each page it opens lands in the log as a page.visited event, with a screenshot.',
     },
     {
       kind: 'p',
-      text: 'Most companies sign customers up on the same few platforms, so a sign up learned at one company runs at every company built the same way. The first sign up on a platform is worked out step by step and kept as a program. Every company after it runs that program in seconds, and only an unusual form needs an agent to think.',
+      text: 'Most companies sign customers up through the same few form builders, such as Shopify’s and Klaviyo’s. A sign-up worked out once runs as a program at every company built the same way, and only an unusual form needs a model to think. How an agent handles logins after that is in [can AI agents log in to websites](/blog/can-ai-agents-log-in-to-websites).',
     },
     {
       kind: 'art',
       art: {
         kind: 'report',
-        title: 'How 10,000 sign ups run, by method',
+        title: 'How 10,000 sign-ups run, by method',
         period: 'An example watch of 10,000 stores',
         cols: ['Method', 'Share', 'What it uses'],
         rows: [
           { name: 'A plain request', cells: ['70%', 'No browser, no model'], tone: 'ok' },
           { name: 'A replayed script', cells: ['25%', 'A browser for under a minute'], tone: 'ok' },
-          { name: 'An agent', cells: ['5%', 'A model, for a new kind of form'], tone: 'info' },
+          { name: 'An agent', cells: ['5%', 'A model, for a form it hasn’t seen'], tone: 'info' },
         ],
-        notes: ['The shares by method are an example.', 'Each new kind of form an agent solves becomes a program for the next company.'],
+        notes: ['The shares by method are an example.', 'Each new form an agent solves becomes a program for the next company built the same way.'],
       },
-      caption: 'How sign ups split between a plain request, a replayed script and an agent. An example on invented numbers of stores, with the shares Obsession states for its runs.',
+      caption: 'How sign-ups can split between a plain request, a replayed script and an agent. An example on invented numbers of stores.',
     },
 
-    { kind: 'h2', id: 'waiting', text: 'Waiting costs nothing' },
+    { kind: 'h2', id: 'code', text: 'The code, by text or email' },
     {
       kind: 'p',
-      text: 'A customer’s most useful information arrives late: the reminder a day after the basket, the win back email after 60 days, the renewal notice after 11 months. A system that keeps a process running for each customer pays for every hour of waiting. An AI customer pays for none of it.',
+      text: 'Where a company confirms a sign-up, the code or link arrives on the persona’s own number or inbox. A text lands as an sms.received event and an email as email.received, so the agent reads the code and enters it in the same browser session.',
     },
     {
       kind: 'p',
-      text: 'Serverless runtimes make this possible. [Cloudflare’s pricing for Durable Objects](' +
+      text: 'Double opt in works the same way. A subscriber must click the link in the confirmation email [before being added to the list](' +
+        DOUBLE_OPTIN +
+        '), and the persona clicks it.',
+    },
+
+    { kind: 'h2', id: 'waiting', text: 'Waiting days costs nothing' },
+    {
+      kind: 'p',
+      text: 'A customer’s most useful messages arrive late, such as the reminder a day after the basket, the win-back email after 60 days and the renewal notice after 11 months. A system that keeps a process running for every customer pays for every hour of that wait.',
+    },
+    {
+      kind: 'p',
+      text: 'A persona pays for none of it. Its state is stored as an actor, no machine runs while nothing happens, and it wakes in 50 ms when an email, text or call arrives. [Cloudflare’s pricing for Durable Objects](' +
         CF_DO_PRICING +
-        ') states that objects that are idle and eligible for hibernation are not billed for duration, and lists requests at $0.15 a million on the paid plan beyond the first million. An AI customer that wakes 20 times a month is 20 requests.',
-    },
-    {
-      kind: 'stat',
-      value: '$0.15',
-      label: 'a million requests on Cloudflare Durable Objects, and nothing for an idle object eligible for hibernation',
-      source: 'Cloudflare Durable Objects pricing',
-      href: CF_DO_PRICING,
+        ') shows the same design: idle objects eligible for hibernation are not billed for duration.',
     },
     {
       kind: 'p',
-      text: 'The count of AI customers is then set by sign ups and storage. Model time barely moves it. Obsession collects its index this way, keeping what any company you name shows only to its customers, dated with the email or screenshot. Because of that design, it is built for millions of companies, and a company already in the shared index starts with its history on day one.',
+      text: 'On Obsession you pay for the pieces a persona uses, and nothing while it waits. An inbox is $0.50 a month and a US or UK number $2 a month, with emails at $0.40 per 1,000 and events at $5 per million. A fleet of them, priced line by line, is in [AI agent cost per month](/blog/ai-customers-at-scale).',
     },
 
-    { kind: 'h2', id: 'wake', text: 'Waking: what it checks' },
+    { kind: 'h2', id: 'wake', text: 'Every email after the sign-up' },
     {
       kind: 'p',
-      text: 'Each wake is a comparison. The AI customer holds what the company promised (the pop up’s offer, the flow’s timing, the policy page) and checks what arrived against it.',
+      text: 'Each email wakes the persona, and it compares what arrived with what the company promised on its pop-up, in its flow timing and on its policy page.',
     },
     {
       kind: 'table',
-      caption: 'What an AI customer checks each time it wakes, with an example finding for each',
+      caption: 'What wakes a persona, what it checks and an example finding for each',
       cols: ['What woke it', 'What it checks', 'A finding looks like'],
       rows: [
-        ['An email arrives', 'Sender, tab, offer, links and code', 'Welcome code refused on the sale price'],
-        ['A text arrives', 'Sender, offer and the STOP reply', 'STOP confirmed, texts kept coming'],
-        ['A check comes due', 'Page price, stock and the chatbot’s answer', 'Chat says 60 day returns, policy says 30'],
-        ['A deadline passes', 'Whether the promised message came', 'No welcome email 24 hours after sign up'],
+        ['An email, email.received', 'Sender, tab, offer, links and code', 'Welcome code refused on the sale price'],
+        ['A text, sms.received', 'Sender, offer and the STOP reply', 'STOP confirmed, texts kept coming'],
+        ['A scheduled check, page.visited', 'Page price, stock and the chatbot’s answer', 'Chat says 60-day returns, policy says 30'],
+        ['A deadline passes', 'Whether the promised message came', 'No welcome email 24 hours after sign-up'],
       ],
     },
     {
       kind: 'p',
-      text: '**Silence is a finding.** The last row is the one no internal report produces. An email platform logs what it sent, and nothing logs the email a broken trigger never sent. An AI customer knows what it was promised and when, so a missing message becomes a dated fact.',
+      text: '**Silence is a finding.** An email platform logs what it sent, and nothing logs the email a broken trigger never sent. A persona knows what it was promised and when, so a missing message becomes a dated event. [How a full welcome series runs, day by day](/blog/welcome-email-series-best-practices) shows what to expect after the first email.',
     },
     {
       kind: 'p',
@@ -195,13 +178,17 @@ export const post: BlogPost = {
         SHOPIFY_ABANDONED +
         '), the merchant chooses when the reminder goes, and a [second abandoned checkout automation defaults to a 10 hour wait](' +
         SHOPIFY_SECOND +
-        '). An AI customer that left a basket at 9:00 knows when a reminder was due, and records when one came.',
+        '). A persona that left a basket at 9:00 knows when a reminder was due, and the log shows when one came.',
     },
 
-    { kind: 'h2', id: 'evidence', text: 'Keeping the evidence' },
+    { kind: 'h2', id: 'evidence', text: 'Each event in one log' },
     {
       kind: 'p',
-      text: 'Each email is stored exactly as it arrived: its headers, body, images and the time it landed. Bulk senders to Gmail must authenticate their mail under [Google’s sender guidelines](' +
+      text: 'Every page the persona visited and every email, text and call it got lands in one event log, in order and dated. Developers read it through the API, or at a webhook, a web address in their own code that receives each event as it lands.',
+    },
+    {
+      kind: 'p',
+      text: 'Each email is kept exactly as it arrived, with its headers, body, images and the time it landed. Bulk senders to Gmail must authenticate their mail under [Google’s sender guidelines](' +
         GMAIL_SENDERS +
         '), and a DKIM signature, checked when the email arrives and kept with its key, shows which domain signed the message and that it wasn’t changed after sending ([RFC 6376](' +
         RFC_DKIM +
@@ -213,92 +200,92 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**Emails and texts:** the message as it arrived, its time, and for email its tab and verified sender.',
-        '**Pages:** a capture of what the page showed, with the time and the address.',
+        '**Pages:** a screenshot of what the page showed, with the time and the address.',
         '**Checkout:** each step up to payment, with the total after codes.',
-        '**Chats and calls:** the full transcript, with the time of each turn.',
+        '**Calls:** the transcript, with the time of each turn.',
       ],
     },
-
-    { kind: 'h2', id: 'facts', text: 'From evidence to facts' },
     {
       kind: 'p',
-      text: 'Evidence becomes facts a person or an AI agent can use: 1 sentence each, with a link to what proves it. "Welcome email arrived 2 minutes after sign up, Promotions tab." "Code IVY10 refused at checkout on the sale price." "Chat said 60 days for returns, the returns page says 30." A fact without evidence is never reported.',
-    },
-
-    { kind: 'h2', id: 'where-facts-go', text: 'Where the facts go' },
-    {
-      kind: 'p',
-      text: 'Facts are useful where people already work. An AI customer system sends them to Slack, a CRM, a sheet, a report or a webhook, and to the owner’s own AI agent through the [Model Context Protocol](' +
+      text: 'Events reach Slack, a CRM, a sheet or a webhook, and your own agent through the [Model Context Protocol](' +
         MCP +
-        '), the open standard that lets AI assistants call tools.',
-    },
-    {
-      kind: 'p',
-      text: 'Obsession exposes 5 verbs over MCP and an API: lookup, facts, evidence, index and notify. An agent asks which companies are already covered, reads their facts and evidence, adds a company that isn’t, and gets told when something new arrives ([AI customers for developers](/blog/ai-customers-for-developers)).',
+        '), the open standard that lets AI assistants call tools. Building on the events in code is covered in [the developer guide](/blog/ai-customers-for-developers).',
     },
     {
       kind: 'cta',
-      text: 'Give your own agent what any company shows only to its customers: 5 verbs over the API and MCP, each fact dated with the email or page behind it, and a company not yet covered added on request.',
-      to: '/developers',
-      label: 'See the API and MCP',
+      text: 'Give your agent an inbox, a number and a browser in one call, free while it waits, with every email, text and page in one event log.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
-    { kind: 'h2', id: 'limits', text: 'Limits' },
+    { kind: 'h2', id: 'limits', text: 'Where it stops' },
     {
       kind: 'list',
       items: [
-        '**A bot wall or a CAPTCHA stops it.** An AI customer never gets round one, and names the step it couldn’t test.',
-        '**A new customer sees what new customers get.** Engaged, long standing customers can receive other emails and other inbox placement.',
-        '**Countries differ.** Prices, offers and delivery messages vary by market, so a watch needs a number and an address in each market it covers.',
-        '**Some journeys need a real purchase.** Delivery and returns messages arrive only after an order, which needs a card the owner funds.',
-        '**It reads outputs.** Why a company sent something sits in its own systems.',
+        '**Payment.** It stops before payment unless you give it your own payment card, and never uses fake payment details.',
+        '**Identity checks.** It stops at any identity check, and the log keeps what the check asked for.',
+        '**CAPTCHAs and bot blocks.** It never gets round one, and the log names the step it couldn’t reach.',
+        '**People.** It says it’s an AI when it talks to a person.',
+        '**New customers see what new customers get.** Long-standing customers can receive other emails and other inbox placement.',
+        '**Countries differ.** Prices, offers and delivery messages vary by market, so each market needs its own number.',
       ],
     },
+    {
+      kind: 'cta',
+      text: 'Not building agents? QA on your own flows sends a persona through your sign-up after every release and reports the step that breaks.',
+      to: '/blueprints/website-audit',
+      label: 'See the blueprint',
+    },
 
-    { kind: 'h2', id: 'questions', text: 'Questions about how AI customers work' },
+    { kind: 'h2', id: 'questions', text: 'Questions about AI agent sign-ups' },
     {
       kind: 'faq',
       items: [
         {
           q: 'Can AI agents sign up for newsletters and accounts?',
-          a: 'Yes. An AI customer with its own inbox and phone number signs up through public forms as any customer can, and confirms by email or text where the company asks. It stops at a CAPTCHA or a bot wall.',
+          a: 'Yes. An agent with its own inbox and phone number signs up through public forms as any customer can, and confirms by email or text where the company asks. It stops at a CAPTCHA, a bot block or an identity check.',
         },
         {
           q: 'Can an AI agent have its own email address?',
-          a: 'Yes. Services such as AgentMail give AI agents their own inboxes, and an AI customer uses one inbox per company it joins.',
+          a: 'Yes. On Obsession an inbox costs $0.50 a month and the Free plan includes 3. A persona uses one inbox for each company it joins.',
+          link: { label: 'Email for AI agents', to: '/email' },
         },
         {
           q: 'Can an AI agent have a phone number?',
-          a: 'Yes. An AI customer can hold a phone number to receive texts and calls, so it can confirm text sign ups and record what a company sends by SMS.',
+          a: 'Yes. A US or UK number costs $2 a month on Obsession and receives texts and calls, so the agent can confirm a sign-up by text and keep what the company sends by SMS.',
+          link: { label: 'Phone numbers for AI agents', to: '/phone' },
+        },
+        {
+          q: 'How does the agent get the verification code?',
+          a: 'The code arrives on its own number or inbox as an sms.received or email.received event. The agent reads it and enters it in the same browser session that opened the form.',
         },
         {
           q: 'What happens when nothing arrives?',
-          a: 'The AI customer records it. It knows what the company promised and when, so a welcome email that never came, or a basket reminder that came a day late, becomes a dated fact, which no internal report can show.',
+          a: 'The log shows it. The persona knows what the company promised and when, so a welcome email that never came, or a basket reminder a day late, becomes a dated event.',
         },
         {
-          q: 'How does an AI customer prove an email is real?',
+          q: 'How does the agent prove an email is real?',
           a: 'It keeps the email as it arrived, with its headers, its time and a hash. Its DKIM signature, checked on arrival and kept with the key it was checked against, shows which domain signed it and that it wasn’t changed. Domains retire old keys, so the check is recorded when the email lands.',
         },
         {
-          q: 'Does an AI customer use an AI model for every step?',
-          a: 'No. Most sign ups run as programs learned once per platform, and a model is used only for an unusual form or a judgement a program can’t make.',
+          q: 'Does the agent use an AI model for every step?',
+          a: 'No. Most sign-ups run as programs learned once for each form builder, such as Shopify’s or Klaviyo’s, and a model is used only for an unusual form or a judgement a program can’t make.',
         },
         {
-          q: 'How many AI customers can run at once?',
-          a: 'Because an AI customer costs nothing while it sleeps, the count is limited by sign ups and storage. Obsession is built to follow millions of companies this way, each looked up in one call.',
+          q: 'How many personas can run at once?',
+          a: 'A persona costs nothing while it waits, so a fleet of thousands costs its inboxes and numbers. Obsession is built for millions of personas, all on one key and one event log.',
+          link: { label: 'Personas', to: '/personas' },
         },
       ],
     },
     {
       kind: 'note',
-      title: 'How we checked this',
-      text: 'Cloudflare’s prices and every outside source were read on 24 October 2026. The store and the 10,000 store watch in the illustrations are invented, and so are the shares by method.',
+      title: 'About the examples',
+      text: 'Cloudflare’s prices and every outside source are as of 24 October 2026, and Obsession’s prices as of 22 November 2026. ivywell.example, the 10,000-store example and the shares by method are invented.',
     },
   ],
 
   sources: [
-    { title: 'Welcome', publisher: 'AgentMail docs', url: AGENTMAIL },
-    { title: 'What is Browserbase?', publisher: 'Browserbase docs', url: BROWSERBASE },
     { title: 'About double opt-in', publisher: 'Mailchimp Help', url: DOUBLE_OPTIN },
     { title: 'Durable Objects pricing', publisher: 'Cloudflare', url: CF_DO_PRICING },
     { title: 'Recovering abandoned checkouts', publisher: 'Shopify Help Center', url: SHOPIFY_ABANDONED },
@@ -308,5 +295,5 @@ export const post: BlogPost = {
     { title: 'Trace an email with its full header', publisher: 'Gmail Help', url: GMAIL_HEADERS },
     { title: 'What is the Model Context Protocol (MCP)?', publisher: 'Model Context Protocol', url: MCP },
   ],
-  related: ['/email', '/phone', 'ai-customers', 'ai-customers-at-scale', 'ai-customers-for-developers', 'recipe:delivery-monitoring', 'recipe:website-audit'],
+  related: ['/personas', '/email', '/phone', '/browser', 'ai-customers-at-scale', 'can-ai-agents-log-in-to-websites', 'recipe:website-audit', 'recipe:delivery-monitoring'],
 }

@@ -4,7 +4,8 @@ import { ENTITY } from '../site'
 /* /alternatives/mailcharts. Every tool fact is from the tool's own pages, read 11 Nov 2026
    (_research/seo/pagetypes-11nov/research/email_intel.json; MailCharts, Panoramata, SendView, Owletter, Competitor
    Inbox and Reyo re-read the same day). Milled refused automated reads, so it carries no facts here. "competitor email
-   tracking tools" stays with its guide (docs/SEARCH.md §2). */
+   tracking tools" stays with its guide (docs/SEARCH.md §2). Panoramata, SendView and Competitor Inbox re-read 22 Nov
+   2026 (Competitor Inbox's Starter fell from $25 to $15). Obsession's side (22 Nov): the Email and SMS tracking blueprint. */
 
 const MC = 'https://www.mailcharts.com/'
 const MC_AGENCIES = 'https://mailcharts.com/built-for/agencies'
@@ -20,14 +21,14 @@ export const ref: ReferencePage = {
   kind: 'alternatives',
   name: 'MailCharts alternatives',
   company: 'MailCharts',
-  line: 'Campaign libraries, inboxes that follow the competitors you name, and the web behind the login, each with its price.',
+  line: 'Email campaign libraries, inbox tools and a persona that joins each competitor’s list, each with its price.',
   meta: {
     path: '/alternatives/mailcharts',
-    title: 'MailCharts alternatives for tracking competitors’ emails',
+    title: 'MailCharts alternatives (2026): 7 options for email tracking',
     description:
-      'MailCharts alternatives by job: campaign libraries, inboxes for the competitors you name, and what competitors show only to customers, each with its price.',
+      'MailCharts alternatives by job: campaign libraries, inboxes for competitors you name, and a persona that signs up at each one, each with its price.',
     answer:
-      'The best MailCharts alternative depends on the job: Panoramata or Reyo to browse competitors’ campaigns across channels, SendView, Owletter or Competitor Inbox to keep every email from the competitors you name, and a spare inbox for 1 to 3 competitors. For what any company shows only to signed-up customers, from its emails and texts to member prices, trial limits and cancel offers, Obsession keeps it dated and looked up by API, MCP or a table.',
+      'The best MailCharts alternative depends on the job: Panoramata or Reyo to browse competitors’ campaigns across channels, SendView, Owletter or Competitor Inbox to keep every email from the competitors you name, and a spare inbox for 1 to 3 competitors. For every email, text, offer and member price a competitor shows a new customer, Obsession’s Email and SMS tracking blueprint puts a persona on each list and sends what it gets to your own tools.',
     ogImage: '/og/alternatives-mailcharts.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -36,8 +37,8 @@ export const ref: ReferencePage = {
       { name: 'MailCharts', path: '/alternatives/mailcharts' },
     ],
   },
-  title: 'MailCharts alternatives: by job, including what competitors show only to customers',
-  dek: 'Teams leave MailCharts for a published price, the competitors they name, or more than email. Here is each option by the job it does, with its price as listed.',
+  title: 'MailCharts alternatives: every option by job, with its price',
+  dek: 'Teams leave MailCharts for a published price, the competitors they name, or more than email. Every option is sorted by the job it does, with its price as listed.',
   primaryKeyword: 'mailcharts alternatives',
   keywords: ['mailcharts alternative', 'alternatives to mailcharts', 'mailcharts competitors', 'mailcharts pricing'],
   checked: '2026-11-11',
@@ -61,9 +62,9 @@ export const ref: ReferencePage = {
       },
       {
         name: 'Obsession',
-        who: 'Behind the login',
-        nodes: ['Any company you name', 'Emails, prices, trials, offers', 'API, MCP or a table'],
-        links: ['keeps, dated', 'looked up by'],
+        who: 'Email and SMS tracking blueprint',
+        nodes: ['Competitors you name', 'A persona on each list', 'Slack, a sheet or the API'],
+        links: ['joined by', 'sent to'],
         lit: 1,
         ours: true,
       },
@@ -80,7 +81,7 @@ export const ref: ReferencePage = {
       kind: 'list',
       items: [
         `**No published price.** The home page says “Contact us to get started”, and [its pricing address](${MC_PRICING}) redirects to a Validity page that lists no MailCharts plan.`,
-        '**Its index, not your list.** Its pages describe the ecommerce brands it chooses to track and don’t describe adding a competitor you name, such as a software company or a brand outside ecommerce.',
+        '**Its own index.** Its pages describe the ecommerce brands it chooses to track and don’t describe adding a competitor you name, such as a software company or a brand outside ecommerce.',
         '**Email and SMS only.** Its pages don’t describe member prices, trial limits, quotes behind forms or the offer in a cancel flow.',
         '**A web app.** Its home page mentions no API or integrations, so the data doesn’t reach an AI agent or a table on its own.',
       ],
@@ -90,7 +91,7 @@ export const ref: ReferencePage = {
     {
       kind: 'table',
       compare: true,
-      caption: 'From each tool’s own pages, read 11 November 2026, with the price each lists. Not described means its pages don’t say.',
+      caption: 'From each tool’s own pages, read 11 November 2026, with the price each lists. Panoramata, SendView and Competitor Inbox re-read on 22 November 2026. Not described means its pages don’t say.',
       cols: ['Option', 'What it does well', 'Price as listed', 'Where it stops', 'Best for'],
       rows: [
         [
@@ -124,17 +125,17 @@ export const ref: ReferencePage = {
         [
           'Competitor Inbox: emails from competitors you add',
           'An archive per competitor',
-          'Starter $25 a month, 1 competitor\nBusiness $249 a month, 25',
+          'Starter $15 a month, 1 competitor\nBusiness $249 a month, 25',
           'Email only\nCompetitors capped by plan',
           'A few competitors',
         ],
         ['By hand: a spare inbox per competitor', 'Full control, no tool', 'Free, plus the hours', 'Breaks as the list grows', '1 to 3 competitors'],
         [
-          'Obsession (ours): Search, Insights, Watch, API and MCP',
-          'Any company you name, emails to cancel offers',
-          'Early access, onboarding teams now\nPriced per call or per company watched',
-          'Stops before payment and any identity check',
-          'The whole customer side, in your tools',
+          'Obsession (ours): Email and SMS tracking and Competitor tracking blueprints',
+          'A persona on each competitor’s list, every email and text dated',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment and at any identity check',
+          'Your own competitors, in your own tools',
         ],
       ],
     },
@@ -146,12 +147,19 @@ export const ref: ReferencePage = {
     { kind: 'h3', id: 'follow', text: 'To keep every email from the competitors you name' },
     {
       kind: 'p',
-      text: `[SendView](${SENDVIEW}) promises to “Track any company’s email marketing tactics”, from $69 a month for 10 companies to $169 for 50. [Owletter](${OWLETTER}) monitors 10 websites for $29 a month and unlimited sites for $99, with a 14-day trial. [Competitor Inbox](${COMP_INBOX}) starts at $25 a month for 1 competitor and reaches $249 for 25. All three keep emails only. For 1 to 3 competitors, a spare inbox per competitor and a weekly look is enough, until the list grows or someone forgets to check.`,
+      text: `[SendView](${SENDVIEW}) promises to “Track any company’s email marketing tactics”, from $69 a month for 10 companies to $169 for 50. [Owletter](${OWLETTER}) monitors 10 websites for $29 a month and unlimited sites for $99, with a 14-day trial. [Competitor Inbox](${COMP_INBOX}) starts at $15 a month for 1 competitor and reaches $249 for 25, as listed on 22 November 2026. All three keep emails only. For 1 to 3 competitors, a spare inbox per competitor and a weekly look is enough, until the list grows or someone forgets to check.`,
     },
-    { kind: 'h3', id: 'behind-the-login', text: 'For what competitors show only to signed-up customers' },
+    { kind: 'h3', id: 'personas', text: 'For every email, text and offer a competitor sends a new customer' },
+    { kind: 'p', text: ENTITY },
     {
       kind: 'p',
-      text: `${ENTITY} The emails and texts sit in one record with the [member price](/glossary/member-price), the [welcome series](/glossary/welcome-series), the [abandoned cart email](/glossary/abandoned-cart-email) and the [save offer](/glossary/save-offer), each kept for as long as you follow the company. Every email is kept as it arrived, with its sender checked ([DKIM](/glossary/dkim)), and lands in your agent, Clay, Google Sheets or a webhook. Obsession and MailCharts are compared side by side on [Obsession vs MailCharts](/compare/obsession-vs-mailcharts).`,
+      text: 'For this job, teams pick the [Email and SMS tracking blueprint](/blueprints/email-sms-tracking). A persona, an AI agent with its own inbox and number under one name, joins each competitor’s list and stays on it. Every email and text lands in your event log with its arrival time, a screenshot and the original email. The [welcome series](/glossary/welcome-series) sits beside the welcome code and the [member price](/glossary/member-price), and results reach Slack, Google Sheets, your CRM or your agent. Obsession and MailCharts are compared side by side on [Obsession vs MailCharts](/compare/obsession-vs-mailcharts).',
+    },
+    {
+      kind: 'cta',
+      text: 'A persona on every competitor’s list, every email and text dated.',
+      to: '/blueprints/email-sms-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'choose', text: 'Which MailCharts alternative to choose' },
@@ -161,7 +169,7 @@ export const ref: ReferencePage = {
         '**You want campaign ideas across a category:** Panoramata or Reyo.',
         '**You name the competitors and want every email they send:** SendView, Owletter or Competitor Inbox, by how many companies you follow.',
         '**You follow 1 to 3 competitors and have the time:** a spare inbox per competitor.',
-        '**You need prices, trials and cancel offers beside the emails, for any company, in your own tools or your AI agent:** Obsession.',
+        '**You want every email, text, offer and member price from the competitors you name, in your own tools or your AI agent:** Obsession.',
       ],
     },
     {
@@ -169,19 +177,19 @@ export const ref: ReferencePage = {
       items: [
         {
           q: 'What is the best MailCharts alternative?',
-          a: 'It depends on the job. Panoramata or Reyo for campaigns across channels, SendView, Owletter or Competitor Inbox for the competitors you name, and Obsession for what any company shows only to signed-up customers, emails to cancel offers, by API, MCP or a table.',
+          a: 'It depends on the job. Panoramata or Reyo for campaigns across channels, SendView, Owletter or Competitor Inbox for the competitors you name, and Obsession for every email, text, offer and price a competitor sends a persona, delivered to your own tools.',
         },
         {
           q: 'Is there a cheaper alternative to MailCharts?',
-          a: 'MailCharts publishes no price, so a direct comparison isn’t possible. Competitor Inbox starts at $25 a month and Owletter at $29 a month, each read on 11 November 2026.',
+          a: 'MailCharts publishes no price, so a direct comparison isn’t possible. Competitor Inbox starts at $15 a month, as listed on 22 November 2026, and Owletter at $29 a month, read on 11 November 2026.',
         },
         {
           q: 'Which alternative tracks SMS as well as email?',
-          a: 'Panoramata tracks SMS from its Professional plan, and Obsession keeps the texts a company sends after a sign-up beside its emails, each dated.',
+          a: 'Panoramata tracks SMS from its Professional plan. Obsession’s persona has its own phone number, so the texts a company sends after a sign-up land beside its emails, each dated.',
         },
         {
           q: 'Which alternative works with an AI agent?',
-          a: 'Panoramata and Reyo list MCP servers. Obsession runs 5 verbs over MCP, the API and SDKs, and every fact links its receipt.',
+          a: 'Panoramata and Reyo list MCP servers, the standard way AI agents call tools. Obsession connects to your agent over MCP and one API, and every event arrives with its screenshot or the original email.',
           link: { label: 'See the API and MCP', to: '/developers' },
         },
       ],
@@ -204,11 +212,12 @@ export const ref: ReferencePage = {
     '/compare/obsession-vs-panoramata',
     '/glossary/welcome-series',
     '/glossary/abandoned-cart-email',
-    '/glossary/dkim',
+    '/glossary/member-price',
     'competitor-email-tracking-tools',
     'can-chatgpt-track-competitor-emails',
     'recipe:email-sms-tracking',
     'recipe:competitor-tracking',
+    '/email',
     '/marketing',
     '/sample-output',
   ],

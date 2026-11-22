@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/save-offer: the definition query for the offer a company makes to a customer who is leaving. A plain
    definition with no outside facts; the law sits on click-to-cancel and the cancel flow page. */
@@ -70,7 +69,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For a save offer, that means the screen that made it, its exact terms and the date it was shown, with any win-back email that followed. The history builds for as long as you follow the company, so a deeper offer shows up the week it starts.`,
+      text: 'Obsession’s [Delivery monitoring](/blueprints/delivery-monitoring) blueprint logs the screen that made the offer, its exact terms and the date it was shown, with any win-back email that followed. A deeper offer shows up the week it starts. Compliance teams use it for [opt-out and cancel checks](/use-cases/opt-out-and-cancel-checks-for-compliance-teams).',
     },
     {
       kind: 'faq',

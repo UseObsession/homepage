@@ -3,7 +3,8 @@ import { ENTITY } from '../site'
 
 /* /compare/obsession-vs-klue. Every Klue fact is from its own pages, read 11 Nov 2026
    (_research/seo/pagetypes-11nov/research/ci_panels.json; the home page and pricing page re-read the same day).
-   "klue alternatives" is owned by /alternatives/klue; "competitive intelligence tools" is left to the incumbents. */
+   "klue alternatives" is owned by /alternatives/klue; "competitive intelligence tools" is left to the incumbents.
+   Obsession's side (22 Nov): the toolkit, then the Trial teardown and Competitor tracking blueprints. */
 
 const KLUE = 'https://klue.com/'
 const KLUE_PRICING = 'https://klue.com/pricing'
@@ -12,14 +13,14 @@ export const ref: ReferencePage = {
   kind: 'compare',
   name: 'Obsession vs Klue',
   company: 'Klue',
-  line: 'Klue runs competitive intelligence and win-loss for sales teams. Obsession keeps what competitors show their customers.',
+  line: 'Klue runs competitive intelligence and win-loss for sales teams. Obsession’s personas keep what competitors show new users.',
   meta: {
     path: '/compare/obsession-vs-klue',
-    title: 'Obsession vs Klue: battlecards and what competitors send',
+    title: 'Obsession vs Klue (2026): battlecards and competitor trials',
     description:
-      'Obsession vs Klue: Klue runs competitive intelligence, battlecards and win-loss for sales teams; Obsession keeps what competitors show signed-up customers.',
+      'Obsession vs Klue: Klue runs battlecards and win-loss for sales teams. Obsession’s Trial teardown blueprint keeps every email and prompt competitors send.',
     answer:
-      'In Obsession vs Klue, Klue runs competitive intelligence and win-loss for sales teams and Obsession keeps what competitors show only to signed-up customers. Klue turns market intel and buyer interviews into battlecards inside Salesforce and Slack; Obsession keeps competitors’ trial limits, upgrade prompts, onboarding emails and cancel offers, each dated with a screenshot. Klue suits a team running a CI programme; Obsession supplies the evidence that programme can’t collect from public pages or interviews.',
+      'Klue turns market intel and buyer interviews into battlecards and win-loss reports for sales teams, inside Salesforce and Slack. Obsession is the toolkit for AI agents, and its Trial teardown and Competitor tracking blueprints sign a persona up at each competitor. Klue runs the programme. Obsession feeds it what competitors show new users: trial limits, upgrade prompts, onboarding emails and cancel offers, each dated with a screenshot.',
     ogImage: '/og/compare-obsession-vs-klue.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -27,12 +28,12 @@ export const ref: ReferencePage = {
       { name: 'Obsession vs Klue', path: '/compare/obsession-vs-klue' },
     ],
   },
-  title: 'Obsession vs Klue: battlecards and win-loss beside what competitors show their customers',
-  dek: 'Klue turns what your team hears and what competitors publish into battlecards. Obsession adds what competitors show the people who sign up, with the receipt.',
+  title: 'Obsession vs Klue: battlecards and win-loss, beside what competitors show new users',
+  dek: 'Klue turns what your team hears and what competitors publish into battlecards. Obsession adds what competitors show the people who sign up, each with its screenshot.',
   primaryKeyword: 'obsession vs klue',
   keywords: ['klue vs obsession', 'klue pricing', 'klue competitive intelligence', 'competitor trial teardown'],
   checked: '2026-11-11',
-  readingMinutes: 6,
+  readingMinutes: 5,
   reader: 'marketing',
   art: {
     kind: 'report',
@@ -59,17 +60,18 @@ export const ref: ReferencePage = {
       kind: 'p',
       text: `[Its pricing page](${KLUE_PRICING}) lists no plans or prices, only “GET A DEMO”, and says “250,000+ users rely on Klue”, with battlecards at the centre (“Create and update battlecards”). Its pages don’t describe signing up to a competitor’s product, the onboarding emails a competitor sends, or where a competitor’s free plan stops.`,
     },
-    { kind: 'h3', id: 'obsession', text: 'Obsession: what competitors show the people who sign up' },
+    { kind: 'h3', id: 'obsession', text: 'Obsession: a persona in each competitor’s trial' },
+    { kind: 'p', text: ENTITY },
     {
       kind: 'p',
-      text: `${ENTITY} For a software competitor that means its plans and [trial limits](/glossary/trial-limit), the day its [upgrade prompt](/glossary/upgrade-prompt) appears, every onboarding email and the offer in its cancel flow, each with the screen or the email behind it.`,
+      text: 'For this job, teams pick the [Trial teardown blueprint](/blueprints/trial-teardown). A persona, an AI agent with its own inbox and number under one name, starts each competitor’s trial as a new user. It keeps the plans and [trial limits](/glossary/trial-limit), the day the [upgrade prompt](/glossary/upgrade-prompt) appears, every onboarding email and the offer in the cancel flow, each with the screen or email behind it.',
     },
 
     { kind: 'h2', id: 'at-a-glance', text: 'Klue and Obsession at a glance', compare: true },
     {
       kind: 'table',
       compare: true,
-      caption: 'Klue’s row is from its own pages, read 11 November 2026. Obsession’s row is from [Home](/) and [the developer page](/developers).',
+      caption: 'Klue’s row is from its own pages, read 11 November 2026. Obsession’s row is from [the blueprint page](/blueprints/trial-teardown) and [pricing](/pricing).',
       cols: ['Option', 'What it holds', 'How it’s read', 'Freshness and history', 'Price as listed', 'Best for'],
       rows: [
         [
@@ -81,12 +83,12 @@ export const ref: ReferencePage = {
           'Running a CI and win-loss programme',
         ],
         [
-          'Obsession (ours): Search, Insights, Watch, API and MCP',
+          'Obsession (ours): Trial teardown and Competitor tracking blueprints',
           'Trial limits, onboarding emails, member prices, cancel offers',
-          '5 verbs over MCP, the API and SDKs, or a table',
-          'Kept from the first sign-up\nEach fact dated with its screenshot',
-          'Early access, onboarding teams now\nPriced per call or per company watched',
-          'Evidence of what competitors show customers',
+          'Slack, a sheet, your CRM, or the API and MCP',
+          'Each event as it lands\nDated in your event log',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Evidence of what competitors show new users',
         ],
       ],
     },
@@ -96,15 +98,21 @@ export const ref: ReferencePage = {
       kind: 'list',
       items: [
         '**Use Klue** to run the programme: collect what the market says, interview buyers about wins and losses, and put a current [battlecard](/glossary/battlecard) in front of a rep in the deal.',
-        '**Use Obsession** for the facts a battlecard needs and no interview gives you: what a competitor’s free plan includes, when it asks for an upgrade, what it emails a new account on days 1 to 14, and what it offers a customer who tries to leave. Each fact is dated, with a screenshot or the raw email, so a rep can show it.',
-        '**Use Obsession across many competitors at once.** Insights asks one question, such as “what does each competitor’s free plan include?”, across a list of companies and answers with a row per company.',
+        '**Use Obsession** for the facts a battlecard needs and no interview gives you: what a competitor’s free plan includes, when it asks for an upgrade, what it emails a new account on days 1 to 14, and what it offers a customer who tries to leave. Each one is dated, with a screenshot or the original email, so a rep can show it.',
+        '**Use Obsession across many competitors at once.** One persona per competitor starts the same trial on the same day, so a table shows every free plan side by side.',
       ],
+    },
+    {
+      kind: 'cta',
+      text: 'A persona in each competitor’s trial, every email and prompt dated.',
+      to: '/blueprints/trial-teardown',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'together', text: 'Using Klue and Obsession together' },
     {
       kind: 'p',
-      text: 'A product marketing or [competitive intelligence](/glossary/competitive-intelligence) team can feed Obsession’s facts into the battlecards it keeps in Klue: the trial teardown, the onboarding emails and the cancel offer, each linked to its receipt. The facts arrive over the API, MCP or a webhook the moment they land, so a card can change the week a competitor changes its trial.',
+      text: 'A product marketing team can feed Obsession’s events into the battlecards it keeps in Klue. The trial teardown, the onboarding emails and the cancel offer each arrive with their screenshot. Events reach your tools over the API, MCP (the standard way AI agents call tools) or a webhook as they land, so a card can change the week a competitor changes its trial.',
     },
     {
       kind: 'p',
@@ -120,15 +128,15 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Does Klue sign up to competitors’ products?',
-          a: 'Its pages don’t describe it. They describe a Compete Agent, buyer interviews and win-loss stories built from CRM data and call recordings. Obsession signs up the way any customer can and keeps what each competitor shows, from the first screen to the cancel offer.',
+          a: 'Its pages don’t describe it. They describe a Compete Agent, buyer interviews and win-loss stories built from CRM data and call recordings. Obsession’s personas sign up the way any customer can and keep what each competitor shows, from the first screen to the cancel offer. They stop before payment and at any identity check.',
         },
         {
           q: 'Can Obsession replace Klue?',
-          a: 'No. Klue runs the battlecards, the win-loss interviews and the answers sellers use in a deal. Obsession supplies evidence of what competitors show their customers, which those battlecards can use.',
+          a: 'No. Klue runs the battlecards, the win-loss interviews and the answers sellers use in a deal. Obsession supplies evidence of what competitors show new users, which those battlecards can use.',
         },
         {
           q: 'Who uses each one?',
-          a: 'Klue names sellers, product marketers, CI teams and battlecard curators. Obsession is used by competitive intelligence, product, pricing and marketing teams and the AI agents they build, through the API, MCP or a table.',
+          a: 'Klue names sellers, product marketers, CI teams and battlecard curators. On Obsession, product marketing, pricing and sales teams pick a blueprint, and developers build their own agents on the same pieces through the API and MCP.',
           link: { label: 'Obsession for sales teams', to: '/sales' },
         },
       ],
@@ -150,6 +158,7 @@ export const ref: ReferencePage = {
     'recipe:trial-teardown',
     'recipe:competitor-tracking',
     '/use-cases/trial-checks-for-software-companies',
+    '/personas',
     '/sales',
   ],
 }

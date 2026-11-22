@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Delivery monitoring (/recipes/delivery-monitoring). Check your own journeys. The persona version (20 Nov 2026,
+/* Delivery monitoring (/blueprints/delivery-monitoring). Check your own journeys. The persona version (20 Nov 2026,
    James): after every release, new personas you define sign up to your own product (or a client's, with their OK),
    each with its own inbox and phone number and a home connection in a country you sell in. They live your first 14
    days, sleep between messages and wake on each one, and every email, text and login code is timed against when it was
@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'delivery',
   slug: 'delivery-monitoring',
   name: 'Delivery monitoring',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'Personas in each country you sell in live your first 14 days and time every message.',
   gets: 'Every message a new user should get, timed, and anything missing flagged the day it was due.',
   kit: [
@@ -47,7 +47,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-delivery-monitoring-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'delivery',
     },
   },
@@ -119,6 +119,14 @@ export const recipe: Recipe = {
         { title: 'Phone and desktop', line: 'iPhone and Android, and desktop browsers.' },
       ],
     },
+    {
+      group: 'When a user leaves',
+      items: [
+        { title: 'Unsubscribe', line: 'The one-click link and its headers, and any email that still arrives after it.' },
+        { title: 'STOP', line: 'The confirmation text, and any text that still arrives after it.' },
+        { title: 'Cancel', line: 'Every screen from the cancel button to the confirmation, the offer made on the way and the email after.' },
+      ],
+    },
   ],
 
   outputs: {
@@ -159,6 +167,7 @@ export const recipe: Recipe = {
       {
         q: 'How do I know our welcome emails and login codes arrive?',
         a: 'Delivery monitoring sends new personas through your sign up in each country you sell in, each with its own inbox and a local number. They live your first 14 days and flag any email, text or code that never arrives.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Why 14 days?',
@@ -167,6 +176,7 @@ export const recipe: Recipe = {
       {
         q: 'Are the inboxes and numbers real?',
         a: 'Yes. Each persona has its own inbox and a local number in the country you pick, so a text a network blocks never reaches it either.',
+        link: { label: 'See phone numbers for AI agents', to: '/phone' },
       },
       {
         q: 'Can it check our launch emails and texts?',
@@ -174,17 +184,23 @@ export const recipe: Recipe = {
       },
       { q: 'Does it see our real users’ data?', a: 'No. It sees only what its own personas receive.' },
       { q: 'Can agencies run it for clients?', a: 'Yes, with each client’s OK, each with its own log to forward.' },
+      {
+        q: 'What does Delivery monitoring cost?',
+        a: 'Each new persona uses an inbox, a local number and browser hours, billed at list rates. Over its 14 days the persona mostly waits for the next message, and waiting costs nothing.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
+      },
     ],
   },
 
   final: {
     heading: 'Find the message your new users never got.',
-    sub: 'Early access includes the API and MCP, set up with the founders.',
+    sub: 'Try it on the Free plan. Your release pipeline can start each run through the API.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-delivery-monitoring-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'delivery',
     },
+    link: { label: 'More blueprints to test sign-up and agents', to: '/blueprints/test-sign-up-and-agents' },
   },
 }

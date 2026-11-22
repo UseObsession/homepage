@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/sms-stop: the definition query for the STOP reply and the opt-out behind it, from the CTIA guidelines and
    the FCC's revocation rule as published in the Federal Register. US rules; general information, never legal advice. */
@@ -60,7 +59,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For SMS STOP, that means the reply sent, the confirmation with the time it arrived and any text that still came afterwards. Each is dated, for your own brand and for competitors’, which is the evidence behind [opt-out compliance](/use-cases/opt-out-and-cancel-checks-for-compliance-teams).`,
+      text: 'Obsession’s [Delivery monitoring](/blueprints/delivery-monitoring) blueprint logs the STOP reply sent, the confirmation with the time it arrived and any text that still came afterwards, from a persona’s [phone number](/phone). Each is dated, for your own brand and for competitors’, which is the evidence behind [opt-out and cancel checks](/use-cases/opt-out-and-cancel-checks-for-compliance-teams).',
     },
     {
       kind: 'faq',

@@ -63,7 +63,7 @@ export const personas: PiecePage = {
       { title: 'Free while it waits', line: 'Waiting days for a reply costs nothing. Pieces are billed only when used.' },
       { title: 'Awake in 50 ms', line: 'A new email, text or call wakes it in 50 ms, without starting a machine.' },
       { title: 'A sandbox when a task needs one', line: 'It starts a sandbox for a task that runs code, and stops it when done.' },
-      { title: 'Signed in for months', line: 'Its browser keeps its logins, so it returns to the same sites as the same person, week after week.' },
+      { title: 'Signed in for months', line: 'Its browser keeps its logins, so it returns to the same sites under the same name, week after week.' },
     ],
   },
 
@@ -115,7 +115,7 @@ export const personas: PiecePage = {
       },
       {
         q: 'What lands in the event log?',
-        a: `Every page the persona visited and every email, text and call it sent or got, each dated, with screenshots of the pages, beside the events from your other pieces and blueprints. Nothing in it is changed or deleted. Read it with obsession.events.list(), or subscribe once with obsession.events.subscribe(). The event log costs ${prices.log.amount} ${prices.log.unit}. ${prices.log.note}`,
+        a: `Every page the persona visited and every email, text and call it sent or got, each dated, with screenshots of the pages, beside the events from your other pieces and blueprints. Nothing in it is edited after it lands. Read it with obsession.events.list(), or subscribe once with obsession.events.subscribe(). The event log costs ${prices.log.amount} ${prices.log.unit}. ${prices.log.note}`,
       },
       {
         q: 'Do I need a persona to use the other pieces?',
@@ -130,6 +130,6 @@ export const personas: PiecePage = {
 
   final: {
     heading: 'Give your agent one identity for every piece.',
-    capture: { kind: 'waitlist', button: 'Request early access', interest: 'any', source: 'piece-personas' },
+    capture: { kind: 'waitlist', button: 'Start free', interest: 'any', source: 'piece-personas' },
   },
 }

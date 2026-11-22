@@ -15,7 +15,7 @@ import type { BlogPost } from './types'
    page reduces churn, the 93% and 128 stores, any PilotX audit figure, and Milled (its pages returned an error).
    Buyer words (sign up, basket, pop up, report to the client); no dashes.
    11 Nov 2026 (SEO revamp wave 1): title, answer, Obsession's lines and the calls to action moved to the live position
-   (the web behind the login, early access); no free offer. */
+   (the web behind the login, early access); no free offer. Rewritten 22 Nov 2026 for the toolkit position. */
 
 const KLAVIYO_BFCM = 'https://www.klaviyo.com/bfcm'
 const KLAVIYO_TIMING = 'https://www.klaviyo.com/blog/when-to-send-black-friday-emails'
@@ -34,7 +34,7 @@ export const post: BlogPost = {
   description:
     'A Black Friday email report a client reads in 2 minutes: each competitor’s first send, emails a day, deepest offer and landing page. Template and example.',
   answer:
-    'A Black Friday email report for a client is one page: for each of 3 competitors, the first Black Friday email you received and when, the emails and texts a day, the deepest offer and how it works, and the page the email sent people to, then what the client did differently and 3 decisions for January. Collect it by signing up to each competitor with its own new address and logging every message as it arrives. Obsession keeps every email and offer each competitor sends its customers, dated as it arrived, for every client’s competitors, by API, MCP (the standard way AI agents call tools) or a table.',
+    'A Black Friday email report for a client is one page: for each of 3 competitors, the first Black Friday email you received and when, the emails and texts a day, the deepest offer and how it works, and the page the email sent people to, then what the client did differently and 3 decisions for January. Collect it by signing up to each competitor with its own new address and logging every message as it arrives. Obsession’s email and SMS tracking blueprint keeps every email and offer each competitor sends its customers, dated as it arrived, for every client’s competitors.',
   primaryKeyword: 'black friday email report',
   keywords: [
     'black friday email report',
@@ -48,7 +48,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 9,
   order: 1,
   authors: [
@@ -260,9 +260,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Report to every client with each competitor’s own emails: what any store sends after a sign-up and a basket, each message dated and kept as it arrived, for the clients you keep and their competitors.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      text: 'Not building agents? Pick a blueprint, and Obsession runs it. Email and SMS tracking subscribes to every competitor of every client and keeps each email and text, dated as it arrived, ready for the report.',
+      to: '/blueprints/email-sms-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'hours', text: 'Time needed to keep the log by hand' },
@@ -274,7 +274,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'libraries', text: 'Email libraries for the weeks before you signed up', compare: true },
     {
       kind: 'p',
-      text: '[An email library](/blog/competitor-email-tracking-tools) can show what a competitor sent before your address existed. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. [Panoramata’s pricing page](' +
+      text: '[An email library](/blog/competitor-email-tracking-tools) can show what a competitor sent before your address existed. We make Obsession, so every line about another tool is taken from that tool’s own pages, checked on 23 October 2026. Obsession’s blueprints keep what a competitor sends from the day a persona joins its list. [Panoramata’s pricing page](' +
         PANORAMATA +
         ') lists emails, flows, SMS and ads, says it covers more than 20,000 brands, and gives its $99 plan 20 competitors and 6 months of history, with unlimited on the $179 and $399 plans. [MailCharts says](' +
         MAILCHARTS +
@@ -296,9 +296,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Open every pitch and client review with the store’s own emails: what every client and prospect sends its signed-up customers, from the welcome email to the reminder that never came, each dated with a screenshot.',
-      to: '/agencies',
-      label: 'Request early access',
+      text: 'Open every pitch and client review with the store’s own emails. Obsession’s mystery shopping blueprint keeps what every client and prospect sends its signed-up customers, from the welcome email to each reminder that should have come, each dated.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

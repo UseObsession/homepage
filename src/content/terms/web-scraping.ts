@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/web-scraping: for an engineer or data team. "scrape data behind login" stays with its owner
    (docs/SEARCH.md §2); this page owns the definition. No legal claims beyond RFC 9309's own words. Firecrawl is
@@ -67,7 +66,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'keeping-history', text: 'How what companies show customers is kept over time' },
     {
       kind: 'p',
-      text: `${ENTITY} Each account stays open for as long as you follow the company, so every new email, price and offer lands dated the day it arrives.`,
+      text: 'Obsession’s [cloud browser](/browser) signs up as a customer and a persona’s inbox keeps what arrives. Every new email, price and offer lands in the event log dated the day it arrives.',
     },
     {
       kind: 'p',
@@ -102,6 +101,7 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    '/browser',
     '/glossary/headless-browser',
     '/glossary/web-search-api',
     '/glossary/login-wall',

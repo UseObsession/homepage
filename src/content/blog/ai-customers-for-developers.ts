@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* The AI customers series, article 9 (24 Oct 2026): AI customers for developers. Since 21 Nov it owns "ai agent inbox"
    (primary) and "mcp server ecommerce"; "email api for ai agents" belongs to /email and the phone number searches to
@@ -18,8 +17,9 @@ import { AI_CUSTOMER } from '../glossary'
    Web Bot Auth, Shopify Storefront API, Anthropic's Haiku 5.5 price, MCP, Google Ads invalid clicks).
    "Customer agent" appears only as the unit an API returns. No MCP or API address is printed (Positioning §4).
    Left out on purpose: Google Workspace prices (annual
-   or flexible not confirmed), ChatGPT agent (retired), any Obsession price (none is listed). fernhollow.example,
-   rival domains and the 200 company volumes are invented. No dashes. */
+   or flexible not confirmed), ChatGPT agent (retired). fernhollow.example, rival domains and the 200 company volumes
+   are invented. No dashes. 22 Nov 2026: the 5 verbs and the index are out; Obsession is the toolkit (personas, calls,
+   events, prices.ts). */
 
 const AGENTMAIL_DOCS = 'https://docs.agentmail.to/welcome'
 const TWILIO = 'https://www.twilio.com/en-us/sms/pricing/us'
@@ -40,12 +40,12 @@ const SHOPIFY_AGENTS = 'https://shopify.dev/docs/agents'
 export const post: BlogPost = {
   slug: 'ai-customers-for-developers',
   title: 'Give an AI agent an inbox that signs up and waits: a guide for developers',
-  dek: 'How developers give an AI agent an inbox, a phone number and a browser and keep it a customer of thousands of companies for months. The parts at published prices, the hard parts at scale, and the same facts over MCP, the standard way AI agents call tools.',
-  metaTitle: 'AI agent inbox that signs up and waits: a developer guide',
+  dek: 'How developers give an AI agent an inbox, a phone number and a browser and keep it a customer of thousands of companies for months. The parts at published prices, the hard parts at scale, and the same job in one call over the API or MCP, the standard way AI agents call tools.',
+  metaTitle: 'AI agent inbox for developers: sign up and wait for emails',
   description:
-    'An AI agent inbox, number and browser that sign up and wait for months: the parts developers build, what each costs, and the same facts over MCP.',
+    'Give an AI agent an inbox, a number and a browser that sign up and wait for months: the parts developers build, each price, and one call on Obsession.',
   answer:
-    'An email API for AI agents, such as AgentMail, gives each agent its own inbox that it creates, reads and sends from by API. Reading what companies send their customers takes more: a phone number, a browser, a sign up program per platform, months of waiting and a store that keeps each raw email with its DKIM result, the signature check that shows which domain sent it. Obsession keeps what any company shows only to its customers, dated with the raw email or screenshot, and your agent looks it up through 5 verbs over the API or MCP.',
+    'An AI agent inbox lets an agent sign up to a company, receive its emails and act on them, and an email API such as AgentMail creates one in a single call. Staying a customer for months takes more: a phone number for login codes, a browser, a sign up program per form platform and a store that keeps each raw email with its DKIM result, the signature check that shows which domain sent it. On Obsession, one call, obsession.personas.create(), gives the agent an inbox, a number and a browser under one identity, and every email reaches your webhook, the address where your code listens, as an email.received event.',
   primaryKeyword: 'ai agent inbox',
   keywords: [
     'mcp server ecommerce',
@@ -53,9 +53,9 @@ export const post: BlogPost = {
     'durable objects hibernation',
     'dkim verification',
   ],
-  category: 'Behind the login',
+  category: 'Work behind logins',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 10,
   order: 9,
   authors: [
@@ -65,17 +65,17 @@ export const post: BlogPost = {
   hero: {
     art: {
       kind: 'log',
-      title: 'customer agent ca_8f21 · fernhollow.example',
-      who: 'Its own inbox, a UK number and a browser, made for this company at 09:00',
+      title: 'persona p_8f21',
+      who: 'Its own inbox, a UK number and a browser, made for fernhollow.example at 09:00',
       status: { tone: 'info', text: 'Asleep until the next email' },
       rows: [
         { time: '09:00', text: 'Signed up by program', detail: 'The store’s form platform, learned once, 4 seconds', tone: 'ok' },
         { time: '09:01', text: 'Confirmed double opt in', detail: 'Opened the confirmation email and clicked its link', tone: 'ok' },
         { time: '09:01', text: 'Asleep', detail: 'No process runs and nothing is billed for time', tone: 'info' },
         { time: '09:03', text: 'Woke: welcome email', detail: 'Raw email kept with a hash. DKIM pass, key stored', tone: 'ok' },
-        { time: '09:03', text: 'Fact: welcome_email.arrived', detail: '2 minutes after sign up, with code FERN10', tone: 'ok' },
+        { time: '09:03', text: 'Event: email.received', detail: '2 minutes after sign up, with code FERN10', tone: 'ok' },
       ],
-      foot: 'An example on an invented store, as an API might return 1 customer agent. Each fact links to its evidence.',
+      foot: 'An example on an invented store, as the event log shows 1 persona. Each event links to the email it came from.',
     },
   },
 
@@ -105,7 +105,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-you-build', text: 'What you are building' },
     {
       kind: 'p',
-      text: `${AI_CUSTOMER.definition} In an API, each one is returned as a customer agent: 1 company, 1 identity, and the evidence it has kept. The definition and its neighbours are in [AI customers](/blog/ai-customers).`,
+      text: 'An AI agent that signs up as a customer needs an identity a company accepts: an inbox, often a phone number for the login code, and a browser for the form. On Obsession that identity is a persona, an AI agent with its own inbox, number and browser under one name, free while it waits. [AI agents as customers](/blog/ai-customers) covers what such an agent sees.',
     },
     {
       kind: 'p',
@@ -127,7 +127,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'identities', text: 'Identities: an inbox, a phone number and a browser' },
     {
       kind: 'p',
-      text: 'Give each AI customer its own inbox at each company it joins, so every email belongs to 1 company and 1 watch. An [email API for AI agents](/email) creates one in a single call. [AgentMail’s pricing](' +
+      text: 'Give each agent its own inbox at each company it joins, so every email belongs to 1 company and 1 watch. An [email API for AI agents](/email) creates one in a single call. [AgentMail’s pricing](' +
         AGENTMAIL_PRICING +
         ') lists 10 inboxes for $20 a month on Developer, 150 for $200 on Startup, and $2 a month for each extra inbox. Gmail’s tabs are Gmail’s own sorting, so if you need to know whether an email landed in Promotions, that inbox has to be a Gmail mailbox.',
     },
@@ -149,7 +149,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'sign-up', text: 'Sign up programs, 1 per platform' },
     {
       kind: 'p',
-      text: 'An AI customer signs up through the forms any customer uses: the pop up, the footer form, the checkout tick box, the trial form. With double opt in, [a subscriber clicks a link in a confirmation email or text](' +
+      text: 'An agent signs up through the forms any customer uses: the pop up, the footer form, the checkout tick box, the trial form. With double opt in, [a subscriber clicks a link in a confirmation email or text](' +
         DOUBLE_OPTIN +
         ') before being added, so a sign up is finished only when the inbox has received that email and the link has been opened.',
     },
@@ -163,13 +163,13 @@ export const post: BlogPost = {
         BOT_AUTH +
         ') lets bots and agents sign their requests with HTTP message signatures, and [Shopify’s Storefront API](' +
         SHOPIFY_STOREFRONT +
-        ') gives signed traffic higher rate limits than unsigned bots. An AI customer never gets round a CAPTCHA or a bot wall. The report names the step it couldn’t test.',
+        ') gives signed traffic higher rate limits than unsigned bots. An agent on Obsession never gets round a CAPTCHA or a bot block, and the event log names the step where it stopped.',
     },
 
     { kind: 'h3', id: 'waiting', text: 'Durable waiting' },
     {
       kind: 'p',
-      text: 'Much of what a customer receives arrives late: the reminder the next day, the win back email after 60 days, the renewal notice after 11 months. A process kept running for each customer would bill for every hour of that wait, so keep each AI customer as state that sleeps and wakes on 3 events: an email, a text or a timer.',
+      text: 'Much of what a customer receives arrives late: the reminder the next day, the win back email after 60 days, the renewal notice after 11 months. A process kept running for each customer would bill for every hour of that wait, so keep each agent as state that sleeps and wakes on 3 events: an email, a text or a timer. A persona on Obsession works this way and is free while it waits.',
     },
     {
       kind: 'p',
@@ -177,7 +177,7 @@ export const post: BlogPost = {
         CF_DO +
         '). Requests, which include alarm invocations, come with 1 million a month on the Workers Paid plan and then cost $0.15 a million, and that plan has a [minimum charge of $5 a month](' +
         CF_WORKERS +
-        '). An AI customer that wakes 30 times a month makes 30 requests.',
+        '). An agent that wakes 30 times a month makes 30 requests.',
     },
 
     { kind: 'h3', id: 'evidence-store', text: 'The evidence store' },
@@ -207,7 +207,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'hard-parts', text: 'The hard parts at scale' },
     {
       kind: 'p',
-      text: 'For 5 companies, a developer can join these parts in a few days. At thousands, most of the work sits in 7 places. The engineering of each, and the durable execution engines that handle the waiting, is in [long running AI agents](/blog/long-running-ai-agents), and 10 systems to build on them are in [what to build with AI customers](/blog/what-to-build-with-ai-customers).',
+      text: 'For 5 companies, a developer can join these parts in a few days. At thousands, most of the work sits in 7 places. The engineering of each, and the durable execution engines that handle the waiting, is in [long running AI agents](/blog/long-running-ai-agents), and 10 systems to build on them are in [what to build with AI agents](/blog/what-to-build-with-ai-customers).',
     },
     {
       kind: 'list',
@@ -218,12 +218,12 @@ export const post: BlogPost = {
         '**Evidence that outlives key changes,** checked on arrival and stored with its key and hash.',
         '**Telling messages apart.** A welcome, a reminder, a price change and an order confirmation look alike to a parser, and the categories differ by sector.',
         '**Countries.** Prices, offers and delivery messages differ by market, so each market needs its own number and address.',
-        '**History.** What a company sent last month can’t be collected today. Sharing 1 AI customer per company across every user who watches it gives a new user that history on day one.',
+        '**History.** What a company sent last month can’t be collected today, so start each persona before you need its history.',
       ],
     },
     {
       kind: 'p',
-      text: 'The rules hold at any scale. An AI customer says it is an AI whenever it talks to a person, uses no fake payment details, never gets round a bot wall and never clicks a competitor’s paid ads at volume, because [Google Ads treats automated clicks as invalid](' +
+      text: 'The rules hold at any scale. An agent on Obsession says it’s an AI when it talks to a person, stops before payment unless given the customer’s own card, never uses fake payment details, never gets round a CAPTCHA or a bot block and stops at any identity check. It never clicks paid ads at volume, because [Google Ads treats automated clicks as invalid](' +
         INVALID_CLICKS +
         ').',
     },
@@ -282,10 +282,10 @@ export const post: BlogPost = {
           'Facts from stored evidence',
         ],
         [
-          'Obsession (ours): 5 verbs over MCP, the API and SDKs',
-          'Customer agents with an inbox, number and browser\nShared history from day one\nEvidence with its DKIM result',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
+          'Obsession (ours): [Email](/email), [Phone](/phone), [Browser](/browser) and [Personas](/personas) on one API, an SDK and MCP',
+          'An inbox, a number and a browser under one identity\nFree while it waits\nEvery email, text and page as an event',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at any CAPTCHA, identity check and payment, unless given your own card',
           'Agents that need to be a real customer at many companies',
         ],
       ],
@@ -313,59 +313,63 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'In this example the inboxes are 89% of the bill, and the services come to about $1.68 per company a month. The larger cost is the engineering time to write and keep the sign up programs, the store and the classifier, so set your own hours against a hosted system’s price. The full cost model, against people and mystery shoppers, is in [AI customers at scale](/blog/ai-customers-at-scale).',
+      text: 'In this example the inboxes are 89% of the bill, and the services come to about $1.68 per company a month. The larger cost is the engineering time to write and keep the sign up programs, the store and the classifier, so set your own hours against a hosted system’s price. On Obsession the same parts are priced per piece: $0.50 an inbox a month, $2 a US number, $0.015 a text and $0.10 a browser hour, and a persona is free while it waits. The full cost model, against people and mystery shoppers, is in [AI agent cost per month](/blog/ai-customers-at-scale).',
     },
     {
       kind: 'p',
-      text: 'Use Obsession when you need thousands of companies, history from the first day, or numbers in many countries. Build it when you watch a handful of companies, need the store in your own systems, or want to run an open source runtime yourself.',
+      text: 'Use Obsession when your agent needs more than one of an inbox, a number, a browser and a sandbox, on one key and one bill, at thousands of companies. Build it when you watch a handful of companies or need every part inside your own systems.',
     },
 
-    { kind: 'h2', id: 'call-over-mcp', text: 'Looking companies up over MCP and an API' },
+    { kind: 'h2', id: 'call-over-mcp', text: 'The same job on one API and MCP' },
     {
       kind: 'p',
       text: '[MCP](' +
         MCP +
         ') is an open source standard for connecting AI applications to external systems. Ecommerce MCP servers such as [Shopify’s](' +
         SHOPIFY_AGENTS +
-        ') act for a buyer: through them, agents search products, build carts, check out and fetch an order’s status. A customer-side server reports what each company sent and showed its customers, with the evidence.',
+        ') act for a buyer: through them, agents search products, build carts, check out and fetch an order’s status. Obsession’s MCP server gives your agent the inbox, number and browser of a customer instead.',
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For your code that is 5 verbs over MCP, an HTTP API and TypeScript and Python SDKs: lookup (which companies are covered, and since when), facts (what a company sent or showed, typed, each with a timestamp and a link to its evidence), evidence (the raw email with its DKIM result, or the page as captured), index (add a new company) and notify (each new fact posted to your webhook as JSON the moment it lands). A company is indexed once and shared, so one already covered arrives with its history, and the runtime that signs up, keeps each account open and files every email is open source. Priced per call or per company watched, every key has a spending cap you set, and teams start in early access with API and MCP keys and lookups of every company already covered.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to.',
+    },
+    {
+      kind: 'p',
+      text: 'For your code, obsession.personas.create({ inbox: true, phone: "US", browser: true }) returns a persona with an inbox, a number and a browser. Every email, text and page it meets reaches your webhook as email.received, sms.received or page.visited, about 50 ms after it lands. The TypeScript SDK, plain HTTP and the MCP server (claude mcp add obsession) give your agent the same calls. An inbox is $0.50 a month and a US number $2, on the Free plan or $20, $99 or $499 a month, each with a spend cap you set.',
     },
     {
       kind: 'art',
       art: {
         kind: 'log',
-        title: 'A competitor tracking app’s agent calls Obsession',
-        who: 'An agent adding 3 competitors a user named, over MCP',
-        status: { tone: 'ok', text: 'Facts with evidence, then a webhook' },
+        title: 'Three personas, day 1',
+        who: 'An app’s agent tracking 3 competitors a user named, over MCP',
+        status: { tone: 'ok', text: 'Events at your webhook' },
         rows: [
-          { time: '09:00', text: 'lookup: 3 domains', detail: '2 covered since July, 1 not yet', tone: 'ok' },
-          { time: '09:00', text: 'facts: since 24 September', detail: 'The covered competitors’ facts, each linked to its evidence', tone: 'ok' },
-          { time: '09:01', text: 'evidence: 1 price email', detail: 'The raw email, its DKIM result and its hash', tone: 'ok' },
-          { time: '09:01', text: 'index: 1 domain', detail: 'An Obsession agent starts a trial as a new customer', tone: 'info' },
-          { time: '11:42', text: 'notify: fact.created', detail: 'quillery.example cut Pro from $49 to $39 a month', tone: 'ok' },
+          { time: '09:00', text: 'personas.create: 3 personas', detail: 'An inbox, a US number and a browser each', tone: 'ok' },
+          { time: '09:01', text: 'page.visited', detail: 'Each persona opens a competitor’s trial form', tone: 'info' },
+          { time: '09:02', text: 'email.received', detail: 'quillery.example sends its welcome email', tone: 'ok' },
+          { time: '09:02', text: 'sms.received', detail: 'A login code by text, filed under the same persona', tone: 'ok' },
+          { time: '11:42', text: 'email.received', detail: 'quillery.example cut Pro from $49 to $39 a month', tone: 'ok' },
         ],
-        foot: 'An example with invented companies. The 5 calls are Obsession’s verbs. What the app shows its user is its own.',
+        foot: 'An example with invented companies. The calls and events are Obsession’s. What the app shows its user is its own.',
       },
-      caption: 'How an app’s agent uses Obsession as a tool: it asks what is covered, reads facts and evidence, adds a new company, and is told when a new fact lands.',
+      caption: 'An app’s agent creates a persona per competitor on Obsession, and every page, email and text reaches its webhook as an event.',
     },
     {
       kind: 'cta',
-      text: '5 verbs for your agents and your code: look up any company, read its facts with the raw email or page behind each, add a new company, and get every new fact at your webhook the moment it lands.',
-      to: '/developers',
-      label: 'See the API and MCP',
+      text: 'One call gives your agent an inbox, a phone number and a browser under one identity, and every email, text and page reaches your webhook as an event. The Free plan needs no credit card.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
     {
       kind: 'list',
       items: [
-        '**A bot wall or a CAPTCHA stops it,** and the report names the step it couldn’t test.',
+        '**A bot wall, a CAPTCHA or an identity check stops it,** and the event log names the step where it stopped.',
         '**A new customer sees what new customers get.** Long standing customers may receive other emails and other inbox placement.',
-        '**It records outputs.** Why a company sent something sits in that company’s own systems.',
-        '**Some journeys need a real purchase,** on a card its owner funds.',
+        '**It keeps what arrives.** Why a company sent something sits in that company’s own systems.',
+        '**Some journeys need a real purchase,** and the agent stops before payment unless given its owner’s own card.',
         '**You may not need it.** For a few companies checked now and then, a spare inbox, a phone and a weekly script are enough.',
       ],
     },
@@ -375,16 +379,18 @@ export const post: BlogPost = {
       kind: 'faq',
       items: [
         {
-          q: 'What is an email API for AI agents?',
-          a: 'An email API for AI agents gives each agent its own inbox that it can create, read and send from by API. AgentMail is one, at $20 a month for 10 inboxes on its Developer plan.',
+          q: 'What is an AI agent inbox?',
+          a: 'An AI agent inbox is an email address an agent creates, reads and sends from by API. AgentMail offers 10 for $20 a month on its Developer plan, and an Obsession inbox is $0.50 a month, with 3 included on the Free plan.',
+          link: { label: 'Email for AI agents', to: '/email' },
         },
         {
           q: 'How do I give my AI agent a phone number?',
           a: 'Lease a number from a provider such as Twilio, at $1.15 a month for a US long code, and receive each text and call by webhook. Twilio says US A2P 10DLC numbers carry registration onboarding fees.',
+          link: { label: 'Phone numbers for AI agents', to: '/phone' },
         },
         {
           q: 'Is there an MCP server for ecommerce?',
-          a: 'Yes. Shopify’s developer docs offer MCP servers through which agents search products, build carts, check out and fetch order status for a buyer. What companies send their customers comes from a customer-side server such as Obsession’s, which keeps each email and page dated, with its evidence.',
+          a: 'Yes. Shopify’s developer docs offer MCP servers through which agents search products, build carts, check out and fetch order status for a buyer. To see what companies send their customers, an agent needs its own inbox, number and browser, which Obsession’s MCP server gives it as tools.',
         },
         {
           q: 'Can an AI agent wait weeks for an email without running?',
@@ -395,15 +401,15 @@ export const post: BlogPost = {
           a: 'Keep the raw message with its headers and a hash, verify its DKIM signature on arrival and keep the public key. Domains remove old keys, so a check made much later can fail on a genuine email.',
         },
         {
-          q: 'How much does it cost to run an AI customer?',
-          a: 'In an example of 200 companies in 1 market, the services cost about $336 a month, or $1.68 per company, at published prices on 24 October 2026. The engineering to build and keep it running is the larger cost.',
+          q: 'How much does it cost to run an agent as a customer?',
+          a: 'In an example of 200 companies in 1 market, the services cost about $336 a month, or $1.68 per company, at published prices on 24 October 2026. The engineering to build and keep it running is the larger cost. On Obsession, a persona is free while it waits, and you pay for the pieces it uses.',
         },
       ],
     },
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Every price comes from the company’s own page, opened on 24 October 2026. The 200 company example uses invented volumes, and real ones vary by sector. The companies in the illustrations are invented. Obsession’s verbs and runtime are as its developers page states them.',
+      text: 'Every price comes from the company’s own page, opened on 24 October 2026. The 200 company example uses invented volumes, and real ones vary by sector. The companies in the illustrations are invented. Obsession’s calls, events and prices are as its developers and pricing pages state them on 22 November 2026.',
     },
   ],
 

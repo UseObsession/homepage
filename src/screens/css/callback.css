@@ -1,0 +1,139 @@
+/* app-callback: Your company / Blueprints / Speed-to-lead callback. Sunmere Solar (invented) calls every new form lead
+   within a minute from its AI assistant's number, only leads who agreed to a call, 08:00 to 21:00 in the lead's time.
+   Top: the day's leads, each with a bar from form to first ring (a minute across 76px) and its outcome; the day's
+   numbers in the card's head. Below: Maria's call, each line timed, each answer saved as a field on her CRM contact.
+   The 1 thing: 39 seconds from her form to the call, and a survey booked on it.
+   Story (4.9 s): the earlier leads land; Maria's lead lands and its bar runs from form to ring; her call's lines land
+   one by one, the answers drop in as fields, the survey books and Booked turns from 16 to 17; Dev's missed call and
+   Tom's land after; the toast. Rest state (no .play) = the finished scene. */
+
+.app-callback .ax-main{padding:14px;gap:10px}
+.app-callback .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-callback .ax-clients a.on i{background:var(--fg-2)}
+.app-callback .ax-clients a{white-space:nowrap}
+
+/* ---------- head: the blueprint, the hours, the agent's own number ---------- */
+.app-callback .cb-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-callback .cb-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-callback .cb-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-callback .cb-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font:400 11px/1 var(--mono);color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-callback .cb-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-callback .cb-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* the status mark slot */
+.app-callback .cb-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.ilwrap .app-callback .cb-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.ilwrap .app-callback .ax-side-f svg.sig{width:13px;height:13px;color:var(--fg)}
+
+/* ---------- the day's leads ---------- */
+.app-callback .cb-q{display:grid;grid-template-rows:26px repeat(5,22px);border-radius:10px;overflow:hidden;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-callback .cb-kp{display:flex;align-items:center;gap:18px;padding:0 12px;box-shadow:0 -1px 0 var(--line-2) inset;white-space:nowrap}
+.app-callback .cb-k{display:inline-flex;align-items:baseline;gap:6px;font-size:10.5px;color:var(--fg-3)}
+.app-callback .cb-k b{font:500 12px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-callback .cb-nb{display:inline-grid}
+.app-callback .cb-nb i{grid-area:1/1;font-style:normal}
+.app-callback .cb-nb i:first-child{opacity:0}
+
+.app-callback .cb-ln{position:relative;display:grid;grid-template-columns:40px 128px 118px minmax(0,1fr);align-items:center;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset;white-space:nowrap}
+.app-callback .cb-l5{box-shadow:none}
+.app-callback .cb-ln time{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-callback .cb-who{display:flex;align-items:baseline;gap:7px;min-width:0}
+.app-callback .cb-who b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-callback .cb-who em,.app-callback .cb-out em{font:400 11px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+.app-callback .cb-s{display:flex;align-items:center;gap:8px}
+.app-callback .cb-bar{position:relative;display:block;width:76px;height:4px;border-radius:2px;background:var(--line)}
+.app-callback .cb-bar::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--cb-w);border-radius:2px;background:rgb(var(--fg-rgb) / .4);transform-origin:0 50%}
+.app-callback .cb-s span{font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-callback .cb-out{display:flex;align-items:center;gap:7px;min-width:0}
+.app-callback .cb-out b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+/* Maria's lead is the one open below */
+.app-callback .cb-l3{background:rgb(var(--fg-rgb) / .045)}
+.app-callback .cb-l3::before{content:"";position:absolute;left:0;top:4px;width:2px;height:14px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-callback .cb-l3 .cb-bar::after{background:var(--fg)}
+.app-callback .cb-l3 .cb-s span{color:var(--fg)}
+
+/* ---------- Maria's call ---------- */
+.app-callback .cb-call{border-radius:10px;overflow:hidden;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-callback .cb-ch{display:flex;align-items:center;gap:8px;height:24px;padding:0 12px;white-space:nowrap;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-callback .cb-pl{display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--fg);flex:none}
+.ilwrap .app-callback .cb-pl svg{width:10px;height:10px}
+.app-callback .cb-pl path{fill:var(--bg)}
+.app-callback .cb-ch b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-callback .cb-ch em{font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+.app-callback .cb-cs{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font:400 10.5px/1 var(--sans);color:var(--fg-3)}
+.ilwrap .app-callback .cb-cs svg{width:12px;height:12px}
+
+.app-callback .cb-r{display:grid;grid-template-columns:280px minmax(0,1fr);align-items:center;height:32px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-callback .cb-r4{box-shadow:none}
+.app-callback .cb-tx,.app-callback .cb-ck{display:grid;gap:5px;min-width:0}
+.app-callback .cb-sp{display:flex;align-items:center;gap:8px;font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-callback .cb-sp time{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-callback .cb-qt{font:400 10.5px/1 var(--mono);color:var(--fg);white-space:nowrap}
+.app-callback .cb-cn{display:flex;align-items:center;gap:6px;font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-callback .cb-rl{font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-callback .cb-r1 .cb-rl,.app-callback .cb-r4 .cb-rl{padding-left:18px}
+/* an answer, saved as a field on the contact */
+.app-callback .cb-fd{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.app-callback .cb-fd em{margin-left:3px;font:400 10.5px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+.app-callback .cb-fd i{display:inline-flex;align-items:center;height:16px;padding:0 6px;border-radius:4px;font:400 10.5px/1 var(--mono);font-style:normal;color:var(--fg);
+  background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset;white-space:nowrap}
+/* the booking, the row the call was for */
+.app-callback .cb-r4{background:rgb(var(--fg-rgb) / .04)}
+
+/* ---------- foot: the consent line, the toast ---------- */
+.app-callback .cb-note{position:absolute;left:14px;bottom:14px;height:40px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:3px;
+  font-size:10.5px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-callback .cb-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-callback .cb-note span{grid-column:2}
+.app-callback .cb-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-callback .cb-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-callback .cb-toast b{font-weight:500;color:var(--fg)}
+.app-callback .cb-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play, and only when the reader allows motion) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes cb-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes cb-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @keyframes cb-show{from{opacity:0}to{opacity:1}}
+  @keyframes cb-on{from{opacity:1}to{opacity:1}}
+  @keyframes cb-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+  @keyframes cb-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes cb-pop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+  @keyframes cb-home{from{transform:none}to{transform:translate(-24.6965px,24.6965px) scale(.8)}}
+  @keyframes cb-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}30%{background-color:rgb(var(--fg-rgb) / .1)}100%{background-color:rgb(var(--fg-rgb) / .04)}}
+  @keyframes cb-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. the day's leads land, Maria's third; each bar runs from form to first ring */
+  .appx-il.play.app-callback .cb-ln{animation:cb-land .4s var(--ease) var(--cb-t) both}
+  .appx-il.play.app-callback .cb-bar::after{animation:cb-grow .45s linear calc(var(--cb-t) + .15s) both}
+  .appx-il.play.app-callback .cb-s span{animation:cb-show .25s var(--ease) calc(var(--cb-t) + .55s) both}
+  .appx-il.play.app-callback .cb-out{animation:cb-show .3s var(--ease) calc(var(--cb-t) + .6s) both}
+  .app-callback .cb-l1{--cb-t:.3s}
+  .app-callback .cb-l2{--cb-t:.45s}
+  .app-callback .cb-l4{--cb-t:3.9s}
+  .app-callback .cb-l5{--cb-t:4.15s}
+  /* Maria's bar is the clock: 39 seconds of waiting, drawn over 0.7 s */
+  .app-callback .cb-l3{--cb-t:.8s}
+  .appx-il.play.app-callback .cb-l3 .cb-bar::after{animation:cb-grow .7s linear .95s both}
+  .appx-il.play.app-callback .cb-l3 .cb-s span{animation:cb-show .25s var(--ease) 1.65s both}
+  .appx-il.play.app-callback .cb-l3 .cb-out{animation:cb-show .3s var(--ease) 3.5s both}
+
+  /* 2. her call: each line lands as it is said, the answers drop in as fields */
+  .appx-il.play.app-callback .cb-r1{animation:cb-land .4s var(--ease) 1.85s both}
+  .appx-il.play.app-callback .cb-r2{animation:cb-land .4s var(--ease) 2.3s both}
+  .appx-il.play.app-callback .cb-r3{animation:cb-land .4s var(--ease) 2.75s both}
+  .appx-il.play.app-callback .cb-r4{animation:cb-land .4s var(--ease) 3.2s both,cb-glow 1.4s var(--ease) 3.3s both}
+  .appx-il.play.app-callback .cb-r2 .cb-fd i{animation:cb-pop .35s var(--snap) calc(2.5s + var(--cb-i,0s)) both}
+  .appx-il.play.app-callback .cb-r3 .cb-fd i{animation:cb-pop .35s var(--snap) 2.95s both}
+  .app-callback .cb-r2 .cb-fd i+i{--cb-i:.12s}
+  .appx-il.play.app-callback .cb-r1 .sig-sq{animation:cb-home .5s var(--snap) 2s both}
+  .appx-il.play.app-callback .cb-r4 .sig-sq{animation:cb-home .5s var(--snap) 3.4s both}
+
+  /* 3. booked turns from 16 to 17 as the survey books */
+  .appx-il.play.app-callback .cb-nb i:first-child{animation:cb-on .01s linear both,cb-out .25s var(--ob-ease-in) 3.45s forwards}
+  .appx-il.play.app-callback .cb-nb i:last-child{animation:cb-in .3s var(--ease) 3.5s both}
+
+  /* 4. the toast */
+  .appx-il.play.app-callback .cb-toast{animation:cb-toast .45s var(--ease) 4.5s both}
+}

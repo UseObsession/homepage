@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/abandoned-cart-email: the definition query. "abandoned cart email not sending" stays with
    /blog/welcome-basket-email-not-sending (docs/SEARCH.md §2), linked here with that query's words. */
@@ -68,7 +67,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For abandoned cart emails, that means each reminder with the minute it arrived after the basket was left, and the code it carried. Whether that code worked at checkout is kept beside it, dated. For your own store, [look up your store’s emails](/lookup) to see which reminders a new customer gets, and how fast.`,
+      text: 'Obsession’s [Mystery shopping](/blueprints/mystery-shopper) blueprint leaves a basket as a customer and logs each reminder in the event log, with the minute it arrived and the code it carried. A persona’s [inbox](/email) receives them, and whether the code worked at checkout is kept beside it, dated.',
     },
     {
       kind: 'faq',
@@ -99,6 +98,7 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    '/email',
     'abandoned-cart-email-sequence',
     'ecommerce-email-marketing-benchmarks',
     '/glossary/triggered-flow',

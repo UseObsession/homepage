@@ -55,7 +55,7 @@ export const post: BlogPost = {
   description:
     'AI chatbot testing tools compared by job: evals before launch, live monitoring, voice agents and customer-side checks, with prices listed in October 2026.',
   answer:
-    'The best AI chatbot testing tools depend on the job: Braintrust and Promptfoo for evals before launch, LangSmith and Langfuse for live monitoring, and Cekura, Coval, Hamming and Roark for voice agents. From the customer’s side, Obsession keeps what your live chat, email and phone tell a customer, dated daily and after every update, by API or MCP (the way AI agents call tools).',
+    'The best AI chatbot testing tools depend on the job: Braintrust and Promptfoo for evals before launch, LangSmith and Langfuse for live monitoring, and Cekura, Coval, Hamming and Roark for voice agents. From the customer’s side, Obsession’s Support bot check and Voice agent check blueprints chat with, email and call your live agent as a persona every day and after every update, and keep each answer in one event log.',
   primaryKeyword: 'ai chatbot testing tools',
   keywords: [
     'ai chatbot testing tools',
@@ -67,9 +67,9 @@ export const post: BlogPost = {
     'ai chatbot testing',
     'bot testing tools',
   ],
-  category: 'Check your AI agents',
+  category: 'Test sign-up and agents',
   published: '2026-10-28',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 17,
   order: 3,
   authors: [
@@ -102,7 +102,7 @@ export const post: BlogPost = {
         {
           name: 'Checks as a customer',
           who: 'Obsession',
-          nodes: ['Your company', 'Obsession agent', 'Your live agent'],
+          nodes: ['Your company', 'Obsession persona', 'Your live agent'],
           links: ['sends', 'chats, emails, calls'],
           lit: 1,
           ours: true,
@@ -385,21 +385,21 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'obsession', text: 'Obsession' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. A chatbot is an AI customer service agent, which answers customers for a company, and Obsession reaches it as one of those customers, through an Obsession agent that says it’s an AI. [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out the difference, and [what AI customers are](/blog/ai-customers) explains the term.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to. A chatbot is an AI customer service agent, which answers customers for a company. Obsession reaches it as one of those customers, through a persona that says it’s an AI. [The two sides of a support chat](/blog/ai-customer-service-agent-vs-ai-customer) sets out the difference, and [AI agents as customers](/blog/ai-customers) explains what one sees.',
     },
     {
       kind: 'p',
-      text: 'For a team running a chatbot or AI agent, Obsession chats with, emails and calls it on the live channels customers use, every morning and within the hour of each update. It says it is an AI, asks what customers ask and sets each answer beside the company’s policy page. It then asks for a person, and watches its own inbox for the email or callback the agent promised.',
+      text: 'For a team running a chatbot or AI agent, Obsession’s [Support bot check](/blueprints/support-bot-check) and [Voice agent check](/blueprints/voice-agent-check) chat with, email and call it on the live channels customers use, every morning and within the hour of each update. The persona says it’s an AI, asks what customers ask and sets each answer beside the company’s policy page. It then asks for a person, and watches its own [inbox](/email) for the email or callback the agent promised.',
     },
     {
       kind: 'p',
-      text: 'The same index holds what any company your team names shows only to customers, from the welcome email to the save offer in the cancel flow, for as long as your team follows it. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Every answer lands in one event log, as a transcript or call recording beside the policy page. A fleet of personas can run the same cases on every channel each morning, and a blueprint is billed on the pieces it uses.',
     },
     {
       kind: 'list',
       items: [
         '**What it does well:** answers checked from outside on chat, email and phone, every day and after every update. Each is kept as the transcript or recording, beside the policy page as it read that minute. Its checks cover a support bot, a voice receptionist, answers that change after an update, the notice that an agent is AI, resolutions an AI vendor bills for, and shortlisted vendors.',
-        '**Price as listed:** early access, onboarding teams now. Priced per call or per company watched, never per token.',
+        '**Price as listed:** free, then $20, $99 or $499 a month, with usage per piece. A call is $0.012 a minute and an inbox $0.50 a month.',
         '**Where it stops:** it covers the live chat, inbox and phone line your company names, and scoring prompts and models inside the build is an eval tool’s job.',
         '**Best for:** knowing what customers are told on the live chat, email and phone, every day and after every update, with each answer kept.',
       ],
@@ -424,9 +424,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What your support bot and voice line tell customers, word for word, on chat, email and the phone. Every answer is kept as a dated transcript or call beside the policy it should match, yours and your competitors’.',
-      to: '/verify',
-      label: 'Request early access',
+      text: 'What your support bot and voice line tell customers, word for word, on chat, email and the phone. Support bot check keeps every answer as a dated transcript or call beside the policy it should match.',
+      to: '/blueprints/support-bot-check',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'compared', text: 'AI chatbot testing tools compared', compare: true },
@@ -486,9 +486,9 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check), [Drift watch](/blueprints/drift-watch), [AI disclosure check](/blueprints/ai-disclosure-check), [Resolution check](/blueprints/resolution-check), [Vendor agent check](/blueprints/vendor-agent-check)',
           'The live chat, email and phone asked daily and after updates, each answer dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Keeps what customers are told, on the channels your team names',
-          'What customers are told on every channel, every day, kept as proof',
+          'What customers are told on every channel, every day, dated',
         ],
       ],
     },
@@ -531,7 +531,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What companies show only signed-up customers, as an API for your agents and your test pipeline: emails, member prices, trial limits, quotes and support answers, each dated, behind 5 verbs over MCP, the API and SDKs.',
+      text: 'Give your test pipeline a persona with its own inbox, phone number and browser in one call. Each answer comes back as an event, such as email.received or call.ended, at your own endpoint.',
       to: '/developers',
       label: 'See the API and MCP',
     },
@@ -542,7 +542,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What are the best AI chatbot testing tools?',
-          a: 'It depends on the job. Braintrust and Promptfoo test prompts and models before launch, and LangSmith and Langfuse monitor live conversations. Cekura, Coval, Hamming and Roark test voice agents, and Cyara Botium covers enterprise bots. Obsession keeps what the live chat, email and phone tell a customer, every day and after every update, each answer dated.',
+          a: 'It depends on the job. Braintrust and Promptfoo test prompts and models before launch, and LangSmith and Langfuse monitor live conversations. Cekura, Coval, Hamming and Roark test voice agents, and Cyara Botium covers enterprise bots. Obsession’s Support bot check keeps what the live chat, email and phone tell a customer, every day and after every update, each answer dated.',
         },
         {
           q: 'What is chatbot testing?',
@@ -607,7 +607,7 @@ export const post: BlogPost = {
     { title: 'TokenSurf home page', publisher: 'TokenSurf', url: TOKENSURF },
   ],
 
-  related: [
+  related: ['/use-cases/ai-agent-for-customer-support', '/use-cases/ai-agent-evaluation', 
     'recipe:support-bot-check',
     '/verify',
     'ai-customers-for-cx-teams',

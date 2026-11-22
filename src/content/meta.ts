@@ -1,13 +1,15 @@
 /* What describes each page to search engines, answer engines and link previews, read from the content's own Meta
    (content/types). The prerender (scripts/prerender.mjs) writes it into each page's head, with the JSON-LD from
    lib/jsonld; the share images (scripts/og.mjs), sitemap.xml and llms.txt are made from the same list. */
-import { nav } from './nav'
 import { agentsPage, blogLive, notFoundPage, pages, postFileOf, posts, privacyPage, recipes, recipesPage, references, refFileOf, sample, studies } from './registry'
 import { alternativesHub, glossaryHub, type ReferenceHub, type ReferenceKind } from './reference'
 import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
 import { lookupPage } from './pages/lookup'
+import { noCodePage } from './noCode'
 import { pieces } from './pieces'
+import { kits } from './kits'
+import { cases, teams } from './teams'
 import { pricingPage, ratesPage } from './pricing'
 import { securityPage } from './security'
 import type { Faq, Meta, ShareFindings } from './types'
@@ -19,6 +21,7 @@ export type PageKind =
   | 'home'
   | 'audience'
   | 'developers'
+  | 'no-code'
   | 'compare'
   | 'verify'
   | 'recipes'
@@ -41,6 +44,8 @@ export type PageKind =
   | 'lookup'
   | 'pricing'
   | 'piece'
+  | 'kit'
+  | 'team'
 
 /* A post's facts for its BlogPosting JSON-LD and the RSS feed. */
 export type Article = {
@@ -85,15 +90,11 @@ export type Entry = {
   company?: string
 }
 
-/* The share image's line on an audience page: its gap's claim (what the reader can't see today), else the line the nav
-   gives its reader. */
-const solutionLine = (path: string) => nav.readers.find((s) => s.to === path)?.line ?? ''
 const firstSentence = (s: string) => s.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? s
 
 const ogFor = (meta: Meta) => ({ ...meta, ogImage: meta.ogImage ?? `/og/${meta.path === '/' ? 'home' : meta.path.split('/').pop()}.png` })
 const crumbName = (meta: Meta, fallback: string) => meta.breadcrumb?.[meta.breadcrumb.length - 1]?.name ?? fallback
 
-const AUDIENCES = ['marketing', 'sales', 'agencies'] as const
 
 /* A reference page (content/reference.ts): a comparison, an alternatives page or a glossary term. */
 const REF_KIND: Record<ReferenceKind, PageKind> = { compare: 'comparison', alternatives: 'alternatives', term: 'term' }
@@ -129,13 +130,12 @@ const hubEntry = (hub: ReferenceHub, kind: PageKind): Entry => ({
 
 const home = pages.home
 const dev = pages.developers
-const verify = pages.verify
 const compare = pages.compare
 const behind = pages['web-behind-the-login']
 
 /* Every prerendered page, in the order the sitemap and llms.txt list them. */
 export const entries: Entry[] = [
-  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill, findings: home.shareFindings, faq: home.faq, source: 'src/content/pages/home.ts' },
+  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill ?? home.hero.headline, findings: home.shareFindings, faq: home.faq, source: 'src/content/pages/home.ts' },
   /* Each piece's own page (content/pieces, 21 Nov): Email, Phone, Messaging, Browser, Sandbox, Personas. */
   ...pieces.map(
     (p): Entry => ({
@@ -148,15 +148,17 @@ export const entries: Entry[] = [
       source: `src/content/pieces/${p.id}.ts`,
     }),
   ),
-  ...AUDIENCES.map(
-    (a): Entry => ({
-      kind: 'audience',
-      meta: ogFor(pages[a].meta),
-      name: crumbName(pages[a].meta, a),
-      headline: pages[a].hero.headline,
-      line: pages[a].gapPair?.heading ?? (solutionLine(pages[a].meta.path) || pages[a].hero.pill),
-      faq: pages[a].faq,
-      source: `src/content/pages/${a}.ts`,
+  /* The six types of blueprints (content/kits, 22 Nov): each job agents do, at /blueprints/SLUG. */
+  ...kits.map(
+    (k): Entry => ({
+      kind: 'kit',
+      meta: ogFor(k.meta),
+      name: k.name,
+      headline: k.hero.headline,
+      line: firstSentence(k.hero.sub),
+      faq: k.faq,
+      source: `src/content/kits/${k.id}.ts`,
+      place: 'Blueprints',
     }),
   ),
   {
@@ -167,6 +169,16 @@ export const entries: Entry[] = [
     line: firstSentence(dev.hero.sub),
     faq: dev.faq,
     source: 'src/content/pages/developers.ts',
+  },
+  /* The front door for teams that don't write code (content/noCode.ts, 23 Nov 2026), beside /developers. */
+  {
+    kind: 'no-code',
+    meta: ogFor(noCodePage.meta),
+    name: crumbName(noCodePage.meta, 'For teams'),
+    headline: noCodePage.hero.headline,
+    line: firstSentence(noCodePage.hero.sub),
+    faq: noCodePage.faq,
+    source: 'src/content/noCode.ts',
   },
   /* What each piece costs (content/pricing.ts): its own words, not a Page, like the lookup. Its share card's line is
      its own `line`, and its questions are FAQPage. */
@@ -202,15 +214,31 @@ export const entries: Entry[] = [
   ...refEntries('compare'),
   hubEntry(alternativesHub, 'alternatives-hub'),
   ...refEntries('alternatives'),
-  {
-    kind: 'verify',
-    meta: ogFor(verify.meta),
-    name: crumbName(verify.meta, 'Check your AI agents'),
-    headline: verify.hero.headline,
-    line: firstSentence(verify.hero.sub),
-    faq: verify.faq,
-    source: 'src/content/pages/verify.ts',
-  },
+  /* Each team's page (content/teams, 22 Nov): /sales, /marketing, /verify, /agencies and the 4 industry pages. */
+  ...teams.map(
+    (t): Entry => ({
+      kind: 'team',
+      meta: ogFor(t.meta),
+      name: t.name,
+      headline: t.hero.headline,
+      line: firstSentence(t.hero.sub),
+      faq: t.faq,
+      source: `src/content/teams/${t.id}.ts`,
+    }),
+  ),
+  /* The use case pages in the team template (content/teams/cases, 22 Nov): one job in one industry each. */
+  ...cases.map(
+    (c): Entry => ({
+      kind: 'use-case',
+      meta: ogFor(c.meta),
+      name: c.name,
+      headline: c.hero.headline,
+      line: firstSentence(c.hero.sub),
+      faq: c.faq,
+      source: `src/content/teams/cases/${c.meta.path.split('/').pop()}.ts`,
+      place: 'Resources / Use cases',
+    }),
+  ),
   {
     kind: 'recipes',
     meta: ogFor(recipesPage.meta),

@@ -9,24 +9,24 @@ import type { BlogIndexPage, Capture, Final, ResourcesPage, UseCasesIndexPage } 
 const access = (source: string): Capture => ({
   kind: 'waitlist',
   source,
-  button: 'Request early access',
+  button: 'Start free',
   interest: 'any',
 })
 
-/* The shared close (the blog index uses it too). Its line, "Onboarding a limited number of teams.", is content/join.ts. */
+/* The shared close (the blog index uses it too). Its line, "Free plan, no credit card.", is content/join.ts. */
 const final = (source: string): Final => ({
-  heading: 'Which company should we look up first?',
+  heading: 'What should your first AI agent do?',
   capture: access(source),
 })
 
 export const resourcesPage: ResourcesPage = {
   meta: {
     path: '/resources',
-    title: 'Obsession resources: use cases and one real store’s record',
+    title: 'Obsession resources: use cases, blueprints and guides',
     description:
-      'Obsession’s data at work: use cases that follow 1 team from its question to the data, and a real store’s record in every format it comes in.',
+      'Use cases that follow one team from a job to its result, the blueprints that run them, a sample result in every format, and guides from the founders.',
     answer:
-      'Obsession’s resources show the data at work: use cases that follow 1 team from its question to the data, and 1 real store’s record in every format it comes in.',
+      'Obsession’s resources show AI agents at work: use cases that follow one team from a job to its result, the blueprints that run them, a sample result in every format it lands in, and guides from both founders.',
     ogImage: '/og/resources.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -34,21 +34,21 @@ export const resourcesPage: ResourcesPage = {
     ],
   },
   hero: {
-    headline: 'See the data first.',
-    sub: 'Obsession’s resources show the data at work: use cases that follow 1 team from its question to the data, and 1 real store’s record in every format it comes in.',
+    headline: 'See AI agents at work, job by job.',
+    sub: 'Obsession’s resources show AI agents at work: use cases that follow one team from a job to its result, the blueprints that run them, a sample result in every format it lands in, and guides from both founders.',
   },
   groups: {
     useCases: {
       id: 'use-cases',
       name: 'Use cases',
-      line: 'What 1 kind of team looks up, and where it lands. The names and numbers are made up.',
+      line: 'One kind of team, one job, and where its results land. Every company and number is an example.',
       all: { label: 'Every use case', to: '/use-cases' },
     },
     sample: {
       id: 'sample-output',
       name: 'Sample data',
-      line: 'A real record: a UK skincare store in September 2026, its name hidden.',
-      link: { label: 'Brand G’s record', to: '/sample-output', line: '4 test customers, every inbox watched for 48 hours. 1 left a basket, 1 stopped at checkout, and nobody wrote to either.' },
+      line: 'A real mystery shopping run at a UK skincare store, September 2026, its name hidden.',
+      link: { label: 'See the sample result', to: '/sample-output', line: 'Every email, text, screen and price the run kept, in each format a result can land in.' },
     },
     blog: {
       id: 'blog',
@@ -65,21 +65,65 @@ export const resourcesPage: ResourcesPage = {
 export const useCasesPage: UseCasesIndexPage = {
   meta: {
     path: '/use-cases',
-    title: 'Obsession use cases: who looks up the web behind the login',
+    title: 'AI agent use cases by job: calls, QA, portals and more',
     description:
-      'Worked examples of Obsession: what 1 kind of team looks up behind the login, from the companies it names to the data in its own tools. Names made up.',
+      'AI agent use cases by job: answering customers, testing sign-up, building agent products, working in portals, watching the market and running evals.',
     answer:
-      'Obsession use cases are worked examples: what 1 kind of team looks up behind the login, from the companies it names to the data in its own tools. The names and numbers are made up.',
+      'Obsession use cases show one job in one industry at a time, sorted by the type of blueprint that does it: the pieces it runs on, the blueprint that runs it for you, and what lands in your tools.',
     ogImage: '/og/use-cases.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Resources', path: '/resources' },
       { name: 'Use cases', path: '/use-cases' },
     ],
   },
   hero: {
-    headline: 'What each team looks up, and where it lands.',
-    sub: 'Obsession use cases are worked examples: what 1 kind of team looks up behind the login, from the companies it names to the data in its own tools. The names and numbers are made up.',
+    headline: 'Use cases, sorted by the job your agent does.',
+    sub: 'Obsession use cases show one job in one industry at a time, sorted by the type of blueprint that does it: the pieces it runs on, the blueprint that runs it for you, and what lands in your tools.',
+  },
+  byKit: [
+    {
+      kit: 'talk',
+      paths: [
+        '/use-cases/ai-receptionist',
+        '/use-cases/ai-agent-for-insurance',
+        '/use-cases/ai-agent-for-dental-practices',
+        '/use-cases/ai-agent-for-property-management',
+        '/use-cases/ai-recruiter',
+        '/use-cases/ai-agent-for-customer-support',
+        '/sales',
+      ],
+    },
+    {
+      kit: 'test',
+      paths: [
+        '/use-cases/otp-testing',
+        '/use-cases/trial-checks-for-software-companies',
+        '/use-cases/leak-checks-for-ecommerce-stores',
+        '/use-cases/journey-checks-for-banks-and-fintechs',
+        '/use-cases/opt-out-and-cancel-checks-for-compliance-teams',
+        '/use-cases/funnel-qa-for-cro-agencies',
+        '/verify',
+      ],
+    },
+    { kit: 'build', paths: ['/use-cases/ai-sdr', '/use-cases/imessage-ai-assistant', '/use-cases/prospect-intelligence-with-clay'] },
+    { kit: 'portals', paths: ['/use-cases/prior-authorization-ai-agent', '/use-cases/ai-agent-for-freight-brokers', '/use-cases/web-behind-the-login'] },
+    {
+      kit: 'watch',
+      paths: [
+        '/marketing',
+        '/agencies',
+        '/use-cases/member-prices-for-price-intelligence',
+        '/use-cases/leak-checks-for-retention-agencies',
+        '/use-cases/sales-intelligence-behind-the-login',
+        '/use-cases/consumer-promotions-data-for-funds',
+      ],
+    },
+    { kit: 'train', paths: ['/use-cases/ai-agent-evaluation'] },
+    { kit: 'buy', paths: ['/use-cases/agentic-commerce'] },
+  ],
+  orbit: {
+    label: 'Obsession in the middle, its six pieces around it, and the seven types of blueprints on the outer ring: every use case below belongs to one of them.',
+    caption: 'Every use case below belongs to one of the seven types of blueprints.',
   },
   group: {
     id: 'examples',
@@ -88,18 +132,18 @@ export const useCasesPage: UseCasesIndexPage = {
   },
   guides: {
     id: 'every-job',
-    name: 'Every use case, by industry',
+    name: 'Every use case, in depth',
     line: '2 long guides, with the blueprint for each use case.',
     rows: [
       {
         label: 'AI agent use cases for business',
         to: '/blog/ai-agent-use-cases-for-business',
-        line: 'What teams in every industry look up about competitors, prospects, partners and their own company.',
+        line: 'What AI agents do for teams in every industry, with the pieces and blueprint for each job.',
       },
       {
         label: 'Agentic AI use cases in ecommerce',
         to: '/blog/agentic-ai-use-cases-in-ecommerce',
-        line: 'What ecommerce brands, and the agencies that serve them, look up behind the login.',
+        line: 'What AI agents do for ecommerce brands and their agencies, from mystery shopping to price watch.',
       },
     ],
   },
@@ -109,11 +153,11 @@ export const useCasesPage: UseCasesIndexPage = {
 export const blogPage: BlogIndexPage = {
   meta: {
     path: '/blog',
-    title: 'The Obsession blog: what companies show only to customers',
+    title: 'The Obsession blog: guides for teams putting AI agents to work',
     description:
-      'Guides for teams that track what companies show only to customers: competitors’ emails, member prices, trial limits, cancel offers and what AI agents say.',
+      'Guides for teams giving AI agents an inbox, a phone number and a browser, and for teams handing whole jobs to blueprints: methods, tools and prices.',
     answer:
-      'Guides for teams that track what companies show only to customers: competitors’ emails and offers, member prices, trial limits, cancel flows and what AI agents say. Each shows the method by hand, with every source linked, and where Obsession’s index takes over.',
+      'Guides for teams giving AI agents an inbox, a phone number and a browser, and for teams handing whole jobs to blueprints. Each shows the method by hand, with every source linked, and where an Obsession blueprint takes over.',
     ogImage: '/og/blog.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -121,8 +165,8 @@ export const blogPage: BlogIndexPage = {
     ],
   },
   hero: {
-    headline: 'Find out what any company’s customers actually receive.',
-    sub: 'Guides for teams that track what companies show only to customers: competitors’ emails and offers, member prices, trial limits, cancel flows and what AI agents say. From both founders of Obsession, with every source linked.',
+    headline: 'Guides for putting AI agents to work.',
+    sub: 'Guides for teams giving AI agents an inbox, a phone number and a browser, and for teams handing whole jobs to blueprints. From both founders of Obsession, with every source linked.',
   },
   empty: {
     heading: 'Start with the work itself.',
@@ -150,7 +194,7 @@ export const blogUi = {
   more: 'More posts',
   feedTitle: 'The Obsession blog',
   share: 'Share',
-  screenCaption: 'The same job, run by Obsession’s AI customers.',
+  screenCaption: 'The same job, run as an Obsession blueprint.',
   photo: 'Photo:',
   onPexels: 'on Pexels',
   readPost: 'Read the article',

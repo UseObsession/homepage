@@ -69,7 +69,7 @@ export const post: BlogPost = {
   description:
     'Shopify checkout not working? Check Shopify’s status page, then run 6 checks on a phone as a new customer, find what changed last and who fixes it.',
   answer:
-    'When Shopify checkout is not working, check Shopify’s status page first, and if Checkout shows as operational, look at the store itself. Shop it on a phone as a new customer in a fresh private window, check that checkout stays on the store’s own web address, then look at what changed last. Obsession keeps every page, code and email your store and your competitors show a new customer on the way to checkout, dated with the screenshot, after every change.',
+    'When Shopify checkout is not working, check Shopify’s status page first, and if Checkout shows as operational, look at the store itself. Shop it on a phone as a new customer in a fresh private window, check that checkout stays on the store’s own web address, then look at what changed last. Obsession’s QA on your own flows blueprint sends a persona through your checkout after every change, stopping before payment, and keeps every page, code and email with its screenshot.',
   primaryKeyword: 'shopify checkout not working',
   keywords: [
     'shopify checkout not working today',
@@ -80,9 +80,9 @@ export const post: BlogPost = {
     'shopify checkout issues today',
     'shopify paypal checkout not working',
   ],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-11-01',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 15,
   order: 0,
   authors: [
@@ -340,21 +340,21 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-customers', text: 'A new customer through checkout after every change' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to.',
     },
     {
       kind: 'p',
-      text: 'On a Shopify store, [Website audit](/blueprints/website-audit) runs after every release: a fresh Obsession agent goes through the store on a phone and a desktop. It signs up, opens every email and link, tries each code at checkout and stops before payment. Every break comes back with its screenshot and a drafted fix, then a fresh run once the fix ships. [Store leak checks](' +
+      text: 'On a Shopify store, [QA on your own flows](/blueprints/website-audit) runs after every release: a fresh persona goes through the store on a phone and a desktop. It signs up, opens every email and link, tries each code at checkout and stops before payment. Every break comes back with its screenshot and a drafted fix, then a fresh run once the fix ships. [The ecommerce stores use case](' +
         LEAKS +
-        ') give every journey, such as a sign-up or a checkout, a fresh sign-up each week. With Shopify and the store’s email tool connected, read only, a theme publish or an edit to an email flow reruns the checks it touches within the hour.',
+        ') gives every journey, such as a sign-up or a checkout, a fresh sign-up each week. With Shopify and the store’s email tool connected, read only, a theme publish or an edit to an email flow reruns the checks it touches within the hour.',
     },
     {
       kind: 'p',
-      text: 'The same checks run at competitors’ stores, so the store’s team sees every welcome offer, price and reminder a competitor sends its new customers. The team reads the results at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants. A CAPTCHA is the puzzle a site shows to stop automated visitors. Where a store puts a CAPTCHA or a bot check in front of a step, the record names the step it couldn’t reach.',
+      text: '[Competitor tracking](/blueprints/competitor-tracking) runs the same checks at competitors’ stores, so the store’s team sees every welcome offer, price and reminder a competitor sends its new customers. The team reads the results at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants. A CAPTCHA is the puzzle a site shows to stop automated visitors. Where a store puts a CAPTCHA or a bot check in front of a step, the event log names the step it couldn’t reach.',
     },
     {
       kind: 'p',
-      text: 'Every agent says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block. It keeps every email and page exactly as it arrived, as the [agents page](/agents) sets out. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up millions of companies, each in one call.',
+      text: 'Every persona says it’s an AI when it talks to a person, stops before payment unless given the customer’s own card, never uses fake payment details and never gets round a CAPTCHA or a bot block. It keeps every email and page in the event log exactly as it arrived, as the [agents page](/agents) sets out. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, with a persona waiting at each store between runs.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to catch a broken Shopify checkout, compared', compare: true },
@@ -391,9 +391,9 @@ export const post: BlogPost = {
           'An alert within hours on a set path',
         ],
         [
-          'Obsession (ours): [Website audit](/blueprints/website-audit), [Mystery shopper](/blueprints/mystery-shopper), [Store leak checks](' + LEAKS + ')',
+          'Obsession (ours): [QA on your own flows](/blueprints/website-audit), [Mystery shopping](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking)',
           'Each page, code and email a new customer meets from sign-up to checkout, at the store and its competitors, kept with its screenshot',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Stops before payment',
           'A new customer through checkout after every change, each step screenshotted',
         ],
@@ -421,13 +421,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Stores start in early access.',
-      to: LEAKS,
-      label: 'Request early access',
-    },
-    {
-      kind: 'p',
-      text: 'To see what your checkout already sends, the [store lookup](/lookup) opens your Shopify store’s entry: every email after a checkout, dated, next to every other store in Obsession’s index.',
+      text: 'A new customer through your checkout after every app, theme or discount change, each step kept as a screenshot and every email dated. QA on your own flows runs it after every release.',
+      to: '/blueprints/website-audit',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about Shopify checkout not working' },
@@ -505,7 +501,6 @@ export const post: BlogPost = {
     'traffic-but-no-sales',
     'shopify-store-audit-checklist',
     'black-friday-checklist-new-customer',
-    LEAKS,
     'recipe:website-audit',
     'recipe:mystery-shopper',
   ],

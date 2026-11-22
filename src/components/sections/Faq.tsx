@@ -41,6 +41,8 @@ type Props = {
   limit?: number
   id?: string
   className?: string
+  /* A ground of its own (tones.css), when the page alternates its sections. */
+  tone?: 'alt'
 }
 
 /* The accordion on its own (surfaces.css .ob-faq), for the questions inside a blog post too. */
@@ -118,10 +120,10 @@ export function FaqList({
   )
 }
 
-export function Faq({ faq, open, limit, id, className }: Props) {
+export function Faq({ faq, open, limit, id, className, tone }: Props) {
   const base = useId()
   return (
-    <section id={id} className={'s-section s-faq' + (className ? ' ' + className : '')} aria-labelledby={`${base}-h`}>
+    <section id={id} className={'s-section s-faq' + (className ? ' ' + className : '')} data-tone={tone} aria-labelledby={`${base}-h`}>
       <div className="s-wrap s-faq__grid">
         <div className="s-faq__head">
           {faq.kicker && <p className="v5-kicker">{faq.kicker}</p>}

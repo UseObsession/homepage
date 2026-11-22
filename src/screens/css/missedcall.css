@@ -1,0 +1,150 @@
+/* app-missedcall: Ridgeline Plumbing / Blueprints / Missed call text back (23 Nov 2026). An invented company's 6 branch
+   lines forward their unanswered calls to its AI assistant's number. Tue 12:45: today's counts on top (19 missed, a
+   median 7 s to text, 11 replied, 8 booked), the missed calls on the left (newest first, 6 of the 19), and the open
+   thread on the right: the 12:04 Eastside call rings out and is forwarded, the text goes 7 s later, the caller asks for
+   someone today, the assistant offers 3 to 5 pm and the $79 service call from the price list, the caller says yes, and
+   the visit is booked and posted to #front-desk.
+   The 1 thing: a missed call becomes a booked visit, by text, in under 3 minutes.
+   Geometry (design px, main 556 x 414, padding 14): head 14..38 | counts 48..76 | panes 86..352 (list 216 wide, thread
+   300) | note and toast 360..400.
+   Story (5.6 s): the rows land newest first; the 12:04 row says Rang out; the forwarded call lands in the thread; the
+   text goes at +7 s (the row turns Texted); the reply, the offer and the yes land in turn (replied 10 to 11); the
+   booking lands and closes its mark (the row turns Booked, booked 7 to 8); the toast.
+   Motion only with .play and only under prefers-reduced-motion: no-preference. Rest state (no .play) = the finished
+   scene. */
+
+.app-missedcall .ax-main{padding:14px;gap:10px}
+
+/* ---------- head: the blueprint, its lines, the assistant it runs as ---------- */
+.app-missedcall .mc-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-missedcall .mc-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-missedcall .mc-meta{padding-top:2px;font-size:11.5px;color:var(--fg-3);white-space:nowrap}
+.app-missedcall .mc-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-missedcall .mc-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-missedcall .mc-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* ---------- today's counts: 4 cells on 1 strip ---------- */
+.app-missedcall .mc-st{display:grid;grid-template-columns:1fr 1.3fr 1fr 1fr;height:28px;border-radius:8px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-missedcall .mc-st>span{display:flex;align-items:baseline;gap:6px;padding:8px 12px 0;white-space:nowrap;box-shadow:1px 0 0 var(--line) inset}
+.app-missedcall .mc-st>span:first-child{box-shadow:none}
+.app-missedcall .mc-st b{font:500 13px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-missedcall .mc-st em{font:400 11px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+/* a count that ticks up during the story: both values stacked, only the last at rest */
+.app-missedcall .mc-nb{display:inline-grid}
+.app-missedcall .mc-nb i{grid-area:1/1;font-style:normal}
+.app-missedcall .mc-nb i:first-child{opacity:0}
+
+/* ---------- the 2 panes ---------- */
+.app-missedcall .mc-pn{display:grid;grid-template-columns:216px minmax(0,1fr);gap:12px;height:266px;min-height:0}
+.app-missedcall .mc-ls,.app-missedcall .mc-th{position:relative;border-radius:10px;overflow:hidden;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+
+/* the missed calls, newest first */
+.app-missedcall .mc-lh{display:flex;align-items:center;justify-content:space-between;height:28px;padding:0 10px 0 12px;white-space:nowrap;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-missedcall .mc-lh b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-missedcall .mc-lh span{font:400 11px/1 var(--sans);color:var(--fg-3)}
+.app-missedcall .mc-r{position:relative;display:grid;grid-template-columns:38px minmax(0,1fr) auto;align-items:center;column-gap:6px;height:39px;padding:0 10px 0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-missedcall .mc-r:last-child{box-shadow:none}
+.app-missedcall .mc-r time{font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-missedcall .mc-who{display:grid;gap:4px;min-width:0;white-space:nowrap}
+.app-missedcall .mc-who b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-missedcall .mc-who small{font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+/* the open row: a quiet band and the edge bar */
+.app-missedcall .mc-on{background:rgb(var(--fg-rgb) / .045)}
+.app-missedcall .mc-on::before{content:"";position:absolute;left:0;top:11px;width:2px;height:17px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-missedcall .mc-on time{color:var(--fg-2)}
+
+/* a status chip: its mark and 1 word */
+.app-missedcall .mc-cp{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 7px;border-radius:6px;font:500 11px/1 var(--sans);white-space:nowrap}
+.ilwrap .app-missedcall .mc-cp svg{width:11px;height:11px}
+.app-missedcall .mc-c-ok{color:var(--fg);background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-missedcall .mc-c-need{color:var(--fg);background:rgb(var(--fg-rgb) / .1);box-shadow:0 0 0 1px var(--line-3) inset}
+.app-missedcall .mc-c-wait{color:var(--fg-2);outline:1px dashed var(--line-3);outline-offset:-1px}
+.app-missedcall .mc-c-dim{color:var(--fg-3);padding:0 2px}
+/* the open row's chip, in 3 states stacked; only Booked shows at rest */
+.app-missedcall .mc-sw{display:inline-grid;padding:0}
+.app-missedcall .mc-sw>span{grid-area:1/1;display:inline-flex;align-items:center;justify-content:flex-end;gap:5px;padding:0 7px}
+.app-missedcall .mc-sw .v0,.app-missedcall .mc-sw .v1{opacity:0}
+.ilwrap .app-missedcall .mc-ic{width:11px;height:11px;flex:none}
+
+/* ---------- the open thread ---------- */
+.app-missedcall .mc-thh{display:flex;align-items:center;gap:8px;height:30px;padding:0 10px 0 12px;white-space:nowrap;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-missedcall .mc-ph{display:grid;place-items:center;flex:none;width:18px;height:18px;border-radius:50%;color:var(--fg-2);background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-missedcall .mc-ph svg{width:11px;height:11px}
+.app-missedcall .mc-thh b{font:500 11.5px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-missedcall .mc-thh em{font:400 11px/1 var(--sans);font-style:normal;color:var(--fg-3)}
+.app-missedcall .mc-tag{margin-left:auto;display:inline-flex;align-items:center;height:19px;padding:0 7px;border-radius:5px;font:400 11px/1 var(--sans);color:var(--fg-2);
+  background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+
+.app-missedcall .mc-tb{display:grid;align-content:start;gap:6px;padding:9px 12px}
+.app-missedcall .mc-sys{display:flex;align-items:center;gap:6px;height:16px;font:400 11px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-missedcall .mc-sys time{font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-missedcall .mc-sys .mc-ic{color:var(--fg-3)}
+
+/* a text: ours on the right in ink, theirs on the left on the raised panel; its time beside it */
+.app-missedcall .mc-msg{display:flex;align-items:flex-end;gap:8px}
+.app-missedcall .mc-out{justify-content:flex-end}
+.app-missedcall .mc-msg p{max-width:218px;padding:6px 9px;border-radius:12px;font:400 11.5px/15px var(--sans);text-wrap:pretty}
+.app-missedcall .mc-out p{color:var(--bg);background:var(--fg);border-bottom-right-radius:4px}
+.app-missedcall .mc-in p{color:var(--fg);background:var(--panel-3);box-shadow:0 0 0 1px var(--line-2) inset;border-bottom-left-radius:4px}
+.app-missedcall .mc-msg time{flex:none;padding-bottom:3px;font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+/* how fast the first text went: the number the blueprint is for */
+.app-missedcall .mc-msg time.mc-fast{padding:3px 5px;border-radius:5px;color:var(--fg);font-weight:500;background:rgb(var(--fg-rgb) / .07)}
+
+/* the booking: a quiet band that closes the thread */
+.app-missedcall .mc-done{height:26px;margin-top:2px;padding:0 8px;border-radius:7px;color:var(--fg);background:rgb(var(--fg-rgb) / .05);box-shadow:0 0 0 1px var(--line-2) inset}
+.ilwrap .app-missedcall .mc-done svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-missedcall .mc-done b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-missedcall .mc-done span{margin-left:auto;font:400 11px/1 var(--mono);color:var(--fg-3)}
+
+/* ---------- foot: the 2 lines it keeps, the toast ---------- */
+.app-missedcall .mc-note{position:absolute;left:14px;bottom:14px;height:40px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:4px;
+  font-size:11px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-missedcall .mc-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-missedcall .mc-note span{grid-column:2}
+.app-missedcall .mc-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-missedcall .mc-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-missedcall .mc-toast b{font-weight:500;color:var(--fg)}
+.app-missedcall .mc-toast p span{color:var(--fg-3)}
+
+/* ---------- motion: only with .play, only when the reader allows it ---------- */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes mc-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes mc-in{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+  @keyframes mc-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-3px)}}
+  @keyframes mc-on{from{opacity:1}to{opacity:1}}
+  @keyframes mc-home{from{transform:none}}
+  @keyframes mc-gap{from{opacity:0}}
+  @keyframes mc-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}30%{background-color:rgb(var(--fg-rgb) / .2)}100%{background-color:rgb(var(--fg-rgb) / .07)}}
+  @keyframes mc-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. today's missed calls land, newest first */
+  .appx-il.play.app-missedcall .mc-r{animation:mc-land .45s var(--ease) var(--mc-t) both}
+
+  /* 2. the forwarded call lands in the thread; the open row says Rang out */
+  .appx-il.play.app-missedcall .mc-s1{animation:mc-land .45s var(--ease) var(--mc-t) both}
+  .appx-il.play.app-missedcall .mc-sw .v0{animation:mc-on .01s linear both,mc-out .25s var(--ob-ease-in) 1.45s forwards}
+  .appx-il.play.app-missedcall .mc-sw .v2{animation:mc-in .3s var(--ease) 4.65s both}
+  .appx-il.play.app-missedcall .mc-sw .v2 .sig-sq{animation:mc-home .55s var(--snap) 4.65s both}
+  .appx-il.play.app-missedcall .mc-sw .v2 .sig-gap{animation:mc-gap .3s var(--ease) 4.8s both}
+
+  /* 3. the text goes 7 s after the call; the row turns Texted */
+  .appx-il.play.app-missedcall .mc-msg{animation:mc-land .45s var(--ease) var(--mc-t) both}
+  .appx-il.play.app-missedcall .mc-fast{animation:mc-glow 1.2s var(--ease) 1.6s both}
+  .appx-il.play.app-missedcall .mc-sw .v1{animation:mc-in .3s var(--ease) 1.5s both,mc-out .25s var(--ob-ease-in) 4.6s forwards}
+
+  /* 4. the caller replies: replied ticks 10 to 11 */
+  .appx-il.play.app-missedcall .mc-st span:nth-child(3) .mc-nb i:first-child{animation:mc-on .01s linear both,mc-out .25s var(--ob-ease-in) 2.45s forwards}
+  .appx-il.play.app-missedcall .mc-st span:nth-child(3) .mc-nb i:last-child{animation:mc-in .3s var(--ease) 2.5s both}
+
+  /* 5. booked: the band lands and its mark closes; booked ticks 7 to 8 */
+  .appx-il.play.app-missedcall .mc-done{animation:mc-land .45s var(--ease) var(--mc-t) both}
+  .appx-il.play.app-missedcall .mc-done .sig-sq{animation:mc-home .55s var(--snap) 4.75s both}
+  .appx-il.play.app-missedcall .mc-done .sig-gap{animation:mc-gap .3s var(--ease) 4.9s both}
+  .appx-il.play.app-missedcall .mc-st span:nth-child(4) .mc-nb i:first-child{animation:mc-on .01s linear both,mc-out .25s var(--ob-ease-in) 4.7s forwards}
+  .appx-il.play.app-missedcall .mc-st span:nth-child(4) .mc-nb i:last-child{animation:mc-in .3s var(--ease) 4.75s both}
+
+  /* 6. the toast */
+  .appx-il.play.app-missedcall .mc-toast{animation:mc-toast .45s var(--ease) 5.15s both}
+}

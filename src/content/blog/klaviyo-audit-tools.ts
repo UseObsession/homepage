@@ -22,7 +22,9 @@ import type { BlogPost } from './types'
    Validity Everest (covered in the email marketing audit guide), MailCharts and Really Good Emails (linked through /compare).
    Obsession's lines use the live /lookup and leak checks use case words only; the index's figures are the /lookup totals
    of 13 Nov 2026, as patterns. fernlea.example and every finding in the two pictures are invented. British English,
-   numerals, no dashes. */
+   numerals, no dashes. 
+   22 Nov 2026: moved to the toolkit position. The index figures and the store lookup are out; the mystery shopping
+   blueprint runs the new customer test. */
 
 const COMPOSER_AUDIT = 'https://help.klaviyo.com/hc/en-us/articles/52308768764443'
 const COMPOSER_PLAN = 'https://help.klaviyo.com/hc/en-us/articles/55587298026395'
@@ -54,17 +56,17 @@ const PANORAMATA = 'https://www.panoramata.co/pricing'
 export const post: BlogPost = {
   slug: 'klaviyo-audit-tools',
   title: 'The best Klaviyo audit tools and services for ecommerce brands in 2026, by job',
-  dek: '14 Klaviyo audit tools and services, grouped by job, with what each checks, what it can’t see and its price on 14 November 2026. Beside them, Obsession keeps every email a new customer receives from your store.',
+  dek: '14 Klaviyo audit tools and services, grouped by job, with what each checks, what it can’t see and its price on 14 November 2026. Beside them, an AI agent on Obsession signs up as a new customer and keeps every email your store sends it.',
   metaTitle: 'Klaviyo audit tools and services for ecommerce brands, 2026',
   description:
     'Klaviyo audit tools and services for ecommerce brands, by job and price: Klaviyo’s own audits, audit apps, agencies, inbox tests and email archives.',
   answer:
-    'A Klaviyo audit tool reads a store’s Klaviyo account (its flows, segments, sign-up forms, campaigns and sending health) and returns a list of fixes in priority order. Klaviyo’s Composer audits from inside the account, apps such as Fluxchek and SPARK CRM connect with read-only access, and agencies such as Flowium and Netalico audit by hand. Obsession keeps what each store sends a new customer after a sign-up, a basket and a checkout, dated, and the store lookup shows your own store’s entry.',
+    'A Klaviyo audit tool reads a store’s Klaviyo account (its flows, segments, sign-up forms, campaigns and sending health) and returns a list of fixes in priority order. Klaviyo’s Composer audits from inside the account, apps such as Fluxchek and SPARK CRM connect with read-only access, and agencies such as Flowium and Netalico audit by hand. On Obsession the mystery shopping blueprint signs up to your store as a new customer every week and keeps each email after a sign-up, a basket and a checkout, dated.',
   primaryKeyword: 'klaviyo audit tool',
   keywords: ['klaviyo auditor', 'klaviyo account audit', 'klaviyo audit template', 'klaviyo audit tools', 'best klaviyo audit tool'],
-  category: 'Check your own journeys',
+  category: 'Test sign-up and agents',
   published: '2026-11-14',
-  updated: '2026-11-16',
+  updated: '2026-11-22',
   readingMinutes: 19,
   order: 3,
   authors: [
@@ -151,7 +153,7 @@ export const post: BlogPost = {
         ['Deliverability', 'Spam complaint and bounce rates under the warning levels, sender checks passing', 'Deliverability hub\nPostmaster Tools\nGlockApps'],
         ['Rendering', 'Links, images, dark mode and accessibility pass', 'Litmus\nMailgun Inspect'],
         ['Results against peers', 'Flow and campaign rates inside the middle half of about 100 similar companies', 'Klaviyo benchmarks'],
-        ['What a new customer receives', 'Each email after a sign-up, product view, basket and checkout, on time', 'A new inbox\nThe store lookup'],
+        ['What a new customer receives', 'Each email after a sign-up, product view, basket and checkout, on time', 'A new inbox\nThe mystery shopping blueprint'],
       ],
     },
 
@@ -431,7 +433,7 @@ export const post: BlogPost = {
       kind: 'list',
       ordered: true,
       items: [
-        '**Sign up** through your own pop-up or footer form. Most stores send a welcome within a minute.',
+        '**Sign up** through your own pop-up or footer form, and note the minute the welcome arrives.',
         '**Look at a product.** Open the store from the welcome email’s link, so Klaviyo knows who you are, then view a product. Give it a day.',
         '**Leave a basket.** Add the product and close the tab. Give it 24 hours.',
         '**Start a checkout and leave** with the same email, before paying. Give it 48 hours.',
@@ -443,21 +445,21 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'In Obsession’s index on 13 November 2026, 9 in 10 stores sent a welcome email after a sign-up, most within a minute. About a third sent a reminder after a product view. After a basket, nearly 1 in 2 stores sent no reminder, and 1 in 2 sent none after a checkout. Of the basket and checkout reminders that did come, half arrived within about an hour. The [ecommerce email marketing benchmarks](/blog/ecommerce-email-marketing-benchmarks) give each step’s figures.',
+      text: 'The [ecommerce email marketing benchmarks](/blog/ecommerce-email-marketing-benchmarks) give each flow’s published figures. The [September sample](/sample-output) shows a real store where a £40 basket left at 02:57 got no reminder in 48 hours.',
     },
     {
       kind: 'p',
-      text: 'Obsession keeps what each store sends a new customer after a sign-up, a product view, a basket and a checkout, every email dated. Type an email at your store’s own address into the [store lookup](/lookup), and it sends your store’s entry to that inbox, set beside every other store in the index. Each step is read at 4, 8, 12, 24 and 48 hours, and the accounts stay subscribed after that. A fresh sign-up can run every step again each week, in an index built for millions of companies.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its [mystery shopping](/blueprints/mystery-shopper) blueprint runs these 4 steps at your store as a persona, an AI agent with its own inbox, number and browser under one name. Each step is read at 4, 8, 12, 24 and 48 hours, every email lands in one event log with the minute it arrived, and a fresh sign-up runs every step again each week.',
     },
     {
       kind: 'p',
-      text: 'An entry goes only to an address at the store itself, so agencies that do email, retention or conversion work for ecommerce brands get [early access](/lookup#agencies). It looks up every store already in the index and adds up to 5 stores they run or pitch, with the brand’s OK. We check each agency before setting up access.',
+      text: 'Agencies that do email, retention or conversion work for ecommerce brands run the same blueprint across every store they keep and every store they pitch, with each brand’s OK for its own store.',
     },
 
     { kind: 'h2', id: 'stores-and-clients', text: 'How do you add the customer’s side for your store, the leaders and your clients?' },
     {
       kind: 'p',
-      text: 'An audit inside Klaviyo shows what is set up. For your own online store, the [store lookup](/lookup) shows what a new customer received after a sign-up, a basket and a checkout. With Obsession, you can set your store beside the biggest stores in your category, read the same way. You see which flows the leaders run, so you know what to add next.',
+      text: 'An audit inside Klaviyo shows what is set up. For your own online store, the mystery shopping blueprint shows what a new customer received after a sign-up, a basket and a checkout. Pointed at the biggest stores in your category, it reads them the same way, so you see which flows the leaders run and what to add next.',
     },
     {
       kind: 'list',
@@ -475,7 +477,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
+      text: 'It keeps going on its own. Each persona stays subscribed, free while it waits, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which Klaviyo audit tool to choose' },
@@ -486,7 +488,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**What a new customer receives, every week:** Obsession, starting with your store’s entry in the store lookup.',
+        '**What a new customer receives, every week:** Obsession’s mystery shopping blueprint, at your store and the stores you compete with.',
         '**Every flow reviewed inside Klaviyo:** Composer’s audits, on the free plan’s 500 credits.',
         '**Sending health against about 100 peers:** Klaviyo’s benchmarks and deliverability hub.',
         '**A scored fix list without a call:** Aimerce for free, Fluxchek free for the score or $39 a month for the findings, or SPARK CRM free for 1 account.',
@@ -499,9 +501,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'See every email your store sends a new customer after a sign-up, a basket and a checkout, dated and set beside every other store in the index.',
-      to: '/lookup',
-      label: 'Look up your store',
+      text: 'Every email your store sends a new customer after a sign-up, a basket and a checkout, dated, every week, beside the stores you compete with.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'compared', text: 'The 14 tools and services and Obsession, side by side', compare: true },
@@ -532,11 +534,11 @@ export const post: BlogPost = {
         ['Milled', '53 million+ emails from 104,230 brands', 'Team 5: $249.92 a month', 'Basket and checkout emails not described', 'Category research back to 2012'],
         ['Panoramata', 'Competitors’ emails, texts, ads and flows', '$99 to $399 a month', 'Collection method not stated', 'Many competitors in one place'],
         [
-          'Obsession (ours): [Store lookup](/lookup), [Leak checks](/use-cases/leak-checks-for-ecommerce-stores), [Store sign-up and checkout](/blueprints/mystery-shopper)',
+          'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [Email](/email), [Personas](/personas)',
           'Every email a new customer gets after each step, dated, and every one that never came',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Reads what arrives, with the account’s settings left to Klaviyo',
-          'What each new customer receives, every week, beside every other store',
+          'What each new customer receives, every week, beside the stores you compete with',
         ],
       ],
     },
@@ -547,7 +549,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What is the best Klaviyo audit tool?',
-          a: 'The best Klaviyo audit tool depends on the job. For what a new customer receives after each step, Obsession keeps every email dated. On 14 November 2026, Klaviyo’s Composer audited flows on a free plan of 500 credits. Fluxchek and SPARK CRM scored an account for free, with paid plans from $15 a month. GlockApps and Litmus tested inbox placement and rendering.',
+          a: 'The best Klaviyo audit tool depends on the job. For what a new customer receives after each step, Obsession’s mystery shopping blueprint keeps every email dated. On 14 November 2026, Klaviyo’s Composer audited flows on a free plan of 500 credits. Fluxchek and SPARK CRM scored an account for free, with paid plans from $15 a month. GlockApps and Litmus tested inbox placement and rendering.',
         },
         {
           q: 'What is a Klaviyo auditor?',
@@ -568,8 +570,8 @@ export const post: BlogPost = {
         },
         {
           q: 'Can a Klaviyo audit tool see what customers receive?',
-          a: 'Not from the account alone. Klaviyo audit apps and agency audits read the account, so they see what each flow is set to send, and none of the apps’ pages describe checking a subscriber’s inbox. A new customer’s inbox shows which emails arrived and when. Obsession’s store lookup shows your own store’s entry, every email after a sign-up, a product view, a basket and a checkout, dated.',
-          link: { label: 'Look up your store', to: '/lookup' },
+          a: 'Not from the account alone. Klaviyo audit apps and agency audits read the account, so they see what each flow is set to send, and none of the apps’ pages describe checking a subscriber’s inbox. A new customer’s inbox shows which emails arrived and when. Obsession’s mystery shopping blueprint signs up as a new customer and keeps every email after a sign-up, a product view, a basket and a checkout, dated.',
+          link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
         },
         {
           q: 'How often should you audit a Klaviyo account?',
@@ -613,7 +615,7 @@ export const post: BlogPost = {
     'audit-prospect-email-without-klaviyo-login',
     'welcome-basket-email-not-sending',
     'competitor-email-tracking-tools',
-    '/lookup',
+    'recipe:mystery-shopper',
     '/sample-output',
   ],
 }

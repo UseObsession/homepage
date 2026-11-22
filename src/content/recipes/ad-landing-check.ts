@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Ad landing check (/recipes/ad-landing-check). Check your own journeys. The persona version (20 Nov 2026, James):
+/* Ad landing check (/blueprints/ad-landing-check). Check your own journeys. The persona version (20 Nov 2026, James):
    each morning a persona you define opens every live ad's landing page as a shopper, straight from the ad's link (so no
    click is paid for), on a phone and a desktop, from a home connection in the country the ad targets, so it sees the
    price and stock a local shopper sees. It records whether the page loads, whether the offer and price match the ad and
@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'adcheck',
   slug: 'ad-landing-check',
   name: 'Ad landing check',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'Each morning a shopper persona checks every live ad’s landing page: loads, offer, price and stock.',
   gets: 'Every landing page that can’t sell, flagged each morning with its screenshot.',
   kit: [
@@ -47,7 +47,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-adcheck-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'adcheck',
     },
   },
@@ -157,8 +157,8 @@ export const recipe: Recipe = {
   ],
 
   table: {
-    heading: 'Every ad you pay for, every morning, not the few someone remembers.',
-    line: 'By hand, 6 ads’ pages at 5 minutes each is 3.5 hours a week.',
+    heading: 'Every ad you pay for, checked every morning.',
+    line: 'By hand, 6 ads at 5 minutes each, every morning, is 3.5 hours a week. 300 live ads would keep more than 4 people busy all week.',
     cols: ['By hand', 'Ad landing check'],
     rows: [
       { label: 'Which ads', values: ['The few someone opens when there’s time', 'Every live ad, every morning'] },
@@ -179,6 +179,7 @@ export const recipe: Recipe = {
       {
         q: 'How does it open each page?',
         a: 'Straight from the ad’s link, on a phone and a desktop, from the country the ad targets. No click is paid for, so your ad numbers stay true.',
+        link: { label: 'See the cloud browser', to: '/browser' },
       },
       { q: 'Does it change our ads?', a: 'No. It reads your ad accounts and changes nothing. Pausing an ad stays with your team.' },
       {
@@ -188,18 +189,25 @@ export const recipe: Recipe = {
       {
         q: 'Can it follow a competitor’s ads?',
         a: 'That’s Ad tracking: the ads competitors run in public, followed to each page, price and code.',
+        link: { label: 'See the blueprint', to: '/blueprints/ad-tracking' },
+      },
+      {
+        q: 'What does Ad landing check cost?',
+        a: 'It runs on browser hours, billed at list rates, on a phone and a desktop from each ad’s country. The month grows with the live ads you connect and how often each page is opened.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
     ],
   },
 
   final: {
     heading: 'Know every ad you pay for lands on a page that can sell.',
-    sub: 'Early access includes the API and MCP, set up with the founders.',
+    sub: 'Try it on the Free plan. Connect your ad accounts, and the first check runs at 07:00.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-adcheck-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'adcheck',
     },
+    link: { label: 'More blueprints to test sign-up and agents', to: '/blueprints/test-sign-up-and-agents' },
   },
 }

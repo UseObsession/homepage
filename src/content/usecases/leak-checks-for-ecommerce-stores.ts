@@ -1,70 +1,78 @@
+import { plans } from '../prices'
 import type { UseCaseStudy } from '../types'
 
-/* Leak checks for ecommerce stores (/use-cases/leak-checks-for-ecommerce-stores), rewritten 9 Nov 2026 to Home's story:
-   a store's own ecommerce or retention team sees every email and text its store and its competitors send after a
-   sign-up, a basket and a checkout, each dated with the email itself, and the reminders that never came. 1 invented
-   store carries the page (Halden Home, haldenhome.example, with Kilnworth, its agency, and 3 invented competitors);
-   the only real record is Brand G, the September store check (`found`). Drawn by src/pages/EcommerceStores.tsx, 11
-   steps in 3 phases, each beside its app window. */
+/* Ecommerce stores (/use-cases/leak-checks-for-ecommerce-stores), rewritten 22 Nov 2026 for the toolkit position: a
+   persona at the store and at each competitor signs up, leaves a basket and logs every email and text, and every one
+   that never came. It runs on email, phone and the browser, through the Mystery shopping, Email and SMS tracking and QA
+   on your own flows blueprints. 1 invented store carries the page (Halden Home, haldenhome.example, with Kilnworth, its
+   agency, and 3 invented competitors); the only real run is Brand G (`found`). Drawn by src/pages/EcommerceStores.tsx,
+   11 steps in 3 phases (4, 2 and 5), each beside its app window, so the step count stays. */
+
+const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
+const orList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} or ${items[items.length - 1]}`)
+
+const sub =
+  'Obsession, the toolkit for AI agents, puts a persona at your store and at each competitor. A persona is an AI agent with its own inbox, UK number and browser under one name. It signs up, leaves a basket and logs every email and text as it arrives, and every reminder that never comes.'
+
+const answer = `${sub} The Mystery shopping blueprint runs it every week and after every change, and each result lands in Slack, a Google Sheet or your webhook.`
 
 export const study: UseCaseStudy = {
-  name: 'Leak checks for ecommerce stores',
+  name: 'Email testing for ecommerce stores',
   line: 'Every email your store and your competitors send after a sign-up, a basket and a checkout, dated.',
 
   meta: {
     path: '/use-cases/leak-checks-for-ecommerce-stores',
-    title: 'Leak checks for ecommerce stores: every email after a basket',
+    title: 'Ecommerce stores: test every email after sign-up and basket',
     description:
-      'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came.',
-    answer:
-      'Obsession keeps every email and text a store sends after a sign-up, a basket and a checkout, for your own store and your competitors, each with the time it arrived. A reminder that never came shows as missing, with the inbox that waited for it. Look up any store by API or MCP, in Clay or Google Sheets, or get each new fact at a webhook.',
+      'A persona signs up and leaves a basket at your store and each competitor, then logs every email and text with its time, and every reminder that never came.',
+    answer,
     ogImage: '/og/leak-checks-for-ecommerce-stores.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Resources', path: '/resources' },
       { name: 'Use cases', path: '/use-cases' },
-      { name: 'Leak checks for ecommerce stores', path: '/use-cases/leak-checks-for-ecommerce-stores' },
+      { name: 'Ecommerce stores', path: '/use-cases/leak-checks-for-ecommerce-stores' },
     ],
   },
 
   hero: {
-    pill: 'Early access',
     headline: 'Every email a new customer gets from your store, and the ones that never come.',
-    sub: 'The emails and texts your store and your competitors send after a sign-up, a basket and a checkout, each with the time it arrived. A broken code, a silent basket or a competitor’s new offer shows up the day it happens, not when sales dip.',
-    video: { youtube: 'ixCcU3W-a2M', label: 'Watch how it works', title: 'Leak checks for ecommerce stores: every email after a basket' },
+    sub,
+    video: { youtube: 'ixCcU3W-a2M', label: 'Watch how it works', title: 'Ecommerce stores: test every email after sign-up and basket' },
     example: { chips: [] },
     flow: [
       {
         label: 'You name',
         title: 'Halden Home and 3 competitors',
         items: ['Signs up through the pop up', 'Opts in to texts', 'Leaves a basket', 'Leaves at checkout'],
-        foot: '1 account at each store, kept open',
+        foot: '1 persona at each store, kept for months',
       },
       {
         label: 'Obsession',
-        title: 'A customer account at each store',
-        items: ['New customer · UK', 'Its own inbox and UK mobile number', 'Its own browser, on a phone and a laptop', 'Kept open for months'],
-        foot: 'Every email and text kept as it arrives',
+        title: 'A persona at each store',
+        items: ['New customer · UK', 'Its own inbox and UK number', 'Its own browser, on a phone and a laptop', 'Free while it waits'],
+        foot: 'Every email and text in the event log',
       },
       {
         label: 'Back to you',
-        title: 'Each fact, dated, with the email itself',
+        title: 'Each step, dated, with the email itself',
         items: ['Welcome code: Rejected', 'Basket: No reminder', 'Checkout button: Empty basket', 'Texts: Worked'],
-        foot: 'Search · Insights · Clay · Webhook',
+        foot: 'Slack · Google Sheets · Clay · Webhook',
       },
     ],
     capture: {
       kind: 'waitlist',
       source: 'usecase-store-leaks-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'mystery',
     },
+    secondary: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
   },
 
   /* The 11 steps, in the 3 phases the page draws them in (4, 2 and 5). Each step's app window is in the page. */
   how: {
     heading: 'From the first sign-up to every week after.',
-    sub: 'How Halden Home, a homewares store in this example, finds its leaks, catches the next break the hour it starts and sees what its competitors send.',
+    sub: 'How Halden Home, an invented homewares store, finds its leaks and catches the next break within the hour.',
     steps: [
       {
         title: 'The first check',
@@ -72,7 +80,7 @@ export const study: UseCaseStudy = {
         steps: [
           {
             title: 'Name your store and your competitors',
-            line: 'Type each web address and pick the customer profile and country. A store already in the index returns its history at once; one that isn’t, you Watch.',
+            line: 'Type each web address and pick the customer profile and country. Each store gets its own persona.',
             example: 'Halden Home names its own store and 3 competitors, as a new customer in the UK.',
           },
           {
@@ -81,8 +89,8 @@ export const study: UseCaseStudy = {
             example: 'A welcome within 1 hour, a text within 1 hour of opting in, a basket reminder within 24 hours. Watched for 48 hours, on a phone and a laptop.',
           },
           {
-            title: 'Its own account at your store',
-            line: 'A real inbox, a UK mobile number and its own browser, used for your store only. Every step gets a screenshot, and every email is kept as it arrived.',
+            title: 'A persona signs up at your store',
+            line: 'Its own inbox, UK mobile number and browser, used for your store only. Every step gets a screenshot, and every email is kept as it arrived.',
             example: 'Halden Home, 09:02 on Tuesday 3 Nov: signed up through the “10% off your first order” pop up, then took WELCOME10 to checkout.',
           },
           {
@@ -93,7 +101,7 @@ export const study: UseCaseStudy = {
         ],
       },
       {
-        title: 'The evidence',
+        title: 'What came, and what didn’t',
         line: 'Steps 5 and 6',
         steps: [
           {
@@ -114,28 +122,28 @@ export const study: UseCaseStudy = {
         steps: [
           {
             title: 'A fresh sign-up every Monday',
-            line: 'Every Monday, a fresh sign-up runs every step again, since a welcome only comes once. The first check stays on record, so the before is there from day 1.',
+            line: 'A new persona runs every step again each Monday, since a welcome only comes once. The first check stays in the event log, so the before is there from day 1.',
             example: 'Monday 9 Nov, after the fixes: the code works, the basket reminder comes in 1 hour and the checkout button brings the basket back.',
           },
           {
             title: 'A break caught the hour it starts',
-            line: 'Connect Shopify, read only, and a theme publish runs the steps it touches again within the hour. For a new app, tell it. Each new fact reaches your webhook, or Slack through one, minutes after a break starts.',
+            line: 'Connect Shopify, read only, and a theme publish runs the steps it touches again within the hour. For a new app, tell it. Each result reaches your webhook or Slack minutes after a break starts.',
             example: 'Thursday 12 Nov, 10:00: the new theme goes live. At 10:20, Add to basket does nothing on a phone. Fixed before lunch.',
           },
           {
             title: 'Your competitors, the same way',
-            line: 'Each competitor you name gets its own account too: every welcome offer, code, text and basket reminder it sends, dated, including the ones never on its website.',
+            line: 'Each competitor gets its own persona too. Every welcome offer, code, text and basket reminder it sends is dated, including offers never on its website.',
             example: 'Tuesday 17 Nov, 07:04: Brackwater Home sends new subscribers 20% off, twice the 10% on its website. Copperleaf Living still sends no basket reminder.',
           },
           {
             title: 'The morning the sale goes live',
-            line: 'Tell it when a sale goes live, and every step runs on it: the sale code at checkout, the sale prices in the basket, the early access email.',
+            line: 'Tell it when a sale goes live, and every step runs again on the sale code, the sale prices and the sale’s first email.',
             example: 'Black Friday, 08:00: the sale goes live. At 08:05, BF25 is rejected at checkout; it was set to start on Saturday. Fixed by 08:25.',
           },
           {
-            title: 'Search one store, or ask across all of them',
-            line: 'Search shows one store’s facts, the evidence and the record. Insights answers one question across your store and your competitors, as a report with a row per store. Or get each new fact in Clay, a Google Sheet or at a webhook.',
-            example: 'Monday 30 Nov, in Insights: “What did each of us send in Black Friday week?” 4 rows, every line linked to its email.',
+            title: 'One report across every store',
+            line: 'Each week comes as a report with a row per store, in Slack, a Google Sheet or at your webhook. Every row links to its email in the event log.',
+            example: 'Monday 30 Nov: what each of the 4 stores sent in Black Friday week, every line linked to its email.',
           },
         ],
       },
@@ -151,29 +159,29 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'Every change can stop an email',
-        line: 'A new theme, a new app or an edited flow can stop an email overnight, and nobody notices until sales dip.',
+        line: 'A new theme, app or edited flow can stop an email overnight. Nobody notices until conversion dips.',
       },
       {
         title: 'Checking by hand doesn’t happen',
-        line: 'Signing up, leaving a basket and waiting 48 hours, at your store and 3 competitors, after every change, is somebody’s whole week. So it’s done once, with a spare inbox and a spreadsheet.',
+        line: 'Signing up, leaving a basket and waiting 48 hours at 4 stores, after every change, is somebody’s whole week.',
       },
     ],
     answer:
-      'Obsession keeps a customer account open at your store and at each competitor, so you see every email, and every one that never came, the day it happens.',
+      'Obsession keeps a persona at your store and each competitor, so every email, and every missing one, shows the day it happens.',
   },
 
   fit: {
     heading: 'It reads from the outside. Your tools still run the inside.',
-    line: 'Nothing changes in how you run the store. Obsession shows what a customer gets; you, your developer or your agency make the fix.',
+    line: 'Nothing changes in how you run the store. A persona shows what a customer gets; you, your developer or your agency make the fix.',
     items: [
-      { title: 'Your store and your competitors', line: 'Type each address, or paste a list. A store already in the index returns its history at once.' },
-      { title: 'Each fact', line: 'Dated, with the email itself and its screenshots, in Search or Insights.' },
-      { title: 'Where you work', line: 'Clay, Google Sheets, a webhook, or your AI agent over MCP.' },
+      { title: 'Your store and your competitors', line: 'Type each address, or paste a list. Each store gets its own persona.' },
+      { title: 'Each step', line: 'Dated, with the email itself and its screenshots, in your event log.' },
+      { title: 'Where you work', line: 'Slack, Google Sheets, Clay or a webhook.' },
     ],
   },
 
   outputs: {
-    heading: 'Every fact reaches the person who acts on it.',
+    heading: 'Every result reaches the person who fixes it.',
     groups: [
       {
         items: [
@@ -206,11 +214,11 @@ export const study: UseCaseStudy = {
     ],
   },
 
-  /* The 1 real record, right after the invented first check: Brand G, the September store check, and our own count.
-     The 4 lines are its facts, exact (content/sample.ts). Each line's `shop` is unused on this page. */
+  /* The 1 real run, right after the invented first check: Brand G, the September store check. The 4 lines are its facts,
+     exact (content/sample.ts). Each line's `shop` is unused on this page. */
   found: {
-    heading: '1,500 sign-ups, baskets and checkouts run at real companies, and counting.',
-    line: 'One of them, in full: Brand G, a real skincare store. A £40 basket left at 02:57 on 22 Sep got no reminder in 48 hours. Its whole record is the sample data.',
+    heading: 'A real store, checked the same way in September.',
+    line: 'Brand G, a UK skincare store, with 4 sign-ups and baskets. A £40 basket left at 02:57 on 22 Sep got no reminder in 48 hours. Every step is in the sample data.',
     items: [
       {
         label: 'Brand G · Basket left',
@@ -231,106 +239,100 @@ export const study: UseCaseStudy = {
         shop: 'pellam',
       },
       {
-        label: 'Brand G · The record',
+        label: 'Brand G · The event log',
         verdict: 'Kept',
         finding: '4 customer profiles, each with its own inbox, every inbox watched for 48 hours, and 15 screenshots kept.',
         shop: 'quinnet',
       },
     ],
-    cta: { label: 'See the sample data', to: '/sample-output' },
+    cta: { label: 'See sample data', to: '/sample-output' },
   },
 
-  /* The 3 recipes the page runs (your store, your competitors, after every change), and the 1 real run. */
+  /* The 3 blueprints the page runs (your store, your competitors, after every change), and the 1 real run. */
   more: {
     recipe: {
       label: 'Your store',
-      title: 'Store sign-up and checkout',
-      line: 'What a store sends a new customer after a sign-up, a basket and a checkout, every email timed.',
-      cta: { label: 'Learn more', to: '/blueprints/mystery-shopper' },
+      title: 'Mystery shopping',
+      line: 'A persona signs up, fills a basket and stops before payment, then logs every email and text.',
+      cta: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
     },
     second: {
       label: 'Your competitors',
       title: 'Email and SMS tracking',
-      line: 'Every store on your list, its emails and texts side by side: who sends most, and who discounts first.',
-      cta: { label: 'Learn more', to: '/blueprints/email-sms-tracking' },
+      line: 'A persona on each competitor’s list: every email and text side by side, and who discounts first.',
+      cta: { label: 'See the blueprint', to: '/blueprints/email-sms-tracking' },
     },
     third: {
       label: 'After every change',
-      title: 'Website audit',
-      line: 'Every step again after each release, with any break dated.',
-      cta: { label: 'Learn more', to: '/blueprints/website-audit' },
+      title: 'QA on your own flows',
+      line: 'A new persona runs every step after each release, with any break dated.',
+      cta: { label: 'See the blueprint', to: '/blueprints/website-audit' },
     },
     sample: {
       label: '1 real run',
       title: 'Sample data',
       line: 'Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.',
-      cta: { label: 'See it', to: '/sample-output' },
+      cta: { label: 'See sample data', to: '/sample-output' },
     },
   },
 
-  fine: 'Halden Home and haldenhome.example, Kilnworth, the competitors, the people, the phone number and every figure on their screens are made up. The 1,500 runs are our own, and Brand G is a real store, its name hidden. Shopify and Slack are trademarks of their owners, named to show where a store runs and where results go.',
+  fine: 'Halden Home and haldenhome.example, Kilnworth, the competitors, the people, the phone number and every figure on their screens are made up. Brand G is a real store, its name hidden. Shopify and Slack are trademarks of their owners, named to show where a store runs and where results go.',
 
   faq: {
     heading: 'What ecommerce teams ask.',
     items: [
       {
         q: 'What does Obsession do for an ecommerce store?',
-        a: 'Obsession keeps every email and text a store sends after a sign-up, a basket and a checkout, for your own store and your competitors, each with the time it arrived. A reminder that never came shows as missing, with the inbox that waited for it. Look up any store by API or MCP, in Clay or Google Sheets, or get each new fact at a webhook.',
-        link: { label: 'Look up your store’s emails', to: '/lookup' },
+        a: answer,
+        link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
       },
       {
         q: 'What counts as a leak?',
-        a: 'Anything a customer should get and doesn’t, by a deadline you set: a welcome email that never comes, a code rejected at checkout, a basket or checkout with no reminder, a button that opens an empty basket, a link to a closed store.',
+        a: 'Anything a customer should get and doesn’t, by a deadline you set. A welcome email that never comes, a code rejected at checkout, a basket with no reminder, a button that opens an empty basket. Mark one as intended, and it stops counting.',
       },
       {
-        q: 'What if we meant it?',
-        a: 'Mark it as intended, and it stops counting as a leak.',
+        q: 'Which pieces does it use?',
+        a: 'Email, phone and the browser, under 1 persona per store. Mystery shopping runs your store and Email and SMS tracking runs your competitors, on the same key and bill.',
+        link: { label: 'Check your own sign-up and AI agents', to: '/blueprints/test-sign-up-and-agents' },
       },
       {
         q: 'Can we see our competitors’ emails too?',
-        a: 'Yes. Name any store a customer can reach. One already in the index returns its history at once. One that isn’t, you Watch, and an account opens there as the customer profile and country you pick.',
-      },
-      {
-        q: 'Where does the data come from?',
-        a: 'From real accounts. Obsession’s agents sign up, leave baskets and stop at checkout the way any customer can, from the customer profiles and countries you choose, and keep each account open for months. Every email is kept as it arrived, with its sender checked.',
+        a: 'Yes. Name any store a customer can reach, and a persona signs up there as the customer profile and country you pick. It stays on the list for months and keeps every email and text.',
       },
       {
         q: 'How does it know our store changed?',
         a: 'Connect Shopify, read only, and a theme publish runs the steps it touches again within the hour. For a new app or a sale, tell it. To check a theme before it’s live, give it the preview link.',
       },
       {
+        q: 'Do we have to be on Shopify?',
+        a: 'No. It works on any store a customer can reach. On Shopify, connecting it lets a theme publish start a check by itself.',
+      },
+      {
         q: 'Will the accounts clutter our numbers?',
         a: 'No. Every account is labelled, so you can filter it out of your lists and reports.',
       },
       {
+        q: 'What does it cost?',
+        a: `Start on the Free plan, with no credit card. Paid plans are ${orList(fees)} a month, and a blueprint is billed on the pieces it uses.`,
+        link: { label: 'See pricing', to: '/pricing' },
+      },
+      {
         q: 'Is it legal to sign up to a competitor’s store?',
-        a: 'Obsession does only what any customer can, on the pages and forms anyone can use. It says it’s an AI when it talks to a person, and it never signs in to an account that isn’t its own.',
+        a: 'A persona does only what any customer can, on the pages and forms anyone can use. It says it’s an AI when it talks to a person and stops before payment unless given your own card. It never uses fake payment details, never gets round a CAPTCHA or a bot block, stops at any identity check and never clicks paid ads at volume.',
         link: { label: 'Is it legal to sign up to a competitor?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
-      },
-      {
-        q: 'Who sees what we look up?',
-        a: 'Only you. Anyone can see that a store is covered, and since when, but never who asked.',
-      },
-      {
-        q: 'What if a CAPTCHA or a bot wall stops it?',
-        a: 'It stops too, and the check names the step it couldn’t reach. It never gets round one.',
-      },
-      {
-        q: 'Do we have to be on Shopify?',
-        a: 'No. It works on any store a customer can reach. On Shopify, connecting it lets a theme publish start a check by itself.',
       },
     ],
   },
 
   final: {
-    heading: 'Which store should we look up first?',
-    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
+    heading: 'Sign up to your own store every week, as a new customer.',
+    sub: 'Mystery shopping runs it on email, phone and the browser, so you can see what each fix does to conversion and repeat purchase.',
     capture: {
       kind: 'waitlist',
       source: 'usecase-store-leaks-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'mystery',
     },
-    link: { label: 'See what marketing teams look up', to: '/marketing' },
+    link: { label: 'See the blueprints', to: '/blueprints/test-sign-up-and-agents' },
   },
 }
