@@ -1,255 +1,306 @@
-import { useId, type ReactNode } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { HomeHow } from '../../content/types'
-import './blueprint.css'
 import './HomeHowItWorks.css'
 
-/* How it works on Home (#how), the founder's pick of 21 Nov: the claim and its line, then the loop as 1 picture, then the
-   link to the ways an event reaches you (#delivery). The picture: set up once, feeding a ring of 3 stops (something happens, it's
-   saved in your event log, it reaches your agent or a person); the dashed way back says whatever your agent does next is
-   a new event; live call audio crosses the ring as a wave, straight to the voice agent, and never touches the log. It is
-   drawn twice, wide from 1080px and tall below, both as inline SVG with every word from content, and the figure reads
-   as its `label`. 1 dot follows the one live event round the ring; with reduced motion it isn't drawn, and the picture
-   reads as a still. Then the link to every channel's code (James, 22 Nov: the channel cards went; /developers lists them).
-   The drawing is sized for these words: a much longer line needs its box widened. */
+/* How it works on Home (#how). James's loop of 21 Nov (set up once; something happens; it's saved in your event log; it
+   reaches your agent or a person; whatever the agent does next is a new event), redrawn on 22 Nov so any reader, and each
+   buyer, sees it work: one real-looking example per buyer plays through the three stops. An event card arrives at
+   "Something happens", travels the wire into the log as a dated row, travels on and lights the place it reaches (the
+   agent on our runtime, on your servers, or a person), shows what happens there, and, when an agent acts, comes back
+   round the return path as the next row in the log. The tabs pick the buyer: support and sales, QA and product, teams
+   without engineers. Live call audio is the figure's caption.
 
-const r = (n: number) => Math.round(n * 10) / 10
+   Motion explains the order of things and nothing else. The tour plays only in view, moves to the next buyer every 7.5 s,
+   and stops on Pause or after a tab the reader picks. Under prefers-reduced-motion nothing moves and nothing advances by
+   itself: each example shows whole, and the tabs still switch. Before the page's script runs, the first example shows
+   whole and every word is in the page. Words: content/pages/home.ts (homeHow). */
 
-/* Greedy wrap: as many words to a line as fit in `max` characters. */
-function wrap(text: string, max: number) {
-  const lines: string[] = []
-  for (const word of text.split(' ')) {
-    const last = lines.length - 1
-    if (last >= 0 && lines[last].length + 1 + word.length <= max) lines[last] += ' ' + word
-    else lines.push(word)
-  }
-  return lines
-}
+type Step = 0 | 1 | 2 | 3 | 4
+const AT: number[] = [0, 800, 1800, 2700, 3700]
+const CYCLE = 7500
 
-/* A sine wave drawn with quadratic humps, so live call audio always looks the same, across or down. */
-function waveH(x1: number, x2: number, y: number, a: number, p: number, move = true) {
-  const n = Math.max(2, Math.round(Math.abs(x2 - x1) / (p / 2)))
-  const h = (x2 - x1) / n
-  return `${move ? `M${r(x1)} ${r(y)} ` : ''}q${r(h / 2)} ${-2 * a} ${r(h)} 0` + ` t${r(h)} 0`.repeat(n - 1)
-}
-function waveV(y1: number, y2: number, a: number, p: number) {
-  const n = Math.max(2, Math.round(Math.abs(y2 - y1) / (p / 2)))
-  const h = (y2 - y1) / n
-  return `q${-2 * a} ${r(h / 2)} 0 ${r(h)}` + ` t0 ${r(h)}`.repeat(n - 1)
-}
+const Chev = ({ className }: { className: string }) => (
+  <svg className={className} viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+    <path d="M6 3.5 10.5 8 6 12.5" />
+  </svg>
+)
 
-type Anchor = 'start' | 'middle' | 'end'
-function T({ x, y, c, a, children }: { x: number; y: number; c: string; a?: Anchor; children: ReactNode }) {
-  return (
-    <text x={x} y={y} className={c} textAnchor={a === 'start' ? undefined : a}>
-      {children}
-    </text>
-  )
-}
-/* Lines of 1 label, `lh` apart, from `y`. */
-function Lines({ x, y, lh, c, a, lines }: { x: number; y: number; lh: number; c: string; a?: Anchor; lines: string[] }) {
-  return lines.map((l, i) => (
-    <T key={l} x={x} y={y + i * lh} c={c} a={a}>
-      {l}
-    </T>
-  ))
-}
-function Box({ x, y, w, h, rx, log }: { x: number; y: number; w: number; h: number; rx: number; log?: boolean }) {
-  return <rect x={x} y={y} width={w} height={h} rx={rx} className={log ? 's-hiw-logbox' : 's-hiw-box'} />
-}
-/* An arrow: solid for an event on its way, dashed for the agent's next move, a wave for live call audio. */
-function Arrow({ d, mark, c = '' }: { d: string; mark: string; c?: string }) {
-  return <path d={d} className={`s-hiw-ar ${c}`} markerEnd={`url(#${mark})`} />
-}
-function Defs({ mark }: { mark: string }) {
-  return (
-    <defs>
-      <marker id={mark} viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
-        <path d="M2 1.5 L8.5 5 L2 8.5" className="s-hiw-mk" />
-      </marker>
-    </defs>
-  )
-}
-/* The dot that follows the one live event round the ring, drawn under the boxes so it passes behind them. */
-function Mover({ ring, dur }: { ring: string; dur: string }) {
-  return (
-    <g className="s-hiw-mover">
-      <circle r="11" className="s-hiw-glow" />
-      <circle r="4.5" className="s-hiw-dot" />
-      <animateMotion dur={dur} repeatCount="indefinite">
-        <mpath href={`#${ring}`} />
-      </animateMotion>
-    </g>
-  )
-}
-
-type Loop = HomeHow['loop']
-
-/* From 1080px: set up once on the left, the ring in the middle with the event log on top, the 3 places on the right. */
-function Wide({ loop }: { loop: Loop }) {
-  const mark = 's-hiw-ah-w'
-  const ring = 's-hiw-ring-w'
-  return (
-    <svg className="s-hiw-d s-hiw-wide" viewBox="0 0 1160 530" width="1160" height="530" aria-hidden="true" focusable="false">
-      <Defs mark={mark} />
-      <Box x={0} y={310} w={230} h={120} rx={14} />
-      <T x={20} y={342} c="s-hiw-tn">
-        {loop.setup.name}
-      </T>
-      <Lines x={20} y={368} lh={18} c="s-hiw-ts" lines={wrap(loop.setup.line, 24)} />
-      <Arrow d="M230 370 H293" mark={mark} />
-      <T x={262} y={360} c="s-hiw-tv" a="middle">
-        {loop.then}
-      </T>
-
-      <path id={ring} d="M406.8 370 A200 200 0 0 1 753.2 170 A200 200 0 0 1 406.8 370" className="s-hiw-none" />
-      <Arrow d="M385.9 318.4 A200 200 0 0 1 456.9 112.4" mark={mark} />
-      <Arrow d="M703.1 112.4 A200 200 0 0 1 774.1 318.4" mark={mark} />
-      <Arrow d="M713.8 418.6 A200 200 0 0 1 469.3 436.6" mark={mark} c="s-hiw-dash" />
-      <T x={368} y={200} c="s-hiw-tv" a="end">
-        {loop.saved}
-      </T>
-      <T x={792} y={200} c="s-hiw-tv">
-        {loop.reaches}
-      </T>
-      <T x={580} y={496} c="s-hiw-tv" a="middle">
-        {loop.acts.name}
-      </T>
-      <T x={580} y={516} c="s-hiw-ts" a="middle">
-        {loop.acts.line}
-      </T>
-
-      <Arrow d={`M480 330 V300 ${waveH(480, 680, 300, 3, 12, false)} V327`} mark={mark} c="s-hiw-wave" />
-      <T x={580} y={262} c="s-hiw-tv" a="middle">
-        {loop.audio.name}
-      </T>
-      <T x={580} y={280} c="s-hiw-ts" a="middle">
-        {loop.audio.line}
-      </T>
-      <Lines x={580} y={134} lh={18} c="s-hiw-ts3" a="middle" lines={wrap(loop.audio.log, 26)} />
-      <Mover ring={ring} dur="9s" />
-
-      <Box x={297} y={330} w={220} h={98} rx={12} />
-      <T x={315} y={360} c="s-hiw-tn">
-        {loop.happens.name}
-      </T>
-      <Lines x={315} y={382} lh={18} c="s-hiw-ts" lines={wrap(loop.happens.line, 25)} />
-      <Box x={475} y={34} w={210} h={72} rx={14} log />
-      <T x={580} y={66} c="s-hiw-tn s-hiw-inv" a="middle">
-        {loop.log.name}
-      </T>
-      <T x={580} y={88} c="s-hiw-ts s-hiw-inv2" a="middle">
-        {loop.log.line}
-      </T>
-      <Box x={653} y={330} w={200} h={80} rx={12} />
-      <T x={671} y={364} c="s-hiw-tn">
-        {loop.agent.name}
-      </T>
-      <T x={671} y={388} c="s-hiw-ts">
-        {loop.agent.line}
-      </T>
-
-      <path d="M853 370 H876 M876 290 V450 M876 290 H897 M876 370 H897 M876 450 H897" className="s-hiw-fork" />
-      {loop.places.map((p, i) => {
-        const y = 290 + i * 80
-        return (
-          <g key={p.name}>
-            <Box x={900} y={y - 28} w={230} h={56} rx={10} />
-            <T x={916} y={y - 4} c="s-hiw-tn14">
-              {p.name}
-            </T>
-            <T x={916} y={y + 16} c="s-hiw-ts">
-              {p.line}
-            </T>
-          </g>
-        )
-      })}
-    </svg>
-  )
-}
-
-/* Below 1080px: the stops run down the middle, the way back runs up the left, the wave runs down the right. */
-function Tall({ loop }: { loop: Loop }) {
-  const mark = 's-hiw-ah-t'
-  const ring = 's-hiw-ring-t'
-  return (
-    <svg className="s-hiw-d s-hiw-tall" viewBox="0 0 360 714" width="360" height="714" aria-hidden="true" focusable="false">
-      <Defs mark={mark} />
-      <Box x={0} y={0} w={360} h={92} rx={14} />
-      <T x={16} y={30} c="s-hiw-tn">
-        {loop.setup.name}
-      </T>
-      <Lines x={16} y={54} lh={19} c="s-hiw-ts" lines={wrap(loop.setup.line, 40)} />
-      <Arrow d="M180 92 V133" mark={mark} />
-      <T x={192} y={118} c="s-hiw-tv">
-        {loop.then}
-      </T>
-      <Arrow d="M180 234 V285" mark={mark} />
-      <T x={192} y={265} c="s-hiw-tv">
-        {loop.saved}
-      </T>
-      <Arrow d="M180 360 V411" mark={mark} />
-      <T x={192} y={391} c="s-hiw-tv">
-        {loop.reaches}
-      </T>
-
-      <path id={ring} d="M180 178 V578 H22 V178 Z" className="s-hiw-none" />
-      <Arrow d="M180 540 V570 H22 V178 H57" mark={mark} c="s-hiw-dash" />
-      <T x={180} y={596} c="s-hiw-tv" a="middle">
-        {loop.acts.name}
-      </T>
-      <T x={180} y={615} c="s-hiw-ts" a="middle">
-        {loop.acts.line}
-      </T>
-      <Arrow d={`M300 178 H338 ${waveV(178, 488, 3, 12)} H319`} mark={mark} c="s-hiw-wave" />
-      <Mover ring={ring} dur="7s" />
-
-      <Box x={60} y={140} w={240} h={94} rx={12} />
-      <T x={78} y={168} c="s-hiw-tn">
-        {loop.happens.name}
-      </T>
-      <Lines x={78} y={190} lh={18} c="s-hiw-ts" lines={wrap(loop.happens.line, 25)} />
-      <Box x={60} y={292} w={240} h={68} rx={12} log />
-      <T x={78} y={320} c="s-hiw-tn s-hiw-inv">
-        {loop.log.name}
-      </T>
-      <T x={78} y={342} c="s-hiw-ts s-hiw-inv2">
-        {loop.log.line}
-      </T>
-      <Box x={44} y={418} w={272} h={122} rx={12} />
-      <T x={62} y={446} c="s-hiw-tn">
-        {`${loop.agent.name}, ${loop.agent.line}`}
-      </T>
-      <Lines x={62} y={472} lh={22} c="s-hiw-ts" lines={loop.places.map((p) => p.short)} />
-
-      <path d={waveH(0, 24, 656, 2.6, 8)} className="s-hiw-ar s-hiw-wave" />
-      <Lines x={34} y={660} lh={19} c="s-hiw-ts" lines={wrap(`${loop.audio.note} ${loop.audio.log}`, 44)} />
-    </svg>
-  )
-}
+const PlaceIcon = ({ id }: { id: 'runtime' | 'servers' | 'person' }) => (
+  <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+    {id === 'runtime' && <path d="M8.8 1.8 3.5 9h4l-.8 5.2L12.5 7h-4l.3-5.2Z" />}
+    {id === 'servers' && (
+      <>
+        <rect x="2.5" y="2.5" width="11" height="4.5" rx="1.2" />
+        <rect x="2.5" y="9" width="11" height="4.5" rx="1.2" />
+        <path d="M5 4.75h.01M5 11.25h.01" />
+      </>
+    )}
+    {id === 'person' && (
+      <>
+        <circle cx="8" cy="5.5" r="2.6" />
+        <path d="M3 13.5c.7-2.6 2.7-4 5-4s4.3 1.4 5 4" />
+      </>
+    )}
+  </svg>
+)
 
 export function HomeHowItWorks({ how, id }: { how: HomeHow; id?: string }) {
   const hid = useId()
+  const L = how.loop
+  const root = useRef<HTMLDivElement>(null)
+  const [ex, setEx] = useState(0)
+  const [step, setStep] = useState<Step>(4)
+  const [motion, setMotion] = useState(false)
+  const [visible, setVisible] = useState(false)
+  const [stopped, setStopped] = useState(false)
+  const elapsed = useRef(0)
+  const advance = useRef(true)
+
+  /* Motion only when the reader allows it; then the first example starts from its arrival. */
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const set = () => {
+      setMotion(!mq.matches)
+      setStep(mq.matches ? 4 : 0)
+      elapsed.current = 0
+    }
+    set()
+    mq.addEventListener('change', set)
+    return () => mq.removeEventListener('change', set)
+  }, [])
+
+  /* Plays only while the figure is on screen and the tab is in front. */
+  useEffect(() => {
+    const el = root.current
+    if (!el || !('IntersectionObserver' in window)) {
+      setVisible(true)
+      return
+    }
+    let onScreen = false
+    const update = () => setVisible(onScreen && document.visibilityState === 'visible')
+    const io = new IntersectionObserver(([e]) => {
+      onScreen = e.isIntersecting
+      update()
+    }, { threshold: 0.35 })
+    io.observe(el)
+    document.addEventListener('visibilitychange', update)
+    return () => {
+      io.disconnect()
+      document.removeEventListener('visibilitychange', update)
+    }
+  }, [])
+
+  const running = motion && visible && !stopped
+
+  /* One clock: the step comes from the time spent on the example. */
+  useEffect(() => {
+    if (!running) return
+    let raf = 0
+    let last: number | null = null
+    const tick = (t: number) => {
+      if (last != null) elapsed.current += t - last
+      last = t
+      const e = elapsed.current
+      let s: Step = 0
+      for (let i = AT.length - 1; i >= 0; i--) if (e >= AT[i]) { s = i as Step; break }
+      setStep(s)
+      if (e >= CYCLE) {
+        if (!advance.current) {
+          elapsed.current = CYCLE
+          setStopped(true)
+          return
+        }
+        elapsed.current = 0
+        setStep(0)
+        setEx((x) => (x + 1) % L.examples.length)
+      }
+      raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [running, L.examples.length])
+
+  /* A buyer the reader picks plays from the start, then holds; Play resumes the tour. */
+  const pick = (i: number) => {
+    setEx(i)
+    elapsed.current = 0
+    if (motion) {
+      advance.current = false
+      setStep(0)
+      setStopped(false)
+    }
+  }
+  const toggle = () => {
+    if (stopped) {
+      advance.current = true
+      if (elapsed.current >= CYCLE) {
+        elapsed.current = 0
+        setStep(0)
+        setEx((x) => (x + 1) % L.examples.length)
+      }
+      setStopped(false)
+    } else setStopped(true)
+  }
+
+  const e = L.examples[ex]
+  const reached = step >= 2
+  const from = (n: number) => ({ 'data-from': n }) as Record<string, number>
+
   return (
-    <section className="s-section s-bp-ruled s-hiw" id={id} aria-labelledby={`${hid}-h`}>
+    <section className="s-section h-how" id={id} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
-        <div className="s-bp-head">
+        <div className="s-bp-head h-how__head">
           <h2 className="s-bp-h" id={`${hid}-h`}>
             {how.heading}
           </h2>
           <p className="s-bp-line">{how.line}</p>
         </div>
 
-        <figure className="s-hiw-fig" role="img" aria-label={how.loop.label}>
-          <Wide loop={how.loop} />
-          <Tall loop={how.loop} />
+        <figure className="h-how__fig" aria-describedby={`${hid}-d`}>
+          <p className="sr-only" id={`${hid}-d`}>
+            {L.label}
+          </p>
+
+          <div className="h-how__bar">
+            <p className="h-how__setup">
+              <span className="h-how__n" aria-hidden="true">
+                0
+              </span>
+              <b>{L.setup.name}</b>
+              <span>{L.setup.line}</span>
+            </p>
+            <div className="h-how__who" role="group" aria-label={L.examplesLabel}>
+              <span className="h-how__who-label" aria-hidden="true">
+                {L.examplesLabel}
+              </span>
+              {L.examples.map((x, i) => (
+                <button key={x.who} type="button" className="h-how__tab" aria-pressed={i === ex} onClick={() => pick(i)}>
+                  {x.who}
+                </button>
+              ))}
+              {motion && (
+                <button type="button" className="h-how__play" onClick={toggle} aria-label={stopped ? L.play : L.pause}>
+                  <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                    {stopped ? <path d="M5 3.5v9l7-4.5z" /> : <path d="M5.5 3.5v9M10.5 3.5v9" />}
+                  </svg>
+                </button>
+              )}
+            </div>
+          </div>
+
+          <div
+            ref={root}
+            className={'h-how__stage' + (running ? ' is-running' : '') + (motion ? ' has-motion' : '') + (e.out ? ' has-out' : '')}
+            data-step={step}
+          >
+            {/* 1 · Something happens */}
+            <div className="h-how__col h-how__col--in">
+              <p className="h-how__station">
+                <span className="h-how__n">1</span>
+                <b>{L.happens.name}</b>
+              </p>
+              <p className="h-how__station-line">{L.happens.line}</p>
+              <div className="h-how__card h-how__card--in" {...from(0)}>
+                <span className="h-how__from">{e.from}</span>
+                <span className="h-how__text">{e.in.text}</span>
+                <span className="h-how__kind">{e.in.kind}</span>
+              </div>
+            </div>
+
+            <div className="h-how__wire h-how__wire--a" aria-hidden="true">
+              <span className="h-how__verb">{L.saved}</span>
+              <span className="h-how__line">
+                <i className="h-how__dot" />
+              </span>
+            </div>
+
+            {/* 2 · Your event log */}
+            <div className="h-how__col h-how__col--log">
+              <p className="h-how__station">
+                <span className="h-how__n">2</span>
+                <b>{L.log.name}</b>
+              </p>
+              <p className="h-how__station-line">{L.log.line}</p>
+              <ol className="h-how__log">
+                {L.log.rows.map((r) => (
+                  <li key={r.at} className="h-how__row h-how__row--old">
+                    <span className="h-how__at">{r.at}</span>
+                    <span className="h-how__ev">{r.kind}</span>
+                    <span className="h-how__txt">{r.text}</span>
+                  </li>
+                ))}
+                <li className="h-how__row h-how__row--new" {...from(1)}>
+                  <span className="h-how__at">{e.in.at}</span>
+                  <span className="h-how__ev">{e.in.kind}</span>
+                  <span className="h-how__txt">{e.in.text}</span>
+                </li>
+                {e.out && (
+                  <li className="h-how__row h-how__row--new h-how__row--next" {...from(4)}>
+                    <span className="h-how__at">{e.out.at}</span>
+                    <span className="h-how__ev">{e.out.kind}</span>
+                    <span className="h-how__txt">{e.out.text}</span>
+                  </li>
+                )}
+              </ol>
+            </div>
+
+            <div className="h-how__wire h-how__wire--b" aria-hidden="true">
+              <span className="h-how__verb">{L.sent}</span>
+              <span className="h-how__line">
+                <i className="h-how__dot" />
+              </span>
+            </div>
+
+            {/* 3 · Reaches your agent, or your team */}
+            <div className="h-how__col h-how__col--reach">
+              <p className="h-how__station">
+                <span className="h-how__n">3</span>
+                <b>{L.reach.name}</b>
+              </p>
+              <p className="h-how__station-line">{L.reach.line}</p>
+              <ul className="h-how__places">
+                {L.places.map((pl) => (
+                  <li key={pl.id} className={'h-how__place' + (reached && pl.id === e.place ? ' is-on' : '')}>
+                    <span className="h-how__place-ic">
+                      <PlaceIcon id={pl.id} />
+                    </span>
+                    <span className="h-how__place-words">
+                      <b>{pl.name}</b>
+                      <span>{pl.line}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div className="h-how__card h-how__card--does" {...from(3)}>
+                <svg className="h-how__does-ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path d="M3.5 8.5l3 3 6-7" />
+                </svg>
+                {e.does}
+              </div>
+            </div>
+
+            {/* The way back: what the agent does next is a new event. */}
+            <div className="h-how__return" aria-hidden="true">
+              <span className="h-how__arc">
+                <i className="h-how__dot h-how__dot--back" />
+              </span>
+              <span className="h-how__next">{L.next}</span>
+            </div>
+          </div>
+
+          <figcaption className="h-how__audio">
+            <svg viewBox="0 0 24 12" aria-hidden="true" focusable="false">
+              <path d="M1 6c1.5-4 3-4 4.5 0s3 4 4.5 0 3-4 4.5 0 3 4 4.5 0 3-4 4 0" />
+            </svg>
+            {L.audio}
+          </figcaption>
         </figure>
 
-        <div className="s-hiw-foot" id="delivery">
-          <Link className="s-bp-link" to={how.link.to}>
-            {how.link.label}
-          </Link>
-        </div>
+        <Link className="h-how__more" to={how.link.to}>
+          {how.link.label}
+          <Chev className="h-how__chev" />
+        </Link>
       </div>
     </section>
   )

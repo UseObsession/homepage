@@ -1,41 +1,208 @@
-/* How it works on Home (HomeHowItWorks.tsx). The loop picture is drawn twice: the wide one from 1080px, the tall one
-   below, centred and no wider than 440px. Its grammar: boxes on the surface with a strong hairline, the event log solid
-   in the page's ink, a solid arrow for an event on its way, a dashed one for the agent's next move, a wave for live call
-   audio, and 1 dot in the developers' cobalt (styles/accents.css) for the one event to follow. Then the channels: 1 ruled
-   sheet of cards (3 across, 2 on a tablet, 1 on a phone), the cells split by hairlines. Tokens only, so both themes
-   hold; code lines wrap instead of scrolling. */
+/* How it works on Home (HomeHowItWorks.tsx): the setup strip and the buyer tabs, then three stops joined by labelled wires
+   on one raised panel (something happens, your event log, where it reaches), the way back under them, and live call audio
+   as the caption. What a step shows is set by the stage's data-step against each element's data-from. Without the
+   script, and under reduced motion, the stage sits at its last step and nothing moves. Design system tokens only. */
 
-/* ---- The picture ------------------------------------------------------------------------------------------------- */
-.s-hiw-fig { margin: 0 0 calc(var(--ob-space-block) * 1.5); }
-.s-hiw-d { display: block; width: 100%; height: auto; overflow: visible; text-rendering: geometricPrecision; }
-.s-hiw-tall { display: none; }
-@media (max-width: 1079px) {
-  .s-hiw-wide { display: none; }
-  .s-hiw-tall { display: block; max-width: 440px; margin-inline: auto; }
+.h-how__head { max-width: 46rem; }
+.h-how__fig { margin: var(--ob-space-40) 0 0; display: grid; gap: var(--ob-space-12); }
+
+/* ---- The setup strip and the buyer tabs ---- */
+.h-how__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-16); flex-wrap: wrap; }
+.h-how__setup { display: flex; align-items: center; gap: var(--ob-space-8); flex-wrap: wrap; margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); }
+.h-how__setup b { font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.h-how__n {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: 50%;
+  font: var(--ob-type-label-mono);
+  color: var(--ob-text-2);
+}
+.h-how__who { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-pill); background: var(--ob-bg); flex-wrap: wrap; }
+.h-how__who-label { padding: 0 var(--ob-space-8) 0 var(--ob-space-12); font: var(--ob-type-caption); color: var(--ob-text-3); }
+.h-how__tab, .h-how__play {
+  min-height: 32px;
+  padding: 0 var(--ob-space-12);
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background: transparent;
+  color: var(--ob-text-3);
+  font: var(--ob-type-caption);
+  cursor: pointer;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+}
+.h-how__tab[aria-pressed='true'] { background: var(--ob-surface-raised, var(--ob-surface)); color: var(--ob-text); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong); }
+.h-how__play { display: inline-grid; place-items: center; width: 32px; padding: 0; }
+.h-how__play svg { width: 12px; height: 12px; fill: currentColor; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.h-how__tab:focus-visible, .h-how__play:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .h-how__tab[aria-pressed='false']:hover, .h-how__play:hover { color: var(--ob-text); } }
+
+/* ---- The stage: three stops and two wires, the way back under them ---- */
+.h-how__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1.2fr) 72px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: start;
+  padding: var(--ob-space-24) var(--ob-space-24) var(--ob-space-20);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-xl);
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(var(--ob-tint-rgb), 0.07), transparent 62%),
+    var(--ob-surface);
+  background-image:
+    radial-gradient(120% 80% at 50% 0%, rgba(var(--ob-tint-rgb), 0.07), transparent 62%),
+    radial-gradient(rgba(var(--ob-tint-rgb), 0.08) 1px, transparent 1px);
+  background-size: auto, 18px 18px;
+  box-shadow: var(--ob-shadow-3);
+}
+.h-how__col { display: grid; gap: var(--ob-space-12); align-content: start; min-width: 0; }
+.h-how__station { display: flex; align-items: center; gap: var(--ob-space-8); margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.h-how__station b { font-weight: var(--ob-weight-medium, 500); }
+.h-how__station-line { margin: calc(var(--ob-space-8) * -1) 0 0; font: var(--ob-type-caption); color: var(--ob-text-3); text-wrap: pretty; }
+
+/* A card at a stop: what came in, or what happens where it reaches. */
+.h-how__card {
+  display: grid;
+  gap: var(--ob-space-6);
+  padding: var(--ob-space-16);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-surface-raised, var(--ob-surface));
+  box-shadow: var(--ob-shadow-2, var(--ob-shadow-3));
+}
+.h-how__from { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.h-how__text { font: var(--ob-type-small); color: var(--ob-text); text-wrap: pretty; }
+.h-how__kind { justify-self: start; padding: 2px var(--ob-space-8); border-radius: var(--ob-radius-pill); background: var(--ob-bg); border: var(--ob-border-hair) solid var(--ob-line); font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-2); }
+.h-how__card--does { grid-template-columns: 16px minmax(0, 1fr); align-items: start; gap: var(--ob-space-8); font: var(--ob-type-small); color: var(--ob-text); }
+.h-how__does-ic { width: 16px; height: 16px; margin-top: 2px; fill: none; stroke: var(--ob-success); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+/* The event log: a sunken well, older rows quiet, the new row lit as it lands. */
+.h-how__log { list-style: none; margin: 0; padding: var(--ob-space-8); display: grid; gap: var(--ob-space-4); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-lg); background: var(--ob-bg-sunken, var(--ob-bg)); }
+.h-how__row {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  grid-template-areas: 'at ev' 'at txt';
+  column-gap: var(--ob-space-8);
+  row-gap: 2px;
+  padding: var(--ob-space-8) var(--ob-space-12);
+  border-radius: var(--ob-radius-md);
+  border-left: 2px solid transparent;
+}
+.h-how__at { grid-area: at; font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); padding-top: 1px; }
+.h-how__ev { grid-area: ev; font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text); }
+.h-how__txt { grid-area: txt; min-width: 0; font: var(--ob-type-caption); color: var(--ob-text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.h-how__row--old { opacity: 0.55; }
+.h-how__row--new { background: var(--ob-surface); border-left-color: var(--ob-success); }
+
+/* Where it reaches: three places, the one this example reaches lit. */
+.h-how__places { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ob-space-6); }
+.h-how__place {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ob-space-10, var(--ob-space-12));
+  padding: var(--ob-space-8) var(--ob-space-12);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-bg);
+  color: var(--ob-text-3);
+  transition: border-color var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.h-how__place-ic { display: grid; place-items: center; width: 30px; height: 30px; border-radius: var(--ob-radius-sm); border: var(--ob-border-hair) solid var(--ob-line); }
+.h-how__place-ic svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.h-how__place-words { display: grid; gap: 1px; min-width: 0; }
+.h-how__place-words b { font: var(--ob-type-caption); font-weight: var(--ob-weight-medium, 500); color: inherit; }
+.h-how__place-words span { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.h-how__place.is-on { border-color: var(--ob-success); color: var(--ob-text); background: var(--ob-surface); }
+.h-how__place.is-on .h-how__place-ic { border-color: var(--ob-success); color: var(--ob-success); }
+
+/* The wires between the stops: a verb over a line with an arrowhead; a dot travels it while that step plays. */
+.h-how__wire { position: relative; display: grid; justify-items: center; align-content: start; gap: var(--ob-space-6); padding-top: 64px; }
+.h-how__verb { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); }
+.h-how__line { position: relative; display: block; width: 100%; height: 1px; background: var(--ob-line-strong); }
+.h-how__line::after { content: ''; position: absolute; right: -1px; top: -3px; width: 7px; height: 7px; border-top: 1px solid var(--ob-line-strong); border-right: 1px solid var(--ob-line-strong); transform: rotate(45deg); }
+.h-how__dot { position: absolute; top: -3px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--ob-success); opacity: 0; box-shadow: 0 0 0 4px var(--ob-success-bg); }
+
+/* The way back, under the three stops: a dashed return from where it reached to where things happen. */
+.h-how__return { grid-column: 1 / -1; grid-row: 2; display: grid; justify-items: center; gap: var(--ob-space-8); margin-top: var(--ob-space-16); }
+.h-how__arc {
+  position: relative;
+  display: block;
+  width: 66%;
+  height: 30px;
+  border: var(--ob-border-hair) dashed var(--ob-line-strong);
+  border-top: 0;
+  border-radius: 0 0 var(--ob-radius-xl) var(--ob-radius-xl);
+}
+.h-how__arc::before { content: ''; position: absolute; left: -4px; top: -2px; width: 7px; height: 7px; border-left: 1px solid var(--ob-line-strong); border-top: 1px solid var(--ob-line-strong); transform: rotate(45deg); }
+.h-how__dot--back { top: auto; bottom: -4px; left: auto; right: 0; }
+.h-how__next { font: var(--ob-type-caption); color: var(--ob-text-2); }
+.h-how__stage:not(.has-out) .h-how__arc { opacity: 0.5; }
+
+/* What each step shows: an element appears once the stage reaches its data-from. */
+.h-how__stage[data-step='0'] [data-from='1'],
+.h-how__stage[data-step='0'] [data-from='2'],
+.h-how__stage[data-step='0'] [data-from='3'],
+.h-how__stage[data-step='0'] [data-from='4'],
+.h-how__stage[data-step='1'] [data-from='2'],
+.h-how__stage[data-step='1'] [data-from='3'],
+.h-how__stage[data-step='1'] [data-from='4'],
+.h-how__stage[data-step='2'] [data-from='3'],
+.h-how__stage[data-step='2'] [data-from='4'],
+.h-how__stage[data-step='3'] [data-from='4'] { opacity: 0; visibility: hidden; }
+
+.h-how__audio { display: flex; align-items: center; justify-content: center; gap: var(--ob-space-8); font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); text-align: center; text-wrap: balance; }
+.h-how__audio svg { width: 24px; height: 12px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; }
+.h-how__more { display: inline-flex; align-items: center; gap: var(--ob-space-6); margin-top: var(--ob-space-24); font: var(--ob-type-small); color: var(--ob-text); text-decoration: underline; text-decoration-color: var(--ob-line-strong); text-underline-offset: 4px; }
+.h-how__chev { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-base) var(--ob-ease-out); }
+.h-how__more:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .h-how__more:hover .h-how__chev { translate: 3px 0; } .h-how__more:hover { text-decoration-color: var(--ob-text); } }
+
+/* ---- Narrow screens: the stops stack, the wires turn downward, the way back becomes a note ---- */
+@media (max-width: 960px) {
+  .h-how__stage { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; padding: var(--ob-space-16); }
+  .h-how__wire { padding: var(--ob-space-8) 0; grid-template-columns: auto 1px; justify-content: center; align-items: center; gap: var(--ob-space-8); }
+  .h-how__wire .h-how__line { width: 1px; height: 28px; }
+  .h-how__wire .h-how__line::after { right: -3px; top: auto; bottom: -1px; transform: rotate(135deg); }
+  .h-how__wire .h-how__dot { left: -3px; top: 0; }
+  .h-how__return { grid-column: auto; grid-row: auto; }
+  .h-how__arc { width: 100%; height: 20px; }
+  .h-how__bar { align-items: flex-start; }
 }
 
-.s-hiw-d text { font-family: var(--ob-font-sans); fill: var(--ob-text-2); }
-.s-hiw-d .s-hiw-tn { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; fill: var(--ob-text); }
-.s-hiw-d .s-hiw-tn14 { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; fill: var(--ob-text); }
-.s-hiw-d .s-hiw-ts { font-size: 13px; font-weight: 400; fill: var(--ob-text-2); }
-.s-hiw-d .s-hiw-ts3 { font-size: 12.5px; font-weight: 400; fill: var(--ob-text-3); }
-.s-hiw-d .s-hiw-tv { font-size: 13.5px; font-weight: 500; fill: var(--ob-text); }
-.s-hiw-d .s-hiw-inv { fill: var(--ob-text-inverse); }
-.s-hiw-d .s-hiw-inv2 { fill: var(--ob-text-inverse); opacity: 0.72; }
-
-.s-hiw-box { fill: var(--ob-surface); stroke: var(--ob-line-strong); stroke-width: 1; }
-.s-hiw-logbox { fill: var(--ob-solid); }
-.s-hiw-none { fill: none; stroke: none; }
-.s-hiw-ar { fill: none; stroke: var(--ob-text-2); stroke-width: 1.5; stroke-linejoin: round; }
-.s-hiw-dash { stroke-dasharray: 5 5; }
-.s-hiw-fork { fill: none; stroke: var(--ob-line-ui); stroke-width: 1.25; }
-.s-hiw-mk { fill: none; stroke: var(--ob-text-2); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.s-hiw-dot { fill: var(--s-accent-developers); }
-.s-hiw-glow { fill: color-mix(in srgb, var(--s-accent-developers) 20%, transparent); }
-/* With reduced motion the dot isn't drawn: the picture says everything without it. */
-@media (prefers-reduced-motion: reduce) {
-  .s-hiw-mover { display: none; }
+/* ---- Motion: each element arrives as its step comes; one dot travels the wire that step uses ---- */
+@keyframes h-how-across {
+  0% { opacity: 0; left: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; left: calc(100% - 7px); }
 }
-
-/* ---- The link to every channel's code, under the picture --------------------------------------------------------- */
-.s-hiw-foot { margin-top: var(--ob-space-32); scroll-margin-top: var(--ob-space-80, 80px); }
+@keyframes h-how-down {
+  0% { opacity: 0; top: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; top: calc(100% - 7px); }
+}
+@keyframes h-how-back {
+  0% { opacity: 0; right: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; right: calc(100% - 7px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .h-how__stage.has-motion [data-from] { transition: opacity 420ms var(--ob-ease-out), translate 420ms var(--ob-ease-out), visibility 0s linear; }
+  .h-how__stage.has-motion[data-step='0'] [data-from='1'],
+  .h-how__stage.has-motion[data-step='1'] [data-from='2'],
+  .h-how__stage.has-motion[data-step='2'] [data-from='3'],
+  .h-how__stage.has-motion[data-step='3'] [data-from='4'] { translate: 0 6px; }
+  .h-how__stage.is-running[data-step='0'] .h-how__wire--a .h-how__dot,
+  .h-how__stage.is-running[data-step='1'] .h-how__wire--b .h-how__dot { animation: h-how-across 640ms var(--ob-ease-out) 120ms both; }
+  .h-how__stage.is-running.has-out[data-step='3'] .h-how__dot--back { animation: h-how-back 820ms var(--ob-ease-out) 100ms both; }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 960px) {
+  .h-how__stage.is-running[data-step='0'] .h-how__wire--a .h-how__dot,
+  .h-how__stage.is-running[data-step='1'] .h-how__wire--b .h-how__dot { animation-name: h-how-down; }
+}

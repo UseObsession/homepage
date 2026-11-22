@@ -589,31 +589,39 @@ export type PersonaBuild = {
   codeLabel: string
   code: string
 }
-/* A box or a label in Home's loop picture: its name, then its line. */
-type HowLabel = { name: string; line: string }
-/* How it works on Home (HomeHowItWorks, #how): the claim and its line, then the loop as 1 picture, wide on a desktop and
-   tall on a phone. Set up once, then 3 stops round a ring: something happens, it's saved in your event log, it reaches
-   your agent (on our runtime or your servers) or a person; what the agent does next goes round again. Live call audio
-   crosses the ring straight to the voice agent and never touches the log. `loop` holds the picture's words, each line
-   wrapped to its box, and `label` says the whole picture in words (screen readers, llms-full.txt). Under it, the link
-   to every channel's code on /developers. */
+/* How it works on Home (HomeHowItWorks, #how), redrawn 22 Nov 2026: set up once, then three stops (something happens, it's
+   saved in your event log, it reaches your agent or a person) and the way back (what the agent does next is a new event),
+   with one example per buyer played through them. */
 export type HomeHow = {
   heading: string
   line: string
   loop: {
+    /* The whole picture in words, for screen readers and llms-full.txt. */
     label: string
-    setup: HowLabel
-    then: string
-    happens: HowLabel
+    setup: { name: string; line: string }
+    /* The three stops, in order, and the verbs on the wires between them. */
+    happens: { name: string; line: string }
+    log: { name: string; line: string; rows: { at: string; kind: string; text: string }[] }
+    reach: { name: string; line: string }
     saved: string
-    log: HowLabel
-    reaches: string
-    agent: HowLabel
-    /* Where the agent runs, or the person it reaches: `name` over `line` on the wide picture, `short` on the tall one. */
-    places: { name: string; line: string; short: string }[]
-    acts: HowLabel
-    /* Live call audio: `name` over `line` on the wave, `log` under the event log; the tall picture says `note`, then `log`. */
-    audio: { name: string; line: string; note: string; log: string }
+    sent: string
+    /* Where an event reaches: the agent on our runtime, the agent on your servers, or a person. */
+    places: { id: 'runtime' | 'servers' | 'person'; name: string; line: string }[]
+    next: string
+    audio: string
+    /* One example per buyer, played through the loop: what comes in, the place it reaches, what happens there, and the
+       event it adds next (none when a person decides). Event names are delivery.ts's. */
+    examplesLabel: string
+    pause: string
+    play: string
+    examples: {
+      who: string
+      from: string
+      in: { at: string; kind: string; text: string }
+      place: 'runtime' | 'servers' | 'person'
+      does: string
+      out?: { at: string; kind: string; text: string }
+    }[]
   }
   link: Cta
 }
