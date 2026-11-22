@@ -2,7 +2,7 @@ import type { KitId } from '../kitPaths'
 import type { PieceId, PriceKey } from '../prices'
 import type { Faq, Final, Meta, PersonaIcon } from '../types'
 
-/* The words of a kit's own page (/kits/SLUG, 22 Nov 2026), drawn by pages/Kit.tsx in this order: the hero (the job, in
+/* The words of a kit's own page (/blueprints/SLUG, 22 Nov 2026), drawn by pages/Kit.tsx in this order: the hero (the job, in
    1 line, and 2 sentences) > the scene (4 steps and 1 agent's event log, components/kit/KitScene) > the pieces in the kit
    with their prices from prices.ts > the blueprints in it, or the code where a job is built rather than picked > who
    uses it, each in their own measures > worked examples > questions > the form. `meta.answer` opens with the hero's sub. */

@@ -35,7 +35,7 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Test sign-up and agents kit',
+    pill: 'Test sign-up and agents blueprints',
     headline: 'Proof for compliance teams that cancel, unsubscribe and STOP work.',
     sub: 'Opt-out compliance means proving that cancelling, unsubscribing and texting STOP work the way the law and your own terms say. Obsession’s AI agents cancel, unsubscribe and text STOP at your company and your competitors, and keep every step and every message that follows, dated.',
     example: { chips: ['Fernhill, a gym membership app', '3 competitors', 'Cancel, unsubscribe and STOP'] },
@@ -224,6 +224,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'delivery',
     },
-    link: { label: 'See the Test sign-up and agents kit', to: kitPathOf.test },
+    link: { label: 'See the Test sign-up and agents blueprints', to: kitPathOf.test },
   },
 }

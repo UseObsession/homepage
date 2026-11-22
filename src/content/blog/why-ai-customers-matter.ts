@@ -185,10 +185,10 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Developers building agent products** give each user’s agent an inbox and a number in one call, through [the API, or MCP, the standard way AI agents call tools](/developers). See [building AI agent products](/kits/build-agent-products).',
-        '**QA and growth engineers** give each test journey its own persona, which waits days for the day-7 email. See [testing your sign-up and AI agents](/kits/test-sign-up-and-agents).',
-        '**Teams working behind logins** give an agent a [browser that stays signed in](/browser), with an inbox and number for every login code. See [work behind logins](/kits/work-behind-logins).',
-        '**Teams that talk to customers** give a voice or text agent its own [phone number](/phone). See [talking to customers](/kits/talk-to-customers).',
+        '**Developers building agent products** give each user’s agent an inbox and a number in one call, through [the API, or MCP, the standard way AI agents call tools](/developers). See [building AI agent products](/blueprints/build-agent-products).',
+        '**QA and growth engineers** give each test journey its own persona, which waits days for the day-7 email. See [testing your sign-up and AI agents](/blueprints/test-sign-up-and-agents).',
+        '**Teams working behind logins** give an agent a [browser that stays signed in](/browser), with an inbox and number for every login code. See [work behind logins](/blueprints/work-behind-logins).',
+        '**Teams that talk to customers** give a voice or text agent its own [phone number](/phone). See [talking to customers](/blueprints/talk-to-customers).',
         '**Teams without developers** pick a [blueprint](/blueprints), a ready job Obsession runs on these pieces, with the results sent to Slack, a sheet or the CRM.',
       ],
     },

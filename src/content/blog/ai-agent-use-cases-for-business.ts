@@ -170,7 +170,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'own-company', text: 'Your own company: find your revenue leaks' },
     {
       kind: 'p',
-      text: 'At your own company, an agent that signs up as a new customer finds the revenue leaks a dashboard can’t show. A revenue leak is a point where a customer ready to buy gets nothing, or the wrong thing. The welcome email a broken trigger never sent is one, and so are the code refused at checkout and the ad that sends clicks to a sold out page. Each job here runs on a blueprint, and together they make up the [kit for testing your own sign-up and AI agents](/kits/test-sign-up-and-agents).',
+      text: 'At your own company, an agent that signs up as a new customer finds the revenue leaks a dashboard can’t show. A revenue leak is a point where a customer ready to buy gets nothing, or the wrong thing. The welcome email a broken trigger never sent is one, and so are the code refused at checkout and the ad that sends clicks to a sold out page. Each job here runs on a blueprint, and together they make up the [blueprints for testing your own sign-up and AI agents](/blueprints/test-sign-up-and-agents).',
     },
     { kind: 'h3', id: 'own-site', text: 'Your website, emails and ads' },
     {
@@ -296,7 +296,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'competitors', text: 'Competitors and the market: watch your competitors' },
     {
       kind: 'p',
-      text: 'A competitor’s website shows what it wants everyone to see. Its customers get more: the welcome code, the price after it, the reminder offer and the sale emailed to its list before the site shows it. A persona joins through the public sign-up any customer can use and keeps each one with the date it arrived. These jobs make up the [kit for watching the market](/kits/watch-the-market).',
+      text: 'A competitor’s website shows what it wants everyone to see. Its customers get more: the welcome code, the price after it, the reminder offer and the sale emailed to its list before the site shows it. A persona joins through the public sign-up any customer can use and keeps each one with the date it arrived. These jobs make up the [blueprints for watching the market](/blueprints/watch-the-market).',
     },
     {
       kind: 'table',
@@ -369,7 +369,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'CRO agencies, which work on conversion rate optimisation, run it on the pop-up behind a brand’s live ad. Outbound agencies run it across a client’s list in Clay, a tool for building prospect lists. The fuller case for each team is in [AI agents for marketing teams](/blog/ai-customers-for-commercial-teams). Prospect intelligence and account watch sit in the [kit for watching the market](/kits/watch-the-market).',
+      text: 'CRO agencies, which work on conversion rate optimisation, run it on the pop-up behind a brand’s live ad. Outbound agencies run it across a client’s list in Clay, a tool for building prospect lists. The fuller case for each team is in [AI agents for marketing teams](/blog/ai-customers-for-commercial-teams). Prospect intelligence and account watch sit in the [blueprints for watching the market](/blueprints/watch-the-market).',
     },
     {
       kind: 'table',
@@ -430,7 +430,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'partners', text: 'Partners and AI assistants' },
     {
       kind: 'p',
-      text: 'Customers also meet a company through other people’s pages and other companies’ AI: an affiliate’s banner, an AI assistant’s answer about the brand, a vendor’s AI agent. Sales teams add an AI SDR, an AI sales development rep that writes to prospects for them. A persona meets each of these the way a customer does, and every job here sits in the [kit for testing your own sign-up and AI agents](/kits/test-sign-up-and-agents).',
+      text: 'Customers also meet a company through other people’s pages and other companies’ AI: an affiliate’s banner, an AI assistant’s answer about the brand, a vendor’s AI agent. Sales teams add an AI SDR, an AI sales development rep that writes to prospects for them. A persona meets each of these the way a customer does, and every job here sits in the [blueprints for testing your own sign-up and AI agents](/blueprints/test-sign-up-and-agents).',
     },
     {
       kind: 'p',
@@ -497,7 +497,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'developers', text: 'Agents and developers' },
     {
       kind: 'p',
-      text: 'Developers give their own AI agents the same pieces through an API, an interface their code can call, or through MCP, the Model Context Protocol that AI assistants use to call tools. One call gives an agent an inbox, a US number and a browser under one identity: obsession.personas.create({ inbox: true, phone: "US", browser: true }). Each email, text, call and page then reaches the developer’s webhook as an event such as email.received. A webhook is the address their code listens on. These jobs make up the [kit for building agent products](/kits/build-agent-products).',
+      text: 'Developers give their own AI agents the same pieces through an API, an interface their code can call, or through MCP, the Model Context Protocol that AI assistants use to call tools. One call gives an agent an inbox, a US number and a browser under one identity: obsession.personas.create({ inbox: true, phone: "US", browser: true }). Each email, text, call and page then reaches the developer’s webhook as an event such as email.received. A webhook is the address their code listens on. These jobs make up the [blueprints for building agent products](/blueprints/build-agent-products).',
     },
     {
       kind: 'table',

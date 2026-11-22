@@ -171,12 +171,14 @@ const menus = {
   solutions: {
     label: 'Solutions',
     button: 'Solutions menu',
-    kitsLabel: 'Kits',
+    /* The six types of blueprints, one per job AI agents do (22 Nov call: no "kits"). */
+    kitsLabel: 'Blueprints by job',
     kits: kitTools,
-    kitsAll: { label: 'All kits', to: kitsPath } satisfies NavPage,
+    kitsAll: { label: 'Every blueprint', to: kitsPath } satisfies NavPage,
     teamsLabel: 'Teams',
     teams,
-    /* The use cases people search most (Google suggestions, 22 Nov 2026), by name; the rest are on /use-cases. */
+    /* The use cases people search most (Google suggestions, 22 Nov 2026); since the 22 Nov call the menu shows only the
+       link to every use case, under Teams, and these stay for the footer. */
     useCasesLabel: 'Use cases',
     useCases: [
       { label: 'AI receptionist', to: '/use-cases/ai-receptionist' },
@@ -189,7 +191,7 @@ const menus = {
     useCasesAll: { label: 'Every use case', to: '/use-cases' } satisfies NavPage,
     /* The 2 columns as the footer and the phone sheet list them. */
     columns: [
-      { label: 'Kits', items: kitTools },
+      { label: 'Blueprints by job', items: kitTools },
       { label: 'Teams', items: teams },
     ] as { label: string; items: NavPage[] }[],
   },

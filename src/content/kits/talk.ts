@@ -2,7 +2,7 @@ import { kitPathOf, kitsPath } from '../kitPaths'
 import { registration } from '../prices'
 import type { KitPage } from './types'
 
-/* Talk to customers (/kits/talk-to-customers): the agent that answers the phone, texts the quote and emails the
+/* Talk to customers (/blueprints/talk-to-customers): the agent that answers the phone, texts the quote and emails the
    documents, on one number and one inbox under one identity. Product Marketing book, job 1 (22 Nov 2026). */
 
 const sub =
@@ -19,7 +19,7 @@ export const talk: KitPage = {
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Kits', path: kitsPath },
+      { name: 'Blueprints', path: kitsPath },
       { name: 'Talk to customers', path: kitPathOf.talk },
     ],
   },
@@ -59,7 +59,7 @@ export const talk: KitPage = {
   blueprints: {
     heading: 'Check what your agent says, every day.',
     line: 'Obsession calls, texts and chats with your agent as a customer would, and sends you every answer.',
-    slugs: ['voice-agent-check', 'lead-leaks', 'support-bot-check', 'ai-disclosure-check'],
+    slugs: ['voice-agent-check', 'support-bot-check', 'ai-disclosure-check'],
   },
 
   who: {

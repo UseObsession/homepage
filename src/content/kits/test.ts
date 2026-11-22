@@ -1,7 +1,7 @@
 import { kitPathOf, kitsPath } from '../kitPaths'
 import type { KitPage } from './types'
 
-/* Test sign-up and agents (/kits/test-sign-up-and-agents): a persona signs up to the reader's own product as a new user,
+/* Test sign-up and agents (/blueprints/test-sign-up-and-agents): a persona signs up to the reader's own product as a new user,
    waits days for every code and email, and talks to the reader's own AI agents. Product Marketing book, job 2. */
 
 const sub =
@@ -18,7 +18,7 @@ export const test: KitPage = {
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Kits', path: kitsPath },
+      { name: 'Blueprints', path: kitsPath },
       { name: 'Test sign-up and agents', path: kitPathOf.test },
     ],
   },
@@ -57,23 +57,8 @@ export const test: KitPage = {
 
   blueprints: {
     heading: 'Checks that run after every release.',
-    line: 'Each posts what it found to Slack, a sheet or your CI.',
-    slugs: [
-      'website-audit',
-      'delivery-monitoring',
-      'mystery-shopper',
-      'ad-landing-check',
-      'lead-leaks',
-      'support-bot-check',
-      'voice-agent-check',
-      'sales-agent-check',
-      'outbound-agent-check',
-      'resolution-check',
-      'ai-disclosure-check',
-      'drift-watch',
-      'vendor-agent-check',
-      'partner-checks',
-    ],
+    line: 'Obsession goes through your sign-up, checkout and forms as a new customer, and posts what it found to Slack, a sheet or your CI.',
+    slugs: ['website-audit', 'delivery-monitoring', 'mystery-shopper', 'lead-leaks', 'ad-landing-check', 'partner-checks'],
   },
 
   who: {

@@ -5,7 +5,7 @@ import { useInView } from '../../hooks/useReveal'
 import { PersonaGlyphAt } from '../persona/icons'
 import './KitOrbit.css'
 
-/* The kits' signature picture (/kits): Obsession in the middle, its 5 pieces on the inner ring, the 6 kits on the outer
+/* The kits' signature picture (/blueprints): Obsession in the middle, its 5 pieces on the inner ring, the 6 kits on the outer
    ring, a spoke to each. It draws in once when it enters the view; then a pulse travels each spoke, and the outer ring
    turns slowly. Under prefers-reduced-motion nothing moves and the pulses aren't drawn. On a phone the ring's labels give
    way to the kit cards under it (KitOrbit.css). */

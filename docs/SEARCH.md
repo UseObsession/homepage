@@ -22,13 +22,13 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | ai agent templates | `/blueprints` | Title, description, first sentence, the questions H2 |
 | mystery shopping software, mystery shopper software | `/blueprints/mystery-shopper` | Title, description, a question; `/blog/best-ai-mystery-shopping-tools` dropped both and links here |
 | ai agent inbox | `/blog/ai-customers-for-developers` | Retitled 21 Nov; it hands "email api for ai agents" to `/email` and links it |
-| ai agent kits | `/kits` | Title, H1, description (added 22 Nov, the revamp) |
-| ai agents that talk to customers, ai receptionist phone number | `/kits/talk-to-customers` | Title, H1, description |
-| test sign-up flow, test your sign-up as a new customer | `/kits/test-sign-up-and-agents` | Title, H1, description |
-| build ai agent products | `/kits/build-agent-products` | Title, H1, description |
-| ai agents for portals | `/kits/work-behind-logins` | Title, H1, description |
-| watch the market with ai agents | `/kits/watch-the-market` | Title, H1, description |
-| rl environments for ai agents | `/kits/train-and-test-agents` | Title, description (suggested 22 Nov; no other page owns it) |
+| ai agent blueprints by job, types of ai agent blueprints | `/blueprints` | The hub groups every blueprint into six types (22 Nov call: the kits became types of blueprints; `/kits` 301s here) |
+| ai agents that talk to customers, ai receptionist phone number | `/blueprints/talk-to-customers` | Title, H1, description (a type of blueprint; was `/kits/talk-to-customers`) |
+| test sign-up flow, test your sign-up as a new customer | `/blueprints/test-sign-up-and-agents` | Title, H1, description |
+| build ai agent products | `/blueprints/build-agent-products` | Title, H1, description |
+| ai agents for portals | `/blueprints/work-behind-logins` | Title, H1, description |
+| watch the market with ai agents | `/blueprints/watch-the-market` | Title, H1, description |
+| rl environments for ai agents | `/blueprints/train-and-test-agents` | Title, description (suggested 22 Nov; no other page owns it) |
 | agentmail vs, obsession vs agentmail | `/compare/obsession-vs-agentmail` | Title, H1, description (22 Nov) |
 | agentmail plus twilio, ai agent stack in one api | `/compare/agentmail-twilio-browserbase-e2b` | Title, H1, description (the bundle page, 22 Nov) |
 | ai agent as a customer, ai agents as customers | `/blog/ai-customers` | Retitled 22 Nov ("AI agents as customers: what an agent sees when it signs up, buys and asks"); replaces the AI customers row below |

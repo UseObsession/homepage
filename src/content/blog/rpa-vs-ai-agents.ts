@@ -220,12 +220,12 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'obsession', text: 'AI agents that stay signed in to every portal' },
     {
       kind: 'p',
-      text: 'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, on one API and one bill. For portals, the [Work behind logins kit](/kits/work-behind-logins) gives an agent a [browser](/browser) that stays signed in for weeks, with its own [inbox](/email) and [number](/phone) for every login code. Before you sign an AI agent vendor, the [Vendor agent check](/blueprints/vendor-agent-check) blueprint runs your hardest cases on each shortlisted agent and returns every answer side by side, dated.',
+      text: 'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, on one API and one bill. For portals, the [Work behind logins blueprints](/blueprints/work-behind-logins) gives an agent a [browser](/browser) that stays signed in for weeks, with its own [inbox](/email) and [number](/phone) for every login code. Before you sign an AI agent vendor, the [Vendor agent check](/blueprints/vendor-agent-check) blueprint runs your hardest cases on each shortlisted agent and returns every answer side by side, dated.',
     },
     {
       kind: 'cta',
       text: 'A browser that stays signed in to payer, carrier and supplier portals for weeks, with an inbox and number for every login code, on one key and one bill.',
-      to: '/kits/work-behind-logins',
+      to: '/blueprints/work-behind-logins',
       label: 'See how it works',
     },
 
@@ -272,7 +272,7 @@ export const post: BlogPost = {
         {
           q: 'Can an AI agent work in a portal that sends a login code?',
           a: 'Yes, if the code reaches an inbox or number the agent controls and its browser keeps the login between runs. Obsession gives each agent its own inbox and number for codes and a browser that stays signed in for weeks. It stops at any CAPTCHA or identity check.',
-          link: { label: 'Work behind logins', to: '/kits/work-behind-logins' },
+          link: { label: 'Work behind logins', to: '/blueprints/work-behind-logins' },
         },
       ],
     },
@@ -295,7 +295,7 @@ export const post: BlogPost = {
     { title: 'CMS Interoperability and Prior Authorization Final Rule (CMS-0057-F)', publisher: 'Centers for Medicare & Medicaid Services', url: CMS, date: '2024-01-17' },
   ],
   related: [
-    '/kits/work-behind-logins',
+    '/blueprints/work-behind-logins',
     'recipe:vendor-agent-check',
     'can-ai-agents-log-in-to-websites',
     'ai-agent-observability',

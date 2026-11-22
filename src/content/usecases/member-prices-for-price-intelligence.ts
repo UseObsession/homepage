@@ -261,7 +261,7 @@ export const study: UseCaseStudy = {
       {
         q: 'Which pieces does it use?',
         a: 'The browser for the readings, and an inbox and a mobile number for the welcome codes and offers, under 1 persona per retailer and city. Price watch runs it on the same key and bill.',
-        link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
+        link: { label: 'See the Watch the market blueprints', to: '/blueprints/watch-the-market' },
       },
       {
         q: 'How many retailers can it cover?',
@@ -296,6 +296,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'prices',
     },
-    link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
+    link: { label: 'See the Watch the market blueprints', to: '/blueprints/watch-the-market' },
   },
 }

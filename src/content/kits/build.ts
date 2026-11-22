@@ -1,7 +1,7 @@
 import { kitPathOf, kitsPath } from '../kitPaths'
 import type { KitPage } from './types'
 
-/* Build agent products (/kits/build-agent-products): developers give every agent they ship, and every user of their
+/* Build agent products (/blueprints/build-agent-products): developers give every agent they ship, and every user of their
    platform, its own inbox, number, browser and sandbox on one key. Product Marketing book, job 3. */
 
 const sub =
@@ -35,7 +35,7 @@ export const build: KitPage = {
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Kits', path: kitsPath },
+      { name: 'Blueprints', path: kitsPath },
       { name: 'Build agent products', path: kitPathOf.build },
     ],
   },
@@ -72,6 +72,12 @@ export const build: KitPage = {
       { piece: 'personas', line: 'Every piece under one identity, free while it waits.' },
     ],
     prices: ['inbox', 'email', 'number', 'browser', 'sandbox', 'log'],
+  },
+
+  blueprints: {
+    heading: 'Check the agents you ship, as a customer would.',
+    line: 'Obsession joins your AI SDR’s lists and shops with your sales agent, and keeps every message it sends.',
+    slugs: ['outbound-agent-check', 'sales-agent-check'],
   },
 
   code: {

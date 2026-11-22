@@ -2,7 +2,7 @@ import { kitPathOf, kitsPath } from '../kitPaths'
 import { prices } from '../prices'
 import type { KitPage } from './types'
 
-/* Work behind logins (/kits/work-behind-logins): agents sign in to payer, carrier, supplier and government portals,
+/* Work behind logins (/blueprints/work-behind-logins): agents sign in to payer, carrier, supplier and government portals,
    stay signed in for weeks, and receive each login code at their own inbox or number. Product Marketing book, job 4. */
 
 const sub =
@@ -33,7 +33,7 @@ export const portals: KitPage = {
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Kits', path: kitsPath },
+      { name: 'Blueprints', path: kitsPath },
       { name: 'Work behind logins', path: kitPathOf.portals },
     ],
   },
@@ -68,6 +68,12 @@ export const portals: KitPage = {
       { piece: 'personas', line: 'One identity across the browser, inbox and number.' },
     ],
     prices: ['browser', 'stealth', 'inbox', 'number', 'sms'],
+  },
+
+  blueprints: {
+    heading: 'Jobs that sign in for you, every morning.',
+    line: 'Obsession signs in, starts trials and reads what each company shows its signed-in customers.',
+    slugs: ['price-watch', 'trial-teardown', 'account-watch'],
   },
 
   code: {

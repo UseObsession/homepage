@@ -61,7 +61,7 @@ export function UseCases() {
                   <p className="s-bp-line">{k.line}</p>
                 </div>
                 <Link className="s-bp-link uc-kit__all" to={k.path}>
-                  {`See the ${k.name} kit`}
+                  {`See the blueprints`}
                 </Link>
               </div>
               <ul className="k-hub__cards">

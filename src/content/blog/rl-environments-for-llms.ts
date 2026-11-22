@@ -4,7 +4,7 @@ import type { BlogPost } from './types'
    "write them", 22 Nov 2026). Primary "rl environments for llms" (Google suggestions, US and UK, 22 Nov 2026,
    autocomplete_articles_22nov.json); secondaries from the same run and its long forms: rl environments meaning, rl
    environment creation, reinforcement learning environments for llms, open source rl environments. The kit
-   (/kits/train-and-test-agents) owns "rl environments for ai agents" and is linked, never retitled here.
+   (/blueprints/train-and-test-agents) owns "rl environments for ai agents" and is linked, never retitled here.
    Readers: research and evaluation engineers at AI labs and agent companies. Their KPIs: task success rate, pass^k,
    accuracy, latency and cost per rollout.
    Read on 22 Nov 2026 at each source's own page: Gymnasium's Env API (reset, step, terminated and truncated, the seed);
@@ -290,7 +290,7 @@ export const post: BlogPost = {
           'Teams with engineers to spare for the plumbing',
         ],
         [
-          'Obsession (ours): [Train and test agents kit](/kits/train-and-test-agents), [Sandbox](/sandbox), [Browser](/browser), [Personas](/personas)',
+          'Obsession (ours): [Train and test agents blueprints](/blueprints/train-and-test-agents), [Sandbox](/sandbox), [Browser](/browser), [Personas](/personas)',
           'A fresh inbox, US or UK number, browser and sandbox per episode, under one identity, with every event in one ordered log',
           'Free, then $20, $99 or $499 a month; usage per piece',
           'Stops before payment, at any identity check and at any CAPTCHA, which your reward scores as correct endings',
@@ -340,7 +340,7 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'A real inbox, number, browser and sandbox for every training or evaluation run. Every step lands in one event log, with screenshots, to score and replay.',
-      to: '/kits/train-and-test-agents#join',
+      to: '/blueprints/train-and-test-agents#join',
       label: 'Start free',
     },
 
@@ -412,5 +412,5 @@ export const post: BlogPost = {
     { title: 'SWE-bench', publisher: 'GitHub (SWE-bench)', url: SWEBENCH },
   ],
 
-  related: ['/use-cases/ai-agent-evaluation', '/kits/train-and-test-agents', 'recipe:drift-watch', 'ai-agent-observability', 'long-running-ai-agents'],
+  related: ['/use-cases/ai-agent-evaluation', '/blueprints/train-and-test-agents', 'recipe:drift-watch', 'ai-agent-observability', 'long-running-ai-agents'],
 }

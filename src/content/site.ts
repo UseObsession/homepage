@@ -51,21 +51,24 @@ export const recipesPage: RecipesIndexPage = {
 
   hero: {
     headline: 'Pick a blueprint. Obsession runs the job.',
-    sub: 'Blueprints are ready-made AI agent templates that run on Obsession’s pieces. Not building agents? Pick one, say where results go, and pay only for the pieces it uses.',
+    sub: 'Blueprints are ready-made AI agent templates that run on Obsession’s pieces. They come in six types, one for each job AI agents do. Pick one, say where results go, and pay only for the pieces it uses.',
   },
+
+  /* The recipes' own `group` field, kept for their data; since the 22 Nov call the hub groups by the six types below. */
+  types: { label: 'Blueprints by job', more: 'See the pieces and prices', runsOn: 'Runs on' },
 
   groups: [
     {
       group: 'Watch other companies',
-      line: 'Competitors’, prospects’ and accounts’ emails, prices, trials and offers, dated. Part of the Watch the market kit.',
+      line: 'Competitors’, prospects’ and accounts’ emails, prices, trials and offers, dated.',
     },
     {
       group: 'Check your own journeys',
-      line: 'A persona goes through your own sign-up, checkout and lead forms, and keeps everything that follows, timed. Part of the Test sign-up and agents kit.',
+      line: 'A persona goes through your own sign-up, checkout and lead forms, and keeps everything that follows, timed.',
     },
     {
       group: 'Check your AI agents',
-      line: 'A persona talks to your support chats, voice lines and sales agents, and keeps every answer word for word. Part of the Test sign-up and agents kit.',
+      line: 'A persona talks to your support chats, voice lines and sales agents, and keeps every answer word for word.',
     },
   ],
 

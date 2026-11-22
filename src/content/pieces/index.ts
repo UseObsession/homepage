@@ -36,7 +36,7 @@ export const pieceUi = {
   allPrices: { label: 'See every price', to: '/pricing/rates' },
   prices: 'Prices',
   pieces: 'The other pieces',
-  kits: 'In these kits',
+  kits: 'In these types of blueprints',
   log: 'Event log',
   shot: 'Kept with a screenshot',
   delivery: {

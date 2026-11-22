@@ -94,7 +94,7 @@ export const phone: PiecePage = {
       {
         q: 'How do I get a phone number for an AI agent?',
         a: 'One call gives your agent its own phone number. It texts and calls both ways, and everything that comes in reaches your app by webhook.',
-        link: { label: 'AI agents that talk to customers', to: '/kits/talk-to-customers' },
+        link: { label: 'AI agents that talk to customers', to: '/blueprints/talk-to-customers' },
       },
       {
         q: 'Can I get a free phone number for my AI agent?',

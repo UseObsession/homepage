@@ -246,7 +246,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession, the toolkit for AI agents, gives your voice agent its own [phone number](/phone), inbox and browser, and keeps every call, text and email in one event log ([Talk to customers](/kits/talk-to-customers)). For teams that don’t build agents, its [Voice agent check](/blueprints/voice-agent-check) blueprint calls your voice agent each morning as a new customer, then waits for the text, email and callback it promised.',
+      text: 'Obsession, the toolkit for AI agents, gives your voice agent its own [phone number](/phone), inbox and browser, and keeps every call, text and email in one event log ([Talk to customers](/blueprints/talk-to-customers)). For teams that don’t build agents, its [Voice agent check](/blueprints/voice-agent-check) blueprint calls your voice agent each morning as a new customer, then waits for the text, email and callback it promised.',
     },
     {
       kind: 'cta',
@@ -322,7 +322,7 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'Give your voice agent its own number for calls and texts, with an inbox beside it, on one bill. Start free to receive calls and texts; sending starts on a paid plan from $20 a month.',
-      to: '/kits/talk-to-customers#join',
+      to: '/blueprints/talk-to-customers#join',
       label: 'Start free',
     },
   ],
@@ -346,5 +346,5 @@ export const post: BlogPost = {
     { title: 'Receptionists: Occupational Outlook Handbook', publisher: 'U.S. Bureau of Labor Statistics', url: BLS, date: '2026-10-29' },
   ],
 
-  related: ['/use-cases/ai-receptionist', '/kits/talk-to-customers', 'recipe:voice-agent-check', 'ai-voice-agent-testing', 'can-ai-make-phone-calls', '10dlc-registration'],
+  related: ['/use-cases/ai-receptionist', '/blueprints/talk-to-customers', 'recipe:voice-agent-check', 'ai-voice-agent-testing', 'can-ai-make-phone-calls', '10dlc-registration'],
 }

@@ -236,7 +236,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'On Obsession, every text that arrives at an agent’s number reaches it as an sms.received event, STOP replies included. Each one stays in the agent’s event log beside its calls and emails, with the time it arrived. An agent that texts after a phone call needs the same registration as one that texts first. [AI voice agent for small business](/blog/ai-voice-agent-for-small-business) covers the call side, and [why AI agents need their own inbox, phone number and browser](/blog/why-ai-customers-matter) covers the rest of the kit.',
+      text: 'On Obsession, every text that arrives at an agent’s number reaches it as an sms.received event, STOP replies included. Each one stays in the agent’s event log beside its calls and emails, with the time it arrived. An agent that texts after a phone call needs the same registration as one that texts first. [AI voice agent for small business](/blog/ai-voice-agent-for-small-business) covers the call side, and [why AI agents need their own inbox, phone number and browser](/blog/why-ai-customers-matter) covers the rest of the toolkit.',
     },
 
     { kind: 'h2', id: 'other-routes', text: 'Toll-free and short codes: the other ways to text customers' },
@@ -316,5 +316,5 @@ export const post: BlogPost = {
     { title: 'Code of Conduct', publisher: 'T-Mobile', url: TMO_COC },
   ],
 
-  related: ['/phone', '/kits/talk-to-customers', 'recipe:voice-agent-check', 'ai-voice-agent-for-small-business', 'can-ai-make-phone-calls'],
+  related: ['/phone', '/blueprints/talk-to-customers', 'recipe:voice-agent-check', 'ai-voice-agent-for-small-business', 'can-ai-make-phone-calls'],
 }

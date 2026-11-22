@@ -1,3 +1,6 @@
+import { LinkGroups } from '../components/sections/LinkGroups'
+import { connectionsFor } from '../lib/connections'
+import { guidesCopy } from '../content/connections'
 import { useId } from 'react'
 import { Link } from 'react-router-dom'
 import { Crumbs } from '../components/Crumbs'
@@ -18,7 +21,7 @@ import '../components/piece/PiecePrices.css'
 import '../components/piece/PieceTogether.css'
 import './Kit.css'
 
-/* A kit's own page (/kits/SLUG, 22 Nov 2026), every word from content/kits, in James's piece-page shape: the hero with
+/* A kit's own page (/blueprints/SLUG, 22 Nov 2026), every word from content/kits, in James's piece-page shape: the hero with
    the scene under it > the pieces in the kit > their prices from content/prices.ts > the blueprints in the kit, or the
    code where a job is built > who uses it, with worked examples > questions > the form (#join). */
 
@@ -224,6 +227,10 @@ export function Kit({ kit }: { kit: KitPage }) {
       <KitCode kit={kit} />
       <WhoSection who={kit.who} examples={kit.examples} />
       <Faq faq={kit.faq} id="questions" className="s-faq--ruled" />
+      <LinkGroups
+        groups={connectionsFor(kit.meta.path, 'reader').map((g) => ({ ...g, name: guidesCopy.recipe.name }))}
+        className="s-lg--then-final"
+      />
       <FinalCta final={kit.final} id="join" />
     </>
   )

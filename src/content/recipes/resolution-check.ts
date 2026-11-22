@@ -213,6 +213,6 @@ export const recipe: Recipe = {
       button: 'Start free',
       interest: 'resolution',
     },
-    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
+    link: { label: 'More blueprints to train and test agents', to: '/blueprints/train-and-test-agents' },
   },
 }

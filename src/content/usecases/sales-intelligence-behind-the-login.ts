@@ -35,7 +35,7 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Watch the market kit',
+    pill: 'Watch the market blueprints',
     headline: 'Sales intelligence from AI agents signed up at every account.',
     sub: 'Obsession gives B2B revenue teams AI agents that sign up at every prospect, customer and competitor you name. Every email and text and the platform that sent it, every chat reply and every broken step lands dated in your CRM, Clay or Slack.',
     example: { chips: ['Tessaly, a customer messaging platform', '412 target accounts', '60 renewals', '3 competitors'] },
@@ -307,6 +307,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'account-watch',
     },
-    link: { label: 'See the Watch the market kit', to: kitPathOf.watch },
+    link: { label: 'See the Watch the market blueprints', to: kitPathOf.watch },
   },
 }

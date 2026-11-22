@@ -256,7 +256,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession, the toolkit for AI agents, gives each run its own sandbox, browser, inbox and phone number on one API and one bill, as the [Train and test agents kit](/kits/train-and-test-agents) sets out. Every email, text, call, page and sandbox run lands in one event log, which your test runner reads with obsession.events.list({ persona: run.id }). A persona costs nothing while it waits, so thousands of runs can each wait days for a reply.',
+      text: 'Obsession, the toolkit for AI agents, gives each run its own sandbox, browser, inbox and phone number on one API and one bill, as the [Train and test agents blueprints](/blueprints/train-and-test-agents) sets out. Every email, text, call, page and sandbox run lands in one event log, which your test runner reads with obsession.events.list({ persona: run.id }). A persona costs nothing while it waits, so thousands of runs can each wait days for a reply.',
     },
     {
       kind: 'cta',
@@ -407,7 +407,7 @@ export const post: BlogPost = {
   ],
 
   related: [
-    '/kits/train-and-test-agents',
+    '/blueprints/train-and-test-agents',
     'recipe:drift-watch',
     'recipe:voice-agent-check',
     'ai-agent-observability',

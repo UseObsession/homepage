@@ -296,7 +296,7 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'Every check on your own sign-up, lead forms and AI agents, run as a new customer meets them and kept in one log.',
-      to: '/kits/test-sign-up-and-agents',
+      to: '/blueprints/test-sign-up-and-agents',
       label: 'See how it works',
     },
 
@@ -332,7 +332,7 @@ export const post: BlogPost = {
         {
           q: 'Which jobs can a team run without any builder?',
           a: 'These are jobs where the agent acts as a new customer or lead. Examples include timing how fast your team answers a lead, checking what your support bot tells customers and keeping every email a competitor sends a new customer. Obsession runs these as blueprints and posts the results to Slack, a sheet or your CRM.',
-          link: { label: 'The watch the market kit', to: '/kits/watch-the-market' },
+          link: { label: 'The Watch the market blueprints', to: '/blueprints/watch-the-market' },
         },
       ],
     },
@@ -355,5 +355,5 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'n8n', url: N8N_PRICING },
   ],
 
-  related: ['/use-cases/ai-recruiter', '/use-cases/otp-testing', '/kits/test-sign-up-and-agents', 'recipe:lead-leaks', 'recipe:support-bot-check', 'ai-agent-use-cases-for-business', 'can-ai-agents-log-in-to-websites'],
+  related: ['/use-cases/ai-recruiter', '/use-cases/otp-testing', '/blueprints/test-sign-up-and-agents', 'recipe:lead-leaks', 'recipe:support-bot-check', 'ai-agent-use-cases-for-business', 'can-ai-agents-log-in-to-websites'],
 }

@@ -276,7 +276,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession is the toolkit for AI agents, with email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox on one API and one bill. In the [Build agent products kit](/kits/build-agent-products), obsession.personas.create({ inbox: true, phone: "US", browser: true }) gives an agent an inbox, a US number and a browser under one identity. That persona is free while it waits, and every email, text and page reaches one webhook as email.received, sms.received or page.visited.',
+      text: 'Obsession is the toolkit for AI agents, with email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox on one API and one bill. In the [Build agent products blueprints](/blueprints/build-agent-products), obsession.personas.create({ inbox: true, phone: "US", browser: true }) gives an agent an inbox, a US number and a browser under one identity. That persona is free while it waits, and every email, text and page reaches one webhook as email.received, sms.received or page.visited.',
     },
     {
       kind: 'cta',
@@ -364,7 +364,7 @@ export const post: BlogPost = {
   ],
 
   related: [
-    '/kits/build-agent-products',
+    '/blueprints/build-agent-products',
     'recipe:website-audit',
     'long-running-ai-agents',
     'ai-agent-observability',

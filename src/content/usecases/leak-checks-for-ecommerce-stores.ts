@@ -293,7 +293,7 @@ export const study: UseCaseStudy = {
       {
         q: 'Which pieces does it use?',
         a: 'Email, phone and the browser, under 1 persona per store. Mystery shopping runs your store and Email and SMS tracking runs your competitors, on the same key and bill.',
-        link: { label: 'Check your own sign-up and AI agents', to: '/kits/test-sign-up-and-agents' },
+        link: { label: 'Check your own sign-up and AI agents', to: '/blueprints/test-sign-up-and-agents' },
       },
       {
         q: 'Can we see our competitors’ emails too?',
@@ -333,6 +333,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'mystery',
     },
-    link: { label: 'See the kit', to: '/kits/test-sign-up-and-agents' },
+    link: { label: 'See the blueprints', to: '/blueprints/test-sign-up-and-agents' },
   },
 }

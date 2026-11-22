@@ -125,7 +125,7 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'Work behind logins kit',
+    pill: 'Work behind logins blueprints',
     pillTo: kitPathOf.portals,
     headline: 'Search engines stop at the login. Your personas don’t.',
     sub: 'The web behind the login is what companies show people only after they sign up: emails, texts, member prices, trial limits and offers. Personas sign up at the companies you name, with a browser that keeps its logins and an inbox and number that catch every code.',
@@ -263,7 +263,7 @@ export const sections: {
     kicker: 'The 6 pieces',
     heading: 'Built from 6 pieces, on one API and one bill.',
     line: 'Use all 6, or only the ones this job needs. Each piece has its own page and its own price.',
-    more: { text: 'The pieces and blueprints for portals, quotes and sign-ups sit together in one kit.', label: 'See the Work behind logins kit', to: kitPathOf.portals },
+    more: { text: 'The pieces and blueprints for portals, quotes and sign-ups sit together in one type of blueprint.', label: 'See the Work behind logins blueprints', to: kitPathOf.portals },
     items: [
       {
         title: 'Personas',

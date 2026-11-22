@@ -154,141 +154,60 @@ export const page: Page = {
 
   homePieces: pieces,
 
-  /* The kits (#kits, 22 Nov 2026): the six jobs AI agents do, after the persona and before the blueprints. */
-  homeKits: {
-    heading: 'Pick the kit for your agent’s job.',
-    line: 'Each kit is the pieces and blueprints one job needs, on the same key and bill. One agent can use more than one.',
-    all: { label: 'See every kit', to: '/kits' },
+  /* The blueprints (#blueprints, 22 Nov 2026): one section, after the persona. On the 22 Nov call the kits became six
+     types of blueprints and the two Home sections became this one (components/persona/HomeBlueprints). The heading keeps
+     James's words from 22 Nov; blueprints serve developers too, so it no longer opens "For teams without engineers". */
+  homeBlueprints: {
+    heading: 'Pick a blueprint. We run the job, you get the report.',
+    line: 'Six types of blueprints, one for each job AI agents do. Results arrive where you already work: your spreadsheet, Clay, your own Claude agent or our dashboard.',
+    unit: { one: 'blueprint', many: 'blueprints' },
+    more: 'more',
+    all: { label: 'See every blueprint', to: '/blueprints' },
   },
 
-  /* Day one (#act, 22 Nov 2026, components/persona/HomeFit): what an agent can't do on its own, and the piece that does
-     each, right after the hero, so any reader knows what Obsession is before the pieces sheet. */
-  homeFit: {
+  /* The problem and the answer (#act, 22 Nov 2026, components/persona/HomeProblem), right after the hero. Seun: agents can
+     think, the problem is equipping them, the new-hire angle, what they're able to do, and blueprints too (never one API
+     and one bill as the problem; that is the pieces section's line). Juno at Larkfield is the persona section's example,
+     invented. */
+  homeProblem: {
     heading: 'Your agent can think. Obsession lets it act.',
-    line: 'A new hire gets an email address, a phone and a laptop on day one. Obsession gives your AI agent the same, through one API and one bill.',
-    agent: { name: 'Juno', role: 'bookings agent at Larkfield' },
-    ui: {
-      stuck: 'On its own',
-      solved: 'With Obsession',
-      open: 'Open',
-      pause: 'Pause',
-      play: 'Play',
-      tabs: 'What an AI agent needs to do',
-      log: 'Event log',
+    line: 'A new hire gets an email address, a phone and a laptop on day one. An AI agent can plan and write, but on its own it can’t get a login code, take a call or stay signed in. Obsession equips it on day one, or runs the whole job for you as a blueprint.',
+    states: { alone: 'On its own', equipped: 'Equipped by Obsession', label: 'Show the agent' },
+    card: {
+      name: 'Juno',
+      role: 'AI agent, bookings at Larkfield',
+      think: { label: 'Can think', items: ['Plan the steps', 'Write the reply', 'Decide what’s next'] },
+      act: {
+        label: 'Can act',
+        locked: 'Can’t yet',
+        with: 'with',
+        items: [
+          { ability: 'Get a login code', piece: 'email', name: 'Email', to: '/email' },
+          { ability: 'Take a customer’s call', piece: 'phone', name: 'Phone', to: '/phone' },
+          { ability: 'Reply on WhatsApp or iMessage', piece: 'messaging', name: 'Messaging', to: '/messaging' },
+          { ability: 'Stay signed in to a portal', piece: 'browser', name: 'Browser', to: '/browser' },
+          { ability: 'Run the code it wrote', piece: 'sandbox', name: 'Sandbox', to: '/sandbox' },
+          { ability: 'Show you what it did', piece: 'personas', name: 'Event log', to: '/personas' },
+        ],
+      },
+      ids: [
+        { label: 'Email', none: 'None', value: 'juno@larkfield.example' },
+        { label: 'Phone', none: 'None', value: '+1 415 555 0142' },
+      ],
+      online: 'Ready for work',
+      offline: 'Not set up',
+      event: { label: 'Latest event', none: 'No events yet', at: '09:41:07', name: 'email.received', text: 'Login code from a supplier portal' },
     },
-    rows: [
-      {
-        need: 'Get a login code',
-        without: 'Stuck at the sign-in screen',
-        with: 'Its own inbox and number catch the code',
-        piece: { label: 'Email', to: '/email' },
-        scene: {
-          kind: 'code',
-          title: 'portal.harbourline.example · Sign in',
-          words: {
-            prompt: 'Enter the 6-digit code we sent to juno@larkfield.example',
-            from: 'Harbourline',
-            subject: 'Your sign-in code is 482913',
-            code: '482913',
-            nowhere: 'No inbox, so the code never arrives',
-            done: 'Signed in',
-          },
-        },
-        event: { at: '09:41:07', name: 'email.received', text: 'Harbourline · sign-in code' },
-      },
-      {
-        need: 'Take a customer’s call',
-        without: 'No number to ring',
-        with: 'A US or UK number, with your voice agent',
-        piece: { label: 'Phone', to: '/phone' },
-        scene: {
-          kind: 'call',
-          title: 'Phone · +1 415 555 0142',
-          words: {
-            caller: 'A customer, +1 628 555 0199',
-            ringing: 'Calling Larkfield',
-            nowhere: 'No number, so the call never connects',
-            connected: 'Connected · Juno answers',
-            said: '“Can I move my table to Friday at 7?”',
-            reply: '“Done. You’re booked for Friday at 7.”',
-          },
-        },
-        event: { at: '09:52:30', name: 'call.ended', text: '2 min 14 s · transcript saved' },
-      },
-      {
-        need: 'Reply on WhatsApp or iMessage',
-        without: 'Can’t reach people where they message',
-        with: 'Its own lines, under the same name',
-        piece: { label: 'Messaging', to: '/messaging' },
-        scene: {
-          kind: 'chat',
-          title: 'WhatsApp · Juno at Larkfield',
-          words: {
-            who: 'Sam',
-            asked: 'Is the terrace open tonight?',
-            nowhere: 'No line, so Sam waits',
-            me: 'Juno · Larkfield',
-            reply: 'Yes, from 6pm. Shall I hold a table for you?',
-            apps: 'WhatsApp|iMessage|Slack|Telegram',
-            same: 'The same name on WhatsApp, iMessage, Slack and Telegram',
-          },
-        },
-        event: { at: '10:03:12', name: 'message.received', text: 'WhatsApp · Sam, about tonight' },
-      },
-      {
-        need: 'Stay signed in to a portal',
-        without: 'Signs in again every time',
-        with: 'A browser that keeps its logins for weeks',
-        piece: { label: 'Browser', to: '/browser' },
-        scene: {
-          kind: 'portal',
-          title: 'bookings.citytables.example',
-          words: {
-            expired: 'Session expired. Sign in again',
-            kept: 'Signed in · day 23 of this session',
-            row1: 'Fri 7pm · table for 4 · confirmed',
-            row2: 'Sat 8pm · table for 2 · confirmed',
-            row3: 'Sun 1pm · table for 6 · waiting',
-          },
-        },
-        event: { at: '10:15:44', name: 'page.visited', text: 'citytables · bookings, screenshot saved' },
-      },
-      {
-        need: 'Run the code it wrote',
-        without: 'Nowhere safe to run it',
-        with: 'A sandbox, billed only while it runs',
-        piece: { label: 'Sandbox', to: '/sandbox' },
-        scene: {
-          kind: 'sandbox',
-          title: 'Sandbox · tonight.py',
-          words: {
-            cmd: 'python tonight.py',
-            nowhere: 'No machine of its own to run it on',
-            out1: 'Read 86 bookings for tonight',
-            out2: 'Tables free at 8pm: 3',
-            done: 'Finished in 1.8 s · billed for 1.8 s',
-          },
-        },
-        event: { at: '10:21:03', name: 'sandbox.finished', text: 'tonight.py · exit 0' },
-      },
-      {
-        need: 'Show what it did',
-        without: 'Scattered across five vendors',
-        with: 'Every email, text, call and page in one log',
-        piece: { label: 'Event log', to: '/personas' },
-        scene: {
-          kind: 'log',
-          title: 'Event log · Juno',
-          words: {
-            vendors: 'Inbox tool|Phone line|Chat app|Browser host|Code host',
-            nowhere: 'Five vendors, five dashboards, five bills',
-            summary: '5 events this morning · one log · one bill',
-          },
-        },
-      },
-    ],
-    caption: 'One example agent’s morning: what it can’t do on its own, and the piece that does it. Larkfield and its customers are invented.',
-    link: { label: 'See all six pieces', to: '#pieces' },
+    blueprints: {
+      title: 'Not building agents? Pick a blueprint.',
+      line: 'Obsession runs the job on the same pieces and sends you the results.',
+      slugs: ['mystery-shopper', 'voice-agent-check', 'competitor-tracking'],
+      runs: 'Runs on',
+      out: 'Results land in Slack, a sheet, your CRM or our dashboard.',
+      link: { label: 'See every blueprint', to: '/blueprints' },
+    },
+    caption: 'One example AI agent before and after Obsession equips it. Larkfield is invented.',
+    link: { label: 'See every piece', to: '#pieces' },
   },
 
   personaAnatomy: {
@@ -345,51 +264,6 @@ export const page: Page = {
      (James, 22 Nov: 5 tiles, not 8); every tile links to its blueprint page (content/recipes), except the web behind the login, which links to its use
      case page. `status` says who it fits, and each tile's hue is
      that reader (styles/accents.css). The heading is James's (21 Nov), its comma included: it speaks to the reader. */
-  personaRecipes: {
-    /* James, 21 Nov: the heading speaks to teams with no engineers; the line says where the results arrive. */
-    /* James, 22 Nov. The part before the colon shows as a quiet first line (components/persona/PersonaRecipes). */
-    heading: 'For teams without engineers: Pick a blueprint, we run the job, you get the report.',
-    line: 'Results arrive where you already work: your spreadsheet, Clay, your own Claude agent or our dashboard.',
-    link: { label: 'Browse all 22 blueprints', to: '/blueprints' },
-    items: [
-      {
-        name: 'Mystery shopping',
-        line: 'Personas shop a store and bring back every email, text and reminder that followed, or the silence.',
-        status: 'For online stores',
-        live: true,
-        reader: 'founders',
-        link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
-      },
-      {
-        name: 'Trial teardown',
-        line: 'Start a competitor’s trial and keep every email it sends until the trial ends.',
-        status: 'For marketing',
-        reader: 'marketing',
-        link: { label: 'See the blueprint', to: '/blueprints/trial-teardown' },
-      },
-      {
-        name: 'Prospect intelligence',
-        line: 'Shop a prospect’s store before the pitch, and open with what a new shopper gets.',
-        status: 'For agencies',
-        reader: 'agencies',
-        link: { label: 'See the blueprint', to: '/blueprints/prospect-intelligence' },
-      },
-      {
-        name: 'Lead response checks',
-        line: 'Fill in a contact form as a new lead, and time the first reply by email, text or call.',
-        status: 'For sales',
-        reader: 'sales',
-        link: { label: 'See the blueprint', to: '/blueprints/lead-leaks' },
-      },
-      {
-        name: 'Price watch',
-        line: 'Check competitors’ member prices and codes every morning, beside the public ones.',
-        status: 'For pricing teams',
-        reader: 'developers',
-        link: { label: 'See the blueprint', to: '/blueprints/price-watch' },
-      },
-    ],
-  },
 
 
   personaBuild: {

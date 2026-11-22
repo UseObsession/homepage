@@ -186,7 +186,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'blueprints', text: 'Blueprints: AI agent templates Obsession runs for you' },
     {
       kind: 'p',
-      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Every agent can have an inbox, a phone number and a browser, plus messaging and a sandbox to run code. Its [blueprints](/blueprints) are ready-made jobs that run on those pieces: a team with no engineers names the competitors, stores, forms or voice lines, picks how often and says where results go. Each blueprint is billed on the pieces it uses. The Free plan starts without a credit card and covers small runs; blueprints that make calls or send texts need a paid plan. The jobs sit in the [Test sign-up and agents](/kits/test-sign-up-and-agents) and [Watch the market](/kits/watch-the-market) kits.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Every agent can have an inbox, a phone number and a browser, plus messaging and a sandbox to run code. Its [blueprints](/blueprints) are ready-made jobs that run on those pieces: a team with no engineers names the competitors, stores, forms or voice lines, picks how often and says where results go. Each blueprint is billed on the pieces it uses. The Free plan starts without a credit card and covers small runs; blueprints that make calls or send texts need a paid plan. The jobs sit in the [Test sign-up and agents](/blueprints/test-sign-up-and-agents) and [Watch the market](/blueprints/watch-the-market) kits.',
     },
     {
       kind: 'list',
@@ -338,7 +338,7 @@ export const post: BlogPost = {
   ],
 
   related: [
-    '/kits/test-sign-up-and-agents',
+    '/blueprints/test-sign-up-and-agents',
     'recipe:lead-leaks',
     'recipe:competitor-tracking',
     'what-can-ai-agents-do-for-business',

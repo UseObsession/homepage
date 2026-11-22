@@ -210,6 +210,6 @@ export const recipe: Recipe = {
       button: 'Start free',
       interest: 'sales-agent',
     },
-    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
+    link: { label: 'More blueprints to build agent products', to: '/blueprints/build-agent-products' },
   },
 }

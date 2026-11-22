@@ -138,3 +138,13 @@
 /blueprints/:slug/            /blueprints/:slug               301
 /use-cases/:slug/             /use-cases/:slug                301
 /recipes/:slug                /blueprints/:slug               301
+
+# The kits became six types of blueprints (22 Nov 2026); the preview addresses go to their new homes.
+/kits /blueprints 301
+/kits/ /blueprints 301
+/kits/talk-to-customers /blueprints/talk-to-customers 301
+/kits/test-sign-up-and-agents /blueprints/test-sign-up-and-agents 301
+/kits/build-agent-products /blueprints/build-agent-products 301
+/kits/work-behind-logins /blueprints/work-behind-logins 301
+/kits/watch-the-market /blueprints/watch-the-market 301
+/kits/train-and-test-agents /blueprints/train-and-test-agents 301

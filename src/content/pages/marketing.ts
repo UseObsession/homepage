@@ -48,7 +48,7 @@ export const page: Page = {
 
   hero: {
     pill: 'Watch the market',
-    pillTo: '/kits/watch-the-market',
+    pillTo: '/blueprints/watch-the-market',
     headline: 'See every email, text and offer your competitors send.',
     sub: SUB,
     capture: { ...access, source: 'marketing-hero' },
@@ -173,7 +173,7 @@ export const page: Page = {
       {
         q: 'Do I need a developer?',
         a: 'No. Pick a blueprint, name your competitors, and Obsession runs it. Results land in Slack, a sheet, your CRM or a webhook.',
-        link: { label: 'Every blueprint that watches the market', to: '/kits/watch-the-market' },
+        link: { label: 'Every blueprint that watches the market', to: '/blueprints/watch-the-market' },
       },
       {
         q: 'How is this different from an email archive?',

@@ -1,0 +1,121 @@
+/* Home's blueprints (HomeBlueprints.tsx): the six types of blueprints as cards on the raised surface, in the design
+   system's tokens. Each card's head links its type's page and each row a blueprint; every link's chevron steps right on
+   hover, as on the rest of the site. */
+
+.h-bp__head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--ob-space-24); flex-wrap: wrap; }
+.h-bp__head .s-bp-head { max-width: 44rem; }
+.h-bp__all {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-6);
+  min-height: 40px;
+  padding: 0 var(--ob-space-12) 0 var(--ob-space-16);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-small);
+  color: var(--ob-text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.h-bp__chev {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+}
+
+.h-bp__grid {
+  list-style: none;
+  margin: var(--ob-space-40) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ob-space-16);
+}
+.h-bp__card {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: var(--ob-space-12);
+  padding: var(--ob-space-20);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(var(--ob-tint-rgb), 0.05), transparent 60%),
+    var(--ob-surface);
+  transition: border-color var(--ob-dur-base) var(--ob-ease-out), transform var(--ob-dur-base) var(--ob-ease-out);
+}
+
+/* The head: the type's icon, name and count, linking its page. */
+.h-bp__type {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--ob-space-12);
+  margin: calc(var(--ob-space-8) * -1);
+  padding: var(--ob-space-8);
+  border-radius: var(--ob-radius-md);
+  color: var(--ob-text);
+  text-decoration: none;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.h-bp__ic { display: grid; place-items: center; width: 40px; height: 40px; border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: var(--ob-radius-md); background: var(--ob-bg); color: var(--ob-text); }
+.h-bp__ic svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.h-bp__words { display: grid; gap: 2px; min-width: 0; }
+.h-bp__name { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.h-bp__count { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); }
+.h-bp__type .h-bp__chev { color: var(--ob-text-3); }
+.h-bp__line { margin: 0; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+
+/* The blueprints in it, each a row that links its page. */
+.h-bp__list { list-style: none; margin: 0; padding: 0; align-self: end; border-top: var(--ob-border-hair) solid var(--ob-line-subtle, var(--ob-line)); }
+.h-bp__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ob-space-12);
+  min-height: 40px;
+  border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle, var(--ob-line));
+  font: var(--ob-type-small);
+  color: var(--ob-text);
+  text-decoration: none;
+}
+.h-bp__list > li:last-child .h-bp__item { border-bottom: 0; }
+.h-bp__item .h-bp__chev { color: var(--ob-text-3); }
+.h-bp__item--more { color: var(--ob-text-3); }
+
+.h-bp__all:focus-visible,
+.h-bp__type:focus-visible,
+.h-bp__item:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; border-radius: var(--ob-radius-sm); }
+
+@media (hover: hover) and (pointer: fine) {
+  .h-bp__card:hover { border-color: var(--ob-line-strong); transform: translateY(-2px); }
+  .h-bp__all:hover { background: rgba(var(--ob-tint-rgb), 0.07); }
+  .h-bp__all:hover .h-bp__chev,
+  .h-bp__type:hover .h-bp__chev,
+  .h-bp__item:hover .h-bp__chev { translate: 3px 0; color: var(--ob-text); }
+  .h-bp__type:hover { background: rgba(var(--ob-tint-rgb), 0.05); }
+  .h-bp__item:hover { color: var(--ob-text); }
+  .h-bp__item--more:hover { color: var(--ob-text); }
+}
+
+@media (max-width: 960px) { .h-bp__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .h-bp__grid { grid-template-columns: minmax(0, 1fr); }
+  .h-bp__head { align-items: flex-start; }
+}
+
+/* Motion: the cards rise in order once, when the grid enters the view. */
+@keyframes h-bp-rise {
+  from { opacity: 0; translate: 0 8px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .h-bp__grid[data-armed] > li { opacity: 0; }
+  .h-bp__grid.is-in > li { animation: h-bp-rise 520ms var(--ob-ease-out) both calc(var(--i) * 100ms); }
+}

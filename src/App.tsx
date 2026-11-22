@@ -9,7 +9,7 @@ import { catalog } from './content/catalog'
 import { headFor } from './content/head'
 import { ctaFor, nav } from './content/nav'
 import { absolute, cleanPath } from './content/paths'
-import { kitLinks, kitsPath } from './content/kitPaths'
+import { kitLinks } from './content/kitPaths'
 import { casePathList, teamPathList, teamPathSet } from './content/teamPaths'
 import { pieceOrder, piecePaths } from './content/piecePaths'
 import { recipeWords, refWords, studyWords } from './content/words'
@@ -53,9 +53,8 @@ const PricingRates = page('PricingRates')
 const WebBehindTheLogin = page('WebBehindTheLogin')
 /* Each piece's own page (content/pieces), one component for all 6. */
 const Piece = page<{ path: string }>('Piece', 'PieceAt')
-/* Each kit's own page (content/kits, 22 Nov), one component for all 6, and the hub. */
+/* Each type of blueprint's own page (content/kits, 22 Nov), one component for all 6, at /blueprints/SLUG. */
 const Kit = page<{ path: string }>('Kit', 'KitAt')
-const Kits = page('Kits')
 /* Each team's page (content/teams, 22 Nov), one component for all 8, at the addresses the nav's Teams column links. */
 const Team = page<{ path: string }>('Team', 'TeamAt')
 const Agents = page('Agents')
@@ -91,7 +90,6 @@ const PAGES: Record<string, LazyPage> = {
   '/pricing/rates': PricingRates,
   '/use-cases/web-behind-the-login': WebBehindTheLogin,
   '/agents': Agents,
-  [kitsPath]: Kits,
   '/alternatives': AlternativesHub,
   '/glossary': GlossaryHub,
   [JAMES_PATHS.prospect]: ProspectIntelligence,
@@ -426,7 +424,6 @@ export function AppRoutes() {
         {[...teamPathList, ...casePathList].map((p) => (
           <Route key={p} path={p.slice(1)} element={<Team key={p} path={p} />} />
         ))}
-        <Route path="kits" element={<Kits />} />
         {kitLinks.map((k) => (
           <Route key={k.id} path={k.path.slice(1)} element={<Kit key={k.id} path={k.path} />} />
         ))}

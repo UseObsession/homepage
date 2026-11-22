@@ -193,6 +193,6 @@ export const recipe: Recipe = {
       button: 'Start free',
       interest: 'ads',
     },
-    link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
+    link: { label: 'More blueprints to watch the market', to: '/blueprints/watch-the-market' },
   },
 }

@@ -300,7 +300,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every email, text and page lands in one event log, dated, with a screenshot of each page, so a history builds from the first day. Teams who don’t code pick a blueprint such as [competitor tracking](/blueprints/competitor-tracking), [price watch](/blueprints/price-watch) or [trial teardown](/blueprints/trial-teardown), and Obsession runs it. An agent on Obsession says it’s an AI when it talks to a person, never gets round a CAPTCHA or a bot block and stops at any identity check ([the lines every agent keeps](/agents)). Worked examples are in [the web behind the login use case](/use-cases/web-behind-the-login) and [work behind logins](/kits/work-behind-logins).',
+      text: 'Every email, text and page lands in one event log, dated, with a screenshot of each page, so a history builds from the first day. Teams who don’t code pick a blueprint such as [competitor tracking](/blueprints/competitor-tracking), [price watch](/blueprints/price-watch) or [trial teardown](/blueprints/trial-teardown), and Obsession runs it. An agent on Obsession says it’s an AI when it talks to a person, never gets round a CAPTCHA or a bot block and stops at any identity check ([the lines every agent keeps](/agents)). Worked examples are in [the web behind the login use case](/use-cases/web-behind-the-login) and [work behind logins](/blueprints/work-behind-logins).',
     },
     {
       kind: 'cta',

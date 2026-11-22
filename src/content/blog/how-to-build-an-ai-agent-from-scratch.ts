@@ -236,7 +236,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession is the toolkit for AI agents, through one API and one bill, and its [kit for building agent products](/kits/build-agent-products) gives every agent you ship an inbox, a number, a browser and a sandbox. The call obsession.personas.create({ inbox: true, phone: "US", browser: true }) puts the first three under one identity, a [persona](/personas), free while it waits. Each email, text and page then reaches your webhook as email.received, sms.received or page.visited, and your agent can make the same calls itself over MCP with claude mcp add obsession.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill, and its [blueprints for building agent products](/blueprints/build-agent-products) gives every agent you ship an inbox, a number, a browser and a sandbox. The call obsession.personas.create({ inbox: true, phone: "US", browser: true }) puts the first three under one identity, a [persona](/personas), free while it waits. Each email, text and page then reaches your webhook as email.received, sms.received or page.visited, and your agent can make the same calls itself over MCP with claude mcp add obsession.',
     },
     {
       kind: 'cta',
@@ -342,5 +342,5 @@ export const post: BlogPost = {
     { title: 'LLM01:2025 Prompt Injection', publisher: 'OWASP Gen AI Security Project', url: OWASP_INJECTION, date: '2025' },
   ],
 
-  related: ['/use-cases/imessage-ai-assistant', '/use-cases/ai-recruiter', '/kits/build-agent-products', 'recipe:support-bot-check', 'recipe:voice-agent-check', 'long-running-ai-agents', 'why-ai-customers-matter'],
+  related: ['/use-cases/imessage-ai-assistant', '/use-cases/ai-recruiter', '/blueprints/build-agent-products', 'recipe:support-bot-check', 'recipe:voice-agent-check', 'long-running-ai-agents', 'why-ai-customers-matter'],
 }

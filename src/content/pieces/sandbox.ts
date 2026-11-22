@@ -82,7 +82,7 @@ export const sandbox: PiecePage = {
       {
         q: 'What is a code sandbox for AI agents?',
         a: 'A computer in the cloud, set apart from your systems, where an agent runs the code it writes. It installs packages, reads and writes files and returns the results.',
-        link: { label: 'RL environments for AI agents', to: '/kits/train-and-test-agents' },
+        link: { label: 'RL environments for AI agents', to: '/blueprints/train-and-test-agents' },
       },
       {
         q: 'Which languages can it run?',

@@ -200,6 +200,6 @@ export const recipe: Recipe = {
       button: 'Start free',
       interest: 'trial',
     },
-    link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
+    link: { label: 'More blueprints to work behind logins', to: '/blueprints/work-behind-logins' },
   },
 }

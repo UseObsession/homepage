@@ -355,7 +355,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'own-identity', text: 'An agent with its own browser, inbox and number' },
     {
       kind: 'p',
-      text: 'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, on one API and one bill. For portal work, the [Work behind logins kit](/kits/work-behind-logins) pairs a [browser](/browser) that keeps its logins at $0.10 a browser hour with the agent’s own [inbox](/email) and [number](/phone) for codes. Your Playwright or Puppeteer code drives the browser after one call, obsession.browsers.create({ home: "US" }), and each login code reaches your webhook as email.received or sms.received.',
+      text: 'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, on one API and one bill. For portal work, the [Work behind logins blueprints](/blueprints/work-behind-logins) pairs a [browser](/browser) that keeps its logins at $0.10 a browser hour with the agent’s own [inbox](/email) and [number](/phone) for codes. Your Playwright or Puppeteer code drives the browser after one call, obsession.browsers.create({ home: "US" }), and each login code reaches your webhook as email.received or sms.received.',
     },
     {
       kind: 'cta',
@@ -434,7 +434,7 @@ export const post: BlogPost = {
     { title: 'Browser Rendering pricing', publisher: 'Cloudflare Docs', url: CF_PRICING, date: '2026-11-20' },
   ],
   related: [
-    '/kits/work-behind-logins',
+    '/blueprints/work-behind-logins',
     'recipe:website-audit',
     'recipe:delivery-monitoring',
     'can-ai-agents-log-in-to-websites',

@@ -235,7 +235,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession, the toolkit for AI agents, gives each test a persona: one identity with its own phone number, inbox and browser, run singly or as a fleet each morning. A persona [checks your AI agents as a customer](/verify) on chat, phone and email, then waits days for every promised follow-up, keeping each answer in one event log. Teams who don’t write code pick [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check) or [Drift watch](/blueprints/drift-watch) from the [Test sign-up and agents kit](/kits/test-sign-up-and-agents); developers receive call.ended and email.received events as they happen.',
+      text: 'Obsession, the toolkit for AI agents, gives each test a persona: one identity with its own phone number, inbox and browser, run singly or as a fleet each morning. A persona [checks your AI agents as a customer](/verify) on chat, phone and email, then waits days for every promised follow-up, keeping each answer in one event log. Teams who don’t write code pick [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check) or [Drift watch](/blueprints/drift-watch) from the [Test sign-up and agents blueprints](/blueprints/test-sign-up-and-agents); developers receive call.ended and email.received events as they happen.',
     },
     {
       kind: 'cta',
@@ -379,7 +379,7 @@ export const post: BlogPost = {
   ],
 
   related: [
-    '/kits/test-sign-up-and-agents',
+    '/blueprints/test-sign-up-and-agents',
     'recipe:support-bot-check',
     'recipe:voice-agent-check',
     'best-ai-chatbot-testing-tools',

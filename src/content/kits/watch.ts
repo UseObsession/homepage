@@ -1,7 +1,7 @@
 import { kitPathOf, kitsPath } from '../kitPaths'
 import type { KitPage } from './types'
 
-/* Watch the market (/kits/watch-the-market): personas sign up to competitors, stay subscribed, start their trials and
+/* Watch the market (/blueprints/watch-the-market): personas sign up to competitors, stay subscribed, start their trials and
    check member prices, for teams that want the result rather than the build. Product Marketing book, job 5. The scene
    is the site's one real run: Brand G, a UK skincare store, September 2026 (/sample-output). */
 
@@ -19,7 +19,7 @@ export const watch: KitPage = {
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Kits', path: kitsPath },
+      { name: 'Blueprints', path: kitsPath },
       { name: 'Watch the market', path: kitPathOf.watch },
     ],
   },
@@ -56,9 +56,9 @@ export const watch: KitPage = {
   },
 
   blueprints: {
-    heading: 'Pick a blueprint, and Obsession runs it.',
-    line: 'No code. Name the competitors, choose how often, and say where results go.',
-    slugs: ['competitor-tracking', 'email-sms-tracking', 'price-watch', 'trial-teardown', 'ad-tracking', 'prospect-intelligence', 'account-watch', 'listings-ai-answers'],
+    heading: 'Every competitor, followed for you.',
+    line: 'Obsession signs up at each competitor and keeps every email, text, price and offer, dated. Name them, choose how often, and say where results go.',
+    slugs: ['competitor-tracking', 'email-sms-tracking', 'ad-tracking', 'prospect-intelligence', 'listings-ai-answers'],
   },
 
   who: {

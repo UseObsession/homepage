@@ -209,6 +209,6 @@ export const recipe: Recipe = {
       button: 'Start free',
       interest: 'disclosure',
     },
-    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
+    link: { label: 'More blueprints to talk to customers', to: '/blueprints/talk-to-customers' },
   },
 }

@@ -7,7 +7,7 @@ import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
 import { lookupPage } from './pages/lookup'
 import { pieces } from './pieces'
-import { kits, kitsHub } from './kits'
+import { kits } from './kits'
 import { cases, teams } from './teams'
 import { pricingPage, ratesPage } from './pricing'
 import { securityPage } from './security'
@@ -43,7 +43,6 @@ export type PageKind =
   | 'pricing'
   | 'piece'
   | 'kit'
-  | 'kits'
   | 'team'
 
 /* A post's facts for its BlogPosting JSON-LD and the RSS feed. */
@@ -147,16 +146,7 @@ export const entries: Entry[] = [
       source: `src/content/pieces/${p.id}.ts`,
     }),
   ),
-  /* The kits hub and each kit's own page (content/kits, 22 Nov): each job agents do, as the pieces and blueprints it uses. */
-  {
-    kind: 'kits',
-    meta: ogFor(kitsHub.meta),
-    name: 'Kits',
-    headline: kitsHub.hero.headline,
-    line: firstSentence(kitsHub.hero.sub),
-    faq: kitsHub.faq,
-    source: 'src/content/kits/index.ts',
-  },
+  /* The six types of blueprints (content/kits, 22 Nov): each job agents do, at /blueprints/SLUG. */
   ...kits.map(
     (k): Entry => ({
       kind: 'kit',
@@ -166,7 +156,7 @@ export const entries: Entry[] = [
       line: firstSentence(k.hero.sub),
       faq: k.faq,
       source: `src/content/kits/${k.id}.ts`,
-      place: 'Kits',
+      place: 'Blueprints',
     }),
   ),
   {

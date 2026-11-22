@@ -33,7 +33,7 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Test sign-up and agents kit',
+    pill: 'Test sign-up and agents blueprints',
     headline: 'The rates, offers and answers banks show only to people who apply.',
     sub: 'Obsession gives banks and fintechs AI agents that start account applications at your bank and your competitors, up to the identity check and never past it. Every step, rate, email, text and chat answer lands in your event log, dated, with its screenshot or transcript.',
     example: { chips: ['Kittiwake Bank, a savings bank', '3 competitors', 'Applications and chat'] },
@@ -216,6 +216,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'audit',
     },
-    link: { label: 'See the Test sign-up and agents kit', to: kitPathOf.test },
+    link: { label: 'See the Test sign-up and agents blueprints', to: kitPathOf.test },
   },
 }

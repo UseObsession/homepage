@@ -9,15 +9,15 @@ import type { PieceId } from './prices'
    listed by 2 kits takes is here. */
 
 export const blueprintUi = {
-  /* The hero's badge beside the "Blueprint" pill: the kit's icon and "{kit} kit", linking the kit's page. */
-  badge: (kit: string) => `${kit} kit`,
+  /* The hero's badge beside the "Blueprint" pill: its type's icon and name ("Talk to customers"), linking the type's page. */
+  badge: (kit: string) => kit,
   /* The pieces row under the first section's claim, each piece linking its page. */
   runsOn: 'Runs on',
-  /* The section near the end: the kit's other blueprints as cards (at most `max`), and the kit's page. */
+  /* The section near the end: the other blueprints of the same type as cards (at most `max`), and the type's page. */
   kit: {
-    heading: (kit: string) => `In the ${kit} kit.`,
+    heading: (kit: string) => `More blueprints to ${kit.charAt(0).toLowerCase()}${kit.slice(1)}.`,
     line: 'Each runs on the same key and bill, and every result lands in the same event log.',
-    link: 'See the kit',
+    link: 'See this type of blueprint',
     max: 6,
   },
 }

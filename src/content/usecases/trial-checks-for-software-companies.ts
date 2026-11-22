@@ -33,7 +33,7 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Watch the market kit',
+    pill: 'Watch the market blueprints',
     headline: 'Every competitor’s trial, from sign-up to the offer to stay.',
     sub: 'Obsession gives software companies AI agents that start every competitor’s free trial and keep it open to the end. Every onboarding email, trial limit, upgrade prompt and offer to stay lands in your event log, dated, with a screenshot.',
     example: { chips: ['Larkfield, a team calendar app', '5 competitors', '14 day trials'] },
@@ -219,6 +219,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'trial',
     },
-    link: { label: 'See the Watch the market kit', to: kitPathOf.watch },
+    link: { label: 'See the Watch the market blueprints', to: kitPathOf.watch },
   },
 }

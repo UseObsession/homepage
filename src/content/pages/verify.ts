@@ -360,7 +360,7 @@ export const page: Page = {
 
   hero: {
     pill: 'Test your sign-up and AI agents',
-    pillTo: '/kits/test-sign-up-and-agents',
+    pillTo: '/blueprints/test-sign-up-and-agents',
     headline: 'Ask your AI agents what your customers ask, every day.',
     sub: SUB,
     capture: { ...access, source: 'verify-hero' },
@@ -442,7 +442,7 @@ export const page: Page = {
       {
         q: 'Which blueprints check our sign-up too?',
         a: 'Mystery shopping, lead response checks and QA on your own flows test every step a new customer takes, from the sign-up form to the first email.',
-        link: { label: 'Every blueprint that tests sign-up and agents', to: '/kits/test-sign-up-and-agents' },
+        link: { label: 'Every blueprint that tests sign-up and agents', to: '/blueprints/test-sign-up-and-agents' },
       },
       {
         q: 'What does it cost?',

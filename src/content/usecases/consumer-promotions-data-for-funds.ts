@@ -36,7 +36,7 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Watch the market kit',
+    pill: 'Watch the market blueprints',
     headline: 'Consumer brands’ offers, as point-in-time data for investors.',
     sub: 'Alternative data for investors includes what consumer companies offer their own customers: discount depth, free delivery, new offers and how often they send them. Obsession’s AI agents join the lists of every brand you name and keep each email, text and public price with the time it was seen.',
     example: { chips: ['Harrowgate, a listed apparel retailer', '2 competitors', 'Email, texts and prices'] },
@@ -219,6 +219,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'email-sms',
     },
-    link: { label: 'See the Watch the market kit', to: kitPathOf.watch },
+    link: { label: 'See the Watch the market blueprints', to: kitPathOf.watch },
   },
 }

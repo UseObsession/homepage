@@ -290,15 +290,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'Each group of jobs, its kit and a blueprint to start with',
-      cols: ['Job', 'Kit', 'A blueprint to start with', 'What the blueprint does'],
+      caption: 'Each group of jobs, its type of blueprint and one to start with',
+      cols: ['Job', 'Type of blueprint', 'A blueprint to start with', 'What the blueprint does'],
       rows: [
-        ['Talk to customers', '[Talk to customers](/kits/talk-to-customers)', '[Voice agent check](/blueprints/voice-agent-check)', 'Calls your voice agent as a customer, then waits for the text and email it promised'],
-        ['Test your sign-up and AI agents', '[Test sign-up and agents](/kits/test-sign-up-and-agents)', '[QA on your own flows](/blueprints/website-audit)', 'Signs up to your product after every release and finds the step that breaks'],
-        ['Work behind logins', '[Work behind logins](/kits/work-behind-logins)', '[Price watch](/blueprints/price-watch)', 'Signs in at each competitor every morning and reads member prices'],
-        ['Watch the market', '[Watch the market](/kits/watch-the-market)', '[Competitor tracking](/blueprints/competitor-tracking)', 'Signs up at each competitor and keeps every email, text, offer and price'],
-        ['Build agent products', '[Build agent products](/kits/build-agent-products)', '[Outbound agent check](/blueprints/outbound-agent-check)', 'Joins your AI sales rep’s lists as a prospect and keeps every message it sends'],
-        ['Train and test agents', '[Train and test agents](/kits/train-and-test-agents)', '[Drift watch](/blueprints/drift-watch)', 'Asks your agent your hardest cases daily and after every update, and shows what changed'],
+        ['Talk to customers', '[Talk to customers](/blueprints/talk-to-customers)', '[Voice agent check](/blueprints/voice-agent-check)', 'Calls your voice agent as a customer, then waits for the text and email it promised'],
+        ['Test your sign-up and AI agents', '[Test sign-up and agents](/blueprints/test-sign-up-and-agents)', '[QA on your own flows](/blueprints/website-audit)', 'Signs up to your product after every release and finds the step that breaks'],
+        ['Work behind logins', '[Work behind logins](/blueprints/work-behind-logins)', '[Price watch](/blueprints/price-watch)', 'Signs in at each competitor every morning and reads member prices'],
+        ['Watch the market', '[Watch the market](/blueprints/watch-the-market)', '[Competitor tracking](/blueprints/competitor-tracking)', 'Signs up at each competitor and keeps every email, text, offer and price'],
+        ['Build agent products', '[Build agent products](/blueprints/build-agent-products)', '[Outbound agent check](/blueprints/outbound-agent-check)', 'Joins your AI sales rep’s lists as a prospect and keeps every message it sends'],
+        ['Train and test agents', '[Train and test agents](/blueprints/train-and-test-agents)', '[Drift watch](/blueprints/drift-watch)', 'Asks your agent your hardest cases daily and after every update, and shows what changed'],
       ],
     },
     {
@@ -350,7 +350,7 @@ export const post: BlogPost = {
           'Companies on Microsoft 365',
         ],
         [
-          'Obsession (ours): six kits, from [Talk to customers](/kits/talk-to-customers) to [Train and test agents](/kits/train-and-test-agents)',
+          'Obsession (ours): six types of blueprints, from [Talk to customers](/blueprints/talk-to-customers) to [Train and test agents](/blueprints/train-and-test-agents)',
           'An inbox, number, browser and sandbox per agent, or a blueprint that runs the job',
           'Free, then $20, $99 or $499 a month; usage per piece',
           'Stops before payment and at any identity check',
@@ -424,7 +424,7 @@ export const post: BlogPost = {
   ],
 
   related: [
-    '/kits/talk-to-customers',
+    '/blueprints/talk-to-customers',
     'recipe:voice-agent-check',
     'recipe:competitor-tracking',
     'ai-agent-use-cases-for-business',

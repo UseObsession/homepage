@@ -273,7 +273,7 @@ export const study: UseCaseStudy = {
       {
         q: 'Which pieces does it use?',
         a: 'Email, phone and the browser, under 1 persona per store. Mystery shopping runs the stores you pitch and keep, and Email and SMS tracking runs their competitors, on the same key and bill.',
-        link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
+        link: { label: 'See the Test sign-up and agents blueprints', to: '/blueprints/test-sign-up-and-agents' },
       },
       {
         q: 'Do our clients have to agree?',
@@ -317,6 +317,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'mystery',
     },
-    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
+    link: { label: 'See the Test sign-up and agents blueprints', to: '/blueprints/test-sign-up-and-agents' },
   },
 }

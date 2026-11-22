@@ -1,7 +1,7 @@
 import { kitPathOf, kitsPath } from '../kitPaths'
 import type { KitPage } from './types'
 
-/* Train and test agents (/kits/train-and-test-agents): AI labs and evaluation teams give each run a real identity, a
+/* Train and test agents (/blueprints/train-and-test-agents): AI labs and evaluation teams give each run a real identity, a
    sandbox and a browser, started when the run needs them, and score every step from the event log. Product Marketing
    book, job 6. Owns "rl environments for ai agents" (Google suggestions, 22 Nov 2026). */
 
@@ -36,7 +36,7 @@ export const train: KitPage = {
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'Kits', path: kitsPath },
+      { name: 'Blueprints', path: kitsPath },
       { name: 'Train and test agents', path: kitPathOf.train },
     ],
   },
@@ -72,6 +72,12 @@ export const train: KitPage = {
       { piece: 'personas', line: 'An identity per run that can wait for days.' },
     ],
     prices: ['sandbox', 'memory', 'browser', 'inbox', 'number', 'log'],
+  },
+
+  blueprints: {
+    heading: 'Keep testing agents after they ship.',
+    line: 'Obsession asks your hardest cases after every update, runs them on vendors’ agents before you sign, and tests every resolution you’re billed for.',
+    slugs: ['drift-watch', 'vendor-agent-check', 'resolution-check'],
   },
 
   code: {

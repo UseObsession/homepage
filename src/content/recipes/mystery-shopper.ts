@@ -261,6 +261,6 @@ export const recipe: Recipe = {
       button: 'Start free',
       interest: 'mystery',
     },
-    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
+    link: { label: 'More blueprints to test sign-up and agents', to: '/blueprints/test-sign-up-and-agents' },
   },
 }

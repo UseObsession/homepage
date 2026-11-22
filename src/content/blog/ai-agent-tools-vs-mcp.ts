@@ -184,7 +184,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession is the toolkit for AI agents, and its [Build agent products kit](/kits/build-agent-products) puts email inboxes, phone numbers, a cloud browser and a sandbox on one API and one bill, under one identity. Its MCP server, added with claude mcp add obsession, gives an agent tools to create inboxes, numbers and browsers itself, and the events API shows each email, text and page as it lands, dated. Teams without engineers pick a blueprint such as [Support bot check](/blueprints/support-bot-check), and Obsession runs it and sends them every answer.',
+      text: 'Obsession is the toolkit for AI agents, and its [Build agent products blueprints](/blueprints/build-agent-products) puts email inboxes, phone numbers, a cloud browser and a sandbox on one API and one bill, under one identity. Its MCP server, added with claude mcp add obsession, gives an agent tools to create inboxes, numbers and browsers itself, and the events API shows each email, text and page as it lands, dated. Teams without engineers pick a blueprint such as [Support bot check](/blueprints/support-bot-check), and Obsession runs it and sends them every answer.',
     },
     {
       kind: 'cta',
@@ -275,7 +275,7 @@ export const post: BlogPost = {
   ],
 
   related: [
-    '/kits/build-agent-products',
+    '/blueprints/build-agent-products',
     'recipe:support-bot-check',
     'ai-customers-for-developers',
     'best-web-search-api-for-ai-agents',

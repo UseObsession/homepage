@@ -685,9 +685,10 @@ export type Page = {
   personaRecipes?: PersonaRecipes
   personaBuild?: PersonaBuild
   homeHow?: HomeHow
-  homeFit?: HomeFit
-  /* Home's kits band (components/persona/HomeKits, 22 Nov 2026): the six jobs as cards; the cards' words come from the kits. */
-  homeKits?: { heading: string; line: string; all: { label: string; to: string } }
+  homeProblem?: HomeProblem
+  /* Home's blueprints (components/persona/HomeBlueprints, 22 Nov 2026): the six types of blueprints as cards; each card's
+     words come from content/kitPaths and content/kits. */
+  homeBlueprints?: HomeBlueprints
   homeUseCase?: HomeUseCase
 }
 
@@ -838,6 +839,9 @@ export type RecipesIndexPage = {
   meta: Meta
   hero: { headline: string; sub: string }
   groups: { group: RecipeGroup; line: string }[]
+  /* The six types of blueprints the hub groups by (22 Nov call); each type's name, blueprints and pieces come from
+     content/kitPaths and content/kits. These are the words around them. */
+  types: { label: string; more: string; runsOn: string }
   hub: { heading: string; line: string; inputs: string[]; outputs: string[]; guide: { label: string; to: string } }
   faq: Faq
   final: Final
@@ -1188,25 +1192,36 @@ export type BlueprintJourneys = {
   round: { step: number; smallStep: number; wholeFrom: number }
 }
 
-/* Home's day one (22 Nov 2026, components/persona/HomeFit): what an AI agent needs to do, played out in a product window.
-   Each row is a tab: the need, what happens on its own, what Obsession gives it and the piece that does it. Its scene
-   shows one example agent stuck, then the piece solving it, then the event landing in the log; `words` are the scene's
-   own lines, read by kind in HomeFit, and `event` is the row it adds to the log (the last scene shows every event). */
-export type HomeFitSceneKind = 'code' | 'call' | 'chat' | 'portal' | 'sandbox' | 'log'
-export type HomeFitRow = {
-  need: string
-  without: string
-  with: string
-  piece: { label: string; to: string }
-  scene: { kind: HomeFitSceneKind; title: string; words: Record<string, string> }
-  event?: { at: string; name: string; text: string }
-}
-export type HomeFit = {
+/* Home's problem and answer (22 Nov 2026, components/persona/HomeProblem), right after the hero: an AI agent can think but
+   not act until it's equipped, as a new hire is on day one. One example agent's ID card, on its own (what it can think,
+   what it can't do yet) and equipped by Obsession (each ability unlocked by the piece that gives it, each linking that
+   piece), beside the blueprints for teams who'd rather have the job done. */
+export type HomeProblem = {
   heading: string
   line: string
-  agent: { name: string; role: string }
-  ui: { stuck: string; solved: string; open: string; pause: string; play: string; tabs: string; log: string }
-  rows: HomeFitRow[]
+  states: { alone: string; equipped: string; label: string }
+  card: {
+    name: string
+    role: string
+    think: { label: string; items: string[] }
+    act: { label: string; locked: string; with: string; items: { ability: string; piece: PieceIdLite; name: string; to: string }[] }
+    ids: { label: string; none: string; value: string }[]
+    online: string
+    offline: string
+    event: { label: string; none: string; at: string; name: string; text: string }
+  }
+  blueprints: { title: string; line: string; slugs: string[]; runs: string; out: string; link: Cta }
   caption: string
   link: Cta
+}
+export type PieceIdLite = 'email' | 'phone' | 'messaging' | 'browser' | 'sandbox' | 'personas'
+
+/* Home's blueprints (components/persona/HomeBlueprints): the heading, line, the unit after each type's count, the word
+   after how many more a type holds, and the link to every blueprint. */
+export type HomeBlueprints = {
+  heading: string
+  line: string
+  unit: { one: string; many: string }
+  more: string
+  all: { label: string; to: string }
 }

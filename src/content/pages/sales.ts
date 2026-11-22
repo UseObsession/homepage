@@ -173,7 +173,7 @@ export const page: Page = {
       {
         q: 'Which blueprints does a sales team use?',
         a: 'Lead response checks time your speed to lead. Prospect intelligence briefs each account on your list. Account watch dates every change at the accounts you already sell to.',
-        link: { label: 'Every blueprint that watches the market', to: '/kits/watch-the-market' },
+        link: { label: 'Every blueprint that watches the market', to: '/blueprints/watch-the-market' },
       },
       {
         q: 'Does it work with Clay and our CRM?',

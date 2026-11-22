@@ -35,7 +35,7 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Watch the market kit',
+    pill: 'Watch the market blueprints',
     headline: 'A column of facts on the Clay rows you already have.',
     sub: 'Every agency buys the same install data, so every brand hears the same opener. A persona signs up at each company on your rows and brings back what it sends a new customer, and what never came, dated with a screenshot. Your first line becomes a fact about their own texts.',
     example: { chips: [] },
@@ -295,6 +295,6 @@ export const study: UseCaseStudy = {
       button: 'Start free',
       interest: 'prospect',
     },
-    link: { label: 'See the Watch the market kit', to: kitPathOf.watch },
+    link: { label: 'See the Watch the market blueprints', to: kitPathOf.watch },
   },
 }

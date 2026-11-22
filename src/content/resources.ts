@@ -69,7 +69,7 @@ export const useCasesPage: UseCasesIndexPage = {
     description:
       'AI agent use cases by job: answering customers, testing sign-up, building agent products, working in portals, watching the market and running evals.',
     answer:
-      'Obsession use cases show one job in one industry at a time, sorted by the kit that does it: the pieces it runs on, the blueprint that runs it for you, and what lands in your tools.',
+      'Obsession use cases show one job in one industry at a time, sorted by the type of blueprint that does it: the pieces it runs on, the blueprint that runs it for you, and what lands in your tools.',
     ogImage: '/og/use-cases.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -78,7 +78,7 @@ export const useCasesPage: UseCasesIndexPage = {
   },
   hero: {
     headline: 'Use cases, sorted by the job your agent does.',
-    sub: 'Obsession use cases show one job in one industry at a time, sorted by the kit that does it: the pieces it runs on, the blueprint that runs it for you, and what lands in your tools.',
+    sub: 'Obsession use cases show one job in one industry at a time, sorted by the type of blueprint that does it: the pieces it runs on, the blueprint that runs it for you, and what lands in your tools.',
   },
   byKit: [
     {
@@ -121,8 +121,8 @@ export const useCasesPage: UseCasesIndexPage = {
     { kit: 'train', paths: ['/use-cases/ai-agent-evaluation'] },
   ],
   orbit: {
-    label: 'Obsession in the middle, its five pieces around it, and the six kits on the outer ring: every use case below belongs to one of them.',
-    caption: 'Every use case below belongs to one of the six kits.',
+    label: 'Obsession in the middle, its five pieces around it, and the six types of blueprints on the outer ring: every use case below belongs to one of them.',
+    caption: 'Every use case below belongs to one of the six types of blueprints.',
   },
   group: {
     id: 'examples',

@@ -729,16 +729,6 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
                         <li key={p.to}>{pageRow(p, ' s-xm__link')}</li>
                       ))}
                     </ul>
-                  </div>
-                  <div className="s-sm__col s-sm__col--teams" data-col>
-                    <p className="s-menu__label s-menu__label--caps" id={`${ids.solutions}-cases`}>
-                      {solutions.useCasesLabel}
-                    </p>
-                    <ul className="s-menu__list" aria-labelledby={`${ids.solutions}-cases`}>
-                      {solutions.useCases.map((p) => (
-                        <li key={p.to}>{pageRow(p, ' s-xm__link')}</li>
-                      ))}
-                    </ul>
                     {go(
                       solutions.useCasesAll.to,
                       'ob-menu__item s-menu__all',
@@ -845,23 +835,12 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
           </section>
         ))}
 
-        <section className="s-mnav__sec" aria-labelledby={`${ids.sheet}-cases`}>
-          <p className="s-mnav__head" id={`${ids.sheet}-cases`}>
-            {solutions.useCasesLabel}
-          </p>
-          <ul className="ob-mnav__list s-mnav__tools">
-            {[...solutions.useCases, solutions.useCasesAll].map((p) => (
-              <li key={p.to}>{pageRow(p, ' s-page--sheet')}</li>
-            ))}
-          </ul>
-        </section>
-
         <section className="s-mnav__sec" aria-labelledby={`${ids.sheet}-teams`}>
           <p className="s-mnav__head" id={`${ids.sheet}-teams`}>
             {solutions.teamsLabel}
           </p>
           <ul className="ob-mnav__list s-mnav__tools">
-            {solutions.teams.map((p) => (
+            {[...solutions.teams, solutions.useCasesAll].map((p) => (
               <li key={p.to}>{pageRow(p, ' s-page--sheet')}</li>
             ))}
           </ul>
