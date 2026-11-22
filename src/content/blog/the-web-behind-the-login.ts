@@ -300,7 +300,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An Obsession agent signs up the way any customer can, with its own [inbox](/email), [phone number](/phone) and [browser that keeps its logins](/browser), and says it’s an AI when it talks to a person. It never gets round a CAPTCHA or a bot block, and it never invents identity details ([who visits a site, and the lines every agent keeps](/agents)). Each new email, price and offer is added on the day it arrives, so a company’s history builds from the first day it is followed. One question can be asked across many companies at once, a row each. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'An Obsession agent signs up the way any customer can, with its own [inbox](/email), [phone number](/phone) and [browser that keeps its logins](/browser), and says it’s an AI when it talks to a person. It never invents identity details ([who visits a site, and the lines every agent keeps](/agents)). Each new email, price and offer is added on the day it arrives, so a company’s history builds from the first day it is followed. One question can be asked across many companies at once, a row each. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
     },
     {
       kind: 'cta',
@@ -440,7 +440,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is it legal to collect data behind a login?',
-          a: 'Collection stays on the customer’s side of the line when it signs up through public forms as any customer can. It should also say it’s an AI when it talks to a person, use no fake details and never get round a CAPTCHA. Signing in to someone else’s account, or getting past an identity check, crosses it. Laws differ by country and use, so take legal advice for your own case.',
+          a: 'Collection stays on the customer’s side of the line when it signs up through public forms as any customer can. It should also say it’s an AI when it talks to a person and use no fake details. Signing in to someone else’s account, or getting past an identity check, crosses it. Laws differ by country and use, so take legal advice for your own case.',
         },
         {
           q: 'How big is the deep web?',

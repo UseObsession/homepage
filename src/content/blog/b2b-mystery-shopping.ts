@@ -224,7 +224,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The test buyer is an Obsession agent, a customer that says it’s an AI when it talks to a person. It never uses fake payment details and never gets round a CAPTCHA or a bot block, as [what every agent keeps to](/agents) sets out. Whether it also says it’s a test from your company is your company’s setting. Where a form puts a CAPTCHA or a bot check in front of a step, the record names the step it couldn’t reach.',
+      text: 'The test buyer is an Obsession agent, a customer that says it’s an AI when it talks to a person. It never uses fake payment details, as [what every agent keeps to](/agents) sets out. Whether it also says it’s a test from your company is your company’s setting.',
     },
     {
       kind: 'p',

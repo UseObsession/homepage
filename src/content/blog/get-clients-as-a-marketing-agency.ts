@@ -299,7 +299,6 @@ export const post: BlogPost = {
       items: [
         '**As many Obsession agents as the job needs.** Each has its own inbox, phone number and browser, and does one thing at each brand.',
         '**An agent in the right country.** Each one shops from the US or the UK, to match the brand’s market.',
-        '**CAPTCHAs, the puzzles that check a visitor is a person.** Each report names any step a CAPTCHA kept it from testing, so the agency knows exactly what to check by hand.',
         '**Reports on the agency’s clock.** Read at 4, 12, 24 or 48 hours, or keep each brand followed for weeks or months. A brand hiring now can get its first finding within hours, and a client gets weekly or monthly checks.',
         '**In the agency’s name.** Reports can carry the agency’s name and logo for the brands it serves.',
         '**Scale.** It runs at 300 brands a month, 1,000 or 5,000. It is built for millions of companies, each looked up in one call. Every brand stays followed for as long as the agency wants, with each new email dated the day it arrives.',

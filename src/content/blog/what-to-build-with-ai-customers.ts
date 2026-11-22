@@ -316,7 +316,7 @@ export const post: BlogPost = {
           'Obsession (ours): 5 verbs over MCP, the API and SDKs',
           'What any company shows only to customers\nShared history from day one',
           'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
+          'Stops before payment and at any identity check',
           'Builds that must stay a customer of many companies, with proof',
         ],
       ],
@@ -330,7 +330,6 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A bot wall or a CAPTCHA stops an AI customer,** and the report names the step it couldn’t test.',
         '**A new customer sees what new customers get.** Long standing customers can receive other emails and other inbox placement.',
         '**Some builds need a real purchase,** on a card the owner funds.',
         '**It records what a company sends and shows.** Why the company sent it sits in that company’s own systems.',

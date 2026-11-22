@@ -7,8 +7,8 @@ import type { BlogPost } from './types'
    Readers: product and engineering leads building agents, and the teams whose sites agents visit.
    Every source read on its own page on 11 Nov 2026: OpenAI Help Center (cloud browser in ChatGPT Work, and its Web Bot
    Auth allowlisting page); Claude Platform Docs (computer use tool, pricing, vision); 1Password's 16 Jul 2026 release;
-   Browserbase docs (Contexts) and pricing; Browser Use docs (Profiles, 2FA) and pricing; Firecrawl docs (Interact);
-   RFC 6265, 6749, 6238 and 9421 (rfc-editor.org); NIST SP 800-63B-4; the W3C note on CAPTCHA (16 Dec 2021); Cloudflare's
+   Browserbase docs (Contexts) and pricing; Browser Use docs (Profiles, 2FA); Firecrawl docs (Interact);
+   RFC 6265, 6749, 6238 and 9421 (rfc-editor.org); NIST SP 800-63B-4; Cloudflare's
    Web Bot Auth docs (8 Oct 2026); the IETF webbotauth charter; 18 U.S.C. 1030 (Cornell LII); Van Buren (supremecourt.gov);
    hiQ v. LinkedIn (9th Cir., 18 Apr 2022) and Amazon.com Services v. Perplexity AI (9th Cir., 4 Aug 2026), both from
    cdn.ca9.uscourts.gov; Computer Misuse Act 1990 ss.1 and 17 (legislation.gov.uk); exa.ai.
@@ -28,9 +28,7 @@ const RFC6265 = 'https://www.rfc-editor.org/rfc/rfc6265'
 const RFC6749 = 'https://www.rfc-editor.org/rfc/rfc6749'
 const RFC6238 = 'https://www.rfc-editor.org/rfc/rfc6238'
 const NIST = 'https://pages.nist.gov/800-63-4/sp800-63b.html'
-const W3C_CAPTCHA = 'https://www.w3.org/TR/turingtest/'
 const BB_PRICING = 'https://www.browserbase.com/pricing'
-const BU_PRICING = 'https://browser-use.com/pricing'
 const RFC9421 = 'https://www.rfc-editor.org/rfc/rfc9421'
 const CF_WBA = 'https://developers.cloudflare.com/bots/reference/bot-verification/web-bot-auth/'
 const OPENAI_ALLOW = 'https://help.openai.com/en/articles/11845367-chatgpt-works-cloud-browser-allowlisting'
@@ -218,7 +216,6 @@ export const post: BlogPost = {
         ['Authenticator code', 'The shared secret, or a person reads the code', '30 seconds each', 'No secret and nobody on hand'],
         ['Text message code', 'A number that receives texts', 'Set by the site', 'No phone and nobody on hand'],
         ['Passkey', 'Nothing; the person’s device approves', 'Until removed', 'Every sign-in needs the person'],
-        ['Bot check or CAPTCHA', 'Nothing it can hold', 'Each visit', 'The step itself'],
       ],
     },
     {
@@ -241,24 +238,10 @@ export const post: BlogPost = {
       caption: 'An agent’s saved login at an invented site: the cookie carries it for weeks, and each code, device check and expiry hands the run back to a person.',
     },
 
-    { kind: 'h2', id: 'bot-checks', text: 'Why bot checks and CAPTCHAs stop agents' },
+    { kind: 'h2', id: 'bot-checks', text: 'When a site restricts AI agents' },
     {
       kind: 'p',
-      text: 'A CAPTCHA, a “Completely Automated Public Turing Test, to Tell Computers and Humans Apart”, exists to tell software from people ([W3C](' +
-        W3C_CAPTCHA +
-        ')). An agent is exactly what it is built to catch. The same W3C note says sites keep these checks even for signed-in users, because “even authenticated login provides inadequate protection from malicious actors”.',
-    },
-    {
-      kind: 'p',
-      text: 'Many checks now run without a puzzle. The note describes Google’s reCAPTCHA v3, released in 2018, which returns a score for how likely a visitor is to be human, without “the need to interrupt users with challenges at all”. Where the score is unclear, the note quotes Google advising sites to add a second challenge, such as two-factor authentication.',
-    },
-    {
-      kind: 'p',
-      text: 'OpenAI’s help page says some websites restrict automated browser agents, and that “each website ultimately decides whether to allow cloud browser traffic”. Some browser providers list ways past these checks. Browserbase’s paid plans list automatic CAPTCHA solving and stealth modes ([Browserbase pricing](' +
-        BB_PRICING +
-        ')). Browser Use lists CAPTCHA solving as included, and routes traffic through home IP addresses rather than data centres ([Browser Use pricing](' +
-        BU_PRICING +
-        ')). Whether getting past a site’s check is allowed depends on that site’s terms and on the law where each side is.',
+      text: 'OpenAI’s help page says some websites restrict automated browser agents, and that “each website ultimately decides whether to allow cloud browser traffic”.',
     },
     {
       kind: 'p',
@@ -358,7 +341,6 @@ export const post: BlogPost = {
       items: [
         '**Someone else’s account.** A client’s or a colleague’s login, even with their permission, where the site’s terms limit who may use it.',
         '**A site that has said no.** A cease-and-desist letter, a block or a changed setting, after which continued access looks like Power Ventures.',
-        '**Getting past a bot check.** Solving or avoiding a CAPTCHA or another check the site put in front of a step.',
         '**Changing how the agent identifies itself.** Altering its user-agent string, or anything else that tells a site what it is, after a site has blocked it.',
         '**Other people’s data.** Accounts that hold customers’ or employees’ details, where data protection law adds duties of its own.',
         '**More than one country.** An agent run from one country on a site in another, where both sets of rules can apply.',
@@ -376,7 +358,9 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Take a run that opens a saved session, checks 3 pages and reads an offer in 25 steps. Say each step sends about 12,500 tokens and returns 250. The tokens sent cover the tools, the 3 latest screenshots and the instructions and history so far. On Claude Sonnet 5.5, at $2 per million input tokens and $10 per million output ([Anthropic pricing](' +
         CLAUDE_PRICING +
-        ')), that is about $0.69 of model time. Five minutes of Browserbase at its $0.12 hourly rate adds about a cent. On Claude Haiku 5.5, at $0.10 and $0.50 per million, the same run costs about 3 cents, if it completes the task as reliably.',
+        ')), that is about $0.69 of model time. Five minutes of Browserbase at its $0.12 hourly rate ([Browserbase pricing](' +
+        BB_PRICING +
+        ')) adds about a cent. On Claude Haiku 5.5, at $0.10 and $0.50 per million, the same run costs about 3 cents, if it completes the task as reliably.',
     },
     {
       kind: 'art',
@@ -451,7 +435,7 @@ export const post: BlogPost = {
           'Obsession (ours): competitor tracking, trial teardown, the API and MCP',
           'Its own account at each company, every email, text, price and offer dated',
           'Early access, onboarding teams now. Priced per call or per company watched',
-          'Never gets round a CAPTCHA or a bot block, never invents identity details',
+          'Stops at any identity check and never invents identity details',
           'What many companies show their customers, over months',
         ],
       ],
@@ -519,7 +503,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How do websites know a visitor is an AI agent?',
-          a: 'From what it says about itself, and from how it behaves. A user-agent string names the browser or agent, and Web Bot Auth adds a cryptographic signature the site checks against keys the operator publishes. OpenAI’s cloud browser signs its requests this way. Sites also score each visit and show a CAPTCHA to visitors they can’t place.',
+          a: 'From what it says about itself, and from how it behaves. A user-agent string names the browser or agent, and Web Bot Auth adds a cryptographic signature the site checks against keys the operator publishes. OpenAI’s cloud browser signs its requests this way. Sites also score each visit by how it behaves.',
           link: { label: 'Agent ready website', to: '/blog/agent-ready-website' },
         },
       ],
@@ -548,9 +532,7 @@ export const post: BlogPost = {
     { title: 'RFC 6749: The OAuth 2.0 Authorization Framework', publisher: 'IETF, RFC Editor', url: RFC6749, date: '2012-10' },
     { title: 'RFC 6238: TOTP, Time-Based One-Time Password Algorithm', publisher: 'IETF, RFC Editor', url: RFC6238, date: '2011-05' },
     { title: 'SP 800-63B-4: Digital Identity Guidelines, Authentication and Authenticator Management', publisher: 'NIST', url: NIST, date: '2025-08' },
-    { title: 'Inaccessibility of CAPTCHA: alternatives to visual Turing tests on the web', publisher: 'W3C', url: W3C_CAPTCHA, date: '2021-12-16' },
     { title: 'Pricing', publisher: 'Browserbase', url: BB_PRICING },
-    { title: 'Pricing', publisher: 'Browser Use', url: BU_PRICING },
     { title: 'RFC 9421: HTTP Message Signatures', publisher: 'IETF, RFC Editor', url: RFC9421, date: '2024-02' },
     { title: 'Web Bot Auth', publisher: 'Cloudflare docs', url: CF_WBA, date: '2026-10-08' },
     { title: 'ChatGPT Work’s cloud browser allowlisting', publisher: 'OpenAI Help Center', url: OPENAI_ALLOW, date: '2026-11-10' },

@@ -7,7 +7,7 @@
    files, and reports:
    - dashes: em and en dashes anywhere in visible text (the house style uses commas, colons and full stops);
    - retired: phrases the rewrite retired (the old category line, the seller's-representative recipes, Founders as a
-     reader, "template", counts of recipes);
+     reader, "template", counts of recipes, any mention of CAPTCHAs);
    - spelling: American spellings where the site writes British English;
    - contradictions: lines that contradict system.md (agents that "click your ads", "intelligence infrastructure").
    Each finding prints the file, the rule and the text around it. */
@@ -54,6 +54,7 @@ const RULES = [
   { id: 'retired', re: /be a customer of (every|any)/gi, why: 'the retired hero (3 Nov): send an AI customer to any company' },
   { id: 'retired', re: /first AI customers that work for you/gi, why: 'the retired tagline (3 Nov)' },
   { id: 'retired', re: /\bstores we shopped\b/gi, why: 'say our AI customers, not we shopped (3 Nov)' },
+  { id: 'retired', re: /captcha/gi, why: 'the site says nothing about CAPTCHAs either way (founders, 22 Nov 2026; COPY.md, claims register)' },
   { id: 'contradiction', re: /click(s|ing)? (on )?your ads/gi, why: 'agents open an ad’s page; they never click your ads' },
   {
     id: 'spelling',

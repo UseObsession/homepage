@@ -270,12 +270,11 @@ After step 10: link **See a sample output** → `/sample-output`.
 8. **What does our team have to do?** Type the store’s address, or connect Shopify and your email platform, in a few minutes. Fund a card only if you want orders placed. After that, read the alerts.
 9. **Will the checks clutter our numbers?** No. Every agent is labelled, so you can filter them out of your lists and reports. Every order is marked as an AI test in its order note, kept out of your ad conversions, reviews and email lists, and refunded.
 10. **Does it place real orders?** If you choose. An order goes on a card you fund, capped to that order, and is refunded through your normal process. It never uses fake payment details.
-11. **What if a CAPTCHA or a bot wall stops it?** It stops too, and the check names the step it couldn’t test. It never gets round one.
-12. **Does it talk to my team?** Only if a journey needs it, like a question to support. When it talks to a person, by chat, email or phone, it says it’s AI from Obsession.
-13. **Who sees what it finds?** You, and anyone you send a proof link to. A check of your own store is private by default; Obsession shares what companies did, never who asked.
-14. **How is this different from a one-off audit?** An audit sees your store on one day. Obsession checks it every week, and again after each change it sees or you tell it about, so a break from Thursday’s theme is caught on Thursday.
-15. **How is this different from uptime monitoring?** Uptime monitoring tells you the site loads. Obsession tells you a customer got the email, the code worked and the basket was remembered.
-16. **Do I have to be on Shopify?** No. It shops any store a customer can reach. On Shopify, connecting it lets a theme publish start a check by itself.
+11. **Does it talk to my team?** Only if a journey needs it, like a question to support. When it talks to a person, by chat, email or phone, it says it’s AI from Obsession.
+12. **Who sees what it finds?** You, and anyone you send a proof link to. A check of your own store is private by default; Obsession shares what companies did, never who asked.
+13. **How is this different from a one-off audit?** An audit sees your store on one day. Obsession checks it every week, and again after each change it sees or you tell it about, so a break from Thursday’s theme is caught on Thursday.
+14. **How is this different from uptime monitoring?** Uptime monitoring tells you the site loads. Obsession tells you a customer got the email, the code worked and the basket was remembered.
+15. **Do I have to be on Shopify?** No. It shops any store a customer can reach. On Shopify, connecting it lets a theme publish start a check by itself.
 
 ## More (3 link cards, then the small print)
 
@@ -317,7 +316,7 @@ After step 10: link **See a sample output** → `/sample-output`.
 - **What connecting adds.** The "why" (code ended 30 Sep, flow off since 14 Oct) needs Shopify and the email platform connected, read only, and the page now says so. From the address alone, you get what happened and the fix to try.
 - **False alarms.** New question: "What if we meant it?" Mark it intended. Connected, it reads the flow's filters first.
 - **Clutter.** The answer now matches the site's existing recipes: agents labelled, test orders marked in the order note, kept out of ad conversions, reviews and lists, then refunded. "A little" is gone.
-- **New questions:** what your team has to do, and what happens at a CAPTCHA (it stops and names the step, as Website audit says).
+- **New questions:** what your team has to do. A question on CAPTCHAs was added here and cut on 22 Nov 2026: the site says nothing about them either way (COPY.md, claims register).
 - **The free check matches the site's free report:** 4 new customers, sign up, browse, basket, checkout, 48 hours, within 4 days. The old "run every journey" promised more than that.
 - **Copy fixes:**
   - The real sample's line says what was watched: email, across 4 journeys.

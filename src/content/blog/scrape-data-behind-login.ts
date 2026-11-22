@@ -221,7 +221,7 @@ export const post: BlogPost = {
         BU_BROWSERS +
         ') is an open source library in which an AI model drives the browser from a task written in plain words. It can attach to the Chrome you already have open, with your logins, or start a new Chrome on a temporary copy of one of your Chrome profiles. Its docs warn that code the model writes can read the cookies in those profiles, and advise running untrusted tasks in a container or virtual machine. Cloud browsers keep logins in [a profile](' +
         BU_PROFILES +
-        ') of cookies and local storage, which the docs say to sync again when a site’s login expires. Cloud browsers also solve CAPTCHAs automatically unless the solver is turned off.',
+        ') of cookies and local storage, which the docs say to sync again when a site’s login expires.',
     },
     { kind: 'h3', id: 'n8n', text: 'n8n web scraping with login' },
     {
@@ -361,7 +361,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Agents reach it with 5 verbs: lookup, facts, evidence, index and notify. They work the same over MCP, the standard way AI agents call tools, the API, and SDKs in TypeScript and Python. The evidence verb returns the raw email with its DKIM result, a signature checked on arrival to prove which company sent it, or the page as captured, with its time. Notify posts each new fact to a webhook, an address on your server, the moment it lands. Each Obsession agent uses accounts of its own and tells any person it talks to that it’s an AI. No Obsession agent gets round a CAPTCHA or a bot block, as [the rules every Obsession agent keeps](/agents) set out. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Agents reach it with 5 verbs: lookup, facts, evidence, index and notify. They work the same over MCP, the standard way AI agents call tools, the API, and SDKs in TypeScript and Python. The evidence verb returns the raw email with its DKIM result, a signature checked on arrival to prove which company sent it, or the page as captured, with its time. Notify posts each new fact to a webhook, an address on your server, the moment it lands. Each Obsession agent uses accounts of its own and tells any person it talks to that it’s an AI, as [the rules every Obsession agent keeps](/agents) set out. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Tools for scraping behind a login, compared', compare: true },
@@ -482,7 +482,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can web scraping be detected?',
-          a: 'Yes. Every request a logged-in scraper sends carries the account’s session, so the site knows which account made it, how often and from which network. Sites slow fast accounts with 429 responses and many run bot checks such as CAPTCHAs. Scrape at a person’s pace, keep one session per account, and stop when the site asks.',
+          a: 'Yes. Every request a logged-in scraper sends carries the account’s session, so the site knows which account made it, how often and from which network. Sites slow fast accounts with 429 responses. Scrape at a person’s pace, keep one session per account, and stop when the site asks.',
         },
         {
           q: 'When is an index better than a logged-in scraper?',

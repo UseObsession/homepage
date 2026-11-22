@@ -110,7 +110,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'To see one company’s record end to end, open [the sample data](/sample-output). An Obsession agent never gets round a CAPTCHA or a bot block; where a site puts one in front of a step, the record names the step it couldn’t reach ([the lines every agent keeps](/agents)).',
+      text: 'To see one company’s record end to end, open [the sample data](/sample-output). An Obsession agent says it’s an AI when it talks to a person ([the lines every agent keeps](/agents)).',
     },
 
     {

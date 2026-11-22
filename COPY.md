@@ -272,7 +272,8 @@ Every claim a reader could check, where it is, and what stands behind it. "As bu
 | Every company on the stage and screens | Home, reader pages | Invented, `.example` addresses; no Example tag since 19 Oct | Example |
 | Competitor facts (prices, counts, features) | /compare, competitors matrix | Each tool's own pages, 18 Oct 2026 (`docs/positioning/competitors.md`) | Checked on the date shown; Visualping, Klue and Crayon are described without numbers because their pages were not read |
 | The comparison marks | Home, /compare | competitors.md section 3, by kind of tool | "Partly" defined under the table |
-| Agents never use fake payment details, never get round a CAPTCHA, never click paid ads at volume, say they're AI to people | /agents, llms.txt, FAQ | system.md, the three lines | Policy |
+| Agents never use fake payment details, never click paid ads at volume, say they're AI to people | /agents, llms.txt, FAQ | system.md, the three lines | Policy |
+| Nothing about CAPTCHAs, either way: not that an agent stops at one or never gets round one, and not that it solves one. Where an old line pairs a CAPTCHA with a bot block ("a CAPTCHA or a bot block", "a bot wall or a CAPTCHA"), the whole clause goes, since we sell a stealth browser. The words "the record names the step it couldn't reach" went with it | Nowhere: pages, guides, llms.txt, FAQs, comparison tables | The founders, 22 Nov 2026: the browser supplier solves some CAPTCHAs, and it is not a feature we market. `scripts/lint-copy.mjs` flags any mention | Policy: never claimed |
 
 ---
 
@@ -301,7 +302,7 @@ Every claim a reader could check, where it is, and what stands behind it. "As bu
 
 **Automatic, on every build**
 - `npm run build`: types, lint, OG images, prerender checks (meta answer on the page, llms intro names every recipe, unique titles and descriptions, title and description lengths, no bracketed placeholders).
-- `node scripts/lint-copy.mjs` (add `--strict` to fail the build): dashes, retired phrases (the old category line, cut recipe names, "template", /founders, "do business with other companies for you"), contradictions ("never click your ads"), American spellings.
+- `node scripts/lint-copy.mjs` (add `--strict` to fail the build): dashes, retired phrases (the old category line, cut recipe names, "template", /founders, "do business with other companies for you", any mention of CAPTCHAs), contradictions ("never click your ads"), American spellings.
   - Before the rewrite: 986 retired phrases, 2 contradictions, 13 spellings.
   - After: 1 retired (a code comment on a use case page, left as briefed), 0 contradictions, 12 spellings that are all code tokens or URLs (`catalog`, `organization` in a link).
 

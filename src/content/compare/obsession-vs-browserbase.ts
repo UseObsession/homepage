@@ -4,7 +4,7 @@ import { ENTITY } from '../site'
 /* /compare/obsession-vs-browserbase. Every Browserbase fact is from its own pages, read 11 Nov 2026
    (_research/seo/pagetypes-11nov/research/dev_apis.json; the home page, contexts docs and pricing re-read the same
    day). Browserbase gives a developer's agent cloud browsers; Obsession returns what companies showed signed-up
-   customers, already collected. Its CAPTCHA claim is stated as its own; Obsession's line is the one on /agents. */
+   customers, already collected. Its claims are stated as its own; Obsession's lines are the ones on /agents. */
 
 const BB = 'https://www.browserbase.com/'
 const BB_CONTEXTS = 'https://docs.browserbase.com/features/contexts'
@@ -56,7 +56,7 @@ export const ref: ReferencePage = {
     { kind: 'h3', id: 'browserbase', text: 'Browserbase: cloud browsers for your agents' },
     {
       kind: 'p',
-      text: `As of 11 November 2026, [Browserbase’s home page](${BB}) reads “Give your agents access to the whole web” and “Browserbase makes the web as reliable and programmable as APIs”. Its products include cloud browsers, Stagehand (its SDK for browser agents), Search and Fetch APIs, Functions, Sandboxes and Agent Identity. It says an agent “logs in, navigates, and pulls data from any website, login walls included”, and that Agent Identity gets agents “past anti-bot systems, CAPTCHAs, and authentication walls”.`,
+      text: `As of 11 November 2026, [Browserbase’s home page](${BB}) reads “Give your agents access to the whole web” and “Browserbase makes the web as reliable and programmable as APIs”. Its products include cloud browsers, Stagehand (its SDK for browser agents), Search and Fetch APIs, Functions, Sandboxes and Agent Identity. It says an agent “logs in, navigates, and pulls data from any website, login walls included”.`,
     },
     {
       kind: 'p',
@@ -111,7 +111,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'The two take different lines on bot defences. An Obsession agent says it’s an AI when it talks to a person and never gets round a CAPTCHA or a bot block; where a site puts one in front of a step, the record names the step it couldn’t reach. The lines are on [the page for companies an agent visits](/agents), and one company’s whole record is in [the sample data](/sample-output).',
+      text: 'An Obsession agent says it’s an AI when it talks to a person. The lines every agent keeps are on [the page for companies an agent visits](/agents), and one company’s whole record is in [the sample data](/sample-output).',
     },
 
     {

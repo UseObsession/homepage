@@ -10,7 +10,7 @@ import { AI_CUSTOMER } from '../glossary'
    brief; the definition word for word; 34 jobs in five groups, each row in the words of the live page that runs it and
    linked to it, with the live guide that teaches it where one exists (its anchor is the query that guide owns in
    docs/SEARCH.md, or its primary phrase); the first job by role, with each free offer in the site's own words; the
-   hand-overs (the CAPTCHA line, no fake payment details, says it is an AI); scale and cost; the options compared, with
+   hand-overs (no fake payment details, says it is an AI); scale and cost; the options compared, with
    the last row ours; the FAQ. Texts are left out of every claim. Data and investor uses wait for a live page.
    Read at source on 31 Oct 2026: Salesforce's State of Service release (20 May 2026), Meta's Muse launch post (8 Sep
    2026), T-ROC's mystery shopping page (4 May 2026), Shopify's SimGym help page, Visualping's pricing, MailCharts' home
@@ -566,7 +566,6 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Bot checks.** A CAPTCHA is a puzzle that blocks automated visitors. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test.',
         '**Payment.** It never uses fake payment details. It spends only on a card capped at a budget the business sets, for a job it approved, like a test order on its own store that the AI customer refunds. With no budget, every checkout stops before payment.',
         '**People.** When it talks to a person, by chat, email or phone, it says it is an AI.',
         '**Why something happened.** It sees what any customer sees, at any company. Why a company sent something sits in that company’s own tools.',

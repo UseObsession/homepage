@@ -444,7 +444,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Website audit](/blueprints/website-audit), [Mystery shopper](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Listings and AI answers](/blueprints/listings-ai-answers)',
           'What your store and its competitors show new customers, every email, code and price dated with proof',
           'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
+          'Stops before payment and at any identity check',
           'What a real customer gets after sign up, click and checkout, kept as proof',
         ],
       ],

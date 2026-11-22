@@ -247,7 +247,6 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A bot wall or a CAPTCHA stops it.** An AI customer never gets round one, and names the step it couldn’t test.',
         '**A new customer sees what new customers get.** Engaged, long standing customers can receive other emails and other inbox placement.',
         '**Countries differ.** Prices, offers and delivery messages vary by market, so a watch needs a number and an address in each market it covers.',
         '**Some journeys need a real purchase.** Delivery and returns messages arrive only after an order, which needs a card the owner funds.',
@@ -261,7 +260,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'Can AI agents sign up for newsletters and accounts?',
-          a: 'Yes. An AI customer with its own inbox and phone number signs up through public forms as any customer can, and confirms by email or text where the company asks. It stops at a CAPTCHA or a bot wall.',
+          a: 'Yes. An AI customer with its own inbox and phone number signs up through public forms as any customer can, and confirms by email or text where the company asks.',
         },
         {
           q: 'Can an AI agent have its own email address?',

@@ -447,7 +447,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Website audit](/blueprints/website-audit), [Mystery shopper](/blueprints/mystery-shopper), [Delivery monitoring](/blueprints/delivery-monitoring)',
           'Every email, link and code a new customer meets after every release or each morning, kept with its time',
           'Early access, onboarding teams now. Priced per call or per company watched',
-          'Sees what a new customer receives, and names any step behind a CAPTCHA',
+          'Sees what a new customer receives, and stops before payment',
           'What a customer gets after every change, for stores that change often or run paid traffic',
         ],
       ],

@@ -7,8 +7,8 @@ import type { AgentsPage, Llms, NotFoundPage, PrivacyPage, RecipesIndexPage } fr
    a persona on the web and keeps them running, from a recipe, the API or MCP; early access, never a waitlist. The agents
    appear only where a page says where the data comes from (/agents). The lines every agent keeps (obsession/system.md):
    the event log is never changed, who asked stays private unless they choose to be named, and the law (an agent says it's
-   AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, never
-   clicks paid ads at volume). */
+   AI when it talks to a person, never uses fake payment details, never clicks paid ads at volume). COPY.md's Policy rows
+   name a topic the site leaves out on purpose (founders, 22 Nov 2026). */
 
 /* The 1 address every notice on the site gives. The founders must confirm this mailbox exists and is read before the
    site ships (agents@ or privacy@ can be aliases that forward here). */
@@ -324,7 +324,6 @@ export const agentsPage: AgentsPage = {
       list: [
         'Pretends to be a person when it talks to one',
         'Uses fake payment details',
-        'Gets round a CAPTCHA or a bot block',
         'Clicks paid ads at volume',
         'Changes what it found: every receipt is kept as it arrived',
       ],
@@ -417,7 +416,7 @@ export const llms: Llms = {
     'A persona puts the pieces under one identity: an inbox, a number, its channels, a browser profile and a sandbox when needed. It lives on an actor runtime, so it costs nothing while it waits, answers a new message in about 50 ms without starting a machine, runs on a schedule, stops at any identity check, stops before payment unless you give it your own payment card, and every page, email, text and call it sees lands in your event log, each dated, with screenshots. It says it’s an AI when it talks to a person.',
     `Developers use the pieces through the API, SDKs and MCP, so their own agents call them as tools. Events reach webhooks, Clay, Zapier, HubSpot, Baserow and Supabase. Each piece is priced on its own (useobsession.com/pricing): an inbox costs ${prices.inbox.amount} a month (the Free plan includes ${plans.find((pl) => pl.id === 'free')?.allowances.inbox}), a US number ${prices.number.amount} a month, a browser ${prices.browser.amount} an hour and a sandbox ${prices.sandbox.amount} a vCPU hour, and an idle persona costs nothing. Every plan pays the same list rates, and a paid plan’s fee covers a set amount of that usage, from $${plans.find((pl) => pl.id === 'developer')?.monthly} a month, which covers $${plans.find((pl) => pl.id === 'developer')?.covers}, to $${plans.find((pl) => pl.id === 'scale')?.monthly}, which covers $${plans.find((pl) => pl.id === 'scale')?.covers}. Model tokens are priced per million like any piece, from ${prices.tokensIn.amount} per million input tokens on Auto, or nothing with your own key.`,
     'Blueprints are jobs that run on Obsession beside the pieces, each with a free run, then counted toward what your plan covers at list rates, with each page showing what a typical month costs: ours, ready to run for teams with no engineers, or your own task or computation, with nothing to host. Every result lands in the same event log developers subscribe to, and reaches a spreadsheet, Clay, a Claude agent or the Obsession dashboard. They cover other companies (competitor tracking, ad tracking, email and SMS tracking, price watch, trial teardown, prospect intelligence, account watch), your own flows (mystery shopping for ecommerce brands and their agencies, QA on your own flows, lead response checks, ad landing check, partner checks, delivery monitoring, listings and AI answers), and the AI agents you run (support bot check, voice agent check, outbound agent check, sales agent check, vendor agent check, resolution check, AI disclosure check, drift watch).',
-    `Every persona says it’s an AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, and never clicks paid ads at volume. Any company can write to ${CONTACT_EMAIL} to keep personas off its site.`,
+    `Every persona says it’s an AI when it talks to a person, never uses fake payment details and never clicks paid ads at volume. Any company can write to ${CONTACT_EMAIL} to keep personas off its site.`,
     'The sample data at useobsession.com/sample-output is a real run from September 2026: a UK skincare store, 4 personas with 1 inbox each, every inbox watched for 48 hours. A £40 basket left at 02:57 on 22 September and a checkout left at 03:11 got no reminder.',
     'Obsession is in early access, onboarding a limited number of teams.',
   ].join(' '),

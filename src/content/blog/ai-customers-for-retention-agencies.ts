@@ -382,7 +382,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Email and SMS tracking](/blueprints/email-sms-tracking), [Competitor tracking](/blueprints/competitor-tracking), [Prospect intelligence](/blueprints/prospect-intelligence)',
           'What clients, competitors and prospects send a new customer, every email and text kept as it arrived',
           'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
+          'Stops before payment and at any identity check',
           'What customers get at every client, competitor and prospect, kept as proof',
         ],
       ],

@@ -17,8 +17,7 @@ import type { BlogPost } from './types'
    name is kept once because people still search it. 1 builder comment from r/shopify (28 Sep 2026), copied word for
    word from _research/signals/raw/reddit_search/shopify.jsonl (id rs_pcj1buj). Obsession facts from BRIEF.md only: the
    line with the uses, the definition word for word, the 1,500 line word for word (the October pilot's
-   patterns cut 12 Nov, James), the 26 Oct walk as examples (no counts, no cart prices), flexible reading times, the CAPTCHA
-   line, 300, 1,000 or 5,000 a month and built for millions, credit-based plans like Claude's, the store offer in the
+   patterns cut 12 Nov, James), the 26 Oct walk as examples (no counts, no cart prices), flexible reading times, 300, 1,000 or 5,000 a month and built for millions, credit-based plans like Claude's, the store offer in the
    site's words; the within-the-hour rerun is in the live words of use-cases/leak-checks-for-ecommerce-stores.
    larkfield.example and everything in both pictures is invented. No store, brand, agency or person we worked with is
    named. No Gartner, PilotX figure, 93% or 128 stores. No dashes. */
@@ -375,7 +374,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A CAPTCHA is the puzzle a site shows to stop automated visitors. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test. Some visits now come from AI agents shopping for a person, and [is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for them.',
+      text: 'Some visits now come from AI agents shopping for a person, and [is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for them.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to test your Shopify store, compared', compare: true },

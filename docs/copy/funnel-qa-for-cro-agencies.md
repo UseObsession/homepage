@@ -254,7 +254,7 @@ After step 10: link **See a sample output** → `/sample-output`.
 15. **Will a brand or another agency know who’s asking?** Not from us. Obsession shares what a brand did, never who asked, unless you choose to be named. Your list, your settings and your slides stay yours.
 16. **It’s Q4. Why now?** Because Black Friday pop ups and codes change every week this month, and nobody signs up through them again. 5 brands, 4 days, nothing to install, and the slides are ready for January, when brands review their agencies.
 17. **How many stores can it check at once?** Up to 1,000 stores in 48 hours, so a whole pipeline or every client store in one go.
-18. **Is it legal?** Every agent does only what any customer can do, and says it’s AI when it talks to a person. It never uses fake payment details or gets round a CAPTCHA. Any company can opt out at useobsession.com/agents. This is not legal advice.
+18. **Is it legal?** Every agent does only what any customer can do, and says it’s AI when it talks to a person. It never uses fake payment details. Any company can opt out at useobsession.com/agents. This is not legal advice.
 
 ## More (4 link cards, then the small print)
 

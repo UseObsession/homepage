@@ -409,7 +409,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each Obsession agent says it’s an AI when it talks to a person. Where a form puts a CAPTCHA, a puzzle that blocks automated visitors, or a bot block in front of a step, the agent stops and the report names the step it couldn’t test. [What every Obsession agent will and won’t do](/agents) sets out the full list. Why a lead went to the wrong owner sits in the router and the CRM, where the team’s own tools show it.',
+      text: 'Each Obsession agent says it’s an AI when it talks to a person. [What every Obsession agent will and won’t do](/agents) sets out the full list. Why a lead went to the wrong owner sits in the router and the CRM, where the team’s own tools show it.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to time your replies, compared', compare: true },

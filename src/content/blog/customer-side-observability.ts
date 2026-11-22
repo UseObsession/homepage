@@ -286,7 +286,6 @@ export const post: BlogPost = {
       items: [
         '**It sees what customers receive, and not why.** The cause of a missing email sits in the company’s own tools and its own observability.',
         '**A new customer sees what new customers get.** Engaged, long standing customers can receive other emails and other placement.',
-        '**It stops at a bot wall or a CAPTCHA,** and names the step it couldn’t test.',
         '**It complements system observability.** Uptime, errors and performance stay with the tools built for them.',
       ],
     },

@@ -199,12 +199,11 @@ export const post: BlogPost = {
         ['Asking the chat', 'Saying who you are if a person replies', 'If you pose as someone else'],
         ['Posing as a made-up company', 'Misleading the competitor’s staff', 'Before any attempt'],
         ['Using someone else’s login', 'Consent from whoever controls the system', 'Before any attempt'],
-        ['Bypassing a CAPTCHA', 'The site’s refusal of automated visitors', 'Before any attempt'],
       ],
     },
     {
       kind: 'p',
-      text: 'Reading public pages and joining a newsletter as yourself are what any customer does. The questions there come from scale and copying: hiQ named copyright infringement among the claims a scraped site may still bring. Asking a help chat is like asking a shop assistant, so if a person takes over, say who you are. Bypassing a CAPTCHA, the puzzle a site uses to stop automated visitors, means going where the site has turned bots away.',
+      text: 'Reading public pages and joining a newsletter as yourself are what any customer does. The questions there come from scale and copying: hiQ named copyright infringement among the claims a scraped site may still bring. Asking a help chat is like asking a shop assistant, so if a person takes over, say who you are.',
     },
     {
       kind: 'p',
@@ -334,13 +333,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A CAPTCHA tells an agent plainly that the site wants a person at that step. In US federal law, the BOTS Act already makes it unlawful to get round the security measures a ticket site uses to enforce its purchase limits ([15 U.S.C. §45c](' +
+      text: 'In US federal law, the BOTS Act already makes it unlawful to get round the security measures a ticket site uses to enforce its purchase limits ([15 U.S.C. §45c](' +
         BOTS_ACT +
         ')).',
     },
     {
       kind: 'p',
-      text: 'For an agent doing competitor research, the practical line is to identify it, keep to public paths, respect what a site blocks and never get past a CAPTCHA. Site owners weighing the other side can see [should you block AI agents](/blog/agent-ready-website).',
+      text: 'For an agent doing competitor research, the practical line is to identify it, keep to public paths and respect what a site blocks. Site owners weighing the other side can see [should you block AI agents](/blog/agent-ready-website).',
     },
 
     { kind: 'h2', id: 'ai-customers', text: 'How Obsession agents keep to these lines' },
@@ -350,11 +349,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every Obsession agent keeps what any customer would see, and says it’s an AI when it talks to a person. It never uses fake payment details, never gets round a CAPTCHA or a bot block and never clicks paid ads at volume. Any company can write to seun@useobsession.com to keep Obsession’s agents off its site, as the [page for companies an Obsession agent visits](/agents) sets out.',
+      text: 'Every Obsession agent keeps what any customer would see, and says it’s an AI when it talks to a person. It never uses fake payment details and never clicks paid ads at volume. Any company can write to seun@useobsession.com to keep Obsession’s agents off its site, as the [page for companies an Obsession agent visits](/agents) sets out.',
     },
     {
       kind: 'p',
-      text: 'Where a company puts a CAPTCHA or a bot check in front of a step, the report names the step it couldn’t test. Each email, page and price is kept exactly as it arrived, with the time it came.',
+      text: 'Each email, page and price is kept exactly as it arrived, with the time it came.',
     },
     {
       kind: 'p',
@@ -391,7 +390,7 @@ export const post: BlogPost = {
       items: [
         '**Posing as someone.** A made-up company, a false name or a pretend buyer on a call or a demo.',
         '**A login that isn’t yours.** Someone else’s account, a shared password or an invite meant for another person.',
-        '**A block or a warning.** A CAPTCHA, a bot check, a blocked address or a letter asking you to stop.',
+        '**A block or a warning.** A blocked address or a letter asking you to stop.',
         '**Staff on record.** Call recordings, screenshots that show named people, or notes on individual employees.',
         '**Personal data.** Anything about the competitor’s staff or customers, which data protection law such as the UK GDPR covers.',
         '**Terms that bar your use.** A trial or a site whose terms exclude competitors, competitive use, bots or AI agents.',
@@ -424,7 +423,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is it legal to use an AI agent to research a competitor?',
-          a: 'The same 4 questions apply as for a person: deception, terms, trade secrets and access. In the US, the Ninth Circuit treated a shopping agent as its user’s tool under computer crime law in August 2026, and left terms of service and other claims open. Identify the agent, keep it to public paths, respect what each site blocks and never let it get past a CAPTCHA.',
+          a: 'The same 4 questions apply as for a person: deception, terms, trade secrets and access. In the US, the Ninth Circuit treated a shopping agent as its user’s tool under computer crime law in August 2026, and left terms of service and other claims open. Identify the agent, keep it to public paths and respect what each site blocks.',
         },
         {
           q: 'Is competitive intelligence the same as industrial espionage?',
