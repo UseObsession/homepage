@@ -154,13 +154,6 @@ export const recipe: Recipe = {
     { k: 'How often', v: 'Daily at 07:00, and after every update to the agent' },
   ],
 
-  forWho: [
-    { audience: 'founders', line: 'Know your AI says it’s AI everywhere you sell, every day.' },
-    { audience: 'agencies', line: 'A daily disclosure check for every agent you run for a client.' },
-    { audience: 'marketing', line: 'Check the texts and emails your AI sends say they’re AI from the first line.' },
-    { audience: 'developers', line: 'Run the checks from your code or agent after every prompt change.' },
-  ],
-
   table: {
     heading: 'A daily check leaves dated events in your event log for every day of the year.',
     line: '4 channels checked every morning is 1,460 dated events a year.',

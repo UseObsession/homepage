@@ -137,13 +137,6 @@ export const recipe: Recipe = {
     { k: 'Where it lands', v: 'Slack, a sheet, Clay, a webhook or the API' },
   ],
 
-  forWho: [
-    { audience: 'marketing', line: 'Know a competitor’s sale has started before your shoppers do.' },
-    { audience: 'founders', line: 'Price with every competitor in view, without opening their sites each morning.' },
-    { audience: 'agencies', line: 'A price report for each client’s market.' },
-    { audience: 'developers', line: 'Every competitor price as JSON, straight into your pricing.' },
-  ],
-
   table: {
     heading: 'Competitor B cut 3 prices overnight. Its soy candle is now £5 under yours.',
     line: 'Monday, 4 days before Black Friday, as a UK member.',

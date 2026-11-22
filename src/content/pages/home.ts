@@ -1,4 +1,3 @@
-import { channels, downLine } from '../delivery'
 import { pieceOrder, piecePaths } from '../piecePaths'
 import type { PieceId } from '../prices'
 import type { HomePieces, Page, PersonaIcon } from '../types'
@@ -14,14 +13,13 @@ import type { HomePieces, Page, PersonaIcon } from '../types'
    with the call that starts it (James, 22 Nov: the claim moved here and its own section went) >
    3 #personas: the pieces under one identity, as a stacked slab diagram of 5 parts (James, 22 Nov: inbox and number,
    browser and sandbox, each 1 slab) >
-   4 1 claim in the form "X, not Y": wakes in milliseconds, not minutes >
-   5 #how: how it works, 1 section in place of the fleet timeline and the delivery plates (James, 21 Nov): set up
-   once, then the loop through your event log as 1 picture, then the 6 channels in their order (#delivery,
-   content/delivery.ts) and the line on a server that's down (components/persona/HomeHowItWorks) >
-   6 #recipes: blueprints, ours or your own job, beside the pieces, with the web behind the login as 1 tile to its use
-   case page (James, 21 Nov: it took Price watch's tile and its own section went) > 7 #build: the code >
-   8 #questions: 7 for a first-time reader (James, 21 Nov; the developer ones live on /developers) >
-   9 #join: the early access form.
+   4 #how: how it works, 1 section in place of the fleet timeline and the delivery plates (James, 21 Nov): set up
+   once, then the loop through your event log as 1 picture, then the link to every channel's code on /developers
+   (components/persona/HomeHowItWorks) > 5 #recipes: blueprints beside the pieces, 5 tiles, the web behind the login
+   as 1 of them, to its use case page >
+   6 #build: the code > 7 #questions: 5 for a first-time reader (the developer ones live on /developers) >
+   8 #join: the early access form. James, 22 Nov: the shorter Home; "Wakes in milliseconds, not minutes" (its 50 ms is
+   in the loop picture), the channel cards (the questions and /developers list them), 3 tiles and 2 questions left.
    Home shows no prices and no pricing link (James, 20 Nov): prices live in content/prices.ts, on /pricing and the piece
    pages. Nothing here bills by the minute. The product is described as designed (50 ms, free while a persona waits),
    never with build-state caveats; country is a feature, never the pitch. People and companies are invented, at .example
@@ -168,37 +166,13 @@ export const page: Page = {
     ],
   },
 
-  /* "X, not Y" (rivet.dev's pattern): 1 claim, 1 big true number, a card on the other side. The wake is Juno's. "One
-     API, not five vendors." had its own section here until James moved it to #pieces (22 Nov). */
-  personaContrasts: [
-    {
-      heading: 'Wakes in milliseconds, not minutes.',
-      line: 'No machine starts. The persona’s inbox, logins and browser state are already there.',
-      value: '50',
-      unit: 'ms',
-      label: 'from a new email, text or call to your code running.',
-      art: {
-        kind: 'timeline',
-        title: 'Juno, Tuesday',
-        rows: [
-          { at: '18:39:59.000', text: 'Waiting. Its inbox, logins and browser state are kept.', state: 'sleep' },
-          { at: '18:40:00.000', text: 'A text lands: “Can I move my booking to 8?”', state: 'wake' },
-          { at: '18:40:00.050', text: 'Your code is running, reading the text as Juno', state: 'act' },
-          { at: '18:40:01.900', text: 'Opens the booking page, still signed in', state: 'act' },
-          { at: '18:40:04.000', text: 'Replies by text, logs it and goes back to waiting', state: 'done' },
-        ],
-      },
-    },
-  ],
-
   /* How it works (James, 21 Nov: variation B's loop with variation A's words, in place of the fleet timeline and the
      delivery plates; components/persona/HomeHowItWorks). Set up once, then a loop either side can start: a message, a
      webhook from another tool or a new spreadsheet or CSV row comes in (James, 22 Nov: never only "a message"), or the
      agent acts, it's saved in the event log, then reaches the agent, on our runtime or the developer's
      own servers, or a person. What the agent does next is a new event. Live call audio doesn't take the loop: it streams
      straight to the voice agent, and the log keeps the call's events. `loop` is the picture's words; `label` says the
-     whole picture for screen readers and llms-full.txt. Under it, the channels and the line on a server that's down
-     come from content/delivery.ts, the same words as the piece, recipe and developer pages. */
+     whole picture for screen readers and llms-full.txt. Under it, the link to every channel's code on /developers. */
   homeHow: {
     heading: 'From the first call to months of messages, every event reaches your agent.',
     line: 'Every email, text, call, webhook or new spreadsheet row is saved in your event log, then reaches your agent. Its reply is the next event.',
@@ -225,15 +199,13 @@ export const page: Page = {
         log: 'The log keeps each call’s start, end and transcript.',
       },
     },
-    waysHeading: '6 ways an event reaches your agent, or you',
-    channels: channels.map(({ name, line, eg }) => ({ name, line, eg })),
-    down: downLine,
     link: { label: 'See the code for each channel', to: '/developers#delivery' },
   },
 
   /* A blueprint is a job that runs on Obsession beside the pieces and writes its results to the event log: one of ours,
-     ready to run, or your own. Mystery shopping is the big tile; every tile links to its blueprint page (content/recipes),
-     except the web behind the login, which links to its use case page. `status` says who it fits, and each tile's hue is
+     ready to run, or your own. Mystery shopping is the big tile and 4 sit beside it, so the 3 column grid closes
+     (James, 22 Nov: 5 tiles, not 8); every tile links to its blueprint page (content/recipes), except the web behind the login, which links to its use
+     case page. `status` says who it fits, and each tile's hue is
      that reader (styles/accents.css). The heading is James's (21 Nov), its comma included: it speaks to the reader. */
   personaRecipes: {
     /* James, 21 Nov: the heading speaks to teams with no engineers; the line says where the results arrive. */
@@ -248,13 +220,6 @@ export const page: Page = {
         live: true,
         reader: 'founders',
         link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
-      },
-      {
-        name: 'QA on your own flows',
-        line: 'Sign up to your own product as a new user, and find the step that breaks.',
-        status: 'For product teams',
-        reader: 'developers',
-        link: { label: 'See the blueprint', to: '/blueprints/website-audit' },
       },
       {
         name: 'Competitor trials',
@@ -278,25 +243,11 @@ export const page: Page = {
         link: { label: 'See the blueprint', to: '/blueprints/lead-leaks' },
       },
       {
-        name: 'AI agent checks',
-        line: 'Chat with a support bot or call a voice line, and keep every answer word for word.',
-        status: 'For teams running AI agents',
-        reader: 'developers',
-        link: { label: 'See the blueprint', to: '/blueprints/support-bot-check' },
-      },
-      {
         name: 'The web behind the login, as data',
         line: 'Personas sign up and bring back the prices, emails and offers shown only after sign up.',
         status: 'For data teams',
         reader: 'developers',
         link: { label: 'See the use case', to: '/use-cases/web-behind-the-login' },
-      },
-      {
-        name: 'Your own job',
-        line: 'Your own task, run on our runtime beside the pieces, with nothing to host.',
-        status: 'For any job',
-        reader: 'founders',
-        link: { label: 'Browse every blueprint', to: '/blueprints' },
       },
     ],
   },
@@ -310,8 +261,9 @@ export const page: Page = {
     code: BUILD_CODE,
   },
 
-  /* 7 questions for a first-time reader (James, 21 Nov). The channels and voice agent questions moved to /developers;
-     the browser one was already there, and checkout is the mystery shopping blueprint's "Does it place real orders?". */
+  /* 5 questions for a first-time reader (James, 21 and 22 Nov). The channels and voice agent questions moved to
+     /developers; the browser one was already there, and checkout is the mystery shopping blueprint's "Does it place real
+     orders?". What a persona is, the persona section says; that no code is needed, the blueprint tiles' heading says. */
   faq: {
     heading: 'Before your agent sends its first email.',
     items: [
@@ -325,20 +277,12 @@ export const page: Page = {
         link: { label: 'Email for AI agents', to: '/email' },
       },
       {
-        q: 'What is a persona?',
-        a: 'Every piece under one identity: an inbox, a number, messaging, a browser and a sandbox when a task needs one. It waits on our runtime for free, and your code runs 50 ms after a message lands.',
-      },
-      {
         q: 'What is the event log?',
         a: 'One place per account where every event from every piece, persona and blueprint lands, in order and dated, with its proof: the email as it arrived, or a screenshot of the page. Nothing in it is changed or deleted.',
       },
       {
         q: 'How do events reach my app?',
         a: 'Through one signed webhook you subscribe once. If your server is down, events retry for 27 hours and can be replayed. You can also read the log by cursor, use MCP, run a handler on our runtime, or connect Zapier, Make or n8n.',
-      },
-      {
-        q: 'Do I need to write code?',
-        a: 'No. Run one of our blueprints, such as agentic mystery shopping: say where it goes, and its results land in your event log.',
       },
       {
         q: 'Does a persona say it’s an AI?',

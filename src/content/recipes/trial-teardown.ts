@@ -140,13 +140,6 @@ export const recipe: Recipe = {
     { k: 'Where it lands', v: 'Your CRM, Slack, a table or the API' },
   ],
 
-  forWho: [
-    { audience: 'sales', line: 'Battlecards from what a competitor’s trial shows a buyer.' },
-    { audience: 'marketing', line: 'Your nurture emails beside a competitor’s, day by day.' },
-    { audience: 'founders', line: 'See how competitors onboard, then read your own trial the same way.' },
-    { audience: 'developers', line: 'Every trial email and prompt as JSON, by trial day, through the API or MCP.' },
-  ],
-
   table: {
     heading: 'Competitor A offers 20% off on day 13. Competitor C offers 30% off once the trial ends.',
     line: 'Set to close a trial when a rep writes. Competitor B’s closed on day 6.',

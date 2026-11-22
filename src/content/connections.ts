@@ -1,10 +1,10 @@
 /* The words for the site's guide connections (lib/connections.ts): every recipe, use case and reader page lists the
-   guides that teach its job, each with what a pass looks like. */
+   guides that teach its job. The name only: the guides' titles say the rest (founder, 22 Nov 2026). */
 
-export const guidesCopy = {
-  recipe: { name: 'Guides for this job', line: 'Step-by-step guides for this job, each with what a pass looks like.' },
-  useCase: { name: 'Guides for this job', line: 'Step-by-step guides behind this use case, each with what a pass looks like.' },
-  reader: { name: 'Guides for you', line: 'Step-by-step guides for the work this page covers, each with what a pass looks like.' },
+export const guidesCopy: Record<'recipe' | 'useCase' | 'reader', { name: string; line?: string }> = {
+  recipe: { name: 'Guides for this job' },
+  useCase: { name: 'Guides for this job' },
+  reader: { name: 'Guides for you' },
 }
 
 /* Which guides each reader page shows: its blog hub, then any guide that links the page itself (lib/connections.ts). */

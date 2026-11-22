@@ -146,12 +146,6 @@ export const recipe: Recipe = {
     { k: 'Where it lands', v: 'Slack, a ticket, a webhook or the API' },
   ],
 
-  forWho: [
-    { audience: 'founders', line: 'Ship every day, and hear about a break before a new user does.' },
-    { audience: 'developers', line: 'A deploy hook that spawns a new persona and posts a pass or fail to your CI.' },
-    { audience: 'agencies', line: 'Every client’s forms, booking links, sign up and checkout, run every morning with their OK.' },
-  ],
-
   faq: {
     heading: 'A new user after every release, every step dated.',
     items: [

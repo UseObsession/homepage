@@ -168,13 +168,6 @@ export const recipe: Recipe = {
     { k: 'Where it lands', v: 'A report, Slack, a sheet or the API' },
   ],
 
-  forWho: [
-    { audience: 'agencies', line: 'Every client’s voice agent checked each morning, with what followed, and a report by 09:00.' },
-    { audience: 'founders', line: 'Know what your voice agent told callers, and what it never sent, before you open.' },
-    { audience: 'marketing', line: 'Hear what competitors quote on the phone for the same service.' },
-    { audience: 'developers', line: 'Spawn callers from your code or agent after each prompt or voice change.' },
-  ],
-
   table: {
     heading: 'Nobody on your team waits 2 days to see if the callback came. A persona does.',
     cols: ['By hand', 'With Voice agent check'],

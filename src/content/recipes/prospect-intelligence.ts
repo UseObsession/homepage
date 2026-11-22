@@ -139,17 +139,6 @@ export const recipe: Recipe = {
     { k: 'Companies', v: 'A Clay table, a sheet, a CSV or the API' },
   ],
 
-  forWho: [
-    {
-      audience: 'agencies',
-      line: 'A pitch for every prospect, built on what their store sends a new shopper.',
-    },
-    { audience: 'sales', line: 'A dated finding about each account for the first line.' },
-    { audience: 'founders', line: 'Pitch only the companies with the gap you fix.' },
-    { audience: 'marketing', line: 'Target accounts sorted by the gap your product fixes.' },
-    { audience: 'developers', line: 'Call it from Clay or your own tool for every new row.' },
-  ],
-
   faq: {
     heading: 'Every finding stands up on its own, with a record the prospect can open.',
     items: [

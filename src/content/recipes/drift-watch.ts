@@ -151,13 +151,6 @@ export const recipe: Recipe = {
     { k: 'How often', v: 'Daily at 07:00, and within the hour of any change' },
   ],
 
-  forWho: [
-    { audience: 'founders', line: 'Hear the night a vendor update changes what your bot says.' },
-    { audience: 'agencies', line: 'Every agent you run for clients, replayed after each vendor update.' },
-    { audience: 'marketing', line: 'Catch the morning your bot starts handing out an expired code.' },
-    { audience: 'developers', line: 'Replay the cases from your code or agent before every prompt change ships.' },
-  ],
-
   table: {
     heading: 'Find the drop the night it happens.',
     line: 'Vendor A’s update, replayed 50 minutes later.',

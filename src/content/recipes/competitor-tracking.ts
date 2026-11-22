@@ -159,14 +159,6 @@ export const recipe: Recipe = {
     { k: 'How long', v: 'As long as you hold the persona' },
   ],
 
-  forWho: [
-    { audience: 'marketing', line: 'See what competitors send before a sale, and plan your calendar around it.' },
-    { audience: 'agencies', line: 'A competitor report for every client, built on what competitors sent.' },
-    { audience: 'sales', line: 'Battlecards built from what a competitor sends a new subscriber.' },
-    { audience: 'founders', line: 'Answer every competitor move the week it lands.' },
-    { audience: 'developers', line: 'Competitors’ emails and prices in your product, through the API.' },
-  ],
-
   table: {
     heading: 'A new subscriber to this competitor gets 5 emails and 2 texts in its first 7 days.',
     line: 'Every message placed by the time since sign up.',

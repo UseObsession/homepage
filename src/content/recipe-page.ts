@@ -6,9 +6,9 @@ const PER = 'site'
 /* The words every recipe page shares (pages/RecipePage), around each recipe's own content (src/content/recipes).
    Since 21 Nov a recipe is a job that runs on Obsession beside the pieces and writes its results to the account's event
    log: one of ours, ready to run, or a job a developer brings. Never "only for teams who don't code". Each result
-   reaches the team as a recipe.result event, through the same channels as every piece's events (#delivery, the
-   channels and the line on a server that's down from content/delivery.ts). These are the headings a recipe file gives
-   no heading for, and they hold for every recipe. The 1 real run is
+   reaches the team as a blueprint.result event, through the same channels as every piece's events (1 line and a link
+   to /developers#delivery, founder, 22 Nov 2026). These are the headings a recipe file gives no heading for, and they
+   hold for every recipe. The 1 real run is
    Brand G's (Store sign-up and checkout, /sample-output); every other run is an example. Never "AI customer", never a
    recipe count, never a claim that a run was signed. */
 
@@ -31,20 +31,19 @@ export const recipePage = {
     tag: { real: 'Real run' },
   },
 
+  /* The steps, with the recipe's settings under them (founder, 22 Nov 2026: 1 section, not 2). */
   steps: { heading: 'You say who the persona is and where it goes.' },
-  checks: { heading: 'What the personas do, and what they bring back.' },
+  settings: { heading: 'Change any of it, or bring your own job.' },
+  /* What the personas do and what they bring back, as 1 section under the recipe's own outputs heading (founder, 22 Nov
+     2026): its checks, then what you get as the last group. The line says how each result reaches the team, in place of
+     the channel list, which lives on /developers#delivery. */
+  checks: {
+    line: 'Each result is saved in your event log as a blueprint.result event, then sent where you listen.',
+    outputs: 'What you get',
+    channels: { label: 'See the code for each channel', to: '/developers#delivery' } satisfies Cta,
+  },
   /* Every recipe page links to the 1 real run, Brand G's, by what it is. The label matches Home's. */
   outputs: { cta: { label: 'See the sample data', to: '/sample-output' } satisfies Cta },
-  /* How each result reaches the team: the same channels as every piece (components/piece/PieceDelivery). */
-  delivery: {
-    heading: 'Each result reaches you as a blueprint.result event.',
-    line: 'It’s saved in your event log beside your pieces’ events, and reaches you the same way.',
-    events: 'The events it sends',
-    channels: 'Where results reach you',
-    link: { label: 'See the code for each channel', to: '/developers#delivery' } satisfies Cta,
-  },
-  settings: { heading: 'Start from our blueprint. Change anything, or bring your own job.' },
-  forWho: { heading: 'The same blueprint, different teams.' },
 
   /* The pricing section, after the run (#pricing), on every recipe page (founders, 22 Nov 2026): what a typical month of
      the blueprint costs. A blueprint run is paid from the plan's credit at the piece rates, like any piece, so the

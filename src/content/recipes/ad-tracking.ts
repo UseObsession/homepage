@@ -137,12 +137,6 @@ export const recipe: Recipe = {
     { k: 'Alerts', v: 'New offers only, or every new ad' },
   ],
 
-  forWho: [
-    { audience: 'agencies', line: 'Every ad each client’s competitors run in public, followed to its page, price and code.' },
-    { audience: 'marketing', line: 'The offer behind every competitor ad, the morning it starts.' },
-    { audience: 'founders', line: 'What your competitors are pushing this week, and the price behind it.' },
-  ],
-
   table: {
     heading: 'Competitor A started 9 ads overnight. Competitor C’s free delivery ad has run 41 days.',
     line: 'The ads 3 competitors were running in public on Friday at 07:00.',

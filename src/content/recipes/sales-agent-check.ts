@@ -156,13 +156,6 @@ export const recipe: Recipe = {
     { k: 'Where it lands', v: 'Slack, a sheet, a webhook or the API' },
   ],
 
-  forWho: [
-    { audience: 'marketing', line: 'Your agent quotes this week’s offer, not last month’s, and you see competitors’ offers.' },
-    { audience: 'agencies', line: 'Every client’s sales agent checked daily, each answer in your event log.' },
-    { audience: 'founders', line: 'Hear the morning your sales agent gets a price wrong.' },
-    { audience: 'developers', line: 'Spawn shopper personas from your code after each catalogue or prompt change.' },
-  ],
-
   table: {
     heading: 'A wrong price in chat keeps selling until someone notices.',
     cols: ['By hand', 'With Sales agent check'],

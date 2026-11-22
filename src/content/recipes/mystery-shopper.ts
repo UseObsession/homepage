@@ -182,13 +182,6 @@ export const recipe: Recipe = {
     { k: 'How often', v: 'Monthly, weekly, or a checkout left every day' },
   ],
 
-  forWho: [
-    { audience: 'agencies', line: 'Shop every client store monthly, and show each client the reminder that never came.' },
-    { audience: 'marketing', line: 'Your welcome, basket and checkout emails as a new shopper gets them, week after week.' },
-    { audience: 'sales', line: 'Bring each client’s dated events to the monthly review, beside what changed since the last shop.' },
-    { audience: 'developers', line: 'Start a shop from your code after each release and read every email and text.' },
-  ],
-
   table: {
     heading: '2 of 3 client stores sent no basket reminder in 48 hours.',
     line: 'The same journeys at each client store, by the same persona, in the same week.',

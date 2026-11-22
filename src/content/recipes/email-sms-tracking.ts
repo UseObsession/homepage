@@ -146,13 +146,6 @@ export const recipe: Recipe = {
     { k: 'Summary', v: 'Weekly or monthly' },
   ],
 
-  forWho: [
-    { audience: 'marketing', line: 'Every offer your competitors send, the minute it lands.' },
-    { audience: 'agencies', line: 'A competitor teardown for every client, in your name.' },
-    { audience: 'founders', line: 'See what each competitor sends a new subscriber in the first month.' },
-    { audience: 'sales', line: 'Stay on every lost account’s list and know the day something changes.' },
-  ],
-
   table: {
     heading: 'In 30 days, Competitor B sent 18 messages. Competitor C sent 7.',
     line: '3 competitors, counted from the day of sign up.',

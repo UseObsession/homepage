@@ -155,12 +155,6 @@ export const recipe: Recipe = {
     { k: 'Where it lands', v: 'A sheet, Slack, a webhook or the API' },
   ],
 
-  forWho: [
-    { audience: 'founders', line: 'Pay your AI support vendor for what it solved, not for what it counted.' },
-    { audience: 'agencies', line: 'What each client’s support bot is billed for, with every case and its receipt.' },
-    { audience: 'developers', line: 'Every verdict in your finance and helpdesk tools after each bill, by API or webhook.' },
-  ],
-
   table: {
     heading: 'A resolution counts when what the bot promised happens.',
     cols: ['Without it', 'With Resolution check'],

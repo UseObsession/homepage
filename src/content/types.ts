@@ -570,11 +570,6 @@ export type PersonaAnatomy = {
   line?: string
   parts: { name: string; line: string; eg: string }[]
 }
-/* The illustration card beside an "X, not Y" claim: 1 wake in milliseconds. */
-export type PersonaArt =
-  | { kind: 'timeline'; title: string; rows: { at: string; text: string; state: 'act' | 'sleep' | 'wake' | 'done' }[] }
-/* 1 claim, its lines, 1 big true number (`value`, its `unit` beside it, `label` under) and its card. */
-export type PersonaContrast = { heading: string; line: string; value: string; unit: string; label: string; art: PersonaArt }
 /* Recipes as tiles (PersonaRecipes). `reader` gives a tile its hue (styles/accents.css); `live` makes the big tile;
    `status` says who the recipe fits. */
 export type PersonaRecipes = {
@@ -596,9 +591,8 @@ type HowLabel = { name: string; line: string }
    tall on a phone. Set up once, then 3 stops round a ring: something happens, it's saved in your event log, it reaches
    your agent (on our runtime or your servers) or a person; what the agent does next goes round again. Live call audio
    crosses the ring straight to the voice agent and never touches the log. `loop` holds the picture's words, each line
-   wrapped to its box, and `label` says the whole picture in words (screen readers, llms-full.txt). Under it, the
-   channels as short cards (content/delivery.ts, #delivery) under `waysHeading`, the line on a server that's down, and
-   the link to every channel's code. */
+   wrapped to its box, and `label` says the whole picture in words (screen readers, llms-full.txt). Under it, the link
+   to every channel's code on /developers. */
 export type HomeHow = {
   heading: string
   line: string
@@ -617,9 +611,6 @@ export type HomeHow = {
     /* Live call audio: `name` over `line` on the wave, `log` under the event log; the tall picture says `note`, then `log`. */
     audio: { name: string; line: string; note: string; log: string }
   }
-  waysHeading: string
-  channels: { name: string; line: string; eg: string }[]
-  down: string
   link: Cta
 }
 /* 1 wide card to a use case page (HomeUseCase): the claim, its line and link, beside what sits behind a sign up: the
@@ -687,7 +678,6 @@ export type Page = {
   personaStart?: PersonaStart
   homePieces?: HomePieces
   personaAnatomy?: PersonaAnatomy
-  personaContrasts?: PersonaContrast[]
   personaRecipes?: PersonaRecipes
   personaBuild?: PersonaBuild
   homeHow?: HomeHow
@@ -736,7 +726,6 @@ export type Recipe = {
   checks: { group: string; items: { title: string; line: string }[] }[]
   outputs: { heading: string; items: { format: string; line: string }[] }
   settings?: { k: string; v: string }[]
-  forWho: { audience: AudienceId | 'developers'; line: string }[]
   /* Optional depth for the templates that need it: a comparison, a timeline, what is allowed where. */
   table?: { heading: string; line?: string; cols: string[]; rows: { label: string; values: string[] }[] }
   faq: Faq

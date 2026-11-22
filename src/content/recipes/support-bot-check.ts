@@ -159,13 +159,6 @@ export const recipe: Recipe = {
     { k: 'Where it lands', v: 'Slack, a sheet, a webhook or the API' },
   ],
 
-  forWho: [
-    { audience: 'agencies', line: 'Every client bot you build or run, checked daily, every answer in your event log.' },
-    { audience: 'founders', line: 'Hear the morning your bot gets a policy wrong.' },
-    { audience: 'marketing', line: 'What competitors’ bots say about refunds, prices and switching, beside yours.' },
-    { audience: 'developers', line: 'Spawn the persona from your code or agent after each prompt or knowledge base change.' },
-  ],
-
   table: {
     heading: 'A daily check in your event log, in place of transcripts read by hand.',
     cols: ['By hand', 'With Support bot check'],

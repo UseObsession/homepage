@@ -152,12 +152,6 @@ export const recipe: Recipe = {
     { k: 'Where it lands', v: 'Slack, a sheet, a webhook or the API' },
   ],
 
-  forWho: [
-    { audience: 'marketing', line: 'Know every partner sends shoppers to a code that works and this season’s offer.' },
-    { audience: 'agencies', line: 'Every client’s affiliates and creators, read each week with their OK.' },
-    { audience: 'founders', line: 'Every partner’s link and code tried each Monday, without anyone checking by hand.' },
-  ],
-
   table: {
     heading: 'The link, the code and the offer at every partner.',
     line: '5 partners current, 1 showing a code that ended on 31 Aug. A dead code is found within 7 days, or within a day if you read daily in a sale.',

@@ -152,13 +152,6 @@ export const recipe: Recipe = {
     { k: 'How often', v: 'Every Monday, and within a day of any price change, launch or rename' },
   ],
 
-  forWho: [
-    { audience: 'founders', line: 'See an old price, retired plan or wrong hours before buyers act on it.' },
-    { audience: 'marketing', line: 'What AI assistants tell your buyers, and the page each answer came from.' },
-    { audience: 'agencies', line: 'What AI assistants say about each client, with the before and after.' },
-    { audience: 'developers', line: 'Every answer and its source in your dashboard, through the API.' },
-  ],
-
   table: {
     heading: 'Every wrong fact traced to its source, and asked again until the answer changes.',
     line: 'The Leeds location.',

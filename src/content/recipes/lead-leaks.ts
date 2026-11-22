@@ -160,14 +160,6 @@ export const recipe: Recipe = {
     { k: 'How often', v: 'Every day, every week, or after each routing change' },
   ],
 
-  forWho: [
-    { audience: 'sales', line: 'Know every new lead hears back inside 5 minutes, evenings included.' },
-    { audience: 'agencies', line: 'Show a client how fast its leads really hear back, with every reply kept.' },
-    { audience: 'marketing', line: 'See what happens after the form to the leads your campaigns pay for.' },
-    { audience: 'founders', line: 'Know the day your sales line rings out, before a buyer gives up.' },
-    { audience: 'developers', line: 'Reply times by form and channel from the API, after every routing change.' },
-  ],
-
   table: {
     heading: 'The chat answered in 38 seconds. The demo form took 4 hours.',
     line: '1 day, a new lead at 09:00, 13:00 and 17:00, against a 5 minute target.',

@@ -140,13 +140,6 @@ export const recipe: Recipe = {
     { k: 'Window', v: '14 days, or as long as your journey runs' },
   ],
 
-  forWho: [
-    { audience: 'founders', line: 'Find the email, text or code new users never get, the day it goes missing.' },
-    { audience: 'marketing', line: 'Know every launch email, text and code works in every country you send to.' },
-    { audience: 'agencies', line: 'Every client’s messages timed, with a log to forward.' },
-    { audience: 'developers', line: 'Every login code timed on local numbers, after every release.' },
-  ],
-
   table: {
     heading: 'Day 1 passed. On day 6, UK login codes stopped arriving.',
     line: 'Release 4.2, 3 new personas.',

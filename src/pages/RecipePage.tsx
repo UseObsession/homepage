@@ -11,12 +11,10 @@ import { Console } from '../components/sections/Console'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { RecipeKit } from '../components/sections/RecipeKit'
-import { DeliveryLists } from '../components/piece/PieceDelivery'
 import { drawnFor, type Workspace } from '../components/workspace'
 import { catalog } from '../content/catalog'
-import { nav } from '../content/nav'
 import { blueprintPricings, isRealRun, recipePage as ui } from '../content/recipe-page'
-import type { AudienceId, Recipe } from '../content/types'
+import type { Recipe } from '../content/types'
 import '../components/sections/Hero.css'
 import './RecipePage.css'
 
@@ -24,18 +22,14 @@ import './RecipePage.css'
    file (src/content/recipes) and the shared claims in content/recipe-page.ts. In order:
    the centred hero with the recipe's screen and capture (on a recipe sold to 1 buyer, that buyer under the headline),
    and a link to its pricing > what choosing it sets up, landing 1 by 1 > the run in the console > its pricing table
-   (#pricing, components/BlueprintPricing) > the steps > what it checks > what you get > how each result reaches you, as a
-   recipe.result event through the same channels as every piece (#delivery) > what you can change > who it's for >
-   the optional table > questions > the final call. Motion lives in the product only: the screen plays its story, the kit lands, the run
-   plays. Sections never fade in. */
+   (#pricing, components/BlueprintPricing) > the steps, with what you can change under them > what the personas do and
+   what you get, under the recipe's outputs heading, with 1 line on how each result reaches you and links to the sample
+   data and every channel's code > the optional table > guides > questions > the final call (founder, 22 Nov 2026: 10
+   sections, not 15; who it's for and the channel list left the page). Motion lives in the product only: the screen
+   plays its story, the kit lands, the run plays. Sections never fade in. */
 
 /* A numeral never ends a line apart from its word ("48 hours", "4 test customers"). */
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
-
-/* Each audience's own page, named as the nav names it. */
-const AUDIENCE: Record<AudienceId | 'developers', { label: string; to: string }> = Object.fromEntries(
-  nav.readers.map((p) => [p.id, { label: p.label, to: p.to }]),
-) as Record<AudienceId | 'developers', { label: string; to: string }>
 
 /* Whose workspace the screen and the console show: the one the recipe's screen is drawn for (components/workspace.ts),
    so the hero screen and the console's crumb name the same workspace. */
@@ -166,54 +160,20 @@ function Checks({ id, checks }: { id: string; checks: Recipe['checks'] }) {
   )
 }
 
-function Outputs({ items }: { items: Recipe['outputs']['items'] }) {
-  return (
-    <ul className="s-rp-outs">
-      {items.map((o) => (
-        <li key={o.format}>
-          <h3 className="s-rp-outs__format">{o.format}</h3>
-          <p className="s-rp-outs__line">{tie(o.line)}</p>
-        </li>
-      ))}
-    </ul>
-  )
-}
-
+/* What you can change, under the steps: the recipe's settings, 1 rule a row. */
 function Settings({ settings }: { settings: NonNullable<Recipe['settings']> }) {
   return (
-    <dl className="s-rp-settings">
-      {settings.map((s) => (
-        <div key={s.k}>
-          <dt>{s.k}</dt>
-          <dd>{tie(s.v)}</dd>
-        </div>
-      ))}
-    </dl>
-  )
-}
-
-/* Who it's for: the recipe's doors. Each row carries its reader's key, the brand square in the reader's hue, as Home's
-   band does where a reader picks themselves (styles/accents.css); the arrow takes the hue when the row is lit. */
-function ForWho({ items }: { items: Recipe['forWho'] }) {
-  return (
-    <ul className="s-rp-who">
-      {items.map((w) => {
-        const a = AUDIENCE[w.audience]
-        if (!a) return null
-        return (
-          <li key={w.audience}>
-            <Link className="s-rp-who__link" data-reader={w.audience} to={a.to}>
-              <span className="s-rp-who__name">
-                <span className="s-rp-who__key ob-sq" aria-hidden="true" />
-                {a.label}
-                <Arrow className="s-rp-who__arrow" />
-              </span>
-              <span className="s-rp-who__line">{tie(w.line)}</span>
-            </Link>
-          </li>
-        )
-      })}
-    </ul>
+    <div className="s-rp-change">
+      <h3 className="s-rp-change__h">{ui.settings.heading}</h3>
+      <dl className="s-rp-settings">
+        {settings.map((s) => (
+          <div key={s.k}>
+            <dt>{s.k}</dt>
+            <dd>{tie(s.v)}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   )
 }
 
@@ -266,6 +226,8 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
      per variant behind the switch (mystery shopping), Agencies first. */
   const priced = catalog.recipes.find((x) => x.id === r.id)
   const pricings = priced ? blueprintPricings(priced) : []
+  /* What you get, as the checks' last group. */
+  const checks = [...r.checks, { group: ui.checks.outputs, items: r.outputs.items.map((o) => ({ title: o.format, line: o.line })) }]
 
   return (
     <>
@@ -285,39 +247,25 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
 
       <Section id="steps" heading={ui.steps.heading} tone="ink">
         <Steps steps={r.steps} />
-      </Section>
-
-      <Section id="checks" heading={ui.checks.heading}>
-        <Checks id="checks" checks={r.checks} />
+        {r.settings && r.settings.length > 0 && <Settings settings={r.settings} />}
       </Section>
 
       <Section
-        id="outputs"
+        id="checks"
         heading={r.outputs.heading}
-        split
-        tone="alt"
+        line={ui.checks.line}
         action={
-          <Link className="ob-btn ob-btn--link s-rp__action" to={ui.outputs.cta.to}>
-            <span className="ob-btn-label">{ui.outputs.cta.label}</span>
-            <Arrow />
-          </Link>
+          <div className="s-rp__actions">
+            {[ui.outputs.cta, ui.checks.channels].map((c) => (
+              <Link key={c.to} className="ob-btn ob-btn--link s-rp__action" to={c.to}>
+                <span className="ob-btn-label">{c.label}</span>
+                <Arrow />
+              </Link>
+            ))}
+          </div>
         }
       >
-        <Outputs items={r.outputs.items} />
-      </Section>
-
-      <Section id="delivery" heading={ui.delivery.heading} line={ui.delivery.line} className="s-rp-delivery">
-        <DeliveryLists ui={ui.delivery} />
-      </Section>
-
-      {r.settings && r.settings.length > 0 && (
-        <Section id="settings" heading={ui.settings.heading} split>
-          <Settings settings={r.settings} />
-        </Section>
-      )}
-
-      <Section id="for" heading={ui.forWho.heading}>
-        <ForWho items={r.forWho} />
+        <Checks id="checks" checks={checks} />
       </Section>
 
       {r.table && (

@@ -141,12 +141,6 @@ export const recipe: Recipe = {
     { k: 'Where it lands', v: 'Your CRM, Slack, a table or a webhook' },
   ],
 
-  forWho: [
-    { audience: 'sales', line: 'Account managers see what changed at each account before the renewal call.' },
-    { audience: 'founders', line: 'Know which accounts are changing while there’s time to call.' },
-    { audience: 'developers', line: 'Each account’s changes, from your event log, in your CRM or app through the API.' },
-  ],
-
   table: {
     heading: 'Everything comes from a persona’s own sign up or the public web.',
     cols: ['Where it comes from', 'Whose OK'],

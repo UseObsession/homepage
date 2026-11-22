@@ -148,13 +148,6 @@ export const recipe: Recipe = {
     { k: 'Where it lands', v: 'Slack, a sheet, a webhook or the API' },
   ],
 
-  forWho: [
-    { audience: 'sales', line: 'Know every claim and discount your AI SDR makes before a prospect quotes it back.' },
-    { audience: 'agencies', line: 'The outbound you run for each client, every message kept in your event log.' },
-    { audience: 'founders', line: 'Let an AI SDR write for you without reading every email it sends.' },
-    { audience: 'developers', line: 'Spawn prospect personas from your code, and read every message after each prompt or sequence change.' },
-  ],
-
   table: {
     heading: 'Your AI SDR sends more than anyone can read. Every message is kept.',
     cols: ['By hand', 'With Outbound agent check'],

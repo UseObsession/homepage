@@ -1,17 +1,16 @@
 import { useId, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import type { HomeHow } from '../../content/types'
-import { PersonaGlyph } from './icons'
 import './blueprint.css'
 import './HomeHowItWorks.css'
 
 /* How it works on Home (#how), the founder's pick of 21 Nov: the claim and its line, then the loop as 1 picture, then the
-   ways an event reaches you (#delivery). The picture: set up once, feeding a ring of 3 stops (something happens, it's
+   link to the ways an event reaches you (#delivery). The picture: set up once, feeding a ring of 3 stops (something happens, it's
    saved in your event log, it reaches your agent or a person); the dashed way back says whatever your agent does next is
    a new event; live call audio crosses the ring as a wave, straight to the voice agent, and never touches the log. It is
    drawn twice, wide from 1080px and tall below, both as inline SVG with every word from content, and the figure reads
    as its `label`. 1 dot follows the one live event round the ring; with reduced motion it isn't drawn, and the picture
-   reads as a still. Then the 6 channels as cards, the line on a server that's down and the link to every channel's code.
+   reads as a still. Then the link to every channel's code (James, 22 Nov: the channel cards went; /developers lists them).
    The drawing is sized for these words: a much longer line needs its box widened. */
 
 const r = (n: number) => Math.round(n * 10) / 10
@@ -246,32 +245,10 @@ export function HomeHowItWorks({ how, id }: { how: HomeHow; id?: string }) {
           <Tall loop={how.loop} />
         </figure>
 
-        <div className="s-hiw-ways" id="delivery">
-          <h3 className="s-hiw-ways-h">{how.waysHeading}</h3>
-          <ol className="s-hiw-cards">
-            {how.channels.map((c, i) => (
-              <li className="s-hiw-card" key={c.name}>
-                <span className="s-hiw-card-n" aria-hidden="true">
-                  {i + 1}
-                </span>
-                <h4 className="s-hiw-card-name">{c.name}</h4>
-                <p className="s-hiw-card-line">{c.line}</p>
-                <code className="s-hiw-card-eg">{c.eg}</code>
-              </li>
-            ))}
-          </ol>
-
-          <div className="s-hiw-foot">
-            <p className="s-hiw-down">
-              <span className="s-hiw-down-icon">
-                <PersonaGlyph name="retry" />
-              </span>
-              {how.down}
-            </p>
-            <Link className="s-bp-link" to={how.link.to}>
-              {how.link.label}
-            </Link>
-          </div>
+        <div className="s-hiw-foot" id="delivery">
+          <Link className="s-bp-link" to={how.link.to}>
+            {how.link.label}
+          </Link>
         </div>
       </div>
     </section>

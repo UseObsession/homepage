@@ -155,13 +155,6 @@ export const recipe: Recipe = {
     { k: 'How long', v: '2 weeks before you sign, then monthly once you go live' },
   ],
 
-  forWho: [
-    { audience: 'founders', line: 'Choose your support AI agent on your own cases, not a demo.' },
-    { audience: 'agencies', line: 'Pick the chat or voice platform for client agents, with the event log to show each client why.' },
-    { audience: 'sales', line: 'Run your real buyer questions on every AI agent you’re weighing for inbound.' },
-    { audience: 'developers', line: 'Run the same cases on your own build and every vendor’s, from your code or agent.' },
-  ],
-
   table: {
     heading: 'Decide in 2 weeks, before an agent you’d turn down goes live.',
     cols: ['A vendor’s trial', 'With Vendor agent check'],

@@ -156,13 +156,6 @@ export const recipe: Recipe = {
     { k: 'Alerts', v: 'Slack or email, only when an ad fails' },
   ],
 
-  forWho: [
-    { audience: 'marketing', line: 'Every ad sending clicks to a broken, wrong or sold out page, the same morning.' },
-    { audience: 'agencies', line: 'Every client’s live ads checked each morning, with failed pages in your event log.' },
-    { audience: 'founders', line: 'Running your own ads? Know each one lands on a page that can sell.' },
-    { audience: 'developers', line: 'Run it from the API after every site release, with failing ads by webhook.' },
-  ],
-
   table: {
     heading: 'Every ad you pay for, every morning, not the few someone remembers.',
     line: 'By hand, 6 ads’ pages at 5 minutes each is 3.5 hours a week.',
