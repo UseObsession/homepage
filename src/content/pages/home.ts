@@ -124,7 +124,7 @@ export const page: Page = {
     headline: 'The toolkit for AI agents. One API, one bill.',
     /* 23 Nov 2026 (Seun): the sub names both ways in, so a team that doesn't code knows from the first screen that
        Obsession is for them too; the doors under it say how each starts. */
-    sub: 'An inbox, a phone number and a browser for every agent, used alone or together. Build on them with code, or pick a blueprint and Obsession runs the whole job.',
+    sub: 'An inbox, a phone number and a browser for every agent, used alone or together. Developers build on them in code; every other team picks a blueprint, and Obsession runs the job end to end.',
     /* Not drawn on Home (its hero has buttons, not a form); the Hero contract asks for one. */
     capture: { ...access, source: 'home-hero' },
     secondary: { label: 'Browse blueprints', to: '/blueprints' },
@@ -142,7 +142,7 @@ export const page: Page = {
     chip: { code: 'obsession.personas.create({ inbox: true, phone: "US", browser: true })', copy: 'Copy the code', copied: 'Copied' },
     doors: {
       dev: { label: 'For developers' },
-      noCode: { label: 'For teams that don’t code', line: 'Pick a job, fill in the blanks, and get results in the tools your team already uses.' },
+      noCode: { label: 'For teams that don’t code', line: 'Choose a ready-made job, set it up in plain language, and get results in the tools you already use.' },
     },
   },
 
@@ -165,7 +165,7 @@ export const page: Page = {
      James's words from 22 Nov; blueprints serve developers too, so it no longer opens "For teams without engineers". */
   homeBlueprints: {
     heading: 'Pick a blueprint. We run the job, you get the report.',
-    line: 'Six types of blueprints, one for each job AI agents do. Results arrive in any format, where you already work: Slack, email, your CRM, Clay, a sheet, a PDF or your own Claude agent.',
+    line: 'Six types of blueprints, one for each job AI agents do. Results are delivered in any format: Slack, email, your CRM, Clay, Google Sheets, a PDF or your own Claude agent.',
     unit: { one: 'blueprint', many: 'blueprints' },
     more: 'more',
     all: { label: 'See every blueprint', to: '/blueprints' },
@@ -176,13 +176,13 @@ export const page: Page = {
      view. Five teams, each one blueprint that lives on the site today, its job as a sentence with blanks, what lands
      and the KPIs it moves. Every company, number and message is an example. */
   homeTeams: {
-    heading: 'No code needed. Fill in the job, and an AI agent does it every day.',
-    line: 'Each blueprint is a finished job with blanks to fill: what to answer or watch, how often, and where results go. Obsession gives the agent its own phone number, inbox and browser, and runs the job for one company or thousands.',
+    heading: 'Your team defines the job. Obsession runs it, every day.',
+    line: 'Each blueprint is a finished job you configure in plain language: what to watch or answer, how often, and where results go. Obsession runs it on an agent with its own phone number, inbox and browser, across one company or thousands.',
     teamsLabel: 'Your team',
-    steps: { pick: 'Pick a blueprint', fill: 'Fill in the blanks', get: 'Results where you work' },
+    steps: { pick: 'Choose a blueprint', fill: 'Set it up in plain language', get: 'Receive results where you work' },
     open: 'See the blueprint',
-    formats: { label: 'Or as', items: ['Email', 'Your CRM', 'Clay', 'Google Sheets', 'A PDF report', 'Your AI assistant', 'Any tool you use'] },
-    kpisLabel: 'See it in',
+    formats: { label: 'Also delivered to', items: ['Email', 'Your CRM', 'Clay', 'Google Sheets', 'A PDF report', 'Your AI assistant', 'Any tool you use'] },
+    kpisLabel: 'Measured in',
     exampleTag: 'Example',
     teams: [
       {
@@ -209,7 +209,7 @@ export const page: Page = {
         name: 'Sales and RevOps',
         reader: 'sales',
         slug: 'lead-leaks',
-        sentence: ['Fill in ', { v: 'our 3 demo forms' }, ' as ', { v: 'a new lead' }, ' ', { v: 'every morning' }, ', time ', { v: 'the first email and call' }, ', and flag ', { v: 'anything over 5 minutes' }, ' in ', { v: '#sales' }, '.'],
+        sentence: ['Submit ', { v: 'our 3 demo forms' }, ' as ', { v: 'a new lead' }, ' ', { v: 'every morning' }, ', time ', { v: 'the first email and call' }, ', and flag ', { v: 'anything over 5 minutes' }, ' in ', { v: '#sales' }, '.'],
         result: {
           where: '#sales',
           app: 'Slack',
@@ -283,12 +283,12 @@ export const page: Page = {
       },
     ],
     includes: {
-      heading: 'Every blueprint comes with',
+      heading: 'Included with every blueprint',
       items: [
-        { icon: 'persona', name: 'Its own phone number, inbox and browser', line: 'Under one name, so every reply and code comes back to it.' },
-        { icon: 'record', name: 'Proof behind every line', line: 'The email, the screenshot or the call recording, each dated.' },
-        { icon: 'webhook', name: 'Results in any format', line: 'Slack, email, your CRM, Clay, a sheet, a PDF or your AI assistant. Use another tool, and we build the connection.' },
-        { icon: 'stop', name: 'Rules it always keeps', line: 'It says it’s an AI to a person, uses only logins you give it and stops at any identity check.' },
+        { icon: 'persona', name: 'Its own phone number, inbox and browser', line: 'One identity, so every reply, call and sign-in code comes back to the agent.' },
+        { icon: 'record', name: 'Evidence behind every result', line: 'The original email, screenshot or call recording, timestamped.' },
+        { icon: 'webhook', name: 'Delivered in any format', line: 'Slack, email, your CRM, Clay, Google Sheets, a PDF report or your AI assistant. For any other tool, we build the integration.' },
+        { icon: 'stop', name: 'Clear operating rules', line: 'It identifies itself as an AI, uses only the logins you provide and stops at any identity check.' },
       ],
     },
     primary: { label: 'Browse every blueprint', to: '/blueprints' },
@@ -362,15 +362,15 @@ export const page: Page = {
      straight to the voice agent, and the log keeps the call's events. `loop` is the picture's words; `label` says the
      whole picture for screen readers and llms-full.txt. Under it, the link to every channel's code on /developers. */
   homeHow: {
-    heading: 'From one inbox to thousands of calls a day, every event reaches your agent or your team.',
-    line: 'Each call, email, text and page change is saved in your event log with the recording, email or screenshot behind it. Then it goes to your agent, your servers or your team in Slack, and whatever the agent does next is saved too.',
+    heading: 'Every call, email and page change reaches your agent or your team, at any volume.',
+    line: 'Each one is recorded in your event log with the original recording, email or screenshot, then routed to your agent, your servers or your team. Whatever the agent does next is recorded as well.',
     loop: {
       label:
         'Set up once: pick pieces, a persona or a blueprint, and say where results go. Then a loop of three stops. Something happens: a call, an email, a text or a page change comes in, or your agent acts. It is saved in your event log, in order, with the email, screenshot or recording behind it. Then it reaches your agent on our runtime in about 50 ms, your agent on your servers, or a person in Slack. What your agent does next is a new event. Six examples play through it, one for each type of blueprint, each at the volume a real team runs. A dental group answers 1,200 calls a day across 40 clinics. A delivery app tests 24 sign-ups every night. An AI sales startup runs 500 inboxes. A freight broker checks 60 carrier portals. A retailer reads 12,000 competitor prices every morning. An AI lab runs 2,000 training tasks a night. Live call audio streams straight to your voice agent, and the log keeps each call’s start, end and transcript.',
       setup: { name: 'Set up once', line: 'Pick pieces, a persona or a blueprint, and say where results go.' },
-      happens: { name: 'Something happens', line: 'A call, an email, a text or a page change, all day.' },
+      happens: { name: 'Something happens', line: 'A call, email, text or page change, around the clock.' },
       log: { name: 'Your event log', line: 'Every event in order, with its email, screenshot or recording.' },
-      reach: { name: 'Reaches your agent, or your team', line: 'Wherever you said it runs.' },
+      reach: { name: 'Reaches your agent, or your team', line: 'Wherever you route it.' },
       saved: 'saved',
       sent: 'sent on',
       places: [
