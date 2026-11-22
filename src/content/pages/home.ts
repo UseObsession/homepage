@@ -142,7 +142,7 @@ export const page: Page = {
     chip: { code: 'obsession.personas.create({ inbox: true, phone: "US", browser: true })', copy: 'Copy the code', copied: 'Copied' },
     doors: {
       dev: { label: 'For developers' },
-      noCode: { label: 'For teams that don’t code', line: 'Pick a job, fill in the blanks, get results in Slack or a sheet.' },
+      noCode: { label: 'For teams that don’t code', line: 'Pick a job, fill in the blanks, and get results in the tools your team already uses.' },
     },
   },
 
@@ -165,7 +165,7 @@ export const page: Page = {
      James's words from 22 Nov; blueprints serve developers too, so it no longer opens "For teams without engineers". */
   homeBlueprints: {
     heading: 'Pick a blueprint. We run the job, you get the report.',
-    line: 'Six types of blueprints, one for each job AI agents do. Results arrive where you already work: your spreadsheet, Clay, your own Claude agent or our dashboard.',
+    line: 'Six types of blueprints, one for each job AI agents do. Results arrive in any format, where you already work: Slack, email, your CRM, Clay, a sheet, a PDF or your own Claude agent.',
     unit: { one: 'blueprint', many: 'blueprints' },
     more: 'more',
     all: { label: 'See every blueprint', to: '/blueprints' },
@@ -181,6 +181,7 @@ export const page: Page = {
     teamsLabel: 'Your team',
     steps: { pick: 'Pick a blueprint', fill: 'Fill in the blanks', get: 'Results where you work' },
     open: 'See the blueprint',
+    formats: { label: 'Or as', items: ['Email', 'Your CRM', 'Clay', 'Google Sheets', 'A PDF report', 'Your AI assistant', 'Any tool you use'] },
     kpisLabel: 'See it in',
     exampleTag: 'Example',
     teams: [
@@ -286,7 +287,7 @@ export const page: Page = {
       items: [
         { icon: 'persona', name: 'Its own phone number, inbox and browser', line: 'Under one name, so every reply and code comes back to it.' },
         { icon: 'record', name: 'Proof behind every line', line: 'The email, the screenshot or the call recording, each dated.' },
-        { icon: 'webhook', name: 'Results where you work', line: 'Slack, Google Sheets, your CRM or a weekly report.' },
+        { icon: 'webhook', name: 'Results in any format', line: 'Slack, email, your CRM, Clay, a sheet, a PDF or your AI assistant. Use another tool, and we build the connection.' },
         { icon: 'stop', name: 'Rules it always keeps', line: 'It says it’s an AI to a person, uses only logins you give it and stops at any identity check.' },
       ],
     },

@@ -1249,6 +1249,8 @@ export type HomeTeams = {
   teamsLabel: string
   steps: { pick: string; fill: string; get: string }
   open: string
+  /* The same results in the team's own tools: the format never matters (Seun, 23 Nov 2026). */
+  formats: { label: string; items: string[] }
   kpisLabel: string
   exampleTag: string
   teams: {

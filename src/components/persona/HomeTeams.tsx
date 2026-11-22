@@ -34,7 +34,7 @@ const d = (n: number) => ({ ['--d' as string]: n }) as CSSProperties
 export function HomeTeams({ words, id }: { words: Words; id?: string }) {
   const hid = useId()
   const [i, setI] = useState(0)
-  const { ref, inView } = useInView<HTMLDivElement>(0.3)
+  const { ref, inView } = useInView<HTMLDivElement>(0.15)
   const [armed, setArmed] = useState(false)
   const [seen, setSeen] = useState(false)
   useEffect(() => {
@@ -160,6 +160,14 @@ export function HomeTeams({ words, id }: { words: Words; id?: string }) {
                       ))}
                     </ul>
                   </div>
+                  <p className="h-tm__formats h-tm__anim" style={d(5 + blanks)}>
+                    <span className="h-tm__formats-label">{words.formats.label}</span>
+                    {words.formats.items.map((f) => (
+                      <span key={f} className="h-tm__format">
+                        {f}
+                      </span>
+                    ))}
+                  </p>
                 </div>
               </div>
             </div>
