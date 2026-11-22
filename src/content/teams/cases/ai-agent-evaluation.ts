@@ -47,6 +47,8 @@ export const useCase: TeamPage = {
       { icon: 'record', label: 'The log scores every step' },
     ],
     who: 'Task 118 in the nightly suite at evals.example',
+    note: 'The address was typed, never saved',
+    fleet: '2,400 tasks · every night',
     rows: [
       { at: '02:00', kind: 'page.visited', text: 'shop.example/signin · screenshot saved' },
       { at: '02:00', kind: 'sms.received', text: 'Your sign-in code is 418306' },

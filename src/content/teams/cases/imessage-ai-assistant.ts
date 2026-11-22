@@ -46,6 +46,8 @@ export const useCase: TeamPage = {
       { icon: 'record', label: 'It replies in the same thread' },
     ],
     who: 'Marlo, a personal assistant at marlo.example',
+    note: 'Booked and answered in 61 seconds',
+    fleet: '120,000 users’ assistants',
     rows: [
       { at: 'Fri · 18:02', kind: 'message.received', text: 'iMessage: “Table for 4 tonight, somewhere near Soho?”' },
       { at: 'Fri · 18:02', kind: 'page.visited', text: 'bistro.example/book · 4 people at 20:00 · screenshot saved' },

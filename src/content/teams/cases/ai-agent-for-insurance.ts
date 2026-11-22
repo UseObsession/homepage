@@ -41,6 +41,8 @@ export const useCase: TeamPage = {
       { icon: 'users', label: 'A licensed agent takes it from there' },
     ],
     who: 'Quinn, the quotes agent at Larkspur Insurance',
+    note: 'Handed to a licensed agent, every word kept',
+    fleet: '25 agents · 3,000 quote calls a month',
     rows: [
       { at: '10:14', kind: 'call.received', text: '+1 614 555 0123 · 6 min 40 s · transcript kept' },
       { at: '10:20', kind: 'call.ended', text: 'Car insurance quote: $118 a month · quote texted' },

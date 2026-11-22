@@ -404,36 +404,45 @@ function Jobs() {
 function Scale() {
   const s = p.scale
   const e = useEntrance<HTMLOListElement>(0.15)
+  const top = s.axis.length - 1
+  /* Where a count sits on the ten-times scale: 1 at the left edge, 1M at the right. */
+  const at = (n: number) => Math.min(1, Math.log10(Math.max(n, 1)) / top)
   return (
     <figure className="nc-scale-fig">
-      <p className="nc-scale__legend" aria-hidden="true">
-        <i />
-        {s.legend}
-      </p>
       <ol ref={e.ref} className={'nc-scale' + e.cls} data-armed={e.armed ? '' : undefined}>
-        {s.rows.map((r, i) => {
-          const dots = Math.max(1, Math.round(r.agents / 10))
-          return (
-            <li key={r.name} className="nc-scale__row" style={vars({ '--r': i })}>
-              <span className="nc-scale__who">
-                <b>{r.name}</b>
-                <span>{r.size}</span>
+        <li className="nc-scale__axis" aria-hidden="true">
+          <span className="nc-scale__legend">{s.legend}</span>
+          <span className="nc-scale__ticks">
+            {s.axis.map((t, i) => (
+              <span key={t} style={vars({ '--t': i / top })}>
+                {t}
               </span>
-              <span className="nc-scale__dots" aria-hidden="true">
-                {Array.from({ length: dots }, (_, k) => (
-                  <i key={k} style={vars({ '--k': Math.min(k, 80) })} />
-                ))}
-              </span>
-              <span className="nc-scale__n">
-                {r.agents.toLocaleString('en-US')} <small>agents</small>
-              </span>
-              <Link className="nc-scale__job" to={`/blueprints/${r.slug}`}>
-                {tie(r.job)}
-                <Chev />
-              </Link>
-            </li>
-          )
-        })}
+            ))}
+          </span>
+        </li>
+        {s.rows.map((r, i) => (
+          <li key={r.name} className="nc-scale__row" style={vars({ '--r': i })}>
+            <span className="nc-scale__who">
+              <b>{r.name}</b>
+              <span>{r.size}</span>
+            </span>
+            <span className="nc-scale__bar" aria-hidden="true" style={vars({ '--w': at(r.agents) })}>
+              {s.axis.map((t, k) => (
+                <i key={t} className="nc-scale__tick" style={vars({ '--t': k / top })} />
+              ))}
+              <span className="nc-scale__fill" />
+              <span className="nc-scale__cap" />
+            </span>
+            <span className="nc-scale__n">
+              {r.agents.toLocaleString('en-US')}
+              {r.plus ? '+' : ''} <small>agents</small>
+            </span>
+            <Link className="nc-scale__job" to={`/blueprints/${r.slug}`}>
+              {tie(r.job)}
+              <Chev />
+            </Link>
+          </li>
+        ))}
       </ol>
       <div className="nc-vol">
         <p className="nc-formats__label">{s.volume.label}</p>

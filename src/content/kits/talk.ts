@@ -28,20 +28,22 @@ export const talk: KitPage = {
 
   scene: {
     steps: [
-      { icon: 'phone', label: 'A lead calls the agent’s number' },
-      { icon: 'chat', label: 'It texts the quote back' },
-      { icon: 'mail', label: 'It emails the documents' },
-      { icon: 'record', label: 'Every word lands in the log' },
+      { icon: 'browser', label: 'A lead fills in your form' },
+      { icon: 'phone', label: 'The agent calls back in seconds' },
+      { icon: 'mail', label: 'It emails the next steps' },
+      { icon: 'chat', label: 'Their text lands in the same thread' },
     ],
-    who: 'Riley, the quotes agent at Sunnyside Insurance',
+    who: 'Rowan, the lead agent at Corvid Home Loans',
+    note: 'Called back 41 seconds after the form',
+    fleet: '60 agents · 2,400 leads this week',
     rows: [
-      { at: '09:02', kind: 'call.received', text: '+1 512 555 0142 · 3 min 12 s · transcript kept' },
-      { at: '09:05', kind: 'call.ended', text: 'Quote requested: $142 a month' },
-      { at: '09:06', kind: 'email.sent', text: 'Your quote and policy documents' },
-      { at: '09:41', kind: 'sms.received', text: '“Can I start on Monday?”' },
-      { at: '09:41', kind: 'webhook', text: 'Sent to your CRM in 180 ms', tone: 'ok' },
+      { at: '21:14:05', kind: 'webhook', text: 'Form lead from your site · refinance, $420,000' },
+      { at: '21:14:46', kind: 'call.ended', text: 'Called back in 41 s · 6 min 10 s · rate options read · transcript kept', tone: 'ok' },
+      { at: '21:21', kind: 'email.sent', text: 'Your rate options and the documents we need' },
+      { at: '21:58', kind: 'sms.received', text: '“Payslips uploaded. Can we talk Thursday?”' },
+      { at: '21:58', kind: 'webhook', text: 'Lead, transcript and reply sent to your CRM' },
     ],
-    caption: 'One agent, one identity: the call, the text and the email in one log. Sunnyside Insurance is an invented example.',
+    caption: 'A form at 21:14, a call back 41 seconds later, then the email and the text in one thread. Corvid Home Loans is an invented example.',
   },
 
   pieces: {

@@ -34,6 +34,8 @@ export const team: TeamPage = {
       { icon: 'record', label: 'New offers reach Slack' },
     ],
     who: 'A persona subscribed to fernhollow.example',
+    note: 'A competitor’s new offer, in Slack by 09:15',
+    fleet: '12 competitors · every email kept',
     rows: [
       { at: 'Mon 07:30', kind: 'email.received', text: 'Black Friday starts now: 30% off · Promotions tab' },
       { at: 'Tue 06:00', kind: 'page.visited', text: 'Starter set cut from £24 to £19 · screenshot saved' },

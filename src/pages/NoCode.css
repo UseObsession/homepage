@@ -167,22 +167,32 @@
 
 /* ---- Every size: a row per size, its agents as dots (biggest first), then blueprints at volume ---- */
 .nc-scale-fig { margin: 0; }
-.nc-scale__legend { display: flex; align-items: center; gap: var(--ob-space-8); margin: 0 0 var(--ob-space-12); font: var(--ob-type-caption); color: var(--ob-text-3); }
-.nc-scale__legend i { width: 7px; height: 7px; border-radius: 2px; background: var(--s-accent-developers); }
 .nc-scale { display: grid; margin: 0; padding: 0; list-style: none; overflow: hidden; border-radius: var(--ob-radius-xl); background: var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-1); }
 .nc-scale__row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ob-space-10, 10px) var(--ob-space-16); align-items: center; padding: var(--ob-space-16) var(--ob-space-20); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); transition: background-color var(--ob-dur-base) var(--ob-ease-out); }
 .nc-scale__row:first-child { border-top: 0; }
 .nc-scale__who { display: grid; gap: 2px; min-width: 0; }
 .nc-scale__who b { font: var(--ob-type-label); color: var(--ob-text); }
 .nc-scale__who span { font: var(--ob-type-caption); color: var(--ob-text-3); }
-.nc-scale__dots { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 3px; max-width: 520px; }
-.nc-scale__dots i { width: 7px; height: 7px; border-radius: 2px; background: color-mix(in srgb, var(--s-accent-developers) 75%, transparent); }
+/* The ten-times scale: hairline ticks at 1, 10, 100 ... 1M, each row's count filled from the left edge to its place. */
+.nc-scale__axis { display: grid; gap: var(--ob-space-8); padding: var(--ob-space-16) var(--ob-space-20) var(--ob-space-12); background: rgba(var(--ob-tint-rgb), 0.025); }
+.nc-scale__legend { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-scale__ticks { position: relative; height: 16px; }
+.nc-scale__ticks span { position: absolute; left: calc(var(--t) * 100%); translate: -50% 0; font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+.nc-scale__ticks span:first-child { translate: 0 0; }
+.nc-scale__ticks span:last-child { translate: -100% 0; }
+.nc-scale__bar { grid-column: 1 / -1; position: relative; height: 14px; }
+.nc-scale__tick { position: absolute; top: 2px; bottom: 2px; left: calc(var(--t) * 100%); width: 1px; background: var(--ob-line-subtle, var(--ob-line)); }
+.nc-scale__bar::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--ob-line); }
+.nc-scale__fill { position: absolute; left: 0; top: 4px; bottom: 4px; width: max(4px, calc(var(--w) * 100%)); border-radius: 3px; background: linear-gradient(90deg, color-mix(in srgb, var(--s-accent-developers) 18%, transparent), color-mix(in srgb, var(--s-accent-developers) 80%, transparent)); transform-origin: left center; }
+.nc-scale__cap { position: absolute; top: 50%; left: max(4px, calc(var(--w) * 100%)); width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; border-radius: 50%; background: var(--s-accent-developers); box-shadow: 0 0 0 3px color-mix(in srgb, var(--s-accent-developers) 22%, transparent); }
 .nc-scale__n { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .nc-scale__n small { font: var(--ob-type-caption); color: var(--ob-text-3); }
 .nc-scale__job { grid-column: 1 / -1; justify-self: start; display: inline-flex; align-items: center; gap: var(--ob-space-4); font: var(--ob-type-small); color: var(--ob-text-2); text-decoration: none; }
 @media (min-width: 960px) {
-  .nc-scale__row { grid-template-columns: 210px minmax(0, 1fr) 110px minmax(0, 1fr); padding: var(--ob-space-16) var(--ob-space-24); }
-  .nc-scale__dots { grid-column: auto; }
+  .nc-scale__row, .nc-scale__axis { grid-template-columns: 200px minmax(0, 1fr) 11.5rem minmax(0, 0.9fr); padding: var(--ob-space-16) var(--ob-space-24); column-gap: var(--ob-space-20); }
+  .nc-scale__axis { padding-block: var(--ob-space-12); align-items: center; }
+  .nc-scale__ticks { grid-column: 2; }
+  .nc-scale__bar { grid-column: auto; }
   .nc-scale__n { text-align: right; }
   .nc-scale__job { grid-column: auto; }
 }
@@ -273,6 +283,7 @@
 @keyframes nc-prog { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes nc-ring { from { opacity: 0.9; transform: scale(1); } to { opacity: 0; transform: scale(1.04); } }
 @keyframes nc-next { 0%, 100% { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; } 50% { box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--s-accent, var(--ob-text)) 55%, transparent) inset; } }
+@keyframes nc-grow { from { transform: scaleX(0); } to { transform: none; } }
 @keyframes nc-dot { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: none; } }
 @keyframes nc-ptr { 0% { opacity: 0; transform: translate(70px, 60px); } 15% { opacity: 1; } 60% { opacity: 1; transform: translate(0, 0); } 68% { transform: translate(0, 0) scale(0.85); } 76% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { opacity: 0; transform: translate(6px, 8px); } }
 @keyframes nc-press { 0% { opacity: 1; transform: none; } 70% { opacity: 1; transform: none; } 80% { opacity: 1; transform: scale(0.95); } 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
@@ -296,8 +307,10 @@
   /* Equipped: the abilities column leans in while it unlocks. */
   .nc-eq.is-on .nc-eq__act { animation: nc-lean 1600ms var(--ob-ease-out) both; }
   /* The dots fill row by row, biggest first. */
-  .nc-scale[data-armed] .nc-scale__dots i { opacity: 0; }
-  .nc-scale.is-in .nc-scale__dots i { animation: nc-dot 320ms var(--ob-ease-out) both; animation-delay: calc(var(--r) * 160ms + var(--k) * 10ms); }
+  .nc-scale[data-armed] .nc-scale__fill { transform: scaleX(0); }
+  .nc-scale[data-armed] .nc-scale__cap { opacity: 0; }
+  .nc-scale.is-in .nc-scale__fill { animation: nc-grow 900ms var(--ob-ease-out) both; animation-delay: calc(var(--r) * 140ms); }
+  .nc-scale.is-in .nc-scale__cap { animation: nc-dot 320ms var(--ob-ease-out) both; animation-delay: calc(var(--r) * 140ms + 760ms); }
   /* The setup sheet: the fields settle, the pointer comes in and clicks Approve and run, and the running bar opens. */
   .nc-sheet[data-armed] .nc-sheet__fields > div { opacity: 0; }
   .nc-sheet[data-armed] .nc-sheet__run { opacity: 0; }

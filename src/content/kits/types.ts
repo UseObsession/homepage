@@ -18,7 +18,7 @@ export type KitPage = {
   name: string
   meta: Meta
   hero: { headline: string; sub: string }
-  scene: { steps: KitStep[]; who: string; rows: KitRow[]; caption: string; real?: boolean }
+  scene: { steps: KitStep[]; who: string; note: string; fleet: string; rows: KitRow[]; caption: string; real?: boolean }
   /* The pieces this job uses, each with what it does here. Names and addresses come from the piece pages. */
   pieces: { heading: string; line: string; items: { piece: PieceId; line: string }[]; prices: PriceKey[] }
   /* The blueprints in this kit, by slug (content/recipes): names and lines come from each blueprint's own file. */

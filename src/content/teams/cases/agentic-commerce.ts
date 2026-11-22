@@ -50,6 +50,8 @@ export const useCase: TeamPage = {
       { icon: 'record', label: 'The order is matched in your event log' },
     ],
     who: 'Buying agent 4 at corrin.example',
+    note: 'Order, receipt and delivery matched',
+    fleet: '12 agents, one per clinic',
     rows: [
       { at: 'Wed · 07:02', kind: 'page.visited', text: 'supplier.example/checkout · paid with Corrin’s card · $214.80 · screenshot saved' },
       { at: 'Wed · 07:03', kind: 'email.received', text: 'Order confirmation SO-88412 · 12 cases of gloves · $214.80' },

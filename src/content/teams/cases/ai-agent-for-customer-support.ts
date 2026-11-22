@@ -39,16 +39,18 @@ export const useCase: TeamPage = {
       { icon: 'phone', label: 'A customer calls the support line' },
       { icon: 'chat', label: 'They send a photo on WhatsApp' },
       { icon: 'mail', label: 'The agent emails the return label' },
-      { icon: 'check', label: 'A daily call checks its answers' },
+      { icon: 'record', label: 'The ticket closes with every channel' },
     ],
     who: 'Mia, the support agent at Fernhill Home',
+    note: 'One thread across phone, WhatsApp and email',
+    fleet: '30 agents · 5,000 tickets a week',
     rows: [
       { at: 'Mon 08:14', kind: 'call.ended', text: '6 min 40 s · Spanish · thermostat offline after the update · transcript kept' },
       { at: 'Mon 08:15', kind: 'message.received', text: 'WhatsApp: a photo of the wiring' },
-      { at: 'Mon 08:17', kind: 'email.sent', text: 'Replacement and return label for order 55120' },
-      { at: 'Tue 07:00', kind: 'blueprint.result', text: 'Check call: the warranty answer matches your policy page', tone: 'ok' },
+      { at: 'Mon 08:17', kind: 'email.sent', text: 'Replacement and return label for order 55120', tone: 'ok' },
+      { at: 'Mon 08:17', kind: 'webhook', text: 'Ticket closed in your help desk, with the call, the photo and the email' },
     ],
-    caption: 'One agent answers by phone, WhatsApp and email, and a daily call checks what it tells customers. Fernhill Home is an invented example.',
+    caption: 'One agent answers by phone, WhatsApp and email in one thread, and the replacement leaves 3 minutes after the call. Fernhill Home is an invented example.',
   },
 
   uses: {

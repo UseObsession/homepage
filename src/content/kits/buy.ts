@@ -51,6 +51,8 @@ export const buy: KitPage = {
       { icon: 'record', label: 'Every order lands in your event log' },
     ],
     who: 'Purchasing agent 2 at a restaurant group with 18 sites',
+    note: 'Basket to delivery date, in your sheet',
+    fleet: '18 agents, one per site',
     rows: [
       { at: '09:12', kind: 'page.visited', text: 'supplies.example · 12 cases of takeaway boxes in the basket' },
       { at: '09:13', kind: 'page.visited', text: 'Checkout · paid with the group’s card ending 4417' },

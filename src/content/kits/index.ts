@@ -30,6 +30,7 @@ export const kitUi = {
   events: 'events',
   delivered: 'delivered',
   miss: 'a miss found',
+  replay: 'Replay',
   example: 'Example',
   real: 'Real run',
   prices: 'What it costs',

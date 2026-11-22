@@ -41,6 +41,8 @@ export const useCase: TeamPage = {
       { icon: 'record', label: 'A missing code reaches your CI' },
     ],
     who: 'Login journey, 2 test users at ledgerly.example',
+    note: 'The UK code never came',
+    fleet: '80 test users · 12 countries',
     rows: [
       { at: '14:02', kind: 'page.visited', text: 'ledgerly.example/login · code requested · screenshot saved' },
       { at: '14:02', kind: 'sms.received', text: 'US +1 · Your Ledgerly code is 604218 · 4 s' },

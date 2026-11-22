@@ -48,6 +48,8 @@ export const useCase: TeamPage = {
       { icon: 'record', label: 'Each answer goes to your queue' },
     ],
     who: 'Auth agent 2 at northgate.example',
+    note: 'Both answers in your queue by 06:32',
+    fleet: '15 agents · 6,000 requests a month',
     rows: [
       { at: 'Mon · 06:30', kind: 'page.visited', text: 'portal.payer.example/login' },
       { at: 'Mon · 06:30', kind: 'sms.received', text: 'Your one-time code is 307518' },

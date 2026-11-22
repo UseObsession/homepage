@@ -46,6 +46,8 @@ export const useCase: TeamPage = {
       { icon: 'record', label: 'The load is covered, in the log' },
     ],
     who: 'Coverage agent 6 at ridgeline.example',
+    note: 'Load covered 18 minutes after the call',
+    fleet: '20 agents · 900 loads a week',
     rows: [
       { at: 'Tue · 14:02', kind: 'call.ended', text: 'Dallas to Atlanta, dry van · $2.45 a mile agreed · transcript kept' },
       { at: 'Tue · 14:04', kind: 'email.sent', text: 'Rate confirmation, load 58213 · $2.45 a mile' },

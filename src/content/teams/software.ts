@@ -44,6 +44,8 @@ export const team: TeamPage = {
       { icon: 'record', label: 'A dead link, caught at 09:04' },
     ],
     who: 'Journey 3, a test persona at larkfield.example',
+    note: 'A dead link, caught one minute in',
+    fleet: '12 journeys · every deploy',
     rows: [
       { at: 'Tue · 09:02', kind: 'page.visited', text: 'larkfield.example/signup · screenshot saved' },
       { at: 'Tue · 09:02', kind: 'sms.received', text: 'Your Larkfield code is 604117' },

@@ -40,6 +40,8 @@ export const useCase: TeamPage = {
       { icon: 'record', label: 'The booking reaches your ATS' },
     ],
     who: 'Jordan, the screening agent at Brightshift Staffing',
+    note: 'Screened and booked 4 minutes after applying',
+    fleet: '50 agents · 4,000 applicants a week',
     rows: [
       { at: 'Mon 22:10', kind: 'email.received', text: 'New applicant: warehouse nights, Columbus' },
       { at: 'Mon 22:13', kind: 'call.ended', text: '4 min 05 s · forklift licence, nights, starts Monday · transcript kept' },

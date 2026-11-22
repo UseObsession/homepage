@@ -40,6 +40,8 @@ export const useCase: TeamPage = {
       { icon: 'mail', label: 'It emails the application link' },
     ],
     who: 'Ava, the leasing agent at Kestrel Living',
+    note: 'A tour booked at 8pm',
+    fleet: '60 buildings · every call answered',
     rows: [
       { at: 'Thu 20:12', kind: 'call.received', text: '+1 480 555 0139 · 5 min 02 s · transcript kept' },
       { at: 'Thu 20:17', kind: 'call.ended', text: 'Tour booked: 2-bed at Saguaro Point, Sat 11:00 · confirmation texted', tone: 'ok' },

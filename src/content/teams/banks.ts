@@ -45,6 +45,8 @@ export const team: TeamPage = {
       { icon: 'record', label: 'Each answer checked against your terms' },
     ],
     who: 'A new saver persona at kittiwake.example',
+    note: 'Chat says fixed. The rate page says variable.',
+    fleet: '24 journeys · 6 competitors',
     rows: [
       { at: 'Tue · 07:00', kind: 'page.visited', text: 'kittiwake.example/apply · 5 steps · screenshots saved' },
       { at: 'Tue · 07:01', kind: 'sms.received', text: 'Your Kittiwake code is 318540' },

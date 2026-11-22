@@ -5,7 +5,7 @@ import type { Cta, Faq, Final, Meta, PersonaIcon } from './types'
 /* /no-code: the page for teams that don't write code (pages/NoCode.tsx). Two ways in: hire the job done (pick a
    blueprint, and Obsession runs it) or make the AI the team already uses capable (Claude, ChatGPT, Zapier, Make, n8n).
    The story: a company's teams with their blueprints running (the hero's console, which the reader can drive); what an
-   agent can do once it's equipped; the reader's own team's first job; every size, from 2 agents to 1,200; the two ways
+   agent can do once it's equipped; the reader's own team's first job; every size, from 2 agents to millions; the two ways
    to start; the rules and the cost; questions; the form. It owns "ai agents without coding", "no code ai agents" and
    "ai agents for business teams". Every company, person and number in a picture is an example; prices, typical months
    and volumes come from content/prices.ts and the catalog, never typed here. */
@@ -52,7 +52,8 @@ export type NoCodePage = {
     heading: string
     line: string
     legend: string
-    rows: { name: string; size: string; agents: number; job: string; slug: string }[]
+    axis: string[]
+    rows: { name: string; size: string; agents: number; plus?: boolean; job: string; slug: string }[]
     volume: { label: string; slugs: string[]; per: string }
     caption: string
   }
@@ -329,18 +330,20 @@ export const noCodePage: NoCodePage = {
   },
 
   scale: {
-    heading: 'From 2 agents for a founder to 1,200 across an enterprise.',
-    line: 'The same blueprints run for one location or hundreds. An enterprise reorders supplies for 400 sites; a founder answers every enquiry within a minute. Each blueprint page prices the month at your volume.',
-    legend: 'Each dot is 10 agents',
+    heading: 'From 2 agents for a founder to millions on one platform.',
+    line: 'The same blueprints run for one location or 20,000. A platform gives every user’s assistant its own number; a founder answers every enquiry within a minute. Obsession is built for millions of agents, and each blueprint page prices the month at your volume.',
+    legend: 'Each step is ten times the last',
+    axis: ['1', '10', '100', '1K', '10K', '100K', '1M'],
     rows: [
-      { name: 'Enterprises', size: '5,000+ people', agents: 1200, job: 'Reorder supplies for 400 sites from 60 suppliers', slug: 'supplier-reorder-agent' },
+      { name: 'Apps and platforms', size: 'Millions of users', agents: 1000000, plus: true, job: 'Give every user’s assistant its own iMessage line and number', slug: 'imessage-assistant' },
+      { name: 'Enterprises', size: '10,000+ people', agents: 120000, job: 'Reorder for 4,000 sites from 30 suppliers, one agent per account', slug: 'supplier-reorder-agent' },
+      { name: 'Franchise networks', size: '1,000+ locations', agents: 20000, job: 'Text back every missed call at 20,000 locations', slug: 'missed-call-text-back' },
+      { name: 'Agencies', size: '10 to 500 clients', agents: 3000, job: 'Shop 3,000 client and prospect stores every week', slug: 'mystery-shopper' },
       { name: 'Mid-market companies', size: '200 to 5,000 people', agents: 150, job: 'Call every inbound lead within a minute, across 3 brands', slug: 'speed-to-lead-callback' },
-      { name: 'Agencies', size: '10 to 500 clients', agents: 45, job: 'Shop 45 client stores every week, with each owner’s OK', slug: 'mystery-shopper' },
-      { name: 'Multi-location businesses', size: '10 to 200 people', agents: 40, job: 'Text back missed calls at 40 clinics', slug: 'missed-call-text-back' },
       { name: 'Founders and consultants', size: 'A team of one', agents: 2, job: 'Answer every new enquiry within a minute', slug: 'speed-to-lead-callback' },
     ],
     volume: { label: 'At volume, priced on each blueprint’s page', slugs: ['load-tracking', 'imessage-assistant', 'invoice-collector', 'missed-call-text-back'], per: 'a month' },
-    caption: 'Example deployments by company size, and the largest typical month on four blueprint pages.',
+    caption: 'Example deployments by company size, on a scale where each step is ten times the last, and the largest typical month on four blueprint pages.',
   },
 
   ways: {

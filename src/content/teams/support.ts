@@ -30,17 +30,20 @@ export const team: TeamPage = {
     steps: [
       { icon: 'persona', label: 'A persona asks your chat agent' },
       { icon: 'phone', label: 'It calls your voice line' },
-      { icon: 'check', label: 'Each answer beside your rate page' },
+      { icon: 'check', label: 'Each answer beside your returns policy' },
       { icon: 'record', label: 'A wrong answer reaches Slack' },
     ],
-    who: 'A test persona at online-bank.example',
+    who: 'A test shopper at haldenhome.example',
+    note: 'The bot counts 30 days from the order',
+    fleet: 'Checked daily on chat, email and phone',
     rows: [
-      { at: '09:19', kind: 'page.visited', text: 'online-bank.example/savings · 4.6% AER, variable' },
-      { at: '09:20', kind: 'page.visited', text: 'Help chat: “Yes, 4.6% is fixed for 12 months.”' },
-      { at: '10:02', kind: 'call.ended', text: '0800 line · 7 min 30 s · “4.6%, fixed for the first year”' },
-      { at: '10:03', kind: 'blueprint.result', text: 'Chat and phone say fixed. The rate page says variable.', tone: 'fail' },
+      { at: '09:18', kind: 'page.visited', text: 'Returns policy: 30 days from delivery · screenshot saved' },
+      { at: '09:20', kind: 'page.visited', text: 'Help chat: “Returns close 30 days after your order date.”' },
+      { at: '10:02', kind: 'call.ended', text: 'Phone line · 4 min 50 s · “30 days from delivery” · transcript kept' },
+      { at: '10:03', kind: 'blueprint.result', text: 'Chat counts from the order. The policy and the phone count from delivery.', tone: 'fail' },
+      { at: '10:03', kind: 'webhook', text: 'Sent to #support with both answers' },
     ],
-    caption: 'The chat and the phone line quote terms the rate page doesn’t. Online Bank is an invented example.',
+    caption: 'A chat agent that closes returns early, caught before a customer is turned away. Halden Home is an invented example.',
   },
 
   uses: {

@@ -1,4 +1,5 @@
 import type { EventName } from '../delivery'
+import type { KitPage } from '../kits/types'
 import type { PieceId } from '../prices'
 import type { Faq, Final, Meta } from '../types'
 
@@ -28,6 +29,9 @@ export type PiecePage = {
   /* The H1 leads with the phrase people search; the part after its first colon is the claim. `code` uses the API names
      every page shares (the rebuild brief), with no "Example" tag. */
   hero: { headline: string; sub: string; code: string }
+  /* The piece at work (#at-work), in the same product window as the blueprint, team and use case pages
+     (components/kit/KitScene): one agent's moment, its fleet, the finding and its note (_research/illus/AUDIT_23nov.md). */
+  scene?: { heading: string; line: string } & KitPage['scene']
   can: { heading: string; line?: string; items: PieceItem[] }
   /* The events this piece sends, in the order the #delivery block lists them. */
   events: EventName[]
