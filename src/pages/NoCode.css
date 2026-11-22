@@ -1,99 +1,197 @@
-/* /no-code (NoCode.tsx): a centred hero over the week, the teams grid, Home's teams section, the formats, then cost,
-   rules and the developer handoff as cards. Design system tokens only; each team card wears its reader colour. */
+/* /no-code (NoCode.tsx). Design system tokens only; every class starts nc-. The hero's two ways in are the page's
+   picture: each a card with its words over a product window. Sections alternate tone; reader accents (data-reader)
+   colour icons and lit states only. */
 
-.nc-hero { padding-top: clamp(32px, 5vw, 72px); }
+/* ---- Shared ---- */
+.nc-ic { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: var(--ob-radius-sm); background: var(--ob-bg-sunken); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-subtle) inset; color: var(--s-accent, var(--ob-text-2)); }
+.nc-ic svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.nc-chev { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-base) var(--ob-ease-out); }
+.nc-fmt-ic { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.nc-caption { margin: var(--ob-space-16) 0 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); text-align: center; }
+.nc-head { display: grid; gap: var(--ob-space-16); max-width: 760px; margin-bottom: var(--ob-space-40); }
+.nc-kicker { margin: 0; font: var(--ob-type-caption); letter-spacing: .08em; text-transform: uppercase; color: var(--ob-text-3); }
+.nc-h2 { margin: 0; max-width: 24ch; font: var(--ob-type-h2); letter-spacing: var(--ob-type-h2-tracking); color: var(--ob-text); text-wrap: balance; }
+.nc-line { margin: 0; max-width: 60ch; font: var(--ob-type-body-lg); letter-spacing: var(--ob-type-body-lg-tracking); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
+.nc-more { display: inline-flex; align-items: center; gap: var(--ob-space-4); margin-top: var(--ob-space-32); font: var(--ob-type-label); color: var(--ob-text); text-decoration: underline; text-decoration-color: var(--ob-line-strong); text-underline-offset: 4px; }
+.nc-more:focus-visible, .nc-door__cta:focus-visible, .nc-job__link:focus-visible, .nc-scale__job:focus-visible, .nc-tab:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+
+/* ---- Hero ---- */
+.nc-hero { padding-top: clamp(28px, 4vw, 64px); }
 .nc-crumbs { margin-bottom: var(--ob-space-24); }
-.nc-hero__words { display: grid; justify-items: center; gap: var(--ob-space-20); text-align: center; }
-.nc-pill { margin: 0; padding: 6px 12px; border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-pill); font: 500 13px / 1 var(--ob-font-sans); color: var(--ob-text-2); }
-.nc-h1 { margin: 0; max-width: 20ch; font: 600 clamp(34px, 4.6vw, 60px) / 1.05 var(--ob-font-sans); letter-spacing: -0.04em; color: var(--ob-text); text-wrap: balance; }
-.nc-sub { margin: 0; max-width: 62ch; font: 400 clamp(16.5px, 1.4vw, 19px) / 1.55 var(--ob-font-sans); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
-.nc-act { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--ob-space-12); margin-top: var(--ob-space-4); }
-.nc-note { margin: 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-hero__words { display: grid; justify-items: center; gap: var(--ob-space-20); max-width: 920px; margin: 0 auto; text-align: center; }
+.nc-pill { margin: 0; padding: 6px 12px; border-radius: var(--ob-radius-pill); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-2); }
+.nc-h1 { margin: 0; max-width: 21ch; font: 600 clamp(34px, 4.4vw, 58px) / 1.06 var(--ob-font-sans); letter-spacing: -0.035em; color: var(--ob-text); text-wrap: balance; }
+.nc-sub { margin: 0; max-width: 64ch; font: 400 clamp(16.5px, 1.35vw, 19px) / 1.55 var(--ob-font-sans); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
+.nc-note { margin: var(--ob-space-20) 0 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); text-align: center; }
 
-/* Blueprints a reader recognises as work they've already tried to hand off: quiet pills, each linking its page. */
-.nc-examples { display: grid; justify-items: center; gap: var(--ob-space-10, 10px); margin-top: var(--ob-space-8); }
-.nc-examples__label { margin: 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); }
-.nc-examples__list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--ob-space-8); max-width: 820px; }
-.nc-example { display: inline-flex; align-items: center; gap: var(--ob-space-4); min-height: 36px; padding: 0 var(--ob-space-10, 10px) 0 var(--ob-space-14, 14px); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-pill); background: var(--ob-surface); font: var(--ob-type-small); color: var(--ob-text); text-decoration: none; transition: border-color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out); }
-.nc-example .nc-chev { color: var(--ob-text-3); }
-.nc-example:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
-@media (hover: hover) and (pointer: fine) { .nc-example:hover { border-color: var(--ob-line-strong); background: var(--ob-surface-raised, var(--ob-surface)); } .nc-example:hover .nc-chev { translate: 3px 0; color: var(--ob-text); } }
-
-/* The teams: 4 cards a row, each its icon, name, 3 jobs as links (the job, then the blueprint's name), and its KPIs. */
-.nc-teams__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ob-space-16); }
-.nc-team {
+/* The two ways in: 2 cards side by side from 900px, each its words over its window. */
+.nc-doors-fig { margin: clamp(32px, 4vw, 56px) 0 0; }
+.nc-doors { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-16); }
+@media (min-width: 900px) { .nc-doors { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.nc-door {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: var(--ob-space-12);
-  padding: var(--ob-space-20);
-  border: var(--ob-border-hair) solid var(--ob-line);
-  border-radius: var(--ob-radius-lg);
-  background: var(--ob-surface);
+  grid-template-rows: auto 1fr;
+  gap: var(--ob-space-24);
+  padding: clamp(var(--ob-space-20), 2.4vw, var(--ob-space-32));
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2);
+  text-align: left;
 }
-.nc-team::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: -45% 35% 55% -35%;
-  background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-rest, 45%), transparent), transparent);
-  pointer-events: none;
-}
-.nc-team__head { display: flex; align-items: center; gap: var(--ob-space-12); margin: 0; }
-.nc-team__head b { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
-.nc-team__ic { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: var(--ob-radius-md); background: var(--ob-bg); color: var(--s-accent, var(--ob-text)); }
-.nc-team__ic svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
-.nc-team__jobs { list-style: none; margin: 0; padding: 0; border-top: var(--ob-border-hair) solid var(--ob-line); }
-.nc-team__job { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-8); padding: var(--ob-space-10, 10px) 0; border-bottom: var(--ob-border-hair) solid var(--ob-line); color: var(--ob-text); text-decoration: none; }
-.nc-team__job-words { display: grid; gap: 2px; min-width: 0; font: var(--ob-type-small); }
-.nc-team__bp { font: var(--ob-type-caption); color: var(--ob-text-3); }
-.nc-team__job .nc-chev { color: var(--ob-text-3); }
-.nc-team__kpis { margin: 0; font: var(--ob-type-caption); color: var(--ob-text-2); }
-.nc-team__kpis span { display: block; color: var(--ob-text-3); margin-bottom: 2px; }
-.nc-team__job:focus-visible, .nc-more:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; border-radius: var(--ob-radius-sm); }
+.nc-door::before { content: ''; position: absolute; z-index: -1; inset: -40% 30% 50% -30%; background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent, var(--ob-text)) 14%, transparent), transparent); pointer-events: none; }
+.nc-door__words { display: grid; align-content: start; gap: var(--ob-space-10, 10px); }
+.nc-door__kicker { margin: 0; font: var(--ob-type-caption); letter-spacing: .08em; text-transform: uppercase; color: var(--s-accent, var(--ob-text-2)); }
+.nc-door__title { margin: 0; max-width: 26ch; font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); color: var(--ob-text); text-wrap: balance; }
+.nc-door__line { margin: 0; max-width: 54ch; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+.nc-door__cta { display: inline-flex; align-items: center; gap: var(--ob-space-4); justify-self: start; margin-top: var(--ob-space-4); font: var(--ob-type-label); color: var(--ob-text); text-decoration: none; }
 
-.nc-chev { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-base) var(--ob-ease-out); }
-.nc-more { display: inline-flex; align-items: center; gap: var(--ob-space-4); margin-top: var(--ob-space-24); font: var(--ob-type-small); color: var(--ob-text); text-decoration: underline; text-decoration-color: var(--ob-line-strong); text-underline-offset: 4px; }
+/* A product window inside a door: its bar, then its rows in a sunken well. */
+.nc-win { align-self: end; display: grid; overflow: hidden; border-radius: var(--ob-radius-lg); background: var(--ob-bg-sunken); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+.nc-win__bar { display: flex; align-items: center; gap: var(--ob-space-12); padding: var(--ob-space-8) var(--ob-space-12); border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.nc-win__dots { display: inline-flex; gap: 5px; }
+.nc-win__dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--ob-line-strong); }
+.nc-win__crumb { font: 500 12px / 1 var(--ob-font-mono); color: var(--ob-text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nc-win__head { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-12); padding: var(--ob-space-12) var(--ob-space-16) var(--ob-space-4); }
+.nc-win__name { margin: 0; font: var(--ob-type-label); color: var(--ob-text); }
+.nc-win__sub { margin: 2px 0 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-live { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: var(--ob-radius-pill); background: var(--ob-success-bg); font: 600 12px / 1.3 var(--ob-font-sans); color: var(--ob-success); white-space: nowrap; }
+.nc-live i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.nc-win__rows { display: grid; margin: 0; padding: var(--ob-space-8) var(--ob-space-16); list-style: none; }
+.nc-win__rows li { display: grid; grid-template-columns: 42px 28px minmax(0, 1fr); align-items: center; gap: var(--ob-space-8); padding: 6px 0; font: var(--ob-type-small); color: var(--ob-text); }
+.nc-win__rows time, .nc-chat__steps time { font: 500 12px / 1 var(--ob-font-mono); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+.nc-win__rows .nc-ic { width: 24px; height: 24px; }
+.nc-win__rows .nc-ic svg { width: 13px; height: 13px; }
+.nc-win__out { display: flex; align-items: center; gap: var(--ob-space-8); margin: 0; padding: var(--ob-space-10, 10px) var(--ob-space-16); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); font: var(--ob-type-small); color: var(--ob-text); }
+.nc-win__out .nc-fmt-ic { color: var(--s-accent, var(--ob-text-2)); }
+
+/* The chat: the team's ask, Obsession at work, the steps, the answer. */
+.nc-chat { display: grid; gap: var(--ob-space-10, 10px); padding: var(--ob-space-16); }
+.nc-chat__ask { justify-self: end; max-width: 88%; margin: 0; padding: var(--ob-space-10, 10px) var(--ob-space-12); border-radius: 14px 14px 4px 14px; background: var(--ob-surface-raised, var(--ob-surface)); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; font: var(--ob-type-small); color: var(--ob-text); }
+.nc-chat__tool { display: inline-flex; align-items: center; gap: var(--ob-space-8); justify-self: start; margin: 0; font: 500 12px / 1.3 var(--ob-font-mono); color: var(--s-accent, var(--ob-text-2)); }
+.nc-chat__tool .nc-ic { width: 22px; height: 22px; }
+.nc-chat__tool .nc-ic svg { width: 12px; height: 12px; }
+.nc-chat__steps { display: grid; gap: 2px; margin: 0; padding: 0 0 0 var(--ob-space-12); list-style: none; border-left: 1px solid var(--ob-line-strong); }
+.nc-chat__steps li { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: var(--ob-space-8); align-items: baseline; padding: 3px 0; font: var(--ob-type-small); color: var(--ob-text-2); }
+.nc-chat__answer { max-width: 92%; margin: 0; padding: var(--ob-space-10, 10px) var(--ob-space-12); border-radius: 14px 14px 14px 4px; background: color-mix(in srgb, var(--s-accent, var(--ob-text)) 9%, transparent); box-shadow: 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--s-accent, var(--ob-text)) 26%, transparent) inset; font: var(--ob-type-small); color: var(--ob-text); }
+
+/* ---- What AI can't do on its own: 3 columns from 820px, the With Obsession column lit; a card per job below. ---- */
+.nc-gap { display: grid; overflow: hidden; border-radius: var(--ob-radius-xl); background: var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-1); }
+.nc-gap__row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-10, 10px); padding: var(--ob-space-16) var(--ob-space-20); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.nc-gap__row--head { display: none; }
+.nc-gap__task { display: flex; align-items: center; gap: var(--ob-space-12); font: var(--ob-type-label); color: var(--ob-text); }
+.nc-gap__alone, .nc-gap__with { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: var(--ob-space-8); align-items: start; font: var(--ob-type-small); }
+.nc-gap__alone { color: var(--ob-text-3); }
+.nc-gap__with { color: var(--ob-text); }
+.nc-mark { width: 16px; height: 16px; margin-top: 2px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.nc-gap__with .nc-mark { color: var(--ob-success); }
+.nc-gap__label { display: block; font: var(--ob-type-caption); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text-3); }
+@media (min-width: 820px) {
+  .nc-gap__row { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) minmax(0, 1.15fr); gap: var(--ob-space-24); align-items: center; padding: var(--ob-space-16) var(--ob-space-24); }
+  .nc-gap__row--head { display: grid; padding-block: var(--ob-space-12); border-top: 0; background: var(--ob-bg-sunken); font: var(--ob-type-caption); letter-spacing: .06em; text-transform: uppercase; color: var(--ob-text-3); }
+  .nc-gap__row--head span:last-child { color: var(--ob-success); }
+  .nc-gap__label { display: none; }
+  .nc-gap__with { position: relative; }
+}
+
+/* ---- The jobs by team: chips that wrap, then the team's 3 blueprints with their typical month. ---- */
+.nc-tabs { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin-bottom: var(--ob-space-24); }
+.nc-tab { display: inline-flex; align-items: center; gap: var(--ob-space-8); min-height: 40px; padding: 0 var(--ob-space-14, 14px) 0 var(--ob-space-6); border: 0; border-radius: var(--ob-radius-pill); background: var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; font: var(--ob-type-small); color: var(--ob-text-2); cursor: pointer; }
+.nc-tab .nc-ic { width: 28px; height: 28px; border-radius: 50%; }
+.nc-tab[aria-selected='true'] { background: var(--ob-surface-raised, var(--ob-surface)); box-shadow: 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--s-accent, var(--ob-text)) 50%, transparent) inset, var(--ob-shadow-1); color: var(--ob-text); }
+.nc-panel__jobs { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-12); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 820px) { .nc-panel__jobs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.nc-job { display: grid; }
+.nc-job__link { position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-rows: auto 1fr auto; gap: var(--ob-space-8); padding: var(--ob-space-20); border-radius: var(--ob-radius-lg); background: var(--ob-sheen), var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1); color: var(--ob-text); text-decoration: none; }
+.nc-job__link::before { content: ''; position: absolute; z-index: -1; inset: 0; background: radial-gradient(90% 60% at 0% 0%, color-mix(in srgb, var(--s-accent, var(--ob-text)) 8%, transparent), transparent 70%); }
+.nc-job__name { display: flex; align-items: baseline; justify-content: space-between; gap: var(--ob-space-8); font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); }
+.nc-job__name .nc-chev { color: var(--ob-text-3); }
+.nc-job__line { font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.nc-job__month { display: flex; align-items: baseline; justify-content: space-between; gap: var(--ob-space-8); margin-top: var(--ob-space-8); padding-top: var(--ob-space-12); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-job__month b { font: var(--ob-type-label); color: var(--ob-text); font-variant-numeric: tabular-nums; }
+.nc-job__month small { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-moves { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-8); margin: var(--ob-space-16) 0 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-moves b { padding: 3px 10px; border-radius: var(--ob-radius-pill); background: color-mix(in srgb, var(--s-accent, var(--ob-text)) 10%, transparent); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text-2); }
+.nc-formats { display: grid; justify-items: start; gap: var(--ob-space-12); margin-top: var(--ob-space-40); padding-top: var(--ob-space-24); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.nc-formats__label { margin: 0; font: var(--ob-type-caption); letter-spacing: .08em; text-transform: uppercase; color: var(--ob-text-3); }
+.nc-formats__list { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); margin: 0; padding: 0; list-style: none; }
+.nc-formats__list li { display: inline-flex; align-items: center; gap: var(--ob-space-8); min-height: 36px; padding: 0 var(--ob-space-12); border-radius: var(--ob-radius-pill); background: var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; font: var(--ob-type-small); color: var(--ob-text); }
+.nc-formats__list .nc-fmt-ic { color: var(--ob-text-2); }
+.nc-formats__note { margin: 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
+
+/* ---- Connect your own AI: the words and 3 steps, beside the tools. ---- */
+.nc-connect { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-40); align-items: start; }
+@media (min-width: 980px) { .nc-connect { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); } }
+.nc-connect__words { display: grid; gap: var(--ob-space-16); }
+.nc-steps { display: grid; gap: var(--ob-space-12); margin: var(--ob-space-8) 0 0; padding: 0; list-style: none; }
+.nc-steps li { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: var(--ob-space-12); align-items: start; font: var(--ob-type-small); color: var(--ob-text-2); }
+.nc-steps b { display: block; font: var(--ob-type-label); color: var(--ob-text); }
+.nc-steps__n { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; font: 600 13px / 1 var(--ob-font-mono); color: var(--ob-text); }
+.nc-connect__tools { display: grid; gap: var(--ob-space-12); }
+.nc-tools { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-12); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 560px) { .nc-tools { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.nc-tool { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 4px var(--ob-space-12); align-items: center; padding: var(--ob-space-16); border-radius: var(--ob-radius-lg); background: var(--ob-sheen), var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1); }
+.nc-tool .nc-ic { color: var(--s-accent-developers); }
+.nc-tool b { font: var(--ob-type-label); color: var(--ob-text); }
+.nc-tool > span:last-child { grid-column: 1 / -1; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+
+/* ---- Every size, biggest first: who, a bar on a log scale, the agents, one job. ---- */
+.nc-scale-fig { margin: 0; }
+.nc-scale { display: grid; margin: 0; padding: 0; list-style: none; border-radius: var(--ob-radius-xl); background: var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-shadow-1); overflow: hidden; }
+.nc-scale__row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ob-space-8) var(--ob-space-16); align-items: center; padding: var(--ob-space-16) var(--ob-space-20); border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.nc-scale__row:first-child { border-top: 0; }
+.nc-scale__who { display: grid; gap: 2px; min-width: 0; }
+.nc-scale__who b { font: var(--ob-type-label); color: var(--ob-text); }
+.nc-scale__who span { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-scale__bar { grid-column: 1 / -1; grid-row: 2; height: 6px; border-radius: 3px; background: var(--ob-bg-sunken); overflow: hidden; }
+.nc-scale__bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, color-mix(in srgb, var(--s-accent-developers) 55%, transparent), var(--s-accent-developers)); }
+.nc-scale__n { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.nc-scale__n small { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-scale__job { grid-column: 1 / -1; display: inline-flex; align-items: center; gap: var(--ob-space-4); justify-self: start; font: var(--ob-type-small); color: var(--ob-text-2); text-decoration: none; }
+@media (min-width: 900px) {
+  .nc-scale__row { grid-template-columns: 220px minmax(0, 1fr) 120px minmax(0, 1.2fr); padding: var(--ob-space-16) var(--ob-space-24); }
+  .nc-scale__bar { grid-column: auto; grid-row: auto; }
+  .nc-scale__n { text-align: right; }
+  .nc-scale__job { grid-column: auto; }
+}
+
+/* ---- Rules, cost and the developer handoff. ---- */
+.nc-base { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-16); }
+@media (min-width: 860px) { .nc-base { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
+.nc-card { display: grid; align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-24); border-radius: var(--ob-radius-xl); background: var(--ob-sheen), var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1); }
+.nc-card__h { margin: 0; font: var(--ob-type-h3); letter-spacing: var(--ob-type-h3-tracking); color: var(--ob-text); text-wrap: balance; }
+.nc-card__line { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.nc-card .nc-more { margin-top: var(--ob-space-4); }
+.nc-rules__list { display: grid; gap: var(--ob-space-12); margin: var(--ob-space-4) 0 0; padding: 0; list-style: none; }
+.nc-rules__list li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--ob-space-12); align-items: center; font: var(--ob-type-small); color: var(--ob-text); }
+.nc-rules__list .nc-ic { color: var(--ob-text-2); }
+.nc-plans { display: grid; margin: var(--ob-space-4) 0 0; padding: 0; list-style: none; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+.nc-plans li { display: flex; justify-content: space-between; gap: var(--ob-space-12); padding: var(--ob-space-10, 10px) 0; border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); font: var(--ob-type-small); color: var(--ob-text-2); font-variant-numeric: tabular-nums; }
+.nc-plans b { font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.nc-dev { grid-column: 1 / -1; position: relative; isolation: isolate; overflow: hidden; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ob-space-16) var(--ob-space-24); padding: var(--ob-space-24); border-radius: var(--ob-radius-xl); background: var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; }
+.nc-dev::before { content: ''; position: absolute; z-index: -1; inset: -80% 55% 30% -20%; background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent, var(--ob-text)) 16%, transparent), transparent); pointer-events: none; }
+.nc-dev > div { display: grid; gap: var(--ob-space-8); max-width: 62ch; }
+
+/* ---- Motion: rows arrive once as their block scrolls into view; cards lift a little under the pointer; the running
+   badge breathes. Nothing moves with reduced motion, and everything shows. ---- */
+@keyframes nc-rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes nc-breathe { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+@media (prefers-reduced-motion: no-preference) {
+  [data-armed]:not(.is-in) .nc-anim { opacity: 0; }
+  .is-in .nc-anim { animation: nc-rise 460ms var(--ob-ease-out) both; animation-delay: calc(var(--d, 0) * 110ms); }
+  .nc-panel:not([hidden]) .nc-job { animation: nc-rise 360ms var(--ob-ease-out) both; animation-delay: calc(var(--d, 0) * 70ms); }
+  .nc-live i { animation: nc-breathe 2.8s ease-in-out infinite; }
+  .nc-job__link, .nc-door { transition: transform var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out); }
+}
 @media (hover: hover) and (pointer: fine) {
-  .nc-team__job:hover .nc-chev, .nc-more:hover .nc-chev { translate: 3px 0; color: var(--ob-text); }
+  .nc-job__link:hover { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight), var(--ob-shadow-2); }
+  .nc-job__link:hover .nc-chev, .nc-door__cta:hover .nc-chev, .nc-more:hover .nc-chev, .nc-scale__job:hover .nc-chev { translate: 3px 0; color: var(--ob-text); }
+  .nc-tab:hover { color: var(--ob-text); }
+  .nc-scale__job:hover { color: var(--ob-text); }
   .nc-more:hover { text-decoration-color: var(--ob-text); }
 }
-
-/* Cost, rules and the developer handoff. */
-.nc-base__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-16); }
-.nc-card { display: grid; align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-24); border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: var(--ob-radius-xl); background: var(--ob-surface); box-shadow: var(--ob-shadow-2, var(--ob-shadow-3)); }
-.nc-card__h { margin: 0; font: var(--ob-type-h3, var(--ob-type-title)); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); text-wrap: balance; }
-.nc-card__line { margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
-.nc-card__note { margin: 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
-.nc-card .nc-more { margin-top: var(--ob-space-4); }
-.nc-plans { list-style: none; margin: var(--ob-space-4) 0 0; padding: 0; display: grid; border-top: var(--ob-border-hair) solid var(--ob-line); }
-.nc-plan { display: flex; justify-content: space-between; gap: var(--ob-space-12); padding: var(--ob-space-10, 10px) 0; border-bottom: var(--ob-border-hair) solid var(--ob-line); font: var(--ob-type-small); color: var(--ob-text-2); }
-.nc-plan b { font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
-.nc-rules__list { list-style: none; margin: var(--ob-space-4) 0 0; padding: 0; display: grid; gap: var(--ob-space-10, 10px); }
-.nc-rules__list li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--ob-space-10, 10px); align-items: start; font: var(--ob-type-small); color: var(--ob-text); }
-.nc-rules__ic { display: grid; place-items: center; width: 28px; height: 28px; border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-sm); color: var(--ob-text-2); }
-.nc-rules__ic svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-.nc-dev {
-  grid-column: 1 / -1;
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--ob-space-24);
-  padding: var(--ob-space-24);
-  border: var(--ob-border-hair) solid var(--ob-line);
-  border-radius: var(--ob-radius-xl);
-  background: var(--ob-surface);
-}
-.nc-dev::before { content: ''; position: absolute; z-index: -1; inset: -80% 55% 30% -20%; background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-rest, 40%), transparent), transparent); pointer-events: none; }
-.nc-dev__words { display: grid; gap: var(--ob-space-8); max-width: 60ch; }
-
-@media (max-width: 1100px) { .nc-teams__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 760px) {
-  .nc-teams__grid, .nc-base__grid { grid-template-columns: minmax(0, 1fr); }
-  .nc-dev { flex-direction: column; align-items: flex-start; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .nc-job__link:hover { transform: translateY(-2px); }
 }
