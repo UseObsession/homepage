@@ -1188,13 +1188,25 @@ export type BlueprintJourneys = {
   round: { step: number; smallStep: number; wholeFrom: number }
 }
 
-/* Home's day one (22 Nov 2026, components/persona/HomeFit): what an AI agent can't do on its own beside the piece that
-   does it, a row per need, so any reader sees what Obsession is before the pieces sheet names them. */
+/* Home's day one (22 Nov 2026, components/persona/HomeFit): what an AI agent needs to do, played out in a product window.
+   Each row is a tab: the need, what happens on its own, what Obsession gives it and the piece that does it. Its scene
+   shows one example agent stuck, then the piece solving it, then the event landing in the log; `words` are the scene's
+   own lines, read by kind in HomeFit, and `event` is the row it adds to the log (the last scene shows every event). */
+export type HomeFitSceneKind = 'code' | 'call' | 'chat' | 'portal' | 'sandbox' | 'log'
+export type HomeFitRow = {
+  need: string
+  without: string
+  with: string
+  piece: { label: string; to: string }
+  scene: { kind: HomeFitSceneKind; title: string; words: Record<string, string> }
+  event?: { at: string; name: string; text: string }
+}
 export type HomeFit = {
   heading: string
   line: string
-  cols: { need: string; without: string; with: string }
-  rows: { need: string; without: string; with: string; piece: { label: string; to: string } }[]
+  agent: { name: string; role: string }
+  ui: { stuck: string; solved: string; open: string; pause: string; play: string; tabs: string; log: string }
+  rows: HomeFitRow[]
   caption: string
   link: Cta
 }
