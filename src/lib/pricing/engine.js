@@ -71,7 +71,6 @@
 export const GROUPS = [
   { key: 'model', label: 'Model tokens' },
   { key: 'browser', label: 'Browser time' },
-  { key: 'overhead', label: 'Browser plan, spread' },
   { key: 'proxy', label: 'Proxy data and CAPTCHAs' },
   { key: 'phone', label: 'Numbers, texts and calls' },
   { key: 'email', label: 'Email' },
@@ -291,8 +290,9 @@ export function attemptFactor(pricing, o = {}) {
 }
 
 /**
- * A browser's rates, turned into what the engine needs: $ an hour headful and headless at the margin,
- * $ a proxy GB, $ a CAPTCHA, and the plan fee left after its included usage, spread over the fleet's hours.
+ * A browser's unit costs (founders, 22 Nov 2026): $ an hour headful and headless, $ a proxy GB and $ a CAPTCHA, each the
+ * rate past whatever the plan includes. The plan fee is never part of a unit cost: it is a fixed monthly cost (see
+ * fixedCosts), and any usage a plan includes is an advantage to us, not counted.
  * @param {Pricing} pricing
  * @param {Overrides} [o]
  */
@@ -300,33 +300,19 @@ export function browserRates(pricing, o = {}) {
   const base = findBrowser(pricing, o.browser ?? pricing.primitives.browsers.default);
   /** @type {Browser} */
   const b = o.browserRates ? { ...base, id: 'custom', name: 'Custom browser rates', warn: undefined, ...o.browserRates } : base;
-  const F = fleet(pricing, o);
-  let headful, headless, proxyPerGb, captcha, credit;
+  let headful, headless, proxyPerGb, captcha;
   if (b.kind === 'units') {
     const u = b.unitPrice ?? 0;
     headful = headless = (b.unitsPerHour ?? 0) * u;
     proxyPerGb = (b.unitsPerGb ?? 0) * u;
     captcha = (b.unitsPerCaptcha ?? 0) * u;
-    const fleetUnits = F.hours * (b.unitsPerHour ?? 0) + F.gb * (b.unitsPerGb ?? 0) + F.captchas * (b.unitsPerCaptcha ?? 0);
-    credit = Math.min(b.includedUnits ?? 0, fleetUnits) * u;
   } else {
     headful = b.headful ?? 0;
     headless = b.headless ?? headful;
     proxyPerGb = b.proxyPerGb ?? 0;
     captcha = b.captcha ?? 0;
-    credit = Math.min(b.includedHours ?? 0, F.hours) * headful + Math.min(b.proxyIncludedGb ?? 0, F.gb) * proxyPerGb;
   }
-  /* Plan fee less the usage it already includes. Negative when the included usage is worth more than the fee. */
-  const overheadMonthly = (b.planFee ?? 0) - credit;
-  return {
-    browser: b,
-    headful, headless, proxyPerGb, captcha,
-    planFee: b.planFee ?? 0,
-    credit,
-    overheadMonthly,
-    fleetHours: F.hours,
-    overheadPerHour: F.hours > 0 ? overheadMonthly / F.hours : 0,
-  };
+  return { browser: b, headful, headless, proxyPerGb, captcha, planFee: b.planFee ?? 0 };
 }
 
 /**
@@ -375,7 +361,7 @@ export function usageCost(usage, ctx) {
     if (amount && Number.isFinite(amount)) lines.push({ group, label, amount, detail });
   };
 
-  let browserHours = 0, proxy = 0, proxyGb = 0, solves = 0;
+  let proxy = 0, proxyGb = 0, solves = 0;
   for (const use of u.visits || []) {
     const v = resolveVisit(use, ctx.pricing);
     const n = (use.count ?? 1) * ctx.af;
@@ -385,13 +371,10 @@ export function usageCost(usage, ctx) {
     const hours = (n * v.minutes) / 60;
     const rate = v.mode === 'headless' ? ctx.br.headless : ctx.br.headful;
     add('browser', `${v.name}, browser`, hours * rate, `${num(n * v.minutes)} min ${v.mode} at ${money(rate)} an hour`);
-    browserHours += hours;
     const gb = (n * (v.proxyMb || 0)) / 1024;
     proxyGb += gb; solves += n * (v.captchas || 0);
     proxy += gb * ctx.br.proxyPerGb + n * (v.captchas || 0) * ctx.br.captcha;
   }
-  add('overhead', 'Browser plan, spread', browserHours * ctx.br.overheadPerHour,
-    `${num(browserHours * 60)} min at ${money(ctx.br.overheadPerHour)} an hour (${money(ctx.br.overheadMonthly, 2)} a month over ${num(ctx.br.fleetHours)} fleet hours)`);
   add('proxy', 'Proxy data and CAPTCHAs', proxy, `${num(proxyGb * 1024)} MB, ${num(solves)} solves`);
 
   const W = P.wake;
@@ -766,10 +749,9 @@ function wholesaleTerm(w, ctx) {
 }
 
 /**
- * Each retail piece beside what it costs us, so the margin on every piece is visible. `wholesaleValue` is what a unit
- * costs us at the margin, which the 25% floor is judged on. `costValue` adds, for a browser piece, the browser plan fee
- * spread over the fleet's hours: fixed overhead, like the server bill, shown for the record and never part of the floor
- * (founders, 22 Nov 2026).
+ * Each retail piece beside what it costs us, so the margin on every piece is visible. `wholesaleValue` is its unit
+ * cost, what one more unit costs us at the supplier's rate (founders, 22 Nov 2026: no plan fee is ever spread into it),
+ * which margins and the 25% floor are judged on.
  * @param {Pricing} pricing
  * @param {Overrides} [o]
  */
@@ -786,8 +768,7 @@ export function pieceMargins(pricing, o = {}) {
       const w1 = (p.once.wholesale || []).reduce((/** @type {number} */ s, /** @type {any} */ w) => s + wholesaleTerm(w, ctx), 0);
       once = { retail: p.once.retail, wholesale: w1, margin: p.once.retail > 0 ? (p.once.retail - w1) / p.once.retail : null };
     }
-    const spread = (p.wholesale || []).some((/** @type {any} */ w) => w.browser) ? ctx.br.overheadPerHour : 0;
-    return { ...p, wholesaleValue: wholesale, costValue: wholesale + spread, retailValue: retail, margin, onceValue: once };
+    return { ...p, wholesaleValue: wholesale, retailValue: retail, margin, onceValue: once };
   });
 }
 
@@ -811,7 +792,7 @@ export function pieceMargins(pricing, o = {}) {
  *   featured:boolean, allowances:Record<string, number>, freeNumber:{textsIn:number, callMinutesIn:number}|null,
  *   features:Record<string, any>, rates:Record<string, number>, once:Record<string, number>, outside:string[]}} BillingPlan
  * @typedef {{id:string, name:string, unit:string, displayPer:number, displayUnit:string, wholesale:number, rate:number,
- *   cost:number, overhead:number, effective:number, margin:number|null, costMargin:number|null, listMargin:number|null,
+ *   effective:number, margin:number|null, listMargin:number|null,
  *   fixed:boolean, outside:boolean, plus:number|null, markup:number|null,
  *   once:{rate:number, effective:number, wholesale:number, margin:number|null}|null}} PlanRate
  */
@@ -843,8 +824,7 @@ export function planValue(plan, pricing) {
  * Each piece on a plan: its list rate (`rate`, what the buyer is billed per unit on every plan), beside wholesale and
  * `effective`, what a unit earns us inside the plan's covered usage (list x fee / covers; a piece outside the plans earns
  * its list rate). `margin` is at `effective` over wholesale, what a unit costs us at the margin: the 25%
- * floor is judged on it. `overhead` is the browser plan fee spread on a browser piece, fixed overhead outside the floor;
- * `cost` is wholesale plus it, and `costMargin` the margin after it, for the record.
+ * floor is judged on it. No plan fee is spread into any of it (founders, 22 Nov 2026: unit costs only; see fixedCosts).
  * @param {Plan|string} plan a plan from pricing.plans, or its id
  * @param {Pricing} pricing
  * @param {Overrides} [o]
@@ -865,8 +845,8 @@ export function planRates(plan, pricing, o = {}) {
     }
     return {
       id: p.id, name: p.name, unit: p.unit, displayPer: p.displayPer ?? 1, displayUnit: p.displayUnit ?? p.unit,
-      wholesale: w, cost: p.costValue, overhead: p.costValue - w, rate, effective,
-      margin: effective > 0 ? (effective - w) / effective : null, costMargin: effective > 0 ? (effective - p.costValue) / effective : null, listMargin: p.margin,
+      wholesale: w, rate, effective,
+      margin: effective > 0 ? (effective - w) / effective : null, listMargin: p.margin,
       fixed: !!p.fixed, outside: out, plus: p.retailPlus ?? null, markup: p.retailMarkup ?? null,
       once,
     };
@@ -974,7 +954,7 @@ export function cheapestPlan(usage, plans, o = {}) {
 
 /**
  * Each plan's margin, judged on every piece inside the plans, model tokens included, over
- * what they cost us at the margin (the browser plan fee is fixed overhead and not counted). No plan includes any piece.
+ * their unit costs (no plan fee is counted: fixed costs are in fixedCosts). No plan includes any piece.
  * Free: its fixed allowances at full use. A paid plan, when its whole covered usage is used:
  *   worst case: the covered usage spent on the lowest-margin piece at list rates;
  *   typical: the covered usage spent on pricing.billing.typicalMonth's mix of pieces (tokens left out), scaled to fill it.
@@ -1025,6 +1005,25 @@ export function planMargins(pricing, o = {}) {
 
     return { ...plan, contract: false, cost: worst.cost, margin: worst.margin, lines: [], worst, typical, ctxModel: ctx.mr.model.id };
   });
+}
+
+/* ------------------------------------------------------------------ fixed costs */
+
+/**
+ * What we pay every month whatever we sell (founders, 22 Nov 2026): the selected browser's plan fee in full (any usage it
+ * includes is an advantage to us, never counted against it) and primitives.overhead.notAllocated (the platform, workers
+ * and our own texting campaign). None of it is in any unit cost, price or margin: it is paid from the margin across every
+ * customer, and `coveredFrom` is the margin a month that pays it.
+ * @param {Pricing} pricing
+ * @param {Overrides} [o]
+ */
+export function fixedCosts(pricing, o = {}) {
+  const br = browserRates(pricing, o);
+  /** @type {{name:string, monthly:number, note?:string}[]} */
+  const lines = [{ name: `${br.browser.name}, plan fee`, monthly: br.planFee }];
+  for (const x of pricing.primitives.overhead.notAllocated || []) lines.push({ name: x.name, monthly: x.monthly, note: x.note });
+  const total = lines.reduce((t, l) => t + l.monthly, 0);
+  return { lines, total, coveredFrom: total };
 }
 
 /* ------------------------------------------------------------------ the calculator */

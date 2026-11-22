@@ -61,7 +61,7 @@
     },
 
     "overhead": {
-      "about": "A browser plan fee is a fixed monthly cost, overhead like the server bill (founders, 22 Nov 2026). The part not returned as included usage is spread over the browser-hours of every paying run in a month (the fleet), and shows as its own line, 'Browser plan, spread', in our cost of a blueprint month and of a store check. It never counts toward a piece's 25% floor, which is judged on what an hour costs us at the margin.",
+      "about": "Unit costs only (founders, 22 Nov 2026): every cost, price and margin uses what one more unit costs at the supplier's rate past whatever its plan includes. A browser plan fee is a fixed monthly cost, like the server bill, and is never spread into any unit cost; usage a plan includes is an advantage to us, not counted. engine.fixedCosts lists the month's fixed costs (the selected browser's plan fee and notAllocated), paid from the margin across every customer. The fleet volume below is only for the calculator's reference.",
       "fleet": {
         "journeysPerMonth": { "value": 300, "unit": "store checks a month across every customer", "basis": "assumed", "source": "The founder's journey cost calculator default. At the measured 13.4 minutes a check this is 67 browser-hours a month." },
         "journeyVisits": ["signup", "checkout"]
