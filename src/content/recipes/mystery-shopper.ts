@@ -71,7 +71,7 @@ export const recipe: Recipe = {
      month already says. Its price and the rest come from the pricing JSON (content/blueprint-tiers.ts). `tiers` are the
      Agencies months; `variants` the Ecommerce brands months, under their id in the JSON. */
   tiers: [
-    { name: 'Free', includes: ['A full shop, from sign up to checkout', 'Every email, text and screenshot in your event log'] },
+    { name: 'Free', includes: ['Each journey you tick, run once', 'Every email, text and screenshot in your event log'] },
     { name: 'Starter', includes: ['A report for each client', 'Alerts when a reminder goes missing', 'Every result by webhook, API or MCP'] },
     { name: 'Agency', includes: ['Every client in one table', 'A row per store in Clay, Baserow or Supabase', 'Competitors shopped too, counted as stores'] },
     { name: 'Scale', includes: ['Stores added from a list or by API', 'History and trends for each store'] },
@@ -80,7 +80,7 @@ export const recipe: Recipe = {
     {
       id: 'mystery-shopper-brands',
       tiers: [
-        { name: 'Free', includes: ['A full shop, from sign up to checkout', 'Every email, text and screenshot in your event log'] },
+        { name: 'Free', includes: ['Each journey you tick, run once', 'Every email, text and screenshot in your event log'] },
         { name: 'Monthly', includes: ['Alerts when an email or text goes missing', 'Every result by webhook, API or MCP'] },
         { name: 'Weekly', includes: ['Each week beside the last', 'Alerts when an email or text goes missing'] },
         { name: 'Daily', includes: ['Alerts the day a reminder stops', 'History and trends for your store'] },
@@ -179,7 +179,7 @@ export const recipe: Recipe = {
     { k: 'Persona', v: 'A first-time shopper in Manchester on a phone, or your own' },
     { k: 'Waiting', v: 'As long as you choose, 48 hours by default' },
     { k: 'Payment', v: 'Stops before payment, or pays with a card you provide' },
-    { k: 'How often', v: 'Monthly, weekly, or a checkout left every day' },
+    { k: 'How often', v: 'Monthly, weekly or daily, for every journey you tick' },
   ],
 
   table: {
@@ -212,11 +212,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'How many stores can I check?',
-        a: 'As many as you like. Each shop is paid from your plan’s credit at the piece rates. The months above show 30, 150 and 500 client stores, or 1 store shopped monthly, weekly or daily. For reports in your own brand, see the Enterprise plan on the pricing page.',
+        a: 'As many as you like. Each shop counts toward what your plan covers at list rates. The months above show 30, 150 and 500 client stores, or 1 store shopped monthly, weekly or daily. For reports in your own brand, see the Enterprise plan on the pricing page.',
       },
       {
         q: 'How often should it run?',
-        a: 'Agencies usually shop each client store monthly, before the client review. For your own store, weekly catches a flow that stops after a theme change or a new app within days, and daily adds a checkout left every day.',
+        a: 'Agencies usually shop each client store monthly, before the client review. For your own store, weekly catches a flow that stops after a theme change or a new app within days, and daily runs every journey you tick each day.',
       },
       {
         q: 'Do my clients need to agree?',
@@ -236,7 +236,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can I compare a store with its competitors?',
-        a: 'Yes. Send the same persona to the stores you or a client compete with, and their events sit side by side in your event log. Each store it shops is paid for from your plan’s credit.',
+        a: 'Yes. Send the same persona to the stores you or a client compete with, and their events sit side by side in your event log. Each store it shops counts toward what your plan covers.',
       },
       {
         q: 'How long does a persona wait after a shop?',

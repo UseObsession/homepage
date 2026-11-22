@@ -757,6 +757,8 @@ export type BlueprintPricing = {
   plans: BlueprintPlanCard[]
   /* Under the cards: more of them, white label or a blueprint of your own, on /pricing. */
   more: { line: string; link: Cta }
+  /* The journeys the buyer ticks above the cards, and their legend; only where the months add up from journeys. */
+  journeys?: BlueprintJourneys & { legend: string }
 }
 /* A blueprint's pricing as its section shows it (components/BlueprintPricing BlueprintPrices): 1 table, or for a
    blueprint with variants 1 per variant behind the switch, each named by its label ("Agencies", "Ecommerce brands")
@@ -1164,4 +1166,14 @@ export type BlueprintTier = {
 }
 /* 1 set of a blueprint's scenarios behind its pricing switch (content/blueprint-tiers.ts pricedVariants): its id in the
    pricing JSON, the switch's label for it, what it counts ("client store", "store") and its typical months. */
-export type BlueprintVariant = { id: string; label: string; per: string; tiers: BlueprintTier[] }
+export type BlueprintVariant = { id: string; label: string; per: string; tiers: BlueprintTier[]; journeys?: BlueprintJourneys }
+/* A blueprint whose months add up from journeys the buyer ticks (founders, 22 Nov 2026: mystery shopping's sign-up,
+   browse, basket and checkout abandonment). From the engine's journeyMonths: per scenario, what it costs with no journey
+   (`base`) and what each journey adds (`each`), unrounded, in the cards' order; the page sums the ticked ones and rounds
+   them the engine's way (`round`), so no price is typed and the JSON never ships. */
+export type BlueprintJourneys = {
+  items: { id: string; name: string; line: string }[]
+  defaults: string[]
+  tiers: { base: number; each: Record<string, number> }[]
+  round: { step: number; smallStep: number; wholeFrom: number }
+}

@@ -46,14 +46,14 @@ export const recipePage = {
   outputs: { cta: { label: 'See the sample data', to: '/sample-output' } satisfies Cta },
 
   /* The pricing section, after the run (#pricing), on every recipe page (founders, 22 Nov 2026): what a typical month of
-     the blueprint costs. A blueprint run is paid from the plan's credit at the piece rates, like any piece, so the
+     the blueprint costs. A blueprint run counts toward what the plan covers at list rates, like any piece, so the
      section shows months, never plans to buy (blueprintPricing below). Every blueprint's first run is free
      (content/blueprint-tiers.ts fails the build otherwise). The 1 line under the heading says, for every card, how its
      price is worked out and paid (founders, 22 Nov 2026: no such line on each card). `switch` names the switch of a
      blueprint whose table changes with the buyer (mystery shopping: Agencies or Ecommerce brands), read aloud. */
   pricing: {
     heading: (r: Pick<Recipe, 'name'>) => `What a typical month of ${lowerFirst(r.name)} costs.`,
-    line: 'Prices are worked out from what each run uses and paid from your plan’s credit.',
+    line: 'Prices are worked out from what each run uses, at list rates.',
     switch: 'Prices for',
     /* The hero's second path, under its form, to the section (its anchor). */
     link: { label: 'See pricing', to: '#pricing' } satisfies Cta,
@@ -87,13 +87,15 @@ const tierCard = (t: BlueprintTier, i: number): BlueprintPlanCard => ({
 })
 
 /* A blueprint's 4 cards and the line under them. */
-export function blueprintPricing(r: { per?: string; tiers: BlueprintTier[] }): BlueprintPricing {
+export function blueprintPricing(r: { per?: string; tiers: BlueprintTier[]; journeys?: BlueprintVariant['journeys'] }): BlueprintPricing {
   return {
     label: 'Typical months',
     tag: '',
     includes: 'In a month like this',
     plans: r.tiers.map(tierCard),
     more: { line: `More ${r.per ?? PER}s? Each adds what its runs use.`, link: { label: 'See every rate', to: RATES } },
+    /* The journeys the buyer ticks (founders, 22 Nov 2026: mystery shopping); the cards' prices follow them. */
+    ...(r.journeys ? { journeys: { ...r.journeys, legend: 'Journeys to run' } } : {}),
   }
 }
 

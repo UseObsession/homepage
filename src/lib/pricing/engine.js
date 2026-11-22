@@ -2,13 +2,14 @@
 /**
  * Obsession pricing engine.
  *
- * Pure functions over pricing.json. There is one price list: the pieces. Plans sell a monthly credit in dollars, spent
- * at the plan's rates on any piece (planRates, monthlyBill, cheapestPlan). A blueprint run draws on that credit like
- * any piece: what a typical month of a blueprint costs a buyer is
- *   what its runs use (in pieces) x the plan's piece rates, with model tokens at cost plus their markup (blueprintMonth),
+ * Pure functions over pricing.json. There is one price list: the pieces, at list rates, on every plan. A paid plan's
+ * monthly fee covers a set amount of usage at those rates; past it, list rates as you go; model tokens are pieces too, per
+ * million at the model's price plus their markup (planValue, monthlyBill, cheapestPlan). A blueprint run counts toward that covered
+ * usage like any piece: what a typical month of a blueprint costs a buyer is
+ *   what its runs use (in pieces, model tokens included) x the list rates (blueprintMonth),
  * and what it costs us is primitives (what we pay) x the same usage (tierCost). The first run of every blueprint is free.
  * Nothing here holds a price. Change a number in pricing.json, or pass an override (the model, the browser,
- * the cache share, the fleet volume, the plan), and every cost and estimate follows.
+ * the cache share, the fleet volume), and every cost and estimate follows.
  *
  * Plain ES module, no dependencies. Works in a browser (`import('./engine.js')`), in Node
  * (`import * as engine from './engine.js'`), and from TypeScript (the JSDoc types below).
@@ -53,16 +54,15 @@
  * for ecommerce brands); it has no page or siteId of its own.
  * @typedef {{id:string, siteId?:string, variantOf?:string, variantLabel?:string, name:string, job:string, buyer?:string,
  *   unit:string, per:string, noun:[string,string], itemNoun?:[string,string], run:string, setupMonths?:number,
- *   usage:{run:Usage, runs?:Record<string,Usage>, monthly?:Usage, account?:Usage, setup?:Usage},
- *   tiers:Tier[], note?:string}} Blueprint
+ *   usage:{run?:Usage, runs?:Record<string,Usage>, journeys?:Record<string, Usage & {name:string, line?:string}>,
+ *   monthly?:Usage, account?:Usage, setup?:Usage}, defaultJourneys?:string[], tiers:Tier[], note?:string}} Blueprint
  */
 /** @typedef {Record<string, any>} Pricing */
 /**
  * Global switches. Anything left out takes its default from pricing.json.
- * `plan` picks the piece rates a blueprint month is priced at (a plan id, such as 'scale'); list rates when left out.
  * @typedef {{model?:string, modelPrices?:{in:number, out:number, cached:number}, cacheShare?:number,
  *   browser?:string, browserRates?:Partial<Browser>, attempts?:number, failedShare?:number, fleetJourneys?:number,
- *   plan?:string}} Overrides
+ *   journeys?:string[]}} Overrides
  */
 /** @typedef {{group:string, label:string, amount:number, detail?:string}} Line */
 /** @typedef {{total:number, lines:Line[], groups:Record<string, number>}} Cost */
@@ -159,6 +159,62 @@ export function blueprintVariants(pricing, id) {
   return bp ? [bp, ...pricing.blueprints.filter((/** @type {Blueprint} */ b) => b.variantOf === id)] : [];
 }
 
+/** The token pieces, in millions of tokens: uncached input, cached input and output (founders, 22 Nov 2026). */
+export const TOKEN_PIECES = ['tokensIn', 'tokensCached', 'tokensOut'];
+
+/**
+ * A blueprint's journeys (founders, 22 Nov 2026: mystery shopping's sign-up, browse, basket and checkout abandonment),
+ * each with its own usage, and the ones it runs by default (`defaultJourneys`). A variant uses its blueprint's journeys
+ * with its own defaults. Null for a blueprint without journeys.
+ * @param {Blueprint} blueprint
+ * @param {Pricing} pricing
+ * @returns {{list:Record<string, Usage & {name:string, line?:string}>, defaults:string[]} | null}
+ */
+export function journeysOf(blueprint, pricing) {
+  const own = blueprint.usage?.journeys;
+  const parent = blueprint.variantOf ? findBlueprint(pricing, blueprint.variantOf) : null;
+  const list = own ?? parent?.usage?.journeys;
+  if (!list) return null;
+  return { list, defaults: blueprint.defaultJourneys ?? Object.keys(list) };
+}
+
+/**
+ * The journeys a month runs: Overrides.journeys where given (unknown ids dropped), else the blueprint's defaults.
+ * @param {Blueprint} blueprint
+ * @param {Pricing} pricing
+ * @param {Overrides} [o]
+ */
+export function selectedJourneys(blueprint, pricing, o = {}) {
+  const J = journeysOf(blueprint, pricing);
+  if (!J) return [];
+  return (o.journeys ?? J.defaults).filter((id) => id in J.list);
+}
+
+/**
+ * What one run uses: for a blueprint with journeys, the ticked journeys added together (every number summed, the
+ * visits listed in turn: every ticked journey runs at the scenario's frequency, founders 22 Nov 2026); otherwise
+ * usage.run, or the extra run `runId`.
+ * @param {Blueprint} blueprint
+ * @param {Pricing} pricing
+ * @param {Overrides} [o]
+ * @param {string} [runId]
+ * @returns {Usage | undefined}
+ */
+export function runUsage(blueprint, pricing, o = {}, runId) {
+  if (runId) return blueprint.usage.runs?.[runId];
+  const J = journeysOf(blueprint, pricing);
+  if (!J) return blueprint.usage.run;
+  /** @type {Record<string, any>} */
+  const sum = { visits: [] };
+  for (const id of selectedJourneys(blueprint, pricing, o)) {
+    for (const [k, v] of Object.entries(J.list[id])) {
+      if (k === 'visits') sum.visits.push(...(/** @type {VisitUse[]} */ (v)));
+      else if (typeof v === 'number') sum[k] = (sum[k] || 0) + v;
+    }
+  }
+  return /** @type {Usage} */ (sum);
+}
+
 /**
  * A visit as used: its template from primitives.visits, with any per-blueprint changes on top.
  * @param {VisitUse} use
@@ -194,7 +250,8 @@ export function modelRates(pricing, o = {}) {
     : findModel(pricing, o.model ?? M.default);
   const cacheShare = clamp(o.cacheShare ?? val(M.cacheShare), 0, 0.95);
   const input = (1 - cacheShare) * model.in + cacheShare * model.cached;
-  return { model, cacheShare, input, output: model.out };
+  /* `uncached`, `cached` and `output` are the model's own three prices, the wholesale of the token pieces. */
+  return { model, cacheShare, input, uncached: model.in, cached: model.cached, output: model.out };
 }
 
 /**
@@ -404,14 +461,14 @@ function scaleLines(c, k, prefix) {
 /**
  * What one block of usage uses, counted in the pieces a buyer is billed for, each in its own unit: browser hours
  * (a headless visit) or stealth browser hours (a headful one), phone numbers held (number-days / days a month), texts,
- * call minutes, inboxes, emails, iMessage lines, WhatsApp messages, sandbox vCPU and GiB hours, and events. Model tokens
- * are not counted in units: `modelCost` is what they cost us (visits, wakes, analysis and call tokens), taken from the
- * buyer's credit at cost plus the tokens' markup. `voiceCost` is a persona's own voice on a call (the speech relay and the
- * recording), which has no piece of its own and is billed the same way as model tokens. Proxy data and CAPTCHAs come
- * with the browser pieces (their home connection is included), and the browser plan fee is ours to carry.
+ * call minutes, a persona's own voice on those minutes, inboxes, emails, iMessage lines, WhatsApp messages, sandbox vCPU
+ * and GiB hours, events, and model tokens in millions (founders, 22 Nov 2026): input split by the cache share into
+ * uncached (`tokensIn`) and cached (`tokensCached`), and output (`tokensOut`), from visits, wakes, analysis and calls.
+ * `modelCost` is what those tokens cost us, for the record. Proxy data and CAPTCHAs come with the browser pieces (their
+ * home connection is included), and the browser plan fee is ours to carry.
  * @param {Usage | undefined} usage
  * @param {Ctx} ctx
- * @returns {{pieces:Record<string, number>, modelCost:number, voiceCost:number}}
+ * @returns {{pieces:Record<string, number>, modelCost:number}}
  */
 export function usagePieces(usage, ctx) {
   const P = ctx.pricing.primitives;
@@ -420,23 +477,31 @@ export function usagePieces(usage, ctx) {
   const pieces = {};
   /** @param {string} id @param {number} n */
   const add = (id, n) => { if (n && Number.isFinite(n)) pieces[id] = (pieces[id] || 0) + n; };
-  let modelCost = 0, voiceCost = 0;
+  let modelCost = 0;
+  const cs = ctx.mr.cacheShare;
+  /** @param {number} k @param {number} input @param {number} output */
+  const tok = (k, input, output) => {
+    add('tokensIn', (k * input * (1 - cs)) / 1e6);
+    add('tokensCached', (k * input * cs) / 1e6);
+    add('tokensOut', (k * output) / 1e6);
+    modelCost += k * tokenCost(input, output, ctx);
+  };
   for (const use of u.visits || []) {
     const v = resolveVisit(use, ctx.pricing);
     const n = (use.count ?? 1) * ctx.af;
     if (!n) continue;
-    modelCost += n * tokenCost(v.inputTokens, v.outputTokens, ctx);
+    tok(n, v.inputTokens, v.outputTokens);
     add(v.mode === 'headless' ? 'browser' : 'stealth', (n * v.minutes) / 60);
   }
   const W = P.wake;
-  if (u.wakes) modelCost += u.wakes * tokenCost(W.inputTokens, W.outputTokens, ctx);
-  if (u.analysis) modelCost += tokenCost(u.analysis.inputTokens, u.analysis.outputTokens, ctx);
+  if (u.wakes) tok(u.wakes, W.inputTokens, W.outputTokens);
+  if (u.analysis) tok(1, u.analysis.inputTokens, u.analysis.outputTokens);
   const ph = P.phone;
   const minutes = (u.callMinutesOut || 0) + (u.callMinutesIn || 0);
   if (minutes) {
     add('voice', minutes);
-    voiceCost += minutes * (val(ph.voiceRelayMinute) + val(ph.recordingMinute));
-    modelCost += minutes * tokenCost(ph.callTokensPerMinute.inputTokens, ph.callTokensPerMinute.outputTokens, ctx);
+    add('personaVoice', minutes);
+    tok(minutes, ph.callTokensPerMinute.inputTokens, ph.callTokensPerMinute.outputTokens);
   }
   add('number', (u.numbers || 0) + (u.numberDays || 0) / ctx.daysPerMonth);
   add('sms', (u.textsOut || 0) + (u.textsIn || 0));
@@ -447,7 +512,7 @@ export function usagePieces(usage, ctx) {
   add('sandbox', u.sandboxVcpuHours || 0);
   add('memory', u.sandboxGibHours || 0);
   add('log', u.events || 0);
-  return { pieces, modelCost, voiceCost };
+  return { pieces, modelCost };
 }
 
 /* ------------------------------------------------------------------ blueprints */
@@ -462,7 +527,7 @@ export function usagePieces(usage, ctx) {
  */
 export function costPerRun(blueprint, pricing, o = {}, runId) {
   const ctx = context(pricing, o);
-  const usage = runId ? blueprint.usage.runs?.[runId] : blueprint.usage.run;
+  const usage = runUsage(blueprint, pricing, o, runId);
   return usageCost(usage, ctx);
 }
 
@@ -498,7 +563,7 @@ export function scenarioBlocks(blueprint, tier, pricing, ctx) {
   /** @type {{key:string, label:string, usage:Usage|undefined, k:number, detail:(each:number) => string}[]} */
   const blocks = [];
   const nRuns = q * runs * items;
-  blocks.push({ key: 'run', label: 'Runs', usage: U.run, k: nRuns, detail: (each) => `${num(nRuns)} runs at ${money(each)}` });
+  blocks.push({ key: 'run', label: 'Runs', usage: runUsage(blueprint, pricing, ctx.overrides), k: nRuns, detail: (each) => `${num(nRuns)} runs at ${money(each)}` });
   for (const e of tier.extra || []) {
     const n = q * runsFor(pricing, e, period) * (e.items ?? 1);
     blocks.push({ key: `extra:${e.run}`, label: `Extra runs (${e.run})`, usage: U.runs?.[e.run], k: n, detail: (each) => `${num(n)} runs at ${money(each)}` });
@@ -578,23 +643,20 @@ export function roundEstimate(x, pricing) {
 }
 
 /**
- * Each piece's rate a blueprint month is priced at: the plan's (Overrides.plan), or list rates. Tokens carry their markup.
+ * Each piece's list rate, the one price list on every plan. Tokens carry their markup.
  * @param {Pricing} pricing
  * @param {Overrides} [o]
  */
 export function pieceRates(pricing, o = {}) {
-  const plan = o.plan ? findPlan(pricing, o.plan) : null;
-  /** @type {Plan} */
-  const pl = plan ?? { id: 'list', name: 'List rates', monthly: 0, credit: 0 };
-  return { plan: plan ? plan.id : 'list', rates: Object.fromEntries(planRates(pl, pricing, o).map((r) => [r.id, r])) };
+  return { rates: Object.fromEntries(pieceMargins(pricing, o).map((/** @type {any} */ p) => [p.id, {
+    id: p.id, name: p.name, unit: p.unit, rate: p.retailValue, wholesale: p.wholesaleValue, markup: p.retailMarkup ?? null,
+  }])) };
 }
 
 /**
  * What a typical month of a blueprint costs the buyer, at the piece rates: what the scenario's runs use, counted in
- * pieces (usagePieces over scenarioBlocks), x each piece's rate on the plan (Overrides.plan, list rates when left out),
- * with model tokens and a persona's voice taken at cost plus the tokens' markup. Paid from the plan's credit, then at
- * list rates, like any piece: on a plan, `total` is the month paid from its credit, and `fitsCredit` says whether the
- * whole month fits inside that credit. Beside it, what the month costs us (tierCost) and our margin on it. The first scenario is
+ * pieces (usagePieces over scenarioBlocks), x each piece's list rate, model tokens and a persona's voice included. All of
+ * it counts toward the buyer's covered usage like any piece. Beside it, what the month costs us (tierCost) and our margin on it. The first scenario is
  * the free run: `price` is 0 and `total` is what it would have cost.
  * `scenario` is a scenario of the blueprint, its index or its name.
  * @param {Blueprint} blueprint
@@ -608,45 +670,39 @@ export function blueprintMonth(blueprint, scenario, pricing, o = {}, ctxIn) {
     : typeof scenario === 'string' ? blueprint.tiers.find((t) => t.name === scenario) : scenario;
   if (!tier) throw new Error(`blueprintMonth: ${blueprint.id} has no scenario ${String(scenario)}`);
   const ctx = ctxIn || context(pricing, o);
-  const { rates, plan } = pieceRates(pricing, o);
+  const { rates } = pieceRates(pricing, o);
   const s0 = scenarioBlocks(blueprint, tier, pricing, ctx);
   /** @type {Record<string, number>} */
   const n = {};
-  let modelCost = 0, voiceCost = 0;
   for (const b of s0.blocks) {
     const u = usagePieces(b.usage, ctx);
     for (const [id, x] of Object.entries(u.pieces)) n[id] = (n[id] || 0) + x * b.k;
-    modelCost += u.modelCost * b.k;
-    voiceCost += u.voiceCost * b.k;
   }
-  const markup = rates.tokens?.markup ?? 0;
-  /** @type {{id:string, name:string, n:number|null, unit:string, rate:number|null, amount:number, cost:number}[]} */
+  /* Every line is a piece at its list rate, model tokens and a persona's voice included (founders, 22 Nov 2026). */
+  /** @type {{id:string, name:string, n:number, unit:string, rate:number, amount:number, cost:number}[]} */
   const lines = Object.entries(n).map(([id, x]) => {
     const r = rates[id];
     if (!r) throw new Error(`blueprintMonth: no piece "${id}" in pricing.json`);
     return { id, name: r.name, n: x, unit: r.unit, rate: r.rate, amount: x * r.rate, cost: x * r.wholesale };
   });
-  if (modelCost) lines.push({ id: 'tokens', name: 'Model tokens', n: null, unit: `cost plus ${Math.round(markup * 100)}%`, rate: null, amount: modelCost * (1 + markup), cost: modelCost });
-  if (voiceCost) lines.push({ id: 'voiceRelay', name: 'A persona’s own voice on calls', n: null, unit: `cost plus ${Math.round(markup * 100)}%`, rate: null, amount: voiceCost * (1 + markup), cost: voiceCost });
   const total = lines.reduce((s, l) => s + l.amount, 0);
   const ours = tierCost(blueprint, tier, pricing, o, ctx);
   const estimate = roundEstimate(total, pricing);
-  /* A plan's lower rates apply only to usage paid from its credit: on a plan with a credit, the month at its rates is
-     the month paid from that credit, and fitsCredit says whether the whole month fits inside it. */
-  const planCredit = o.plan ? findPlan(pricing, o.plan)?.credit ?? null : null;
   return {
     name: tier.name,
     for: tier.for,
     covers: describeTier(blueprint, tier, pricing),
     featured: !!tier.featured,
     free: !!tier.free,
-    plan,
-    credit: planCredit,
-    fitsCredit: planCredit == null ? null : total <= planCredit + 1e-9,
     q: s0.q, items: s0.items, runs: s0.runs, period: s0.period, oneOff: s0.oneOff,
     lines,
-    /* What the month costs the buyer at the piece rates, unrounded, and as the site says it. */
+    /* The journeys this month runs (a blueprint with journeys: Overrides.journeys, else its defaults). */
+    journeys: journeysOf(blueprint, pricing) ? selectedJourneys(blueprint, pricing, o) : null,
+    /* What the month costs the buyer at list rates, unrounded, and as the site says it; `tokens` is the model's share
+       of it (the token pieces), `pieces` the rest. All of it counts toward what a plan covers. */
     total,
+    tokens: lines.filter((l) => TOKEN_PIECES.includes(l.id)).reduce((s, l) => s + l.amount, 0),
+    pieces: lines.filter((l) => !TOKEN_PIECES.includes(l.id)).reduce((s, l) => s + l.amount, 0),
     estimate,
     /* What the buyer pays: 0 for the free run. */
     price: tier.free ? 0 : estimate,
@@ -667,6 +723,32 @@ export function blueprintMonth(blueprint, scenario, pricing, o = {}, ctxIn) {
 export function blueprintMonths(blueprint, pricing, o = {}) {
   const ctx = context(pricing, o);
   return blueprint.tiers.map((t) => blueprintMonth(blueprint, t, pricing, o, ctx));
+}
+
+/**
+ * A blueprint with journeys (mystery shopping: sign-up, browse, basket and checkout abandonment), as additive parts a
+ * page can sum without the engine: for each scenario, `base` (its months with no journey ticked: the account upkeep)
+ * and `each`, what one journey adds on its own, both unrounded at list rates. A month is linear in its usage, so any
+ * ticked set costs base + the sum of its journeys, rounded with roundEstimate. Null for a blueprint without journeys.
+ * @param {Blueprint} blueprint
+ * @param {Pricing} pricing
+ * @param {Overrides} [o]
+ */
+export function journeyMonths(blueprint, pricing, o = {}) {
+  const J = journeysOf(blueprint, pricing);
+  if (!J) return null;
+  const base = blueprintMonths(blueprint, pricing, { ...o, journeys: [] });
+  const one = Object.fromEntries(Object.keys(J.list).map((id) => [id, blueprintMonths(blueprint, pricing, { ...o, journeys: [id] })]));
+  return {
+    journeys: Object.entries(J.list).map(([id, j]) => ({ id, name: j.name, line: j.line ?? '' })),
+    defaults: J.defaults,
+    tiers: base.map((b, i) => ({
+      name: b.name,
+      free: b.free,
+      base: b.total,
+      each: Object.fromEntries(Object.entries(one).map(([id, months]) => [id, months[i].total - b.total])),
+    })),
+  };
 }
 
 /* ------------------------------------------------------------------ pieces and plans */
@@ -709,31 +791,29 @@ export function pieceMargins(pricing, o = {}) {
   });
 }
 
-/* ------------------------------------------------------------------ plans: a monthly credit */
+/* ------------------------------------------------------------------ plans: covered usage at list rates */
 
 /*
- * A paid plan's fee buys a monthly credit in dollars, spent at the plan's rates on any piece, model tokens included.
- * The plan's lower rates apply only to usage paid from its credit: past the credit, usage is billed at list rates on every
- * plan, up to any spend cap the buyer sets (founders, 22 Nov 2026). Unused credit resets each month. Plans
- * differ by features and by the rate ladder (founders, 22 Nov 2026): Free and Developer pay list rates, Startup 10% off
- * every piece and Scale 15% off (each plan's `discount`), model tokens and fixed-price pieces (the US texting
- * registration, `fixed: true`) never discounted; no plan includes any piece; Free keeps fixed allowances;
- * Enterprise is set with the buyer, from a first-month floor, monthly, with a yearly discount as an option. A blueprint
- * run draws on the credit at the piece rates like any piece (blueprintMonth).
+ * There is one price list, the pieces at list rates, on every plan (founders, 22 Nov 2026). A paid plan's monthly fee
+ * covers a set amount of that usage (`covers`): Developer $20 for $20, Startup $99 for $111, Scale $499 for $588. Past it,
+ * usage is billed at list rates, pay as you go up to any spend cap the buyer sets; covered usage resets each month.
+ * Model tokens are pieces like any other, at the model's prices plus 30% (founders, 22 Nov 2026), counted toward covered
+ * usage; pricing.billing.outside lists any piece billed on top of a plan instead (none now). The US texting registration counts toward covered usage at its fixed list prices. No plan
+ * includes any piece; Free keeps fixed allowances; Enterprise is set with the buyer, from a first-month floor, monthly,
+ * with a yearly discount as an option. There is no credit and no plan discount.
  */
 
 /**
- * @typedef {{off:number, except?:string[], rule?:string}} Discount
- * @typedef {{id:string, name:string, monthly:number|null, from?:number, credit:number|null, billing?:string[],
+ * @typedef {{id:string, name:string, monthly:number|null, from?:number, covers?:number|null, billing?:string[],
  *   featured?:boolean, allowances?:Record<string, number>, freeNumber?:{textsIn:number, callMinutesIn:number},
- *   discount?:Discount, features?:Record<string, any>, note?:string}} Plan
- * @typedef {{id:string, name:string, monthly:number|null, from:number|null, credit:number, billing:string[],
+ *   features?:Record<string, any>, note?:string}} Plan
+ * @typedef {{id:string, name:string, monthly:number|null, from:number|null, covers:number, billing:string[],
  *   featured:boolean, allowances:Record<string, number>, freeNumber:{textsIn:number, callMinutesIn:number}|null,
- *   features:Record<string, any>, rates:Record<string, number>, list:Record<string, number>, once:Record<string, number>}} BillingPlan
- * @typedef {{id:string, name:string, unit:string, displayPer:number, displayUnit:string, wholesale:number, list:number,
- *   cost:number, overhead:number, rate:number, margin:number|null, costMargin:number|null, listMargin:number|null, rule:string,
- *   fixed:boolean, discounted:boolean, off:number, plus:number|null, markup:number|null,
- *   once:{list:number, rate:number, wholesale:number, margin:number|null}|null}} PlanRate
+ *   features:Record<string, any>, rates:Record<string, number>, once:Record<string, number>, outside:string[]}} BillingPlan
+ * @typedef {{id:string, name:string, unit:string, displayPer:number, displayUnit:string, wholesale:number, rate:number,
+ *   cost:number, overhead:number, effective:number, margin:number|null, costMargin:number|null, listMargin:number|null,
+ *   fixed:boolean, outside:boolean, plus:number|null, markup:number|null,
+ *   once:{rate:number, effective:number, wholesale:number, margin:number|null}|null}} PlanRate
  */
 
 /** @param {Pricing} pricing @param {string} id @returns {Plan} */
@@ -741,57 +821,62 @@ export function findPlan(pricing, id) {
   return pricing.plans.find((/** @type {Plan} */ p) => p.id === id);
 }
 
+/** Any pieces billed on top of every plan, never counted toward its covered usage (none since 22 Nov 2026). @param {Pricing} pricing */
+export function outsidePieces(pricing) {
+  return /** @type {string[]} */ (pricing.billing?.outside ?? ['tokens']);
+}
+
 /**
- * Each piece's rate on a plan, in dollars per the piece's unit, beside its list rate, wholesale and margin. A plan with
- * no `discount` bills list rates (each piece's retail). Under a discount (Startup 10%, Scale 15%) every piece is its
- * list rate less `off`, its one-off fee too; a pass-through piece (retailPlus: WhatsApp) takes the discount off the fee
- * we add, never off Meta's. A piece in `discount.except` (model tokens) and a fixed-price piece (`fixed: true`, the US
- * texting registration, its one-off fee too) stay at list on every plan. `margin` is over wholesale, what a unit costs us
- * at the margin: the 25% floor is judged on it. `overhead` is the browser plan fee spread on a browser piece, fixed
- * overhead outside the floor; `cost` is wholesale plus it, and `costMargin` the margin after it, for the record.
+ * What a paid plan's fee covers at list rates: `covers`, `extra` over the fee, and `factor`, what a dollar of covered
+ * usage earns us (fee / covers). Free and Enterprise come back with covers 0 and factor 1.
+ * @param {Plan|string} plan
+ * @param {Pricing} pricing
+ */
+export function planValue(plan, pricing) {
+  const pl = typeof plan === 'string' ? findPlan(pricing, plan) : plan;
+  const fee = pl?.monthly ?? 0;
+  const covers = pl?.covers ?? 0;
+  return { fee, covers, extra: Math.max(covers - fee, 0), factor: covers > 0 ? fee / covers : 1 };
+}
+
+/**
+ * Each piece on a plan: its list rate (`rate`, what the buyer is billed per unit on every plan), beside wholesale and
+ * `effective`, what a unit earns us inside the plan's covered usage (list x fee / covers; a piece outside the plans earns
+ * its list rate). `margin` is at `effective` over wholesale, what a unit costs us at the margin: the 25%
+ * floor is judged on it. `overhead` is the browser plan fee spread on a browser piece, fixed overhead outside the floor;
+ * `cost` is wholesale plus it, and `costMargin` the margin after it, for the record.
  * @param {Plan|string} plan a plan from pricing.plans, or its id
  * @param {Pricing} pricing
  * @param {Overrides} [o]
  * @returns {PlanRate[]}
  */
 export function planRates(plan, pricing, o = {}) {
-  const pl = typeof plan === 'string' ? findPlan(pricing, plan) : plan;
-  const d = pl?.discount;
+  const { factor } = planValue(plan, pricing);
+  const outside = outsidePieces(pricing);
   return pieceMargins(pricing, o).map((/** @type {any} */ p) => {
     const w = p.wholesaleValue;
-    const list = p.retailValue;
-    const off = d && !p.fixed && !(d.except ?? []).includes(p.id) && list > 0 ? d.off : 0;
-    const rate = !off ? list : p.retailPlus != null ? w + p.retailPlus * (1 - off) : list * (1 - off);
+    const rate = p.retailValue;
+    const out = outside.includes(p.id);
+    const effective = out ? rate : rate * factor;
     let once = null;
     if (p.onceValue) {
-      const r1 = p.onceValue.retail * (1 - off);
-      once = { list: p.onceValue.retail, rate: r1, wholesale: p.onceValue.wholesale, margin: r1 > 0 ? (r1 - p.onceValue.wholesale) / r1 : null };
+      const e1 = p.onceValue.retail * factor;
+      once = { rate: p.onceValue.retail, effective: e1, wholesale: p.onceValue.wholesale, margin: e1 > 0 ? (e1 - p.onceValue.wholesale) / e1 : null };
     }
     return {
       id: p.id, name: p.name, unit: p.unit, displayPer: p.displayPer ?? 1, displayUnit: p.displayUnit ?? p.unit,
-      wholesale: w, cost: p.costValue, overhead: p.costValue - w, list, rate,
-      margin: rate > 0 ? (rate - w) / rate : null, costMargin: rate > 0 ? (rate - p.costValue) / rate : null, listMargin: p.margin,
-      rule: off ? (p.retailPlus != null ? 'plus' : 'discount') : p.fixed ? 'fixed' : 'list', fixed: !!p.fixed, discounted: off > 0, off: list > 0 ? 1 - rate / list : 0,
-      plus: p.retailPlus != null ? rate - w : null, markup: p.retailMarkup ?? null,
+      wholesale: w, cost: p.costValue, overhead: p.costValue - w, rate, effective,
+      margin: effective > 0 ? (effective - w) / effective : null, costMargin: effective > 0 ? (effective - p.costValue) / effective : null, listMargin: p.margin,
+      fixed: !!p.fixed, outside: out, plus: p.retailPlus ?? null, markup: p.retailMarkup ?? null,
       once,
     };
   });
 }
 
 /**
- * What a plan's credit is worth at list rates: credit / (1 - its discount), for every piece but model tokens.
- * @param {Plan|string} plan
- * @param {Pricing} pricing
- */
-export function creditWorth(plan, pricing) {
-  const pl = typeof plan === 'string' ? findPlan(pricing, plan) : plan;
-  return (pl?.credit ?? 0) / (1 - (pl?.discount?.off ?? 0));
-}
-
-/**
- * A plan made ready to bill: its fee, credit, allowances, features, the rate of every piece on it (`rates`, for usage paid
- * from the credit) and at list (`list`, for usage past the credit), as plain data (it survives JSON), so a page can work
- * out bills with monthlyBill() without the rest of pricing.json.
+ * A plan made ready to bill: its fee, what it covers, allowances, features and every piece's list rate (`rates`) and
+ * one-off fee (`once`), as plain data (it survives JSON), so a page can work out bills with monthlyBill() without the
+ * rest of pricing.json.
  * @param {Plan|string} plan
  * @param {Pricing} pricing
  * @param {Overrides} [o]
@@ -800,17 +885,15 @@ export function creditWorth(plan, pricing) {
 export function billingPlan(plan, pricing, o = {}) {
   const pl = typeof plan === 'string' ? findPlan(pricing, plan) : plan;
   /** @type {Record<string, number>} */ const rates = {};
-  /** @type {Record<string, number>} */ const list = {};
   /** @type {Record<string, number>} */ const once = {};
-  for (const r of planRates(pl, pricing, o)) {
-    rates[r.id] = r.rate;
-    list[r.id] = r.list;
-    if (r.once) once[r.id] = r.once.rate;
+  for (const p of pieceMargins(pricing, o)) {
+    rates[p.id] = p.retailValue;
+    if (p.onceValue) once[p.id] = p.onceValue.retail;
   }
   return {
-    id: pl.id, name: pl.name, monthly: pl.monthly, from: pl.from ?? null, credit: pl.credit ?? 0,
+    id: pl.id, name: pl.name, monthly: pl.monthly, from: pl.from ?? null, covers: pl.covers ?? 0,
     billing: pl.billing ?? ['monthly'], featured: !!pl.featured, allowances: pl.allowances ?? {},
-    freeNumber: pl.freeNumber ?? null, features: pl.features ?? {}, rates, list, once,
+    freeNumber: pl.freeNumber ?? null, features: pl.features ?? {}, rates, once, outside: outsidePieces(pricing),
   };
 }
 
@@ -826,13 +909,12 @@ export function billingPlans(pricing, o = {}) {
 
 /**
  * A month's bill on one plan. `usage` counts each piece in its own unit, keyed by piece id
- * ({ inbox: 10, email: 20000, browser: 100, register: 1 }); `register` counts the active US texting campaigns, at the
- * same fixed monthly price on every plan (no plan includes one; a filing's one-off fee is `once` on the billing plan).
- * Free's allowances come off first; the rest is priced at the plan's rates (`used`) and at list (`listUsed`). The credit
- * pays for the month's usage at the plan's rates until it runs out; the share of the usage it doesn't cover is billed at
- * list rates (`payg`), the same on every plan: past a $100 credit on $130 of usage at Startup's rates, the remaining
- * 3/13 of that usage is billed at list (founders, 22 Nov 2026). Unused credit is lost at the month's end. Each line is
- * rounded to the cent, as a bill is. Free fits only when nothing goes past its allowances
+ * ({ inbox: 10, email: 20000, browser: 100, register: 1, tokens: 40 }); `register` counts the active US texting
+ * campaigns, at the same fixed monthly price on every plan (no plan includes one; a filing's one-off fee is `once` on the
+ * billing plan). Free's allowances come off first; every line is priced at list rates and rounded to the cent, as a bill
+ * is. The pieces inside the plan add up to `pieces`; the plan's fee covers up to `covers` of it (`covered`, the rest of
+ * the covered amount `unused`, lost at the month's end), and the rest is billed at list rates as you go (`payg`). Lines
+ * outside the plans (billing.outside, none now) are billed on top (`outside`). Free fits only when nothing goes past its allowances
  * (it holds no card). `plan` is a plan id, a plan from pricing.plans, or an entry of billingPlans() (then `pricing`
  * is not needed). Enterprise comes back as `contract`, with no total.
  * @param {Record<string, number>} usage
@@ -844,12 +926,12 @@ export function monthlyBill(usage, plan, pricing, o = {}) {
   const bp = plan && typeof plan === 'object' && 'rates' in plan
     ? /** @type {BillingPlan} */ (plan)
     : billingPlan(/** @type {Plan|string} */ (plan), /** @type {Pricing} */ (pricing), o);
-  /** @type {{piece:string, n:number, free:number, billable:number, rate:number, cents:number, amount:number, listRate:number, listCents:number}[]} */
+  /** @type {{piece:string, n:number, free:number, billable:number, rate:number, cents:number, amount:number, outside:boolean}[]} */
   const lines = [];
   if (bp.monthly == null) {
-    return { plan: bp.id, name: bp.name, contract: true, fee: null, credit: null, lines, used: 0, listUsed: 0, creditUsed: 0, unused: 0, covered: 0, payg: 0, total: null, fits: false };
+    return { plan: bp.id, name: bp.name, contract: true, fee: null, covers: null, lines, pieces: 0, covered: 0, unused: 0, payg: 0, outside: 0, total: null, fits: false };
   }
-  const listRates = bp.list ?? bp.rates;
+  const outsideIds = bp.outside ?? ['tokens'];
   for (const [id, raw] of Object.entries(usage || {})) {
     const n = Math.max(Number(raw) || 0, 0);
     if (!n) continue;
@@ -857,21 +939,17 @@ export function monthlyBill(usage, plan, pricing, o = {}) {
     const free = bp.allowances[id] ?? 0;
     const billable = Math.max(n - free, 0);
     const cents = Math.round(billable * bp.rates[id] * 100);
-    const listRate = listRates[id] ?? bp.rates[id];
-    const listCents = Math.round(billable * listRate * 100);
-    lines.push({ piece: id, n, free: Math.min(n, free), billable, rate: bp.rates[id], cents, amount: cents / 100, listRate, listCents });
+    lines.push({ piece: id, n, free: Math.min(n, free), billable, rate: bp.rates[id], cents, amount: cents / 100, outside: outsideIds.includes(id) });
   }
-  const usedC = lines.reduce((s, l) => s + l.cents, 0);
-  const listUsedC = lines.reduce((s, l) => s + l.listCents, 0);
-  const creditC = Math.round(bp.credit * 100);
-  const creditUsedC = Math.min(usedC, creditC);
-  /* The share of the month's usage the credit covers; the rest is billed at list. */
-  const covered = usedC > 0 ? creditUsedC / usedC : 1;
-  const paygC = usedC > creditC ? Math.round((1 - covered) * listUsedC) : 0;
+  const piecesC = lines.filter((l) => !l.outside).reduce((s, l) => s + l.cents, 0);
+  const outsideC = lines.filter((l) => l.outside).reduce((s, l) => s + l.cents, 0);
+  const coversC = Math.round(bp.covers * 100);
+  const coveredC = Math.min(piecesC, coversC);
+  const paygC = piecesC - coveredC;
   return {
-    plan: bp.id, name: bp.name, contract: false, fee: bp.monthly, credit: bp.credit, lines,
-    used: usedC / 100, listUsed: listUsedC / 100, creditUsed: creditUsedC / 100, unused: (creditC - creditUsedC) / 100, covered, payg: paygC / 100,
-    total: (Math.round(bp.monthly * 100) + paygC) / 100,
+    plan: bp.id, name: bp.name, contract: false, fee: bp.monthly, covers: bp.covers, lines,
+    pieces: piecesC / 100, covered: coveredC / 100, unused: (coversC - coveredC) / 100, payg: paygC / 100, outside: outsideC / 100,
+    total: (Math.round(bp.monthly * 100) + paygC + outsideC) / 100,
     fits: bp.monthly > 0 || lines.every((l) => l.billable === 0 || l.rate === 0),
   };
 }
@@ -895,15 +973,13 @@ export function cheapestPlan(usage, plans, o = {}) {
 }
 
 /**
- * Each plan's margin, judged on the pieces (pricing.credit.marginExcludes leaves model tokens out: they are taken from
- * the credit at cost plus 10%, close to cost) over what they cost us at the margin (the browser plan fee is fixed
- * overhead and not counted). No plan includes any piece, so nothing is added to the credit's cost. Free: its fixed
- * allowances at full use. A paid plan, when its whole credit is spent:
- *   worst case: the credit spent on the lowest-margin judged piece at the plan's rates;
- *   typical: the credit spent on pricing.credit.typicalMonth's mix of judged pieces, scaled to fill the credit.
- * `typical.mixMargin` is the typical mix's margin at the plan's rates, on usage paid from the credit; usage past the
- * credit is billed at list rates and earns the list margins. Unused credit (lost at the month's end) only adds margin and
- * is not counted. Enterprise is set with the buyer: no margin here.
+ * Each plan's margin, judged on every piece inside the plans, model tokens included, over
+ * what they cost us at the margin (the browser plan fee is fixed overhead and not counted). No plan includes any piece.
+ * Free: its fixed allowances at full use. A paid plan, when its whole covered usage is used:
+ *   worst case: the covered usage spent on the lowest-margin piece at list rates;
+ *   typical: the covered usage spent on pricing.billing.typicalMonth's mix of pieces (tokens left out), scaled to fill it.
+ * `typical.mixMargin` is that mix's margin at list rates, which usage past the covered amount earns. Unused covered usage
+ * (lost at the month's end) only adds margin and is not counted. Enterprise is set with the buyer: no margin here.
  * @param {Pricing} pricing
  * @param {Overrides} [o]
  */
@@ -912,12 +988,10 @@ export function planMargins(pricing, o = {}) {
   const P = pricing.primitives;
   const pieces = Object.fromEntries(pieceMargins(pricing, o).map((/** @type {any} */ p) => [p.id, p]));
   /** @type {Record<string, number>} */
-  const mix = pricing.credit?.typicalMonth?.usage ?? {};
-  /** @type {string[]} */
-  const excluded = pricing.credit?.marginExcludes ?? [];
+  const mix = pricing.billing?.typicalMonth?.usage ?? {};
   return pricing.plans.map((/** @type {Plan} */ plan) => {
     if (plan.monthly == null) return { ...plan, contract: true, cost: null, margin: null, lines: [], worst: null, typical: null };
-    if (!(Number(plan.credit) > 0)) {
+    if (!(Number(plan.covers) > 0)) {
       const lines = Object.entries(plan.allowances || {}).map(([k, n]) => {
         const unit = pieces[k]?.wholesaleValue ?? 0;
         return { piece: k, name: pieces[k]?.name ?? k, n: Number(n), unit, amount: Number(n) * unit };
@@ -931,12 +1005,12 @@ export function planMargins(pricing, o = {}) {
       return { ...plan, contract: false, cost, margin: null, lines, worst: null, typical: null, ctxModel: ctx.mr.model.id };
     }
     const fee = /** @type {number} */ (plan.monthly);
-    const credit = /** @type {number} */ (plan.credit);
-    const rates = planRates(plan, pricing, o).filter((r) => !excluded.includes(r.id));
+    const covers = /** @type {number} */ (plan.covers);
+    const rates = planRates(plan, pricing, o).filter((r) => !r.outside);
     const margin = (/** @type {number} */ cost) => (fee - cost) / fee;
 
-    const low = rates.filter((r) => r.rate > 0 && r.margin != null).reduce((a, r) => (/** @type {number} */ (r.margin) < /** @type {number} */ (a.margin) ? r : a));
-    const worstCost = credit * (1 - /** @type {number} */ (low.margin));
+    const low = rates.filter((r) => r.rate > 0 && r.listMargin != null).reduce((a, r) => (/** @type {number} */ (r.listMargin) < /** @type {number} */ (a.listMargin) ? r : a));
+    const worstCost = covers * (1 - /** @type {number} */ (low.listMargin));
     const worst = { piece: low.id, name: low.name, pieceMargin: low.margin, cost: worstCost, margin: margin(worstCost) };
 
     let revenue = 0, wholesale = 0;
@@ -946,7 +1020,7 @@ export function planMargins(pricing, o = {}) {
       revenue += Number(n) * r.rate;
       wholesale += Number(n) * r.wholesale;
     }
-    const typCost = revenue > 0 ? credit * (wholesale / revenue) : 0;
+    const typCost = revenue > 0 ? covers * (wholesale / revenue) : 0;
     const typical = { mixMargin: revenue > 0 ? 1 - wholesale / revenue : null, cost: typCost, margin: margin(typCost) };
 
     return { ...plan, contract: false, cost: worst.cost, margin: worst.margin, lines: [], worst, typical, ctxModel: ctx.mr.model.id };

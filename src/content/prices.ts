@@ -1,15 +1,15 @@
 /* Every price on the site, read from the pricing source: src/lib/pricing/pricing.json, copied from pricing/ in the
-   workspace by `npm run pricing` (the founders' calculator reads the same file). Each piece's rate (list and Scale),
-   each plan's fee, credit, billing and features, Free's allowances and what Free's number receives come from there,
-   worked out by the pricing engine (src/lib/pricing/engine.js); only the words are written here (each piece's name,
-   unit and note, each plan's name). Change a number in the workspace's pricing.json, run `npm run pricing`, and it
-   changes everywhere. /pricing, /pricing/rates, the piece pages and the developers page read these; Home shows no
-   prices (James, 20 Nov). `value` is the number in US dollars per `per`; `amount` and `unit` are the words a reader
-   sees. The browser gets only the values this module exports, never the JSON (vite.config.ts contentIndex), so it
-   exports data only, no functions. Each blueprint's typical months are worked out from the same file, at these piece
-   rates, by content/blueprint-tiers.ts (founders, 22 Nov 2026: a blueprint run is paid from the plan's credit like any
-   piece). Model tokens are taken from the credit at cost plus 10% on every plan, so they carry no Scale rate. */
-import { billingPlans, creditWorth, monthlyBill, planRates } from '../lib/pricing/engine.js'
+   workspace by `npm run pricing` (the founders' calculator reads the same file). Each piece's list rate, each plan's
+   fee, what it covers, billing and features, Free's allowances and what Free's number receives come from there, worked
+   out by the pricing engine (src/lib/pricing/engine.js); only the words are written here (each piece's name, unit and
+   note, each plan's name). Change a number in the workspace's pricing.json, run `npm run pricing`, and it changes
+   everywhere. /pricing, /pricing/rates, the piece pages and the developers page read these; Home shows no prices
+   (James, 20 Nov). `value` is the number in US dollars per `per`; `amount` and `unit` are the words a reader sees. The
+   browser gets only the values this module exports, never the JSON (vite.config.ts contentIndex), so it exports data
+   only, no functions. Each blueprint's typical months are worked out from the same file, at these list rates, by
+   content/blueprint-tiers.ts. There is one price list (founders, 22 Nov 2026): every plan bills every piece at its list
+   rate, model tokens included, and a paid plan's fee covers a set amount of that usage. */
+import { billingPlans, monthlyBill, pieceRates } from '../lib/pricing/engine.js'
 import source from '../lib/pricing/pricing.json'
 
 export type PieceId = 'email' | 'phone' | 'messaging' | 'browser' | 'sandbox' | 'personas'
@@ -25,13 +25,7 @@ export type Price = {
   value?: number
   per?: string
   note?: string
-  /* The rate on Startup and on Scale, where it is lower than `amount` (the rate ladder, founders 22 Nov 2026: Startup
-     10% off, Scale 15% off since 22 Nov 2026, was 20%), or, for a fixed price, the same price written out: its amount and, where it differs, its
-     unit. */
-  startup?: { amount: string; unit?: string }
-  scale?: { amount: string; unit?: string }
-  /* The same price on every plan, Enterprise included, off the rate ladder (the US texting registration, founders
-     22 Nov 2026). */
+  /* A fixed price, the same for everyone (the US texting registration, founders 22 Nov 2026). */
   fixed?: boolean
 }
 
@@ -64,11 +58,11 @@ const andList = (items: string[]) => (items.length < 2 ? items.join('') : `${ite
 
 /* ---- The plans ---- */
 
-/* The plans (founders, 21 Nov 2026): a paid plan's fee buys a monthly credit in US dollars, spent at the plan's rates
-   on any piece, model tokens included; a plan's lower rates apply only to usage paid from its credit, and past the credit usage is billed at list rates on every plan, up to any spend cap the buyer sets (founders, 22 Nov 2026). Unused credit resets each
-   month. Plans differ by features and, on Scale, by lower rates, never by fixed amounts of each piece. Free keeps fixed
-   allowances. Enterprise is from a first-month floor, starts monthly with nothing up front, and earns months free when
-   paid yearly (founders, 22 Nov 2026). The numbers are the JSON's; the names are written here, in this order. */
+/* The plans (founders, 22 Nov 2026): one price list, the pieces at list rates, on every plan. A paid plan's fee covers a
+   set amount of usage at those rates (Developer $20 for $20, Startup $99 for $111, Scale $499 for $588); past it, list
+   rates as you go, up to any spend cap the buyer sets. Covered usage resets each month. Model tokens are pieces too,
+   per million at the model's price plus 30%. Free keeps fixed allowances. Enterprise is from a first-month floor, starts monthly with nothing up
+   front, and earns months free when paid yearly. The numbers are the JSON's; the names are written here, in this order. */
 export type PlanId = 'free' | 'developer' | 'startup' | 'scale' | 'enterprise'
 export type Plan = {
   id: PlanId
@@ -80,8 +74,10 @@ export type Plan = {
   fromFirstMonth: boolean
   /* Months free when paid yearly (Enterprise: 2, paying for 10 of 12); 0 where yearly billing earns nothing. */
   yearlyFree: number
-  /* Dollars of usage the fee buys each month; 0 on Free, null on Enterprise. */
-  credit: number | null
+  /* Dollars of usage at list rates the fee covers each month, and how much more that is than the fee; null on Free
+     (fixed allowances) and Enterprise (set with the buyer). */
+  covers: number | null
+  extra: number
   /* 'monthly', and for Enterprise 'yearly' as an option chosen later (`yearlyLater`). */
   billing: string[]
   yearlyLater: boolean
@@ -94,25 +90,19 @@ export type Plan = {
   support: string | null
   seats: boolean
   spendCap: boolean
-  /* Rates lower than list (Startup 10% off, Scale 15% off): the share off every piece but model tokens, and what the
-     credit is worth at list rates. */
-  lowerRates: boolean
-  off: number
-  worth: number | null
 }
 const planNames: Record<PlanId, string> = { free: 'Free', developer: 'Developer', startup: 'Startup', scale: 'Scale', enterprise: 'Enterprise' }
 const planIds = Object.keys(planNames) as PlanId[]
 
 type SourcePlan = (typeof source.plans)[number] & {
   from?: number
-  credit?: number | null
+  covers?: number | null
   billing?: string[]
   billingDefault?: string
   upfront?: boolean
   featured?: boolean
   allowances?: Record<string, number>
   freeNumber?: { textsIn: number; callMinutesIn: number }
-  discount?: { off: number; except?: string[] }
   fromRule?: string
   yearly?: { monthsPaid: number; monthsCovered: number; words: string }
   features?: { eventLogDays?: number | null; support?: string; seats?: boolean; spendCap?: boolean }
@@ -123,35 +113,20 @@ const planOf = (id: PlanId): SourcePlan => {
   return p as SourcePlan
 }
 const free = planOf('free')
-const developerPlan = planOf('developer')
 const startupPlan = planOf('startup')
 const scalePlan = planOf('scale')
 
-/* ---- The rates on each plan ---- */
+/* Every piece's list rate from the engine, the one price list. */
+const listRates = pieceRates(source).rates
+/* The default model's short name, for the token rates ("Gemini 3.8 Flash"). */
+const defaultModel = source.primitives.models.list.find((m) => m.id === source.primitives.models.default)?.short ?? 'our default model'
 
-/* Each piece's rate on a plan, from the engine: list on Free and Developer, 10% off on Startup, 15% off on Scale. */
-const ratesOf = (id: PlanId) => Object.fromEntries(planRates(planOf(id), source).map((r) => [r.id, r]))
-const startupRate = ratesOf('startup')
-const scaleRate = ratesOf('scale')
-/* A rate as written per the piece's display units, on a plan. */
-const rateAmount = (id: string, plan: PlanId) => {
-  const r = ratesOf(plan)[id]
-  return r.rate === 0 ? 'Free' : money(r.rate * displayPer(id))
-}
-/* The Startup and Scale amounts for a price, where they are lower than list. */
-const startupOf = (id: string): Price['startup'] => (startupRate[id]?.discounted ? { amount: rateAmount(id, 'startup') } : undefined)
-const scaleOf = (id: string): Price['scale'] => (scaleRate[id]?.discounted ? { amount: rateAmount(id, 'scale') } : undefined)
-/* Both, for a price list entry. */
-const ladder = (id: string) => ({ startup: startupOf(id), scale: scaleOf(id) })
-
-/* The US texting registration (founders, 22 Nov 2026): fixed prices, the same on every plan and off the rate ladder, in
-   no plan, taken from the buyer's account: its filing (`once`) and its monthly fee for each active campaign. */
+/* The US texting registration (founders, 22 Nov 2026): fixed prices, the same for everyone, in no plan: its filing
+   (`once`) and its monthly fee for each active campaign. */
 const register = piece('register')
 const registerUnit = (monthly: number) => `once to file each campaign, then ${money(monthly)} a month while it’s active`
-const registerOn = (r: (typeof startupRate)[string] | undefined) => (r ? { amount: money(r.once?.rate ?? 0), unit: registerUnit(r.rate) } : undefined)
-const markupWords = (m: number) => `Cost plus ${Math.round(m * 100)}%`
-const listTokensMarkup = piece('tokens').retailMarkup ?? 0
-const scaleTokensMarkup = scaleRate.tokens?.markup ?? listTokensMarkup
+/* A piece priced at cost plus a markup (model tokens, a persona's voice), as written from the engine's list rate. */
+const listAmount = (id: string) => money(Math.round((listRates[id]?.rate ?? 0) * displayPer(id) * 1e4) / 1e4)
 
 /* Event log retention by plan, in words: "30 days on Free and Developer, 90 days on Startup and a year on Scale". */
 const daysWords = (d: number) => (d === 365 ? 'a year' : `${d} days`)
@@ -172,16 +147,15 @@ const eventLogKeptWords = (() => {
 /* By piece in the founders' order (piecePaths.ts pieceOrder, 21 Nov), with Personas' prices last. /pricing/rates groups
    them by pieceOrder itself. */
 export const prices = {
-  inbox: { piece: 'email', name: 'Inbox', amount: amountOf('inbox'), unit: 'an inbox a month', value: retail('inbox'), per: 'inbox a month', note: `${planNames.free} includes ${free.allowances?.inbox ?? 0} inboxes.`, ...ladder('inbox') },
-  email: { piece: 'email', name: 'Emails', amount: amountOf('email'), unit: `per ${perWord(displayPer('email'))} emails, sent or received`, value: retail('email'), per: 'email', ...ladder('email') },
-  browser: { piece: 'browser', name: 'Browser', amount: amountOf('browser'), unit: 'a browser hour', value: retail('browser'), per: 'browser hour', note: 'Its home connection is included, with no charge per GB.', ...ladder('browser') },
-  stealth: { piece: 'browser', name: 'Stealth browser', amount: amountOf('stealth'), unit: 'a browser hour, with a full screen', value: retail('stealth'), per: 'browser hour', ...ladder('stealth') },
+  inbox: { piece: 'email', name: 'Inbox', amount: amountOf('inbox'), unit: 'an inbox a month', value: retail('inbox'), per: 'inbox a month', note: `${planNames.free} includes ${free.allowances?.inbox ?? 0} inboxes.` },
+  email: { piece: 'email', name: 'Emails', amount: amountOf('email'), unit: `per ${perWord(displayPer('email'))} emails, sent or received`, value: retail('email'), per: 'email' },
+  browser: { piece: 'browser', name: 'Browser', amount: amountOf('browser'), unit: 'a browser hour', value: retail('browser'), per: 'browser hour', note: 'Its home connection is included, with no charge per GB.' },
+  stealth: { piece: 'browser', name: 'Stealth browser', amount: amountOf('stealth'), unit: 'a browser hour, with a full screen', value: retail('stealth'), per: 'browser hour' },
   home: { piece: 'browser', name: 'Home connection', amount: 'Included', unit: 'with every browser' },
-  number: { piece: 'phone', name: 'Phone number', amount: amountOf('number'), unit: 'a US or UK number a month', value: retail('number'), per: 'number a month', note: 'Numbers in other countries are priced by country, shown before you add one.', ...ladder('number') },
-  sms: { piece: 'phone', name: 'Texts', amount: amountOf('sms'), unit: 'a text, sent or received', value: retail('sms'), per: 'text', note: 'Carrier fees included.', ...ladder('sms') },
-  /* The filing (`once`) and the monthly fee, the same on every plan; each plan's column writes the price out in full. A
-     rejected filing is sent again at the carriers' review fee, passed through at cost
-     (primitives.phone.registration.reviewOnce). */
+  number: { piece: 'phone', name: 'Phone number', amount: amountOf('number'), unit: 'a US or UK number a month', value: retail('number'), per: 'number a month', note: 'Numbers in other countries are priced by country, shown before you add one.' },
+  sms: { piece: 'phone', name: 'Texts', amount: amountOf('sms'), unit: 'a text, sent or received', value: retail('sms'), per: 'text', note: 'Carrier fees included.' },
+  /* The filing (`once`) and the monthly fee, the same for everyone. A rejected filing is sent again at the carriers'
+     review fee, passed through at cost (primitives.phone.registration.reviewOnce). */
   register: {
     piece: 'phone',
     name: 'US texting registration',
@@ -191,33 +165,27 @@ export const prices = {
     per: 'month',
     fixed: !!register.fixed,
     note: `US carriers require it, and no plan includes it. We file it for you, and a rejected filing costs ${money(source.primitives.phone.registration.reviewOnce.value)} to send again.`,
-    startup: register.fixed || startupRate.register?.discounted ? registerOn(startupRate.register) : undefined,
-    scale: register.fixed || scaleRate.register?.discounted ? registerOn(scaleRate.register) : undefined,
   },
-  voice: { piece: 'phone', name: 'Calls', amount: amountOf('voice'), unit: 'a minute, in or out', value: retail('voice'), per: 'minute', note: 'Bring your own voice agent, or connect one.', ...ladder('voice') },
-  sandbox: { piece: 'sandbox', name: 'Sandbox', amount: amountOf('sandbox'), unit: 'an active vCPU hour', value: retail('sandbox'), per: 'active vCPU hour', note: 'Billed only while the CPU works, so a sandbox waiting on a task costs almost nothing.', ...ladder('sandbox') },
-  memory: { piece: 'sandbox', name: 'Sandbox memory', amount: amountOf('memory'), unit: 'a GiB hour', value: retail('memory'), per: 'GiB hour', ...ladder('memory') },
-  imessage: { piece: 'messaging', name: 'iMessage line', amount: amountOf('imessage'), unit: 'a line a month', value: retail('imessage'), per: 'line a month', ...ladder('imessage') },
+  voice: { piece: 'phone', name: 'Calls', amount: amountOf('voice'), unit: 'a minute, in or out', value: retail('voice'), per: 'minute', note: 'Bring your own voice agent, or connect one.' },
+  personaVoice: { piece: 'phone', name: 'A persona’s own voice', amount: listAmount('personaVoice'), unit: 'a minute of a call it speaks on', value: listRates.personaVoice?.rate, per: 'minute', note: 'On top of the call minute, when a persona speaks for itself.' },
+  sandbox: { piece: 'sandbox', name: 'Sandbox', amount: amountOf('sandbox'), unit: 'an active vCPU hour', value: retail('sandbox'), per: 'active vCPU hour', note: 'Billed only while the CPU works, so a sandbox waiting on a task costs almost nothing.' },
+  memory: { piece: 'sandbox', name: 'Sandbox memory', amount: amountOf('memory'), unit: 'a GiB hour', value: retail('memory'), per: 'GiB hour' },
+  imessage: { piece: 'messaging', name: 'iMessage line', amount: amountOf('imessage'), unit: 'a line a month', value: retail('imessage'), per: 'line a month' },
   whatsapp: {
     piece: 'messaging',
     name: 'WhatsApp',
     amount: `Meta’s fee plus ${money(piece('whatsapp').retailPlus ?? 0)}`,
     unit: 'a message',
     note: 'Meta prices each message by country and kind; we pass its fee through at cost.',
-    startup: startupRate.whatsapp?.discounted ? { amount: `Meta’s fee plus ${money(startupRate.whatsapp.plus ?? 0)}` } : undefined,
-    scale: scaleRate.whatsapp?.discounted ? { amount: `Meta’s fee plus ${money(scaleRate.whatsapp.plus ?? 0)}` } : undefined,
   },
   chat: { piece: 'messaging', name: 'Slack and Telegram', amount: amountOf('chat'), unit: 'on every plan' },
   persona: { piece: 'personas', name: 'Persona', amount: amountOf('persona'), unit: 'while it waits', note: 'You pay only for the pieces it uses.' },
-  log: { piece: 'personas', name: 'Event log', amount: amountOf('log'), unit: `per ${perWord(displayPer('log'))} events`, value: retail('log'), per: 'event', note: `Kept for ${eventLogKeptWords}, and longer on ${planNames.enterprise}.`, ...ladder('log') },
-  tokens: {
-    piece: 'personas',
-    name: 'Model tokens',
-    amount: markupWords(listTokensMarkup),
-    unit: 'taken from your credit, or free with your own key',
-    note: `What the model costs us, plus ${Math.round(listTokensMarkup * 100)}%, on every plan.`,
-    scale: scaleTokensMarkup !== listTokensMarkup ? { amount: markupWords(scaleTokensMarkup) } : undefined,
-  },
+  log: { piece: 'personas', name: 'Event log', amount: amountOf('log'), unit: `per ${perWord(displayPer('log'))} events`, value: retail('log'), per: 'event', note: `Kept for ${eventLogKeptWords}, and longer on ${planNames.enterprise}.` },
+  /* Model tokens (founders, 22 Nov 2026): pieces like any other, per million on our default model, counted toward what a
+     plan covers. Other models have their own rates; with the buyer's own key there is no token charge. */
+  tokensIn: { piece: 'personas', name: 'Input tokens', amount: listAmount('tokensIn'), unit: 'per million, on our default model', value: listRates.tokensIn?.rate, per: 'million input tokens', note: `Our default model is ${defaultModel}. Other models are priced at their own rates, and with your own key there is no token charge.` },
+  tokensCached: { piece: 'personas', name: 'Cached input tokens', amount: listAmount('tokensCached'), unit: 'per million, read from the model’s cache', value: listRates.tokensCached?.rate, per: 'million cached input tokens' },
+  tokensOut: { piece: 'personas', name: 'Output tokens', amount: listAmount('tokensOut'), unit: 'per million, on our default model', value: listRates.tokensOut?.rate, per: 'million output tokens' },
 } satisfies Record<string, Price>
 
 export type PriceKey = keyof typeof prices
@@ -232,6 +200,7 @@ export const plans: Plan[] = planIds.map((id) => {
   }
   const f = p.features ?? {}
   const billing = p.billing ?? ['monthly']
+  const covers = p.covers ? p.covers : null
   return {
     id,
     name: planNames[id],
@@ -239,7 +208,8 @@ export const plans: Plan[] = planIds.map((id) => {
     from: p.from ?? null,
     fromFirstMonth: p.fromRule === 'first month',
     yearlyFree: p.yearly ? p.yearly.monthsCovered - p.yearly.monthsPaid : 0,
-    credit: p.credit ?? null,
+    covers,
+    extra: covers != null && p.monthly != null ? Math.max(covers - p.monthly, 0) : 0,
     billing,
     yearlyLater: billing.includes('yearly') && (p.billingDefault ?? 'monthly') === 'monthly',
     upfront: !!p.upfront,
@@ -249,59 +219,37 @@ export const plans: Plan[] = planIds.map((id) => {
     support: f.support ?? null,
     seats: !!f.seats,
     spendCap: !!f.spendCap,
-    lowerRates: !!p.discount,
-    off: p.discount?.off ?? 0,
-    worth: p.credit ? creditWorth(p, source) : null,
   }
 })
 
-/* Each plan ready to bill, for the /pricing calculator: fee, credit, Free's allowances and every piece's rate on it, as plain data (engine billingPlans). The calculator passes these to the
-   engine's monthlyBill and cheapestPlan in the browser, so the JSON never ships. */
+/* Each plan ready to bill, for the /pricing calculator: fee, what it covers, Free's allowances and every piece's list
+   rate, as plain data (engine billingPlans). The calculator passes these to the engine's monthlyBill and cheapestPlan in
+   the browser, so the JSON never ships. */
 export const billing = billingPlans(source)
 
-/* Each piece's rate on each plan as written, per its display units ("$0.32" per 1,000 emails on Scale), for the
-   calculator's lines. */
-export const rateAmounts = Object.fromEntries(planIds.map((id) => [id, Object.fromEntries(source.pieces.map((p) => [p.id, rateAmount(p.id, id)]))])) as Record<
-  PlanId,
-  Record<string, string>
->
+/* Each piece's list rate as written, per its display units ("$0.40" per 1,000 emails), for the calculator's lines. */
+export const listAmounts = Object.fromEntries(source.pieces.map((p) => [p.id, amountOf(p.id)])) as Record<string, string>
 
-/* Dollars of model cost in 1 unit of the model tokens piece (1M input tokens at the default model, cache share applied),
-   so the calculator can take model spend in dollars at cost. */
-export const tokenUnitCost = ratesOf('startup').tokens?.wholesale ?? 1
 
-/* The rate ladder (founders, 22 Nov 2026), for the plan cards, the rates page and the questions: Developer pays list,
-   Startup and Scale the share off every piece but model tokens, which stay at cost plus 10% on every plan. */
-export const ladderRule = {
-  startup: startupPlan.discount?.off ?? 0,
-  scale: scalePlan.discount?.off ?? 0,
-  list: developerPlan.name ?? 'Developer',
-  tokens: markupWords(listTokensMarkup),
-}
+/* Where Scale starts to cost no more than Startup, in usage at list rates (model tokens aside). Startup bills its fee
+   plus usage at list past the $111 it covers, and Scale stays at its fee until $588: Scale costs no more once usage
+   passes Scale's fee less Startup's plus what Startup covers ($499 - $99 + $111 = $511). */
+export const scaleFrom = Math.round((scalePlan.monthly ?? 0) - (startupPlan.monthly ?? 0) + (startupPlan.covers ?? 0))
 
-/* Where Scale starts to cost no more than Startup, in usage at list rates (model tokens aside). A credit spent at its
-   plan's rates covers credit / (1 - off) of usage at list (Startup's $100 about $111, Scale's $500 about $588), and usage past
-   it is billed at list rates. So Startup bills its fee plus usage at list past $111, and Scale stays at its fee until
-   about $588: Scale costs no more once usage at list passes Scale's fee less Startup's plus Startup's credit at list
-   ($499 - $99 + $111 = about $511). */
-export const scaleFrom = Math.round((scalePlan.monthly ?? 0) - (startupPlan.monthly ?? 0) + creditWorth(startupPlan, source))
-
-/* The credit, worked (the lead, 21 Nov): Startup in a month that uses less than its credit and one that goes past it,
-   billed by the engine. The two months use 64% and 130% of Startup's credit, on inboxes at Startup's rate; past the
-   credit, the uncovered share of the month is billed at list rates (founders, 22 Nov 2026). */
-const creditMonth = (share: number) => {
-  const used = Math.round((startupPlan.credit ?? 0) * share)
-  const bill = monthlyBill({ inbox: used / startupRate.inbox.rate }, startupPlan, source)
+/* What a plan covers, worked (the lead, 21 Nov; founders, 22 Nov 2026): Startup in a month that uses less than it covers
+   and one that goes past it, billed by the engine on inboxes at list rates. */
+const coveredMonth = (used: number) => {
+  const bill = monthlyBill({ inbox: used / retail('inbox') }, startupPlan, source)
   return { used, bill: bill.total ?? 0, unused: bill.unused, payg: bill.payg }
 }
-export const creditExample = { plan: planNames.startup, fee: startupPlan.monthly ?? 0, credit: startupPlan.credit ?? 0, low: creditMonth(0.64), high: creditMonth(1.3) }
+export const coversExample = { plan: planNames.startup, fee: startupPlan.monthly ?? 0, covers: startupPlan.covers ?? 0, low: coveredMonth(64), high: coveredMonth(150) }
 
 /* The US texting registration in words (founders, 22 Nov 2026): "$25" once to file each campaign, then "$17" a month
-   while it's active, the same on every plan, taken from the buyer's account. No plan includes it. */
+   while it's active, the same for everyone. No plan includes it. */
 export const registration = {
   once: money(register.once?.retail ?? 0),
   monthly: money(retail('register')),
-  line: `US texting registration: ${money(register.once?.retail ?? 0)} once to file each campaign, then ${money(retail('register'))} a month while it’s active, taken from your account.`,
+  line: `US texting registration: ${money(register.once?.retail ?? 0)} once to file each campaign, then ${money(retail('register'))} a month while it’s active.`,
   why: 'US carriers require it for business texting. No plan includes it.',
 }
 

@@ -192,7 +192,7 @@ export const page: Page = {
    blueprint's own pricing table, components/BlueprintPricingTabs, from content/catalog). */
 export const pricing: PricingTabs = {
   heading: 'What a typical month of each blueprint costs.',
-  line: 'Prices are worked out from what each run uses and paid from your plan’s credit.',
+  line: 'Prices are worked out from what each run uses, at list rates.',
   label: 'Blueprints for marketing teams',
   recipes: ['mystery', 'competitor', 'email-sms', 'prices', 'ads', 'delivery'],
   variant: 'mystery-shopper-brands',

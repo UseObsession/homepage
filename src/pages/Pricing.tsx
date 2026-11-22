@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
 import { counts, figure, pricingPage as p, quantity, ratePer, type CalcPiece, type CalcQuantity, type PlanCard } from '../content/pricing'
-import { billing, plans, prices, rateAmounts, tokenUnitCost, type PlanId, type Price, type PriceKey } from '../content/prices'
+import { billing, listAmounts, plans, prices, type Price, type PriceKey } from '../content/prices'
 import { cheapestPlan } from '../lib/pricing/engine.js'
 import { NoticeHero } from './Notice'
 import '../components/sections/FinalCta.css'
@@ -15,8 +15,8 @@ import './Pricing.css'
    on how a plan's monthly usage works, with the link to /pricing/rates; the calculator (#estimate): a card per piece
    with an on/off switch, its quantities as steppers and, where the range is large, a slider, in 1 column; beside it the
    summary: the pricing engine's cheapestPlan bills the month on every plan (each plan as prices.ts `billing`, plain
-   data, so the JSON never ships), shows the cheapest line by line with its fee and what its monthly usage covers, and
-   lists the month on every plan. Held in view on desktop and a bar pinned to the foot of the screen on a phone. It
+   data, so the JSON never ships), shows the cheapest line by line at list rates with its fee and what the plan covers
+   taken off, model tokens on top, and lists the month on every plan with what each covers. Held in view on desktop and a bar pinned to the foot of the screen on a phone. It
    renders at its defaults on the server and goes live once the page runs. Then the questions and the closing call. */
 
 /* A numeral never ends a line apart from its word. */
@@ -48,6 +48,17 @@ function PlanItem({ plan }: { plan: PlanCard }) {
         {plan.lead && <span className="s-pr-plan__lead">{plan.lead}</span>}
         <span className="s-pr-plan__amount">{plan.price}</span>
         <span className="s-pr-plan__per">{plan.per}</span>
+        {/* The value tag (James, 22 Nov 2026, the pill): the usage the fee covers at list rates, the figure big between
+            small words, in its own colour. Inside the price line, so the cards keep their 5 shared rows and a screen
+            reader hears "$99 a month covers $111 of usage". */}
+        {plan.covers && (
+          <span className="s-pr-covers">
+            <span className="s-pr-covers__chip">
+              <span className="s-pr-covers__word">{p.plans.covers.before}</span> <span className="s-pr-covers__amount">{plan.covers}</span>{' '}
+              <span className="s-pr-covers__word">{p.plans.covers.after}</span>
+            </span>
+          </span>
+        )}
       </p>
       <p className="s-pr-plan__for">{tie(plan.for)}</p>
       <div className="s-pr-plan__cta">
@@ -57,6 +68,14 @@ function PlanItem({ plan }: { plan: PlanCard }) {
       </div>
       <div className="s-pr-plan__lists">
         <ul className="s-pr-plan__rows" aria-label={p.plans.includes}>
+          {plan.payg && (
+            <li className="s-pr-plan__row">
+              {tie(plan.payg.text)}{' '}
+              <Link className="s-pr-plan__rates" to={plan.payg.link.to}>
+                {plan.payg.link.label}
+              </Link>
+            </li>
+          )}
           {plan.includes.map((item) => (
             <li className="s-pr-plan__row" key={item}>
               {tie(item)}
@@ -86,14 +105,14 @@ type Bills = ReturnType<typeof cheapestPlan>
 type Bill = Bills['bills'][number]
 type Line = Bill['lines'][number]
 
-/* The month as the engine counts it: each piece in its own unit. Model spend is typed in dollars at cost, so it is
-   turned into the model tokens piece's unit; a quantity that brings another price with it (texts bring 1 active US
-   texting campaign, the same fixed monthly fee on every plan) adds 1 of it. */
+/* The month as the engine counts it: each piece in its own unit (model tokens in millions); a quantity that brings
+   another price with it (texts bring 1 active US texting campaign, the same fixed monthly fee on every plan) adds 1 of
+   it. */
 function usageOf(used: Used[]): Record<string, number> {
   const usage: Record<string, number> = {}
   for (const { q, n } of used) {
     if (!n) continue
-    usage[q.key] = (usage[q.key] ?? 0) + (q.key === 'tokens' ? n / tokenUnitCost : n)
+    usage[q.key] = (usage[q.key] ?? 0) + n
     if (q.adds) usage[q.adds] = Math.max(usage[q.adds] ?? 0, 1)
   }
   return usage
@@ -104,14 +123,10 @@ const labels: Record<string, string> = Object.fromEntries(p.calc.pieces.flatMap(
 const labelOf = (key: string) => labels[key] ?? (key in prices ? priceOf(key as PriceKey).name : key)
 
 /* What a line counts, at what rate on the bill's plan: "20,000 at $0.32 per 1,000", "10 in Free". */
-function subOf(bill: Bill, l: Line, spend: number): string {
+function subOf(l: Line): string {
   const s = p.calc.summary
   if (l.billable === 0) return s.allowance(quantity(l.n))
-  if (l.piece === 'tokens') {
-    const t = prices.tokens
-    return s.at(`$${figure(spend)}`, ((bill.plan === 'scale' && t.scale?.amount) || t.amount).toLowerCase())
-  }
-  return s.at(quantity(l.billable), `${rateAmounts[bill.plan as PlanId][l.piece]} ${ratePer[l.piece as PriceKey] ?? ''}`.trim())
+  return s.at(quantity(l.billable), `${listAmounts[l.piece]} ${ratePer[l.piece as PriceKey] ?? ''}`.trim())
 }
 
 function Glyph({ d }: { d: string }) {
@@ -224,14 +239,25 @@ function PieceCard({ piece, on, toggle, texts, set }: CardProps) {
   )
 }
 
-function Summary({ bill, bills, spend }: { bill: Bill; bills: Bill[]; spend: number }) {
+function Summary({ bill, bills }: { bill: Bill; bills: Bill[] }) {
   const s = p.calc.summary
   const total = money(toCents(bill.total ?? 0))
   const name = bill.name
-  const credit = bill.credit ?? 0
-  /* Past the credit the rest of the month bills at list (founders, 22 Nov 2026): what that adds over the plan's rates, so
-     the rows still add up to the total. */
-  const listExtra = toCents(bill.payg) - (toCents(bill.used) - toCents(bill.creditUsed))
+  const covers = bill.covers ?? 0
+  /* Every line at list rates, then what the plan covers taken off (founders, 22 Nov 2026), then model tokens on top, so
+     the rows add up to the total: fee + lines - covered. */
+  const line = (l: Bill['lines'][number]) => {
+    const included = l.billable === 0
+    return (
+      <div key={l.piece}>
+        <dt>
+          {labelOf(l.piece)}
+          <span className="s-pr-sum__sub">{tie(subOf(l))}</span>
+        </dt>
+        <dd className={included ? 's-pr-sum__in' : undefined}>{included ? s.free : money(l.cents)}</dd>
+      </div>
+    )
+  }
 
   /* 1 polite announcement once the inputs settle, never on load and never on every keystroke. */
   const [said, setSaid] = useState('')
@@ -263,41 +289,28 @@ function Summary({ bill, bills, spend }: { bill: Bill; bills: Bill[]; spend: num
             <dt>{s.plan(name)}</dt>
             <dd>{money(toCents(bill.fee ?? 0))}</dd>
           </div>
-          {bill.lines.map((l) => {
-            const covered = l.billable === 0
-            return (
-              <div key={l.piece}>
-                <dt>
-                  {labelOf(l.piece)}
-                  <span className="s-pr-sum__sub">{tie(subOf(bill, l, spend))}</span>
-                </dt>
-                <dd className={covered ? 's-pr-sum__in' : undefined}>{covered ? s.free : money(l.cents)}</dd>
-              </div>
-            )
-          })}
-          {credit > 0 && bill.creditUsed > 0 && (
-            <div>
-              <dt>{s.covered(`$${figure(credit)}`)}</dt>
-              <dd className="s-pr-sum__in">{money(-toCents(bill.creditUsed))}</dd>
-            </div>
-          )}
-          {listExtra > 0 && (
+          {bill.lines.filter((l) => !l.outside).map(line)}
+          {covers > 0 && bill.covered > 0 && (
             <div>
               <dt>
-                {s.pastList}
-                <span className="s-pr-sum__sub">{tie(s.pastListSub(money(toCents(bill.payg)), money(listExtra)))}</span>
+                {s.covered}
+                <span className="s-pr-sum__sub">{tie(s.coveredSub(name, `$${figure(covers)}`))}</span>
               </dt>
-              <dd>{money(listExtra)}</dd>
+              <dd className="s-pr-sum__in">{money(-toCents(bill.covered))}</dd>
             </div>
           )}
+          {bill.lines.filter((l) => l.outside).map(line)}
         </dl>
-        {credit > 0 && bill.unused > 0 && <p className="ob-calc-note s-pr-sum__rest">{tie(s.unused(money(toCents(bill.unused))))}</p>}
+        {covers > 0 && bill.unused > 0 && <p className="ob-calc-note s-pr-sum__rest">{tie(s.unused(money(toCents(bill.unused)), name))}</p>}
         <div className="s-pr-sum__each">
           <p className="s-pr-sum__k">{s.each}</p>
           <dl className="s-pr-sum__plans">
             {bills.map((b) => (
               <div key={b.plan} className={b.plan === bill.plan ? 'is-best' : undefined}>
-                <dt>{b.name}</dt>
+                <dt>
+                  {b.name}
+                  <span className="s-pr-sum__sub">{b.covers ? s.eachCovers(`$${figure(b.covers)}`) : s.eachFree}</span>
+                </dt>
                 <dd>{b.fits ? money(toCents(b.total ?? 0)) : s.over}</dd>
               </div>
             ))}
@@ -331,7 +344,6 @@ function Calculator({ headId }: { headId: string }) {
   const set = (key: PriceKey, text: string) => setTexts((t) => ({ ...t, [key]: text }))
   /* The month on every self-serve plan, and the cheapest (the engine; Free only when the month fits its allowances). */
   const { best, bills } = cheapestPlan(usageOf(used), billing)
-  const spend = used.find((u) => u.q.key === 'tokens')?.n ?? 0
 
   return (
     <div className="s-pr-calc">
@@ -347,7 +359,7 @@ function Calculator({ headId }: { headId: string }) {
           />
         ))}
       </ul>
-      {best && <Summary bill={best} bills={bills} spend={spend} />}
+      {best && <Summary bill={best} bills={bills} />}
     </div>
   )
 }

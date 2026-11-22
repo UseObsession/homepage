@@ -18,11 +18,11 @@ import type { CardGrid, Page, PricingTabs } from '../types'
 
 const access = { kind: 'waitlist', button: 'Get early access', interest: 'any' } as const
 
-/* What a client costs (founders, 22 Nov 2026): a blueprint run is paid from the plan's credit at the piece rates, like
+/* What a client costs (founders, 22 Nov 2026): a blueprint run counts toward what the plan covers at list rates, like
    any piece, and each blueprint shows what a typical month costs in the #pricing tabs. A page's words can't import those
    figures (registry.ts globs every page and recipe), so no figure is typed here: the lines say how a run is paid and
    send the reader to the tabs. */
-const PRICED = 'Every blueprint starts with a free run. After that, each run is paid from your plan’s credit at the piece rates, so a client costs what its runs use.'
+const PRICED = 'Every blueprint starts with a free run. After that, each run counts toward what your plan covers at list rates, so a client costs what its runs use.'
 
 const SUB =
   'Obsession’s AI agents shop, call and fill in forms as new customers of your clients. Every result lands in a dashboard and a report with your name on it.'
@@ -132,7 +132,7 @@ export const page: Page = {
       },
       {
         q: 'What does each client cost?',
-        a: 'It depends on the blueprint and how often it runs. Each starts with a free run, then runs are paid from your plan’s credit at the piece rates. Each blueprint shows a typical month in its own terms: sites, voice agents or competitors.',
+        a: 'It depends on the blueprint and how often it runs. Each starts with a free run, then runs count toward what your plan covers at list rates. Each blueprint shows a typical month in its own terms: sites, voice agents or competitors.',
         link: { label: 'See a typical month', to: '#pricing' },
       },
       {
@@ -145,7 +145,7 @@ export const page: Page = {
       },
       {
         q: 'What do we pay, and what do we charge?',
-        a: 'You pay for what each blueprint’s runs use, from your plan’s credit, and set your own price to clients. White label is part of the Enterprise plan, from $1,500 for the first month, billed monthly with nothing paid up front, and its rates drop as your volume grows.',
+        a: 'You pay for what each blueprint’s runs use, at list rates, and set your own price to clients. White label is part of the Enterprise plan, from $1,500 for the first month, billed monthly with nothing paid up front, and its rates drop as your volume grows.',
         link: { label: 'See the Enterprise plan', to: '/pricing' },
       },
       {
@@ -180,7 +180,7 @@ export const page: Page = {
    22 Nov 2026). */
 export const pricing: PricingTabs = {
   heading: 'What a typical month of each blueprint costs.',
-  line: 'Prices are worked out from what each run uses and paid from your plan’s credit. You charge your clients what you choose.',
+  line: 'Prices are worked out from what each run uses, at list rates. You charge your clients what you choose.',
   label: 'Blueprints you can resell',
   recipes: ['mystery', 'speed', 'voice-agent', 'competitor', 'delivery', 'audit'],
   variant: 'mystery-shopper',

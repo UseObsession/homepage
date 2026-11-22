@@ -14,6 +14,8 @@ import { readFileSync } from 'node:fs'
 import * as E from '../src/lib/pricing/engine.js'
 
 const pricing = JSON.parse(readFileSync(new URL('../src/lib/pricing/pricing.json', import.meta.url), 'utf8'))
+/* Every piece's list rate from the engine, for the pieces priced at cost plus a markup. */
+const listRate = Object.fromEntries(E.pieceMargins(pricing).map((p) => [p.id, p.retailValue]))
 const page = (path) => readFileSync(new URL(`../dist/${path}`, import.meta.url), 'utf8')
 /* An element's text: tags out, entities and no-break spaces back to plain characters. */
 const text = (html) =>
@@ -95,7 +97,7 @@ const compare = (where, cards, bp) => {
 /* The section's 1 line says how every price is worked out and paid. */
 const lineIn = (where, html) => {
   const head = text(html.slice(0, html.indexOf('class="s-bpp')))
-  if (!/worked out from what each run uses/i.test(head) || !/plan’s credit/.test(head)) problems.push(`${where}: the section's line doesn't say the prices are worked out from what each run uses and paid from your plan’s credit`)
+  if (!/worked out from what each run uses/i.test(head) || !/at list rates/.test(head)) problems.push(`${where}: the section's line doesn't say the prices are worked out from what each run uses, at list rates`)
 }
 
 /* 1. Every blueprint page (a variant has none: its months follow its blueprint's, behind the switch, Agencies first). */
@@ -156,13 +158,19 @@ pricing.plans.forEach((plan, i) => {
   /* Founders, 22 Nov 2026: the essentials only, a short list and no "worth about $N at list rates". */
   if (rows.length > 6) problems.push(`/pricing, ${plan.name}: ${rows.length} lines on the card, more than 6`)
   for (const r of rows) if (/\bworth\b|model tokens and US texting registration aside|spend cap/i.test(r)) problems.push(`/pricing, ${plan.name}: the card still says "${r}"`)
-  if (plan.credit > 0) {
-    const line = `${money(plan.credit)} of usage a month`
-    if (!rows.includes(line)) problems.push(`/pricing, ${plan.name}: no line saying "${line}"`)
-    if (!rows.includes('Past it, pay as you go at list rates.')) problems.push(`/pricing, ${plan.name}: no pay as you go line`)
+  /* Founders, 22 Nov 2026: a paid card shows its value tag (covers $N of usage) and the pay as you go line, its list
+     rates linking to every rate; no credit, no discount. */
+  if (plan.covers > 0) {
+    /* The pill shows only where the fee covers more than it costs (James, 22 Nov 2026: on Developer it is implied). */
+    const tag = text(/class="s-pr-covers"[^>]*>([\s\S]*?)<\/p>/.exec(card)?.[1] ?? '')
+    expect(`/pricing, ${plan.name}: value tag`, tag, plan.covers > plan.monthly ? `covers ${money(plan.covers)} of usage` : '')
+    const payg = `Past ${money(plan.covers)}, pay as you go at list rates`
+    if (!rows.includes(payg)) problems.push(`/pricing, ${plan.name}: no line saying "${payg}"`)
+    if (!/href="\/pricing\/rates"/.test(card)) problems.push(`/pricing, ${plan.name}: "list rates" doesn't link to /pricing/rates`)
     const fixed = rows.filter((r) => /^\d[\d,]* (inbox|email|phone number|text|browser hour|sandbox|event)/.test(r))
     if (fixed.length) problems.push(`/pricing, ${plan.name}: shows fixed amounts on a paid plan: ${fixed.join('; ')}`)
   }
+  for (const r of rows) if (/\bcredit\b(?! card)|% off|of usage a month/i.test(r)) problems.push(`/pricing, ${plan.name}: the card still says "${r}"`)
   const NOUN = { inbox: 'inbox', email: 'email', number: 'phone number', browser: 'browser hour', sandbox: 'sandbox', log: 'event' }
   for (const [id, n] of Object.entries(plan.allowances ?? {})) {
     if (!rows.some((r) => new RegExp(`(^|\\D)${quantity(n)} ${NOUN[id] ?? id}`).test(r))) problems.push(`/pricing, ${plan.name}: no line for its ${quantity(n)} of "${id}"`)
@@ -171,10 +179,6 @@ pricing.plans.forEach((plan, i) => {
   if (plan.yearly) {
     const line = `${plan.yearly.monthsCovered - plan.yearly.monthsPaid} months free when paid yearly`
     if (!rows.some((r) => r.startsWith(line))) problems.push(`/pricing, ${plan.name}: no line saying "${line}"`)
-  }
-  if (plan.discount && plan.credit > 0) {
-    const off = `${Math.round(plan.discount.off * 100)}% off list rates`
-    if (!rows.includes(off)) problems.push(`/pricing, ${plan.name}: no line saying "${off}"`)
   }
   if (rows.some((r) => /^US texting/.test(r))) problems.push(`/pricing, ${plan.name}: the US texting line is still on the plan card`)
 })
@@ -187,61 +191,35 @@ const texting = text(/class="s-pr-extra s-pr-texting">([\s\S]*?)<\/p>/.exec(pric
 const registerPiece = pricing.pieces.find((p) => p.id === 'register')
 if (!/No plan includes it/.test(texting) || !texting.includes(`${money(registerPiece.once.retail)} once to file each campaign, then ${money(registerPiece.retail)} a month`)) problems.push(`/pricing: the US texting note under the plans doesn't give the registration's fixed prices and say no plan includes it ("${texting}")`)
 if (pricing.plans.some((p) => p.features?.register)) problems.push('pricing.json: a plan still includes a US texting campaign')
-if (!/blueprint runs draw on it at the same piece rates/.test(pricingText)) problems.push('/pricing: the monthly usage question doesn’t say blueprint runs draw on it at the piece rates')
+if (!/model tokens count toward it like any piece/i.test(pricingText)) problems.push('/pricing: doesn’t say model tokens count toward what a plan covers')
+if (/billed on top|cost plus 10/i.test(pricingText)) problems.push(`/pricing: still says "${pricingText.match(/billed on top|cost plus 10/i)[0]}"`)
+if (/\bcredit\b(?! card)|\d+% off/i.test(pricingText)) problems.push(`/pricing: still says "${pricingText.match(/\bcredit\b(?! card)|\d+% off/i)[0]}"`)
 if (!/each blueprint’s page shows what a typical month/i.test(pricingText)) problems.push('/pricing: doesn’t say each blueprint page shows what a typical month costs')
 /* What Free's number receives, now in the questions rather than on its card. */
 const freeNumber = pricing.plans.find((pl) => pl.freeNumber)?.freeNumber
 if (freeNumber && !pricingText.includes(`up to ${freeNumber.textsIn} texts and ${freeNumber.callMinutesIn} call minutes a month`)) problems.push('/pricing: doesn’t say what Free’s number receives')
 /* The facts the questions keep (founders, 22 Nov 2026): usage resets monthly, list rates past it, the spend cap. */
-for (const [fact, re] of [['usage resets each month', /resets each month/i], ['list rates past the credit', /pay as you go at list rates/i], ['a monthly spend cap', /monthly spend cap/i]])
+for (const [fact, re] of [['usage resets each month', /resets each month/i], ['list rates past what a plan covers', /pay as you go at the same list rates/i], ['a monthly spend cap', /monthly spend cap/i]])
   if (!re.test(pricingText)) problems.push(`/pricing: doesn’t say ${fact}`)
 
-/* 4. Every rate on /pricing/rates, by the piece's name, and Scale's rate beside each one Scale lowers (and none
-   beside one it doesn't). */
+/* 4. Every rate on /pricing/rates, by the piece's name: one price list (founders, 22 Nov 2026), so no plan toggle and
+   no plan column. */
+const ratesHtml = page('pricing/rates.html')
 const rates = new Map(
-  page('pricing/rates.html')
+  ratesHtml
     .split('class="s-rt-row__name">')
     .slice(1)
     .map((row) => {
       const name = row.slice(0, row.indexOf('</dt>'))
       const amount = /class="s-rt-row__amount">([\s\S]*?)<\/span>/.exec(row)?.[1] ?? ''
       const unit = /class="s-rt-row__unit">([\s\S]*?)<\/span>/.exec(row)?.[1] ?? ''
-      /* The prerendered column is Startup's; both plans' rates ride in data-startup and data-scale. */
-      const shown = text(/class="s-rt-row__plan-amount">([\s\S]*?)<\/span>/.exec(row)?.[1] ?? '')
-      const shownUnit = text(/class="s-rt-row__plan-unit">([\s\S]*?)<\/span>/.exec(row)?.[1] ?? '')
-      const attr = (k) => text(new RegExp(`data-${k}="([^"]*)"`).exec(row)?.[1] ?? '')
-      return [text(name), { amount: text(amount), unit: text(unit), startupShown: [shown, shownUnit].filter(Boolean).join(' '), startup: attr('startup'), scale: attr('scale') }]
+      return [text(name), { amount: text(amount), unit: text(unit) }]
     }),
 )
-const ratesHtml = page('pricing/rates.html')
-const toggle = /role="radiogroup"[\s\S]*?<\/div>/.exec(ratesHtml)?.[0] ?? ''
-const radios = [...toggle.matchAll(/role="radio"[^>]*aria-checked="(true|false)"[^>]*>([\s\S]*?)<\/button>/g)].map(([, on, l]) => `${text(l)}${on === 'true' ? '*' : ''}`)
-expect('/pricing/rates: the plan toggle', radios.join(', '), 'Startup*, Scale, Enterprise')
-if (!/no plan includes it/i.test(text(ratesHtml.replace(/<script[\s\S]*?<\/script>/g, '')))) problems.push('/pricing/rates: the US texting registration doesn’t say no plan includes it')
-for (const [planId, label] of [['startup', 'Startup'], ['scale', 'Scale']]) {
-  const planRates = Object.fromEntries(E.planRates(planId, pricing).map((r) => [r.id, r]))
-  for (const p of pricing.pieces) {
-    const row = rates.get(p.name)
-    const r = planRates[p.id]
-    if (!row || !r) continue
-    const value = planId === 'scale' ? row.scale : row.startup
-    const where = `/pricing/rates, ${p.name} on ${label}`
-    if (planId === 'startup') expect(`${where}: the prerendered column`, row.startupShown, value)
-    if (r.fixed) {
-      expect(`${where}: the same fixed price as list`, value, `${row.amount} ${row.unit}`)
-      continue
-    }
-    if (!r.discounted) {
-      expect(`${where}: the list rate, which ${label} bills`, value, row.amount)
-      continue
-    }
-    if (r.plus != null) expect(`${where}: fee on top`, value.match(/\$[\d.]+/)?.[0] ?? '', money(r.plus))
-    else if (r.once) {
-      expect(`${where}: once`, value.match(/^\$[\d.,]+/)?.[0] ?? '', money(r.once.rate))
-      expect(`${where}: a month`, value.match(/then (\$[\d.,]+)/)?.[1] ?? '', money(r.rate))
-    } else expect(`${where}: price`, value, money(r.rate * (p.displayPer ?? 1)))
-  }
-}
+if (/role="radiogroup"|s-rt-row__plan/.test(ratesHtml)) problems.push('/pricing/rates: still has a plan toggle or a plan column')
+const ratesText = text(ratesHtml.replace(/<script[\s\S]*?<\/script>/g, ''))
+if (!/no plan includes it/i.test(ratesText)) problems.push('/pricing/rates: the US texting registration doesn’t say no plan includes it')
+if (/\bcredit\b(?! card)|\d+% off/i.test(ratesText)) problems.push(`/pricing/rates: still says "${ratesText.match(/\bcredit\b(?! card)|\d+% off/i)[0]}"`)
 for (const p of pricing.pieces) {
   const row = rates.get(p.name)
   if (!row) {
@@ -249,7 +227,8 @@ for (const p of pricing.pieces) {
     continue
   }
   const where = `/pricing/rates, ${p.name}`
-  if (p.retailMarkup != null) expect(`${where}: markup`, row.amount.match(/\d+%/)?.[0] ?? '', `${Math.round(p.retailMarkup * 100)}%`)
+  /* A piece priced at cost plus a markup (model tokens, a persona's voice) shows the engine's list rate, per its unit. */
+  if (p.retailMarkup != null) expect(`${where}: price`, row.amount, money(Math.round(listRate[p.id] * (p.displayPer ?? 1) * 1e4) / 1e4))
   else if (p.retailPlus != null) expect(`${where}: fee on top`, row.amount.match(/\$[\d.]+/)?.[0] ?? '', money(p.retailPlus))
   else if (p.once) {
     expect(`${where}: once`, row.amount, money(p.once.retail))
@@ -263,9 +242,9 @@ if (problems.length) {
 }
 const anchor = tiersOf(E.findBlueprint(pricing, 'mystery-shopper')).find((_, i) => pricing.blueprints[0].tiers[i]?.q === 150)
 console.log(
-  `Checked every price against the pricing engine: ${withPage.length} blueprint pages (${tiers} typical months at list rates, mystery shopping's Agencies and Ecommerce brands behind its switch), ${tabs} pricing tabs on /agencies, /marketing and /sales, ${pricing.plans.length} plans and ${pricing.pieces.length} rates with Startup's and Scale's beside them. Mystery shopping for agencies, 150 client stores: ${anchor?.price} a month at list; ${pricing.plans
-    .filter((p) => p.credit > 0)
-    .map((p) => `${p.name}: ${money(p.monthly)} for ${money(p.credit)} of usage`)
+  `Checked every price against the pricing engine: ${withPage.length} blueprint pages (${tiers} typical months at list rates, mystery shopping's Agencies and Ecommerce brands behind its switch), ${tabs} pricing tabs on /agencies, /marketing and /sales, ${pricing.plans.length} plans and ${pricing.pieces.length} list rates. Mystery shopping for agencies, 150 client stores: ${anchor?.price} a month at list; ${pricing.plans
+    .filter((p) => p.covers > 0)
+    .map((p) => `${p.name}: ${money(p.monthly)} covers ${money(p.covers)}`)
     .join('; ')}.`,
 )
 if (process.argv.includes('--table')) console.log(table.join('\n'))

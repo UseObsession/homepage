@@ -196,7 +196,7 @@ export const page: Page = {
    table, components/BlueprintPricingTabs, from content/catalog). */
 export const pricing: PricingTabs = {
   heading: 'What a typical month of each blueprint costs.',
-  line: 'Prices are worked out from what each run uses and paid from your plan’s credit.',
+  line: 'Prices are worked out from what each run uses, at list rates.',
   label: 'Blueprints for sales teams',
   recipes: ['prospect', 'trial', 'account-watch', 'speed', 'email-sms'],
 }

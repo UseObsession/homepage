@@ -65,6 +65,34 @@
   letter-spacing: var(--ob-type-small-tracking);
   color: var(--ob-text-2);
 }
+/* The value tag in a paid plan's price line (James, 22 Nov 2026, the pill): a tinted pill under the price, "covers" and
+   "of usage" small, the figure big, all in the developers accent. Only where the fee covers more than it costs (Startup,
+   Scale): on Developer it is implied. */
+.s-pr-covers {
+  --s-pr-value: var(--s-accent-developers);
+  flex-basis: 100%;
+  min-width: 0;
+  margin-top: var(--ob-space-12);
+  color: var(--s-pr-value);
+  font-variant-numeric: tabular-nums;
+}
+.s-pr-covers__chip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--ob-space-6);
+  max-width: 100%;
+  padding: var(--ob-space-6) var(--ob-space-12);
+  border-radius: var(--ob-radius-pill);
+  background: color-mix(in srgb, var(--s-pr-value) 10%, transparent);
+  box-shadow: 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--s-pr-value) 32%, transparent) inset;
+}
+.s-pr-covers__word { font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); }
+.s-pr-covers__amount { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); line-height: 1.15; font-weight: var(--ob-weight-semibold); white-space: nowrap; }
+@media (min-width: 1180px) { .s-pr-covers__chip { gap: 0 var(--ob-space-4); padding-inline: var(--ob-space-8); } }
+.s-pr-plan__rates { color: inherit; text-decoration: underline; text-decoration-color: var(--ob-link-underline); text-underline-offset: 0.2em; }
+.s-pr-plan__rates:hover { text-decoration-color: currentColor; }
+.s-pr-sum__plans dt .s-pr-sum__sub { font-weight: var(--ob-weight-regular, 400); }
 .s-pr-plan__for {
   margin: var(--ob-space-12) 0 0;
   font: var(--ob-type-small);

@@ -105,3 +105,38 @@
 .s-bpp-switch { min-width: 0; }
 .s-bpp-switch__rail { margin: 0 0 var(--ob-space-24); }
 .s-bpp-switch__panel[hidden] { display: none; }
+
+/* The journeys the buyer ticks above the cards (founders, 22 Nov 2026: mystery shopping): 1 tile per journey, its name
+   and what it does, the box ticked or not; the cards' prices follow them. 1 column on a phone, 2 from 560px, 4 from
+   960px, like the cards under them. */
+.s-bpp-journeys { min-width: 0; margin: 0 0 var(--ob-space-24); padding: 0; border: 0; }
+.s-bpp-journeys__legend {
+  margin: 0 0 var(--ob-space-12);
+  padding: 0;
+  font: var(--ob-type-small);
+  letter-spacing: var(--ob-type-small-tracking);
+  font-weight: var(--ob-weight-medium);
+  color: var(--ob-text);
+}
+.s-bpp-journeys__list { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-8); }
+@container s-bpp (min-width: 560px) { .s-bpp-journeys__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container s-bpp (min-width: 960px) { .s-bpp-journeys__list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.s-bpp-journey {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ob-space-12);
+  min-width: 0;
+  min-height: 44px;
+  padding: var(--ob-space-12);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-sm);
+  background: var(--ob-surface, transparent);
+  cursor: pointer;
+}
+.s-bpp-journey.is-on { border-color: var(--ob-text-3); }
+.s-bpp-journey:has(.s-bpp-journey__box:disabled) { cursor: default; }
+.s-bpp-journey:has(.s-bpp-journey__box:focus-visible) { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+.s-bpp-journey__box { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--ob-text); }
+.s-bpp-journey__text { display: grid; gap: var(--ob-space-2); min-width: 0; }
+.s-bpp-journey__name { font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); font-weight: var(--ob-weight-medium); color: var(--ob-text); }
+.s-bpp-journey__line { font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-2); text-wrap: pretty; }

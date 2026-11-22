@@ -242,7 +242,7 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
       </Section>
 
       <Section id="pricing" heading={ui.pricing.heading(r)} line={ui.pricing.line}>
-        <BlueprintPrices options={pricings} label={ui.pricing.switch} />
+        <BlueprintPrices options={pricings} label={ui.pricing.switch} journeys />
       </Section>
 
       <Section id="steps" heading={ui.steps.heading} tone="ink">
