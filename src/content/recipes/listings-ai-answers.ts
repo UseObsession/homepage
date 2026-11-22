@@ -13,8 +13,8 @@ export const recipe: Recipe = {
   slug: 'listings-ai-answers',
   name: 'Listings and AI answers',
   group: 'Check your own journeys',
-  line: 'A persona asks AI assistants and checks listings the way your buyers do, every Monday, and traces each wrong fact to its page.',
-  gets: 'Every answer AI assistants and listings give about you, dated, each wrong fact traced to its source and asked again until it changes.',
+  line: 'A persona checks AI answers and listings, and traces each wrong fact to its page.',
+  gets: 'Every answer AI assistants and listings give about you, each wrong fact traced to its source.',
   kit: [
     'Your hours, prices and plans, approved by you once',
     'A persona in each town you serve',
@@ -30,7 +30,7 @@ export const recipe: Recipe = {
     description:
       'A persona asks AI assistants what your buyers ask and checks every map, directory and review site each Monday, tracing each wrong fact to its page.',
     answer:
-      'Listings and AI answers sends a persona to ask AI assistants what your buyers ask, from the towns they live in, and to check every map, directory and review site. Every Monday it traces each wrong fact to the page it came from.',
+      'Listings and AI answers sends a persona to ask AI assistants what your buyers ask, from their towns, and check every map, directory and review site. Every Monday it traces wrong facts to their pages.',
     ogImage: '/og/listings-ai-answers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -41,7 +41,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'When AI gets a fact about you wrong, find the page it read.',
-    sub: 'Listings and AI answers sends a persona to ask AI assistants what your buyers ask, from the towns they live in, and to check every map, directory and review site. Every Monday it traces each wrong fact to the page it came from.',
+    sub: 'Listings and AI answers sends a persona to ask AI assistants what your buyers ask, from their towns, and check every map, directory and review site. Every Monday it traces wrong facts to their pages.',
     screen: 'listings',
     capture: {
       kind: 'waitlist',
@@ -90,15 +90,15 @@ export const recipe: Recipe = {
     },
     {
       title: 'A persona asks what your buyers ask',
-      line: 'From each town you serve, every Monday, and within a day of any price change, launch or rename: the AI assistants your buyers use, and every map, directory and review site.',
+      line: 'The AI assistants your buyers use, and every listing, from each town you serve.',
     },
     {
       title: 'Each wrong fact traced',
-      line: 'To the page the answer cites: your site, a profile you run, a directory or a review site.',
+      line: 'To the page the answer cites.',
     },
     {
       title: 'Asked again until it changes',
-      line: 'Every Monday, so your event log shows the day each answer turns right, with the before and after.',
+      line: 'Every Monday, so your event log shows the day each answer turns right.',
     },
   ],
 
@@ -118,13 +118,13 @@ export const recipe: Recipe = {
         { title: 'The questions buyers ask', line: 'The best in your category, near them, your prices, your plans, your hours.' },
         { title: 'Whether you’re named', line: 'And who’s named instead.' },
         { title: 'Wrong facts', line: 'Old prices, retired products, missing features, wrong hours and locations said to be closed.' },
-        { title: 'The source', line: 'The page each answer cites: your site, a profile you run, a directory, a review site or a comparison page.' },
+        { title: 'The source', line: 'Your site, a profile you run, a directory, a review site or a comparison page.' },
       ],
     },
     {
       group: 'Where it stops',
       items: [
-        { title: 'A clean history', line: 'Each assistant asked the official way, from the persona’s own clean history, so yours doesn’t colour the answer.' },
+        { title: 'A clean history', line: 'Each assistant asked the official way, from the persona’s history, so yours doesn’t colour the answer.' },
         { title: 'Other sites', line: 'It names the page to correct. Contacting its owner stays with your team.' },
         { title: 'Your pages', line: 'Read, never changed.' },
       ],
@@ -149,14 +149,14 @@ export const recipe: Recipe = {
     { k: 'Persona', v: 'A buyer in each town you serve' },
     { k: 'Where', v: 'Maps, directories, review sites and AI assistants' },
     { k: 'Questions', v: 'The ones your buyers ask, in their words' },
-    { k: 'How often', v: 'Every Monday, and within a day of any price change' },
+    { k: 'How often', v: 'Every Monday, and within a day of any price change, launch or rename' },
   ],
 
   forWho: [
-    { audience: 'founders', line: 'See an old price, a retired plan or the wrong hours before buyers act on it.' },
+    { audience: 'founders', line: 'See an old price, retired plan or wrong hours before buyers act on it.' },
     { audience: 'marketing', line: 'What AI assistants tell your buyers, and the page each answer came from.' },
     { audience: 'agencies', line: 'What AI assistants say about each client, with the before and after.' },
-    { audience: 'developers', line: 'Every answer and its source in your own dashboard, through the API.' },
+    { audience: 'developers', line: 'Every answer and its source in your dashboard, through the API.' },
   ],
 
   table: {
@@ -178,11 +178,11 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'Why does an AI assistant quote a price we stopped charging?',
-        a: 'Because a page it reads still shows that price. Listings and AI answers traces each wrong answer to the page the assistant cites, so you know which page to correct, then asks again every Monday until the answer changes.',
+        a: 'Because a page it reads still shows that price. Listings and AI answers traces each wrong answer to the page the assistant cites, then asks again every Monday until the answer changes.',
       },
       {
         q: 'Which AI assistants does it ask?',
-        a: 'The ones your buyers use, with the questions they ask, the official way. A persona in each town you serve asks from a clean history, so the answer is the one a local buyer gets.',
+        a: 'The ones your buyers use, asked the official way. A persona in each town you serve asks from a clean history, so it gets the answer a local buyer gets.',
       },
       {
         q: 'Can it ask about our competitors too?',

@@ -14,7 +14,7 @@ export const recipe: Recipe = {
   slug: 'delivery-monitoring',
   name: 'Delivery monitoring',
   group: 'Check your own journeys',
-  line: 'Personas live your first 14 days in each country you sell in, and time every email, text and login code they get.',
+  line: 'Personas in each country you sell in live your first 14 days and time every message.',
   gets: 'Every message a new user should get, timed, and anything missing flagged the day it was due.',
   kit: [
     'New personas after every release',
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     description:
       'Personas sign up to your product in each country you sell in and live its first 14 days, timing every email, text and login code that should arrive.',
     answer:
-      'Delivery monitoring sends new personas through your sign up after every release, each with its own inbox and phone number in a country you sell in. They live your first 14 days, wake on every email, text and login code, and flag anything that never arrives.',
+      'Delivery monitoring sends new personas through your sign up after every release, each with its own inbox and local number. They live your first 14 days, time every message and flag any that never arrives.',
     ogImage: '/og/delivery-monitoring.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every email, text and login code a new user should get, timed.',
-    sub: 'Delivery monitoring sends new personas through your sign up after every release, each with its own inbox and phone number in a country you sell in. They live your first 14 days, wake on every email, text and login code, and flag anything that never arrives.',
+    sub: 'Delivery monitoring sends new personas through your sign up after every release, each with its own inbox and local number. They live your first 14 days, time every message and flag any that never arrives.',
     screen: 'qa',
     capture: {
       kind: 'waitlist',
@@ -87,13 +87,13 @@ export const recipe: Recipe = {
   },
 
   steps: [
-    { title: 'Pick what a new user should get', line: 'Sign up, onboarding, a trial or a launch: every email, text and code in it. Yours, or a client’s.' },
+    { title: 'Pick what a new user should get', line: 'Every email, text and code in your sign up, onboarding, trial or launch.' },
     {
       title: 'Personas sign up',
-      line: 'After every release and every week, each with its own inbox and number, connecting from the countries you sell in.',
+      line: 'After every release and every week, from each country you sell in.',
     },
-    { title: 'They live your first 14 days', line: 'Sleeping between messages and waking on each one, timed against when it should arrive.' },
-    { title: 'What never arrives lands first', line: 'The day it was due, with the screenshot and the log, in Slack, a ticket or a webhook.' },
+    { title: 'They live your first 14 days', line: 'Sleeping between messages and waking on each, timed against when it was due.' },
+    { title: 'What never arrives lands first', line: 'The day it was due, with its log, in Slack, a ticket or a webhook.' },
   ],
 
   checks: [
@@ -109,13 +109,13 @@ export const recipe: Recipe = {
       group: 'Every launch',
       items: [
         { title: 'Emails and texts', line: 'Each send lands in every inbox and on every number.' },
-        { title: 'Codes and links', line: 'Every code tried at checkout, stopping before payment. Every link opened on phone and desktop.' },
+        { title: 'Codes and links', line: 'Every code tried at checkout, stopping before payment, and every link opened.' },
       ],
     },
     {
       group: 'Every country and device',
       items: [
-        { title: 'Local numbers', line: 'In each country you sell in, so a text a network blocks shows up as missing.' },
+        { title: 'Local numbers', line: 'In each country you sell in, so a blocked text shows up as missing.' },
         { title: 'Phone and desktop', line: 'iPhone and Android, and desktop browsers.' },
       ],
     },

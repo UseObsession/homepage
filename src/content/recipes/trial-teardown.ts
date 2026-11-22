@@ -14,7 +14,7 @@ export const recipe: Recipe = {
   slug: 'trial-teardown',
   name: 'Trial teardown',
   group: 'Watch other companies',
-  line: 'A persona starts a competitor’s free trial as a new user and keeps every email, prompt and offer, by trial day.',
+  line: 'A persona starts a competitor’s trial as a new user and keeps every email, prompt and offer.',
   gets: 'The whole trial on 1 page, from what sign up asks to the offer on the last day.',
   kit: [
     'A persona at each competitor, as a new user',
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     description:
       'Trial teardown starts a competitor’s free trial as a persona you define and keeps every email, prompt, plan limit and offer, by trial day, to the end.',
     answer:
-      'Trial teardown starts a competitor’s free trial as a persona you define: a new user who signs in like one. Every event of the trial lands in your event log: what sign up asks, the plan’s limits, and every email, prompt and offer, each dated by trial day.',
+      'Trial teardown starts a competitor’s free trial as a persona, a new user you define. What sign up asks, the plan’s limits and every email, prompt and offer land in your event log by trial day.',
     ogImage: '/og/trial-teardown.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every email, prompt and offer in a competitor’s free trial.',
-    sub: 'Trial teardown starts a competitor’s free trial as a persona you define: a new user who signs in like one. Every event of the trial lands in your event log: what sign up asks, the plan’s limits, and every email, prompt and offer, each dated by trial day.',
+    sub: 'Trial teardown starts a competitor’s free trial as a persona, a new user you define. What sign up asks, the plan’s limits and every email, prompt and offer land in your event log by trial day.',
     screen: 'battlecard',
     capture: {
       kind: 'waitlist',
@@ -87,7 +87,7 @@ export const recipe: Recipe = {
     { title: 'Name the apps', line: 'Any software with a free trial: a competitor’s, a client’s or your own.' },
     {
       title: 'Define the persona',
-      line: 'A new user, a trial user in another country or a team admin. A trial that asks for a card uses your own payment card, if you say so.',
+      line: 'A new user, a trial user in another country or a team admin. Trials that need a card use yours, if you say so.',
     },
     { title: 'It signs in like a new user', line: 'Every email, prompt, limit and offer, kept by trial day, and any message from a rep.' },
     {
@@ -107,7 +107,7 @@ export const recipe: Recipe = {
     {
       group: 'During the trial',
       items: [
-        { title: 'Onboarding emails', line: 'Every one, with its trial day, its time and what it asks the new user to do.' },
+        { title: 'Onboarding emails', line: 'Each with its trial day, time and what it asks the user to do.' },
         { title: 'Prompts in the app', line: 'Tours, nudges and upgrade prompts, screenshotted on the day they show.' },
         { title: 'Plan limits', line: 'What the free plan includes, where it stops and when the upgrade prompt appears.' },
       ],
@@ -125,8 +125,6 @@ export const recipe: Recipe = {
   outputs: {
     heading: 'The whole trial on 1 page, and a battlecard your reps can use.',
     items: [
-      { format: 'The trial, day by day', line: 'Every email, prompt and offer, in order, with the day it came.' },
-      { format: 'The emails themselves', line: 'Each kept as it arrived, with a screenshot of every prompt.' },
       { format: 'A battlecard', line: 'Offers, limits and timings for each competitor, in your CRM or Slack.' },
       { format: 'Competitors side by side', line: 'Several trials compared in 1 table.' },
       { format: 'What changed', line: 'When a competitor changes its trial, its emails or its offer.' },
@@ -167,7 +165,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'Is it ethical to sign up for a competitor’s free trial?',
-        a: 'A free trial is open to anyone, and Trial teardown’s persona starts it on the same sign up page anyone uses. When it talks to a person, it says it’s an AI, and every email is kept exactly as it arrived.',
+        a: 'A free trial is open to anyone, and Trial teardown’s persona starts it on the public sign up page. When it talks to a person, it says it’s an AI.',
       },
       {
         q: 'Will Trial teardown talk to a sales rep?',

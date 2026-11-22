@@ -26,7 +26,7 @@ export const recipe: Recipe = {
   slug: 'mystery-shopper',
   name: 'Mystery shopping',
   group: 'Check your own journeys',
-  line: 'Personas shop a store as new shoppers and bring back every email, text and reminder that followed, or the silence.',
+  line: 'Personas shop a store as new shoppers and show every email, text and missing reminder.',
   gets: 'Every email and text a store sends a new shopper, dated, and the reminders that never came.',
   kit: [
     'A persona per journey, at your store or each client store',
@@ -43,7 +43,7 @@ export const recipe: Recipe = {
     description:
       'Mystery shopping software for brands and agencies: personas shop each store as new shoppers, leave a basket before payment and keep every email and text.',
     answer:
-      'Mystery shopping sends personas through your store, or each client store with its owner’s OK, as new shoppers. They sign up, browse, fill a basket and leave at checkout before payment. Then they wait as long as you choose and bring back every email and text, dated, store by store.',
+      'Mystery shopping sends personas through your store, or each client store with its owner’s OK, as new shoppers. They sign up, fill a basket and stop before payment, then wait as long as you choose for every email and text.',
     ogImage: '/og/mystery-shopper.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -54,7 +54,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Personas shop your store, or every client store, and show you which reminder never came.',
-    sub: 'Mystery shopping sends personas through your store, or each client store with its owner’s OK, as new shoppers. They sign up, browse, fill a basket and leave at checkout before payment. Then they wait as long as you choose and bring back every email and text, dated, store by store.',
+    sub: 'Mystery shopping sends personas through your store, or each client store with its owner’s OK, as new shoppers. They sign up, fill a basket and stop before payment, then wait as long as you choose for every email and text.',
     screen: 'agencytask',
     capture: {
       kind: 'waitlist',
@@ -112,19 +112,19 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Add your stores',
-      line: 'Paste your store’s address, upload your client list or call the API. Each client store is shopped with its owner’s OK.',
+      line: 'Paste your store’s address, upload your client list or call the API.',
     },
     {
       title: 'Define the personas',
-      line: 'A first-time shopper in Manchester on a phone, or a returning one in Texas on a desktop. The same personas can shop every store.',
+      line: 'A first-time shopper in Manchester on a phone, or a returning one in Texas on a desktop.',
     },
     {
       title: 'They sign up and fill a basket',
-      line: 'At each store they sign up, browse, fill a basket and leave at checkout before payment, with a screenshot of every step.',
+      line: 'At each store, up to checkout before payment, with a screenshot of every step.',
     },
     {
       title: 'They wait, and wake on every email',
-      line: 'They wait as long as you choose, so a reminder that never comes is in your event log too, filed under its store.',
+      line: 'As long as you choose, so a missing reminder is in your event log too.',
     },
   ],
 
@@ -153,9 +153,9 @@ export const recipe: Recipe = {
       items: [
         {
           title: 'Before payment',
-          line: 'By default. Give it your own payment card, or one from the client, and it completes the order, so the confirmation joins your event log.',
+          line: 'By default. Give it your card, or a client’s, and it completes the order.',
         },
-        { title: 'At an ID check', line: 'It stops at that step, and the event log keeps what the check asked for.' },
+        { title: 'At an ID check', line: 'It stops there, and the event log keeps what the check asked for.' },
         { title: 'With a person', line: 'If anyone writes or calls, it says it’s an AI.' },
       ],
     },
@@ -164,12 +164,12 @@ export const recipe: Recipe = {
   outputs: {
     heading: 'Every store’s journeys land in your event log and the tools you already use.',
     items: [
-      { format: 'A report per store', line: 'Every step and message with its time, from the sign up to the last email, ready to share with a client.' },
+      { format: 'A report per store', line: 'Every step and message, timed, from sign up to the last email, ready to share.' },
       { format: 'The receipts', line: 'Screenshots, each raw email with its sender checked, and texts as received.' },
       { format: 'The silences', line: 'A reminder that never came, with the inbox and the hours it was watched.' },
       { format: 'Week on week', line: 'Each run beside the one before, so a change stands out.' },
       { format: 'One table', line: 'A row per store in Clay, Baserow or Supabase.' },
-      { format: 'API, MCP and webhooks', line: 'Add stores from your own code, and read each email and text the moment it lands.' },
+      { format: 'API, MCP and webhooks', line: 'Add stores from your code and read each email and text as it lands.' },
     ],
   },
 
@@ -183,10 +183,10 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'agencies', line: 'Shop every client store each month with the client’s OK, and show each one the reminder that never came.' },
+    { audience: 'agencies', line: 'Shop every client store monthly, and show each client the reminder that never came.' },
     { audience: 'marketing', line: 'Your welcome, basket and checkout emails as a new shopper gets them, week after week.' },
     { audience: 'sales', line: 'Bring each client’s dated events to the monthly review, beside what changed since the last shop.' },
-    { audience: 'developers', line: 'Start a shop from your code after each release, and read every email and text as it lands.' },
+    { audience: 'developers', line: 'Start a shop from your code after each release and read every email and text.' },
   ],
 
   table: {
@@ -207,23 +207,23 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'What is an AI mystery shopper?',
-        a: 'A persona run by AI agents that shops a store the way a new shopper does. It has its own name, inbox, phone number and home connection, and brings back every page, email and text, each dated. Here it shops your store, or every client store you look after.',
+        a: 'A persona run by AI agents that shops a store as a new shopper. It has its own name, inbox, phone number and home connection, and brings back every page, email and text, each dated.',
       },
       {
         q: 'Is this mystery shopping software or a service?',
-        a: 'Both. Developers run it as software, adding stores from their own code through the API or MCP. Teams who don’t maintain code pick the blueprint, and we set up the personas and run every shop for them.',
+        a: 'Both. Developers run it as software, adding stores from their code through the API or MCP. Teams who don’t maintain code pick the blueprint, and we set up the personas and run every shop.',
       },
       {
         q: 'What does a mystery shop of a store check?',
-        a: 'The 4 journeys a new shopper takes: signing up for emails and texts, browsing, leaving a basket and leaving at checkout. Then every email and text the store sends while the persona waits, each dated, and any reminder that never came.',
+        a: 'The 4 journeys a new shopper takes: signing up for emails and texts, browsing, leaving a basket and leaving at checkout. Then every email and text the store sends while the persona waits, and any reminder that never came.',
       },
       {
         q: 'How many stores can I check?',
-        a: 'As many as you like. Each shop is paid from your plan’s credit at the piece rates, so a store costs what its runs use. The months above show 30, 150 and 500 client stores, or 1 store shopped monthly, weekly or daily. For reports in your own brand, see the Enterprise plan on the pricing page.',
+        a: 'As many as you like. Each shop is paid from your plan’s credit at the piece rates. The months above show 30, 150 and 500 client stores, or 1 store shopped monthly, weekly or daily. For reports in your own brand, see the Enterprise plan on the pricing page.',
       },
       {
         q: 'How often should it run?',
-        a: 'Agencies usually shop each client store once a month, before the client review. For your own store, weekly catches a flow that stops after a theme change or a new app within days, and daily adds a checkout left every day.',
+        a: 'Agencies usually shop each client store monthly, before the client review. For your own store, weekly catches a flow that stops after a theme change or a new app within days, and daily adds a checkout left every day.',
       },
       {
         q: 'Do my clients need to agree?',
@@ -231,7 +231,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'How is this different from a shopper simulation?',
-        a: 'A simulation predicts how shoppers would browse your pages and what they’d add to the basket. Here a persona signs up with its own inbox and phone number, waits, and keeps every email and text the store sends afterwards, each dated.',
+        a: 'A simulation predicts how shoppers would browse your pages and what they’d add to the basket. Here a persona signs up with its own inbox and phone number, waits, and keeps every email and text the store sends.',
       },
       {
         q: 'Is the September run real?',

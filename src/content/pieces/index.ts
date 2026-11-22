@@ -40,7 +40,7 @@ export const pieceUi = {
   shot: 'Kept with a screenshot',
   delivery: {
     heading: 'Every event reaches your webhook, your code or your agent.',
-    line: 'Each event is saved in your event log first, then sent where you listen. One subscription covers every piece and every blueprint.',
+    line: 'Each event is saved in your event log, then sent where you listen.',
     events: 'The events it sends',
     channels: 'Where they reach you',
     link: { label: 'See the code for each channel', to: '/developers#delivery' },

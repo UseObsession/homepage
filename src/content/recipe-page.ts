@@ -26,19 +26,19 @@ export const recipePage = {
 
   /* The run, played in the console. Its line is the recipe's `gets`; its label the run's own name. */
   run: {
-    heading: 'Everything that comes back lands in your event log, dated, with its screenshot.',
+    heading: 'Everything it brings back lands in your event log, dated, with a screenshot.',
     /* The console's tag, on the 1 real run only: Brand G, September 2026. */
     tag: { real: 'Real run' },
   },
 
-  steps: { heading: 'You say who the persona is and where it goes. Your event log keeps growing.' },
+  steps: { heading: 'You say who the persona is and where it goes.' },
   checks: { heading: 'What the personas do, and what they bring back.' },
   /* Every recipe page links to the 1 real run, Brand G's, by what it is. The label matches Home's. */
   outputs: { cta: { label: 'See the sample data', to: '/sample-output' } satisfies Cta },
   /* How each result reaches the team: the same channels as every piece (components/piece/PieceDelivery). */
   delivery: {
     heading: 'Each result reaches you as a blueprint.result event.',
-    line: 'It’s saved in your event log beside the events from your pieces. Then it reaches you the same way: at your webhook, in your code, in your own agent over MCP, or in Zapier, Make and n8n.',
+    line: 'It’s saved in your event log beside your pieces’ events, and reaches you the same way.',
     events: 'The events it sends',
     channels: 'Where results reach you',
     link: { label: 'See the code for each channel', to: '/developers#delivery' } satisfies Cta,

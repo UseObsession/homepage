@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   slug: 'ad-tracking',
   name: 'Ad tracking',
   group: 'Watch other companies',
-  line: 'The ads your competitors run in public, each followed by a persona to its page, price and code.',
+  line: 'A persona follows each ad your competitors run in public to its page, price and code.',
   gets: 'Each new competitor ad and its offer, every morning, beside the page it lands on.',
   kit: [
     'A persona in your country, reading each competitor’s public ads daily',
@@ -30,7 +30,7 @@ export const recipe: Recipe = {
     description:
       'A persona reads the ads your competitors run in public each morning and follows each one to its page, price and code. Every offer dated, with screenshots.',
     answer:
-      'Ad tracking sends a persona in your country to read the ads your competitors run in public each morning, and to follow each one to its page, price and code. Every new offer comes back dated, beside the ad that led to it.',
+      'Ad tracking sends a persona in your country to read the ads your competitors run in public each morning and follow each to its page, price and code. Every new offer comes back dated.',
     ogImage: '/og/ad-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -41,7 +41,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Your competitors’ ads, followed to the offer behind each one.',
-    sub: 'Ad tracking sends a persona in your country to read the ads your competitors run in public each morning, and to follow each one to its page, price and code. Every new offer comes back dated, beside the ad that led to it.',
+    sub: 'Ad tracking sends a persona in your country to read the ads your competitors run in public each morning and follow each to its page, price and code. Every new offer comes back dated.',
     screen: 'ads',
     capture: {
       kind: 'waitlist',
@@ -89,11 +89,11 @@ export const recipe: Recipe = {
     },
     {
       title: 'A persona reads their ads',
-      line: 'The ads they run in public, each morning, from your country: the words, the image or video, and the day each started.',
+      line: 'The ads they run in public, read each morning from your country.',
     },
     {
       title: 'It follows every ad',
-      line: 'To its page, opened directly on phone and desktop. Where an ad offers a code for signing up, it signs up and keeps what arrives.',
+      line: 'To its page on phone and desktop, signing up where an ad offers a code.',
     },
     {
       title: 'Every offer comes back, dated',
@@ -105,7 +105,7 @@ export const recipe: Recipe = {
     {
       group: 'The ads they run in public',
       items: [
-        { title: 'New and stopped ads', line: 'The words, the image or video, and the day each starts and stops.' },
+        { title: 'New and stopped ads', line: 'The words, image or video, and the day each starts and stops.' },
         { title: 'How long each runs', line: 'The ads a competitor keeps paying for, and the ones it drops in a week.' },
         { title: 'The offer it leads with', line: 'Every discount, gift, free delivery line and code.' },
       ],
@@ -114,7 +114,7 @@ export const recipe: Recipe = {
       group: 'Where each ad lands',
       items: [
         { title: 'The page', line: 'Opened directly on phone and desktop, with the price, stock and offer it shows.' },
-        { title: 'Sign up offers', line: 'Where an ad offers a code for signing up, the persona signs up and keeps what arrives, and when.' },
+        { title: 'Sign up offers', line: 'The persona signs up where an ad offers a code, and keeps what arrives, dated.' },
       ],
     },
   ],
@@ -122,10 +122,10 @@ export const recipe: Recipe = {
   outputs: {
     heading: 'Every new competitor offer, with its ad and its page.',
     items: [
-      { format: 'Slack or email', line: 'Each morning a competitor has a new offer, with the ad and the page side by side.' },
+      { format: 'Slack or email', line: 'A new offer the morning it appears, with the ad and page side by side.' },
       { format: 'Ad timeline', line: 'Every ad each competitor starts and stops, and how long it ran.' },
       { format: 'Weekly PDF', line: 'What every competitor is pushing, and the ads they keep running.' },
-      { format: 'A table, webhook or API', line: 'Each ad, page and offer as a row in Clay, JSON at your endpoint, or an event from the API.' },
+      { format: 'A table, webhook or API', line: 'Each ad, page and offer as a Clay row, JSON at your endpoint or an API event.' },
     ],
   },
 

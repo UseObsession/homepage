@@ -57,7 +57,7 @@ export const page: Page = {
 
   gapPair: {
     heading: 'Your clients pay for each check. Running them by hand eats your margin.',
-    line: 'Today each check needs a person to shop, call or fill in a form after hours. Obsession’s agents run each check and keep every email, text and call that came back.',
+    line: 'Obsession’s agents run each check and keep every email, text and call that comes back.',
     tools: {
       label: 'By hand today',
       items: [
@@ -93,7 +93,7 @@ export const page: Page = {
       },
       {
         name: 'AI receptionists and front desks',
-        line: 'Open each sale with an audit of the prospect’s phone line: how long it rang, what the caller was told and whether they got booked. After launch, test your AI receptionist on the client’s line every morning.',
+        line: 'Open each sale with an audit of the prospect’s phone line: how long it rang, what the caller heard and whether they got booked. After launch, test your AI receptionist every morning.',
         recipes: ['speed', 'voice-agent'],
       },
       {
@@ -124,15 +124,15 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession do for a reseller?',
-        a: `${SUB} You sell the checks to your clients at your own price. ${PRICED}`,
+        a: `${SUB} You sell the checks at your own price.`,
       },
       {
         q: 'Who is this for?',
-        a: 'Businesses that sell checks, audits or agents to their own clients. That means mystery shopping and CX audit firms, AI receptionist and front desk vendors, and CRO, retention and voice AI agencies. It also means automation consultants who build in n8n and Make, managed QA and testing firms, and agent builder platforms.',
+        a: 'Businesses that sell checks, audits or agents to their own clients: mystery shopping and CX audit firms, AI receptionist vendors, CRO, retention and voice AI agencies, automation consultants, managed QA firms and agent builder platforms.',
       },
       {
         q: 'What does each client cost?',
-        a: 'It depends on the blueprint and how often it runs. Each starts with a free run, then each run is paid from your plan’s credit at the piece rates. Each blueprint shows what a typical month costs, counted in its own terms: sites for lead response checks, voice agents for voice agent checks and competitors for competitor tracking.',
+        a: 'It depends on the blueprint and how often it runs. Each starts with a free run, then runs are paid from your plan’s credit at the piece rates. Each blueprint shows a typical month in its own terms: sites, voice agents or competitors.',
         link: { label: 'See a typical month', to: '#pricing' },
       },
       {
@@ -158,7 +158,7 @@ export const page: Page = {
       },
       {
         q: 'Can our platform’s users get agents of their own?',
-        a: 'Yes. Give each user inboxes, phone numbers, messaging, a browser and a sandbox through one API. Or give them all of it under one identity, as a persona, in an account under your brand.',
+        a: 'Yes. Give each user inboxes, phone numbers, messaging, a browser and a sandbox through one API, or all of it as one persona, in an account under your brand.',
       },
       {
         q: 'What does an agent do at a payment or an identity check?',

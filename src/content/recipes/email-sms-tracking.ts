@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   slug: 'email-sms-tracking',
   name: 'Email and SMS tracking',
   group: 'Watch other companies',
-  line: 'A persona on every brand’s list keeps each email and text it’s sent, side by side: who sends most, and who discounts first.',
+  line: 'A persona on every brand’s list keeps each email and text, and shows who discounts first.',
   gets: 'Every email and text each brand sends, on 1 timeline, with the welcome series mapped.',
   kit: [
     'A persona subscribed to each brand, in your country',
@@ -30,7 +30,7 @@ export const recipe: Recipe = {
     description:
       'A persona subscribes to each competitor’s emails and texts and keeps every message, offer and code with its arrival time, on 1 timeline. By API or Slack.',
     answer:
-      'Email and SMS tracking subscribes to each competitor’s emails and texts as a persona you define, with its own inbox and number. Every message, offer and code comes back on 1 timeline, each with the time it arrived.',
+      'Email and SMS tracking subscribes to each competitor’s emails and texts as a persona you define, with its own inbox and number. Every message, offer and code lands on 1 timeline with its arrival time.',
     ogImage: '/og/email-sms-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -41,7 +41,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every email and text your competitors send, side by side.',
-    sub: 'Email and SMS tracking subscribes to each competitor’s emails and texts as a persona you define, with its own inbox and number. Every message, offer and code comes back on 1 timeline, each with the time it arrived.',
+    sub: 'Email and SMS tracking subscribes to each competitor’s emails and texts as a persona you define, with its own inbox and number. Every message, offer and code lands on 1 timeline with its arrival time.',
     screen: 'inbox',
     capture: {
       kind: 'waitlist',
@@ -85,19 +85,19 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Name the brands',
-      line: 'Your competitors, a whole category, or a list of accounts. Paste them, upload a CSV, connect Clay or call the API.',
+      line: 'Paste them, upload a CSV, connect Clay or call the API.',
     },
     {
       title: 'Define the persona',
-      line: 'A new subscriber in the UK, a lapsed one in the US. Each persona has its own inbox and texting number.',
+      line: 'A new subscriber in the UK, or a lapsed one in the US.',
     },
     {
       title: 'The persona subscribes to each',
-      line: 'From the sign up form anyone can use, and stays on the list for as long as you hold it.',
+      line: 'From the public sign up form, and stays on the list as long as you like.',
     },
     {
       title: 'Every message lands, dated',
-      line: 'Time, sender, subject, offer and code, with a screenshot and the original message.',
+      line: 'With its sender, subject, offer and code.',
     },
   ],
 
@@ -107,7 +107,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'The welcome series', line: 'Every step from sign up, the gap between each, and the offer each one carries.' },
         { title: 'Every campaign', line: 'Time, sender, subject, preview and offer, with a screenshot and the original email.' },
-        { title: 'How often, and when', line: 'Emails a week, the days and hours they go out, and how that changes in a sale.' },
+        { title: 'How often, and when', line: 'Emails a week, when they go out, and how that changes in a sale.' },
         { title: 'How the offer grows', line: 'The discount, day by day, for subscribers who haven’t bought.' },
       ],
     },
@@ -132,10 +132,9 @@ export const recipe: Recipe = {
     heading: 'Every competitor message on 1 timeline, the minute it lands.',
     items: [
       { format: 'Slack', line: 'When a competitor starts a new offer, with the message attached.' },
-      { format: 'Timeline', line: 'Every email and text from every brand, in date order, each with its screenshot.' },
       { format: 'Weekly summary', line: 'What changed since last week, in a few lines. A quiet week stays quiet.' },
       { format: 'PDF teardown', line: 'A competitor’s welcome series and offers, mapped, in your name.' },
-      { format: 'A table, webhook or API', line: 'Each message as a row in Clay, JSON at your endpoint, or an event from the API.' },
+      { format: 'A table, webhook or API', line: 'Each message as a row in Clay, JSON at your endpoint, or an API event.' },
     ],
   },
 
@@ -172,7 +171,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do I see what competitors email without a spare inbox?',
-        a: 'Name them. Email and SMS tracking subscribes as a persona with its own inbox and texting number, and logs every welcome email, text, offer and code with the time it arrived and a screenshot.',
+        a: 'Name them. Email and SMS tracking subscribes as a persona with its own inbox and texting number, and logs every email, text, offer and code with its arrival time and a screenshot.',
       },
       {
         q: 'Where do the messages come from?',

@@ -15,7 +15,7 @@ export const recipe: Recipe = {
   slug: 'sales-agent-check',
   name: 'Sales agent check',
   group: 'Check your AI agents',
-  line: 'A persona shops with AI sales agents and follows every price, stock and delivery answer to checkout: yours and competitors’.',
+  line: 'A persona shops with your AI sales agent and competitors’, following every answer to checkout.',
   gets: 'Every price, stock and delivery answer, dated, beside your price list as it read that minute.',
   kit: [
     'A shopper persona with its own WhatsApp number',
@@ -32,7 +32,7 @@ export const recipe: Recipe = {
     description:
       'A shopper persona asks AI sales agents on chat and WhatsApp for prices, stock and delivery, and follows each answer to checkout: yours and competitors’.',
     answer:
-      'Sales agent check sends a shopper persona to AI sales agents every morning to ask for prices, stock and delivery, then follows each answer to checkout. Every quote comes back dated, beside your price list, and competitors’ agents get the same questions.',
+      'Sales agent check sends a shopper persona to ask AI sales agents for prices, stock and delivery every morning, then follows each answer to checkout. Every quote, yours and competitors’, lands beside your price list.',
     ogImage: '/og/sales-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,7 +43,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'What your AI sales agent charges, every morning.',
-    sub: 'Sales agent check sends a shopper persona to AI sales agents every morning to ask for prices, stock and delivery, then follows each answer to checkout. Every quote comes back dated, beside your price list, and competitors’ agents get the same questions.',
+    sub: 'Sales agent check sends a shopper persona to ask AI sales agents for prices, stock and delivery every morning, then follows each answer to checkout. Every quote, yours and competitors’, lands beside your price list.',
     screen: 'salescheck',
     capture: {
       kind: 'waitlist',
@@ -91,15 +91,15 @@ export const recipe: Recipe = {
     },
     {
       title: 'Define the shopper and the products',
-      line: 'A new or returning shopper asking about your best sellers, bundles and this week’s offers. Add your price list, stock feed and delivery page.',
+      line: 'A new or returning shopper asking about bundles and offers. Add your price list, stock feed and delivery page.',
     },
     {
       title: 'Asked every morning, followed to checkout',
-      line: 'On every channel in the same minute. The persona follows each answer to checkout and stops before payment, or pays with your own card if you say so.',
+      line: 'On every channel in the same minute, stopping before payment unless you say so.',
     },
     {
       title: 'Every answer lands where you work',
-      line: 'Slack, a sheet or the API, beside the price list, feed or page it was read against.',
+      line: 'Slack, a sheet or the API, beside the source it was read against.',
     },
   ],
 
@@ -110,7 +110,7 @@ export const recipe: Recipe = {
         { title: 'Says it’s an AI', line: 'In its first message, and truthfully whenever a shopper asks.' },
         { title: 'Prices and bundles', line: 'Every price beside your price list, captured the same minute.' },
         { title: 'Codes and offers', line: 'Every code it hands out: live, right and in date.' },
-        { title: 'Stock and delivery', line: 'Every stock answer beside your stock feed, and every delivery time beside your delivery page.' },
+        { title: 'Stock and delivery', line: 'Stock answers beside your stock feed, and delivery times beside your delivery page.' },
       ],
     },
     {
@@ -126,9 +126,9 @@ export const recipe: Recipe = {
       items: [
         {
           title: 'Payment',
-          line: 'Before payment, by default. Give the persona your own payment card and it completes the order, so you see the confirmation too.',
+          line: 'Before payment, by default. Give the persona your payment card and it completes the order.',
         },
-        { title: 'Your figures', line: 'Every test chat on your own agent is tagged, so it stays out of your sales and your bill.' },
+        { title: 'Your figures', line: 'Test chats on your agent are tagged, so they stay out of your sales and bill.' },
       ],
     },
   ],
@@ -139,7 +139,7 @@ export const recipe: Recipe = {
       { format: 'An answer per question', line: 'Matches your store or doesn’t, beside the price list, feed or page.' },
       { format: 'The chat', line: 'Every message on every channel, timed.' },
       { format: 'The checkout', line: 'What checkout showed, with a screenshot of every step it reached.' },
-      { format: 'How far it reached', line: 'How many chats asked about the same product last week, from the chat history you connect.' },
+      { format: 'How far it reached', line: 'How many chats asked about the same product last week.' },
       { format: 'Competitors’ quotes', line: 'The same products asked of their agents, beside yours.' },
       { format: 'Slack, sheet or API', line: 'Every answer as a message, a row or JSON.' },
     ],
@@ -157,10 +157,10 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'marketing', line: 'Your agent quotes this week’s offer, not last month’s, and you see what competitors’ agents offer.' },
-    { audience: 'agencies', line: 'Every client’s sales agent checked daily, every answer in your event log with its chat.' },
-    { audience: 'founders', line: 'Know what your sales agent charged overnight, and hear the morning it gets a price wrong.' },
-    { audience: 'developers', line: 'Spawn shopper personas from your code, and read every answer after each catalogue or prompt change.' },
+    { audience: 'marketing', line: 'Your agent quotes this week’s offer, not last month’s, and you see competitors’ offers.' },
+    { audience: 'agencies', line: 'Every client’s sales agent checked daily, each answer in your event log.' },
+    { audience: 'founders', line: 'Hear the morning your sales agent gets a price wrong.' },
+    { audience: 'developers', line: 'Spawn shopper personas from your code after each catalogue or prompt change.' },
   ],
 
   table: {

@@ -11,7 +11,7 @@ import type { PiecePage } from './types'
    range kept for fiction). Prices are read from prices.ts, never retyped. */
 
 const sub =
-  'A persona from Obsession puts the pieces an AI agent needs under one identity: its own inbox, phone number, messaging channels and browser profile, with a sandbox when a task needs one. It’s free while it waits, wakes in 50 ms when a message arrives, and every event lands in your event log.'
+  'A persona from Obsession puts the pieces an AI agent needs under one identity: its own inbox, phone number, messaging channels and browser profile, with a sandbox when a task needs one. It’s free while it waits and wakes in 50 ms when a message arrives.'
 
 const code = `import { Obsession } from "obsession"
 
@@ -56,14 +56,14 @@ export const personas: PiecePage = {
 
   can: {
     heading: 'One identity your agent keeps for months.',
-    line: 'Everything an agent needs to act as someone on the web, made in one call and kept running.',
+    line: 'Everything an agent needs to act as someone online, made in one call.',
     items: [
       { title: 'One name everywhere', line: 'Your agent acts under the same name on every site, email, text and call.' },
-      { title: 'Every piece in one call', line: 'An inbox, a phone number, messaging channels and a browser profile, made together and kept together.' },
-      { title: 'Free while it waits', line: 'Waiting days for a reply costs nothing. Its pieces are billed only when the persona uses them.' },
+      { title: 'Every piece in one call', line: 'An inbox, a phone number, messaging channels and a browser profile, made and kept together.' },
+      { title: 'Free while it waits', line: 'Waiting days for a reply costs nothing. Pieces are billed only when used.' },
       { title: 'Awake in 50 ms', line: 'A new email, text or call wakes it in 50 ms, without starting a machine.' },
-      { title: 'A sandbox when a task needs one', line: 'It starts a sandbox for a task that runs code, and stops it when the task is done.' },
-      { title: 'Signed in for months', line: 'Its browser profile keeps its logins, so it goes back to the same sites, as the same person, week after week.' },
+      { title: 'A sandbox when a task needs one', line: 'It starts a sandbox for a task that runs code, and stops it when done.' },
+      { title: 'Signed in for months', line: 'Its browser keeps its logins, so it returns to the same sites as the same person, week after week.' },
     ],
   },
 
@@ -71,7 +71,7 @@ export const personas: PiecePage = {
 
   log: {
     heading: 'Every event lands in your event log, dated, with screenshots.',
-    line: 'Your event log holds every page the persona visited and every email, text and call it got, in order. Read its events through the API, or subscribe once and get each one at your webhook as it happens.',
+    line: 'Every page the persona visited and every email, text and call it got, in order. Read them through the API, or get each one at your webhook.',
     who: { name: 'Dana Whitfield', lines: ['dana.whitfield@inbox.example', '+1 202 555 0143', 'US home connection'] },
     rows: [
       { at: 'Mon 09:14', kind: 'Page', text: 'Signed up at larkfield.example', shot: true },
@@ -87,7 +87,7 @@ export const personas: PiecePage = {
 
   price: {
     heading: 'Waiting costs nothing. Each piece is billed as it’s used.',
-    line: 'The event log is billed by the event, and each piece a persona uses is priced on its own page, all on one bill.',
+    line: 'The event log is billed by the event, and each piece at its own price.',
   },
 
   together: {
@@ -107,19 +107,19 @@ export const personas: PiecePage = {
     items: [
       {
         q: 'What is a persona for AI agents?',
-        a: 'An identity your agent acts under, with its own inbox, phone number, messaging channels and browser profile, made in one call. It waits for free, wakes in 50 ms when something arrives, and everything it does and gets lands in your event log.',
+        a: 'An identity your agent acts under, with its own inbox, phone number, messaging channels and browser profile, made in one call. It waits for free, wakes in 50 ms when something arrives, and everything it does lands in your event log.',
       },
       {
         q: 'How can a persona be free while it waits?',
-        a: 'Our runtime keeps each persona as an actor: its state is stored, and no machine runs while nothing happens, so there is nothing to bill. When an email, text or call arrives, the runtime wakes it in 50 ms and your handler runs.',
+        a: 'Our runtime stores each persona’s state as an actor, and no machine runs while nothing happens, so there is nothing to bill. When an email, text or call arrives, it wakes in 50 ms and your handler runs.',
       },
       {
         q: 'What lands in the event log?',
-        a: `Every page the persona visited and every email, text and call it sent or got, each dated, with screenshots of the pages. Your event log holds the events from every other piece and blueprint too, in order, and nothing in it is changed or deleted. Read them with obsession.events.list(), or subscribe once with obsession.events.subscribe() and get each one at your webhook. The event log costs ${prices.log.amount} ${prices.log.unit}. ${prices.log.note}`,
+        a: `Every page the persona visited and every email, text and call it sent or got, each dated, with screenshots of the pages, beside the events from your other pieces and blueprints. Nothing in it is changed or deleted. Read it with obsession.events.list(), or subscribe once with obsession.events.subscribe(). The event log costs ${prices.log.amount} ${prices.log.unit}. ${prices.log.note}`,
       },
       {
         q: 'Do I need a persona to use the other pieces?',
-        a: 'No. Every piece works on its own with the same API key. A persona is for one agent that needs several pieces under one name, kept together over time.',
+        a: 'No. Every piece works on its own with the same API key. A persona is for one agent that needs several pieces under one name.',
       },
       {
         q: 'What does a persona cost?',

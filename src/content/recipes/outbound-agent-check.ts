@@ -14,7 +14,7 @@ export const recipe: Recipe = {
   slug: 'outbound-agent-check',
   name: 'Outbound agent check',
   group: 'Check your AI agents',
-  line: 'Personas sit on your AI SDR’s lists as prospects and keep every email, text and call it sends, dated. Competitors’ too.',
+  line: 'Personas join your AI SDR’s lists, or a competitor’s, as prospects and keep every message.',
   gets: 'Every message an AI SDR sends, kept as it arrived, with the ones that break your rules flagged.',
   kit: [
     'Prospect personas, each with its own inbox and number',
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     description:
       'Personas join an AI SDR’s lists as prospects, keep every email, text and call it sends, yours or a competitor’s, and flag each one that breaks your rules.',
     answer:
-      'Outbound agent check puts personas on your AI SDR’s lists as the prospects you define. They keep every email, text and call it sends, reply the way prospects do, and flag every claim, discount and send time that breaks your rules.',
+      'Outbound agent check puts personas on your AI SDR’s lists as the prospects you define. They keep every email, text and call, and flag each claim, discount or send time that breaks your rules.',
     ogImage: '/og/outbound-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'What your AI SDR sends prospects, every message kept.',
-    sub: 'Outbound agent check puts personas on your AI SDR’s lists as the prospects you define. They keep every email, text and call it sends, reply the way prospects do, and flag every claim, discount and send time that breaks your rules.',
+    sub: 'Outbound agent check puts personas on your AI SDR’s lists as the prospects you define. They keep every email, text and call, and flag each claim, discount or send time that breaks your rules.',
     screen: 'outcheck',
     capture: {
       kind: 'waitlist',
@@ -86,16 +86,16 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Join the lists',
-      line: 'You add prospect personas to the lists your AI SDR sends to, or a client does. For a competitor, a persona requests a demo as the prospect you define.',
+      line: 'You add prospect personas to the lists your AI SDR sends to, or a client does.',
     },
     { title: 'Add your rules', line: 'Your approved claims, price list, discount limit, quiet hours and contact limits.' },
     {
       title: 'Every message kept',
-      line: 'Each persona wakes on every email, text and call for as long as the sequence runs, and replies as prospects do: yes, not now, no or STOP. When a rep joins, it tells them it’s an AI.',
+      line: 'Each persona wakes on every message while the sequence runs and replies yes, not now, no or STOP.',
     },
     {
       title: 'Flags land where you work',
-      line: 'Slack, a sheet or the API, with the quote, the time and the rule it broke. Your AI SDR pauses only if you set that rule.',
+      line: 'Slack, a sheet or the API, with the quote, the time and the rule it broke.',
     },
   ],
 
@@ -106,13 +106,13 @@ export const recipe: Recipe = {
         { title: 'Says it’s an AI', line: 'At the start of every call, and in every email and text, with who it acts for.' },
         { title: 'Only true claims', line: 'Every case study, result and figure it cites, beside your approved list.' },
         { title: 'The right price', line: 'Every price it quotes, beside your price list as it read that day.' },
-        { title: 'Offers within its limit', line: 'Every discount beside the limit you set, so 30% never goes out where 15% is the cap.' },
+        { title: 'Offers within its limit', line: 'Every discount it offers, beside the limit you set.' },
       ],
     },
     {
       group: 'When it writes',
       items: [
-        { title: 'Quiet hours', line: 'Every send time in the persona’s own time zone, beside your quiet hours and the law.' },
+        { title: 'Quiet hours', line: 'Every send time in the persona’s time zone, beside your quiet hours and the law.' },
         { title: 'How often', line: 'Every email, text and call counted against your contact limits.' },
         { title: 'Stops on no and STOP', line: 'And how fast: the next message after “not now”, “no” or STOP is timed.' },
       ],
@@ -121,7 +121,7 @@ export const recipe: Recipe = {
       group: 'Where it stops',
       items: [
         { title: 'Added by you', line: 'On the lists you choose, so the personas get what your prospects get.' },
-        { title: 'Your numbers', line: 'Each persona is marked as a test in your list, so it stays out of your reply rates.' },
+        { title: 'Your numbers', line: 'Each persona is marked as a test, so it stays out of your reply rates.' },
       ],
     },
   ],
@@ -130,10 +130,9 @@ export const recipe: Recipe = {
     heading: 'Every message comes back as it arrived, with broken rules flagged.',
     items: [
       { format: 'A line per message', line: 'Within your rules or flagged, with the rule that decided it.' },
-      { format: 'The message itself', line: 'Every email, text and call recording, with the time it landed in the persona’s time zone.' },
-      { format: 'Stop times', line: 'How long the AI SDR took to stop after “not now”, “no” and STOP.' },
+      { format: 'The message itself', line: 'Every email, text and call recording, timed in the persona’s time zone.' },
       { format: 'Competitors’ sequences', line: 'What their AI SDRs send after a demo request, message by message.' },
-      { format: 'A pause, on your rule', line: 'Your AI SDR paused when a message breaks a rule you choose. Only if you switch it on.' },
+      { format: 'A pause, on your rule', line: 'Your AI SDR paused when a message breaks a rule you switch on.' },
       { format: 'Slack, sheet or API', line: 'Every message as a flag, a row or JSON.' },
     ],
   },
@@ -144,13 +143,13 @@ export const recipe: Recipe = {
     { k: 'Personas', v: '2 or more prospects, added by you' },
     { k: 'Claims', v: 'Your approved case studies, results and figures' },
     { k: 'Prices and offers', v: 'Your price list, and a discount limit such as 15%' },
-    { k: 'Quiet hours', v: 'For example 21:00 to 08:00, in the persona’s own time zone' },
+    { k: 'Quiet hours', v: 'For example 21:00 to 08:00, in the persona’s time zone' },
     { k: 'Pause rule', v: 'Pause your AI SDR on a flag, only if you switch it on' },
     { k: 'Where it lands', v: 'Slack, a sheet, a webhook or the API' },
   ],
 
   forWho: [
-    { audience: 'sales', line: 'Know every claim and discount your AI SDR makes before a prospect quotes it back to you.' },
+    { audience: 'sales', line: 'Know every claim and discount your AI SDR makes before a prospect quotes it back.' },
     { audience: 'agencies', line: 'The outbound you run for each client, every message kept in your event log.' },
     { audience: 'founders', line: 'Let an AI SDR write for you without reading every email it sends.' },
     { audience: 'developers', line: 'Spawn prospect personas from your code, and read every message after each prompt or sequence change.' },
@@ -173,7 +172,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'Are AI SDRs worth it, or do they just send more spam?',
-        a: 'Outbound agent check shows you what yours sends. Personas join its lists as prospects, every message is kept as it arrived, and each claim, discount and send time that breaks your rules is flagged.',
+        a: 'Outbound agent check shows you what yours sends. Personas join its lists as prospects, every message is kept, and each claim, discount and send time that breaks your rules is flagged.',
       },
       {
         q: 'How do the personas get on our lists?',

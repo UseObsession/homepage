@@ -71,7 +71,7 @@ const pieces: ApiPiece[] = [
   {
     id: 'email',
     name: pieceNames.email,
-    line: 'Inboxes your agents send and receive from, with threads, attachments and a webhook for every reply.',
+    line: 'Inboxes your agents send and receive from, with threads and attachments.',
     code: `const inbox = await obsession.inboxes.create()
 
 await inbox.send({
@@ -85,7 +85,7 @@ await inbox.send({
   {
     id: 'browser',
     name: pieceNames.browser,
-    line: 'A cloud browser on a home connection. Its sessions keep their logins, so your agent signs in once.',
+    line: 'A cloud browser on a home connection that stays signed in.',
     code: `import { chromium } from "playwright"
 
 const browser = await obsession.browsers.create({ home: "US" })
@@ -96,7 +96,7 @@ const session = await chromium.connectOverCDP(browser.cdpUrl)
   {
     id: 'phone',
     name: pieceNames.phone,
-    line: 'Phone numbers that send and receive texts and take calls. Bring your own voice agent, or connect one.',
+    line: 'Numbers that send and receive texts and calls, with your own voice agent or ours.',
     code: `const number = await obsession.numbers.create({ country: "US" })
 
 await number.sms({ to: "+12025550143", text: "Your parcel arrives at 14:00." })
@@ -220,13 +220,13 @@ export const api: ApiSections = {
 
   pieces: {
     heading: 'Each piece is 1 call. Use one, or all of them.',
-    line: 'Use only the email, the way you’d use any email API for AI agents. Add a number, a browser or a sandbox later, on the same key and the same bill.',
+    line: 'Use only the email, like any email API for AI agents, and add a number, a browser or a sandbox later on the same key.',
     items: pieces,
   },
 
   personas: {
     heading: 'Put the pieces under one identity, and your code runs when a message lands.',
-    line: 'A persona holds an inbox, a number, its channels, a browser profile and a sandbox when a task needs one. It lives on our runtime, so it waits for free and answers without starting a machine.',
+    line: 'A persona holds an inbox, a number, its channels, a browser profile and a sandbox when a task needs one.',
     code: PERSONA,
     facts: [
       { term: 'About 50 ms', line: 'From an email, text or call landing to your handler running. No machine starts.' },
@@ -238,19 +238,19 @@ export const api: ApiSections = {
 
   recipes: {
     heading: 'Run a blueprint beside the pieces, ours or your own, with nothing to host.',
-    line: 'A blueprint is a job that runs on Obsession beside the pieces and writes its results to your event log. Run one of ours, such as agentic mystery shopping, or create your own.',
+    line: 'A blueprint is a job that runs beside the pieces and writes its results to your event log.',
     code: RECIPES,
     facts: [
       { term: 'Ours, ready to run', line: 'Mystery shopping, competitor trials, price watch and more. Name the site, and we run the job.' },
-      { term: 'Your own job', line: 'A task or a computation that runs on our runtime next to the inbox, browser and sandbox.' },
-      { term: 'One event log', line: 'Each result lands as a blueprint.result event, beside the events from your pieces and personas, and reaches you the same way.' },
+      { term: 'Your own job', line: 'Your own task, on our runtime next to the inbox, browser and sandbox.' },
+      { term: 'One event log', line: 'Each result lands as a blueprint.result event and reaches you like any other.' },
     ],
     link: { label: 'Browse blueprints', to: '/blueprints' },
   },
 
   delivery: {
     heading: 'Every event is saved in your event log, then reaches you where you listen.',
-    line: 'Emails, texts, calls, pages, sandbox runs and blueprint results all arrive the same way, in the same shape. Start with the webhook, and add a channel when you need one.',
+    line: 'Emails, texts, calls, pages, sandbox runs and blueprint results all arrive in the same shape. Start with the webhook, and add channels as you need them.',
     channels: channels.map((c) => ({
       id: c.id,
       name: c.name,
@@ -264,7 +264,7 @@ export const api: ApiSections = {
 
   mcp: {
     heading: 'An MCP server gives your agent inboxes, numbers and browsers as tools.',
-    line: 'Add the MCP server once to Claude Code, Cursor, Codex or any MCP client. Your agent gets the same calls as the API, and reads and subscribes to your event log as a tool.',
+    line: 'Your agent gets the same calls as the API, and reads and subscribes to your event log as a tool.',
     setup: 'claude mcp add obsession',
     note: 'Claude Code takes 1 line. In Cursor, Codex or any other MCP client, add the same server in its settings.',
     tools: [
@@ -293,7 +293,7 @@ export const api: ApiSections = {
    line or a home connection. Names only, so the section reads in a glance. */
 const openSource: OpenSource = {
   heading: 'The runtime is open source.',
-  line: 'The runtime personas live on, the handlers that run when a message lands and the event log are yours to read and run. Obsession Cloud adds the numbers, lines, home connections and browsers, and keeps them running.',
+  line: 'The runtime that personas live on is yours to read and run. Obsession Cloud adds the numbers, lines, home connections and browsers, and keeps them running.',
   core: {
     title: 'Open source: the runtime',
     items: [
@@ -368,7 +368,7 @@ export const page: Page = {
     items: [
       {
         q: 'What does the Obsession API do?',
-        a: 'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill. Use one piece on its own, or put them all under one persona that waits for free. Run our blueprints or your own jobs beside them, and every event lands in your event log. Call it from TypeScript, Python or plain HTTP, or from your agent over MCP.',
+        a: 'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill. Use one piece, or put them all under one persona that waits for free, and run blueprints beside them. Call it from TypeScript, Python or plain HTTP, or from your agent over MCP.',
       },
       {
         q: 'Is there an SDK for AI agents, or only the API?',
@@ -376,26 +376,26 @@ export const page: Page = {
       },
       {
         q: 'Can I use only the email?',
-        a: 'Yes. Each piece works on its own. Create an inbox in 1 call, send and receive, and get each reply at your webhook. Add a number, a browser or a sandbox later, on the same key.',
+        a: 'Yes. Create an inbox in 1 call, send and receive, and get each reply at your webhook. Add other pieces later, on the same key.',
         link: { label: 'Email API for AI agents', to: piecePaths.email },
       },
       {
         q: 'How do I connect it to Claude or Cursor?',
-        a: 'Add the MCP server once, with claude mcp add obsession in Claude Code or in your client’s settings. Your agent can then create inboxes, numbers, browsers and sandboxes, and read and subscribe to your event log as a tool. Early access includes API and MCP keys.',
+        a: 'Add the MCP server once: claude mcp add obsession in Claude Code, or the same server in your client’s settings. Your agent can then create inboxes, numbers, browsers and sandboxes, and read your event log as a tool.',
       },
       {
         q: 'What is a persona?',
-        a: 'The pieces under one identity: an inbox, a phone number, its messaging channels, a browser profile and a sandbox when a task needs one. It lives on our runtime and waits for free. Your handler runs about 50 ms after a message lands, and every page, email, text and call it handles lands in your event log.',
+        a: 'The pieces under one identity: an inbox, a phone number, messaging channels, a browser profile and a sandbox when a task needs one. It waits on our runtime for free, and your handler runs about 50 ms after a message lands.',
         link: { label: 'How personas work', to: piecePaths.personas },
       },
       {
         q: 'Can I run my own job on Obsession?',
-        a: 'Yes. Create it as a blueprint with obsession.blueprints.create, and it runs on our runtime beside the inbox, browser and sandbox, so there is nothing to host. Its results land in your event log as blueprint.result events, and reach you like every other event.',
+        a: 'Yes. Create it with obsession.blueprints.create and it runs on our runtime beside the pieces, with nothing to host. Results land in your event log as blueprint.result events.',
         link: { label: 'Browse blueprints', to: '/blueprints' },
       },
       {
         q: 'How do events reach my app, and what if my server is down?',
-        a: `Every event is saved in your event log, then sent to one signed webhook you subscribe once, for every piece and blueprint. ${downLine} You can also read the event log by cursor with obsession.events.list, or let your agent subscribe over MCP. Or run a handler on our runtime, and forward events to your laptop with npx obsession listen while you build.`,
+        a: `Every event is saved in your event log, then sent to one signed webhook you subscribe once. ${downLine} You can also read the log by cursor with obsession.events.list, subscribe your agent over MCP, run a handler on our runtime, or forward events to your laptop with npx obsession listen.`,
       },
       {
         q: 'How is each piece priced?',
@@ -413,11 +413,11 @@ export const page: Page = {
       },
       {
         q: 'Can I bring my own voice agent?',
-        a: 'Yes. Connect your own voice agent to a number, or connect one we run. Calls come in and go out on the same number your agent texts from.',
+        a: 'Yes. Connect yours, or one we run. Calls come in and go out on the same number your agent texts from.',
       },
       {
         q: 'Does the browser stay signed in?',
-        a: 'Yes. Each browser keeps its cookies and logins from one session to the next, so your agent signs in once. It connects from a home connection, so a site sees a person at home, not a data centre. Your code drives it with Playwright or Puppeteer.',
+        a: 'Yes. Each browser keeps its cookies and logins between sessions, so your agent signs in once. It connects from a home, so a site sees a person, not a data centre. Drive it with Playwright or Puppeteer.',
       },
       {
         q: 'What stops my agents from running up a bill?',

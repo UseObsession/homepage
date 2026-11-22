@@ -48,12 +48,12 @@ export const sandbox: PiecePage = {
     heading: 'Your agent runs its own code, away from your systems.',
     line: 'A full Linux computer for each task, gone when the task is done.',
     items: [
-      { title: 'Starts when needed', line: 'A sandbox starts when your agent calls for one, and stops when the task ends.' },
-      { title: 'Any language', line: 'Python and Node are ready to use, with a shell for everything else that runs on Linux.' },
+      { title: 'Starts when needed', line: 'It starts when your agent calls for one, and stops when the task ends.' },
+      { title: 'Any language', line: 'Python and Node are ready to use, with a shell for anything else on Linux.' },
       { title: 'Install what it needs', line: 'pip, npm and apt work as they do on your own machine.' },
       { title: 'Files in and out', line: 'Upload a spreadsheet, run code on it, and download the chart or report it makes.' },
-      { title: 'Sealed off', line: 'Each sandbox is set apart from the others and from your systems, so the code your agent writes touches only its sandbox.' },
-      { title: 'The internet when you allow it', line: 'Turn network access on to fetch data or call an API, or keep the sandbox offline.' },
+      { title: 'Sealed off', line: 'Each sandbox is set apart from the others and from your systems, so your agent’s code touches only its sandbox.' },
+      { title: 'The internet when you allow it', line: 'Turn network access on to fetch data or call an API, or keep it offline.' },
     ],
   },
 
@@ -61,18 +61,18 @@ export const sandbox: PiecePage = {
 
   price: {
     heading: 'A sandbox is billed only while it works.',
-    line: 'Pay for the processor time and memory it uses, on the same bill as every other piece.',
+    line: 'Pay for the processor time and memory it uses.',
   },
 
   together: {
     heading: 'The sandbox does the work the other pieces bring in.',
-    line: 'The same API key and the same bill cover every piece.',
+    line: 'One API key and one bill cover every piece.',
     items: [
-      { piece: 'email', line: 'Work through the attachments that land in an inbox, such as invoices and spreadsheets.' },
+      { piece: 'email', line: 'Work through an inbox’s attachments, such as invoices and spreadsheets.' },
       { piece: 'phone', line: 'Turn call transcripts into summaries or tickets.' },
       { piece: 'messaging', line: 'Reply on WhatsApp or Slack with a chart your code made.' },
       { piece: 'browser', line: 'Clean and check the files the browser downloads.' },
-      { piece: 'personas', line: 'A persona starts a sandbox only for a task that runs code, and the run lands in your event log.' },
+      { piece: 'personas', line: 'A persona starts a sandbox only for a task that runs code.' },
     ],
   },
 
@@ -81,7 +81,7 @@ export const sandbox: PiecePage = {
     items: [
       {
         q: 'What is a code sandbox for AI agents?',
-        a: 'A computer in the cloud, set apart from your own systems, where an agent runs the code it writes. It installs packages, reads and writes files and returns the results, and nothing it runs reaches your machines.',
+        a: 'A computer in the cloud, set apart from your systems, where an agent runs the code it writes. It installs packages, reads and writes files and returns the results.',
       },
       {
         q: 'Which languages can it run?',
@@ -93,7 +93,7 @@ export const sandbox: PiecePage = {
       },
       {
         q: 'Can a sandbox reach the internet?',
-        a: 'Only if you allow it. Turn network access on for a sandbox that fetches data or calls an API, and leave it off for code you’d rather keep offline.',
+        a: 'Only if you allow it. Turn network access on to fetch data or call an API, or leave it off.',
       },
       {
         q: 'What does a sandbox cost?',

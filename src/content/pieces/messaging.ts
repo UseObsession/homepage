@@ -50,14 +50,14 @@ export const messaging: PiecePage = {
 
   can: {
     heading: 'Your agent answers on the apps people open first.',
-    line: 'Each app connects in one call, and your code handles them all the same way.',
+    line: 'Each app connects in one call, and your code handles them all alike.',
     items: [
-      { title: 'An iMessage line', line: 'Your agent texts from a line of its own, with the blue bubbles, read receipts and typing dots people know.' },
+      { title: 'An iMessage line', line: 'Your agent texts from its own line, with blue bubbles, read receipts and typing dots.' },
       { title: 'WhatsApp for business', line: 'Answer support questions, follow up on leads, confirm bookings and send order and delivery updates.' },
-      { title: 'Slack', line: 'Your agent joins your team’s channels and direct messages, answers when it’s mentioned and posts when work is done.' },
+      { title: 'Slack', line: 'Your agent joins channels and direct messages, answers when mentioned and posts when work is done.' },
       { title: 'Telegram', line: 'A Telegram bot for your agent, for groups and for 1 to 1 chats.' },
-      { title: 'One webhook for every app', line: 'Every message arrives in the same shape, whichever app it came from, so your code is written once.' },
-      { title: 'Photos, voice notes and files', line: 'Media comes in and goes out on every app, with each file ready for your agent to read.' },
+      { title: 'One webhook for every app', line: 'Every message arrives in the same shape, so your code is written once.' },
+      { title: 'Photos, voice notes and files', line: 'Media goes both ways on every app, ready for your agent to read.' },
     ],
   },
 
@@ -65,18 +65,18 @@ export const messaging: PiecePage = {
 
   price: {
     heading: 'Each app is priced the way it charges, on one bill.',
-    line: 'Connect the apps your users are on. An iMessage line is billed by the month, WhatsApp by the message, and Slack and Telegram come with every plan.',
+    line: 'An iMessage line is billed by the month, WhatsApp by the message, and Slack and Telegram come with every plan.',
   },
 
   together: {
     heading: 'Messaging carries the conversation the other pieces start.',
-    line: 'The same API key and the same bill cover every piece.',
+    line: 'One API key and one bill cover every piece.',
     items: [
       { piece: 'email', line: 'Keep email for receipts and long replies, beside the chat.' },
       { piece: 'phone', line: 'A phone number for plain texts, for people on neither iMessage nor WhatsApp.' },
       { piece: 'browser', line: 'Look up an order or a booking in the browser while the person waits in the chat.' },
       { piece: 'sandbox', line: 'Run code on a file someone sends, such as a spreadsheet, and reply with the result.' },
-      { piece: 'personas', line: 'One name across iMessage, WhatsApp, email and phone, with every message in your event log.' },
+      { piece: 'personas', line: 'One name across iMessage, WhatsApp, email and phone.' },
     ],
   },
 
@@ -85,7 +85,7 @@ export const messaging: PiecePage = {
     items: [
       {
         q: 'Is there an iMessage API for AI agents?',
-        a: 'Yes. Each iMessage line is a line of its own that your agent sends and receives on through the API. People see an ordinary iMessage conversation, blue bubbles included.',
+        a: 'Yes. Your agent sends and receives on its own iMessage line through the API. People see an ordinary iMessage conversation, blue bubbles included.',
       },
       {
         q: 'What can an AI agent do with the WhatsApp API?',
@@ -93,7 +93,7 @@ export const messaging: PiecePage = {
       },
       {
         q: 'Do I need a separate integration for each app?',
-        a: 'No. Each app connects with one call, and every message from every app reaches the same webhook in the same shape. Your agent replies through the same API, whichever app the person used.',
+        a: 'No. Each app connects with one call, every message reaches the same webhook in the same shape, and your agent replies through the same API.',
       },
       {
         q: 'What does messaging cost?',

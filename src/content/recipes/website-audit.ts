@@ -14,8 +14,8 @@ export const recipe: Recipe = {
   slug: 'website-audit',
   name: 'QA on your own flows',
   group: 'Check your own journeys',
-  line: 'A persona signs up and onboards on your own product after every release, in any country, and finds the step that breaks.',
-  gets: 'Every step of every release as a new user meets it, dated, with its screenshot, and the step that broke.',
+  line: 'A persona signs up to your product after every release and finds the step that breaks.',
+  gets: 'Every step of every release as a new user meets it, screenshotted, and the step that broke.',
   kit: [
     'A new persona every run, labelled as a test',
     'Its own inbox and phone number, for every code',
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     description:
       'After every release a persona signs up to your product as a new user, enters each code, opens every email and link and goes to checkout, all dated.',
     answer:
-      'QA on your own flows sends a new persona through your product after every release. It signs up, enters each login code, onboards, opens every email and link and goes to checkout, and dates each step with its screenshot.',
+      'QA on your own flows sends a new persona through your product after every release. It signs up, enters each login code, onboards, opens every email and link and goes to checkout, screenshotting each step.',
     ogImage: '/og/website-audit.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Find the step that breaks before a new user does.',
-    sub: 'QA on your own flows sends a new persona through your product after every release. It signs up, enters each login code, onboards, opens every email and link and goes to checkout, and dates each step with its screenshot.',
+    sub: 'QA on your own flows sends a new persona through your product after every release. It signs up, enters each login code, onboards, opens every email and link and goes to checkout, screenshotting each step.',
     screen: 'ship',
     capture: {
       kind: 'waitlist',
@@ -87,15 +87,15 @@ export const recipe: Recipe = {
     { title: 'Connect your releases', line: 'A deploy hook, a schedule, or a button you press.' },
     {
       title: 'A new persona every run',
-      line: 'Defined by you: a new user in the UK on a phone, or a team admin in Texas on a desktop. A fresh inbox and number each time.',
+      line: 'Defined by you: a new user in the UK on a phone, or a team admin in Texas on a desktop.',
     },
     {
       title: 'It takes every step',
-      line: 'Sign up, login code, onboarding, emails, links, forms and every code at checkout, each dated and screenshotted.',
+      line: 'Sign up, login code, onboarding, emails, links, forms and every code at checkout.',
     },
     {
       title: 'Results where you work',
-      line: 'Slack, a ticket, a webhook your pipeline reads, or the API, with the step that changed since the last release.',
+      line: 'Slack, a ticket, a webhook your pipeline reads or the API, with what changed since the last release.',
     },
   ],
 
@@ -114,7 +114,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'Welcome email', line: 'It arrives, how fast, and every link opens the right page.' },
         { title: 'Every link', line: 'In your pages and emails, on phone and desktop.' },
-        { title: 'Forms', line: 'A test enquiry through each form, and whether it reaches the inbox or CRM you connect.' },
+        { title: 'Forms', line: 'A test enquiry through each form, and whether it reaches your inbox or CRM.' },
         { title: 'Booking links', line: 'Each one opens to a live calendar, stopping before a slot is taken.' },
       ],
     },
@@ -122,7 +122,7 @@ export const recipe: Recipe = {
       group: 'Basket and checkout',
       items: [
         { title: 'Codes', line: 'Every welcome and launch code, tried at checkout.' },
-        { title: 'Checkout', line: 'Delivery, totals and every step to payment. It stops there, unless you give it your own payment card.' },
+        { title: 'Checkout', line: 'Delivery, totals and every step to payment. It stops there unless you give it your payment card.' },
       ],
     },
   ],
@@ -148,7 +148,7 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'founders', line: 'Ship every day, and hear about a break before a new user does.' },
-    { audience: 'developers', line: 'A deploy hook that spawns a new persona and posts a pass or a fail your CI can act on.' },
+    { audience: 'developers', line: 'A deploy hook that spawns a new persona and posts a pass or fail to your CI.' },
     { audience: 'agencies', line: 'Every client’s forms, booking links, sign up and checkout, run every morning with their OK.' },
   ],
 
@@ -165,7 +165,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Does it need access to our code?',
-        a: 'No. The persona uses your product the way a new user does. A deploy hook starts each run, or it runs on a schedule.',
+        a: 'No. The persona uses your product like any new user. A deploy hook starts each run, or it runs on a schedule.',
       },
       {
         q: 'Does it place real orders?',

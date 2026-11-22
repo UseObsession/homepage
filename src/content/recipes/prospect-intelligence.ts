@@ -14,8 +14,8 @@ export const recipe: Recipe = {
   slug: 'prospect-intelligence',
   name: 'Prospect intelligence',
   group: 'Watch other companies',
-  line: 'A persona signs up at each prospect on your list and brings back what it’s sent, to open each pitch with.',
-  gets: 'A finding and a link to its events in your event log on every row, back in Clay, your CRM or a sheet.',
+  line: 'A persona signs up at each prospect and brings back what they send, for your pitch.',
+  gets: 'A finding and an event log link on every row, back in Clay, your CRM or a sheet.',
   kit: [
     'A persona at each prospect, with its own inbox',
     'Its own phone number for texts',
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     description:
       'A persona signs up at each company on your list and keeps the emails, texts and chat answers it gets, as dated columns in Clay or Sheets, to pitch with.',
     answer:
-      'Prospect intelligence sends a persona you define to sign up, opt in to texts and ask the chat at every company on your list. What each prospect sends back, or never sends, lands on your rows in Clay or Sheets, with a link to its events in your event log.',
+      'Prospect intelligence sends a persona to sign up, opt in to texts and ask the chat at every company on your list. What each sends, or never sends, lands back in Clay or Sheets.',
     ogImage: '/og/prospect-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Open every pitch with the prospect’s own emails, and the ones that never came.',
-    sub: 'Prospect intelligence sends a persona you define to sign up, opt in to texts and ask the chat at every company on your list. What each prospect sends back, or never sends, lands on your rows in Clay or Sheets, with a link to its events in your event log.',
+    sub: 'Prospect intelligence sends a persona to sign up, opt in to texts and ask the chat at every company on your list. What each sends, or never sends, lands back in Clay or Sheets.',
     screen: 'pack',
     capture: {
       kind: 'waitlist',
@@ -87,12 +87,12 @@ export const recipe: Recipe = {
     { title: 'Add your list', line: 'From Clay, Google Sheets, a CSV or the API. You bring the contacts.' },
     {
       title: 'Define the persona',
-      line: 'A subscriber, a trial user or a buyer, in each prospect’s country. It signs up, opts in and asks the chat, as you choose.',
+      line: 'A subscriber, trial user or buyer in each prospect’s country, taking the steps you choose.',
     },
     { title: 'It waits, and keeps everything', line: 'Every email, text and answer, timed from the sign up, for as long as you set.' },
     {
       title: 'Findings land on your rows',
-      line: 'A finding, the date it was seen and a link to its events in your event log on every row. Your team writes the first line.',
+      line: 'A finding, its date and an event log link on every row. Your team writes the first line.',
     },
   ],
 
@@ -100,9 +100,9 @@ export const recipe: Recipe = {
     {
       group: 'Sign up and welcome',
       items: [
-        { title: 'Welcome email', line: 'Whether it arrives, how long it takes, whether it lands in spam, and the offer in it.' },
-        { title: 'What they send', line: 'Every email and text after the sign up, how often it comes, and the offers it repeats.' },
-        { title: 'Sign up form', line: 'Whether it works on a phone and a desktop, and the step where it breaks.' },
+        { title: 'Welcome email', line: 'Whether it arrives, how fast, whether it lands in spam, and its offer.' },
+        { title: 'What they send', line: 'Every email and text after sign up, how often they come and which offers repeat.' },
+        { title: 'Sign up form', line: 'Whether it works on phone and desktop, and the step where it breaks.' },
         { title: 'Free trials', line: 'Every onboarding email by trial day, and what a rep sends.' },
       ],
     },
@@ -113,7 +113,7 @@ export const recipe: Recipe = {
     {
       group: 'Chat and booking',
       items: [
-        { title: 'The site’s chat', line: 'Whether it answers a buyer’s question, what it says, and how fast a person picks up.' },
+        { title: 'The site’s chat', line: 'Whether it answers a buyer’s question, and how fast a person picks up.' },
         { title: 'Booking pages', line: 'Whether the page loads on a phone and shows open slots.' },
       ],
     },
@@ -126,10 +126,6 @@ export const recipe: Recipe = {
       { format: 'A timeline', line: 'Every step with its time, from sign up to the end of the window.' },
       { format: 'The emails and texts', line: 'Kept as they arrived, with screenshots.' },
       { format: 'A link anyone can open', line: 'Including the prospect, so the finding stands up on its own.' },
-      {
-        format: 'Columns on your list',
-        line: 'The finding, the date it was seen and the event log link, on the same rows in Clay, your CRM or a sheet.',
-      },
       { format: 'Totals', line: 'For example: 54 of 142 brands never sent a text after the opt in.' },
     ],
   },
@@ -146,7 +142,7 @@ export const recipe: Recipe = {
   forWho: [
     {
       audience: 'agencies',
-      line: 'A pitch for every prospect, built on what their store sends a new shopper. You hear when a gap closes, so you stop pitching it.',
+      line: 'A pitch for every prospect, built on what their store sends a new shopper.',
     },
     { audience: 'sales', line: 'A dated finding about each account for the first line.' },
     { audience: 'founders', line: 'Pitch only the companies with the gap you fix.' },
@@ -159,11 +155,11 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'What is prospect intelligence?',
-        a: 'Prospect intelligence is what a prospect sends the people who sign up with it, brought back by a persona you define that signs up too. It isn’t contact data: every event the persona gets lands in your event log, and your own tools find the people.',
+        a: 'Prospect intelligence is what a prospect sends the people who sign up, brought back by a persona you define that signs up too. It isn’t contact data: your tools find the people.',
       },
       {
         q: 'How do I find a reason to reach out that 50 other reps don’t have?',
-        a: 'Use something only a subscriber of theirs can see. Prospect intelligence signs up at every company on your list and keeps what arrives, so each first line opens on a dated finding with a link to its events in your event log.',
+        a: 'Use something only a subscriber of theirs can see. Prospect intelligence signs up at every company on your list and keeps what arrives, so each first line opens on a dated finding.',
       },
       {
         q: 'Does Prospect intelligence work with Clay and Google Sheets?',

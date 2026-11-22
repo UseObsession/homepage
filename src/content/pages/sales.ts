@@ -53,7 +53,7 @@ export const page: Page = {
 
   gapPair: {
     heading: 'Battlecards go stale the week they’re written.',
-    line: 'Someone signs up to a competitor once, screenshots the pricing page, and the card is out of date by the next price change. Obsession keeps each competitor’s emails, prices and offers as they arrive.',
+    line: 'Obsession keeps each competitor’s emails, prices and offers as they arrive.',
     tools: {
       label: 'What you have today',
       items: [
@@ -150,7 +150,7 @@ export const page: Page = {
   /* The 1 real run: Brand G, the September store check. */
   proof: {
     heading: 'A £40 basket left at 02:57. No reminder in 48 hours.',
-    line: 'Brand G, a real skincare store, on 22 Sep. Its whole record is the sample data: every email with the time it arrived, and every screenshot. Every line on a brief or battlecard links to a record like it.',
+    line: 'Brand G, a real skincare store, on 22 Sep: every email with the time it arrived, and every screenshot. Every line on a brief or battlecard links to a record like it.',
     cta: { label: 'See the sample data', to: '/sample-output' },
   },
 
@@ -180,7 +180,7 @@ export const page: Page = {
       },
       {
         q: 'What does early access include?',
-        a: 'API and MCP access, lookups of every company already covered, and up to 5 accounts added to the index for you. We’re onboarding a limited number of teams, and you set it up with the founders.',
+        a: 'API and MCP access, lookups of every company already covered, and up to 5 accounts added for you. You set it up with the founders.',
       },
     ],
   },

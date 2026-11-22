@@ -86,7 +86,7 @@ export const recipesPage: RecipesIndexPage = {
       },
       {
         q: 'Can I bring my own job?',
-        a: 'Yes. Write the task or computation once and it runs on our runtime next to the inbox, browser and sandbox, so there’s nothing to host. Its results arrive in your event log like every other event.',
+        a: 'Yes. Write the task once and it runs on our runtime next to the pieces, with nothing to host. Its results arrive in your event log like every other event.',
       },
       {
         q: 'Can I change a blueprint?',
@@ -94,11 +94,11 @@ export const recipesPage: RecipesIndexPage = {
       },
       {
         q: 'What does a blueprint cost?',
-        a: 'Its runs are paid from your plan’s monthly credit at the piece rates, then as you go, like any piece, so you pay only for what runs. Each blueprint’s page shows what a typical month costs at 3 sizes, such as per store, location, competitor or voice agent, worked out from what each run uses. Every blueprint starts with a free run.',
+        a: 'Its runs are paid from your plan’s monthly credit at the piece rates, then as you go, so you pay only for what runs. Each blueprint’s page shows a typical month at 3 sizes, such as per store, competitor or voice agent. Every blueprint starts with a free run.',
       },
       {
         q: 'Can I try an AI agent template for free?',
-        a: 'Yes. Every blueprint starts with a free run, such as 1 store shopped or 3 test calls to 1 voice agent, with every result in your event log. Pick a paid plan only when you want it to run on a schedule.',
+        a: 'Yes. Every blueprint starts with a free run, such as 1 store shopped or 3 test calls to 1 voice agent. Pick a paid plan when you want it on a schedule.',
       },
       {
         q: 'Can I run a blueprint from my own code?',

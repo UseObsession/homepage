@@ -46,7 +46,7 @@ export const securityPage: SecurityPage = {
       heading: 'We store what our agents collect in the EU.',
       lines: [
         'The database is Postgres, hosted by Supabase in its eu-west-1 region, in Ireland.',
-        'The files behind each result, such as a page’s screenshot or an email exactly as it arrived, are stored in Cloudflare R2 in the EU.',
+        'The files behind each result, such as screenshots and emails as they arrived, are stored in Cloudflare R2 in the EU.',
         'This website is hosted on Cloudflare.',
       ],
     },
@@ -118,7 +118,7 @@ export const securityPage: SecurityPage = {
 
   contact: {
     heading: 'Send us your security questionnaire.',
-    line: 'Email us your questionnaire, or any question about how we handle data, and a founder replies.',
+    line: 'Email us your questionnaire or any data question, and a founder replies.',
     email: CONTACT_EMAIL,
     cta: { label: 'Email us', to: `mailto:${CONTACT_EMAIL}?subject=Security%20questionnaire` },
     secondary: { label: 'Read the privacy notice', to: '/privacy' },

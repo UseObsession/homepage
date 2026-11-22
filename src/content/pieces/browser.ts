@@ -8,7 +8,7 @@ import type { PiecePage } from './types'
    list, never the pitch. Prices are read from prices.ts, never retyped. */
 
 const sub =
-  'Obsession gives each AI agent a cloud browser that keeps its logins from one session to the next and can connect through a home internet connection. Your agent drives it with Playwright, Puppeteer or any tool that speaks the Chrome DevTools Protocol.'
+  'Obsession gives each AI agent a cloud browser that keeps its logins between sessions and can connect through a home internet connection. Your agent drives it with Playwright, Puppeteer or any Chrome DevTools Protocol tool.'
 
 const code = `import { Obsession } from "obsession"
 import { chromium } from "playwright"
@@ -50,11 +50,11 @@ export const browser: PiecePage = {
     heading: 'Your agent uses any site the way a person does.',
     line: 'It opens pages, clicks, types and fills in forms, on sites that have no API.',
     items: [
-      { title: 'Logins that last', line: 'Sign in once. Cookies and saved logins are kept, so the next session starts signed in.' },
-      { title: 'A home connection', line: 'Connect through a home internet connection in the US or any country, so sites load as they do for a person at home.' },
+      { title: 'Logins that last', line: 'Sign in once, and the next session starts signed in.' },
+      { title: 'A home connection', line: 'Connect from a home in the US or any country, so sites load as they do for a person.' },
       { title: 'Your own tools', line: 'Playwright, Puppeteer and browser agents connect with one URL, over the Chrome DevTools Protocol.' },
-      { title: 'Watch it live', line: 'Open any session in your own browser to watch your agent work, or take over a step yourself.' },
-      { title: 'A screenshot of every page', line: 'Each page it visits can be kept as a dated screenshot, so you see what your agent saw.' },
+      { title: 'Watch it live', line: 'Watch any session from your own browser, or take over a step.' },
+      { title: 'A screenshot of every page', line: 'Each page can be kept as a dated screenshot of what your agent saw.' },
       { title: 'A full screen when a site needs one', line: 'The stealth browser runs with a real screen, for sites that turn a headless browser away.' },
     ],
   },
@@ -63,18 +63,18 @@ export const browser: PiecePage = {
 
   price: {
     heading: 'Pay by the browser hour, with the home connection included.',
-    line: 'A browser costs only while a session is open, and it arrives on the same bill as every other piece.',
+    line: 'A browser costs only while a session is open.',
   },
 
   together: {
     heading: 'The browser finishes what a site starts in email and text.',
-    line: 'The same API key and the same bill cover every piece.',
+    line: 'One API key and one bill cover every piece.',
     items: [
       { piece: 'email', line: 'Confirm a sign up from the browser with a link in the agent’s own inbox.' },
       { piece: 'phone', line: 'Finish a text check on the agent’s own number.' },
       { piece: 'messaging', line: 'Tell someone on WhatsApp or iMessage what the browser found.' },
       { piece: 'sandbox', line: 'Work through what the browser downloads, such as a CSV export, in a sandbox.' },
-      { piece: 'personas', line: 'Keep the browser’s logins with one identity, for months, beside its inbox and number.' },
+      { piece: 'personas', line: 'Keep the browser’s logins with one identity for months, beside its inbox and number.' },
     ],
   },
 
@@ -83,19 +83,19 @@ export const browser: PiecePage = {
     items: [
       {
         q: 'What is a browser for AI agents?',
-        a: 'A real browser running in the cloud that your agent controls through code. It opens pages, clicks, types and fills in forms. It sends back what it sees, so your agent can use sites that have no API.',
+        a: 'A real browser in the cloud that your agent controls through code. It opens pages, clicks, types and fills in forms, so your agent can use sites that have no API.',
       },
       {
         q: 'Do logins carry over between sessions?',
-        a: 'Yes. Each browser keeps its cookies and saved logins. Close a session, open the next one a week later, and it’s still signed in to the same sites.',
+        a: 'Yes. Each browser keeps its cookies and saved logins, so a session opened a week later is still signed in.',
       },
       {
         q: 'What is a home connection?',
-        a: 'An internet connection from a home rather than a data centre. Pages load the way they do for a person at home, which matters on sites that show different content to data centre traffic. Pick the country when you create the browser.',
+        a: 'An internet connection from a home rather than a data centre, so sites that treat data centre traffic differently load as they do for a person. Pick the country when you create the browser.',
       },
       {
         q: 'Is it a headless browser for AI agents?',
-        a: 'The standard browser runs headless, the cheapest way to run many sessions at once. The stealth browser runs with a full screen, for sites that turn a headless browser away.',
+        a: 'The standard browser runs headless, the cheapest way to run many sessions. The stealth browser runs with a full screen, for sites that turn headless browsers away.',
       },
       {
         q: 'What does a browser cost?',

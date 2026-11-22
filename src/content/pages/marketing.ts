@@ -43,7 +43,7 @@ export const page: Page = {
     pill: 'Early access',
     pillTo: '#join',
     headline: 'See every email, text and offer your competitors send.',
-    sub: 'Obsession collects the emails, texts, offers and prices your competitors send their signed-up customers, each dated with a screenshot. Look up any competitor, and one not covered yet is added the day you ask.',
+    sub: 'Obsession collects the emails, texts, offers and prices your competitors send their signed-up customers, each dated with a screenshot. Any competitor not covered yet is added the day you ask.',
     capture: { ...access, source: 'marketing-hero' },
     secondary: { label: 'See sample data', to: '/sample-output' },
     proof: [],
@@ -54,7 +54,7 @@ export const page: Page = {
 
   gapPair: {
     heading: 'Most teams still keep up with a spare inbox and a spreadsheet.',
-    line: 'Someone signs up to a few competitors, checks the Promotions tab when they remember, and pastes screenshots into a sheet. Obsession keeps every message, for every competitor you name.',
+    line: 'Obsession keeps every message, for every competitor you name.',
     tools: {
       label: 'What you have today',
       items: [
@@ -151,7 +151,7 @@ export const page: Page = {
   /* The 1 real run: Brand G, the September store check. */
   proof: {
     heading: 'A £40 basket left at 02:57. No reminder in 48 hours.',
-    line: 'Brand G, a real skincare store, on 22 Sep. Its whole record is the sample data: every email with the time it arrived, and every screenshot. Every competitor you name is kept the same way.',
+    line: 'Brand G, a real skincare store, on 22 Sep: every email with the time it arrived, and every screenshot. Every competitor you name is kept the same way.',
     cta: { label: 'See the sample data', to: '/sample-output' },
   },
 
@@ -176,7 +176,7 @@ export const page: Page = {
       },
       {
         q: 'What does early access include?',
-        a: 'API and MCP access, lookups of every company already covered, and up to 5 competitors added to the index for you. We’re onboarding a limited number of teams, and you set it up with the founders.',
+        a: 'API and MCP access, lookups of every company already covered, and up to 5 competitors added for you. You set it up with the founders.',
       },
     ],
   },

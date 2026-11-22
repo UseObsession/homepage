@@ -15,7 +15,7 @@ export const recipe: Recipe = {
   slug: 'resolution-check',
   name: 'Resolution check',
   group: 'Check your AI agents',
-  line: 'Every resolution your AI vendor bills, matched to what followed, with a persona making the same asks on your live channels.',
+  line: 'Every resolution your AI vendor bills, matched to what followed and tested by a persona.',
   gets: 'Every billed resolution beside what the customer got, and a dispute pack for the ones that weren’t real.',
   kit: [
     'A persona with its own inbox and an account on your store',
@@ -32,7 +32,7 @@ export const recipe: Recipe = {
     description:
       'Each resolution your AI support vendor bills, matched to the refund, cancellation or order change that followed, and a persona makes the same asks itself.',
     answer:
-      'Resolution check matches every resolution your AI vendor bills against your payments and helpdesk, so you see the refunds promised and never made. A persona makes the same asks on your live channels and records what follows.',
+      'Resolution check matches every resolution your AI vendor bills against your payments and helpdesk, showing refunds promised and never made. A persona makes the same asks on your live channels and records what follows.',
     ogImage: '/og/resolution-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,7 +43,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'What your support bot promised, and what followed.',
-    sub: 'Resolution check matches every resolution your AI vendor bills against your payments and helpdesk, so you see the refunds promised and never made. A persona makes the same asks on your live channels and records what follows.',
+    sub: 'Resolution check matches every resolution your AI vendor bills against your payments and helpdesk, showing refunds promised and never made. A persona makes the same asks on your live channels and records what follows.',
     screen: 'resolution',
     capture: {
       kind: 'waitlist',
@@ -90,19 +90,19 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Connect what shows the outcome',
-      line: 'Your helpdesk export and payments tool, with your consent, and your vendor’s billing terms. Your vendor agrees the test tags first.',
+      line: 'Your helpdesk export and payments tool, with your consent, and your vendor’s billing terms.',
     },
     {
       title: 'Every billed resolution, matched',
-      line: 'Each one against what happened: the refund in your payments, the cancelled plan, the changed order, or the same problem back again.',
+      line: 'Each one against what happened: a refund, a cancelled plan, a changed order or a repeat contact.',
     },
     {
       title: 'The same asks, from a persona',
-      line: 'A persona places test orders inside a budget you set, asks for refunds, cancellations and order changes on your live channels, and waits to see what follows.',
+      line: 'A persona places test orders inside your test budget, then asks for refunds, cancellations and order changes.',
     },
     {
       title: 'Challenge with the event log',
-      line: 'Every resolution that wasn’t real goes into a dispute pack under your vendor’s own terms. You decide when it goes.',
+      line: 'Each one that wasn’t real goes into a dispute pack under your vendor’s terms.',
     },
   ],
 
@@ -121,14 +121,14 @@ export const recipe: Recipe = {
       items: [
         { title: '“Done” that wasn’t', line: 'A refund or cancellation the bot confirmed and nobody carried out.' },
         { title: 'The same ask, from a persona', line: 'Made on your live channel on a test order, and what followed.' },
-        { title: 'Against the contract', line: 'Each resolution beside your vendor’s own rule for what it may bill.' },
+        { title: 'Against the contract', line: 'Each resolution beside your vendor’s rule for what it may bill.' },
       ],
     },
     {
       group: 'Where it stops',
       items: [
         { title: 'Your bill', line: 'Every test is tagged, agreed with your vendor first, so no test is billed.' },
-        { title: 'Your vendor', line: 'A challenge goes when you send it. Whether your vendor credits you is up to your contract.' },
+        { title: 'Your vendor', line: 'A challenge goes when you send it. Any credit is up to your contract.' },
       ],
     },
   ],
@@ -138,9 +138,8 @@ export const recipe: Recipe = {
     items: [
       { format: 'A line per resolution', line: 'Real or not, beside the payment, the ticket or the order.' },
       { format: 'The bot’s own words', line: 'What it promised, word for word and timed, beside what happened.' },
-      { format: 'The test result', line: 'The persona’s same ask on your live channel, and what came of it.' },
       { format: 'The monthly count', line: 'How many billed resolutions weren’t real, by reason.' },
-      { format: 'The dispute pack', line: 'Every case under your vendor’s own terms. Sent when you approve it.' },
+      { format: 'The dispute pack', line: 'Every case under your vendor’s terms, sent when you approve it.' },
       { format: 'Sheet, Slack or API', line: 'Every verdict as a row, a message or JSON, for finance.' },
     ],
   },
@@ -151,7 +150,7 @@ export const recipe: Recipe = {
     { k: 'Sample', v: 'For example: 100 billed resolutions a month, or every one' },
     { k: 'Evidence', v: 'Your helpdesk export and payments tool, connected by you' },
     { k: 'Test asks', v: 'Refunds, cancellations, address changes and order edits' },
-    { k: 'Test budget', v: 'A monthly cap you set, on your own payment card' },
+    { k: 'Test budget', v: 'A monthly cap you set, on your payment card' },
     { k: 'How often', v: 'Monthly, before you pay the bill' },
     { k: 'Where it lands', v: 'A sheet, Slack, a webhook or the API' },
   ],
@@ -159,7 +158,7 @@ export const recipe: Recipe = {
   forWho: [
     { audience: 'founders', line: 'Pay your AI support vendor for what it solved, not for what it counted.' },
     { audience: 'agencies', line: 'What each client’s support bot is billed for, with every case and its receipt.' },
-    { audience: 'developers', line: 'Every verdict in your own finance and helpdesk tools after each bill, by API or webhook.' },
+    { audience: 'developers', line: 'Every verdict in your finance and helpdesk tools after each bill, by API or webhook.' },
   ],
 
   table: {
@@ -183,7 +182,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'What counts as not real?',
-        a: 'Resolution check counts a refund the bot promised that was never made, a cancellation that never happened, a conversation that went quiet, the same problem back within 7 days, or a case a person finished. Your vendor’s own terms decide what it may bill.',
+        a: 'Resolution check counts a promised refund never made, a cancellation that never happened, a conversation that went quiet, the same problem back within 7 days, or a case a person finished. Your vendor’s terms decide what it may bill.',
       },
       {
         q: 'Will our vendor bill us for the tests?',
@@ -195,7 +194,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Will our vendor credit what we challenge?',
-        a: 'Resolution check gives you the events in your event log and a dispute pack under your vendor’s own terms, and you decide whether to send it. Whether your vendor credits it is up to your contract.',
+        a: 'Resolution check gives you the events in your event log and a dispute pack under your vendor’s terms, and you decide whether to send it. Whether your vendor credits it is up to your contract.',
       },
       {
         q: 'Can Resolution check read a competitor’s bot?',
@@ -206,7 +205,7 @@ export const recipe: Recipe = {
 
   final: {
     heading: 'Check what your AI vendor billed before you pay for it.',
-    sub: 'Tell us your vendor and when the next bill lands. We’ll set up the first check and the persona with you.',
+    sub: 'Tell us your vendor and when the next bill lands. We’ll set up the first check with you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-resolution-final',

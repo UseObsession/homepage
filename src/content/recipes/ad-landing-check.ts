@@ -14,8 +14,8 @@ export const recipe: Recipe = {
   slug: 'ad-landing-check',
   name: 'Ad landing check',
   group: 'Check your own journeys',
-  line: 'Each morning a persona opens every live ad’s landing page as a shopper: whether it loads, the offer, the price and the stock.',
-  gets: 'Every live ad’s landing page, opened each morning, and each one that can’t sell flagged with its screenshot.',
+  line: 'Each morning a shopper persona checks every live ad’s landing page: loads, offer, price and stock.',
+  gets: 'Every landing page that can’t sell, flagged each morning with its screenshot.',
   kit: [
     'Your ad accounts, connected by you',
     'A persona in each country your ads target',
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     description:
       'Each morning a persona opens every live ad’s landing page from its link, on phone and desktop, and checks it loads and the offer, price and stock match.',
     answer:
-      'Ad landing check sends a persona to every live ad’s landing page each morning, straight from the ad’s link and from the country the ad targets. It records whether the page loads, whether the offer and price match the ad, and whether the product is in stock.',
+      'Ad landing check sends a persona to every live ad’s landing page each morning, from the ad’s target country. It checks the page loads, the offer and price match the ad, and the product is in stock.',
     ogImage: '/og/ad-landing-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every ad sending clicks to a page that can’t sell, found by morning.',
-    sub: 'Ad landing check sends a persona to every live ad’s landing page each morning, straight from the ad’s link and from the country the ad targets. It records whether the page loads, whether the offer and price match the ad, and whether the product is in stock.',
+    sub: 'Ad landing check sends a persona to every live ad’s landing page each morning, from the ad’s target country. It checks the page loads, the offer and price match the ad, and the product is in stock.',
     screen: 'adcheck',
     capture: {
       kind: 'waitlist',
@@ -93,19 +93,19 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Connect your ad accounts',
-      line: 'Yours, or a client’s. Every live search and social ad is read: where it points, the offer and price it shows, and what it spends a day.',
+      line: 'Every live search and social ad is read for its link, offer, price and daily spend.',
     },
     {
       title: 'A persona opens each page',
-      line: 'From the country the ad targets, on a phone and a desktop, straight from the ad’s link, so no click is paid for.',
+      line: 'On phone and desktop, from the country the ad targets, straight from the ad’s link.',
     },
     {
       title: '4 checks per page',
-      line: 'Whether it loads, whether the offer and the price match the ad, and whether the product is in stock.',
+      line: 'It loads, the offer and price match the ad, and the product is in stock.',
     },
     {
       title: 'Failures land first',
-      line: 'Each page that can’t sell, in Slack or your table, the costliest ad first, with its screenshot.',
+      line: 'Each page that can’t sell, costliest ad first, in Slack or your table.',
     },
   ],
 
@@ -116,23 +116,23 @@ export const recipe: Recipe = {
         { title: 'It loads', line: 'The page opens on a phone and a desktop, and how long it takes.' },
         { title: 'The offer matches', line: 'Free delivery, a gift or 20% off: what the ad promises is on the page.' },
         { title: 'The price matches', line: 'The price in the ad is the price a local shopper sees on the page.' },
-        { title: 'It’s in stock', line: 'The product in the ad can still be bought, in the size or colour the ad shows.' },
+        { title: 'It’s in stock', line: 'The product can still be bought, in the size or colour the ad shows.' },
       ],
     },
     {
       group: 'Every ad',
       items: [
         { title: 'Where it points', line: 'The link the ad sends people to, followed through every redirect.' },
-        { title: 'What it spends', line: 'Its daily spend from the account you connect, so the costliest failure comes first.' },
+        { title: 'What it spends', line: 'Its daily spend, so the costliest failure comes first.' },
         { title: 'New ads', line: 'An ad that went live since yesterday is in the next morning’s check.' },
       ],
     },
     {
       group: 'Where it stops',
       items: [
-        { title: 'At the page', line: 'It opens the page from the ad’s link, so no click is paid for and your numbers stay true.' },
+        { title: 'At the page', line: 'Opened from the ad’s link, so no click is paid for.' },
         { title: 'Your ads', line: 'It reads your ad accounts and changes nothing.' },
-        { title: 'Before payment', line: 'To check stock it can add the item to a basket, and it stops there.' },
+        { title: 'Before payment', line: 'To check stock it can add the item to a basket, and stops there.' },
       ],
     },
   ],
@@ -141,8 +141,7 @@ export const recipe: Recipe = {
     heading: 'Every live ad checked before your day starts.',
     items: [
       { format: 'A verdict per ad', line: 'Loads, offer, price and stock, with a screenshot of what a shopper sees.' },
-      { format: 'The costliest first', line: 'Each failing page ranked by what its ad spends a day.' },
-      { format: 'Slack or email', line: 'Only when an ad fails. Nothing when every ad passes.' },
+      { format: 'Slack or email', line: 'Only when an ad fails.' },
       { format: 'A weekly summary', line: 'Ads checked, pages that failed, and how long each took to fix.' },
       { format: 'A table or webhook', line: 'Every check as a row, or as JSON at your endpoint.' },
     ],
@@ -159,9 +158,9 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'marketing', line: 'Every ad sending clicks to a broken, wrong or sold out page, the same morning.' },
-    { audience: 'agencies', line: 'Every client’s live ads checked each morning, with every page that failed in your event log.' },
+    { audience: 'agencies', line: 'Every client’s live ads checked each morning, with failed pages in your event log.' },
     { audience: 'founders', line: 'Running your own ads? Know each one lands on a page that can sell.' },
-    { audience: 'developers', line: 'Run it through the API after every site release, and get each failing ad by webhook.' },
+    { audience: 'developers', line: 'Run it from the API after every site release, with failing ads by webhook.' },
   ],
 
   table: {

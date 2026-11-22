@@ -60,12 +60,12 @@ export const phone: PiecePage = {
     heading: 'Your agent texts, calls and gets its codes on its own number.',
     line: 'A real phone number, run through code instead of a handset.',
     items: [
-      { title: 'A number in one call', line: 'A US number, or one in any country you need, kept for as long as you hold it.' },
-      { title: 'Texts both ways', line: 'Your agent texts people, and every reply lands back on its number and at your webhook.' },
-      { title: 'Verification codes', line: 'A site that texts a code at sign up reaches your agent, and the code is pulled out of the text for it.' },
-      { title: 'Calls in and out', line: 'Your agent answers calls to its number and places calls of its own, billed by the minute.' },
-      { title: 'Your voice agent', line: 'Point the number at the voice agent you already run, or connect another. The call audio streams both ways.' },
-      { title: 'A transcript of every call', line: 'Each call comes back as text, so your agent reads what was said and acts on it.' },
+      { title: 'A number in one call', line: 'A US number, or one in any country you need.' },
+      { title: 'Texts both ways', line: 'Your agent texts people, and every reply reaches your webhook.' },
+      { title: 'Verification codes', line: 'A code texted at sign up is pulled out of the text for your agent.' },
+      { title: 'Calls in and out', line: 'Your agent answers calls and places its own, billed by the minute.' },
+      { title: 'Your voice agent', line: 'Point the number at your own voice agent, or connect another. Audio streams both ways.' },
+      { title: 'A transcript of every call', line: 'Each call comes back as text your agent can read and act on.' },
     ],
   },
 
@@ -73,18 +73,18 @@ export const phone: PiecePage = {
 
   price: {
     heading: 'A number, its texts and its minutes, each priced on its own.',
-    line: 'Hold a number for as long as the job runs, and pay for its texts and its minutes on the same bill as every other piece.',
+    line: 'Hold a number as long as the job runs. Texts and minutes are billed as they’re used.',
   },
 
   together: {
     heading: 'A number does more beside the other pieces.',
-    line: 'The same API key and the same bill cover every piece.',
+    line: 'One API key and one bill cover every piece.',
     items: [
       { piece: 'email', line: 'An inbox beside the number, for sites that confirm by email as well as by text.' },
       { piece: 'messaging', line: 'Move the conversation to iMessage or WhatsApp when the person would rather chat there.' },
       { piece: 'browser', line: 'Sign up in the browser and finish the text check on the agent’s own number.' },
       { piece: 'sandbox', line: 'Turn call transcripts into summaries or tickets with code that runs only when needed.' },
-      { piece: 'personas', line: 'Give the number a name, an inbox and a browser, with every text and call in your event log.' },
+      { piece: 'personas', line: 'Give the number a name, an inbox and a browser.' },
     ],
   },
 
@@ -93,7 +93,7 @@ export const phone: PiecePage = {
     items: [
       {
         q: 'How do I get a phone number for an AI agent?',
-        a: 'One call gives your agent a number of its own. It sends and receives texts and makes and takes calls, and everything that comes in reaches your app through a webhook.',
+        a: 'One call gives your agent a number of its own. It texts and calls both ways, and everything that comes in reaches your app by webhook.',
       },
       {
         q: 'Can I get a free phone number for my AI agent?',
@@ -102,15 +102,15 @@ export const phone: PiecePage = {
       },
       {
         q: 'Will verification codes reach my agent?',
-        a: 'Yes. A text with a code arrives on the number like any other text, and the code is pulled out for your agent, so a sign up goes through without a person.',
+        a: 'Yes. The code is pulled out of the text for your agent, so a sign up goes through without a person.',
       },
       {
         q: 'Can I bring my own voice agent?',
-        a: 'Yes. Point a number at the voice agent you already run and its calls go straight to it, with the minutes on the same bill as everything else.',
+        a: 'Yes. Point a number at your voice agent and its calls go straight to it, with the minutes on the same bill.',
       },
       {
         q: 'Do I need to register to text people in the US?',
-        a: `Yes. US carriers ask every business that texts to register what it texts for, a step known as 10DLC. We file the registration for you when you add a US number. It costs ${registration.once} once to file each campaign, then ${registration.monthly} a month while it’s active, taken from your account. ${registration.why}`,
+        a: `Yes. US carriers make every business that texts register what it texts for, known as 10DLC. We file it for you when you add a US number: ${registration.once} once per campaign, then ${registration.monthly} a month while it’s active. ${registration.why}`,
       },
       {
         q: 'What does a number cost?',

@@ -38,40 +38,40 @@ export const channels: Channel[] = [
   {
     id: 'webhook',
     name: 'One signed webhook',
-    line: 'Subscribe once for every piece and blueprint. Each event is signed, retried for 27 hours if your server is down, and can be replayed.',
+    line: 'Subscribe once for every piece and blueprint. Each event is signed.',
     eg: 'await obsession.events.subscribe({ url: "https://your-app.example/hooks", events: ["*"] })',
   },
   {
     id: 'cursor',
     name: 'Your event log, by cursor',
-    line: 'Read every event after the last one you saw, to catch anything you missed.',
+    line: 'Read every event since the last one you saw.',
     eg: 'const { events, cursor } = await obsession.events.list({ after: lastCursor })',
   },
   {
     id: 'mcp',
     name: 'Your own agent, over MCP',
-    line: 'Your agent subscribes to events as tools, in Claude Code, Cursor or any MCP client.',
+    line: 'Events as tools, in Claude Code, Cursor or any MCP client.',
     eg: 'claude mcp add obsession',
   },
   {
     id: 'handler',
     name: 'Your handler, on our runtime',
-    line: 'Your code runs about 50 ms after the event lands, with no server of your own.',
+    line: 'Your code runs about 50 ms after the event lands. No server to run.',
     eg: 'persona.on("email.received", async (email) => { ... })',
   },
   {
     id: 'listen',
     name: 'A live stream while you build',
-    line: 'Every event, forwarded to the app running on your laptop.',
+    line: 'Every event, forwarded to your laptop.',
     eg: 'npx obsession listen --forward http://localhost:3000/hooks',
   },
   {
     id: 'nocode',
     name: 'Zapier, Make and n8n',
-    line: 'Each event starts a Zap, a scenario or a workflow, with no code.',
+    line: 'Each event starts a Zap, scenario or workflow.',
     eg: 'blueprint.result → Slack, Sheets or your CRM',
   },
 ]
 
 /* What happens when the developer's server is down, in 1 line. */
-export const downLine = 'If your server is down, each event is retried for 27 hours, and you can replay any event from your event log.'
+export const downLine = 'If your server is down, events retry for 27 hours, and any event can be replayed.'

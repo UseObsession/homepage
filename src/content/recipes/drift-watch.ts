@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   slug: 'drift-watch',
   name: 'Drift watch',
   group: 'Check your AI agents',
-  line: 'The same persona asks your AI agent your hardest cases every morning and after every update, and shows every changed answer.',
+  line: 'A persona asks your AI agent your hardest cases daily and after every update, and shows what changed.',
   gets: 'Every answer that changed, found the day it changed, with its before and after.',
   kit: [
     'A persona you define, the same one every replay',
@@ -30,7 +30,7 @@ export const recipe: Recipe = {
     description:
       'A persona asks your AI agent your hardest cases every morning and within the hour of any update. Every answer is kept, every change shown before and after.',
     answer:
-      'Drift watch sends the same persona to ask your AI agent your hardest cases, every morning and within the hour of any update. Every answer is kept, and every one that changed is shown before and after.',
+      'Drift watch sends the same persona to ask your AI agent your hardest cases, every morning and within the hour of any update. Every answer is kept, and each change shown before and after.',
     ogImage: '/og/drift-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -41,7 +41,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'What each update changed in your AI agent’s answers.',
-    sub: 'Drift watch sends the same persona to ask your AI agent your hardest cases, every morning and within the hour of any update. Every answer is kept, and every one that changed is shown before and after.',
+    sub: 'Drift watch sends the same persona to ask your AI agent your hardest cases, every morning and within the hour of any update. Every answer is kept, and each change shown before and after.',
     screen: 'drift',
     capture: {
       kind: 'waitlist',
@@ -85,19 +85,19 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Pick your hardest cases',
-      line: 'The questions your bot must always get right: refunds, delivery, codes, a person on request. Each comes with the rule that decides it.',
+      line: 'Refunds, delivery, codes, a person on request: each with the rule that decides it.',
     },
     {
       title: 'Approve the baseline',
-      line: 'The first replays set the pass rate your bot normally holds, case by case. You approve it, and change any rule.',
+      line: 'The first replays set your bot’s normal pass rate. You approve it, and can change any rule.',
     },
     {
       title: 'Asked every morning, and after any update',
-      line: 'The same persona asks every case at 07:00, and again within the hour of a vendor release, a model change or a prompt edit.',
+      line: 'At 07:00, and again within the hour of a vendor release, model change or prompt edit.',
     },
     {
       title: 'Every changed answer lands',
-      line: 'Each case that newly fails, with the answer before and after, in Slack, a PDF or from the API.',
+      line: 'Each newly failing case, before and after, in Slack, a PDF or the API.',
     },
   ],
 
@@ -107,14 +107,14 @@ export const recipe: Recipe = {
       items: [
         { title: 'Pass rate against the baseline', line: 'Case by case, against the rate your bot normally holds.' },
         { title: 'New failures', line: 'Every case that passed before and fails now, with the rule it broke.' },
-        { title: 'Changed answers', line: 'The same question from the same persona with a different answer, even when both pass.' },
+        { title: 'Changed answers', line: 'The same question with a different answer, even when both pass.' },
         { title: 'Time to answer', line: 'How long each answer takes, against last week.' },
       ],
     },
     {
       group: 'Every change',
       items: [
-        { title: 'Vendor releases', line: 'Picked up from your vendor’s release notes or a webhook, and replayed within the hour.' },
+        { title: 'Vendor releases', line: 'From your vendor’s release notes or a webhook, replayed within the hour.' },
         { title: 'Model updates', line: 'A new model under your bot, replayed the same way.' },
         { title: 'Your own edits', line: 'Prompt and knowledge base changes from your team, replayed before they go live.' },
         { title: 'Handoffs', line: 'How often it gets a person when asked, before and after.' },
@@ -137,7 +137,7 @@ export const recipe: Recipe = {
       { format: 'Before and after', line: 'Every changed answer side by side, with the rule it broke.' },
       { format: 'The pass rate over time', line: 'Every morning’s replay on 1 line, with each update marked.' },
       { format: 'Slack, email or a webhook', line: 'The moment a replay drops below your baseline.' },
-      { format: 'Dated events', line: 'Every replay as a page and a PDF for your vendor, your client or your insurer.' },
+      { format: 'Dated events', line: 'Every replay as a page and PDF for your vendor, client or insurer.' },
     ],
   },
 
@@ -154,7 +154,7 @@ export const recipe: Recipe = {
   forWho: [
     { audience: 'founders', line: 'Hear the night a vendor update changes what your bot says.' },
     { audience: 'agencies', line: 'Every agent you run for clients, replayed after each vendor update.' },
-    { audience: 'marketing', line: 'Catch the morning your bot starts handing out a code that has expired.' },
+    { audience: 'marketing', line: 'Catch the morning your bot starts handing out an expired code.' },
     { audience: 'developers', line: 'Replay the cases from your code or agent before every prompt change ships.' },
   ],
 
@@ -181,11 +181,11 @@ export const recipe: Recipe = {
       },
       {
         q: 'Why did our AI agent start giving wrong answers after an update?',
-        a: 'A vendor release, a model update or a prompt change can change its answers with nothing else changed on your side. Drift watch replays your hardest cases within the hour of any update and shows every answer that changed.',
+        a: 'A vendor release, model update or prompt change can change its answers with nothing changed on your side. Drift watch replays your hardest cases within the hour and shows every changed answer.',
       },
       {
         q: 'How does Drift watch know about an update?',
-        a: 'It reads your vendor’s release notes or a webhook, or your own team’s prompt and knowledge base changes, and replays your cases within the hour.',
+        a: 'It reads your vendor’s release notes or a webhook, or your team’s prompt and knowledge base changes, and replays your cases within the hour.',
       },
       {
         q: 'Which cases should we use?',
@@ -205,7 +205,7 @@ export const recipe: Recipe = {
 
   final: {
     heading: 'Know which answers an update changed within the hour.',
-    sub: 'Tell us which agent to watch and your hardest cases. We’ll set up the persona and the first replay with you.',
+    sub: 'Tell us which agent to watch and your hardest cases. We’ll set up the first replay with you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-drift-final',

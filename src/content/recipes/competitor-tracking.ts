@@ -14,7 +14,7 @@ export const recipe: Recipe = {
   slug: 'competitor-tracking',
   name: 'Competitor tracking',
   group: 'Watch other companies',
-  line: 'A persona signs up at each competitor and keeps every email, text, offer and price it’s sent, on 1 timeline.',
+  line: 'A persona signs up at each competitor and keeps every email, text, offer and price.',
   gets: 'A dated timeline per competitor: every email, text, offer and price, each with its screenshot.',
   kit: [
     'A persona at each competitor, in your country',
@@ -88,7 +88,7 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Name your competitors',
-      line: 'Paste their web addresses, upload a CSV, connect Clay or call the API. Any company, with no list to check first.',
+      line: 'Web addresses, a CSV, Clay or the API. Any company, with no list to check first.',
     },
     {
       title: 'Define the persona',
@@ -96,7 +96,7 @@ export const recipe: Recipe = {
     },
     {
       title: 'The persona signs up and stays',
-      line: 'It joins the emails and texts the way anyone can, and keeps the account open for as long as you hold it. Who asked is never shown.',
+      line: 'It joins the emails and texts the way anyone can, and keeps the account open.',
     },
     {
       title: 'Everything comes back, dated',
@@ -110,10 +110,10 @@ export const recipe: Recipe = {
       items: [
         {
           title: 'Every email',
-          line: 'The time it arrived and the day since sign up, the sender, subject, offer or code, a screenshot and the original email.',
+          line: 'Arrival time, day since sign up, sender, subject and any offer or code, with a screenshot.',
         },
         { title: 'The welcome series', line: 'How many steps, the gap between each, and the offer each one carries.' },
-        { title: 'Texts', line: 'Every message with its sender and time, short links followed to their page, and what happens after STOP.' },
+        { title: 'Texts', line: 'Each with its sender and time, short links followed, and what happens after STOP.' },
       ],
     },
     {
@@ -134,7 +134,7 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Payment', line: 'Every step short of paying, unless you give it your own payment card.' },
+        { title: 'Payment', line: 'Every step short of paying, unless you give it your payment card.' },
         { title: 'People', line: 'The persona says it’s an AI when it talks to a person.' },
       ],
     },
@@ -143,11 +143,9 @@ export const recipe: Recipe = {
   outputs: {
     heading: 'What changed this week, with your event log behind every line.',
     items: [
-      { format: 'A timeline per competitor', line: 'Every email, text, offer and change in date order, each with its screenshot.' },
-      { format: 'The welcome series, mapped', line: 'Each step, the delay before it and the offer it carries.' },
       { format: 'A weekly summary', line: 'What changed since the last one. Quiet weeks stay quiet.' },
       { format: 'Slack', line: 'A new code, a price drop or a changed welcome offer, the day it lands.' },
-      { format: 'A table or webhook', line: 'Every email, text and price as a row in Clay or Google Sheets, or as JSON at your endpoint.' },
+      { format: 'A table or webhook', line: 'Each email, text and price as a Clay or Google Sheets row, or JSON at your endpoint.' },
       { format: 'API and MCP', line: 'Ask your AI agent what a competitor sent this month.' },
     ],
   },
@@ -162,16 +160,16 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'marketing', line: 'See what competitors send before a sale, and plan your own calendar around it.' },
+    { audience: 'marketing', line: 'See what competitors send before a sale, and plan your calendar around it.' },
     { audience: 'agencies', line: 'A competitor report for every client, built on what competitors sent.' },
     { audience: 'sales', line: 'Battlecards built from what a competitor sends a new subscriber.' },
     { audience: 'founders', line: 'Answer every competitor move the week it lands.' },
-    { audience: 'developers', line: 'Competitors’ emails and prices in your own product, through the API.' },
+    { audience: 'developers', line: 'Competitors’ emails and prices in your product, through the API.' },
   ],
 
   table: {
     heading: 'A new subscriber to this competitor gets 5 emails and 2 texts in its first 7 days.',
-    line: 'Every message placed by the time since sign up, so you see the sequence and its rhythm.',
+    line: 'Every message placed by the time since sign up.',
     cols: ['Channel', 'What arrived'],
     rows: [
       { label: '0 min', values: ['Pop up', 'Signed up'] },
@@ -198,7 +196,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'When do events start landing in my event log?',
-        a: 'The day the persona signs up. From then on every message is dated from that sign up, so you see the sequence in order for as long as you hold it.',
+        a: 'The day the persona signs up. Every message after is dated from that sign up, for as long as you hold the persona.',
       },
       {
         q: 'Will the competitor know who asked?',

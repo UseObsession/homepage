@@ -16,7 +16,7 @@ export const recipe: Recipe = {
   slug: 'vendor-agent-check',
   name: 'Vendor agent check',
   group: 'Check your AI agents',
-  line: 'A persona brings your own cases to every shortlisted vendor’s AI agent and keeps each answer side by side, before you sign.',
+  line: 'A persona runs your cases on every shortlisted vendor’s AI agent, before you sign.',
   gets: 'Every shortlisted agent on your cases, side by side, every answer and handoff dated.',
   kit: [
     'A persona with its own inbox and number on every agent',
@@ -33,7 +33,7 @@ export const recipe: Recipe = {
     description:
       'Before you sign, a persona brings your real cases to every shortlisted vendor’s AI agent, and every answer and handoff comes back side by side, dated.',
     answer:
-      'Vendor agent check sends a persona with your own cases to every shortlisted vendor’s AI agent, before you sign. It asks the same way on every agent, times every handoff, and brings back each answer side by side, word for word.',
+      'Vendor agent check sends a persona with your cases to every shortlisted vendor’s AI agent, before you sign. It asks each the same way, times every handoff and brings back the answers side by side.',
     ogImage: '/og/vendor-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -44,7 +44,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every AI vendor on your own cases, before you sign.',
-    sub: 'Vendor agent check sends a persona with your own cases to every shortlisted vendor’s AI agent, before you sign. It asks the same way on every agent, times every handoff, and brings back each answer side by side, word for word.',
+    sub: 'Vendor agent check sends a persona with your cases to every shortlisted vendor’s AI agent, before you sign. It asks each the same way, times every handoff and brings back the answers side by side.',
     screen: 'vendorcheck',
     capture: {
       kind: 'waitlist',
@@ -91,19 +91,19 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Pick the cases that matter',
-      line: 'From your own tickets: a late refund, an address change, an expired code, someone who wants a person. Each gets the policy that decides it.',
+      line: 'From your tickets: a late refund, an address change, an expired code, someone who wants a person.',
     },
     {
       title: 'Every vendor agrees, then sets up',
-      line: 'Each vendor on your shortlist agrees to the test and sets its agent up on your policies, on the channels you’ll run.',
+      line: 'Each vendor agrees to the test and sets its agent up on your policies and channels.',
     },
     {
       title: 'Every case on every agent',
-      line: 'The persona asks the same way on every agent, from its own inbox and number, and times every answer and handoff. Every test is tagged.',
+      line: 'The persona asks each agent the same way and times every answer and handoff. Every test is tagged.',
     },
     {
       title: 'A side by side report',
-      line: 'Every case for each vendor, with both transcripts and the policy that decided it. Once you go live, the same persona runs the same cases monthly.',
+      line: 'Every case for each vendor, with both transcripts and the policy that decided it.',
     },
   ],
 
@@ -112,18 +112,18 @@ export const recipe: Recipe = {
       group: 'Every case, on every agent',
       items: [
         { title: 'Right answers', line: 'Refunds, returns, order changes and cancellations, beside your policy.' },
-        { title: 'A person when asked', line: 'Whether a person is offered, how long it takes, and whether the handoff lands in your helpdesk.' },
-        { title: 'Says it’s an AI', line: 'In its first message, and truthfully when the persona asks “Am I talking to a person?”' },
+        { title: 'A person when asked', line: 'Whether a person is offered, how fast, and whether the handoff reaches your helpdesk.' },
+        { title: 'Says it’s an AI', line: 'In its first message, and truthfully when asked “Am I talking to a person?”' },
         { title: 'The same answer every time', line: 'The same case asked again on another day, by the same persona.' },
       ],
     },
     {
       group: 'Before you sign',
       items: [
-        { title: 'The deck beside the agent', line: 'The resolution rate, handoff time and languages in the sales deck, beside what the agent did on your cases.' },
+        { title: 'The deck beside the agent', line: 'The sales deck’s resolution rate, handoff time and languages, beside what the agent did.' },
         { title: 'Your hardest cases', line: 'A refund on day 35, an expired code, a request to delete data: the cases a demo skips.' },
         { title: 'Where it already runs', line: 'The same questions to each vendor’s agent at companies already running it.' },
-        { title: 'Your current agent', line: 'The agent you run now, or your own build, on the same cases, so every vendor has a bar to clear.' },
+        { title: 'Your current agent', line: 'The agent you run now, or your own build, as the bar every vendor must clear.' },
       ],
     },
     {
@@ -140,8 +140,6 @@ export const recipe: Recipe = {
     items: [
       { format: 'A line per case', line: 'Passed or failed for each vendor, with the policy that decided it.' },
       { format: 'Both transcripts', line: 'Every answer from every vendor on the same case, timed.' },
-      { format: 'Every handoff, timed', line: 'How long each agent took to reach a person, and whether the case arrived in your helpdesk.' },
-      { format: 'The deck, read against the agent', line: 'Each vendor’s claims beside what its agent did on your cases.' },
       { format: 'A report for procurement', line: 'Side by side, as a page and a PDF, or a sheet or the API.' },
       { format: 'A monthly read', line: 'Once you go live, the same cases every month on the agent you chose.' },
     ],
@@ -149,7 +147,7 @@ export const recipe: Recipe = {
 
   settings: [
     { k: 'Vendors', v: 'Every vendor on your shortlist' },
-    { k: 'Cases', v: 'For example: 20 from your own tickets, your hardest included' },
+    { k: 'Cases', v: 'For example: 20 from your tickets, your hardest included' },
     { k: 'Policies', v: 'Your refund, returns, cancellation and data pages, set up on every agent' },
     { k: 'Channels', v: 'The ones you’ll run: chat, email, phone or your portal' },
     { k: 'What counts', v: 'For example: a person within 3 minutes, the right refund window' },
@@ -159,7 +157,7 @@ export const recipe: Recipe = {
 
   forWho: [
     { audience: 'founders', line: 'Choose your support AI agent on your own cases, not a demo.' },
-    { audience: 'agencies', line: 'Pick the chat or voice platform you build client agents on, with the event log to show each client why.' },
+    { audience: 'agencies', line: 'Pick the chat or voice platform for client agents, with the event log to show each client why.' },
     { audience: 'sales', line: 'Run your real buyer questions on every AI agent you’re weighing for inbound.' },
     { audience: 'developers', line: 'Run the same cases on your own build and every vendor’s, from your code or agent.' },
   ],

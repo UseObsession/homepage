@@ -58,13 +58,13 @@ const PIECES: Record<PieceId, { icon: PersonaIcon; name: string; line: string; c
   email: {
     icon: 'mail',
     name: 'Email',
-    line: 'Inboxes your agents send and receive from, with threads, attachments and webhooks.',
+    line: 'Inboxes your agents send and receive from, with threads and attachments.',
     call: 'obsession.inboxes.create()',
   },
   phone: {
     icon: 'phone',
     name: 'Phone',
-    line: 'Numbers that send and receive texts and take calls, with your own voice agent or one we run.',
+    line: 'Numbers that send and receive texts and calls, with your own voice agent or ours.',
     call: 'obsession.numbers.create({ country: "US" })',
   },
   messaging: {
@@ -76,7 +76,7 @@ const PIECES: Record<PieceId, { icon: PersonaIcon; name: string; line: string; c
   browser: {
     icon: 'browser',
     name: 'Browser',
-    line: 'A cloud browser on a home connection, with sessions that keep their logins.',
+    line: 'A cloud browser on a home connection that stays signed in.',
     call: 'obsession.browsers.create({ home: "US" })',
   },
   sandbox: {
@@ -88,14 +88,14 @@ const PIECES: Record<PieceId, { icon: PersonaIcon; name: string; line: string; c
   personas: {
     icon: 'persona',
     name: 'Personas',
-    line: 'Every piece under one identity, free while it waits, with all it saw in your event log.',
+    line: 'Every piece under one identity, free while it waits.',
     call: 'obsession.personas.create({ inbox: true, phone: "US" })',
   },
 }
 
 const pieces: HomePieces = {
   heading: 'One API, not five vendors.',
-  line: 'Every piece, from inboxes and phone numbers to browsers and sandboxes, comes through one key, one webhook and one bill.',
+  line: 'Every piece comes through one key, one webhook and one bill.',
   items: pieceOrder.map((id) => ({ ...PIECES[id], to: piecePaths[id], whole: id === 'personas' })),
 }
 
@@ -158,12 +158,12 @@ export const page: Page = {
 
   personaAnatomy: {
     heading: 'A persona is every piece under one identity.',
-    line: 'Its inbox, number, channels, browser and sandbox share one name. It lives on our runtime: free while it waits, and your code runs 50 ms after a message lands, with no machine to start.',
+    line: 'Its inbox, number, channels, browser and sandbox share one name, and it waits on our runtime for free.',
     parts: [
-      { name: 'One identity', line: 'A name every piece shares, so each email, text and page belongs to the same agent.', eg: 'Juno, bookings at Larkfield' },
-      { name: 'An inbox and/or a phone number', line: 'Its own email address and number, to send and receive email, texts and calls.', eg: 'juno@larkfield.example · +1 415 555 0142' },
+      { name: 'One identity', line: 'Each email, text and page belongs to the same agent.', eg: 'Juno, bookings at Larkfield' },
+      { name: 'An inbox and/or a phone number', line: 'Its own address and number, for email, texts and calls.', eg: 'juno@larkfield.example · +1 415 555 0142' },
       { name: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram, on the same identity.', eg: 'iMessage · WhatsApp · Slack' },
-      { name: 'A browser and/or a sandbox', line: 'A browser on a home connection that keeps its logins, and a computer to run code when a task needs one.', eg: 'US home connection, signed in · python report.py' },
+      { name: 'A browser and/or a sandbox', line: 'A browser that stays signed in, and a computer for code when a task needs one.', eg: 'US home connection, signed in · python report.py' },
       { name: 'Its events in your event log', line: 'Every page, email, text and call it saw, dated, with screenshots.', eg: '14 pages · 4 emails · 2 texts · 1 call' },
     ],
   },
@@ -173,7 +173,7 @@ export const page: Page = {
   personaContrasts: [
     {
       heading: 'Wakes in milliseconds, not minutes.',
-      line: 'When an email, text or call reaches a persona, your code runs on our runtime 50 ms later. No machine starts: its inbox, logins and browser state are already there.',
+      line: 'No machine starts. The persona’s inbox, logins and browser state are already there.',
       value: '50',
       unit: 'ms',
       label: 'from a new email, text or call to your code running.',
@@ -201,10 +201,10 @@ export const page: Page = {
      come from content/delivery.ts, the same words as the piece, recipe and developer pages. */
   homeHow: {
     heading: 'From the first call to months of messages, every event reaches your agent.',
-    line: 'Set it up once, and each persona waits for free. Every email, text, call, webhook or new spreadsheet row is saved in your event log, then reaches your agent. Its reply is the next event.',
+    line: 'Every email, text, call, webhook or new spreadsheet row is saved in your event log, then reaches your agent. Its reply is the next event.',
     loop: {
       label:
-        'Set up once, by picking pieces, a persona or a blueprint and saying where your agent runs. Then a loop of 3 stops. Something happens: a message, a webhook from another tool or a new row in a spreadsheet or CSV comes in, or your agent acts. It is saved in your event log, which keeps every event in order. Then it reaches your agent, on our runtime as a handler in about 50 ms or on your servers through a webhook, the API or MCP, or it reaches a person in Slack, Zapier, Make or n8n. Whatever your agent does next is a new event, so the loop goes round again. Live call audio crosses the loop straight to your voice agent without touching the log, and the log keeps each call’s start, end and transcript.',
+        'Set up once: pick pieces, a persona or a blueprint, and say where your agent runs. Then a loop of 3 stops. Something happens: a message, a webhook or a new spreadsheet or CSV row comes in, or your agent acts. It is saved in your event log, in order. Then it reaches your agent, on our runtime as a handler in about 50 ms or on your servers through a webhook, the API or MCP, or a person in Slack, Zapier, Make or n8n. What your agent does next is a new event. Live call audio goes straight to your voice agent, and the log keeps each call’s start, end and transcript.',
       setup: { name: 'Set up once', line: 'Pick pieces, a persona or a blueprint, and say where your agent runs.' },
       then: 'then',
       happens: { name: 'Something happens', line: 'A message, a webhook or a new spreadsheet row comes in, or your agent acts.' },
@@ -239,7 +239,7 @@ export const page: Page = {
     /* James, 21 Nov: the heading speaks to teams with no engineers; the line says where the results arrive. */
     /* James, 22 Nov. The part before the colon shows as a quiet first line (components/persona/PersonaRecipes). */
     heading: 'For teams without engineers: Pick a blueprint, we run the job, you get the report.',
-    line: 'Every result arrives where you already work: in your spreadsheet, in Clay, through your own Claude agent or on our dashboard. Developers can bring their own job to run the same way.',
+    line: 'Results arrive where you already work: your spreadsheet, Clay, your own Claude agent or our dashboard.',
     items: [
       {
         name: 'Mystery shopping',
@@ -286,14 +286,14 @@ export const page: Page = {
       },
       {
         name: 'The web behind the login, as data',
-        line: 'Prices, emails and offers that companies show people only after they sign up. Personas sign up, wait, and bring every page, email and text back as data.',
+        line: 'Personas sign up and bring back the prices, emails and offers shown only after sign up.',
         status: 'For data teams',
         reader: 'developers',
         link: { label: 'See the use case', to: '/use-cases/web-behind-the-login' },
       },
       {
         name: 'Your own job',
-        line: 'A task or a computation of your own, run on our runtime beside the inbox, browser and sandbox, with nothing to host.',
+        line: 'Your own task, run on our runtime beside the pieces, with nothing to host.',
         status: 'For any job',
         reader: 'founders',
         link: { label: 'Browse every blueprint', to: '/blueprints' },
@@ -304,7 +304,7 @@ export const page: Page = {
 
   personaBuild: {
     heading: 'One key, from the first inbox to a fleet of personas.',
-    line: 'Create an inbox, a number or a whole persona from your code, or let your own agent do it through MCP. Then subscribe once to hear back from all of them.',
+    line: 'Create an inbox, a number or a whole persona from code, or let your agent do it over MCP. Subscribe once to hear from all of them.',
     cta: { label: 'For developers', to: '/developers' },
     codeLabel: 'agent.ts',
     code: BUILD_CODE,
@@ -321,28 +321,28 @@ export const page: Page = {
       },
       {
         q: 'Can I use just one piece, like email?',
-        a: 'Yes. Every piece works on its own. Start with inboxes for your agent and add a number, a browser or a sandbox later, on the same key and the same bill.',
+        a: 'Yes. Start with inboxes, and add a number, a browser or a sandbox later, on the same key and bill.',
         link: { label: 'Email for AI agents', to: '/email' },
       },
       {
         q: 'What is a persona?',
-        a: 'Every piece under one identity: an inbox, a number, its messaging channels, a browser profile and a sandbox when a task needs one. It lives on our runtime, free while it waits, and your code runs 50 ms after a message lands. Every page, email, text and call it handles lands in your event log, dated, with screenshots.',
+        a: 'Every piece under one identity: an inbox, a number, messaging, a browser and a sandbox when a task needs one. It waits on our runtime for free, and your code runs 50 ms after a message lands.',
       },
       {
         q: 'What is the event log?',
-        a: 'One place per account where every event lands, from every piece, persona and blueprint: in order, each dated, with its proof, such as the email as it arrived or a screenshot of the page. Nothing in it is changed or deleted. Subscribe once, and your endpoint gets all of it.',
+        a: 'One place per account where every event from every piece, persona and blueprint lands, in order and dated, with its proof: the email as it arrived, or a screenshot of the page. Nothing in it is changed or deleted.',
       },
       {
         q: 'How do events reach my app?',
-        a: 'Each event is saved in your event log, then sent to one signed webhook that you subscribe once, for every piece and blueprint. If your server is down, each event is retried for 27 hours and can be replayed. You can also read the event log by cursor, or let your own agent subscribe over MCP. Or run a handler on our runtime, stream events to your laptop, or use Zapier, Make and n8n.',
+        a: 'Through one signed webhook you subscribe once. If your server is down, events retry for 27 hours and can be replayed. You can also read the log by cursor, use MCP, run a handler on our runtime, or connect Zapier, Make or n8n.',
       },
       {
         q: 'Do I need to write code?',
-        a: 'No. Run one of our blueprints, such as agentic mystery shopping: say where it goes, and its results land in your event log. Developers can also write their own job, which runs on our runtime beside the pieces.',
+        a: 'No. Run one of our blueprints, such as agentic mystery shopping: say where it goes, and its results land in your event log.',
       },
       {
         q: 'Does a persona say it’s an AI?',
-        a: 'Yes, whenever it talks to a person. It signs up the way anyone can, on the pages and forms open to everyone, and you choose where it goes and what it does.',
+        a: 'Yes, whenever it talks to a person. It signs up the way anyone can, on pages open to everyone, and you choose where it goes.',
       },
     ],
   },

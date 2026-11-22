@@ -20,8 +20,8 @@ export const recipe: Recipe = {
   slug: 'voice-agent-check',
   name: 'Voice agent check',
   group: 'Check your AI agents',
-  line: 'Personas call your voice agent as the callers you define, then wait days for the text, email and callback it promised.',
-  gets: 'Every call recorded and transcribed, and every text, email and callback that followed it, or the silence.',
+  line: 'Personas call your voice agent, then wait days for the text, email and callback it promised.',
+  gets: 'Every call recorded and transcribed, and every text, email and callback after it, or the silence.',
   kit: [
     'A persona per caller, with its own number and inbox',
     'Different voices and accents, used with consent',
@@ -37,7 +37,7 @@ export const recipe: Recipe = {
     description:
       'Personas call your voice agent, check each answer, then wait days for the text, email and callback it promised, with every call recorded and transcribed.',
     answer:
-      'Voice agent check calls your voice agent as the callers you define, from personas with their own numbers and inboxes. It checks what the agent says on the call, then waits days for the text, email and callback that should follow.',
+      'Voice agent check calls your voice agent as the callers you define, from personas with their own numbers and inboxes. It checks each answer, then waits days for the promised text, email and callback.',
     ogImage: '/og/voice-agent-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -48,7 +48,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Your voice agent promised a callback. Find out if it came.',
-    sub: 'Voice agent check calls your voice agent as the callers you define, from personas with their own numbers and inboxes. It checks what the agent says on the call, then waits days for the text, email and callback that should follow.',
+    sub: 'Voice agent check calls your voice agent as the callers you define, from personas with their own numbers and inboxes. It checks each answer, then waits days for the promised text, email and callback.',
     screen: 'callcheck',
     capture: {
       kind: 'waitlist',
@@ -97,19 +97,19 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Give it the numbers',
-      line: 'Your voice agent’s number, a client’s, or a competitor’s. Add your price list, hours and services, and connect your calendar so every booking is read.',
+      line: 'Your voice agent’s number, a client’s or a competitor’s, with your price list, hours and calendar.',
     },
     {
       title: 'Define the callers',
-      line: 'New patients, regulars or a business calling, each a persona with its own number and inbox, in voices and accents used with consent.',
+      line: 'New patients, regulars or a business calling, in voices and accents used with consent.',
     },
     {
       title: 'It calls, then waits',
-      line: 'Each persona books a slot, asks a price and asks for a person. Then it waits on its own number and inbox for whatever the call promised.',
+      line: 'Each books a slot, asks a price and asks for a person, then waits for what the call promised.',
     },
     {
       title: 'Every call lands where you work',
-      line: 'A report by 09:00, Slack or the API. Each call comes with its recording, its transcript, what followed, and any answer that breaks your price list.',
+      line: 'A report by 09:00, Slack or the API, each call with its recording, transcript and what followed.',
     },
   ],
 
@@ -119,7 +119,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'The text', line: 'Every confirmation and reminder text, waited for on the persona’s own number.' },
         { title: 'The email', line: 'The booking or quote email the voice agent promised, with the time it arrived.' },
-        { title: 'The callback', line: 'Whether the callback the voice agent promised comes, how many hours later, and what the caller is told.' },
+        { title: 'The callback', line: 'Whether the promised callback comes, how many hours later, and what the caller is told.' },
         { title: 'The booking', line: 'A real slot booked, moved and cancelled, each read in your calendar.' },
       ],
     },
@@ -128,7 +128,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'Picks up', line: 'Whether it answers, and after how many rings, in the morning rush and after hours.' },
         { title: 'Says it’s an AI', line: 'In the first 10 seconds, with your business’s name and that the call is recorded.' },
-        { title: 'Prices, hours and services', line: 'Every answer beside your own price list and hours, captured the same morning.' },
+        { title: 'Prices, hours and services', line: 'Every answer beside your price list and hours, captured the same morning.' },
         { title: 'Every caller understood', line: 'Regional accents, background noise and slower speech, from voices used with consent.' },
         { title: 'A person when asked', line: 'Whether it puts the caller through, how long they hold, and whether a person or voicemail answers.' },
       ],
@@ -149,7 +149,7 @@ export const recipe: Recipe = {
     items: [
       { format: 'An answer per question', line: 'Right or wrong against your price list and hours.' },
       { format: 'The recording', line: 'Every call with its transcript, timed to the second.' },
-      { format: 'What followed', line: 'Every text, email and callback after the call, each with its time, or the hours waited when none came.' },
+      { format: 'What followed', line: 'Each text, email and callback with its time, or the hours waited when none came.' },
       { format: 'What changed', line: 'After every update to the voice agent, the answers that changed.' },
       { format: 'Competitors’ quotes', line: 'What their phones quote for the same service, beside yours.' },
       { format: 'A report to share', line: 'A page and a PDF by 09:00, or Slack, a sheet or the API.' },
@@ -169,10 +169,10 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'agencies', line: 'Every voice agent you run for a client checked each morning, with what followed each call, and a report by 09:00.' },
+    { audience: 'agencies', line: 'Every client’s voice agent checked each morning, with what followed, and a report by 09:00.' },
     { audience: 'founders', line: 'Know what your voice agent told callers, and what it never sent, before you open.' },
     { audience: 'marketing', line: 'Hear what competitors quote on the phone for the same service.' },
-    { audience: 'developers', line: 'Spawn callers from your code or agent, and read every call and what followed after each prompt or voice change.' },
+    { audience: 'developers', line: 'Spawn callers from your code or agent after each prompt or voice change.' },
   ],
 
   table: {
@@ -193,7 +193,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'What does Voice agent check test after the call ends?',
-        a: 'It waits on the persona’s own number and inbox, 48 hours by default. When the voice agent promises a follow-up “next business day” or similar, it waits 2 working days, so a weekend never counts against it. Every text, email and callback the voice agent promised is kept with its time, and a promise nothing followed is flagged.',
+        a: 'It waits for every text, email and callback the call promised: 48 hours by default, or 2 working days when it promises “next business day” or similar, so a weekend never counts against it. A promise nothing followed is flagged.',
       },
       {
         q: 'How do we test a voice agent before it goes live?',
@@ -205,7 +205,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can Voice agent check call a competitor?',
-        a: 'Yes. A persona calls any number you give it and asks what a caller would ask, such as a price or opening hours. Every call comes back recorded. The persona calls from its own number, so nothing points back to you.',
+        a: 'Yes. A persona calls any number you give it and asks what a caller would ask, such as a price or opening hours. It calls from its own number, so nothing points back to you.',
       },
       {
         q: 'Whose voices does Voice agent check use?',

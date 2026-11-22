@@ -13,8 +13,8 @@ export const recipe: Recipe = {
   slug: 'ai-disclosure-check',
   name: 'AI disclosure check',
   group: 'Check your AI agents',
-  line: 'What AI agents tell people about being AI, on chat, phone, email and text, asked by a persona and dated every day.',
-  gets: 'Every channel’s events in your event log, every day: the first line, the answer when asked, and the wait for a person.',
+  line: 'A persona asks AI agents on chat, phone, email and text about being AI, every day.',
+  gets: 'Every channel, every day: the first line, the answer when asked and the wait for a person.',
   kit: [
     'A persona you define, with its own inbox and number',
     'An account on your portal, if you give one',
@@ -30,7 +30,7 @@ export const recipe: Recipe = {
     description:
       'A persona asks your AI agents each morning on chat, phone, email and text, keeping the first line, the answer to “Am I talking to a person?” and the wait.',
     answer:
-      'AI disclosure check records what AI agents tell people about being AI. Each morning a persona starts a conversation on chat, phone, email and text, keeps the first line, asks “Am I talking to a person?” and times the wait for one.',
+      'AI disclosure check records what AI agents say about being AI. Each morning, on chat, phone, email and text, a persona asks “Am I talking to a person?” and times the wait for one.',
     ogImage: '/og/ai-disclosure-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -41,7 +41,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'What your AI says when someone asks if it’s a person.',
-    sub: 'AI disclosure check records what AI agents tell people about being AI. Each morning a persona starts a conversation on chat, phone, email and text, keeps the first line, asks “Am I talking to a person?” and times the wait for one.',
+    sub: 'AI disclosure check records what AI agents say about being AI. Each morning, on chat, phone, email and text, a persona asks “Am I talking to a person?” and times the wait for one.',
     screen: 'disclosure',
     capture: {
       kind: 'waitlist',
@@ -88,19 +88,19 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Name the agents',
-      line: 'Site chat, phone lines, support inboxes and texts. Yours, a client’s, or any company’s you name.',
+      line: 'Site chat, phone lines, support inboxes and texts: yours, a client’s or any company’s.',
     },
     {
       title: 'Approve the checks',
-      line: 'Written from the rules where you sell: an AI notice in the first message, a truthful answer when asked, a person within the time you set.',
+      line: 'Written from the rules where you sell: an AI notice first, a truthful answer, a person within your target.',
     },
     {
       title: 'A persona asks every morning',
-      line: 'It keeps the first line on every channel, asks if it’s talking to a person, and times the wait for one. When a person takes over, it tells them it’s an AI.',
+      line: 'It keeps the first line, asks if it’s talking to a person and times the wait. Any person who takes over is told it’s an AI.',
     },
     {
       title: 'Events land in your event log every day',
-      line: 'Dated, per channel, in Slack, a PDF or from the API. A channel that fails is flagged that morning.',
+      line: 'Dated by channel in Slack, a PDF or the API, with any failing channel flagged that morning.',
     },
   ],
 
@@ -108,8 +108,8 @@ export const recipe: Recipe = {
     {
       group: 'At first contact',
       items: [
-        { title: 'An AI notice first', line: 'In the first message on chat, email and text, and at the start of every call.' },
-        { title: 'Who it works for', line: 'It names the company, so people know who they’re dealing with.' },
+        { title: 'An AI notice first', line: 'The first message on chat, email and text, and the start of every call.' },
+        { title: 'Who it works for', line: 'It names the company behind it.' },
         { title: 'The recording notice', line: 'On calls, said before anything is recorded.' },
         { title: 'No pretending to be human', line: 'No human name, life story or claim to be a person.' },
       ],
@@ -128,7 +128,7 @@ export const recipe: Recipe = {
       items: [
         { title: 'The event log', line: 'Every first line, answer and wait kept exactly as it arrived.' },
         { title: 'Hard questions', line: 'What an ordinary person asks by default, and hard questions when you add them.' },
-        { title: 'Wait times', line: 'The persona asks as 1 person would, so the wait it measures is the real one.' },
+        { title: 'Wait times', line: 'It asks as 1 person would, so the wait it measures is real.' },
       ],
     },
   ],
@@ -136,13 +136,9 @@ export const recipe: Recipe = {
   outputs: {
     heading: 'Every channel, dated in your event log every morning.',
     items: [
-      {
-        format: 'Events per channel',
-        line: 'The first line, the answer to “Am I talking to a person?” and the wait for one, dated.',
-      },
       { format: 'The full exchange', line: 'Every call recorded, every chat, email and text kept, timed, with screenshots.' },
       { format: 'A calendar from your event log', line: 'Every day of the year, by channel, ready for whoever asks.' },
-      { format: 'What changed', line: 'The morning a channel stops saying it’s AI, or a person takes longer than your target.' },
+      { format: 'What changed', line: 'The morning a channel stops saying it’s AI, or a person misses your target.' },
       { format: 'A PDF to share', line: 'For legal, compliance, your insurer or your client.' },
       { format: 'Slack, a table or the API', line: 'Each day’s events where your team already looks.' },
     ],
@@ -159,15 +155,15 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'founders', line: 'Know your AI says it’s AI everywhere you sell, with every day in your event log.' },
-    { audience: 'agencies', line: 'A daily disclosure check in your event log for every agent you run for a client.' },
+    { audience: 'founders', line: 'Know your AI says it’s AI everywhere you sell, every day.' },
+    { audience: 'agencies', line: 'A daily disclosure check for every agent you run for a client.' },
     { audience: 'marketing', line: 'Check the texts and emails your AI sends say they’re AI from the first line.' },
     { audience: 'developers', line: 'Run the checks from your code or agent after every prompt change.' },
   ],
 
   table: {
     heading: 'A daily check leaves dated events in your event log for every day of the year.',
-    line: '4 channels checked every morning is 1,460 events a year, each with the first line, the answer when asked and the wait for a person.',
+    line: '4 channels checked every morning is 1,460 dated events a year.',
     cols: ['By hand', 'With a daily check'],
     rows: [
       { label: 'What it says at first contact', values: ['A screenshot from launch day', 'Dated events every day, by channel'] },
@@ -207,7 +203,7 @@ export const recipe: Recipe = {
 
   final: {
     heading: 'Keep every word your AI tells people, dated, in your event log.',
-    sub: 'Tell us which agents to ask and who the persona should be. We’ll set up your first check with you.',
+    sub: 'Tell us which agents to ask. We’ll set up the persona and your first check with you.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-disclosure-final',

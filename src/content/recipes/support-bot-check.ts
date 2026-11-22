@@ -16,7 +16,7 @@ export const recipe: Recipe = {
   slug: 'support-bot-check',
   name: 'Support bot check',
   group: 'Check your AI agents',
-  line: 'A persona asks your support bot, and competitors’, what your support team hears most, and keeps every answer word for word.',
+  line: 'A persona asks your support bot, and competitors’, what your team hears most, keeping every answer.',
   gets: 'Every answer and wait, word for word, beside your policy page as it read that minute.',
   kit: [
     'A persona you define, with its own inbox and number',
@@ -33,7 +33,7 @@ export const recipe: Recipe = {
     description:
       'A persona you define asks your support bot what people ask, on chat, email and portals, every morning. Every answer comes back word for word, dated.',
     answer:
-      'Support bot check sends a persona you define to ask support bots what your support team hears most, on chat, email and portals, every morning. Every answer and wait comes back word for word, dated, beside your policy page, and competitors’ bots get the same questions.',
+      'Support bot check sends a persona to ask support bots what your team hears most, on chat, email and portals, every morning. Every answer, yours and competitors’, lands word for word beside your policy page.',
     ogImage: '/og/support-bot-check.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -44,7 +44,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every answer your support bot gives, kept word for word.',
-    sub: 'Support bot check sends a persona you define to ask support bots what your support team hears most, on chat, email and portals, every morning. Every answer and wait comes back word for word, dated, beside your policy page, and competitors’ bots get the same questions.',
+    sub: 'Support bot check sends a persona to ask support bots what your team hears most, on chat, email and portals, every morning. Every answer, yours and competitors’, lands word for word beside your policy page.',
     screen: 'botcheck',
     capture: {
       kind: 'waitlist',
@@ -92,11 +92,11 @@ export const recipe: Recipe = {
     },
     {
       title: 'Define the persona and the questions',
-      line: 'A new buyer, a buyer with an order or one about to cancel, asking what your support team hears most. Add your policy pages to read each answer against.',
+      line: 'A new buyer, a buyer with an order or one about to cancel, asking what your team hears most.',
     },
     {
       title: 'Asked every morning',
-      line: 'The persona asks on every channel in the same minute, asks for a person, and waits in its own inbox for the email the bot promised.',
+      line: 'It asks on every channel in the same minute, asks for a person and waits for any promised email.',
     },
     {
       title: 'Every answer lands where you work',
@@ -108,7 +108,7 @@ export const recipe: Recipe = {
     {
       group: 'What the bot says',
       items: [
-        { title: 'Says it’s an AI', line: 'In its first message, and truthfully every time the persona asks “Am I talking to a person?”' },
+        { title: 'Says it’s an AI', line: 'In its first message, and truthfully whenever asked “Am I talking to a person?”' },
         { title: 'Refunds, returns and cancellations', line: 'Every answer beside your policy pages, captured the same minute.' },
         { title: 'Prices, fees and codes', line: 'The prices it quotes and the codes it hands out: live, right and in date.' },
         { title: 'The same answer everywhere', line: 'The same question on chat, email and your portal in the same minute.' },
@@ -120,7 +120,7 @@ export const recipe: Recipe = {
         { title: 'A person when asked', line: 'Whether a person is offered, how long it takes, and whether someone answers.' },
         {
           title: 'Promises kept',
-          line: 'The ticket, email or callback it promised, waited for on the persona’s own inbox and phone: 48 hours by default, or as long as you set.',
+          line: 'The promised ticket, email or callback, waited for 48 hours by default, or as long as you set.',
         },
         { title: 'Stops after “No”', line: 'Whether it keeps going after “No, that didn’t help.”' },
       ],
@@ -128,7 +128,7 @@ export const recipe: Recipe = {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Your bill', line: 'Every test on your own bot is tagged, so your vendor doesn’t bill it as a resolution.' },
+        { title: 'Your bill', line: 'Tests on your bot are tagged, so your vendor doesn’t bill them as resolutions.' },
         { title: 'Hard questions', line: 'Ordinary questions by default, and hard or adversarial ones when you add them.' },
       ],
     },
@@ -140,9 +140,8 @@ export const recipe: Recipe = {
       { format: 'An answer per question', line: 'Matches your policy or doesn’t, by channel.' },
       {
         format: 'The transcript',
-        line: 'Every message on every channel, dated, with screenshots, beside the policy page as it read that minute.',
+        line: 'Every message on every channel, dated, with screenshots.',
       },
-      { format: 'What happened next', line: 'The promised email, ticket or callback, and when it reached the persona, or that it never did.' },
       { format: 'What changed', line: 'After every update to the bot, the answers that changed.' },
       { format: 'Competitors’ answers', line: 'The same questions to their bots, side by side with yours.' },
       { format: 'Slack, sheet or API', line: 'Every answer as a message, a row or JSON, with its transcript linked.' },
@@ -152,7 +151,7 @@ export const recipe: Recipe = {
   settings: [
     { k: 'Bots', v: 'Yours, a client’s or a competitor’s' },
     { k: 'Channels', v: 'Site chat, help centre, support inbox, portal, WhatsApp and text' },
-    { k: 'Questions', v: 'The ones your support team hears most, and your own tricky cases' },
+    { k: 'Questions', v: 'The ones your support team hears most, and your tricky cases' },
     { k: 'Persona', v: 'A new buyer, a buyer with an order, or one about to cancel' },
     { k: 'Policies', v: 'Your refund, returns, cancellation and delivery pages, captured each run' },
     { k: 'What counts', v: 'For example: a person within 3 minutes, the promised email within 1 hour' },
@@ -161,10 +160,10 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'agencies', line: 'Every bot you build or run for a client checked daily, every answer word for word in your event log.' },
-    { audience: 'founders', line: 'Know what your bot said overnight, and hear the morning it gets a policy wrong.' },
+    { audience: 'agencies', line: 'Every client bot you build or run, checked daily, every answer in your event log.' },
+    { audience: 'founders', line: 'Hear the morning your bot gets a policy wrong.' },
     { audience: 'marketing', line: 'What competitors’ bots say about refunds, prices and switching, beside yours.' },
-    { audience: 'developers', line: 'Spawn the persona from your code or agent, and read every answer after each prompt or knowledge base change.' },
+    { audience: 'developers', line: 'Spawn the persona from your code or agent after each prompt or knowledge base change.' },
   ],
 
   table: {

@@ -14,8 +14,8 @@ export const recipe: Recipe = {
   slug: 'account-watch',
   name: 'Account watch',
   group: 'Watch other companies',
-  line: 'A persona signs up at each company you sell to and dates what changes, on the account’s record in your CRM.',
-  gets: 'Every morning: the accounts whose emails stopped, links broke or offers changed, each with its events in your event log.',
+  line: 'A persona signs up at each company you sell to and dates changes in your CRM.',
+  gets: 'Every morning: the accounts whose emails stopped, links broke or offers changed, from your event log.',
   kit: [
     'A persona signed up at each company you sell to',
     'Its own inbox and number at each',
@@ -31,7 +31,7 @@ export const recipe: Recipe = {
     description:
       'A persona signs up at each company you sell to and dates what it sends: emails, offers and journeys, with news beside them, on each account in your CRM.',
     answer:
-      'Account watch signs up at each company you sell to as a persona you define, and keeps the account open. Every change in what it’s sent lands dated on the account’s record in your CRM, with public news and job posts beside it.',
+      'Account watch signs up at each company you sell to as a persona you define and keeps the account open. Every change lands dated on the account’s record in your CRM, beside public news and job posts.',
     ogImage: '/og/account-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -42,7 +42,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'A persona at every account you sell to, so you see what changes first.',
-    sub: 'Account watch signs up at each company you sell to as a persona you define, and keeps the account open. Every change in what it’s sent lands dated on the account’s record in your CRM, with public news and job posts beside it.',
+    sub: 'Account watch signs up at each company you sell to as a persona you define and keeps the account open. Every change lands dated on the account’s record in your CRM, beside public news and job posts.',
     screen: 'acctwatch',
     capture: {
       kind: 'waitlist',
@@ -87,11 +87,11 @@ export const recipe: Recipe = {
     { title: 'Add the accounts', line: 'Every account on your book, from your CRM, a CSV, Clay or the API.' },
     {
       title: 'A persona signs up at each',
-      line: 'It joins each account’s emails and texts, and walks its sign up, basket or booking as far as you choose.',
+      line: 'It joins their emails and texts and walks their sign up, basket or booking.',
     },
     {
       title: 'Every change is dated',
-      line: 'Emails that stop, links that break, a new offer, a site that goes down. Public news and job posts sit beside them.',
+      line: 'Emails that stop, links that break, a new offer, a site that goes down.',
     },
     { title: 'Changes land on the account', line: 'On its record in your CRM, in Slack each morning, or from the API.' },
   ],
@@ -144,7 +144,7 @@ export const recipe: Recipe = {
   forWho: [
     { audience: 'sales', line: 'Account managers see what changed at each account before the renewal call.' },
     { audience: 'founders', line: 'Know which accounts are changing while there’s time to call.' },
-    { audience: 'developers', line: 'Each account’s changes, from your event log, in your own CRM or app through the API.' },
+    { audience: 'developers', line: 'Each account’s changes, from your event log, in your CRM or app through the API.' },
   ],
 
   table: {
@@ -163,7 +163,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do I know an account’s business is changing before they tell us?',
-        a: 'Account watch signs up at each account as a persona and dates every change in what it’s sent: emails that stop, links that break, new offers. Each change lands on the account in your CRM the morning it happens.',
+        a: 'Account watch signs up at each account as a persona and dates every change in what it’s sent: emails that stop, links that break, new offers. Each lands on the account in your CRM that morning.',
       },
       {
         q: 'Where do the changes come from?',

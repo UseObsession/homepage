@@ -17,8 +17,8 @@ export const recipe: Recipe = {
   slug: 'lead-leaks',
   name: 'Lead response checks',
   group: 'Check your own journeys',
-  line: 'A persona fills in your forms as a new lead, and times the first reply by email, text or call back from sales.',
-  gets: 'Your speed to lead on every form, chat and sales line, the reply itself, and every lead nobody answered.',
+  line: 'A persona fills in your forms as a new lead and times how fast sales replies.',
+  gets: 'Your speed to lead on every form, chat and sales line, and every lead nobody answered.',
   kit: [
     'A new lead every run, defined by you',
     'Its own inbox and phone number, for replies and calls',
@@ -34,7 +34,7 @@ export const recipe: Recipe = {
     description:
       'A persona fills in your forms, opens your chat and calls your sales line as a new lead, then times every first reply by email, text or call back.',
     answer:
-      'Lead response checks time your speed to lead. A persona you define fills in your forms, opens your site chat and calls your sales line as a new lead. It times every first reply by email, text or call back, and keeps what was said.',
+      'Lead response checks time your speed to lead. As a new lead, a persona fills in your forms, opens your chat and calls your sales line, timing every first reply by email, text or call.',
     ogImage: '/og/lead-leaks.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -45,7 +45,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Find the form that leaves a new lead waiting 4 hours.',
-    sub: 'Lead response checks time your speed to lead. A persona you define fills in your forms, opens your site chat and calls your sales line as a new lead. It times every first reply by email, text or call back, and keeps what was said.',
+    sub: 'Lead response checks time your speed to lead. As a new lead, a persona fills in your forms, opens your chat and calls your sales line, timing every first reply by email, text or call.',
     screen: 'inbound',
     capture: {
       kind: 'waitlist',
@@ -94,19 +94,19 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Name your lead flows',
-      line: 'Your demo, contact and quote forms, your site chat and your sales line. Yours, or a client’s with their OK.',
+      line: 'Your forms, site chat and sales line, or a client’s, with their OK.',
     },
     {
       title: 'Define the lead',
-      line: 'Who asks, from where, and what: a finance lead at a firm of 40 in Leeds asking for a demo, or a homeowner asking for a quote.',
+      line: 'A finance lead at a firm of 40 in Leeds wanting a demo, or a homeowner wanting a quote.',
     },
     {
       title: 'It gets in touch',
-      line: 'By form, chat, email and phone, at the hours you choose. It answers every call back, and says it’s an AI to anyone who talks to it.',
+      line: 'By form, chat, email and phone, at the hours you choose. It answers every call back.',
     },
     {
       title: 'Every reply lands, timed',
-      line: 'From the second it asked to the first answer, with the reply itself: the email, the text, the transcript or the call.',
+      line: 'From the second it asked to the first answer, with the reply itself.',
     },
   ],
 
@@ -114,7 +114,7 @@ export const recipe: Recipe = {
     {
       group: 'How it asks',
       items: [
-        { title: 'Web forms', line: 'Demo, contact and quote forms, filled in the way a new lead fills them in.' },
+        { title: 'Web forms', line: 'Demo, contact and quote forms, filled in as a new lead.' },
         { title: 'Site chat', line: 'Whether a bot or a person answers, and how fast.' },
         { title: 'Phone', line: 'Whether the sales line picks up, goes to voicemail or rings out.' },
         { title: 'Email', line: 'Your published sales or enquiry address.' },
@@ -124,7 +124,7 @@ export const recipe: Recipe = {
       group: 'What it records',
       items: [
         { title: 'Time to first reply', line: 'On any channel, from the second it asked.' },
-        { title: 'Calls back', line: 'When sales rings the lead’s own number, how long after, and what the rep offers.' },
+        { title: 'Calls back', line: 'When sales rings the lead’s number, how soon, and what the rep offers.' },
         { title: 'The reply itself', line: 'What came back: a call, a price, a booking link or a question.' },
         { title: 'Follow ups', line: 'How many times sales chases, on which channel, and for how long.' },
         { title: 'Out of hours', line: 'What a lead at 21:00 on a Friday gets.' },
@@ -146,8 +146,8 @@ export const recipe: Recipe = {
       { format: 'The replies', line: 'Emails, texts, chat transcripts and call recordings, as they came.' },
       { format: 'No reply', line: 'Every lead nobody answered inside the time you set.' },
       { format: 'Over time', line: 'Run it every day and see the week a change slowed you down.' },
-      { format: 'Clay or HubSpot', line: 'A row per lead and channel in Clay, or on the lead’s own record in HubSpot.' },
-      { format: 'API and MCP', line: 'Your code, or your own agent, spawns leads and reads each reply as it lands.' },
+      { format: 'Clay or HubSpot', line: 'A row per lead and channel in Clay, or on the lead’s HubSpot record.' },
+      { format: 'API and MCP', line: 'Your code or agent spawns leads and reads each reply as it lands.' },
     ],
   },
 
@@ -161,7 +161,7 @@ export const recipe: Recipe = {
   ],
 
   forWho: [
-    { audience: 'sales', line: 'Know every new lead hears back inside 5 minutes, by email, text or call, evenings included.' },
+    { audience: 'sales', line: 'Know every new lead hears back inside 5 minutes, evenings included.' },
     { audience: 'agencies', line: 'Show a client how fast its leads really hear back, with every reply kept.' },
     { audience: 'marketing', line: 'See what happens after the form to the leads your campaigns pay for.' },
     { audience: 'founders', line: 'Know the day your sales line rings out, before a buyer gives up.' },
@@ -184,7 +184,7 @@ export const recipe: Recipe = {
     items: [
       {
         q: 'How do I test our speed to lead?',
-        a: 'Send a persona through it as a new lead. It fills in your forms, opens your chat and calls your sales line at the hours you choose. Then it times every first reply by email, text or call back, evenings and weekends included.',
+        a: 'Send a persona through it as a new lead. It fills in your forms, opens your chat and calls your sales line, then times every first reply by email, text or call back, evenings and weekends included.',
       },
       {
         q: 'Do calls back from sales count?',
@@ -200,7 +200,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can an agency run it for clients?',
-        a: 'Yes, with each client’s OK. Every client gets its own leads, its own hours and its own events, kept apart in your event log.',
+        a: 'Yes, with each client’s OK. Each client’s leads, hours and events are kept apart in your event log.',
       },
     ],
   },

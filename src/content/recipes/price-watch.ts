@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   slug: 'price-watch',
   name: 'Price watch',
   group: 'Watch other companies',
-  line: 'A persona signs in at each competitor and reads public and member prices, delivery and subscriber codes each morning.',
+  line: 'Every morning a persona signs in at each competitor and reads member prices and subscriber codes.',
   gets: 'Every price change and subscriber code, dated, with the screenshot before and after.',
   kit: [
     'A persona at each competitor, in your country',
@@ -30,7 +30,7 @@ export const recipe: Recipe = {
     description:
       'Price watch signs in at each competitor as a persona and reads public and member prices, delivery and subscriber codes each morning, every change dated.',
     answer:
-      'Price watch signs in at each competitor as a persona you define, in your country, and joins its email list. Each morning it reads public and member prices, offers, delivery and the codes sent only to subscribers, and dates every change with its screenshot.',
+      'Price watch signs in at each competitor as a persona in your country and joins its email list. Each morning it reads public and member prices, offers, delivery and subscriber codes, and dates every change.',
     ogImage: '/og/price-watch.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -41,7 +41,7 @@ export const recipe: Recipe = {
 
   hero: {
     headline: 'Every competitor’s prices, including the ones only members see.',
-    sub: 'Price watch signs in at each competitor as a persona you define, in your country, and joins its email list. Each morning it reads public and member prices, offers, delivery and the codes sent only to subscribers, and dates every change with its screenshot.',
+    sub: 'Price watch signs in at each competitor as a persona in your country and joins its email list. Each morning it reads public and member prices, offers, delivery and subscriber codes, and dates every change.',
     screen: 'prices',
     capture: {
       kind: 'waitlist',
@@ -86,7 +86,7 @@ export const recipe: Recipe = {
     { title: 'Name the competitors', line: 'Single products or whole categories, from a list, a CSV, Clay or the API.' },
     {
       title: 'Define the persona',
-      line: 'Who it is and where it shops from: a new visitor, a subscriber or a member, in the country and currency you choose. It opens the account and joins each email list.',
+      line: 'A new visitor, a subscriber or a member, in the country and currency you choose.',
     },
     { title: 'It reads every morning', line: 'Each price, offer, stock level and delivery cost, against yesterday’s and against yours.' },
     { title: 'Changes land where you work', line: 'Slack, a sheet, Clay, a webhook or the API, each with its screenshot.' },
@@ -112,7 +112,7 @@ export const recipe: Recipe = {
     {
       group: 'In the subscriber inbox',
       items: [
-        { title: 'Subscriber codes', line: 'The codes a competitor sends only its list, so you see the price a new subscriber is offered.' },
+        { title: 'Subscriber codes', line: 'Codes sent only to the list, so you see what a new subscriber is offered.' },
         { title: 'Sales told to the list first', line: 'The sale a competitor emails its subscribers before its site shows it.' },
       ],
     },
@@ -124,7 +124,7 @@ export const recipe: Recipe = {
       { format: 'Slack or email', line: 'The morning a competitor cuts a price or starts a sale.' },
       { format: 'Change log', line: 'Every change with the old price, the new one and the day it moved.' },
       { format: 'Sheet or Clay', line: 'Each change as a row or a column on the products you track.' },
-      { format: 'API and webhook', line: 'Every price as JSON, the moment it’s read, for your own pricing.' },
+      { format: 'API and webhook', line: 'Every price as JSON, the moment it’s read, for your pricing.' },
     ],
   },
 
@@ -141,7 +141,7 @@ export const recipe: Recipe = {
     { audience: 'marketing', line: 'Know a competitor’s sale has started before your shoppers do.' },
     { audience: 'founders', line: 'Price with every competitor in view, without opening their sites each morning.' },
     { audience: 'agencies', line: 'A price report for each client’s market.' },
-    { audience: 'developers', line: 'Every competitor price as JSON, straight into your own pricing.' },
+    { audience: 'developers', line: 'Every competitor price as JSON, straight into your pricing.' },
   ],
 
   table: {
@@ -170,7 +170,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Can Price watch see the price at checkout?',
-        a: 'Yes, if you choose. Price watch fills a basket to see the total with delivery and codes applied, and stops before payment unless you give it your own payment card.',
+        a: 'Yes, if you choose. Price watch fills a basket to see the total with delivery and codes applied, and stops before payment unless you give it your card.',
       },
       {
         q: 'Which countries can Price watch read prices in?',
