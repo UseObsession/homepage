@@ -7,7 +7,7 @@ import type { BlogPost } from './types'
    changes, saas competitor analysis (and its template). Page 1 today is vendor listicles and price monitors, all built
    on public pages, news and social; this guide adds what a competitor shows only to the people who sign up, with a
    copyable tracking sheet, a SaaS competitor analysis template, a worked example per kind of vendor and a fair
-   comparison. "Competitor tracking" stays with /recipes/competitor-tracking and is linked with that anchor.
+   comparison. "Competitor tracking" stays with /blueprints/competitor-tracking and is linked with that anchor.
    Every fact about another tool comes from its own pages, read on 11 Nov 2026: visualping.io/pricing (plans, history,
    Actions behind a login), crayon.co and /pricing, klue.com, /compete-agent (its meta description) and /pricing,
    kompyte.com (no pricing page: /pricing returned 404, so "not listed on its home page"), Google's Alerts help page,
@@ -38,7 +38,7 @@ export const post: BlogPost = {
   description:
     'Competitor monitoring for software companies: what to track, the tools that watch pages and news, and each competitor’s trial emails and offers, dated.',
   answer:
-    'Competitor monitoring is the ongoing tracking of what competitors change, from pricing pages and launches to the trial emails and offers they send new sign-ups, so battlecards stay current. Visualping watches the pages you choose, Crayon, Klue and Kompyte turn competitor intel into battlecards, and Google Alerts catches the news. Obsession keeps the trial emails, upgrade prompts and save offers competitors show only to signed-up customers, dated with screenshots, by API or MCP (the standard way AI agents call tools).',
+    'Competitor monitoring is the ongoing tracking of what competitors change, from pricing pages and launches to the trial emails and offers they send new sign-ups, so battlecards stay current. Visualping watches the pages you choose, Crayon, Klue and Kompyte turn competitor intel into battlecards, and Google Alerts catches the news. Obsession’s competitor tracking and trial teardown blueprints sign up to each competitor and keep the trial emails, upgrade prompts and save offers, dated with screenshots.',
   primaryKeyword: 'competitor monitoring',
   keywords: [
     'competitor monitoring software',
@@ -51,7 +51,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 15,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -133,7 +133,7 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Visualping](' +
           VISUALPING +
-          ') checks the pages you choose for visual and text changes and writes an AI summary of each, flagged important or not. Every plan, the free one included, comes with its REST API and MCP server. Its Actions type a username and password and click log in before each check, so it can watch a page behind a login your team holds.',
+          ') checks the pages you choose for visual and text changes and writes an AI summary of each, flagged important or not. Every plan, the free one included, comes with its REST API and an MCP server, the standard way AI agents call tools. Its Actions type a username and password and click log in before each check, so it can watch a page behind a login your team holds.',
         '**Price as listed:** free for 150 checks a month across 5 pages. Personal plans cost $14 to $70 a month and Business plans $140 to $350 a month, less when billed yearly, with a 14 day Business trial and no payment details needed.',
         '**Where it stops:** change history is kept for 3 months by default and 1 year on Business. It watches pages, and its pricing page doesn’t describe receiving the emails a competitor sends.',
         '**Best for:** an alert the day a competitor’s pricing, plans or docs page changes.',
@@ -358,15 +358,15 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'obsession', text: 'Competitor monitoring for every competitor, every day' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. For competitor monitoring, a persona, an AI agent with its own inbox, number and browser under one name, signs up to each competitor’s trial and newsletter. It waits for free between emails and keeps what arrives, so a day 12 email is caught on day 12.',
     },
     {
       kind: 'p',
-      text: 'Page monitors, CI platforms and Exa read what competitors publish. Obsession keeps what each competitor sends and shows the people who sign up, from the welcome email to the save offer in the cancel flow. Each fact is dated and kept for as long as you follow the company. Insights asks one question across every competitor you name, such as what each free plan includes, and answers with a row per company. Each new fact reaches a webhook (a message posted to your server the moment it lands), a table or Slack the day it arrives.',
+      text: 'Page monitors, CI platforms and Exa read what competitors publish. Obsession’s personas keep what each competitor sends and shows the people who sign up, from the welcome email to the save offer in the cancel flow, in one event log. Teams who don’t code run it as the [competitor tracking](/blueprints/competitor-tracking) and [trial teardown](/blueprints/trial-teardown) blueprints. Each new result reaches Slack, a sheet or your webhook (a message posted to your server the moment it lands) the day it arrives.',
     },
     {
       kind: 'p',
-      text: 'It also shows the platform behind each email, so an email platform’s CI team sees the week an account’s emails start coming from a new platform. Sales teams use the same lookups for account briefs, as [the sales page](/sales) shows. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. [The sample data](/sample-output) holds one real store’s record in every format it comes in.',
+      text: 'Each email arrives whole, with the headers that name the sending service, such as Klaviyo or Braze. An email company’s CI team sees the week an account starts sending from another service. Sales teams run the same blueprints on their accounts, as [the sales page](/sales) shows.',
     },
     {
       kind: 'p',
@@ -400,8 +400,8 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Trial teardown](/blueprints/trial-teardown), [Email and SMS tracking](/blueprints/email-sms-tracking)',
           'Trial limits, prompts, onboarding emails and save offers, each dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Every step short of paying, up to any identity check',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at any identity check and before payment',
           'What competitors show the people who sign up',
         ],
       ],
@@ -415,25 +415,25 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'choose', text: 'Which competitor monitoring tool to choose' },
     {
       kind: 'p',
-      text: 'Use Obsession when your team needs what competitors show only to their customers, at every competitor you name. That means the trial limits, upgrade prompts and onboarding emails, the offer before the trial ends and the save offer in the cancel flow. Each fact is dated with its screenshot and kept for as long as you follow the company. For what competitors publish, pick by job:',
+      text: 'Use Obsession when your team needs what competitors show only to their customers, at every competitor you name. That means the trial limits, upgrade prompts and onboarding emails, the offer before the trial ends and the save offer in the cancel flow. Each item lands in the event log with its date and screenshot, for as long as the persona stays signed up. For what competitors publish, pick by job:',
     },
     {
       kind: 'list',
       items: [
-        '**What competitors send and show signed-up users:** Obsession, beside any tool here.',
+        '**What competitors send and show signed-up users:** Obsession’s blueprints, beside any tool here.',
         '**A pricing or docs page changes:** Visualping, free for 5 pages.',
         '**Monitoring and battlecards in one place:** Crayon or Kompyte.',
         '**Monitoring with win-loss interviews:** Klue. [Win loss analysis](/blog/win-loss-analysis) adds what the competitor sent the buyer during the trial.',
         '**News, funding and launches:** Google Alerts, free.',
         '**Research on any competitor in seconds, for a rep or an agent:** Exa.',
-        '**Positioning, launch by launch:** [competitive intelligence for product marketing](/blog/competitive-intelligence-for-product-marketing) reads each launch through the competitor’s own emails. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+        '**Positioning, launch by launch:** [competitive intelligence for product marketing](/blog/competitive-intelligence-for-product-marketing) reads each launch through the competitor’s own emails. [The revenue team use case](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
       ],
     },
     {
       kind: 'cta',
-      text: 'What every competitor sends and shows the people who sign up: trial limits, onboarding emails and offers, each dated with its screenshot.',
-      to: '/#join',
-      label: 'Request early access',
+      text: 'A persona signs up to every competitor you name and keeps its trial limits, onboarding emails and offers, each dated with its screenshot.',
+      to: '/blueprints/competitor-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'faq', text: 'Questions about competitor monitoring' },
@@ -446,7 +446,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What is the best competitor monitoring software?',
-          a: 'It depends on what you need to see. On 11 November 2026, Visualping watched chosen pages for free up to $350 a month. Crayon, Klue and Kompyte turned competitor intel into battlecards, and Google Alerts sent new search results for free. For what competitors show only to signed-up customers, such as trial limits, onboarding emails and save offers, Obsession keeps each one dated with its screenshot.',
+          a: 'It depends on what you need to see. On 11 November 2026, Visualping watched chosen pages for free up to $350 a month. Crayon, Klue and Kompyte turned competitor intel into battlecards, and Google Alerts sent new search results for free. For what competitors show only to signed-up customers, such as trial limits, onboarding emails and save offers, Obsession’s competitor tracking blueprint keeps each one dated with its screenshot.',
         },
         {
           q: 'How do you track competitor changes?',
@@ -465,12 +465,12 @@ export const post: BlogPost = {
         },
         {
           q: 'Can AI do competitor monitoring?',
-          a: 'Yes, for much of it. Crayon and Kompyte use AI to summarise and sort what they collect, and Klue’s Compete Agent works from sales calls and market data. Visualping writes an AI summary of each page change, and Exa’s Monitors run scheduled searches. For what competitors send new users, an AI agent can look up Obsession over MCP and get each trial email, upgrade prompt and save offer, dated.',
+          a: 'Yes, for much of it. Crayon and Kompyte use AI to summarise and sort what they collect, and Klue’s Compete Agent works from sales calls and market data. Visualping writes an AI summary of each page change, and Exa’s Monitors run scheduled searches. For what competitors send new users, an AI agent on Obsession signs up with its own inbox and browser. It gets each trial email, upgrade prompt and save offer, dated, over MCP or the API.',
           link: { label: 'See the API and MCP', to: '/developers' },
         },
         {
           q: 'How is Obsession different from Klue or Crayon?',
-          a: 'Klue and Crayon collect what competitors publish and what your team hears, and turn it into battlecards. Obsession keeps what competitors show the people who sign up: trial limits, upgrade prompts, onboarding emails and save offers, each dated with its screenshot. A CI team can feed those facts into the battlecards it keeps in Klue or Crayon.',
+          a: 'Klue and Crayon collect what competitors publish and what your team hears, and turn it into battlecards. Obsession signs up to competitors and keeps what they show the people who sign up, such as trial limits, upgrade prompts, onboarding emails and save offers, each dated with its screenshot. A CI team can feed those into the battlecards it keeps in Klue or Crayon.',
           link: { label: 'Obsession vs Klue', to: '/compare/obsession-vs-klue' },
         },
       ],

@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
 
 /* The why series, Spec H (24 Oct 2026): why developers need AI customers, the developer deep dive. It owns "long
    running ai agents" (primary) and "durable ai agents", "building durable ai agents", "durable execution ai agents",
@@ -24,7 +23,7 @@ import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
    2026: no repository, package, install command, MCP or API address is printed, and the reader is never told to run
    anything of ours. Left out on purpose: Google Workspace, ChatGPT agent (retired), any Obsession price, Restate's
    delayed message advice (read only through a summary), and "Star it on GitHub". northfold.example and the wake counts,
-   seconds per wake and sign up program rates in the examples are invented. No dashes. */
+   seconds per wake and sign up program rates in the examples are invented. No dashes. Rewritten 22 Nov 2026 for the toolkit position. */
 
 const TEMPORAL_TIMERS = 'https://docs.temporal.io/workflow-execution/timers-delays'
 const BB_CONTEXTS = 'https://docs.browserbase.com/features/contexts'
@@ -77,7 +76,7 @@ export const post: BlogPost = {
   description:
     'Long running AI agents need an identity that lasts, free waiting, wake ups and evidence: the 6 hard parts, what waiting costs and the options compared.',
   answer:
-    'Long running AI agents that deal with other companies have to stay their customers for weeks or months, so developers need an inbox, phone number and browser that keep working, waiting that costs close to nothing, wake ups on outside events and evidence that holds. Durable execution engines such as Temporal, Inngest, Restate and DBOS make the waiting reliable. Obsession adds the identity and the evidence, keeping what any company shows only to its customers, dated with the email or screenshot, behind 5 verbs over the API and MCP.',
+    'Long running AI agents that deal with other companies have to stay their customers for weeks or months, so developers need an inbox, phone number and browser that keep working, waiting that costs close to nothing, wake ups on outside events and evidence that holds. Durable execution engines such as Temporal, Inngest, Restate and DBOS make the waiting reliable. On Obsession, a persona gives each agent an inbox, a number and a browser, free while it waits, with every event in one log.',
   primaryKeyword: 'long running ai agents',
   keywords: [
     'long running ai agents',
@@ -91,7 +90,7 @@ export const post: BlogPost = {
   ],
   category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   order: 19,
   authors: [
@@ -101,7 +100,7 @@ export const post: BlogPost = {
   hero: {
     art: {
       kind: 'log',
-      title: 'northfold.example · 1 AI customer, 90 days',
+      title: '1 persona, 90 days',
       who: 'Its own inbox, a UK number and a browser, made for this store',
       status: { tone: 'info', text: 'Awake 4 minutes in 90 days' },
       rows: [
@@ -112,14 +111,14 @@ export const post: BlogPost = {
         { time: 'Day 47 10:02', text: 'Woke: win back email', detail: '30% off, 47 days after sign up', tone: 'ok' },
         { time: 'Day 90', text: 'Still a customer', detail: 'No process ran between wakes', tone: 'info' },
       ],
-      foot: 'An example on an invented store. An email, a text or a scheduled check wakes the agent, and it sleeps in between.',
+      foot: 'An example at northfold.example, an invented store. An email, a text or a scheduled check wakes the agent, and it sleeps in between.',
     },
   },
 
   blocks: [
     {
       kind: 'p',
-      text: 'Engineers and technical founders build agents that deal with other companies: they sign up, wait, receive mail and texts, and act weeks later. AI customers give those agents a customer relationship that lasts as long as the job. [What AI customers are](/blog/ai-customers) defines the term, and [why AI customers matter](/blog/why-ai-customers-matter) makes the case for every company.',
+      text: 'Engineers and technical founders build agents that deal with other companies: they sign up, wait, receive mail and texts, and act weeks later. Each needs an identity that lasts as long as the job, such as a persona: an AI agent with its own inbox, phone number and browser under one name. [AI agents as customers](/blog/ai-customers) explains the idea, and [why AI agents as customers matter](/blog/why-ai-customers-matter) makes the case for every company.',
     },
 
     { kind: 'h2', id: 'in-production', text: 'Long running AI agents in production' },
@@ -142,7 +141,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The usual stack has an agent framework such as LangGraph or Pydantic AI for the model loop, a durable engine or runtime to keep state across waits and crashes, and services such as AgentMail, Twilio and Browserbase for the inbox, the number and the browser. [AI customers for developers](/blog/ai-customers-for-developers) prices each part.',
+      text: 'The usual stack has an agent framework such as LangGraph or Pydantic AI for the model loop, a durable engine or runtime to keep state across waits and crashes, and services such as AgentMail, Twilio and Browserbase for the inbox, the number and the browser. [Email, phone and browser APIs for AI agents](/blog/ai-customers-for-developers) prices each part.',
     },
 
     { kind: 'h2', id: 'hard-parts', text: 'Building durable AI agents: the 6 hard parts' },
@@ -154,7 +153,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'identity', text: '1. Identity that keeps working' },
     {
       kind: 'p',
-      text: 'A customer is an identity a company recognises over time: an email address, a phone number, a signed in browser, an account. Give each AI customer its own inbox at each company it joins, so every email belongs to 1 company, and a number per market for texts and login codes. Keep the identifiers in the agent’s durable state, never in a session.',
+      text: 'A customer is an identity a company recognises over time: an email address, a phone number, a signed in browser, an account. Give each agent its own inbox at each company it joins, so every email belongs to 1 company, and a number per market for texts and login codes. Keep the identifiers in the agent’s durable state, never in a session.',
     },
     {
       kind: 'p',
@@ -190,7 +189,7 @@ export const post: BlogPost = {
         INNGEST_LIMITS +
         '), at 30 days on Free, 90 on Pro and 366 on Business, and a Step Functions callback waits up to [the one year service quota](' +
         SFN_CALLBACK +
-        '). A customer that outlives a run is easier to model as an entity, 1 durable object or keyed record per AI customer, with each wait as a short run that starts from its state.',
+        '). A customer that outlives a run is easier to model as an entity, 1 durable object or keyed record per agent, with each wait as a short run that starts from its state.',
     },
 
     { kind: 'h3', id: 'waking', text: '3. Waking on outside events' },
@@ -200,7 +199,7 @@ export const post: BlogPost = {
         AGENTMAIL_EVENTS +
         ') when a new email is received and processed, and when a message reaches a Twilio number, [Twilio sends a request to your web application](' +
         TWILIO_WEBHOOK +
-        '). The handler finds the AI customer by recipient address or number and resumes its run.',
+        '). The handler finds the agent by recipient address or number and resumes its run.',
     },
     {
       kind: 'p',
@@ -230,7 +229,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The outside world sets its own pace. Cap concurrency per domain so sign ups arrive at a customer’s pace, and record a CAPTCHA or bot wall as a step the AI customer couldn’t test, because it never gets round one. Where 2 users watch the same company, 1 shared AI customer gives the second user the history the first one built.',
+      text: 'The outside world sets its own pace. Cap concurrency per domain so sign ups arrive at a customer’s pace, and record a CAPTCHA or bot wall as a step the agent couldn’t test, never one it gets round. Where 2 users follow the same company, 1 shared agent can give the second user the history the first one built.',
     },
 
     { kind: 'h3', id: 'learn-once', text: '5. Learning a site once and running it as code' },
@@ -256,7 +255,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Facts come from evidence through versioned rules, 1 sentence each with a link back. When a rule changes, derive the facts again from stored evidence, because last month’s emails can’t be collected twice. This is also the agent’s memory. LangGraph’s [checkpointers](' +
         LG_PERSISTENCE +
-        ') keep short term memory per thread and its stores keep long term memory across threads, and an AI customer’s long term memory of a company is its evidence.',
+        ') keep short term memory per thread and its stores keep long term memory across threads, and an agent’s long term memory of a company is its evidence.',
     },
 
     { kind: 'h2', id: 'cost', text: 'What waiting costs' },
@@ -270,7 +269,7 @@ export const post: BlogPost = {
       kind: 'art',
       art: {
         kind: 'price',
-        title: '10,000 AI customers waiting 30 days on Durable Objects',
+        title: '10,000 agents waiting 30 days',
         rows: [
           { label: 'Awake: 1 agent, 30 days', value: '331,776 GB-s', note: '2,592,000 s × 128 MB' },
           { label: 'Awake: 10,000 agents', value: '$41,475', note: '$12.50 per million GB-s after 400,000, rounded up' },
@@ -280,7 +279,7 @@ export const post: BlogPost = {
         ],
         total: { label: 'Asleep, a month', value: '$5.00', note: 'Awake: $41,480' },
       },
-      caption: 'The waiting sum worked once for an example of 10,000 AI customers at Cloudflare’s published Durable Objects prices on 24 October 2026. The wake counts and seconds per wake are invented, and storage is left out.',
+      caption: 'The waiting sum worked once for an example of 10,000 agents at Cloudflare’s published Durable Objects prices on 24 October 2026. The wake counts and seconds per wake are invented, and storage is left out.',
     },
     {
       kind: 'p',
@@ -298,7 +297,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Designing for sleep costs engineering time. At the [median wage for software developers](' +
         BLS_DEV +
-        '), $135,980 a year in May 2025, an engineer week is about $2,615 in salary, so 4 weeks spent moving the waiting into hibernating objects or a durable engine pays back within the first month at 10,000 agents and in about 2.5 months at 1,000. The inbox, number, browser and model behind each AI customer are priced line by line in [AI customers at scale](/blog/ai-customers-at-scale).',
+        '), $135,980 a year in May 2025, an engineer week is about $2,615 in salary, so 4 weeks spent moving the waiting into hibernating objects or a durable engine pays back within the first month at 10,000 agents and in about 2.5 months at 1,000. The inbox, number, browser and model behind each agent are priced line by line in [AI agent cost per month](/blog/ai-customers-at-scale).',
     },
 
     { kind: 'h2', id: 'workload', text: 'Durable AI agents by hand, and as a routine' },
@@ -312,7 +311,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `Run as a routine, this is [customer-side observability](/blog/customer-side-observability). ${CUSTOMER_SIDE_OBSERVABILITY.definition} For a developer it has 3 parts, written before the first run.`,
+      text: 'Run as a routine, these checks become [monitoring from the customer’s side](/blog/customer-side-observability): every sign up program tested on a schedule against a pass mark written in advance. For a developer it has 3 parts, written before the first run.',
     },
     {
       kind: 'list',
@@ -323,19 +322,19 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'jobs', text: 'What AI customers do for developers' },
-    { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
+    { kind: 'h2', id: 'jobs', text: 'What a persona does for developers' },
+    { kind: 'p', text: '**A persona is an AI agent with its own inbox, phone number and browser under one identity.** It costs nothing while it waits and wakes in about 50 ms when an email, text or call arrives.' },
     {
       kind: 'p',
-      text: 'For a developer, an AI customer is a tool the agent calls. It holds the identity, does the waiting and keeps the evidence, and the agent reads facts when it needs them. It does these 5 jobs in a product or a pipeline.',
+      text: 'For a developer, a persona is a set of tools the agent calls. It holds the identity, does the waiting and keeps every event, and the agent reads the event log when it needs it. It does these 5 jobs in a product or a pipeline.',
     },
     {
       kind: 'table',
-      caption: '5 jobs for AI customers in a developer’s product or pipeline, each with its check, its pass mark and what happens that week',
+      caption: '5 jobs for personas in a developer’s product or pipeline, each with its check, its pass mark and what happens that week',
       cols: ['Job', 'The check', 'A pass', 'That week'],
       rows: [
         [
-          'Every deploy: [Website audit](/blueprints/website-audit)',
+          'Every deploy: [QA on your own flows](/blueprints/website-audit)',
           'A fresh customer signs up and enters the login code',
           'Code works, every email arrives',
           'A failing release held',
@@ -353,7 +352,7 @@ export const post: BlogPost = {
           'The gap on the account record',
         ],
         [
-          'Merchant checks: [Mystery shopper](/blueprints/mystery-shopper)',
+          'Merchant checks: [Mystery shopping](/blueprints/mystery-shopper)',
           'A weekly basket at each opted in store',
           'The reminder arrives within 48 hours',
           'Merchants with a silent store contacted',
@@ -368,11 +367,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The 10 builds behind these jobs, with the calls each makes and where its facts land, are in [what to build with AI customers](/blog/what-to-build-with-ai-customers).',
+      text: 'The 10 builds behind these jobs, with the calls each makes and where its events land, are in [what to build with AI agents as customers](/blog/what-to-build-with-ai-customers).',
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. It keeps accounts open at 10,000 companies at once, for months, and stores every raw email with its DKIM result, checked on arrival.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. One call puts them under one identity: obsession.personas.create({ inbox: true, phone: "US", browser: true }). Each email.received, sms.received or page.visited event then reaches your webhook, the URL your code listens on, and lands in the event log.',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },
@@ -398,7 +397,7 @@ export const post: BlogPost = {
           AI_ACT_50 +
           ') requires AI systems that talk to people to be designed so those people are told they are dealing with an AI, unless it is obvious, and the Act [applies from 2 August 2026](' +
           AI_ACT_113 +
-          '). An AI customer that reaches a person says it is an AI.',
+          '). An agent on Obsession says it is an AI when it reaches a person.',
         '**Forecast: more agents contacting companies.** A Salesforce executive wrote on 19 October 2026 that consumers are starting to hand tasks such as cancelling subscriptions to [personal agents that can contact businesses at a volume people would not](' +
           SF_PERSONAL +
           ').',
@@ -406,7 +405,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each change rewards an agent that keeps a stable, identified presence at each company and evidence for what it reports, which is what an AI customer holds.',
+      text: 'Each change rewards an agent that keeps a stable, identified presence at each company and evidence for what it reports, which is what a persona holds.',
     },
 
     { kind: 'h2', id: 'options', text: 'Durable execution for AI agents, compared', compare: true },
@@ -471,17 +470,17 @@ export const post: BlogPost = {
           'Teams already on AWS or Vercel',
         ],
         [
-          'Obsession (ours): 5 verbs over MCP, the API and SDKs',
-          'Accounts kept open at any company, for months\nShared history from day one\nEvidence with its DKIM result',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
-          'Agents that must stay a customer of many companies, with proof',
+          'Obsession (ours): [Personas](/personas), [Email](/email), [Phone](/phone), [Browser](/browser), [Sandbox](/sandbox)',
+          'An inbox, a number and a browser per agent, under one identity\nFree while it waits, awake in about 50 ms\nEvery event in one log, with replay',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at bot walls, CAPTCHAs and identity checks',
+          'Agents that stay a customer of many companies, every event kept',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your agents need to stay customers of other companies for months, with an inbox, number and browser at each and evidence for what they report, use Obsession. For waiting inside your own process, one of the engines is enough. Most teams combine 2 rows: an engine or runtime for the waiting, and a customer layer for identities, sign up programs and evidence. The engines differ in where state lives, from [DBOS’s Postgres database](' +
+      text: 'If your agents need to stay customers of other companies for months, with an inbox, number and browser at each and evidence for what they report, use Obsession. For waiting inside your own process, one of the engines is enough. Most teams combine 2 rows: an engine or runtime for their own waiting, and Obsession for the inbox, the number, the browser and the event log. The engines differ in where state lives, from [DBOS’s Postgres database](' +
         DBOS_ARCH +
         ') with no separate orchestration server to [one Durable Object per agent](' +
         CF_AGENT_CLASS +
@@ -494,7 +493,7 @@ export const post: BlogPost = {
         ') are MIT licensed, and Temporal is free to host yourself.',
     },
 
-    { kind: 'h2', id: 'when-not', text: 'When developers don’t need AI customers' },
+    { kind: 'h2', id: 'when-not', text: 'When developers don’t need a persona' },
     {
       kind: 'list',
       items: [
@@ -520,9 +519,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Give your agents an account at any company that stays open for months: 5 verbs over MCP, the API and TypeScript and Python SDKs return what each company shows only to its customers, dated with its proof. The runtime is open source.',
-      to: '/developers',
-      label: 'See the API and MCP',
+      text: 'Give every agent you build an inbox, a phone number and a browser under one identity, free while it waits. Every email, text and page lands in one event log, and the Free plan needs no credit card.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about long running AI agents' },

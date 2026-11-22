@@ -1,30 +1,28 @@
+import { prices } from '../prices'
 import type { ReferencePage } from '../reference'
 import { ENTITY } from '../site'
 
-/* /compare/obsession-vs-exa. Every Exa fact is from Exa's own pages, read 11 Nov 2026 (_research/seo/pagetypes-11nov/
-   research/dev_apis.json, quotes re-read the same day). Exa says it searches "the largest index of public web and
-   private information" and defines private information nowhere on its pages, so this page quotes it and contrasts only
-   what both pages describe. "exa alternatives" and "exa vs tavily" belong to the blog (docs/SEARCH.md §2). */
+/* /compare/obsession-vs-exa (22 Nov 2026 rewrite, the pieces position). Exa's facts: its home page as read for
+   _research/commercial-view-21nov/research/B_browsers_web_agents.json (21 Nov 2026), its pricing page re-read 22 Nov
+   2026. The angle: Exa searches the public web well; Obsession gives the agent its own browser that stays signed in, an
+   inbox and a number; many teams use both. "exa alternatives" and "exa vs tavily" stay with the blog guides
+   (docs/SEARCH.md §2). Obsession's prices come from prices.ts. */
 
 const EXA = 'https://exa.ai/'
-const EXA_INDEX = 'https://docs.exa.ai/reference/the-exa-index'
-const EXA_CONNECT = 'https://exa.ai/connect'
-const EXA_SEARCH = 'https://docs.exa.ai/reference/search'
-const EXA_MCP = 'https://docs.exa.ai/reference/exa-mcp'
 const EXA_PRICING = 'https://exa.ai/pricing'
 
 export const ref: ReferencePage = {
   kind: 'compare',
   name: 'Obsession vs Exa',
   company: 'Exa',
-  line: 'Exa searches the public web for AI agents. Obsession keeps what companies show only to signed-up customers.',
+  line: 'Exa searches the public web for AI agents. Obsession gives an agent a browser that stays signed in, an inbox and a number.',
   meta: {
     path: '/compare/obsession-vs-exa',
-    title: 'Obsession vs Exa: the public web and the web behind login',
+    title: 'Obsession vs Exa (2026): search or a signed-in browser',
     description:
-      'Obsession vs Exa: Exa searches the public web for AI agents; Obsession keeps what companies show only to signed-up customers. What each holds, and price.',
+      'Obsession vs Exa: Exa searches the public web for AI agents. Obsession gives an agent its own browser that stays signed in, an inbox and a phone number.',
     answer:
-      'In Obsession vs Exa, Exa searches the public web for AI agents and Obsession keeps what companies show only to signed-up customers. Exa returns pages anyone can open, live or as stored copies, plus company and people data from its partners; Obsession returns the emails after a sign-up, member prices, trial limits and cancel offers, each dated with a screenshot. Many agent teams use both, Exa for what a company publishes and Obsession for what it sends and shows its customers.',
+      'Exa searches the public web for AI agents, with company and people data, and does it well. Obsession gives an agent its own browser that stays signed in, plus an inbox and a phone number for sites that need an account. Many teams use both, Exa for public pages and Obsession for the steps after a sign-up.',
     ogImage: '/og/compare-obsession-vs-exa.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -32,93 +30,93 @@ export const ref: ReferencePage = {
       { name: 'Obsession vs Exa', path: '/compare/obsession-vs-exa' },
     ],
   },
-  title: 'Obsession vs Exa: the public web beside what companies show only to customers',
-  dek: 'Exa gives AI agents the public web and the data it licenses, searched in one call. Obsession gives them what a company shows after the sign-up, kept for as long as you follow it.',
+  title: 'Obsession vs Exa: search the public web, or sign up and stay signed in',
+  dek: 'Exa finds and reads public pages for your agent in one call. Obsession gives the same agent a browser, an email address and a phone number of its own.',
   primaryKeyword: 'obsession vs exa',
-  keywords: ['exa vs obsession', 'exa private information', 'web data behind login for ai agents', 'exa search api'],
-  checked: '2026-11-11',
-  readingMinutes: 6,
+  keywords: ['exa vs obsession', 'exa search api', 'exa pricing', 'exa api login'],
+  checked: '2026-11-22',
+  readingMinutes: 5,
   reader: 'developers',
   art: {
     kind: 'report',
-    title: 'northwind.example',
-    period: 'Example: Northwind is an invented company',
-    cols: ['At Northwind', 'Exa', 'Obsession'],
+    title: 'One research agent',
+    period: 'From Exa’s own pages, read 21 and 22 Nov 2026',
+    cols: ['The job', 'Exa', 'Obsession'],
     rows: [
-      { name: 'Articles about Northwind', cells: ['Searched in 1 call', 'Use a search API'], tone: 'info' },
-      { name: 'Pricing page', cells: ['Pro £29, live or stored', 'Pro £29, dated'], tone: 'info' },
-      { name: 'Day 3 email after sign-up', cells: ['Not described', '20% off, 09:14, DKIM pass'], tone: 'ok' },
-      { name: 'Signed-in price', cells: ['Not described', 'Pro £24, with screenshot'], tone: 'ok' },
-      { name: 'Offer in the cancel flow', cells: ['Not described', '50% off for 3 months'], tone: 'ok' },
+      { name: 'Search the public web', cells: ['Its own index, 1 call', 'Use a search API'], tone: 'info' },
+      { name: 'Company and people data', cells: ['Yes, by API', 'Use a data API'], tone: 'info' },
+      { name: 'Sign up with its own email', cells: ['Not on its pages', `Inbox, ${prices.inbox.amount} a month`], tone: 'ok' },
+      { name: 'Receive a text code', cells: ['Not on its pages', `Number, ${prices.number.amount} a month`], tone: 'ok' },
+      { name: 'Still signed in next week', cells: ['Not on its pages', 'Its browser keeps its logins'], tone: 'ok' },
+      { name: 'Run code on what it finds', cells: ['Not on its pages', `Sandbox, ${prices.sandbox.amount} a vCPU hour`], tone: 'ok' },
     ],
-    notes: ['Exa’s column follows its own pages, read 11 November 2026. Not described means its pages don’t say.'],
+    notes: ['Not on its pages means Exa’s pages don’t describe it.'],
   },
   blocks: [
-    { kind: 'h2', id: 'what-each-is', text: 'What Exa and Obsession are' },
-    { kind: 'h3', id: 'exa', text: 'Exa: search over the public web' },
+    { kind: 'h2', id: 'what-exa-does', text: 'What Exa does well' },
     {
       kind: 'p',
-      text: `As of 11 November 2026, [Exa’s home page](${EXA}) calls Exa “The world’s data for AI agents” and says it searches “the largest index of public web and private information”. Its products include a Search API, a Contents API, an Agent API, a Monitors API, Websets and an MCP server, so an agent can find pages, read them and watch for new ones in a single call.`,
+      text: `As listed on 21 November 2026, [Exa’s home page](${EXA}) calls Exa “The world’s data for AI agents” and counts more than 900,000 developers. Its products are the Search, Contents, Agent and Monitors APIs, Websets, Exa Connect and an MCP server. An agent can find pages, read them and enrich company and people records in a few calls.`,
     },
     {
       kind: 'p',
-      text: `Exa’s pages don’t define private information. Its [index page](${EXA_INDEX}) says it “searches the public web and select private data sources, with coverage refreshed continuously”, and [Exa Connect](${EXA_CONNECT}) links agents to licensed data providers such as Crunchbase, ZoomInfo and Similarweb. Its pages don’t describe creating accounts at the companies it covers or keeping what those companies send their customers.`,
-    },
-    { kind: 'h3', id: 'obsession', text: 'Obsession: the web behind the login' },
-    {
-      kind: 'p',
-      text: `${ENTITY} Each account stays open for months, so what a company sends every new subscriber joins the index the day it arrives, and a company already covered comes back with its history in one call.`,
+      text: `On [its pricing page](${EXA_PRICING}), as listed on 22 November 2026, every account gets $10 of free credit a month. Search is $4 per 1,000 requests on Lite and $7 on Auto and Fast. Deep search is $12 per 1,000, and page contents are $1 per 1,000 pages. Enterprise is $12,000 a year, paid up front. Its pages don’t describe signing up for accounts or keeping a browser signed in.`,
     },
 
-    { kind: 'h2', id: 'at-a-glance', text: 'Exa and Obsession at a glance', compare: true },
+    { kind: 'h2', id: 'what-obsession-gives', text: 'What Obsession gives the same agent' },
+    { kind: 'p', text: ENTITY },
+    {
+      kind: 'p',
+      text: `For a research agent, that means three pieces search doesn’t cover. A [browser](/browser) that keeps its logins, at ${prices.browser.amount} an hour. An [inbox](/email) to sign up with, at ${prices.inbox.amount} a month. A [phone number](/phone) for text codes, at ${prices.number.amount} a month.`,
+    },
+
+    { kind: 'h2', id: 'side-by-side', text: 'Exa and Obsession side by side', compare: true },
     {
       kind: 'table',
       compare: true,
-      caption: `Exa’s row is from its own pages and [its pricing page](${EXA_PRICING}), read 11 November 2026. Obsession’s row is from [the developer page](/developers).`,
-      cols: ['Option', 'What it holds', 'How it’s read', 'Freshness and history', 'Price as listed', 'Best for'],
+      caption: `Exa’s row is from its own pages and [its pricing page](${EXA_PRICING}), read 21 and 22 November 2026. Obsession’s row is from [pricing](/pricing).`,
+      cols: ['Option', 'What it does well', 'Price', 'Where it stops', 'Best for'],
       rows: [
         [
-          'Exa: Search, Contents, Monitors, Websets',
-          'The public web, plus select private data sources',
-          'API, SDKs and an MCP server',
-          'Live fetch on request\nStored copies of pages by date',
-          '$10 free credit a month\nSearch from $4 per 1,000\nEnterprise $12,000 a year',
+          'Exa: Search, Contents, Agent, Monitors, Websets, MCP',
+          'Search and read the public web, with company and people data, in one call',
+          '$10 free credit a month\nSearch $4 to $7 per 1,000\nEnterprise $12,000 a year',
+          'No sign-up, inbox or signed-in browser on its pages',
           'Finding and reading public pages',
         ],
         [
-          'Obsession (ours): Search, Insights, Watch, API and MCP',
-          'Emails, member prices, trial limits, quotes, cancel offers',
-          '5 verbs over MCP, the API and SDKs, or a table',
-          'Kept from the first sign-up\nEach fact dated with its screenshot',
-          'Early access, onboarding teams now\nPriced per call or per company watched',
-          'What a company shows only to customers',
+          'Obsession (ours): Browser, Email, Phone, Messaging, Sandbox, Personas',
+          'A browser that stays signed in, an inbox and a number for each agent',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'No web search index of its own',
+          'Agents that sign up, sign in and act',
         ],
       ],
     },
 
-    { kind: 'h2', id: 'when-to-use', text: 'When to use Exa, and when to use Obsession' },
+    { kind: 'h2', id: 'when-to-use', text: 'When to use each' },
     {
       kind: 'list',
       items: [
-        `**Use Exa** when the answer is on a page anyone can open: news about a company, its docs, its public pricing page, or research across thousands of sites. Its [search reference](${EXA_SEARCH}) lets an agent ask for a live fetch (maxAgeHours 0, “fetched within the last 60 seconds”) or for the stored version of a page as of a past date (snapshotAsOf).`,
-        '**Use Obsession** when the answer exists only for customers: the 3 emails a competitor sends in its first week, the price a signed-in member pays, the point where a free plan stops, the offer someone gets when they try to cancel. Those facts sit behind a [login wall](/glossary/login-wall), so a search index never holds them.',
-        '**Use both** when an agent answers questions about a named company. Search gives it what the company says in public; Obsession gives it what the company actually sends and shows a customer, with the receipt.',
+        '**Use Exa** when the answer sits on a page anyone can open: news, docs, public prices, or a company’s people.',
+        '**Use Obsession** when the agent has to become a user: sign up with its own email, confirm a text code, and read what the site shows after the login.',
+        '**Use both** for an agent that researches a prospect. Exa finds the company and its people. A persona signs up to the company’s product and keeps every welcome email it sends.',
       ],
     },
 
-    { kind: 'h2', id: 'together', text: 'Using Exa and Obsession together' },
+    { kind: 'h2', id: 'together', text: 'Calling Exa and Obsession from one agent' },
     {
       kind: 'p',
-      text: `An agent connects both over MCP, the protocol AI assistants use to call tools ([Model Context Protocol](/glossary/model-context-protocol)). Exa lists its server on [its MCP page](${EXA_MCP}); Obsession’s install line is on [the developer page](/developers). Ask for a competitor’s pricing and the agent can pair Exa’s copy of the public pricing page with Obsession’s [member price](/glossary/member-price) and the welcome email that offered 20% off, each dated.`,
+      text: 'Both run as MCP servers, the standard way an AI agent calls tools. Add Obsession with claude mcp add obsession. Then obsession.personas.create({ inbox: true, phone: "US", browser: true }) gives the agent all three pieces under one name. Each email, text and page reaches your webhook as it lands.',
     },
     {
       kind: 'p',
-      text: 'The two never overlap on work: Exa reads what a company publishes, and Obsession stays signed up to keep what it sends. Neither replaces the other, and an agent that calls both answers with the whole picture. To see what one company’s record looks like, open [the sample data](/sample-output), a real UK skincare store from September 2026.',
+      text: 'A persona is an AI agent with its own inbox, number and browser under one name. It costs nothing while it waits, so a fleet of them can wait days for the email a site sends on day 7.',
     },
     {
       kind: 'note',
-      title: 'How Obsession’s agents behave',
-      text: 'An Obsession agent signs up the way any customer can, says it’s an AI when it talks to a person, and never gets round a CAPTCHA or a bot block. Where a site puts one in front of a step, the record names the step it couldn’t reach. The full lines are on [the page for companies an agent visits](/agents).',
+      title: 'What every Obsession agent keeps to',
+      text: 'It says it’s an AI when it talks to a person. It stops before payment unless given the customer’s own payment card, and never uses fake payment details. It never gets round a CAPTCHA or a bot block, stops at any identity check and never clicks paid ads at volume. The full lines are on [the page for companies an agent visits](/agents).',
     },
 
     {
@@ -126,23 +124,21 @@ export const ref: ReferencePage = {
       items: [
         {
           q: 'Is Obsession an Exa alternative?',
-          a: 'For public web search, no: use Exa or another search API. Obsession holds a different web, what companies show only to signed-up customers, so most teams that need both call both.',
+          a: 'For web search, no. Use Exa or another search API to find and read public pages. Obsession gives the agent what search can’t: a browser that stays signed in, an inbox and a phone number, so many teams use both.',
         },
         {
-          q: 'What does Exa mean by private information?',
-          a: 'Exa’s pages don’t define it. Its index page says it searches the public web and select private data sources, and Exa Connect links agents to licensed providers such as Crunchbase and ZoomInfo. None of its pages describe the emails or signed-in prices a company shows its own customers.',
-        },
-        {
-          q: 'Does Exa keep history?',
-          a: 'Exa can return the newest stored version of a public page as of a past date, from its own crawl. Obsession keeps what a company sent and showed a signed-up customer, from the day the account opened, each fact dated with its screenshot or the raw email.',
+          q: 'Can Exa sign in to a website?',
+          a: 'Its pages describe searching and reading pages, and don’t describe signing up or keeping a browser signed in, as read on 21 November 2026. Obsession’s browser keeps its logins between sessions, with an inbox and number for the codes a site sends.',
+          link: { label: 'See the browser piece', to: '/browser' },
         },
         {
           q: 'How much does each cost?',
-          a: 'Exa lists $10 of free credit a month, search from $4 per 1,000 requests and an Enterprise plan at $12,000 a year, read on 11 November 2026. Obsession is in early access and is priced per call or per company watched, never per token.',
+          a: `Exa lists $10 of free credit a month, search from $4 per 1,000 requests and Enterprise at $12,000 a year, read on 22 November 2026. Obsession is free to start, then $20, $99 or $499 a month. Its browser hour is ${prices.browser.amount}, an inbox ${prices.inbox.amount} a month and a number ${prices.number.amount} a month.`,
+          link: { label: 'See pricing', to: '/pricing' },
         },
         {
           q: 'Can my agent call both?',
-          a: 'Yes. Both run as MCP servers and plain HTTP APIs, so an agent can search the public web with Exa and look up a company’s emails, prices and offers with Obsession in the same conversation.',
+          a: 'Yes. Both run as MCP servers and plain HTTP APIs, so an agent can search with Exa and sign up, read a code and stay signed in with Obsession in the same task.',
           link: { label: 'See the API and MCP', to: '/developers' },
         },
       ],
@@ -150,10 +146,6 @@ export const ref: ReferencePage = {
   ],
   sources: [
     { title: 'Exa: the world’s data for AI agents', publisher: 'Exa', url: EXA },
-    { title: 'The Exa index', publisher: 'Exa docs', url: EXA_INDEX },
-    { title: 'Exa Connect', publisher: 'Exa', url: EXA_CONNECT },
-    { title: 'Search reference', publisher: 'Exa docs', url: EXA_SEARCH },
-    { title: 'Exa MCP', publisher: 'Exa docs', url: EXA_MCP },
     { title: 'Pricing', publisher: 'Exa', url: EXA_PRICING },
   ],
   related: [
@@ -163,13 +155,13 @@ export const ref: ReferencePage = {
     '/compare/obsession-vs-tavily',
     '/compare/obsession-vs-parallel',
     '/compare/obsession-vs-firecrawl',
-    '/glossary/web-search-api',
-    '/glossary/llm-grounding',
-    '/glossary/login-wall',
-    '/glossary/model-context-protocol',
-    'ai-customers-for-developers',
-    'what-to-build-with-ai-customers',
+    '/compare/obsession-vs-browserbase',
+    '/browser',
+    '/email',
+    '/personas',
     '/developers',
-    '/sample-output',
+    '/use-cases/web-behind-the-login',
+    '/glossary/web-search-api',
+    '/glossary/model-context-protocol',
   ],
 }

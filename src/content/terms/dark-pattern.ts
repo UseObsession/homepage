@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/dark-pattern: the definition query for deceptive design. "dark patterns subscription cancellation"
    stays with its own post (docs/SEARCH.md §2); this page owns "what is a dark pattern" and its meaning. */
@@ -65,7 +64,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For dark patterns, that means every screen of a checkout or [cancel flow](/glossary/cancel-flow) as a customer met it. Each is dated, so a fee added at the last step is on file as it looked that day. Compliance teams use the record for a [dark patterns audit](/use-cases/opt-out-and-cancel-checks-for-compliance-teams) of their own flows and competitors’.`,
+      text: 'Obsession’s [Delivery monitoring](/blueprints/delivery-monitoring) blueprint logs every screen of a checkout or [cancel flow](/glossary/cancel-flow) as a customer met it. Each is dated, so a fee added at the last step is on file as it looked that day. Compliance teams use it for a [dark patterns audit](/use-cases/opt-out-and-cancel-checks-for-compliance-teams) of their own flows and competitors’.',
     },
     {
       kind: 'faq',

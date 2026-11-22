@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/dkim: for a CRM or compliance lead who needs to know what the "dkim=pass" beside a kept email proves.
    Every fact is from RFC 6376 itself, read 11 Nov 2026. The picture is the check as a log, at an invented domain. */
@@ -84,7 +83,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} Every email it keeps is the raw message, with its sender checked by DKIM and the time it arrived. At any company you name, a welcome offer, a price-rise notice or a cancel confirmation can be traced to the domain that sent it. An agent fetches the raw email and its DKIM result with the evidence call, over the [API or MCP](/developers).`,
+      text: 'Obsession’s [email](/email) inboxes keep every email raw, with its DKIM result and the time it arrived. At any company you name, a welcome offer, a price-rise notice or a cancel confirmation can be traced to the domain that sent it. An agent reads both from the event log over the [API or MCP](/developers).',
     },
     {
       kind: 'faq',
@@ -114,6 +113,7 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    '/email',
     '/glossary/welcome-series',
     '/glossary/triggered-flow',
     '/glossary/one-click-unsubscribe',

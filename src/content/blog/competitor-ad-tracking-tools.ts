@@ -21,7 +21,8 @@ import type { BlogPost } from './types'
    page didn't render), Motion (its pages describe analysing your own ads first). The 37 minutes and the hours ladder are
    the sum in how-to-see-competitor-ads.ts. Obsession's lines use the live Ad tracking and Ad landing check recipes, Price
    watch, the leak checks use case and the lookup page's words only. hollin.example and every figure in both pictures
-   are invented. British English, numerals, no dashes. */
+   are invented. British English, numerals, no dashes. 22 Nov 2026: Obsession lines moved to the toolkit position
+   (personas, blueprints, prices.ts); the 1,500 line and the index are out. */
 
 const META_API = 'https://www.facebook.com/ads/library/api'
 const META_TOOLS = 'https://transparency.meta.com/researchtools/ad-library-tools/'
@@ -49,17 +50,17 @@ const PANORAMATA = 'https://www.panoramata.co/pricing'
 export const post: BlogPost = {
   slug: 'competitor-ad-tracking-tools',
   title: 'The best competitor ad tracking tools in 2026, and what happens after the click',
-  dek: 'The 4 free ad libraries and 9 competitor ad trackers, grouped by job, with what each records, where it stops and its price on 14 November 2026. Beside them, Obsession follows each competitor ad past the click to its page, its code and the emails that follow a sign-up.',
+  dek: 'The 4 free ad libraries and 9 competitor ad trackers, grouped by job, with what each records, where it stops and its price on 14 November 2026. Beside them, Obsession’s ad tracking blueprint follows each competitor ad past the click to its page, its code and the emails that follow a sign-up.',
   metaTitle: 'Competitor ad tracking tools for brands and agencies, 2026',
   description:
     'Competitor ad tracking tools for brands and agencies, by job and price: free ad libraries, ad trackers, spend estimates and what happens after the click.',
   answer:
-    'Competitor ad tracking means recording the ads other companies run, when each started and how long it runs, so a team sees what each competitor is pushing. The free ad libraries and tools such as Foreplay, SpyFu, Semrush and Pathmatics record each ad, its search ad history or its estimated spend. Obsession follows each competitor ad past the click to its page, price and code, then signs up where the ad offers a code and keeps what arrives, dated.',
+    'Competitor ad tracking means recording the ads other companies run, when each started and how long it runs, so a team sees what each competitor is pushing. The free ad libraries and tools such as Foreplay, SpyFu, Semrush and Pathmatics record each ad, its search ad history or its estimated spend. On Obsession, the toolkit for AI agents, a persona follows each competitor ad past the click to its page, price and code, then signs up where the ad offers a code and keeps what arrives, dated.',
   primaryKeyword: 'competitor ad tracking',
   keywords: ['competitive ad tracking', 'competitor ad tracker', 'competitor ad monitoring', 'competitor ad tracking tools', 'best competitor ad tracking tools'],
   category: 'Watch other companies',
   published: '2026-11-14',
-  updated: '2026-11-14',
+  updated: '2026-11-22',
   readingMinutes: 17,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -341,7 +342,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its [Ad tracking](/blueprints/ad-tracking) checks read the ads competitors run in public every morning and follow each one to its page, price and code. Each page is opened directly on a phone and a desktop, so no click is paid for. Where an ad offers a code for signing up, Obsession signs up and keeps what arrives, and when. Each new offer lands dated beside the ad that led to it, in Slack, a table or from the API.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its [Ad tracking](/blueprints/ad-tracking) blueprint reads the ads competitors run in public every morning and follow each one to its page, price and code. Each page is opened directly on a phone and a desktop, so no click is paid for. Where an ad offers a code for signing up, a persona, an AI agent with its own inbox, number and browser under one name, signs up and keeps what arrives, and when. Each new offer lands dated beside the ad that led to it, in Slack, a table or from the API.',
     },
 
     { kind: 'h2', id: 'own-ads-and-clients', text: 'How do you track your own ads, your category’s leaders and your clients’ competitors?' },
@@ -372,13 +373,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps running. Ads are read every morning, or more often in a sale week. Prices, stock and delivery are read every morning in [Price watch](/blueprints/price-watch), and the guide to [competitor price tracking tools](/blog/best-competitor-price-tracking-tools) sets it beside the price tools. A fresh sign-up can run every step again each week in [leak checks](/use-cases/leak-checks-for-ecommerce-stores). It works the same for one company or a list of 3,000, on an index built for millions of companies. 1,500 sign-ups, baskets and checkouts run at real companies, and counting.',
+      text: 'It keeps running. Ads are read every morning, or more often in a sale week. Prices, stock and delivery are read every morning in [Price watch](/blueprints/price-watch), and the guide to [competitor price tracking tools](/blog/best-competitor-price-tracking-tools) sets it beside the price tools. A fresh sign-up can run every step again each week in [leak checks](/use-cases/leak-checks-for-ecommerce-stores). It works the same for one company or a list of 3,000, with a persona per competitor that is free while it waits.',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which competitor ad tracking tool to choose' },
     {
       kind: 'p',
-      text: 'Use Obsession when your team needs what each competitor shows and sends after its ads, for every competitor you name. That means the page, the price, the code and every email after a sign-up, dated. Use an ad tracker for the ads themselves.',
+      text: 'Use Obsession’s ad tracking blueprint when your team needs what each competitor shows and sends after its ads, for every competitor you name. That means the page, the price, the code and every email after a sign-up, dated. Use an ad tracker for the ads themselves.',
     },
     {
       kind: 'list',
@@ -427,9 +428,9 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Ad tracking](/blueprints/ad-tracking), [Ad landing check](/blueprints/ad-landing-check)',
           'Each competitor ad followed to its page, price and code, then the sign-up and every email after it, dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Spend estimates left to panel tools',
-          'What any competitor shows and sends after its ads, by API, MCP or a table',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Never clicks paid ads at volume, so spend estimates stay with panel tools',
+          'What any competitor shows and sends after its ads, in Slack, a sheet or the API',
         ],
       ],
     },
@@ -440,7 +441,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What is the best competitor ad tracker?',
-          a: 'The best competitor ad tracker depends on the job. On 14 November 2026, Foreplay and Atria kept libraries of ads for creative teams, and AdSpy and BigSpy searched social ads. SpyFu and Semrush showed search ad history, and Pathmatics and Similarweb estimated spend. For what a competitor shows and sends after its ads, Obsession follows each ad to its page, code and emails, dated.',
+          a: 'The best competitor ad tracker depends on the job. On 14 November 2026, Foreplay and Atria kept libraries of ads for creative teams, and AdSpy and BigSpy searched social ads. SpyFu and Semrush showed search ad history, and Pathmatics and Similarweb estimated spend. For what a competitor shows and sends after its ads, Obsession’s ad tracking blueprint follows each ad to its page, code and emails, dated.',
         },
         {
           q: 'Is there a free competitor ad tracker?',
@@ -462,7 +463,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What happens after someone clicks a competitor’s ad?',
-          a: 'The ad sends them to a landing page with a price and often a sign-up offer, and a sign-up starts a welcome series of emails. Ad libraries record the ad, and some trackers keep its landing page. Obsession opens each page from the ad’s link, signs up where the ad offers a code and keeps what arrives, dated with screenshots.',
+          a: 'The ad sends them to a landing page with a price and often a sign-up offer, and a sign-up starts a welcome series of emails. Ad libraries record the ad, and some trackers keep its landing page. Obsession’s ad tracking blueprint opens each page from the ad’s link, and a persona signs up where the ad offers a code and keeps what arrives, dated with screenshots.',
         },
         {
           q: 'Can an agency track its clients’ competitors’ ads?',

@@ -7,7 +7,7 @@ import type { BlogPost } from './types'
    2008, Google's deep web crawl, which filtered out login forms by design), explains why crawlers stop at the login
    (Google's own Search Console help, RFC 6265, RFC 9309), why AI agents need it now (Exa, Tavily, Parallel, Firecrawl
    and Anthropic's computer use docs, each in its own words), who uses it (Home's readers), how it is collected, and
-   where every other source stops, with Obsession last. Every source was read on its own page on 11 Nov 2026. He et al.
+   where every other source stops, with Obsession (the toolkit, 22 Nov) last. Every source was read on its own page on 11 Nov 2026. He et al.
    (CACM 2007) was behind a paywall that day, so it isn't cited. Exa's "private information" is described only as its
    search page names it (proprietary data such as contact data, job postings, earnings call transcripts and investor
    portfolios). Quillon is the invented company Home uses. No dashes. */
@@ -45,7 +45,7 @@ export const post: BlogPost = {
   description:
     'The web behind the login: what companies show only to customers, from emails to member prices and cancel offers, and why search engines can’t reach it.',
   answer:
-    'The web behind the login is what companies show only to people who sign up, log in, fill a form, check out or try to cancel: the emails and texts that follow, member prices, trial limits, quotes and the offer made to stay. Search engines can’t index it because their crawlers never sign in, so AI agents that rely on search can’t see it either. Obsession collects it at any company, each fact dated with its screenshot, and teams and AI agents look it up through the API or over MCP, the standard way AI agents call tools.',
+    'The web behind the login is what companies show only to people who sign up, log in, fill a form, check out or try to cancel: the emails and texts that follow, member prices, trial limits, quotes and the offer made to stay. Search engines can’t index it because their crawlers never sign in, so AI agents that rely on search can’t see it either. Obsession gives an AI agent a browser that keeps its logins for weeks, with its own inbox and phone number to catch every code and email that follows.',
   primaryKeyword: 'web behind the login',
   keywords: [
     'what search engines can’t index',
@@ -58,7 +58,7 @@ export const post: BlogPost = {
   ],
   category: 'Behind the login',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 14,
   order: 1,
   authors: [
@@ -285,7 +285,7 @@ export const post: BlogPost = {
           FTC_SWEEP +
           ') with officials from 27 authorities in 26 countries. Nearly 76% used at least one possible dark pattern.',
         '**Funds and research firms** read offers, prices and rates across a market, month after month, because that history can’t be collected later.',
-        '**Teams building AI agents** give their agent a competitor’s real price, trial limit or offer in one call ([the API and MCP](/developers)).',
+        '**Teams building AI agents** give each agent its own inbox, number and browser, so it can sign up and stay signed in ([the API, or MCP, the standard way AI agents call tools](/developers)).',
       ],
     },
 
@@ -296,11 +296,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. For work behind a login, an agent gets a [browser that keeps its logins](/browser) for weeks, plus an [inbox](/email) and a [phone number](/phone) for every code and email that follows. A persona, an AI agent with its own inbox, number and browser under one name, waits for free between messages.',
     },
     {
       kind: 'p',
-      text: 'An Obsession agent signs up the way any customer can, with its own [inbox](/email), [phone number](/phone) and [browser that keeps its logins](/browser), and says it’s an AI when it talks to a person. It never gets round a CAPTCHA or a bot block, and it never invents identity details ([who visits a site, and the lines every agent keeps](/agents)). Each new email, price and offer is added on the day it arrives, so a company’s history builds from the first day it is followed. One question can be asked across many companies at once, a row each. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Every email, text and page lands in one event log, dated, with a screenshot of each page, so a history builds from the first day. Teams who don’t code pick a blueprint such as [competitor tracking](/blueprints/competitor-tracking), [price watch](/blueprints/price-watch) or [trial teardown](/blueprints/trial-teardown), and Obsession runs it. An agent on Obsession says it’s an AI when it talks to a person, never gets round a CAPTCHA or a bot block and stops at any identity check ([the lines every agent keeps](/agents)). Worked examples are in [the web behind the login use case](/use-cases/web-behind-the-login) and [work behind logins](/kits/work-behind-logins).',
     },
     {
       kind: 'cta',
@@ -364,11 +364,11 @@ export const post: BlogPost = {
           'A one-off look at a few companies',
         ],
         [
-          'Obsession (ours): lookup, facts, evidence, index and notify; blueprints (ready-made collections) for competitor tracking, price watch and trial teardown',
-          'What any company shows only to customers, from sign-up to cancel, each fact dated with its screenshot',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Every step short of paying',
-          'Any company you name, for as long as you follow it',
+          'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Trial teardown](/blueprints/trial-teardown)',
+          'A browser that stays signed in for weeks, with an inbox and number that catch every code, email and text, under one persona',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at any identity check, at a CAPTCHA and before payment',
+          'An agent that has to sign up, stay signed in and keep what arrives',
         ],
       ],
     },
@@ -394,11 +394,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Search engines index what websites publish. Obsession indexes what they show only past the login.',
-    },
-    {
-      kind: 'p',
-      text: 'For what a company shows and sends its customers after the login, at any company you name, dated and kept for as long as you follow it, use Obsession. For what a company publishes, use a search engine or a web search API. Use a crawler to read pages you can open, an archive or panel for the brands it already follows, and a competitive intelligence tool to share what a sales team learns. They work together: an agent can call a search API for the public page and Obsession for what sits behind it.',
+      text: 'When an agent has to sign up, stay signed in and keep every email and text that follows, give it Obsession’s browser, inbox and number under one persona. For what a company publishes, use a search engine or a web search API. Use a crawler to read pages you can open, an archive or panel for the brands it already follows, and a battlecard tool to share what a sales team learns about competitors. They work together. An agent can call a search API for the public page and use its own browser and inbox for what sits behind the login.',
     },
 
     { kind: 'h2', id: 'when-not', text: 'When the public web is enough' },
@@ -408,9 +404,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Name the first company to look up. Its emails and texts, member prices, trial limits, quotes and cancel offers come back dated with screenshots, and each new one is added the day it arrives. Onboarding teams now.',
-      to: '/compare',
-      label: 'Request early access',
+      text: 'Give your agent a browser that stays signed in, with an inbox and number for every code. The Free plan includes 10 browser hours, 3 inboxes and 1 number, with no credit card.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about the web behind the login' },
@@ -435,7 +431,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can AI agents see content behind a login?',
-          a: 'An agent that drives a browser can read what one account shows during a session, if someone gives it the login, though its makers advise care with credentials. It can’t see what that account was sent before the session, or what other kinds of customer see. Agents get that from a source that has kept accounts open and dated what arrived.',
+          a: 'An agent that drives a browser can read what one account shows during a session, if someone gives it the login, though its makers advise care with credentials. It can’t see what that account was sent before the session, or what other kinds of customer see. An agent with its own account, inbox and number, kept open for weeks, sees what arrives over time.',
           link: { label: 'Can AI agents log in to websites?', to: '/blog/can-ai-agents-log-in-to-websites' },
         },
         {

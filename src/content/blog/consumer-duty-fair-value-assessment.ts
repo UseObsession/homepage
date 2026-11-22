@@ -41,7 +41,7 @@ export const post: BlogPost = {
   description:
     'A Consumer Duty fair value assessment template tied to PRIN 2A.4, and how to evidence what customers are shown, from fee wording to renewal notices.',
   answer:
-    'A Consumer Duty fair value assessment is a UK financial firm’s documented test, under PRIN 2A.4 of the FCA Handbook, that a product’s expected total price is reasonable for the benefits each group of its customers can expect. The FCA’s October 2026 findings say the weakest assessments rest on assumptions, outdated fee lists and headline price comparisons. Obsession keeps what your firm and its competitors show customers after sign-up, from fee wording to signed-in rates and renewal notices, each dated with its screenshot, by API or MCP, the standard way AI agents call tools.',
+    'A Consumer Duty fair value assessment is a UK financial firm’s documented test, under PRIN 2A.4 of the FCA Handbook, that a product’s expected total price is reasonable for the benefits each group of its customers can expect. The FCA’s October 2026 findings say the weakest assessments rest on assumptions, outdated fee lists and headline price comparisons. On Obsession, a persona goes through your firm’s and competitors’ applications up to the identity check, and keeps fee wording, application rates and every email after in one event log, each dated with its screenshot.',
   primaryKeyword: 'consumer duty fair value assessment',
   keywords: [
     'consumer duty fair value assessment template',
@@ -54,7 +54,7 @@ export const post: BlogPost = {
   category: 'Watch other companies',
   order: 9,
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -292,9 +292,9 @@ export const post: BlogPost = {
         ['Mystery shopping by people', 'Branch, phone and adviser journeys', 'Per brief, quoted by the agency', 'Each visit is one moment in a sample', 'Journeys that need a person'],
         [
           'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Competitor tracking](/blueprints/competitor-tracking)',
-          'Each step customers are shown, every email after, signed-in rates and chat answers, at your firm and competitors, dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Never invents identity details',
+          'Each step customers are shown up to the identity check, every email after, application rates and chat answers, at your firm and competitors, dated',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at the identity check, and never invents identity details',
           'Dated evidence across many firms, after every change',
         ],
       ],
@@ -307,17 +307,17 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'obsession', text: 'Dated evidence from the customer’s side' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to.',
     },
     {
       kind: 'p',
-      text: `Search engines and comparison sites stop at the public rate page. Obsession collects what a firm shows past the login and the form, [the web behind the login](/blog/the-web-behind-the-login). For [banks and fintechs](${BANKS}), Obsession keeps each step of account opening, every email and text after it, signed-in rates beside public ones and offers shown after the form. It keeps what chat tells a customer too, at your own firm and every competitor you name, for as long as you follow them. The same record shows what a customer meets when they leave: each cancel step, and every email or text after an unsubscribe ([opt-out and cancel checks for compliance teams](/use-cases/opt-out-and-cancel-checks-for-compliance-teams)). Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. The [sample data](/sample-output) shows everything collected from one real store.`,
+      text: `Search engines and comparison sites stop at the public rate page, the edge of [the web behind the login](/blog/the-web-behind-the-login). A persona on Obsession goes through a firm’s application up to the identity check, with its own inbox and number for every email and text that follows. For [banks and fintechs](${BANKS}), that means each step of account opening up to the identity check, what the check asks for, the rates the application shows beside public ones and what chat tells a customer. It runs at your own firm and every competitor you name, for as long as you follow them. The same event log shows what a customer meets when they leave: each cancel step, and every email or text after an unsubscribe ([opt-out and cancel checks for compliance teams](/use-cases/opt-out-and-cancel-checks-for-compliance-teams)). The [sample data](/sample-output) shows everything kept from one real store.`,
     },
     {
       kind: 'cta',
-      text: 'Account opening, signed-in rates, offers and chat answers, at your firm and your competitors. Each is dated with its screenshot or transcript, ready for the fair value file and the governing body report.',
+      text: 'Account opening up to the identity check, application rates, offers and chat answers, at your firm and your competitors. Each is dated with its screenshot or transcript, ready for the fair value file and the governing body report.',
       to: BANKS,
-      label: 'Request early access',
+      label: 'See how it works',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about Consumer Duty fair value assessments' },
@@ -351,7 +351,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Where does Obsession’s data about competitors come from?',
-          a: 'From real accounts. Obsession’s agents open accounts, sign in and ask chat the way any customer can, as the customer profiles and countries a team chooses, and keep each account open for months. They never invent identity details, never sign in to an account that isn’t their own, and say they’re an AI when they talk to a person.',
+          a: 'From real applications and sign-ups. A persona, an AI agent with its own inbox, number and browser, goes through each firm’s application and asks chat the way any customer can, as the customer profiles and countries a team chooses. It stops at any identity check, never invents identity details, never signs in to an account that isn’t its own and says it’s an AI when it talks to a person.',
           link: { label: 'Journey checks for banks and fintechs', to: BANKS },
         },
       ],

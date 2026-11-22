@@ -8,6 +8,7 @@ import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
 import { lookupPage } from './pages/lookup'
 import { pieces } from './pieces'
+import { kits, kitsHub } from './kits'
 import { pricingPage, ratesPage } from './pricing'
 import { securityPage } from './security'
 import type { Faq, Meta, ShareFindings } from './types'
@@ -41,6 +42,8 @@ export type PageKind =
   | 'lookup'
   | 'pricing'
   | 'piece'
+  | 'kit'
+  | 'kits'
 
 /* A post's facts for its BlogPosting JSON-LD and the RSS feed. */
 export type Article = {
@@ -146,6 +149,28 @@ export const entries: Entry[] = [
       line: firstSentence(p.hero.sub),
       faq: p.faq,
       source: `src/content/pieces/${p.id}.ts`,
+    }),
+  ),
+  /* The kits hub and each kit's own page (content/kits, 22 Nov): each job agents do, as the pieces and blueprints it uses. */
+  {
+    kind: 'kits',
+    meta: ogFor(kitsHub.meta),
+    name: 'Kits',
+    headline: kitsHub.hero.headline,
+    line: firstSentence(kitsHub.hero.sub),
+    faq: kitsHub.faq,
+    source: 'src/content/kits/index.ts',
+  },
+  ...kits.map(
+    (k): Entry => ({
+      kind: 'kit',
+      meta: ogFor(k.meta),
+      name: k.name,
+      headline: k.hero.headline,
+      line: firstSentence(k.hero.sub),
+      faq: k.faq,
+      source: `src/content/kits/${k.id}.ts`,
+      place: 'Kits',
     }),
   ),
   ...AUDIENCES.map(

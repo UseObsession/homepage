@@ -29,7 +29,7 @@ import type { BlogPost } from './types'
    audit figure, the 93% and 128 stores, and the $410 lamp. The hero store and the cost example are invented. No dashes.
    "Trial teardown" appears once, as the recipe's own name in the options table.
    11 Nov 2026 (SEO revamp wave 1): title, dek, description, answer, Obsession's lines, its comparison row and the calls
-   to action moved to the live position (the web behind the login, early access); no free offer. */
+   to action moved to the live position; 22 Nov 2026: the toolkit position, blueprints and prices.ts. No free offer. */
 
 const KLAVIYO_BENCH = 'https://www.klaviyo.com/products/email-marketing/benchmarks'
 const JOYJOYA = 'https://joyjoya.com/blogs/podcast/why-your-welcome-email-isn-t-working-i-tested-362-brands'
@@ -79,7 +79,7 @@ export const post: BlogPost = {
   description:
     'Ecommerce competitive intelligence for brands and agencies, sorted by where the data lives: pages, ads, inboxes and checkout, with tools and prices.',
   answer:
-    'Ecommerce competitive intelligence is the dated record of what competitor stores show, send and charge their customers. Product pages, ad libraries, tech stack and traffic estimates are covered by many tools, while welcome codes, basket and win back emails, texts and checkout totals reach only a customer. Obsession keeps what every competitor you name shows only to its customers, dated, for as long as you follow them, by API, MCP (the standard way AI agents call tools) or a table.',
+    'Ecommerce competitive intelligence is the dated record of what competitor stores show, send and charge their customers. Product pages, ad libraries, tech stack and traffic estimates are covered by many tools, while welcome codes, basket and win back emails, texts and checkout totals reach only a customer. Obsession’s Competitor tracking blueprint signs an AI agent up at every competitor you name and keeps each email, text and price it receives, dated in one event log, for as long as you follow them.',
   primaryKeyword: 'ecommerce competitive intelligence',
   keywords: [
     'competitive intelligence tools',
@@ -95,7 +95,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 14,
   order: 15,
   /* The blog index leads with it since the 11 Nov SEO revamp, as the nav's Resources menu does (MENU_LEAD, content/nav.ts). */
@@ -396,13 +396,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, the programme holds for 1 to 3 competitors. Past that, it needs an inbox and phone number per competitor for months, with every original kept. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For competitors, [competitor tracking](/blueprints/competitor-tracking) logs every email, text, offer, price change and public ad from each one you name on 1 timeline. [Price watch](/blueprints/price-watch) checks competitors’ prices, offers and delivery each morning, plus the codes they only send subscribers.',
+      text: 'By hand, the programme holds for 1 to 3 competitors. Past that, it needs an inbox and phone number per competitor for months, with every original kept. Obsession gives each competitor a persona, an AI agent with its own inbox, number and browser under one name, and runs the job as a blueprint for teams who pick it. For competitors, [Competitor tracking](/blueprints/competitor-tracking) logs every email, text, offer, price change and public ad from each one you name on 1 timeline. [Price watch](/blueprints/price-watch) checks competitors’ prices, offers and delivery each morning, plus the codes they only send subscribers.',
     },
     {
       kind: 'cta',
-      text: 'Every competitor’s emails, texts, offers and prices, as their signed-up customers get them, each dated with a screenshot. Look up any competitor, and one not covered yet is added the day you ask.',
-      to: '/marketing',
-      label: 'Request early access',
+      text: 'Every competitor’s emails, texts, offers and prices, as their signed-up customers get them, each dated with a screenshot in one event log.',
+      to: '/blueprints/competitor-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'tools', text: 'Competitive intelligence tools compared', compare: true },
@@ -496,7 +496,7 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Email and SMS tracking](/blueprints/email-sms-tracking), [Ad tracking](/blueprints/ad-tracking), [Trial teardown](/blueprints/trial-teardown)',
           'Logs every email, text, offer, price change and public ad from each competitor on 1 timeline, each kept as it arrived',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'History starts the day each competitor is added\nNot needed for traffic, search or stack questions',
           'What a real customer gets from each competitor, on every channel, for months',
         ],
@@ -522,8 +522,8 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'Every email a new customer gets from your store, and the ones that never come. A broken code, a silent basket or a competitor’s new offer shows up the day it happens, each dated with the email itself.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Frequently asked questions' },

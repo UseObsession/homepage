@@ -499,7 +499,7 @@ export const pricingPage: PricingPage = {
 
   final: {
     heading: 'Your agent’s first inbox is free.',
-    line: `Request early access and start on ${named('free')}, with no credit card. Pick a plan when your agents need more.`,
+    line: `Start on ${named('free')}, with no credit card. Pick a plan when your agents need more.`,
     cta: { label: 'Get early access', to: JOIN },
     secondary: { label: 'See every rate', to: RATES },
   },

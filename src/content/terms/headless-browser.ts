@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/headless-browser: for an engineer giving an agent a browser. Chrome's headless mode is described from
    Chrome's own docs and Browserbase from its own docs, both read 11 Nov 2026. */
@@ -65,7 +64,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} Each account keeps its own inbox and stays open for months, so what a company sends between visits is kept too. [Obsession vs Browserbase](/compare/obsession-vs-browserbase) sets the two side by side.`,
+      text: 'Obsession’s [cloud browser](/browser) is a headless browser with an inbox beside it under one persona, so what a company sends between visits is kept too. [Obsession vs Browserbase](/compare/obsession-vs-browserbase) sets the two side by side.',
     },
     {
       kind: 'faq',
@@ -91,6 +90,7 @@ export const ref: ReferencePage = {
     { title: 'What is Browserbase?', publisher: 'Browserbase docs', url: 'https://docs.browserbase.com/introduction/what-is-browserbase' },
   ],
   related: [
+    '/browser',
     '/glossary/web-scraping',
     '/glossary/web-bot-auth',
     '/glossary/login-wall',

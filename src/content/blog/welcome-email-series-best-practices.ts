@@ -10,9 +10,8 @@ import type { BlogPost } from './types'
    Every platform rule was read at its source on 14 Nov 2026: Klaviyo Help (welcome series, updated 24 Oct 2026; unique
    Shopify codes, updated 26 Oct 2026) and Shopify Help (Messaging automations, the Customer subscribed trigger and its
    templates, combining discounts; undated). Joy Joya's 362 brand test (27 Jul 2026) and Omnisend's 2026 report (2025
-   sends) were opened the same day. Our figures are the index's totals on 13 Nov 2026 as the live /lookup page shows
-   them (content/lookupSample sampleTotals), printed as patterns, never tallies. What Obsession does is said in the live
-   /lookup page's words. Every store in the 2 pictures and the examples is invented, at a .example address.
+   sends) were opened the same day. Since 22 Nov no index figures; Obsession is said as the toolkit and the mystery
+   shopping blueprint. Every store in the 2 pictures and the examples is invented, at a .example address.
    Not used, on purpose: any figure for second or third welcome emails from the index (it doesn't publish one), any
    ranking of what converts best (no study on disk measures it), any PilotX figure. British English; no dashes. */
 
@@ -27,12 +26,12 @@ const SH_COMBINE = 'https://help.shopify.com/en/manual/discounts/discount-combin
 export const post: BlogPost = {
   slug: 'welcome-email-series-best-practices',
   title: 'Welcome email series best practices for ecommerce: what stores send after the first email',
-  dek: '9 in 10 online stores in Obsession’s index send a welcome email after a sign-up, most within a minute. For an ecommerce brand, the questions sit in the 7 days after it: emails 2 and 3, and the code each one carries.',
+  dek: 'In a July 2026 test of 362 ecommerce brands, 158 sent no welcome email at all. For a brand that does send one, the questions sit in the 7 days after it: emails 2 and 3, and the code each one carries.',
   metaTitle: 'Welcome email series best practices for ecommerce brands',
   description:
     'Welcome email series best practices for ecommerce brands: what to send on days 0, 3, 5 and 7, the code each email carries, and how to test the week.',
   answer:
-    'Welcome email series best practices cover an online store’s first 7 days with a new subscriber, starting with a welcome and its code within minutes. Send emails on days 3 and 7, remind subscribers who haven’t ordered before the code ends, and check at checkout whether it stacks with your basket reminder’s code. Obsession keeps what each store sends a new customer after a sign-up, a basket and a checkout, dated, and the store lookup shows your own store’s entry.',
+    'Welcome email series best practices cover an online store’s first 7 days with a new subscriber, starting with a welcome and its code within minutes. Send emails on days 3 and 7, remind subscribers who haven’t ordered before the code ends, and check at checkout whether it stacks with your basket reminder’s code. Obsession’s mystery shopping blueprint signs up with a persona that waits the whole week and keeps every email and code that arrives, dated.',
   primaryKeyword: 'welcome email series best practices',
   keywords: [
     'welcome email series best practices',
@@ -43,7 +42,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-11-14',
-  updated: '2026-11-16',
+  updated: '2026-11-22',
   readingMinutes: 11,
   order: 5,
   authors: [
@@ -89,13 +88,9 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'what-stores-send', text: 'What do online stores send a new subscriber?' },
     {
       kind: 'p',
-      text: 'Most online stores send the first email fast, and far fewer send anything after a basket or a checkout. In Obsession’s index of what stores send new customers, 9 in 10 stores sent a welcome email after a sign-up as of 13 November 2026, most within a minute. After a basket or a checkout, about 1 in 2 stores sent no reminder in the 48 hours after.',
-    },
-    {
-      kind: 'p',
       text: '[A test Joy Joya published in July 2026](' +
         JOYJOYA +
-        ') found more silence at the first step. Laryssa Wirstiuk subscribed to 362 ecommerce brands that sell jewellery, fashion, beauty, home, wellness and accessories. She used fresh email addresses and phone numbers, with no access to any brand’s dashboard. Of the 362, 158 (43.6%) never sent a welcome email and 53 (14.6%) never sent the text they promised. At 20 brands, the offer didn’t match the pop-up, such as 15% off on the pop-up and 10% in the email.',
+        ') found silence at the first step. Laryssa Wirstiuk subscribed to 362 ecommerce brands that sell jewellery, fashion, beauty, home, wellness and accessories. She used fresh email addresses and phone numbers, with no access to any brand’s dashboard. Of the 362, 158 (43.6%) never sent a welcome email and 53 (14.6%) never sent the text they promised. At 20 brands, the offer didn’t match the pop-up, such as 15% off on the pop-up and 10% in the email.',
     },
     {
       kind: 'stat',
@@ -106,7 +101,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The two counts cover different stores, months and methods, so read each with its own sample. For a store that does send a welcome, the questions left sit in the days after it. They are what emails 2 and 3 say, whether the code works the same way in each, and whether it stacks with the basket reminder’s code.',
+      text: 'For a store that does send a welcome, the questions left sit in the days after it. They are what emails 2 and 3 say, whether the code works the same way in each, and whether it stacks with the basket reminder’s code.',
     },
 
     { kind: 'h2', id: 'how-many', text: 'How many emails should a welcome series have?' },
@@ -264,23 +259,23 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your online store is already in Obsession’s index, the [store lookup](/lookup) sends its entry to an email at your store’s own address. The entry holds every email after a sign-up, a product view, a basket and a checkout, dated and set against every other store in the index. Each step is read at 4, 8, 12, 24 and 48 hours. The account then stays subscribed, so the entry keeps filling with your second and third emails and their codes. A fresh sign-up can run [every step again each week](/use-cases/leak-checks-for-ecommerce-stores), and the index is built for millions of companies.',
+      text: 'Obsession runs the same test from an inbox and number of its own. A persona, an AI agent with its own inbox, number and browser under one name, signs up through your pop-up and waits all week. Every email lands in its event log with the time, the subject and the code, and the result marks each day an email was due and nothing came. The [mystery shopping blueprint](/blueprints/mystery-shopper) runs it for teams who don’t code, and a fresh sign-up can run [every step again each week](/use-cases/leak-checks-for-ecommerce-stores).',
     },
     {
       kind: 'p',
-      text: 'Agencies that run email or retention for ecommerce brands can start in [early access](/lookup#agencies). It looks up every store already in the index and adds up to 5 stores you run or pitch, with the brand’s OK. We check each agency before we set up access.',
+      text: 'Agencies that run email or retention for ecommerce brands run the same blueprint on every client and every brand they pitch, with each brand’s OK. It is billed on the pieces it uses, from the Free plan up.',
     },
     {
       kind: 'cta',
-      text: 'See every email your store sends a new subscriber, each one dated with the code it carried, next to every other store in the index.',
-      to: '/lookup',
-      label: 'Look up your store',
+      text: 'A persona signs up through your pop-up, waits the whole week and keeps every email and code your series sends, dated.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'stores-and-clients', text: 'How do you check your welcome series against the leaders, and for your clients?' },
     {
       kind: 'p',
-      text: 'For your own online store, the [store lookup](/lookup) shows every email your welcome series sent a new subscriber, with the code each one carried, beside every other store in the index. With Obsession, you can set your series beside the biggest stores in your category. You see how many emails they send in the first week, what each one says and which codes stack.',
+      text: 'Point [competitor tracking](/blueprints/competitor-tracking) at the biggest stores in your category, and their welcome weeks sit beside yours. You see how many emails they send in the first week, what each one says and which codes stack.',
     },
     {
       kind: 'list',
@@ -298,7 +293,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
+      text: 'It keeps going on its own. Each persona stays subscribed and is free while it waits, and a fresh sign-up runs every step again each week, for 1 store or a list of 3,000. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },
@@ -324,7 +319,7 @@ export const post: BlogPost = {
         },
         {
           q: 'When should a welcome email series for new subscribers start?',
-          a: 'Within minutes of the sign-up. In Obsession’s index on 13 November 2026, most stores that sent a welcome sent it within a minute, and Klaviyo’s default series sends its first email immediately.',
+          a: 'Within minutes of the sign-up, with the code the sign-up form promised. Klaviyo’s default series sends its first email immediately.',
         },
         {
           q: 'Is there a welcome series email template I can copy?',
@@ -340,7 +335,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'The index figures are Obsession’s totals on 13 November 2026, for every sign-up, basket and checkout in the index. The Klaviyo help pages cited were updated on 24 and 26 October 2026, and Shopify’s help pages carry no date. Help pages change, so check the page before you act.',
+      text: 'The Klaviyo help pages cited were updated on 24 and 26 October 2026, and Shopify’s help pages carry no date. Help pages change, so check the page before you act.',
     },
   ],
 
@@ -360,7 +355,7 @@ export const post: BlogPost = {
     'welcome-basket-email-not-sending',
     'competitor-price-after-welcome-code',
     '/glossary/welcome-series',
-    '/lookup',
+    'recipe:mystery-shopper',
     '/use-cases/leak-checks-for-ecommerce-stores',
   ],
 }

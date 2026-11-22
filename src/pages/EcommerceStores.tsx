@@ -14,7 +14,7 @@ import { Count, Play, Step, Win } from '../legacy/james/components/UseCase'
 import './RetentionAgencies.css'
 import './EcommerceStores.css'
 
-/* /use-cases/leak-checks-for-ecommerce-stores (9 Nov story): every email and text a store and its competitors send after
+/* /use-cases/leak-checks-for-ecommerce-stores (22 Nov toolkit story): every email and text a store and its competitors send after
    a sign-up, a basket and a checkout, dated, and the ones that never came. Drawn as the retention agencies page is, from
    James's pieces: hero flow, the problem, 11 steps in 3 phases beside their app windows, the handover, questions, 4 link
    cards and the site's final section. Words are the content file's; the windows' rows and numbers are here. Halden Home,
@@ -214,31 +214,31 @@ export function EcommerceStores() {
                           <small>haldenhome.example</small>
                         </b>
                         <span>Your store</span>
-                        <span className="tag idle">To watch</span>
+                        <span className="tag idle">New persona</span>
                       </li>
                       <li style={at(1)}>
                         <b>
                           Brackwater Home
                           <small>brackwaterhome.example</small>
                         </b>
-                        <span>In the index since 2 Sep</span>
-                        <span className="tag ok">Covered</span>
+                        <span>Persona on its list since 2 Sep</span>
+                        <span className="tag ok">Watching</span>
                       </li>
                       <li style={at(2)}>
                         <b>
                           Copperleaf Living
                           <small>copperleafliving.example</small>
                         </b>
-                        <span>In the index since 14 Oct</span>
-                        <span className="tag ok">Covered</span>
+                        <span>Persona on its list since 14 Oct</span>
+                        <span className="tag ok">Watching</span>
                       </li>
                       <li style={at(3)}>
                         <b>
                           Oakhurst &amp; Weave
                           <small>oakhurstweave.example</small>
                         </b>
-                        <span>Not in the index yet</span>
-                        <span className="tag idle">To watch</span>
+                        <span>Competitor</span>
+                        <span className="tag idle">New persona</span>
                       </li>
                     </ul>
                   </div>
@@ -315,7 +315,7 @@ export function EcommerceStores() {
                         </div>
                       </div>
                       <div className="uc-fld">
-                        <p className="uc-lab">Each new fact to</p>
+                        <p className="uc-lab">Each result to</p>
                         <div className="uc-field uc-dd">Webhook · Slack #store-checks</div>
                       </div>
                     </div>
@@ -329,7 +329,7 @@ export function EcommerceStores() {
                     <div className="uc-id">
                       <div className="uc-row uc-between">
                         <span className="uc-mh">Halden Home</span>
-                        <span className="tag idle">Account 7C21</span>
+                        <span className="tag idle">Persona 7C21</span>
                       </div>
                       <dl className="uc-idrows">
                         <div>
@@ -478,7 +478,7 @@ export function EcommerceStores() {
               </div>
 
               <Step n={5} title={step(1, 0).title} line={step(1, 0).line} pick={step(1, 0).example}>
-                <Win title="Evidence · Halden Home · Basket">
+                <Win title="Event log · Halden Home · Basket">
                   <div className="uc-verdict">
                     <span className="uc-lab">Silent</span>
                     <b>A basket left with the marketing box ticked got no reminder.</b>
@@ -513,7 +513,7 @@ export function EcommerceStores() {
                     </div>
                   </div>
                   <div className="uc-row uc-end">
-                    <span className="uc-btn">Copy evidence link</span>
+                    <span className="uc-btn">Copy event link</span>
                   </div>
                 </Win>
               </Step>
@@ -596,7 +596,7 @@ export function EcommerceStores() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="uc-small">The first row is the first check, so the before is on record from day 1.</p>
+                  <p className="uc-small">The first row is the first check, so the before is in the event log from day 1.</p>
                 </Win>
               </Step>
 
@@ -669,7 +669,7 @@ export function EcommerceStores() {
                   <p className="uc-small">Brackwater’s 20% came only by email. Its website still shows 10%.</p>
                   <div className="uc-row uc-end">
                     <span className="uc-btn alt">Open the email</span>
-                    <span className="uc-btn">Ask Insights</span>
+                    <span className="uc-btn">Send to #store-checks</span>
                   </div>
                   <p className="uc-small">Each row links to the emails and screenshots behind it.</p>
                 </Win>
@@ -704,7 +704,7 @@ export function EcommerceStores() {
                       </p>
                     </li>
                     <li>
-                      <small>Early access email</small>
+                      <small>Preview email</small>
                       <p>
                         <b>Came</b>
                         <em>Thursday</em>
@@ -729,7 +729,7 @@ export function EcommerceStores() {
               </Step>
 
               <Step n={11} title={step(2, 4).title} line={step(2, 4).line} pick={step(2, 4).example}>
-                <Win title="Insights · Black Friday week">
+                <Win title="Report · Black Friday week">
                   <ul className="uc-tiles">
                     {[
                       ['Stores', 4, ''],
@@ -800,11 +800,11 @@ export function EcommerceStores() {
                     <p>Can you turn our basket flow back on this week?</p>
                     <p>Ana</p>
                     <p className="uc-att">
-                      <span>Evidence: basket, 3 to 5 Nov</span>
+                      <span>Event log: basket, 3 to 5 Nov</span>
                       <span>Brackwater’s 3 reminders</span>
                     </p>
                   </div>
-                  <p className="uc-small">Sent from the evidence page.</p>
+                  <p className="uc-small">Sent from the event log.</p>
                 </div>
                 <div className="uc-phone-wrap">
                   <p className="kicker">What a competitor sends</p>

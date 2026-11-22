@@ -44,7 +44,7 @@ export const post: BlogPost = {
   description:
     'Churn risk indicators for customer success teams: usage, NPS, tickets and sponsors, plus the outside signal of what each account’s customers receive.',
   answer:
-    'Churn risk indicators are the signs that a customer may not renew: falling product usage, a low Net Promoter Score, rising support tickets, a sponsor who leaves and late payments. Software that reaches the customer’s own customers, such as an email, help desk or payments platform, has one more outside the product: a welcome email that stops arriving, or emails that start coming from another email platform. Obsession keeps what each account sends its own customers, dated with the email or screenshot, by API, MCP or a table, so that indicator reaches the health score before the renewal call.',
+    'Churn risk indicators are the signs that a customer may not renew: falling product usage, a low Net Promoter Score, rising support tickets, a sponsor who leaves and late payments. Software that reaches the customer’s own customers, such as an email, help desk or payments platform, has one more outside the product: a welcome email that stops arriving, or emails that start coming from another email platform. Obsession’s Account watch blueprint signs a persona up as a customer of each account and lands each change, dated, on the account’s record in your CRM before the renewal call.',
   primaryKeyword: 'churn risk indicators',
   keywords: [
     'churn risk signals',
@@ -56,7 +56,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -338,7 +338,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For customer success, it collects the [churn signals](/blueprints/account-watch) outside your product for every account on your book. That covers each email and text an account sends its customers, its sign-up and basket walked daily, and the sending platform behind each email with the week it changes. Each fact lands dated on the account’s record in your CRM, so you can see what it does to your renewals, retention and net revenue retention.',
+      text: 'Obsession is the toolkit for AI agents, and its blueprints run ready-made jobs for the teams who pick them. For customer success, the [Account watch](/blueprints/account-watch) blueprint sends a persona, an AI agent with its own inbox, number and browser, to sign up at every account on your book. That covers each email and text an account sends its customers, its sign-up and basket walked daily, and the sending platform behind each email with the week it changes. Each change lands dated on the account’s record in your CRM, so you can see what it does to your renewals, retention and net revenue retention.',
     },
     {
       kind: 'p',
@@ -351,8 +351,8 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'What every account on your book sends its own customers, dated, with the platform behind each email, on the account’s record in your CRM.',
-      to: '/#join',
-      label: 'Request early access',
+      to: '/blueprints/account-watch',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'tools', text: 'Churn risk tools compared', compare: true },
@@ -398,15 +398,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Account watch](/blueprints/account-watch), [Email and SMS tracking](/blueprints/email-sms-tracking)',
           'Keeps what each account sends its own customers: emails, texts, sign-up, basket and the platform behind each email',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'An account not yet covered starts its history the day it is added\nEvery check stops short of paying',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'History starts the day each account is added\nEvery check stops short of paying',
           'The indicator outside your product, for every account on your book',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For the indicator outside your product, use Obsession. It keeps what every account on your book sends its own customers, dated, with the sending platform behind each email, for as long as you follow the account. Gainsight, ChurnZero, Vitally and HubSpot turn your product, support and survey data into a health score and its playbooks. Common Room adds job changes and hiring at the account’s company. The outside indicator becomes one more group in whichever health score you run.',
+      text: 'For the indicator outside your product, use Obsession. Its personas keep what every account on your book sends its own customers, dated in one event log, with the sending platform behind each email, for as long as you follow the account. Gainsight, ChurnZero, Vitally and HubSpot turn your product, support and survey data into a health score and its playbooks. Common Room adds job changes and hiring at the account’s company. The outside indicator becomes one more group in whichever health score you run.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
@@ -421,11 +421,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The same changes tell sales which prospects are changing platform, which the guide to [buying signals examples](/blog/buying-signals-examples) covers for sales development teams. Start with the 10 largest renewals in the next quarter, sign up to each this week, and read the headers before the next forecast call. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'The same changes tell sales which prospects are changing platform, which the guide to [buying signals examples](/blog/buying-signals-examples) covers for sales development teams. Start with the 10 largest renewals in the next quarter, sign up to each this week, and read the headers before the next forecast call. [Sales intelligence for B2B revenue teams](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
-      text: 'Sample data from a real UK store in September 2026: 4 test customers, every inbox watched for 48 hours, and the record in every format it comes in.',
+      text: 'Sample data from a real UK store in September 2026: 4 sign-ups and baskets, every inbox watched for 48 hours, and the results in every format they come in.',
       to: '/sample-output',
       label: 'See sample data',
     },
@@ -460,7 +460,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can the outside indicator be checked automatically?',
-          a: 'Yes. Obsession’s Account watch keeps a customer account open at each company you sell to and lands each change, dated with its email or screenshot, on the account’s record in your CRM.',
+          a: 'Yes. Obsession’s Account watch blueprint keeps a persona signed up as a customer of each company you sell to and lands each change, dated with its email or screenshot, on the account’s record in your CRM.',
           link: { label: 'Account watch', to: '/blueprints/account-watch' },
         },
       ],

@@ -1,7 +1,6 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
-/* /glossary/login-wall: the term the whole index rests on. "data behind login" stays with Home (docs/SEARCH.md §2);
+/* /glossary/login-wall: the term the web behind the login rests on. "data behind login" stays with Home (docs/SEARCH.md §2);
    this page owns the definition of a login wall and links Home for the category. */
 export const ref: ReferencePage = {
   kind: 'term',
@@ -79,11 +78,11 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} Each account stays open for as long as you follow the company, so every new email, price and offer lands dated the day it arrives, and the history builds from the first day.`,
+      text: 'Obsession’s [cloud browser](/browser) signs up as a customer and a persona’s inbox keeps what arrives. Every new email, price and offer lands in the event log dated the day it arrives.',
     },
     {
       kind: 'p',
-      text: 'An Obsession agent never gets round a CAPTCHA or a bot block, and never goes past an identity check. Where a site puts one in front of a step, the record names the step it couldn’t reach. The lines every agent keeps are on [the page for companies an agent visits](/agents).',
+      text: 'An Obsession agent never gets round a CAPTCHA or a bot block, and never goes past an identity check. Where a site puts one in front of a step, the event log names the step it couldn’t reach. The lines every agent keeps are on [the page for companies an agent visits](/agents).',
     },
     {
       kind: 'faq',
@@ -106,6 +105,7 @@ export const ref: ReferencePage = {
   ],
   sources: [],
   related: [
+    '/browser',
     'the-web-behind-the-login',
     '/glossary/the-web-behind-the-login',
     '/glossary/member-price',

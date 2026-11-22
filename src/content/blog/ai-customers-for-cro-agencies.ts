@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
 
 /* The why series, Spec C (24 Oct 2026): why CRO and performance agencies need AI customers. It owns "landing page
    monitoring" (primary), with "ai tools for digital marketing agency", "cro tools for shopify", "cro agency", "paid
@@ -74,7 +73,7 @@ export const post: BlogPost = {
   description:
     'Landing page monitoring for CRO and performance agencies: the page, pop up, code and emails behind every live ad, each morning, at clients and prospects.',
   answer:
-    'Landing page monitoring for a CRO agency opens the page behind each live ad every morning, signs up through the pop up and takes the code to checkout. None of an agency’s usual tools signs up and waits for the emails, so a refused code or a late welcome email can run for days while the ads keep spending. Obsession keeps what each brand’s funnel shows and sends after the click, dated with the email or screenshot, by API, MCP or a table.',
+    'Landing page monitoring for a CRO agency opens the page behind each live ad every morning, signs up through the pop up and takes the code to checkout. None of an agency’s usual tools signs up and waits for the emails, so a refused code or a late welcome email can run for days while the ads keep spending. Obsession’s ad landing check blueprint opens each ad’s page every morning, signs up and keeps every email and code, dated with the email or screenshot.',
   primaryKeyword: 'landing page monitoring',
   keywords: [
     'landing page monitoring',
@@ -87,7 +86,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   order: 14,
   authors: [
@@ -98,7 +97,7 @@ export const post: BlogPost = {
     art: {
       kind: 'log',
       title: 'brackenfold.example · 1 ad, followed past the click',
-      who: 'An AI customer working for the brand’s agency, on a phone',
+      who: 'An AI agent working for the brand’s agency, on a phone',
       status: { tone: 'fail', text: '3 failed, 1 late' },
       rows: [
         { time: '07:00', text: 'Opens the ad’s page from its link', detail: 'The ad: 20% off linen sets, $96', tone: 'info' },
@@ -119,7 +118,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[AI customers](/blog/ai-customers) check that stretch from the customer’s side, at every client and every prospect. [Why AI customers matter](/blog/why-ai-customers-matter) sets out the case for any company. For an agency, it rests on 2 numbers every agency tracks: clients kept and pitches won.',
+      text: 'An AI agent that signs up as a customer checks that stretch from the customer’s side, at every client and every prospect. [Why AI agents need their own inbox, phone number and browser](/blog/why-ai-customers-matter) explains the pieces it uses. For an agency, the case rests on 2 numbers every agency tracks: clients kept and pitches won.',
     },
     {
       kind: 'stat',
@@ -212,7 +211,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**Client sales at risk a day:** purchases a day from the affected ads × the average order, halved for a cautious figure, since some shoppers buy anyway.',
-        '**Days until found:** on average half the gap between checks, so about 15 days with a monthly review, 3.5 with a weekly check and half a day with a daily one ([how AI customers find revenue leaks](' +
+        '**Days until found:** on average half the gap between checks, so about 15 days with a monthly review, 3.5 with a weekly check and half a day with a daily one ([customer journey testing](' +
           LEAKS +
           ') explains the rule).',
         '**Cost to the client:** sales at risk a day × days until found.',
@@ -255,7 +254,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'On those numbers, a fault like Brackenfold’s found daily instead of monthly is worth $14,790 to the client, and a client kept 3 more months is worth $15,000 to $54,000 to the agency. Set either against the cost of the check, by hand or with AI customers, priced part by part in [AI customers at scale](/blog/ai-customers-at-scale).',
+      text: 'On those numbers, a fault like Brackenfold’s found daily instead of monthly is worth $14,790 to the client, and a client kept 3 more months is worth $15,000 to $54,000 to the agency. Set either against the cost of the check, by hand or with AI agents, priced part by part in [what AI agents cost per month](/blog/ai-customers-at-scale).',
     },
 
     { kind: 'h2', id: 'by-hand', text: 'Landing page monitoring by hand' },
@@ -282,7 +281,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `${CUSTOMER_SIDE_OBSERVABILITY.definition} For an agency, it turns these checks into a routine with 3 parts, set before the first check.`,
+      text: 'For an agency, these checks become a routine with 3 parts, set before the first check.',
     },
     {
       kind: 'list',
@@ -293,18 +292,17 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'what-they-do', text: 'What AI customers do for an agency' },
-    { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
+    { kind: 'h2', id: 'what-they-do', text: 'What AI agents as customers do for an agency' },
     {
       kind: 'p',
-      text: 'Working for an agency, each AI customer becomes a customer of 1 client, prospect or competitor, and the agency reads what it found. The stretch after the click comes down to 5 jobs.',
+      text: 'Each one is a persona, an AI agent with its own inbox, phone number and browser under one name. Working for an agency, each persona becomes a customer of 1 client, prospect or competitor, and the agency reads what it found. The stretch after the click comes down to 5 jobs.',
     },
     {
       kind: 'list',
       ordered: true,
       items: [
         '**Every live ad’s page, each morning** ([Ad landing check](/blueprints/ad-landing-check)). The check: open each page from the ad’s own link, on a phone and a desktop. A pass: it loads, matches the ad and has stock. That week: the media buyer pauses or relinks each failing ad.',
-        '**Each client’s journey after the sign up, weekly and after every release** ([Website audit](/blueprints/website-audit)). The check: sign up through the pop up behind a live ad, wait 48 hours and take the code to checkout. A pass: the promised code arrives within minutes and works. That week: each fail goes to its owner, and the before and after into the monthly report.',
+        '**Each client’s journey after the sign up, weekly and after every release** ([QA on your own flows](/blueprints/website-audit)). The check: sign up through the pop up behind a live ad, wait 48 hours and take the code to checkout. A pass: the promised code arrives within minutes and works. That week: each fail goes to its owner, and the before and after into the monthly report.',
         '**Every test variant past the sign up, each morning it runs.** The check, from step 5 of the [ecommerce CRO audit template](' +
           CRO_AUDIT +
           '): sign up through each variant’s preview link and try the code it sends. A pass: every variant sends its email and a working code. That week: hours when a variant failed come out of both arms before anyone calls the test.',
@@ -318,7 +316,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For a CRO agency, that is what each brand’s funnel shows after a live ad, from the page and the pop up’s offer to the welcome email and the code at checkout, every morning for as long as the agency follows the brand.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Each job is a blueprint Obsession runs on its pieces, so a CRO agency sees what each brand’s funnel shows after a live ad, from the page and the pop up’s offer to the welcome email and the code at checkout. It runs every morning for as long as the persona stays subscribed, and each result reaches Slack, a sheet or the client report.',
     },
 
     { kind: 'h2', id: 'what-changes', text: 'What changes for agencies in 2026 and 2027' },
@@ -350,7 +348,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each change lands on a page, code or email the agency doesn’t control. AI customers rerun the checks the morning after each one, including on pages an AI channel sends shoppers to, and the monthly report shows each client what its customers received.',
+      text: 'Each change lands on a page, code or email the agency doesn’t control. The personas rerun the checks the morning after each one, including on pages an AI channel sends shoppers to, and the monthly report shows each client what its customers received.',
     },
 
     { kind: 'h2', id: 'options', text: 'Landing page monitoring and CRO tools compared', compare: true },
@@ -415,20 +413,20 @@ export const post: BlogPost = {
           'One off checks of a page or form',
         ],
         [
-          'Obsession (ours): [Ad landing check](/blueprints/ad-landing-check), [Website audit](/blueprints/website-audit), [Prospect intelligence](/blueprints/prospect-intelligence), [Ad tracking](/blueprints/ad-tracking)',
+          'Obsession (ours): [Ad landing check](/blueprints/ad-landing-check), [QA on your own flows](/blueprints/website-audit), [Prospect intelligence](/blueprints/prospect-intelligence), [Ad tracking](/blueprints/ad-tracking)',
           'What follows a live ad: the page, the pop up’s offer, every email and the code at checkout, each dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at bot walls, CAPTCHAs and payment',
           'What shoppers get after the click, sign up and checkout, kept as proof',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your agency needs to see what shoppers get after the click, the sign up and the checkout, at every client, live test and prospect, use Obsession. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. For a few clients with fixed ads and no pop up offers, Google’s own checks and a morning pass by hand cover most of the work.',
+      text: 'If your agency needs to see what shoppers get after the click, the sign up and the checkout, at every client, live test and prospect, use Obsession. Its blueprints keep every page, email and code, dated with the screenshot, in Slack, a sheet or the API. For a few clients with fixed ads and no pop up offers, Google’s own checks and a morning pass by hand cover most of the work.',
     },
 
-    { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need AI customers' },
+    { kind: 'h2', id: 'when-not', text: 'When an agency doesn’t need daily checks' },
     {
       kind: 'list',
       items: [
@@ -453,12 +451,12 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'See what each brand’s funnel sends after the sign up: the pop up’s offer, the welcome email and its code, and the basket and checkout reminders, each dated with the email itself. Look up the brands you pitch, and check every test variant before launch and each morning it’s live. Agencies start in early access, onboarding teams now.',
-      to: '/use-cases/funnel-qa-for-cro-agencies',
-      label: 'Request early access',
+      text: 'Every live ad’s page each morning, then the pop up’s offer, the welcome email and its code, at every client and every brand you pitch, each dated with the email itself.',
+      to: '/blueprints/ad-landing-check',
+      label: 'See the blueprint',
     },
 
-    { kind: 'h2', id: 'questions', text: 'Questions about AI customers for agencies' },
+    { kind: 'h2', id: 'questions', text: 'Questions about landing page monitoring for agencies' },
     {
       kind: 'faq',
       items: [
@@ -476,19 +474,19 @@ export const post: BlogPost = {
         },
         {
           q: 'What CRO tools work for Shopify stores?',
-          a: 'Shopify’s reports and GA4 show where visitors drop, Microsoft Clarity shows why, a testing tool such as Intelligems runs and checks tests, and AI customers check what the store sends after the sign up.',
+          a: 'Shopify’s reports and GA4 show where visitors drop, Microsoft Clarity shows why, a testing tool such as Intelligems runs and checks tests, and an AI agent acting as a customer checks what the store sends after the sign up.',
         },
         {
           q: 'What AI tools help a digital marketing agency?',
-          a: 'AI already runs inside many agency tools: Google’s AI Max chooses landing pages, Clarity summarises recordings and Atlas QA browses test previews. AI customers add the customer’s side of each client, prospect and competitor.',
+          a: 'AI already runs inside many agency tools: Google’s AI Max chooses landing pages, Clarity summarises recordings and Atlas QA browses test previews. AI agents acting as customers add the customer’s side of each client, prospect and competitor.',
         },
         {
-          q: 'Do AI customers click a client’s ads?',
-          a: 'No. An AI customer opens each ad’s page from the ad’s own link, so no click is paid for and the client’s ad numbers stay true.',
+          q: 'Does an AI agent click a client’s ads?',
+          a: 'No. An agent on Obsession opens each ad’s page from the ad’s own link and never clicks paid ads at volume, so no click is paid for and the client’s ad numbers stay true.',
         },
         {
-          q: 'Can AI customers check a prospect before the pitch?',
-          a: 'Yes. An AI customer signs up through the brand’s public pop up, as any customer can, waits for what arrives and takes the code to checkout without paying.',
+          q: 'Can an AI agent check a prospect before the pitch?',
+          a: 'Yes. An AI agent signs up through the brand’s public pop up, as any customer can, waits for what arrives and takes the code to checkout without paying.',
         },
       ],
     },

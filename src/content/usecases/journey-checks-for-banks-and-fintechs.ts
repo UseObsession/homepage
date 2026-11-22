@@ -1,23 +1,28 @@
+import { kitPathOf } from '../kitPaths'
+import { personaCostLine, plans } from '../prices'
 import type { UseCaseStudy } from '../types'
 
-/* Journey checks for banks and fintechs (/use-cases/journey-checks-for-banks-and-fintechs), 9 Nov rewrite: what banks
-   show only to the people who apply (account opening up to the identity check, the emails after, the rates the
-   application shows beside public ones, offers after the form, what chat tells a saver; up to the identity check and
-   never past it, James 11 Nov), for a bank's own channels and its competitors', looked up in
-   Search or Insights, a table or a webhook. Kittiwake Bank's chat calling a variable rate fixed comes from Home; every
-   name, rate and figure is invented and `fine` says so. The agents appear only in the answer on where the data comes from. */
+/* Journey checks for banks and fintechs (/use-cases/journey-checks-for-banks-and-fintechs), 22 Nov 2026 rewrite for the
+   toolkit position: a persona (its own browser, inbox and number) starts account applications at the reader's bank and
+   its competitors, up to the identity check and never past it (James, 11 Nov), and keeps every step, rate, email, text and
+   chat answer in the event log. QA on your own flows runs the bank's own application; Mystery shopping runs the
+   competitors'. Part of the Test sign-up and agents kit. Kittiwake Bank's chat calling a variable rate fixed is
+   invented, like every name, rate and figure here, and `fine` says so. Prices come from prices.ts. */
+
+const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
+const planWords = `the Free plan, then ${fees.slice(0, -1).join(', ')} or ${fees[fees.length - 1]} a month`
 
 export const study: UseCaseStudy = {
   name: 'Journey checks for banks and fintechs',
-  line: 'Account opening up to the identity check, offers and chat answers, at your bank and your competitors.',
+  line: 'Account opening up to the identity check, rates, offers and chat answers, at your bank and your competitors.',
 
   meta: {
     path: '/use-cases/journey-checks-for-banks-and-fintechs',
-    title: 'Journey checks for banks and fintechs: behind the login',
+    title: 'Banks and fintechs: test account opening up to the ID check',
     description:
-      'Account opening up to the identity check, application rates, switching offers and chat answers, at your bank and your competitors, each dated.',
+      'AI agents apply at your bank and your competitors up to the identity check, and keep every step, rate, email, text and chat answer, dated with its proof.',
     answer:
-      'Obsession records what banks and fintechs show only to the people who apply: every step of account opening up to the identity check, the rates and offers shown along the way, the emails and texts after it, and what chat tells a saver. Each fact is dated, with its screenshot, email or transcript, for your own bank and your competitors. Look up one bank, or ask a question across many.',
+      'Obsession gives banks and fintechs AI agents that start account applications at your bank and your competitors, up to the identity check and never past it. Each is a persona with its own browser, inbox and number. Every step, rate, email, text and chat answer lands in your event log, dated, with its screenshot or transcript.',
     ogImage: '/og/journey-checks-for-banks-and-fintechs.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -28,46 +33,47 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Early access',
+    pill: 'Test sign-up and agents kit',
     headline: 'The rates, offers and answers banks show only to people who apply.',
-    sub: 'Every step of account opening up to the identity check, the rates and switching offers shown along the way, every email and text after, and what chat tells a saver. At your bank and your competitors, each dated with its screenshot or transcript.',
-    example: { chips: ['Kittiwake Bank, a savings bank', '3 competitors', 'Sign-up, login and chat'] },
+    sub: 'Obsession gives banks and fintechs AI agents that start account applications at your bank and your competitors, up to the identity check and never past it. Every step, rate, email, text and chat answer lands in your event log, dated, with its screenshot or transcript.',
+    example: { chips: ['Kittiwake Bank, a savings bank', '3 competitors', 'Applications and chat'] },
     flow: [
       {
         label: 'What you name',
         title: 'Your bank and 3 competitors',
-        items: ['Account opening, up to the identity check', 'Rate pages and the application', 'Chat and the help centre', 'The customer profiles to ask as'],
-        foot: 'A new saver and a switcher',
+        items: ['Account opening, up to the identity check', 'Rate pages and the application', 'Chat and the help centre', 'Who applies: a new saver or a switcher'],
+        foot: 'On the web or in the app',
       },
       {
-        label: 'What comes back',
-        title: 'Every fact, dated',
-        items: ['Each step, up to the identity check', 'Every email and text after', 'Application rates beside public ones', 'Chat answers, word for word'],
-        foot: 'Each with its screenshot or transcript',
+        label: 'Obsession',
+        title: 'A persona at each bank',
+        items: ['A browser for the application', 'An inbox and a number for what follows', 'Stops at the identity check', 'Says it’s an AI in chat'],
+        foot: 'Free while it waits',
       },
       {
         label: 'Where it lands',
-        title: 'Where your team works',
-        items: ['Search: one bank', 'Insights: a question across many', 'A webhook, Clay or the API'],
-        foot: 'Nothing to install',
+        title: 'Your event log',
+        items: ['Each step, with its screenshot', 'Application rates beside public ones', 'Chat answers, word for word', 'Slack, a webhook or a sheet'],
+        foot: 'Every event dated',
       },
     ],
     capture: {
       kind: 'waitlist',
       source: 'usecase-banks-hero',
-      button: 'Request early access',
-      interest: 'support-bot',
+      button: 'Start free',
+      interest: 'audit',
     },
+    secondary: { label: 'See the blueprint', to: '/blueprints/website-audit' },
   },
 
   how: {
-    heading: 'Name the banks and who asks. Everything after is kept.',
+    heading: 'Name the banks and who applies. Everything after is kept.',
     sub: 'Kittiwake Bank, a savings bank, follows its own channels and 3 competitors’.',
     steps: [
       {
         title: 'Set it up',
         line: 'Which banks, as which customers, and what each answer is checked against.',
-        chips: ['Your bank and any competitor', 'New saver · UK', 'Switcher · UK', 'Says it’s AI to a person'],
+        chips: ['Your bank and any competitor', 'New saver · UK', 'Switcher · UK', 'Says it’s an AI to a person'],
         steps: [
           {
             title: 'Name the banks',
@@ -75,8 +81,8 @@ export const study: UseCaseStudy = {
             example: 'Kittiwake names itself and 3 competitors: Dunmere, Sedgefield and Quaystone.',
           },
           {
-            title: 'Pick who asks',
-            line: 'The customer profiles and country to ask as. A new saver and a switcher are often offered different rates.',
+            title: 'Define who applies',
+            line: 'Each persona is a customer you define, by profile and country. A new saver and a switcher are often offered different rates.',
             example: 'A new saver in the UK, and someone switching their savings from another bank.',
           },
           {
@@ -87,10 +93,10 @@ export const study: UseCaseStudy = {
         ],
       },
       {
-        title: 'Obsession starts the applications',
-        line: 'Up to the identity check, never past it. Each keeps its inbox and phone number, so every email, text and offer after arrives as it happens.',
+        title: 'The personas start the applications',
+        line: 'Up to the identity check, never past it. Each keeps its inbox and number, so every email, text and offer after arrives as it happens.',
         screen: 'botcheck',
-        chips: ['Its own inbox', 'Its own phone number', 'Its own browser', 'Says it’s AI'],
+        chips: ['Its own browser', 'Its own inbox', 'Its own number', 'Says it’s an AI'],
         steps: [
           {
             title: 'Account opening, step by step',
@@ -121,28 +127,30 @@ export const study: UseCaseStudy = {
       { title: 'Wrong answers in chat', line: 'A bot that calls a variable rate fixed, or gets a notice period wrong.' },
       { title: 'Messages that never come', line: 'The reminder to finish an application that never went out.' },
     ],
-    answer: 'Each finding is dated, with the screenshot, email or transcript behind it, kept for as long as you need it.',
+    answer: 'Each finding lands in your event log with the screenshot, email or transcript behind it, kept for as long as you need it.',
   },
 
   outputs: {
-    heading: 'What product, pricing and risk teams do with it.',
+    heading: 'What journey, pricing and risk teams do with it.',
+    sub: 'Each use shows up in application completion, drop-off and time to open, where you can watch it.',
     groups: [
       {
         items: [
           {
+            title: 'Fix the step applicants drop at',
+            line: 'A new persona runs your own application after every release.',
+            example: 'After a release on 6 Nov, Kittiwake’s address step froze in the app. The screenshot reached the journey team at 09:12.',
+          },
+          {
             title: 'Price against what applicants see',
-            line: 'Not the rate on a comparison table.',
-            example: 'Asked “Which banks show a lower rate in the application than on their rate page?”, Insights answered 3 of 5, by up to 0.3 points.',
+            line: 'The rate on the application, beside the one on a comparison table.',
+            example: 'Sedgefield and Dunmere show a lower rate in the application than on their rate pages, by up to 0.3 points.',
           },
           {
             title: 'Catch a wrong answer the day it starts',
-            line: 'Not when the complaints arrive.',
+            line: 'Before the complaints arrive.',
             example: 'The fixed rate answer reached the savings team’s webhook at 07:05 on Tuesday, the morning after a bot update.',
-          },
-          {
-            title: 'Show what customers were told',
-            line: 'A dated record of every answer, for your own monitoring and your board.',
-            example: 'October: 40 questions a day in 3 channels, 4 wrong answers, each fixed within a day.',
+            link: { label: 'Support bot check', to: '/blueprints/support-bot-check' },
           },
           {
             title: 'Match a competitor’s offer, or don’t',
@@ -156,16 +164,16 @@ export const study: UseCaseStudy = {
 
   more: {
     recipe: {
-      label: 'The blueprint',
-      title: 'Support bot check',
-      line: 'The same questions to a support bot every day, each answer checked against the policy.',
-      cta: { label: 'Learn more', to: '/blueprints/support-bot-check' },
+      label: 'For your own bank',
+      title: 'QA on your own flows',
+      line: 'A new persona through your own application after every release, and the step that broke.',
+      cta: { label: 'See the blueprint', to: '/blueprints/website-audit' },
     },
     sample: {
-      label: '1 real run',
-      title: 'Sample data',
-      line: 'Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.',
-      cta: { label: 'See it', to: '/sample-output' },
+      label: 'For your competitors',
+      title: 'Mystery shopping',
+      line: 'Personas apply at each competitor and keep every email, text and offer that follows.',
+      cta: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
     },
   },
 
@@ -175,36 +183,39 @@ export const study: UseCaseStudy = {
     heading: 'What banks and fintechs ask.',
     items: [
       {
-        q: 'What does Obsession do for banks and fintechs?',
-        a: 'Obsession records what banks and fintechs show only to the people who apply: every step of account opening up to the identity check, the rates and offers shown along the way, the emails and texts after it, and what chat tells a saver. Each fact is dated, with its screenshot, email or transcript, for your own bank and your competitors. Look up one bank, or ask a question across many.',
-      },
-      {
         q: 'Where does the data come from?',
-        a: 'From real applications. Obsession’s agents start applications, sign up where a bank allows it and ask chat the way any customer can. They ask as the customer profiles and countries you choose, and keep each inbox and phone number for months. They stop at the identity check and never invent identity details. They never sign in to an account that isn’t their own, and say they’re an AI when they talk to a person.',
+        a: 'From real applications. A persona starts an application and asks chat the way any customer can, as the profile and country you choose, and keeps its inbox and number for months. It stops at the identity check and never invents identity details. It never signs in to an account that isn’t its own, and says it’s an AI when it talks to a person.',
+        link: { label: 'The lines every agent keeps', to: '/agents' },
       },
       {
         q: 'Does it help with Consumer Duty?',
-        a: 'In the UK, the Consumer Duty asks firms to check that what they tell customers supports their understanding. Obsession gives you a dated record of what your channels said, answer by answer. It isn’t compliance advice, and what you report stays your call.',
+        a: 'In the UK, the Consumer Duty asks firms to check that what they tell customers supports their understanding. Obsession gives you a dated history of what your channels said, answer by answer. It isn’t compliance advice, and what you report stays your call.',
       },
       {
-        q: 'Who sees what we look up?',
-        a: 'Only your team. Anyone can see that a bank is covered, and since when, but never who asked. Your own questions and their transcripts stay on an account that works only for you.',
+        q: 'Who sees what our personas collect?',
+        a: 'Only your team. Every event lands in your own event log, and nobody else can read it.',
       },
       {
         q: 'How often does it check?',
-        a: 'Each application keeps its own inbox and phone number, so emails and texts arrive as they happen. Rate pages and chat questions are checked every morning in this example, again after every bot update, or on any rhythm you set.',
+        a: 'Each persona keeps its own inbox and number, so emails and texts arrive as they happen. Rate pages and chat questions are checked every morning in this example, again after every bot update, or on any schedule you set.',
+      },
+      {
+        q: 'How is it priced?',
+        a: `${personaCostLine} It costs nothing while it waits, and each blueprint is billed on the pieces it uses. Start on ${planWords}.`,
+        link: { label: 'See pricing', to: '/pricing' },
       },
     ],
   },
 
   final: {
-    heading: 'Which banks should we look up first?',
-    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
+    heading: 'Apply at every competitor, up to the identity check.',
+    sub: 'Start with your own application and one competitor’s, so you can see what it does to application completion and drop-off.',
     capture: {
       kind: 'waitlist',
       source: 'usecase-banks-final',
-      button: 'Request early access',
-      interest: 'support-bot',
+      button: 'Start free',
+      interest: 'audit',
     },
+    link: { label: 'See the Test sign-up and agents kit', to: kitPathOf.test },
   },
 }

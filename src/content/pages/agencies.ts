@@ -1,38 +1,37 @@
+import { plans } from '../prices'
 import type { CardGrid, Page, PricingTabs } from '../types'
 
-/* Agencies (/agencies), the resellers rewrite (21 Nov 2026, James): one page for every business that resells our recipes
-   and pieces to its own clients under its own brand. A synthetic buyer study that day found the best buyers resell the
-   output: mystery shopping and CX audit firms, AI receptionist and front desk vendors, CRO, retention and voice AI
-   agencies, automation consultants (n8n, Make), managed QA and testing vendors, and agent builder platforms. All six asked
-   for the same 3 things: a dashboard, a report under their own brand, and white label terms (an account per client,
-   wholesale rates). Their trigger is proof from a pilot, or a client asking for it. The path stays /agencies for the
-   links already pointing here.
+/* Agencies (/agencies), for resellers (21 Nov 2026, James; blueprints, 22 Nov): one page for every business that runs
+   our blueprints for its own clients under its own brand: mystery shopping and CX audit firms, AI receptionist and front
+   desk vendors, CRO, retention and voice AI agencies, automation consultants (n8n, Make), managed QA and testing vendors,
+   and agent builder platforms. All asked for the same 3: a dashboard, a report under their own brand, and white
+   label terms (an account per client, wholesale rates). The path stays /agencies for the links already pointing here.
    The page reads, in order (pages/Agencies.tsx): the hero, beside every client's checks on one board > the gap: checks
-   done by hand eat the margin (its claim is also the share image's line) > #resell: the 6 kinds of reseller, each with
-   the recipes it would sell (sections/Kinds) > #white-label: the white label terms, from the Enterprise plan on /pricing
-   (v5/CardGrid) > #pricing: the blueprints resellers sell, each a tab with that blueprint's own pricing table
-   (`pricing` below, components/BlueprintPricingTabs; James, 21 Nov, in place of the fixed price pilot) > questions >
-   #join: the early access form. Sold as designed (white label, an account per client, branded reports and the dashboard are the
-   offer). No customers, logos, quotes or results are claimed, and no price comes from a single deal. The old lifecycle
-   email audit story (the prospect's own emails, the Brand G run) is gone. Never name a competitor, never "AI customers". */
+   done by hand eat the margin > #resell: the 6 kinds of reseller, each with the blueprints it would sell
+   (sections/Kinds) > #white-label: the white label terms, from the Enterprise plan on /pricing (v5/CardGrid) >
+   #pricing: the blueprints resellers sell, each a tab with that blueprint's own pricing table (`pricing` below,
+   components/BlueprintPricingTabs) > questions > #join: Start free. Sold as designed. No customers, logos, quotes or
+   results are claimed, and no price comes from a single deal. Never name a competitor, never "AI customers". */
 
-const access = { kind: 'waitlist', button: 'Get early access', interest: 'any' } as const
+const access = { kind: 'waitlist', button: 'Start free', interest: 'any' } as const
 
-/* What a client costs (founders, 22 Nov 2026): a blueprint run counts toward what the plan covers at list rates, like
-   any piece, and each blueprint shows what a typical month costs in the #pricing tabs. A page's words can't import those
-   figures (registry.ts globs every page and recipe), so no figure is typed here: the lines say how a run is paid and
-   send the reader to the tabs. */
-const PRICED = 'Every blueprint starts with a free run. After that, each run counts toward what your plan covers at list rates, so a client costs what its runs use.'
+/* Enterprise's starting price, from prices.ts (the pricing JSON): its floor is on the first month's bill. A blueprint's
+   typical months come from the pricing engine in the #pricing tabs, so no blueprint figure is typed here. */
+const enterprise = plans.find((p) => p.id === 'enterprise')
+const usd = (n: number) => `$${n.toLocaleString('en-US')}`
+const ENTERPRISE_FROM = enterprise?.from != null ? `from ${usd(enterprise.from)}${enterprise.fromFirstMonth ? ' for the first month' : ' a month'}` : 'priced with you'
+
+const PRICED = 'Start on the Free plan, with no credit card. Each run counts toward what your plan covers at list rates, so a client costs what its runs use.'
 
 const SUB =
-  'Obsession’s AI agents shop, call and fill in forms as new customers of your clients. Every result lands in a dashboard and a report with your name on it.'
+  'Run Obsession’s blueprints for your clients under your own brand. AI agents shop, call and fill in forms as their new customers, and every result lands in a dashboard and a report with your name on it.'
 
 export const page: Page = {
   meta: {
     path: '/agencies',
     title: 'White label mystery shopping and AI agent checks · Obsession',
     description:
-      'Sell mystery shops, lead response checks and AI agent checks to your clients under your brand, with a dashboard, reports and an account per client.',
+      'Resell mystery shops, lead response checks and AI agent checks under your own brand. Each client gets an account, a dashboard and branded reports.',
     /* Opens with the hero's sub, word for word (scripts/prerender.mjs checks its first sentence is on the page). */
     answer: `${SUB} ${PRICED}`,
     ogImage: '/og/agencies.png',
@@ -43,12 +42,12 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'Early access',
-    pillTo: '#join',
+    pill: 'White label',
+    pillTo: '#white-label',
     headline: 'Sell your clients mystery shops run by AI agents, under your own brand.',
     sub: SUB,
     capture: { ...access, source: 'agencies-hero' },
-    secondary: { label: 'See what you can resell', to: '#resell' },
+    secondary: { label: 'Browse blueprints', to: '/blueprints' },
     proof: [],
     consoleHeading: [],
     /* The hero's object: every client's checks on one board, as a reseller's own dashboard shows them. */
@@ -57,7 +56,7 @@ export const page: Page = {
 
   gapPair: {
     heading: 'Your clients pay for each check. Running them by hand eats your margin.',
-    line: 'Obsession’s agents run each check and keep every email, text and call that comes back.',
+    line: 'A blueprint runs each check and keeps every email, text and call that comes back.',
     tools: {
       label: 'By hand today',
       items: [
@@ -71,29 +70,28 @@ export const page: Page = {
       label: 'Run by Obsession',
       items: [
         'An AI agent per check, with its own inbox, number and browser',
-        'Every email, text, call and page kept, dated, in the event log',
-        'Checks on the schedule you set, daily, weekly or before a pitch',
-        'Every client’s results in one dashboard',
+        'Every email, text, call and page in the event log, dated',
+        'Checks daily, weekly or before a pitch',
+        'Every client in one dashboard',
         'A report with your name and logo, ready to send',
       ],
     },
   },
 
-  /* The 6 kinds of reseller, each with the recipes it would sell (linked by Kinds from content/catalog). Every recipe the
-     page offers is linked at least once: mystery-shopper, lead-leaks, voice-agent-check, competitor-tracking and
-     email-sms-tracking, with website-audit for testing firms. */
+  /* The 6 kinds of reseller, each with the blueprints it would sell (linked by Kinds from content/catalog). Every
+     blueprint the page offers is linked at least once. */
   kinds: {
     heading: 'Sell the checks your clients already ask you for.',
     label: 'What does your business sell?',
     items: [
       {
         name: 'Mystery shopping and CX audits',
-        line: 'Add online and phone shops to the store visits you sell. Agents sign up, fill a basket, ring the branch and keep every email, text and call that follows.',
+        line: 'Add online and phone shops to the visits you sell. Agents sign up, fill a basket, ring the branch and keep every email, text and call after.',
         recipes: ['mystery', 'speed', 'competitor'],
       },
       {
         name: 'AI receptionists and front desks',
-        line: 'Open each sale with an audit of the prospect’s phone line: how long it rang, what the caller heard and whether they got booked. After launch, test your AI receptionist every morning.',
+        line: 'Open each sale by calling the prospect’s phone line, and show how long it rang and whether the caller got booked. After launch, call your own receptionist every morning.',
         recipes: ['speed', 'voice-agent'],
       },
       {
@@ -108,12 +106,12 @@ export const page: Page = {
       },
       {
         name: 'Managed QA and testing',
-        line: 'Add sign ups, login codes by text and phone calls to the test runs you sell. Agents run each flow as a new user, with their own inbox and phone number.',
+        line: 'Add sign-ups, text login codes and phone calls to the test runs you sell. Each flow runs as a new user with its own inbox and number.',
         recipes: ['audit', 'voice-agent'],
       },
       {
         name: 'Agent builder platforms',
-        line: 'Give the agents your users build an inbox, a phone number and a browser of their own. Each user gets an account under your brand, with ready-made jobs such as a mystery shop to start from.',
+        line: 'Give the agents your users build an inbox, a phone number and a browser of their own, under your brand. Blueprints such as mystery shopping give them a job to start from.',
         recipes: ['mystery', 'speed', 'competitor'],
       },
     ],
@@ -124,15 +122,11 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession do for a reseller?',
-        a: `${SUB} You sell the checks at your own price.`,
-      },
-      {
-        q: 'Who is this for?',
-        a: 'Businesses that sell checks, audits or agents to their own clients: mystery shopping and CX audit firms, AI receptionist vendors, CRO, retention and voice AI agencies, automation consultants, managed QA firms and agent builder platforms.',
+        a: `${SUB} You set your own price to clients.`,
       },
       {
         q: 'What does each client cost?',
-        a: 'It depends on the blueprint and how often it runs. Each starts with a free run, then runs count toward what your plan covers at list rates. Each blueprint shows a typical month in its own terms: sites, voice agents or competitors.',
+        a: 'It depends on the blueprint and how often it runs. Each run counts toward what your plan covers at list rates. Each tab above shows a typical month, counted in sites, voice agents or competitors.',
         link: { label: 'See a typical month', to: '#pricing' },
       },
       {
@@ -145,7 +139,7 @@ export const page: Page = {
       },
       {
         q: 'What do we pay, and what do we charge?',
-        a: 'You pay for what each blueprint’s runs use, at list rates, and set your own price to clients. White label is part of the Enterprise plan, from $1,500 for the first month, billed monthly with nothing paid up front, and its rates drop as your volume grows.',
+        a: `You pay for what each blueprint’s runs use, at list rates, and set your own price to clients. White label comes with the Enterprise plan, ${ENTERPRISE_FROM}, billed monthly with nothing paid up front. Its rates drop as your volume grows.`,
         link: { label: 'See the Enterprise plan', to: '/pricing' },
       },
       {
@@ -158,7 +152,7 @@ export const page: Page = {
       },
       {
         q: 'Can our platform’s users get agents of their own?',
-        a: 'Yes. Give each user inboxes, phone numbers, messaging, a browser and a sandbox through one API, or all of it as one persona, in an account under your brand.',
+        a: 'Yes. Give each user inboxes, phone numbers, messaging, a browser and a sandbox through one API. Or put all of it under one name as a persona, in an account under your brand.',
       },
       {
         q: 'What does an agent do at a payment or an identity check?',
@@ -169,15 +163,15 @@ export const page: Page = {
 
   final: {
     heading: 'Which client should we check first?',
-    sub: 'Tell us the client and the check. We’ll start with a free run, and the results land in your dashboard.',
+    sub: 'Tell us the client and the check. Watch what it does to pitches won, clients kept and revenue per client.',
     capture: { ...access, source: 'agencies-final' },
+    link: { label: 'Browse blueprints', to: '/blueprints' },
   },
 }
 
-/* #pricing (James, 21 Nov 2026; founders, 22 Nov), in place of the pilot: 1 tab per blueprint resellers sell, each
-   opening what a typical month of that blueprint costs (components/BlueprintPricingTabs, from content/catalog: the
-   blueprint's `tiers`, its months at the piece rates). Mystery shopping opens on its Agencies months (founders,
-   22 Nov 2026). */
+/* #pricing (James, 21 Nov 2026; founders, 22 Nov): 1 tab per blueprint resellers sell, each opening what a typical month
+   of that blueprint costs (components/BlueprintPricingTabs, from content/catalog: the blueprint's `tiers`, its months at
+   the piece rates). Mystery shopping opens on its Agencies months (founders, 22 Nov 2026). */
 export const pricing: PricingTabs = {
   heading: 'What a typical month of each blueprint costs.',
   line: 'Prices are worked out from what each run uses, at list rates. You charge your clients what you choose.',
@@ -186,12 +180,12 @@ export const pricing: PricingTabs = {
   variant: 'mystery-shopper',
 }
 
-/* #white-label: the 3 things every reseller asked for, as the Enterprise plan on /pricing gives them (content/pricing.ts:
+/* #white-label: the 3 asks every reseller made, as the Enterprise plan on /pricing gives them (content/pricing.ts:
    an account for each of your users under your brand, wholesale rates that drop with volume, monthly with nothing up
    front, founder 21 Nov). */
 export const whiteLabel: CardGrid = {
   heading: 'Your clients see your brand, not ours.',
-  line: 'White label comes with the Enterprise plan: a dashboard, reports under your brand, an account per client and wholesale rates.',
+  line: 'The Enterprise plan adds white label, with a dashboard, reports under your brand, an account per client and wholesale rates.',
   items: [
     {
       title: 'One dashboard for every client',

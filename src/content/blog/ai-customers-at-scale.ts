@@ -1,9 +1,10 @@
 import type { BlogPost } from './types'
 
-/* The AI customers series (24 Oct 2026): what AI customers cost, line by line, from 1 to a million. It owns "cost of ai
+/* What an AI agent costs as a customer, line by line, from 1 to a million (24 Oct 2026; reframed 22 Nov 2026 as a
+   fleet of personas, Obsession's rates from src/content/prices.ts, other services' prices kept as read on 24 Oct). It owns "cost of ai
    agents", "ai agent cost per month", "cost of ai agent vs human" and "mystery shopping cost". Readers: heads of
    growth, CX and ecommerce, agency founders pricing a service, finance, and developers sizing a build.
-   The argument: at published retail prices an AI customer watching one company's email costs about $2 a month, almost
+   The argument: an agent watching one company's email costs about $2 a month, almost
    all of it the inbox. Reading with a small model costs about a cent, waiting costs nothing when the agent sleeps until
    the company acts, and storage rounds to zero. So at scale the cost is identity, not intelligence, and a system built
    for millions has to own that layer. Then the model choice (100x between models), the human alternatives priced from
@@ -11,7 +12,7 @@ import type { BlogPost } from './types'
    Prices read on 24 Oct 2026 from each vendor's own page: AgentMail, Browserbase, Cloudflare Durable Objects and R2,
    Anthropic and OpenAI model pricing, Twilio US SMS, T-ROC's and Secret View's mystery shopping prices. Volumes (20
    emails a month of about 5,000 tokens each, 100 KB stored per email, a 2 minute sign up) are examples, labelled.
-   Obsession's pricing is credit-based, like Claude's, with no figure given (prices are James's call). The store in the illustration is invented. No dashes. */
+   The store in the illustration is invented. No dashes. */
 
 const AGENTMAIL_PRICING = 'https://www.agentmail.to/pricing'
 const BROWSERBASE_PRICING = 'https://www.browserbase.com/pricing'
@@ -28,12 +29,12 @@ const BLS = 'https://www.bls.gov/ooh/business-and-financial/market-research-anal
 export const post: BlogPost = {
   slug: 'ai-customers-at-scale',
   title: 'AI agent cost per month: what an agent costs as a customer of 1 company, or a million',
-  dek: 'An AI agent that stays a customer of 1 company for a month, priced line by line from published prices. The same sum then runs at 100, 10,000 and a million, against a human mystery shopper and an hour of your team’s time.',
+  dek: 'An AI agent that stays a customer of 1 company for a month, priced line by line on Obsession’s rates and on retail services. The same sum then runs for a fleet of 100, 10,000 and a million personas, against a human mystery shopper and your team’s time.',
   metaTitle: 'AI agent cost per month: what teams pay, from 1 to a million',
   description:
-    'What an AI agent costs a month as a customer of 1 company: inbox, model, waiting and storage at published prices, against mystery shopping, to a million.',
+    'What an AI agent costs a month as a customer of 1 company: inbox, emails, model and waiting at list prices, up to a fleet of a million, vs mystery shops.',
   answer:
-    'At published retail prices, an AI agent that stays a customer of one company, watching its email, costs about $2 a month, and almost all of it is the inbox. Reading 20 emails with a small model costs about a cent, waiting costs nothing while the agent sleeps until the company acts, and a human mystery shop costs $50 to $200 for one visit. Obsession collects what any company shows only to its customers this way, dated with the email or screenshot, priced per call or per company watched.',
+    'An AI agent that stays a customer of one company, watching its email, costs about $0.52 a month on Obsession’s list rates, and $0.50 of that is the inbox. Built from retail services one at a time, the same agent costs about $2.02, and a human mystery shop costs $50 to $200 for one visit. A fleet of personas waits for free, and every email and page lands in one event log at $5 per million events.',
   primaryKeyword: 'ai agent cost per month',
   keywords: [
     'cost of ai agents',
@@ -41,13 +42,13 @@ export const post: BlogPost = {
     'cost of ai agent vs human',
     'mystery shopping cost',
     'how much does an ai agent cost',
-    'ai customers at scale',
+    'cost to run ai agents at scale',
     'ai agent pricing',
   ],
   category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-11-11',
-  readingMinutes: 7,
+  updated: '2026-11-22',
+  readingMinutes: 8,
   order: 8,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -56,46 +57,46 @@ export const post: BlogPost = {
   hero: {
     art: {
       kind: 'price',
-      title: 'One AI customer for a month · ivywell.example',
+      title: 'One persona for a month at ivywell.example',
       rows: [
-        { label: 'Inbox', value: '$2.00', note: 'Rented per inbox, per month' },
-        { label: 'Sign up', value: '$0.004', note: '2 browser minutes, once' },
-        { label: 'Waiting 30 days', value: '$0.00', note: 'Idle time isn’t billed' },
-        { label: 'Waking 20 times', value: '$0.000003', note: '1 request per email' },
+        { label: 'Inbox', value: '$0.50', note: 'An inbox a month' },
+        { label: 'Sign up', value: '$0.003', note: '2 browser minutes, once' },
+        { label: 'Waiting 30 days', value: '$0.00', note: 'Free while it waits' },
+        { label: '20 emails received', value: '$0.008', note: '$0.40 per 1,000' },
+        { label: '20 events logged', value: '$0.0001', note: '$5 per million events' },
         { label: 'Reading 20 emails', value: '$0.012', note: 'A small model' },
-        { label: 'Keeping the evidence', value: '$0.0001', note: '2 MB stored, 20 writes' },
       ],
-      total: { label: 'A month', value: '$2.02', note: 'At prices published on 24 Oct 2026' },
+      total: { label: 'A month', value: '$0.52', note: 'At Obsession’s list rates, 22 Nov 2026' },
     },
   },
 
   blocks: [
     {
       kind: 'p',
-      text: 'An AI customer is cheap to run for the same reason a real customer is cheap to keep: most of the time it does nothing. It signs up once, waits, and works only when the company sends something. That makes its cost easy to count, line by line, from prices the services publish.',
+      text: 'An AI agent that stays a customer is cheap to run for the same reason a real customer is cheap to keep. Most of the time it does nothing. It signs up once, waits, and works only when the company sends something, so its cost is easy to count, line by line, from published prices.',
     },
     {
       kind: 'p',
-      text: 'The result is about $2 a month at retail for one AI customer watching one company’s email, and the inbox is 99% of it. A year of that costs less than one human mystery shop. The definition of the term is in [what AI customers are](/blog/ai-customers).',
+      text: 'On Obsession that agent is a [persona](/personas), an AI agent with its own inbox, number and browser under one name. Watching one company’s email costs it about $0.52 a month, and a year of that costs less than one human mystery shop.',
     },
 
-    { kind: 'h2', id: 'one-month', text: 'What one AI customer costs a month' },
+    { kind: 'h2', id: 'one-month', text: 'What one persona costs a month' },
     {
       kind: 'p',
-      text: 'The example watches one company’s email for 30 days and receives 20 emails, each about 5,000 tokens as text. Every price is the vendor’s own published list price, checked on 24 October 2026.',
+      text: 'The example watches one company’s email for 30 days and receives 20 emails, each about 5,000 tokens as text. Obsession’s prices are its list rates on 22 November 2026, and every other price is the vendor’s own list price, checked on 24 October 2026.',
     },
     {
       kind: 'table',
-      caption: 'One AI customer watching one company’s email for 30 days. Volumes are examples: 20 emails of about 5,000 tokens, 100 KB stored each, a 2 minute sign up.',
-      cols: ['Line', 'Published price', 'A month'],
+      caption: 'One agent watching one company’s email for 30 days, on Obsession and from retail services. Volumes are examples: 20 emails of about 5,000 tokens, 100 KB stored each, a 2 minute sign-up.',
+      cols: ['Line', 'On Obsession', 'From retail services'],
       rows: [
-        ['Inbox', 'AgentMail: $2 a month per extra inbox', '$2.00'],
-        ['Sign up', 'Browserbase: $0.12 a browser hour', '$0.004, once'],
-        ['Waking 20 times', 'Durable Objects: $0.15 a million requests', 'Under $0.001'],
-        ['Waiting 30 days', 'Durable Objects: idle time not billed', '$0.00'],
-        ['Reading 20 emails', 'Claude Haiku 5.5: $0.10 in, $0.50 out per million tokens', '$0.012'],
-        ['Keeping the evidence', 'R2: $0.015 a GB a month, $4.50 a million writes', 'Under $0.001'],
-        ['Total', 'Email only', 'About $2.02'],
+        ['Inbox', '$0.50 an inbox a month', 'AgentMail: $2.00 per extra inbox'],
+        ['20 emails received', '$0.008 at $0.40 per 1,000', 'Included in the inbox'],
+        ['Sign-up, 2 browser minutes', '$0.003 at $0.10 an hour, once', 'Browserbase: $0.004 at $0.12 an hour'],
+        ['Waiting 30 days', '$0.00, free while it waits', 'Durable Objects: idle time not billed'],
+        ['Waking and keeping 20 events', '$0.0001 at $5 per million events', 'Durable Objects and R2: under $0.001'],
+        ['Reading 20 emails', 'Claude Haiku 5.5: $0.012', 'Claude Haiku 5.5: $0.012'],
+        ['Total', 'About $0.52', 'About $2.02'],
       ],
     },
     {
@@ -109,30 +110,31 @@ export const post: BlogPost = {
           ') lists $0.12 a browser hour after the included hours, so a 2 minute sign up is under half a cent, paid once.',
         '**Waiting and waking.** On [Cloudflare Durable Objects](' +
           CF_DO_PRICING +
-          '), objects that are idle and eligible for hibernation are not billed for duration, and requests cost $0.15 a million on the paid plan. An AI customer that wakes 20 times a month makes 20 requests.',
+          '), objects that are idle and eligible for hibernation are not billed for duration, and requests cost $0.15 a million on the paid plan. An agent that wakes 20 times a month makes 20 requests.',
         '**Reading.** [Anthropic’s pricing](' +
           CLAUDE_PRICING +
           ') lists Claude Haiku 5.5 at $0.10 a million input tokens and $0.50 a million output tokens. 20 emails of 5,000 tokens, with a 200 token summary each, come to about 1.2 cents.',
-        '**Evidence.** [Cloudflare R2](' +
+        '**Keeping the emails.** [Cloudflare R2](' +
           R2_PRICING +
           ') stores data at $0.015 a GB a month and charges $4.50 a million writes, with free egress, so storing a month of raw emails at 100 KB each costs about a hundredth of a cent.',
+        '**On Obsession,** the inbox is $0.50 a month and each email $0.40 per 1,000. The persona is free while it waits, and every email and page is kept in one event log at $5 per million events. The Free plan covers 3 inboxes, 3,000 emails and 100,000 events.',
       ],
     },
     {
       kind: 'p',
-      text: 'A phone number adds texts. [Twilio](' +
+      text: 'A phone number adds texts. On Obsession a US number is $2 a month and each text $0.015, carrier fees included, so a persona that watches email and receives 10 texts costs about $2.67 a month. [Twilio](' +
         TWILIO_SMS +
-        ') lists a US long code number at $1.15 a month and $0.0083 to receive each text segment, before carrier fees, so an AI customer that watches email and receives 10 texts costs about $3.25 a month at retail.',
+        ') lists a US long code number at $1.15 a month and $0.0083 to receive each text segment, before carrier fees, so the retail build comes to about $3.25.',
     },
     {
       kind: 'p',
-      text: 'How the waiting works, step by step, is in [how AI customers work](/blog/how-ai-customers-work).',
+      text: 'How the sign-up and the waiting work, step by step, is in [how an AI agent signs up as a customer](/blog/how-ai-customers-work).',
     },
 
     { kind: 'h2', id: 'where-money-goes', text: 'Where the money goes' },
     {
       kind: 'p',
-      text: '**At retail, an AI customer’s cost is almost all identity.** The inbox is $2.00 of $2.02. The model, the waiting, the waking and the storage together cost under 2 cents.',
+      text: '**An agent’s cost is almost all identity.** On Obsession the inbox is $0.50 of $0.52, and at retail $2.00 of $2.02. The model, the waiting and the event log together cost under 2 cents.',
     },
     {
       kind: 'p',
@@ -141,7 +143,7 @@ export const post: BlogPost = {
     {
       kind: 'table',
       caption: 'Reading 20 emails a month (100,000 tokens in, 4,000 out) on models priced on their makers’ own pages, 24 Oct 2026',
-      cols: ['Model', 'Per million tokens, in and out', 'One AI customer', 'A million AI customers'],
+      cols: ['Model', 'Per million tokens, in and out', 'One persona', 'A million personas'],
       rows: [
         ['Claude Haiku 5.5', '$0.10 and $0.50', '$0.012', '$12,000'],
         ['OpenAI gpt-6-luna', '$0.10 and $0.50', '$0.012', '$12,000'],
@@ -156,20 +158,20 @@ export const post: BlogPost = {
         ') lists gpt-6-luna at the same rates as Claude Haiku 5.5. The sign up follows the same logic: most companies sign customers up on the same few platforms, so a sign up worked out once can run as a program at every company built the same way, with no model call at all.',
     },
 
-    { kind: 'h2', id: 'at-scale', text: 'From 100 to a million AI customers' },
+    { kind: 'h2', id: 'at-scale', text: 'A fleet of 100 to a million personas' },
     {
       kind: 'table',
-      caption: 'A month at retail prices, 20 emails each, with a small model. Sign ups add $0.004 each, once. Everything else covers waking, storage and writes after each service’s free allowance.',
-      cols: ['AI customers', 'Inboxes', 'Reading', 'Everything else', 'Total'],
+      caption: 'A month at Obsession’s list rates, 20 emails each, read with Claude Haiku 5.5. Sign-ups add $0.003 each, once. A retail build of the same fleet costs about 4 times as much, almost all of it inboxes.',
+      cols: ['Personas', 'Inboxes', 'Emails and events', 'Reading', 'Total'],
       rows: [
-        ['100', '$200', '$1.20', 'Under $1', 'About $201'],
-        ['10,000', '$20,000', '$120', 'Under $1', 'About $20,121'],
-        ['1,000,000', '$2,000,000', '$12,000', 'About $120', 'About $2.01 million'],
+        ['100', '$50', '$0.81', '$1.20', 'About $52'],
+        ['10,000', '$5,000', '$81', '$120', 'About $5,201'],
+        ['1,000,000', '$500,000', '$8,100', '$12,000', 'About $520,100'],
       ],
     },
     {
       kind: 'p',
-      text: 'Reading, waking and storage stay small at every size: at a million AI customers they come to about $12,000 a month, or 1.2 cents each. The inbox grows with every AI customer, and at retail it is 99% of a $2 million bill.',
+      text: 'Reading, emails and events stay small at every size. At a million personas they come to about $20,100 a month, or about 2 cents each. The inbox grows with every persona: $500,000 of the month on Obsession, and $2 million at retail.',
     },
     {
       kind: 'p',
@@ -177,19 +179,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession is built on those 3 choices: its agents sleep until each company acts, sign ups are learned once per platform, and it is built for millions of companies, each looked up in one call.',
+      text: 'Obsession is built on those 3 choices. A persona is free while it waits and wakes in 50 ms when an email, text or call arrives, an inbox is $0.50 a month, and every event from the whole fleet lands in one log.',
     },
     {
       kind: 'cta',
-      text: 'Skip building the identity layer: 5 verbs over the API and MCP return what any company shows only to its customers, each fact dated with its email or screenshot.',
-      to: '/developers',
-      label: 'See the API and MCP',
+      text: 'Run a fleet of personas on one key, each with an inbox, a number and a browser, free while they wait, with every event in one log.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'vs-human', text: 'AI agent cost vs a human', compare: true },
     {
       kind: 'p',
-      text: 'A person and an AI customer buy different things. A mystery shopper buys judgement at one moment: tone, service, the store itself. An AI customer buys every message and page over months, kept as evidence. We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
+      text: 'A person and a persona do different jobs. A mystery shopper buys judgement at one moment, on tone, service and the store itself. A persona buys every message and page over months, each kept in the event log. We make Obsession, so every other option is described from its provider’s own pages as of 24 October 2026.',
     },
     {
       kind: 'table',
@@ -200,15 +202,15 @@ export const post: BlogPost = {
         ['Human mystery shopper: T-ROC, Secret View', 'Judges service, tone and the store in person', 'T-ROC: $50 to $200 a shop\nSecret View: €29.99 to €49.99 a shopper', 'One visit per fee', 'In-store and service quality'],
         ['Your own team: by hand', 'Knows the brand and its context', 'Your hours at your rate', 'Time for every check, every week', '1 to 3 companies, once'],
         ['AI browser agent: ChatGPT cloud browser', 'Completes one web task on request', 'Paid ChatGPT plans', 'No inbox or number described', 'One-off lookups'],
-        ['AI customers you build: retail services', 'Every email and page for months, with evidence', 'About $2 a month each at retail', 'Identity cost grows with every company', 'Developers watching a few hundred companies'],
-        ['Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Mystery shopper](/blueprints/mystery-shopper)', 'What any company shows only to customers, dated, for months', 'Early access, onboarding teams now. Priced per call or per company watched', 'Stops at bot walls and CAPTCHAs', 'What a real customer gets at many companies, for months'],
+        ['Agents you build: retail services, one at a time', 'Every email and page for months, kept', 'About $2 a month each at retail', 'An inbox, a browser and a log from separate vendors', 'Developers watching a few hundred companies'],
+        ['Obsession (ours): [Personas](/personas), [Mystery shopping](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking)', 'A fleet of personas, free while they wait, every event in one log', 'Free, then $20, $99 or $499 a month; usage per piece', 'Stops at payment, identity checks and CAPTCHAs', 'What customers get at many companies, for months'],
       ],
     },
     {
       kind: 'p',
       text: 'The AI browser agent row is [ChatGPT’s cloud browser](' +
         CLOUD_BROWSER +
-        '), which gives ChatGPT Work its own browser in the cloud on paid plans. More on choosing between these is in [why hire AI customers](/blog/hire-ai-customers).',
+        '), which gives ChatGPT Work its own browser in the cloud on paid plans. More on choosing between these is in [hiring AI agents as customers](/blog/hire-ai-customers).',
     },
 
     { kind: 'h2', id: 'mystery-shopping-cost', text: 'Mystery shopping cost, and what it buys' },
@@ -228,15 +230,15 @@ export const post: BlogPost = {
         '**Secret View** lists [€29.99 to €49.99 per mystery shopper](' +
           SECRET_VIEW +
           '), excluding shopping credit, and €27.50 to €59.99 for organisations with 5 or more locations.',
-        '**What the fee buys** is a trained person, one visit and a report. For in-store service, staff and the feel of a place, that is the right tool, and an AI customer doesn’t replace it.',
-        '**What it doesn’t buy** is the 2 weeks after the visit: the welcome series, the reminders, the price changes and the renewal. That is where an AI customer’s $2 a month goes.',
+        '**What the fee buys** is a trained person, one visit and a report. For in-store service, staff and the feel of a place, that is the right tool, and a persona doesn’t replace it.',
+        '**What it doesn’t buy** is the 2 weeks after the visit, from the welcome series and the reminders to the price changes and the renewal. That is where a persona’s $0.52 a month goes.',
       ],
     },
 
     { kind: 'h2', id: 'your-number', text: 'Your number' },
     {
       kind: 'p',
-      text: 'Compare what watching costs you today with what it would cost with AI customers. By hand: companies × minutes per check ÷ 60 × checks a month × your hourly rate. With AI customers at retail: companies × about $2 a month.',
+      text: 'Compare what watching costs you today with what it would cost with personas. By hand, it is companies × minutes per check ÷ 60 × checks a month × your hourly rate. On Obsession, it is companies × about $0.52 a month.',
     },
     {
       kind: 'art',
@@ -247,9 +249,9 @@ export const post: BlogPost = {
           { label: 'By hand: 25 competitors × 15 minutes', value: '6.25 hours', note: 'Each week' },
           { label: '× 4.3 weeks', value: '27 hours', note: 'A month' },
           { label: '× $37.87 an hour', value: '$1,022', note: 'US median wage, market research analysts' },
-          { label: '25 AI customers at retail', value: '$50.50', note: '$2.02 each' },
+          { label: '25 personas on Obsession', value: '$13.00', note: '$0.52 each' },
         ],
-        total: { label: 'Difference a month', value: '$972', note: 'Plus every email kept as evidence' },
+        total: { label: 'Difference a month', value: '$1,009', note: 'Plus every email kept in the log' },
       },
       caption: 'An example: put in your own number of companies, minutes per check and hourly rate.',
     },
@@ -257,7 +259,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'The rate is the US median wage for market research analysts, $37.87 an hour in May 2025, from the [Bureau of Labor Statistics](' +
         BLS +
-        '). The larger number is often the one this sum leaves out: a step in your own journey that fails while nobody is looking. That sum is in [how AI customers find revenue leaks](/blog/ai-customers-find-revenue-leaks).',
+        '). The larger number is often the one this sum leaves out, a step in your own journey that fails while nobody is looking. That sum is in [finding revenue leaks with AI agents](/blog/ai-customers-find-revenue-leaks).',
     },
 
     { kind: 'h2', id: 'by-hand', text: 'When by hand is cheaper' },
@@ -271,18 +273,18 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Past a handful of companies, or past one month, the hours compound and the evidence starts to matter, and the $2 line wins. To keep what many companies show only to their customers, for months, without building it yourself, use Obsession.',
+      text: 'Past a handful of companies, or past one month, the hours compound and the kept emails start to matter, and the persona line wins. The Free plan covers the first 3 personas’ inboxes, emails and events, with no credit card.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits of this model' },
     {
       kind: 'list',
       items: [
-        '**Prices are list prices on 24 October 2026.** Plans, free allowances and tiers change; every line links to its page so you can recheck it.',
+        '**Prices are list prices.** Obsession’s are from 22 November 2026 and every other service’s from 24 October 2026. Plans and free allowances change, and every line links to its page so you can recheck it.',
         '**Volumes are examples.** A brand that sends 60 emails a month triples the reading line, which still rounds to cents.',
         '**Texts carry carrier fees** on top of Twilio’s rate, and sending from a US long code needs A2P 10DLC registration.',
         '**Gmail tab placement needs a Gmail inbox,** which is priced separately from an API inbox.',
-        '**Bot walls and CAPTCHAs stop an AI customer.** The report names the step it couldn’t test, and no cost line removes the block.',
+        '**A persona stops at payment, identity checks, CAPTCHAs and bot blocks.** The event log names the step it couldn’t reach, and no cost line removes the block.',
       ],
     },
 
@@ -292,30 +294,31 @@ export const post: BlogPost = {
       items: [
         {
           q: 'How much does an AI agent cost per month?',
-          a: 'It depends on what the agent holds. An AI customer that watches one company’s email costs about $2 a month at retail prices, almost all of it the inbox. Adding a US phone number brings it to about $3.25. The model that reads the emails costs about a cent a month on a small model.',
+          a: 'It depends on what the agent holds. One that watches one company’s email costs about $0.52 a month on Obsession’s list rates, almost all of it the $0.50 inbox, and about $2.02 built from retail services. Adding a US number and 10 texts brings the Obsession figure to about $2.67. Reading the emails costs about a cent a month on a small model.',
         },
         {
           q: 'Is an AI agent cheaper than a human?',
-          a: 'For watching messages over time, yes, by orders of magnitude: about $2 a month against $50 to $200 for one human mystery shop. For judging service and tone in person, a human is the right tool, and the two do different jobs.',
+          a: 'For watching messages over time, yes, by orders of magnitude, about $0.52 a month against $50 to $200 for one human mystery shop. For judging service and tone in person, a human is the right tool, and the two do different jobs.',
         },
         {
           q: 'How much does mystery shopping cost?',
           a: 'T-ROC’s 2026 guide puts an institutional quality shop at $50 to $200, a basic 15 minute retail shop at $40 to $65, and budget providers at $15 to $30. Secret View lists €29.99 to €49.99 per shopper, excluding shopping credit.',
         },
         {
-          q: 'What does it cost to run a million AI customers?',
-          a: 'At retail prices, about $2.01 million a month, of which $2 million is inboxes rented one at a time. Reading, waking and storage come to about $12,000, or 1.2 cents each. A system built for millions owns the identity layer instead of renting it at retail.',
+          q: 'What does it cost to run a million AI agents as customers?',
+          a: 'On Obsession’s list rates, about $520,100 a month: $500,000 for inboxes and about $20,100 for emails, events and reading. Built from retail services, the same fleet costs about $2.01 million, because each inbox is rented at $2. At that volume Enterprise applies, from $1,500 a month.',
+          link: { label: 'See pricing', to: '/pricing' },
         },
         {
           q: 'Why does waiting cost nothing?',
-          a: 'Because the AI customer isn’t running while it waits. On Cloudflare Durable Objects, objects that are idle and eligible for hibernation are not billed for duration. It wakes, and is billed, only when an email or a timer arrives.',
+          a: 'Because the persona isn’t running while it waits. Its state is stored as an actor, no machine runs while nothing happens, and it wakes in 50 ms when an email, text or call arrives. On Cloudflare Durable Objects, objects that are idle and eligible for hibernation are not billed for duration in the same way.',
         },
       ],
     },
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Each price is the vendor’s own list price as of 24 October 2026. The volumes (20 emails a month of about 5,000 tokens, 100 KB stored per email, a 2 minute sign up, 10 texts) and the 25 competitor example are illustrations, not measurements. The store in the illustration is invented.',
+      text: 'Obsession’s prices are its list rates as of 22 November 2026, and every other price is the vendor’s own list price as of 24 October 2026. The volumes (20 emails a month of about 5,000 tokens, 100 KB stored per email, a 2 minute sign-up, 10 texts) and the 25 competitor example are illustrations, not measurements. The store in the illustration is invented.',
     },
   ],
 
@@ -332,5 +335,5 @@ export const post: BlogPost = {
     { title: 'Frequently asked questions', publisher: 'Secret View', url: SECRET_VIEW },
     { title: 'Market research analysts: Occupational Outlook Handbook', publisher: 'US Bureau of Labor Statistics', url: BLS },
   ],
-  related: ['/pricing', 'ai-customers', 'how-ai-customers-work', 'hire-ai-customers', 'ai-customers-for-developers', 'recipe:mystery-shopper', 'recipe:competitor-tracking'],
+  related: ['/pricing', '/personas', 'how-ai-customers-work', 'hire-ai-customers', 'ai-customers-for-developers', 'recipe:mystery-shopper', 'recipe:competitor-tracking'],
 }

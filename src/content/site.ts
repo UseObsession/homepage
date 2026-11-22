@@ -41,7 +41,7 @@ export const recipesPage: RecipesIndexPage = {
     description:
       'Ready-made AI agent templates, called blueprints: pick one, say where results go, and Obsession runs it, from mystery shopping to competitor tracking.',
     answer:
-      'Obsession blueprints are ready-made AI agent templates that we run for you, or jobs you bring yourself. Each says who the persona is, where it goes, what it brings back and how results reach your event log.',
+      'Obsession blueprints are ready-made AI agent templates that Obsession runs on its pieces. Pick one, say where results go, and each result lands in your event log, Slack, a sheet or your CRM.',
     ogImage: '/og/recipes.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -50,22 +50,22 @@ export const recipesPage: RecipesIndexPage = {
   },
 
   hero: {
-    headline: 'Pick a blueprint. Say where your personas go.',
-    sub: 'Obsession blueprints are ready-made AI agent templates that we run for you, or jobs you bring yourself. Each says who the persona is, where it goes, what it brings back and how results reach your event log.',
+    headline: 'Pick a blueprint. Obsession runs the job.',
+    sub: 'Obsession blueprints are ready-made AI agent templates that Obsession runs on its pieces. Not building agents? Pick one, say where results go, and pay only for the pieces it uses.',
   },
 
   groups: [
     {
       group: 'Watch other companies',
-      line: 'Competitors’, prospects’ and accounts’ emails, prices, trials and offers, each dated with its screenshot.',
+      line: 'Competitors’, prospects’ and accounts’ emails, prices, trials and offers, dated. Part of the Watch the market kit.',
     },
     {
       group: 'Check your own journeys',
-      line: 'A persona goes through your own sign up, checkout and lead forms, and keeps everything that follows, with the time each arrived.',
+      line: 'A persona goes through your own sign-up, checkout and lead forms, and keeps everything that follows, timed. Part of the Test sign-up and agents kit.',
     },
     {
       group: 'Check your AI agents',
-      line: 'A persona talks to support chats, voice lines and sales agents, and keeps every answer word for word with the time.',
+      line: 'A persona talks to your support chats, voice lines and sales agents, and keeps every answer word for word. Part of the Test sign-up and agents kit.',
     },
   ],
 
@@ -94,11 +94,11 @@ export const recipesPage: RecipesIndexPage = {
       },
       {
         q: 'What does a blueprint cost?',
-        a: 'Its runs count toward what your plan covers at list rates, then as you go, with model tokens on top, so you pay only for what runs. Each blueprint’s page shows a typical month at 3 sizes, such as per store, competitor or voice agent. Every blueprint starts with a free run.',
+        a: 'It is billed on the pieces it uses, at list rates, toward what your plan covers, with model tokens on top. Each blueprint’s page shows a typical month at 3 sizes, such as per store, competitor or voice agent.',
       },
       {
         q: 'Can I try an AI agent template for free?',
-        a: 'Yes. Every blueprint starts with a free run, such as 1 store shopped or 3 test calls to 1 voice agent. Pick a paid plan when you want it on a schedule.',
+        a: 'Yes. Try any blueprint on the Free plan, with no credit card, within its allowances. Pick a paid plan when you want it on a schedule.',
       },
       {
         q: 'Can I run a blueprint from my own code?',
@@ -108,11 +108,11 @@ export const recipesPage: RecipesIndexPage = {
   },
 
   final: {
-    heading: 'Which blueprint should we set up first?',
+    heading: 'Which job should Obsession run first?',
     capture: {
       kind: 'waitlist',
       source: 'recipes-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'any',
     },
   },
@@ -296,13 +296,13 @@ export const agentsPage: AgentsPage = {
   },
 
   pill: 'Saw an Obsession agent?',
-  headline: 'An Obsession agent is a customer that says it’s an AI.',
+  headline: 'An Obsession agent is an AI agent that says it’s an AI.',
   sub: 'An Obsession agent signs up, starts trials and asks for quotes the way any customer can, with its own inbox, phone number and browser. Write to us with any question about it, or to keep our agents off your site.',
 
   sections: [
     {
       id: 'what',
-      heading: 'It collects what a company shows its signed-up customers.',
+      heading: 'It acts for the team that runs it, as any customer could.',
       lines: [
         `${SENTENCE} Each persona signs up, reads what arrives, starts trials, asks for quotes and uses the site’s chat, as anyone can, and can keep its account open for months.`,
         'Everything it keeps is dated and kept exactly as it arrived, so nobody has to take its word for what happened.',
@@ -323,10 +323,12 @@ export const agentsPage: AgentsPage = {
       lines: ['Every agent keeps to the law, and nothing in the event log is ever changed. It never:'],
       list: [
         'Pretends to be a person when it talks to one',
+        'Pays for anything without the customer’s own card',
         'Uses fake payment details',
         'Gets round a CAPTCHA or a bot block',
+        'Goes past an identity check',
         'Clicks paid ads at volume',
-        'Changes what it found: every receipt is kept as it arrived',
+        'Changes an event: each is kept as it arrived',
       ],
     },
     {
@@ -401,7 +403,7 @@ export const notFoundPage: NotFoundPage = {
   capture: {
     kind: 'waitlist',
     source: '404',
-    button: 'Request early access',
+    button: 'Start free',
     interest: 'any',
   },
 }

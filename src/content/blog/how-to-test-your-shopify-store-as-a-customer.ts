@@ -21,7 +21,8 @@ import type { BlogPost } from './types'
    line, 300, 1,000 or 5,000 a month and built for millions, credit-based plans like Claude's, the store offer in the
    site's words; the within-the-hour rerun is in the live words of use-cases/leak-checks-for-ecommerce-stores.
    larkfield.example and everything in both pictures is invented. No store, brand, agency or person we worked with is
-   named. No Gartner, PilotX figure, 93% or 128 stores. No dashes. */
+   named. No Gartner, PilotX figure, 93% or 128 stores. No dashes. 
+   22 Nov 2026: the toolkit position; the walk examples became fails to look for. */
 
 const TEST_ORDERS = 'https://help.shopify.com/en/manual/checkout-settings/test-orders'
 const R_SHOPIFY = 'https://www.reddit.com/r/shopify/comments/1wr2w4c/18_checkouts_2_purchases/pcj1buj/'
@@ -35,7 +36,6 @@ const SIMGYM_HELP = 'https://help.shopify.com/en/manual/online-store/simgym'
 const SIMGYM_APP = 'https://apps.shopify.com/simgym'
 const SHOPTEST_APP = 'https://apps.shopify.com/shoptest'
 const SIMGYM_REVIEW = '/blog/shopify-simgym-review-ai-shoppers-vs-ai-customers'
-const LEAKS = '/use-cases/leak-checks-for-ecommerce-stores'
 
 export const post: BlogPost = {
   slug: 'how-to-test-your-shopify-store-as-a-customer',
@@ -45,7 +45,7 @@ export const post: BlogPost = {
   description:
     'How do I test my Shopify store? Place a free test order in test mode, then run 10 checks on a phone as a new customer, from the ad to the reminder emails.',
   answer:
-    'To test your Shopify store, place a free test order with test card numbers in Shopify’s test mode, then shop the store on a phone as a new customer. Check each step against a pass mark, from the buttons and codes to the welcome and reminder emails over the next 48 hours. Obsession keeps every email, code and page your store and your competitors show a new customer, dated with the email or screenshot, every week and after every change.',
+    'To test your Shopify store, place a free test order with test card numbers in Shopify’s test mode, then shop the store on a phone as a new customer. Check each step against a pass mark, from the buttons and codes to the welcome and reminder emails over the next 48 hours. Obsession’s Mystery shopping blueprint sends a persona through your store and your competitors’ every week and after every change, and dates every email, code and page.',
   primaryKeyword: 'how do i test my shopify store',
   keywords: [
     'test my shopify store',
@@ -58,7 +58,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-29',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 17,
   order: 1,
   authors: [
@@ -220,7 +220,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'checks', text: 'The 10 customer checks, in the order a shopper meets them' },
     {
       kind: 'p',
-      text: 'The test order proves payment works. The 10 checks cover what the shopper meets around it. The examples come from 26 October 2026, when an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. When checkout itself stops working, [Shopify checkout not working](/blog/shopify-checkout-not-working) starts at Shopify’s status page and runs 6 checks to the order email.',
+      text: 'The test order proves payment works. The 10 checks cover what the shopper meets around it. When checkout itself stops working, [Shopify checkout not working](/blog/shopify-checkout-not-working) starts at Shopify’s status page and runs 6 checks to the order email.',
     },
 
     { kind: 'h3', id: 'ad-link', text: '1. The ad’s link lands on a live product' },
@@ -232,25 +232,25 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'buttons', text: '2. On a phone, nothing covers Add to cart or Checkout' },
     {
       kind: 'p',
-      text: 'Add a product and open the cart. Wait a few seconds on each page, because chat buttons and pop ups can load late. **A pass:** Add to cart and Checkout can be tapped with nothing on top, on an iPhone and an Android phone. In the walk, a help button sat over Check out on a phone.',
+      text: 'Add a product and open the cart. Wait a few seconds on each page, because chat buttons and pop ups can load late. **A pass:** Add to cart and Checkout can be tapped with nothing on top, on an iPhone and an Android phone. One fail to look for is a help button sitting over Check out on a phone.',
     },
 
     { kind: 'h3', id: 'promises', text: '3. The cart keeps every promise the page made' },
     {
       kind: 'p',
-      text: 'Note every promise on the way in, from the banner, the pop up and the product page. Find each one in the cart and again at checkout. **A pass:** free shipping, a free gift or a subscription price on the page is still there at checkout. In the walk, one banner promised free shipping while the cart asked for a minimum spend. A subscription price fell away in the cart, and a promised free gift never appeared.',
+      text: 'Note every promise on the way in, from the banner, the pop up and the product page. Find each one in the cart and again at checkout. **A pass:** free shipping, a free gift or a subscription price on the page is still there at checkout. Fails to look for include a banner promising free shipping while the cart asks for a minimum spend, a subscription price that falls away in the cart and a promised free gift that never appears.',
     },
 
     { kind: 'h3', id: 'codes', text: '4. Every code works, and no expired offer still shows' },
     {
       kind: 'p',
-      text: 'Try every code on the banner, the pop up and the announcement bar, on a full-price item and a sale item. Add the welcome code once it arrives. **A pass:** checkout accepts each code on the items it covers, and no banner shows a sale that has ended. In the walk, one store still showed a sale banner the day after the sale ended.',
+      text: 'Try every code on the banner, the pop up and the announcement bar, on a full-price item and a sale item. Add the welcome code once it arrives. **A pass:** checkout accepts each code on the items it covers, and no banner shows a sale that has ended. One fail to look for is a sale banner still showing the day after the sale ends.',
     },
 
     { kind: 'h3', id: 'total', text: '5. Shipping, tax and the total hold no surprise' },
     {
       kind: 'p',
-      text: 'Enter a real address in each country the store sells to, and read the summary before the payment step. **A pass:** shipping matches the banner and the shipping page, and any tax or duty is shown. Every line is something the shopper chose. In the walk, one store added a protection charge the shopper hadn’t chosen.',
+      text: 'Enter a real address in each country the store sells to, and read the summary before the payment step. **A pass:** shipping matches the banner and the shipping page, and any tax or duty is shown. Every line is something the shopper chose. One fail to look for is a protection charge the shopper didn’t choose.',
     },
 
     { kind: 'h3', id: 'payment', text: '6. Every payment option shows, on both phones' },
@@ -326,7 +326,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'All three test the email and its rules inside Klaviyo. The customer test checks that the live trigger fires. Sign up through the real pop up, leave a basket and start a checkout with new addresses, and watch each inbox for 48 hours. **A pass:** each email arrives within the flow’s delay, with the right item, price and code. When one never comes, [why a Klaviyo flow is not sending](/blog/welcome-basket-email-not-sending) works through the causes. To see what your flows already sent a new customer, [look up your store’s emails](/lookup): every email after each step, dated, against the stores in the index.',
+      text: 'All three test the email and its rules inside Klaviyo. The customer test checks that the live trigger fires. Sign up through the real pop up, leave a basket and start a checkout with new addresses, and watch each inbox for 48 hours. **A pass:** each email arrives within the flow’s delay, with the right item, price and code. When one never comes, [why a Klaviyo flow is not sending](/blog/welcome-basket-email-not-sending) works through the causes. To keep the test running on every flow, [Mystery shopping](/blueprints/mystery-shopper) signs up as a new customer each week and dates every email.',
     },
 
     { kind: 'h2', id: 'when', text: 'When to test your Shopify store' },
@@ -363,25 +363,25 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-customers', text: 'Checks that keep running every week' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to.',
     },
     {
       kind: 'p',
-      text: 'On a Shopify store, each journey, such as a sign-up, a basket or a checkout, gets its own new customer. It opens the page behind your ads from their links, signs up, takes the welcome code to checkout, and leaves a basket or a checkout. Every email, code and page is kept as it arrived, with its time. Your team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants. An email counts as missing once its window closes, 48 hours for most flows. A fresh sign-up runs every journey each week, and a theme publish or a flow edit reruns the journeys it touches within the hour.',
+      text: 'On a Shopify store, the [Mystery shopping](/blueprints/mystery-shopper) blueprint gives each journey, such as a sign-up, a basket or a checkout, its own persona: an AI agent with its own inbox, number and browser under one name. It opens the page behind your ads from their links, signs up, takes the welcome code to checkout, and leaves a basket or a checkout. Every email, code and page lands in your event log as it arrived, with its time. Your team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants. An email counts as missing once its window closes, 48 hours for most flows. A fresh sign-up runs the sign-up, basket and checkout each week, and a theme publish or a flow edit reruns the steps it touches within the hour.',
     },
     {
       kind: 'p',
-      text: 'The same checks run at competitors’ stores, so your team sees every welcome offer, price and reminder a competitor sends its new customers. They cover email, the pages behind ads, prices and offers, journeys from basket to delivery and support, and what AI assistants say about a store. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up millions of companies, each in one call.',
+      text: '[Competitor tracking](/blueprints/competitor-tracking) runs the same checks at competitors’ stores, so your team sees every welcome offer, price and reminder a competitor sends its new customers. They cover email, the pages behind ads, prices and offers, journeys from basket to delivery and support, and what AI assistants say about a store. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, with a persona waiting at each store between checks.',
     },
     {
       kind: 'p',
-      text: 'A CAPTCHA is the puzzle a site shows to stop automated visitors. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test. Some visits now come from AI agents shopping for a person, and [is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for them.',
+      text: 'A CAPTCHA is the puzzle a site shows to stop automated visitors. Where a store puts a CAPTCHA in front of a step, the event log names the step it couldn’t pass. Some visits now come from AI agents shopping for a person, and [is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for them.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to test your Shopify store, compared', compare: true },
     {
       kind: 'p',
-      text: 'A Shopify store checker can mean Shopify’s own test tools, an app that runs set journeys on a schedule, AI shoppers that try a theme, or a record of what the store sends a new customer. We make Obsession, so every other option is described from its provider’s own pages as of 29 October 2026.',
+      text: 'A Shopify store checker can mean Shopify’s own test tools, an app that runs set journeys on a schedule, AI shoppers that try a theme, or an agent that shops as a new customer and keeps what the store sends. We make Obsession, so every other option is described from its provider’s own pages as of 29 October 2026.',
     },
     {
       kind: 'table',
@@ -419,9 +419,9 @@ export const post: BlogPost = {
           'An alert within hours when checkout breaks',
         ],
         [
-          'Obsession (ours): [Store leak checks](' + LEAKS + '), [Mystery shopper](/blueprints/mystery-shopper), [Website audit](/blueprints/website-audit)',
+          'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking), [QA on your own flows](/blueprints/website-audit)',
           'Every email, code and page the store and its competitors show after a sign-up, a basket and a checkout, kept with its time',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Leaves the payment step to Shopify’s test mode',
           'Sign-up to checkout, every week and after every change, at the store and its competitors',
         ],
@@ -446,13 +446,13 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'start', text: 'Start tonight' },
     {
       kind: 'p',
-      text: 'Place the test order, run the 10 checks and write pass or fail beside each, then turn test mode off. For the same checks every week, at the store and its competitors, request early access.',
+      text: 'Place the test order, run the 10 checks and write pass or fail beside each, then turn test mode off. For the same checks every week, at the store and its competitors, pick the Mystery shopping blueprint.',
     },
     {
       kind: 'cta',
-      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Stores start in early access.',
-      to: LEAKS,
-      label: 'Request early access',
+      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Mystery shopping runs it every week.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about testing a Shopify store' },
@@ -485,7 +485,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is there a free Shopify store checker?',
-          a: 'Shopify’s test order is free on a paid plan, its store preview is in the admin, and the 10 checks need only a phone. To run the same checks every week, Obsession keeps every email, code and page a store shows a new customer, each dated. Teams start in early access.',
+          a: 'Shopify’s test order is free on a paid plan, its store preview is in the admin, and the 10 checks need only a phone. To run the same checks every week, Obsession’s Mystery shopping blueprint keeps every email, code and page a store shows a new customer, each dated. Teams start on the Free plan.',
           link: { label: 'See sample data', to: '/sample-output' },
         },
       ],
@@ -493,7 +493,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the store examples',
-      text: 'On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, as far as the first checkout page. No store or agency is named. Larkfield and everything in both pictures is invented.',
+      text: 'Larkfield and everything in both pictures is invented.',
     },
   ],
 

@@ -106,6 +106,6 @@ export const browser: PiecePage = {
 
   final: {
     heading: 'Give your agent a browser that stays signed in.',
-    capture: { kind: 'waitlist', button: 'Request early access', interest: 'any', source: 'piece-browser' },
+    capture: { kind: 'waitlist', button: 'Start free', interest: 'any', source: 'piece-browser' },
   },
 }

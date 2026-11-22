@@ -3,7 +3,7 @@ import type { BlogPost } from './types'
 /* Revenue team guides, spec 4 (_research/seo/revenue-teams-11nov/WRITER_BRIEF.md and PLAN.md, 11 Nov 2026). It owns
    "sales business case template" and business case template for b2b sales, how to write a sales business case,
    business case example sales and discovery call prep (Google autocomplete, US and UK, 11 Nov: demand.json). The
-   renewal business case was a retired recipe (/recipes/business-case redirects to /recipes), so nothing else owns it.
+   renewal business case was a retired blueprint (its old address redirects to the blueprints hub), so nothing else owns it.
    Reader: account executives at B2B software companies whose product touches what their prospects' customers see
    (persona key ae). Page 1 today (Dock, Mutiny, ProjectManager, Smartsheet, Canva) is five-section frames in which
    the seller writes the problem; this guide puts the prospect's own dated problem on page 1 and builds the cost, the
@@ -17,7 +17,8 @@ import type { BlogPost } from './types'
    pages. Obsession is described in the words of site.ts, /sales, the prospect intelligence and account watch recipes,
    /compare/obsession-vs-exa and /sample-output. Larkspur, Corvel Home and Pennant are invented, at .example
    addresses, as are every time and every input in the cost examples. No dashes. General information, never legal
-   advice, on signing up to a prospect's product. */
+   advice, on signing up to a prospect's product. 22 Nov 2026: Obsession lines moved to the toolkit position (personas,
+   blueprints, prices.ts). */
 
 const DOCK = 'https://www.dock.us/library/sales-business-case'
 const MUTINY = 'https://www.mutinyhq.com/blog/business-case-template-for-b2b-sales'
@@ -37,7 +38,7 @@ export const post: BlogPost = {
   description:
     'Sales business case template for account executives: page 1 is the prospect’s own dated problem and screenshot, then the cost, options, plan and proof.',
   answer:
-    'A sales business case template sets out what a buyer’s finance lead needs to approve a deal: the problem, its cost, the options, the plan and the proof. Put the prospect’s own problem on page 1, dated, with the screenshot or email that shows it, such as a basket reminder that never arrived. Obsession keeps what each prospect shows only to its customers, dated with a screenshot, and looks it up by API, MCP (the standard way AI agents call tools) or a table.',
+    'A sales business case template sets out what a buyer’s finance lead needs to approve a deal: the problem, its cost, the options, the plan and the proof. Put the prospect’s own problem on page 1, dated, with the screenshot or email that shows it, such as a basket reminder that never arrived. Obsession’s prospect intelligence blueprint sends a persona to sign up at each prospect and keeps what it shows new customers, dated with a screenshot.',
   primaryKeyword: 'sales business case template',
   keywords: [
     'sales business case template',
@@ -51,7 +52,7 @@ export const post: BlogPost = {
   category: 'Watch other companies',
   order: 4,
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -318,10 +319,10 @@ export const post: BlogPost = {
           'News, docs and company facts about an account',
         ],
         [
-          'Obsession (ours): Prospect intelligence, Account watch, API and MCP',
-          'What each account sends and shows its customers, dated with screenshots',
-          'Early access, onboarding teams now\nPriced per call or per company watched',
-          'Stops at an identity check or a CAPTCHA, and names the step',
+          'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Account watch](/blueprints/account-watch), API and MCP',
+          'What each account sends and shows its customers, dated with screenshots, in one event log',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at an identity check, a CAPTCHA or payment, and names the step',
           'A dated page 1 for every open deal',
         ],
       ],
@@ -338,21 +339,21 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For [sales teams](/sales), [prospect intelligence](/blueprints/prospect-intelligence) and [account watch](/blueprints/account-watch) put a dated page 1 behind every business case in the pipeline. They keep it current for as long as you follow each account, so you can see what it does to win rate, deal size and sales cycle.',
+      text: 'Obsession, the toolkit for AI agents, does this with a persona per account, an AI agent with its own inbox, number and browser under one name. For [sales teams](/sales), [prospect intelligence](/blueprints/prospect-intelligence) and [account watch](/blueprints/account-watch) put a dated page 1 behind every business case in the pipeline. They keep it current for as long as you follow each account, so you can see what it does to win rate, deal size and sales cycle.',
     },
     {
       kind: 'cta',
-      text: 'Open every business case with the prospect’s own emails and screens, dated with the screenshot, for every deal you’re working and for as long as you follow it.',
-      to: '/#join',
-      label: 'Request early access',
+      text: 'Prospect intelligence: open every business case with the prospect’s own emails and screens, dated with the screenshot, for every deal you’re working and for as long as you follow it.',
+      to: '/blueprints/prospect-intelligence',
+      label: 'See the blueprint',
     },
     {
       kind: 'p',
-      text: 'The sample holds a page 1 fact in full: one real store’s emails and screenshots, each with its time. It comes from [the web behind the login](/blog/the-web-behind-the-login), the part search engines don’t reach. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'The sample holds a page 1 fact in full: one real store’s emails and screenshots, each with its time. It comes from [the web behind the login](/blog/the-web-behind-the-login), the part search engines don’t reach. [Sales intelligence for B2B revenue teams](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
-      text: 'One real record: a UK skincare store in September 2026, where a £40 basket left at 02:57 got no reminder in 48 hours, as a PDF, Clay columns or JSON.',
+      text: 'One real run: a UK skincare store in September 2026, where a £40 basket left at 02:57 got no reminder in 48 hours, as a PDF, Clay columns or JSON.',
       to: '/sample-output',
       label: 'See sample data',
     },

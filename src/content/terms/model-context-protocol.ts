@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/model-context-protocol: for an engineer building an agent. "best mcp servers" stays with its owner
    (docs/SEARCH.md §2); this page owns the definition. Facts from Anthropic's announcement and modelcontextprotocol.io,
@@ -63,24 +62,24 @@ export const ref: ReferencePage = {
       kind: 'p',
       text: 'For a team building an agent, MCP is how the agent reaches facts it can’t produce itself. A model can reason about a competitor, but it can’t have been signed up to that competitor for a month. With an MCP server for each source, the agent asks in plain words. The same server works in every client that supports the protocol, so nobody writes a connector per app.',
     },
-    { kind: 'h2', id: 'company-data-over-mcp', text: 'How company data reaches an agent over MCP' },
+    { kind: 'h2', id: 'company-data-over-mcp', text: 'How an agent reaches Obsession over MCP' },
     {
       kind: 'p',
-      text: `${ENTITY} Its MCP server gives an agent the same 5 tools as its API.`,
+      text: 'Obsession’s MCP server gives an agent every piece through the same key as its API.',
     },
     {
       kind: 'list',
       items: [
-        '**lookup:** is a company covered, and since when.',
-        '**facts:** the company’s dated facts, each with its source.',
-        '**evidence:** the raw email or page behind a fact.',
-        '**index:** add a company that isn’t covered yet.',
-        '**notify:** send each new fact to a webhook as it lands.',
+        '**inboxes and numbers:** create one, then read the emails, texts and calls that arrive.',
+        '**browser:** open a page from a home connection and read what it shows.',
+        '**sandbox:** run code and get the result.',
+        '**personas:** put those pieces under one identity.',
+        '**blueprints:** run a ready job and get the result.',
       ],
     },
     {
       kind: 'p',
-      text: 'Connecting takes one command in Claude Code, claude mcp add obsession, with the server address that comes with early access, as [the developers page](/developers) sets out. From then on an agent can ask what any named competitor emailed new customers this week. Each answer comes back with its date and the email itself, for as long as the company is followed.',
+      text: 'Connecting takes one command in Claude Code, claude mcp add obsession, as [the developers page](/developers) sets out. Every email, text, call, page and blueprint result then lands in one event log the agent can read.',
     },
     {
       kind: 'faq',

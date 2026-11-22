@@ -1,5 +1,7 @@
 import { explorer as base } from '../explorer'
+import { kitPathOf } from '../kitPaths'
 import { piecePaths } from '../piecePaths'
+import { personaCostLine, plans } from '../prices'
 import { outputFormats } from '../sample'
 import type { CardGrid, Explorer, Finding, Life, Page, RunReports, ViewerFormat } from '../types'
 
@@ -15,15 +17,34 @@ import type { CardGrid, Explorer, Finding, Life, Page, RunReports, ViewerFormat 
    `page` holds what the registry and meta.ts read (meta, hero, questions, the form); the sections are `sections`, typed
    by their own components, so the page needs nothing Home owns on the Page contract.
    Words: "the event log" (1 per account; events are its entries), never "record"; "a persona you define", never a customer profile; never AI customers; no
-   "Example" tags. Every invented company is at a .example address. The only real numbers are Brand G's. No prices. */
+   "Example" tags; never the index (22 Nov). Part of the Work behind logins kit. Every invented company is at a .example
+   address. The only real numbers are Brand G's. Prices come from prices.ts. */
 
-/* The explorer (content/explorer.ts), with this page's words where the shared ones say "record" or "an example", and
-   its 2 US questions first (signed in prices, texts after STOP), then the 3 UK ones. */
+const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
+const planWords = `the Free plan, then ${fees.slice(0, -1).join(', ')} or ${fees[fees.length - 1]} a month`
+
+/* The explorer (content/explorer.ts), with this page's words where the shared ones say "record", "the index" or "an
+   example", and its 2 US questions first (signed in prices, texts after STOP), then the 3 UK ones. */
 const explorer: Explorer = {
   ...base,
   tabs: { ...base.tabs, record: 'Event log' },
-  insights: [1, 3, 0, 2, 4].map((i) => base.insights[i]),
-  said: 'A console built on Obsession’s pieces. Search a company and choose the persona, the wall and the kind. Each row is an event in the company’s timeline, what the persona did or what the company showed or sent, with the facts read from it. Open a row to see it as your event log stores it, and Evidence to see each kind as it arrived. A company not in the index has Watch it, which sends a persona to sign up. Insights asks one question across a group of companies and writes a report with a row for each company.',
+  fromIndex: 'From your event log · 0.3 s',
+  notCovered: 'No persona there yet',
+  insight: {
+    ...base.insight,
+    inIndex: 'In your event log',
+    notIn: 'No persona there yet',
+    missing: (n: number, [one, many]: [string, string]) => (n === 1 ? `1 ${one} has no persona there yet.` : `${n} ${many} have no persona there yet.`),
+    done: (n: number, c: number) => `${n} sources · ${c} from your event log`,
+  },
+  insights: [1, 3, 0, 2, 4]
+    .map((i) => base.insights[i])
+    .map((q) => ({
+      ...q,
+      plan: [q.plan[0], 'Read each one’s event log', q.plan[2]] as [string, string, string],
+      answer: q.answer.replace(' in the index', ' with a persona there'),
+    })),
+  said: 'A console built on Obsession’s pieces. Ask one question across a group of companies, and it writes a report with a row for each company, from what each persona saw. Open a row to see the email or page behind it, as your event log stores it. A company with no persona yet has Watch it, which sends one to sign up.',
 }
 
 /* The code tile: a persona, the emails it wakes on, its events read back from the event log. Only the API names in the shared brief. */
@@ -36,7 +57,7 @@ const persona = await obsession.personas.create({ inbox: true, phone: "US", brow
 
 // Each email the company sends wakes it, about 50 ms after it lands
 persona.on("email.received", async (email) => {
-  await index.add(email)
+  await db.emails.insert(email)
 })
 
 // Every page, email, text and call so far, dated, with screenshots
@@ -80,10 +101,10 @@ function formats(): ViewerFormat[] {
     .map((f) => ({ ...f, line: lines[f.id] ?? f.line, view: views[f.id] ?? f.view }))
 }
 
-/* Every form on the page is the early access form. */
+/* Every form on the page starts free. */
 const access = {
   kind: 'waitlist',
-  button: 'Request early access',
+  button: 'Start free',
   interest: 'any',
 } as const
 
@@ -95,7 +116,7 @@ export const page: Page = {
       'Personas sign up at the companies you name and log every email, text, member price, trial limit and cancel offer that follows, dated, with screenshots.',
     /* The sentence AI assistants quote. Its first sentence opens the hero's sub (scripts/prerender.mjs checks). */
     answer:
-      'The web behind the login is what companies show people only after they sign up: emails, texts, member prices, trial limits and offers. Obsession turns it into data: personas sign up at the companies you name, each with its own browser, inbox and phone number. Every page, email, text and call they get lands in your event log, dated, with a screenshot.',
+      'The web behind the login is what companies show people only after they sign up: emails, texts, member prices, trial limits and offers. Obsession’s personas, AI agents with their own browser, inbox and number, sign up at the companies you name. Their browsers keep their logins and their inboxes and numbers catch every code, so every page, email, text and call lands in your event log, dated, with a screenshot.',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Use cases', path: '/use-cases' },
@@ -104,12 +125,12 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'Built with personas',
-    pillTo: piecePaths.personas,
+    pill: 'Work behind logins kit',
+    pillTo: kitPathOf.portals,
     headline: 'Search engines stop at the login. Your personas don’t.',
-    sub: 'The web behind the login is what companies show people only after they sign up: emails, texts, member prices, trial limits and offers. Personas sign up at the companies you name, and each one lands in your event log, dated, with a screenshot.',
+    sub: 'The web behind the login is what companies show people only after they sign up: emails, texts, member prices, trial limits and offers. Personas sign up at the companies you name, with a browser that keeps its logins and an inbox and number that catch every code.',
     capture: { ...access, source: 'web-behind-the-login-hero' },
-    secondary: { label: 'See a real run', to: '/sample-output' },
+    secondary: { label: 'Browse blueprints', to: '/blueprints' },
     proof: [],
     consoleHeading: [],
   },
@@ -124,12 +145,12 @@ export const page: Page = {
       },
       {
         q: 'What is it built from?',
-        a: 'Personas, each with its own browser, inbox and phone number, on one API and one bill. A persona signs up at each company you name, keeps the account open, and every page, email, text and call lands in your event log. Add WhatsApp from Messaging, and a sandbox to run your own code on each event.',
+        a: 'Personas, AI agents each with its own browser, inbox and phone number, on one API and one bill. A persona signs up at each company you name and keeps the account open, and every page, email, text and call lands in your event log. Add WhatsApp from Messaging, and a sandbox to run your own code on each event.',
         link: { label: 'See personas', to: piecePaths.personas },
       },
       {
         q: 'Do I have to write code?',
-        a: 'No. Pick one of our blueprints, such as competitor tracking or price watch, and we run it on the same pieces at the same prices. Developers call the API, connect their own agent with MCP, or write their own job to run beside the pieces. Every result lands in your event log.',
+        a: 'No. Pick a blueprint, such as competitor tracking or price watch, and Obsession runs it on the same pieces at the same prices. Developers call the API, connect their own agent with MCP, or run their own job beside the pieces. Every result lands in your event log.',
         link: { label: 'Browse blueprints', to: '/blueprints' },
       },
       {
@@ -138,7 +159,8 @@ export const page: Page = {
       },
       {
         q: 'Is collecting it allowed?',
-        a: 'A persona does only what any person can, on the pages and forms open to everyone. It says it’s an AI when it talks to a person, and it never signs in to an account that isn’t its own.',
+        a: 'A persona does only what any person can, on the pages and forms open to everyone. It says it’s an AI when it talks to a person, stops at any identity check and never gets round a CAPTCHA or a bot block. It never signs in to an account that isn’t its own.',
+        link: { label: 'The lines every agent keeps', to: '/agents' },
       },
       {
         q: 'Who can see what my personas collect?',
@@ -148,12 +170,17 @@ export const page: Page = {
         q: 'How long does a persona keep watching?',
         a: 'For as long as you keep it. It waits for free and wakes on each new email, text or call, so a renewal notice or an offer to stay months later still lands in your event log.',
       },
+      {
+        q: 'How is it priced?',
+        a: `${personaCostLine} It costs nothing while it waits, and you pay only for the pieces it uses. Start on ${planWords}.`,
+        link: { label: 'See pricing', to: '/pricing' },
+      },
     ],
   },
 
   final: {
-    heading: 'Which companies should your personas watch first?',
-    sub: 'Name them, and we’ll set it up with you.',
+    heading: 'Send a persona to every company on your list.',
+    sub: 'Start with one persona at one company, so you can see the coverage and accuracy before you add the rest.',
     capture: { ...access, source: 'web-behind-the-login-final' },
   },
 }
@@ -236,6 +263,7 @@ export const sections: {
     kicker: 'What is it built from?',
     heading: 'Built from 6 pieces, on one API and one bill.',
     line: 'Use all 6, or only the ones this job needs. Each piece has its own page and its own price.',
+    more: { text: 'The pieces and blueprints for portals, quotes and sign-ups sit together in one kit.', label: 'See the Work behind logins kit', to: kitPathOf.portals },
     items: [
       {
         title: 'Personas',

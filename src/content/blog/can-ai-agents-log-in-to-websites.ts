@@ -53,19 +53,18 @@ export const post: BlogPost = {
   description:
     'Yes, AI agents can log in to websites and keep the session. How cookies, MFA and bot checks work, what US and UK law says, and what each run costs.',
   answer:
-    'Yes, AI agents can log in to websites: ChatGPT’s cloud browser, Claude’s computer use, Browserbase and Browser Use fill in sign-in forms and keep the session cookie, though one-time codes and bot checks still need a person. Whether an agent may log in turns on the site’s terms and on computer misuse law, which US courts still apply to agents case by case. Obsession keeps each company’s emails, texts, member prices and offers behind the login, dated with a screenshot, so agents look them up by API or MCP (the standard way AI agents call tools) without anyone’s password.',
+    'Yes, AI agents can log in to websites: ChatGPT’s cloud browser, Claude’s computer use, Browserbase and Browser Use fill in sign-in forms and keep the session cookie, though one-time codes and bot checks still need a person. Whether an agent may log in turns on the site’s terms and on computer misuse law, which US courts still apply to agents case by case. Obsession gives an agent a cloud browser that keeps its logins, with an inbox and a phone number of its own to receive each login code, and it stops at any CAPTCHA or identity check.',
   primaryKeyword: 'can ai agents log in to websites',
   keywords: [
     'ai agent login to website',
     'ai agent web access',
     'ai agent internet access',
-    'ai agent sign up',
     'can ai agents log in to websites',
   ],
   category: 'Behind the login',
   order: 8,
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 17,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -89,15 +88,15 @@ export const post: BlogPost = {
           links: ['reuses the cookie', 'until it expires'],
         },
         {
-          name: 'A customer of its own',
-          who: 'An Obsession agent',
-          nodes: ['Your team', 'Obsession agent', 'Its own account'],
-          links: ['looks up by API', 'signs up as itself'],
+          name: 'A login of its own',
+          who: 'Obsession: browser, inbox and number',
+          nodes: ['Your agent', 'Persona', 'Its own account'],
+          links: ['calls one API', 'codes reach its inbox'],
           lit: 1,
           ours: true,
         },
       ],
-      foot: 'All 3 reach pages behind Larkfield’s login. The third holds an account of its own, so nobody lends it a password. Larkfield is an invented company.',
+      foot: 'All 3 reach pages behind Larkfield’s login. The third signs in with an account of its own, and its own inbox and number receive the codes. Larkfield is an invented company.',
     },
   },
 
@@ -448,43 +447,43 @@ export const post: BlogPost = {
           'High-volume browser runs',
         ],
         [
-          'Obsession (ours): competitor tracking, trial teardown, the API and MCP',
-          'Its own account at each company, every email, text, price and offer dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Never gets round a CAPTCHA or a bot block, never invents identity details',
-          'What many companies show their customers, over months',
+          'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Trial teardown](/blueprints/trial-teardown)',
+          'A browser that keeps its logins, with its own inbox and number for every code',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Never gets round a CAPTCHA or a bot block; stops at any identity check',
+          'Agents that stay signed in for weeks, codes and all',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For what companies show their customers, across many companies and for months, use Obsession. It holds its own account at each company and returns every email, text, price and offer dated with a screenshot. For acting inside a person’s own account, use ChatGPT’s cloud browser, or Claude with a password manager that keeps the password from the model. For many browsers driven by your own code, Browserbase and Browser Use keep sessions in Contexts and profiles. For a handful of accounts checked now and then, a person signing in is enough.',
+      text: 'For agents that sign in and stay signed in for weeks, with every login code landing in an inbox and number of their own, use Obsession. Its browser keeps cookies and storage between runs, at $0.10 a browser hour with no charge per GB. For acting inside a person’s own account, use ChatGPT’s cloud browser, or Claude with a password manager that keeps the password from the model. For many browsers driven by your own code, Browserbase and Browser Use keep sessions in Contexts and profiles. For a handful of accounts checked now and then, a person signing in is enough.',
     },
 
-    { kind: 'h2', id: 'own-account', text: 'The other route: a customer of its own' },
+    { kind: 'h2', id: 'own-account', text: 'An agent with logins of its own' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to.',
     },
     {
       kind: 'p',
-      text: 'Each Obsession agent signs up with its own [inbox](/email), [phone number](/phone) and [browser that keeps its logins](/browser), says it’s an AI when it talks to a person, and keeps the account open for months ([Obsession agents](/agents)). The account is its own, so nobody lends it a password and no colleague waits up for a code. Every email and text the company sends lands in its inbox, dated, for as long as anyone follows that company.',
+      text: 'Its [browser keeps its logins](/browser) between runs, and the same agent gets its own [inbox](/email) and [phone number](/phone), so every login code, magic link and confirmation lands where the agent can read it. Nobody lends it a password and no colleague waits up for a code. Under a [persona](/personas), the agent signs in under one name for months and says it’s an AI when it talks to a person ([what an Obsession agent does](/agents)).',
     },
     {
       kind: 'p',
       text: 'Search APIs give agents what companies publish. Exa describes itself as searching “the largest index of public web and private information” ([Exa](' +
         EXA +
-        ')), and the guide to [web search APIs for AI agents](/blog/best-web-search-api-for-ai-agents) compares it with the rest. Obsession gives agents what a company shows only to its customers, behind the login, dated, and kept for as long as anyone follows the company. Agents call both: search for what a company publishes, and Obsession for what it sends and shows its customers.',
+        ')), and the guide to [web search APIs for AI agents](/blog/best-web-search-api-for-ai-agents) compares it with the rest. Obsession gives agents a browser that stays signed in, with an inbox and a number for the codes. Agents call both, search for what a company publishes and Obsession’s browser for what sits behind a sign-in.',
     },
     {
       kind: 'p',
-      text: 'Developers reach it with 5 verbs (lookup, facts, evidence, index and notify) over the API, MCP and the TypeScript and Python SDKs. Each new fact can post to a webhook, an address in your app that receives it the moment it lands ([the API and MCP](/developers)). Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. If your agents need what companies show their customers behind the login, at any company you name, use Obsession.',
+      text: 'Developers start with obsession.browsers.create({ home: "US" }) and add obsession.inboxes.create() and obsession.numbers.create({ country: "US" }) on the same key. Each page the agent opens arrives as a page.visited event and each code as sms.received or email.received, at a webhook, an address in your app that receives it the moment it lands. Your agent can call the same pieces through MCP, the standard way AI agents call tools ([the API and MCP](/developers)). The Free plan includes 10 browser hours, 3 inboxes and 1 number, with no credit card.',
     },
     {
       kind: 'cta',
-      text: '5 verbs for your agents and your code. What any company shows its customers behind the login, from the welcome email to the cancel offer, each fact dated with its screenshot.',
-      to: '/developers',
-      label: 'See the API and MCP',
+      text: 'Give your agent a browser that keeps its logins, with its own inbox and number for every code, on one key and one bill.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI agents and logins' },
@@ -508,6 +507,11 @@ export const post: BlogPost = {
         {
           q: 'Is it safe to give an AI agent my password?',
           a: 'It is safer when the model never sees it. OpenAI’s cloud browser takes credentials in a secure form that goes straight to the remote browser. 1Password’s integration with Claude fills logins after a biometric approval, without showing the password or code to the model. OpenAI’s help page also tells people never to paste passwords, security codes or payment details into the conversation.',
+        },
+        {
+          q: 'Can an AI agent receive its own login codes?',
+          a: 'Yes, when it has an inbox and a phone number of its own. On Obsession a code sent by text arrives as an sms.received event and one sent by email as email.received, and the agent enters it in the same browser session. It never gets round a CAPTCHA and stops at any identity check.',
+          link: { label: 'Phone numbers for AI agents', to: '/phone' },
         },
         {
           q: 'Can AI agents get past two-factor authentication?',
@@ -578,8 +582,9 @@ export const post: BlogPost = {
     'the-web-behind-the-login',
     'best-web-search-api-for-ai-agents',
     'agent-ready-website',
-    'recipe:competitor-tracking',
     'recipe:trial-teardown',
+    'recipe:competitor-tracking',
+    '/personas',
     '/agents',
     '/developers',
   ],

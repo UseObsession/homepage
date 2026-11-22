@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/signed-in-price: the definition query for a price shown only after login. "scrape data behind login"
    stays with its own post (docs/SEARCH.md §2); this page owns "what is a signed-in price". */
@@ -56,7 +55,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For signed-in prices, that means the signed-out price and the signed-in price for the same product on the same day, side by side. Each is dated with its screenshot, and the history builds for as long as you follow the company.`,
+      text: 'Obsession’s [Price watch](/blueprints/price-watch) blueprint, run from the [cloud browser](/browser), logs the signed-out price and the signed-in price for the same product on the same day, side by side. Each is dated with its screenshot.',
     },
     {
       kind: 'p',
@@ -76,7 +75,7 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Can an AI agent look up a signed-in price?',
-          a: 'Only if something signed in and kept the price. Obsession answers that lookup over its API and MCP, with the price, the date it was seen and the screenshot.',
+          a: 'Only if something signed in as a customer and kept the price. An Obsession persona can, from its own account, and the price, the date and the screenshot land in the event log.',
           link: { label: 'Obsession for developers', to: '/developers' },
         },
       ],
@@ -90,6 +89,7 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    '/browser',
     '/glossary/member-price',
     '/glossary/login-wall',
     '/glossary/rate-parity',

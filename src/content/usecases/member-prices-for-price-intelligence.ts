@@ -1,36 +1,45 @@
+import { plans } from '../prices'
 import type { UseCaseStudy } from '../types'
 
-/* Member prices for price intelligence (/use-cases/member-prices-for-price-intelligence), 9 Nov rewrite: the prices and
-   offers retailers show only signed-in members, beside the public price, per store, dated with a screenshot and fed to a
-   price intelligence firm's platform (a file, a webhook the day a price moves, the API, Search and Insights). James's
-   Italian grocery cast stays (Corvalle, Brand A macinato at 3,19 € and 2,69 €, "Solo con la Carta"); every name, price
-   and figure is invented and `fine` says so. James's page (src/legacy/james) draws this address and reads the headline,
-   sub, questions and small print from here; `hero.flow` mirrors his flow and meta.answer is the first answer. */
+/* Member prices for price intelligence (/use-cases/member-prices-for-price-intelligence), rewritten 22 Nov 2026 for the
+   toolkit position: a persona joins each retailer as a member and reads public and member prices on the firm's basket
+   every morning, per store, dated with a screenshot, plus every coupon and offer after sign-up. It runs on the browser,
+   email and phone under one persona, through the Price watch blueprint, and lands in the firm's platform (a daily file,
+   a webhook the day a price moves, the API). James's Italian grocery cast stays (Corvalle, Brand A macinato at 3,19 € and
+   2,69 €, "Solo con la Carta"); every name, price and figure is invented and `fine` says so. James's page
+   (src/legacy/james) draws this address and reads the headline, sub, questions and small print from here; `hero.flow`
+   mirrors his flow and meta.answer is the first answer. */
+
+const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
+const orList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} or ${items[items.length - 1]}`)
+
+const sub =
+  'Obsession, the toolkit for AI agents, signs a persona up as a member at every retailer you track. A persona is an AI agent with its own inbox, mobile number and browser under one name. Each morning it reads the public and member price on your basket, per store, and keeps every coupon and offer that follows.'
+
+const answer = `${sub} The Price watch blueprint runs it, and each reading reaches your platform as a daily file, a webhook the day a price moves, or by API.`
 
 export const study: UseCaseStudy = {
   name: 'Member prices for price intelligence',
-  line: 'Signed-in prices beside public ones, per competitor, over time.',
+  line: 'Member prices beside public ones, per retailer and store, every morning.',
 
   meta: {
     path: '/use-cases/member-prices-for-price-intelligence',
-    title: 'Member prices beside public ones, for price intelligence',
+    title: 'Price intelligence: member prices beside public ones, daily',
     description:
-      'The prices and offers retailers show only signed-in members, beside the public price, per store, each dated with its screenshot. As a feed, table or API.',
-    answer:
-      'Obsession collects the prices retailers show only to signed-in members, beside the public price, per store, each dated with its screenshot. Price intelligence teams get each gap and its history as a file, a table, a webhook or by API. A retailer not covered yet is added on request, from the customer profile and city they pick.',
+      'A persona joins each retailer as a member and reads public and member prices on your basket every morning, per store, each dated with its screenshot.',
+    answer,
     ogImage: '/og/member-prices-for-price-intelligence.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Resources', path: '/resources' },
       { name: 'Use cases', path: '/use-cases' },
-      { name: 'Member prices for price intelligence', path: '/use-cases/member-prices-for-price-intelligence' },
+      { name: 'Price intelligence', path: '/use-cases/member-prices-for-price-intelligence' },
     ],
   },
 
   hero: {
-    pill: 'Early access',
     headline: 'Member prices beside public ones, at every retailer you track.',
-    sub: 'The price a signed-in member sees, the welcome coupon and the offers that follow by email and text, per store, each dated with its screenshot. In your platform as one more source, with nobody signing in to 120 retailers by hand.',
+    sub,
     example: { chips: [] },
     flow: [
       {
@@ -55,13 +64,14 @@ export const study: UseCaseStudy = {
     capture: {
       kind: 'waitlist',
       source: 'usecase-price-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'prices',
     },
+    secondary: { label: 'See the blueprint', to: '/blueprints/price-watch' },
   },
 
   how: {
-    heading: 'You name the retailers and the basket. Obsession signs in at each one.',
+    heading: 'You name the retailers and the basket. A persona signs in at each one.',
     sub: 'A price intelligence firm adds member prices to 1 client’s coffee basket, across 120 Italian grocery retailers.',
     steps: [
       {
@@ -77,7 +87,7 @@ export const study: UseCaseStudy = {
           {
             title: 'Choose what to capture',
             line: 'Public and member price on every item, the welcome offer, and every email and text after sign-up. Fixed rules decide each reading, so the same page always gives the same answer.',
-            example: 'Member prices every week, daily around Black Friday, and every email and text as it arrives.',
+            example: 'Member prices every morning, and every email and text as it arrives.',
           },
           {
             title: 'Choose where it lands',
@@ -87,14 +97,14 @@ export const study: UseCaseStudy = {
         ],
       },
       {
-        title: 'Obsession does the collecting',
+        title: 'A persona does the collecting',
         line: '30 days in this example, and each account stays open after. Every reading has its screenshot.',
         screen: 'members',
         chips: ['Member · Milano', 'Its own inbox', 'An Italian mobile number', 'Says it’s AI'],
         steps: [
           {
-            title: 'Each retailer gets its own member account',
-            line: 'Its own inbox, an Italian mobile number and a browser set to the city you chose. It joins the way any customer can and, in this example, buys nothing. It says it’s AI when it talks to a person.',
+            title: 'Each retailer gets its own member',
+            line: 'A persona with its own inbox, an Italian mobile number and a browser set to the city you chose. It joins the way any customer can and, in this example, buys nothing. It says it’s AI when it talks to a person.',
             example:
               'Corvalle, Milano Centro: joined with the newsletter and texts ticked at 09:03, the welcome email and its coupon came at 09:04, and all 40 basket items were read signed out and in by 09:06.',
           },
@@ -102,7 +112,7 @@ export const study: UseCaseStudy = {
             title: 'Signed out and signed in, side by side',
             line: 'Every item is read twice on the same page, minutes apart, with a screenshot of each. A member price counts only when both readings agree on the product and the store.',
             example:
-              '14 of 40 items carry a member price at Corvalle, 11% off on average and 21% at most. Brand A macinato 250 g: 3,19 € for everyone, 2,69 € with the card.',
+              'Corvalle shows a member price on 14 basket items, 11% off on average and 21% at most. Brand A macinato 250 g: 3,19 € for everyone, 2,69 € with the card.',
           },
           {
             title: 'The account stays open',
@@ -122,7 +132,7 @@ export const study: UseCaseStudy = {
       { title: 'Member prices', line: 'The price shown once you’re signed in, or with the loyalty card linked to the account.' },
       { title: 'Welcome coupons', line: 'The code or credit that lands after joining, and what it takes to use it.' },
       { title: 'Offers that arrive later', line: 'The email on day 3, the text on day 7, the win back coupon after 3 weeks.' },
-      { title: 'Prices by store', line: 'Online prices change once you pick a store or a postcode. Each account shops from the city you choose.' },
+      { title: 'Prices by store', line: 'Online prices change once you pick a store or a postcode. Each persona shops from the city you choose.' },
     ],
     answer:
       'Each observation is dated and tied to a retailer and a store, with the screenshot or the message itself, like the flyer pages and newsletters you already collect.',
@@ -141,9 +151,9 @@ export const study: UseCaseStudy = {
     },
     ours: {
       label: 'Obsession runs',
-      heading: 'The accounts, the inboxes and the waiting.',
+      heading: 'The members, the inboxes and the waiting.',
       items: [
-        'A member account per retailer and city, with its own inbox, Italian mobile number and browser',
+        'A persona per retailer and city, with its own inbox, Italian mobile number and browser',
         'The sign-ups, the store choice and the readings on your basket',
         'Each account kept open for as long as you track it',
         'A screenshot or the message behind every observation',
@@ -169,7 +179,7 @@ export const study: UseCaseStudy = {
             example: 'At Corvalle, members get Competitor B’s macinato 21% off and Brand A’s 16% off.',
           },
           {
-            title: 'Catch price erosion behind the login',
+            title: 'Catch member-only price erosion',
             line: 'Which retailer goes below a threshold first, for members only.',
             example: 'Brand A macinato: 2,49 € for Corvalle members on 14 October.',
           },
@@ -187,7 +197,7 @@ export const study: UseCaseStudy = {
           {
             title: 'Read competitors’ member prices on your basket',
             line: 'Your tracking basket, read as a member at each competitor.',
-            example: '14 of 40 items carry a member price at Corvalle.',
+            example: 'Corvalle shows a member price on 14 basket items.',
           },
           {
             title: 'Map the messages after sign-up',
@@ -205,7 +215,7 @@ export const study: UseCaseStudy = {
     screen: 'memberfeed',
     steps: [
       {
-        title: 'A record behind every observation',
+        title: 'A screenshot behind every observation',
         line: 'Each row carries the retailer, the store, the dates, the conditions and a link to the screenshot or the message, like your flyer and newsletter observations.',
         example:
           'Corvalle, text to members, Mon 5 Oct 2026, 11:15: 20% off coffee for card holders, valid 5 to 11 October in all stores, with the message as received.',
@@ -223,14 +233,14 @@ export const study: UseCaseStudy = {
     recipe: {
       label: 'The blueprint',
       title: 'Price watch',
-      line: 'Prices, offers and terms as a customer sees them, on the schedule you set.',
-      cta: { label: 'Learn more', to: '/blueprints/price-watch' },
+      line: 'A persona signs in at each retailer every morning and reads member prices, offers and subscriber codes.',
+      cta: { label: 'See the blueprint', to: '/blueprints/price-watch' },
     },
     sample: {
       label: '1 real run',
       title: 'Sample data',
       line: 'Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.',
-      cta: { label: 'See it', to: '/sample-output' },
+      cta: { label: 'See sample data', to: '/sample-output' },
     },
   },
 
@@ -241,19 +251,21 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'What does Obsession do for price intelligence teams?',
-        a: 'Obsession collects the prices retailers show only to signed-in members, beside the public price, per store, each dated with its screenshot. Price intelligence teams get each gap and its history as a file, a table, a webhook or by API. A retailer not covered yet is added on request, from the customer profile and city they pick.',
+        a: answer,
+        link: { label: 'See the blueprint', to: '/blueprints/price-watch' },
       },
       {
         q: 'Where does the data come from?',
-        a: 'From real accounts. Obsession’s agents sign up and sign in the way any customer can, from the customer profiles and cities you choose, and keep each account open for months. Every price is read signed out and signed in on the same page, with a screenshot of each.',
+        a: 'From real member accounts. A persona signs up and signs in the way any customer can, from the customer profile and city you choose, and keeps each account open for as long as you track it. Every price is read signed out and signed in on the same page, with a screenshot of each.',
       },
       {
-        q: 'What if a retailer isn’t covered yet?',
-        a: 'Click Watch. Obsession signs up as the customer profile and city you pick, keeps the account open, and every price and message joins the index the day it arrives. A retailer already covered returns its history at once.',
+        q: 'Which pieces does it use?',
+        a: 'The browser for the readings, and an inbox and a mobile number for the welcome codes and offers, under 1 persona per retailer and city. Price watch runs it on the same key and bill.',
+        link: { label: 'Watch the market', to: '/kits/watch-the-market' },
       },
       {
-        q: 'Can we look up 1 retailer without a feed?',
-        a: 'Yes. Search any retailer for its member prices, its offers and the screenshot behind each. Insights asks 1 question across many, like “Which retailers show members a lower coffee price than guests?”, and answers with a row per retailer.',
+        q: 'How many retailers can it cover?',
+        a: 'Every retailer you track, in every city you choose: 120 retailers or thousands. Each persona waits between readings, free while it waits, and coverage and history build from the first morning.',
       },
       {
         q: 'Who matches products to our database?',
@@ -261,23 +273,29 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'What about loyalty cards that need a tax code or a card from the store?',
-        a: 'Obsession never invents identity details. Where a programme needs a codice fiscale or an in store card, it stops there and says so, so you know where the wall is.',
+        a: 'A persona never invents identity details and stops at any identity check. Where a programme needs a codice fiscale or an in store card, it stops there and says so, so you know which programmes it can read.',
+      },
+      {
+        q: 'What does it cost?',
+        a: `Start on the Free plan, with no credit card. Paid plans are ${orList(fees)} a month, and a blueprint is billed on the pieces it uses.`,
+        link: { label: 'See pricing', to: '/pricing' },
       },
       {
         q: 'Does it buy anything?',
-        a: 'Not in this example. If you choose, it fills a basket to read the delivery fee and the total. A real order goes on a card you fund, never on fake payment details.',
+        a: 'Not in this example. If you choose, it fills a basket to read the delivery fee and the total, then stops before payment unless given your own card. It never uses fake payment details.',
       },
     ],
   },
 
   final: {
-    heading: 'Which retailers should we look up first?',
-    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
+    heading: 'Add member prices to the basket you already track.',
+    sub: 'Price watch reads them every morning, so you can see the coverage and history before you sell the module.',
     capture: {
       kind: 'waitlist',
       source: 'usecase-price-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'prices',
     },
+    link: { label: 'See the kit', to: '/kits/watch-the-market' },
   },
 }

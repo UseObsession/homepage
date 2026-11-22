@@ -343,6 +343,8 @@ const llmsSections = [
   ['Pages', ofKind('home', 'audience', 'developers', 'pricing', 'verify', 'recipes', 'sample', 'lookup', 'resources')],
   /* Each piece an agent can take on its own (content/pieces). */
   ['Pieces', ofKind('piece')],
+  /* Each job agents do, as the pieces and blueprints it uses (content/kits). */
+  ['Kits', ofKind('kits', 'kit')],
   /* The comparisons, alternatives and glossary (content/reference.ts), each under its hub. */
   ['Compare', ofKind('compare', 'comparison')],
   ['Alternatives', ofKind('alternatives-hub', 'alternatives')],

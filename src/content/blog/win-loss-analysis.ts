@@ -41,7 +41,7 @@ export const post: BlogPost = {
   description:
     'Win loss analysis for sales leaders: the template, process and cadence, plus what each competitor sent the buyer during its trial, every offer dated.',
   answer:
-    'Win loss analysis finds out why a sales team wins and loses deals by comparing the loss reasons reps log in the CRM with what buyers say in interviews after they decide. Both record what people remember and believe, while the emails, discounts and save offers a competitor sent the buyer during its trial sit in that trial’s inbox, dated. Obsession keeps what each competitor shows only to its customers, from trial emails to save offers, dated with a screenshot and looked up by API, MCP (the standard way AI agents call tools) or a table.',
+    'Win loss analysis finds out why a sales team wins and loses deals by comparing the loss reasons reps log in the CRM with what buyers say in interviews after they decide. Both record what people remember and believe, while the emails, discounts and save offers a competitor sent the buyer during its trial sit in that trial’s inbox, dated. Obsession’s Trial teardown blueprint starts each competitor’s trial with an AI agent of its own and keeps every email, discount and save offer, dated in one event log.',
   primaryKeyword: 'win loss analysis',
   keywords: [
     'win loss analysis template',
@@ -53,7 +53,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 15,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -330,15 +330,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For win loss analysis, its [trial teardown](/blueprints/trial-teardown) keeps each competitor’s trial as a new user meets it. That covers the welcome email, the discount sent once the user goes quiet and the save offer. Each lost deal then sits beside what that competitor sent trial users the same week, for every competitor you name, for as long as you follow them. [Exa](' +
+      text: 'Obsession is the toolkit for AI agents, and its blueprints run ready-made jobs for the teams who pick them. For win loss analysis, its [Trial teardown](/blueprints/trial-teardown) blueprint sends a persona, an AI agent with its own inbox, number and browser, to keep each competitor’s trial as a new user meets it. That covers the welcome email, the discount sent once the user goes quiet and the save offer. Each lost deal then sits beside what that competitor sent trial users the same week, for every competitor you name, for as long as you follow them. [Exa](' +
         EXA +
         ') calls itself “The world’s data for AI agents” and gives reps and their agents the public web in seconds, from a competitor’s pricing page to its press coverage. Its pages don’t describe keeping what a company sends the people who sign up, and the [comparison of the two](/compare/obsession-vs-exa) shows how teams use both. Run it on the competitors you lose to most for a quarter, so you can see what it does to win rate against each of them, opportunities and pipeline.',
     },
     {
       kind: 'cta',
       text: 'Every competitor’s trial as a new user meets it, from the welcome email to the discount and the save offer, dated with a screenshot, for as long as you follow them.',
-      to: '/#join',
-      label: 'Request early access',
+      to: '/blueprints/trial-teardown',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'software', text: 'Win loss analysis software compared', compare: true },
@@ -384,15 +384,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Trial teardown](/blueprints/trial-teardown), [Competitor tracking](/blueprints/competitor-tracking)',
           'Keeps what each competitor shows trial users: onboarding emails, limits, upgrade prompts, discounts and save offers, dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Why the buyer chose stays with interviews\nA competitor not yet covered starts its history the day it is added',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Why the buyer chose stays with interviews\nHistory starts the day each competitor is added',
           'The competitor’s side of every decided deal, for as long as you follow it',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For the competitor’s side of a decided deal, use Obsession. It keeps what each competitor you name shows its trial users, from onboarding emails and upgrade prompts to the discount and the save offer, dated for as long as you follow them. For the buyer’s side, Clozd runs interviews at scale, Klue runs competitive intelligence and win-loss together, and Crayon ranks competitors by how often they trouble the sales team. Together they answer what the buyer weighed and what the competitor put in front of them.',
+      text: 'For the competitor’s side of a decided deal, use Obsession. Its personas keep what each competitor you name shows its trial users, from onboarding emails and upgrade prompts to the discount and the save offer, dated for as long as you follow them. For the buyer’s side, Clozd runs interviews at scale, Klue runs competitive intelligence and win-loss together, and Crayon ranks competitors by how often they trouble the sales team. Together they answer what the buyer weighed and what the competitor put in front of them.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
@@ -406,11 +406,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Start with the 2 competitors you lose to most: start a trial at each this week and interview the buyers from last month’s losses. Our guide to [competitor monitoring](/blog/competitor-monitoring) covers watching the same competitors between deals. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'Start with the 2 competitors you lose to most: start a trial at each this week and interview the buyers from last month’s losses. Our guide to [competitor monitoring](/blog/competitor-monitoring) covers watching the same competitors between deals. [Sales intelligence for B2B revenue teams](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
-      text: 'Sample data from a real UK store in September 2026: 4 test customers, every inbox watched for 48 hours, and the result in every format it comes in.',
+      text: 'Sample data from a real UK store in September 2026: 4 sign-ups and baskets, every inbox watched for 48 hours, and the results in every format they come in.',
       to: '/sample-output',
       label: 'See sample data',
     },

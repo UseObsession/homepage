@@ -130,6 +130,6 @@ export const personas: PiecePage = {
 
   final: {
     heading: 'Give your agent one identity for every piece.',
-    capture: { kind: 'waitlist', button: 'Request early access', interest: 'any', source: 'piece-personas' },
+    capture: { kind: 'waitlist', button: 'Start free', interest: 'any', source: 'piece-personas' },
   },
 }

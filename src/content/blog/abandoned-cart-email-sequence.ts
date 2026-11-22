@@ -22,7 +22,9 @@ import type { BlogPost } from './types'
    days) and Baymard (updated 28 Oct 2026: 70.22% across 50 studies; reasons outside "just browsing"). The money ladder
    is labelled example inputs at one rate across three revenue bands (perception skill). Not used: the 2023 Klaviyo cart
    figures in circulation (the 2 Oct 2026 report replaces them), any claim about which timing converts best, and the
-   site's 93% or any PilotX figure. British English, numerals, no dashes. */
+   site's 93% or any PilotX figure. British English, numerals, no dashes.
+   22 Nov 2026: moved to the toolkit position. The index figures and the store lookup are out (the only run of ours shown
+   is the September sample); the mystery shopping blueprint runs the test. */
 
 const KLAVIYO_REPORT = 'https://www.klaviyo.com/blog/abandoned-cart-benchmarks'
 const BAYMARD = 'https://baymard.com/lists/cart-abandonment-rate'
@@ -40,12 +42,12 @@ const SAMPLE = 'https://useobsession.com/sample-output'
 export const post: BlogPost = {
   slug: 'abandoned-cart-email-sequence',
   title: 'Abandoned cart email sequence: when online stores send each email, and how many',
-  dek: 'When each abandoned cart email should go, how many to send and what each one says, from the platforms’ own help pages. Beside them, what stores send a new customer: 48% send no reminder after a basket (13 November 2026).',
+  dek: 'When each abandoned cart email should go, how many to send and what each one says, from the platforms’ own help pages. Beside them, how to test your own sequence as a new customer, from the first reminder to the 48 hour mark.',
   metaTitle: 'Abandoned cart email sequence: when stores send each email',
   description:
-    'Abandoned cart email sequence for online stores: when to send each reminder, how many to send, what each says, and how often stores send nothing.',
+    'Abandoned cart email sequence for online stores: when to send each reminder, how many to send, what each says, and how to test your own as a customer.',
   answer:
-    'An abandoned cart email sequence is 2 or 3 reminders, sent 1 to 4 hours after the basket and again a day later, each with the item, price and a link back. In Obsession’s index on 13 November 2026, 48% of stores sent no reminder after a basket and 50% none after a checkout. Obsession keeps what each store sends a new customer after a sign-up, a basket and a checkout, dated, and the store lookup shows your own store’s entry.',
+    'An abandoned cart email sequence is 2 or 3 reminders, sent 1 to 4 hours after the basket and again a day later, each with the item, price and a link back. Test it as a new customer at 4, 8, 12, 24 and 48 hours, because a flow can stop sending without an error. On Obsession the mystery shopping blueprint fills a basket at your store and your competitors’ every week, and keeps each reminder with the minute it arrived.',
   primaryKeyword: 'abandoned cart email sequence',
   keywords: [
     'abandoned cart email sequence',
@@ -58,7 +60,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-11-14',
-  updated: '2026-11-16',
+  updated: '2026-11-22',
   readingMinutes: 11,
   order: 1,
   authors: [
@@ -108,20 +110,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'About 1 in 2 stores send no reminder at all. In Obsession’s index of what stores send a new customer, 48% of stores sent no reminder after a basket on 13 November 2026, and 50% sent none after a checkout. Of the reminders that did come, half arrived within about an hour.',
-    },
-    {
-      kind: 'stat',
-      value: '50%',
-      label: 'of stores sent no reminder after a checkout was started and left (48% after a basket)',
-      source: 'Obsession’s index, 13 November 2026',
-      href: '/lookup',
+      text: 'A flow can also stop without anyone noticing. In the [September sample](' +
+        SAMPLE +
+        '), a £40 basket left at a UK skincare store at 02:57 on 22 September 2026 got no reminder in 48 hours.',
     },
 
     { kind: 'h2', id: 'when-to-send', text: 'When to send abandoned cart emails' },
     {
       kind: 'p',
-      text: 'Send the first abandoned cart email 1 to 4 hours after the basket is left. That window covers Klaviyo’s advice and overlaps Omnisend’s. Among stores that send a reminder, half of the reminders arrive within about an hour.',
+      text: 'Send the first abandoned cart email 1 to 4 hours after the basket is left. That window covers Klaviyo’s advice and overlaps Omnisend’s.',
     },
     {
       kind: 'p',
@@ -145,14 +142,13 @@ export const post: BlogPost = {
         rows: [
           { time: '30 min', text: 'Omnisend’s guide', detail: 'Its advice: 30 to 60 minutes', tone: 'info' },
           { time: '1 h', text: 'Mailchimp’s classic series', detail: 'Email 1 of its 3', tone: 'info' },
-          { time: 'About 1 h', text: 'Half the reminders sent', detail: 'Stores in the index, 13 Nov', tone: 'ok' },
           { time: '4 h', text: 'Klaviyo’s pre-built flow', detail: 'It advises 2 to 4 hours', tone: 'info' },
           { time: '10 h', text: 'Shopify’s second automation', detail: 'Changed in Shopify Flow', tone: 'info' },
-          { time: '48 h', text: 'No reminder at 48% of stores', detail: 'And at 50% after a checkout', tone: 'fail' },
+          { time: '48 h', text: 'A missing reminder counts', detail: 'Read at 4, 8, 12, 24 and 48 h', tone: 'fail' },
         ],
-        foot: 'Half the reminders stores send arrive within about an hour, 3 hours ahead of Klaviyo’s default.',
+        foot: 'Each platform’s first reminder, from its own help page.',
       },
-      caption: 'Half the reminders stores send arrive within about an hour of the basket, while 48% of stores send no reminder in 48 hours.',
+      caption: 'The first reminder starts anywhere from 30 minutes to 10 hours, by platform default, so wait 48 hours before calling one missing.',
     },
     {
       kind: 'p',
@@ -166,7 +162,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The 4 hour check catches Klaviyo’s pre-built flow, and the 12 hour check catches Shopify’s 10 hour wait. The 24 and 48 hour checks catch the second email, which Mailchimp sends at 1 day and Klaviyo recommends 20 to 48 hours after the first. Obsession’s index reads every basket and checkout at the same 5 points, keeps each email with the minute it arrived, and calls a reminder missing after its 48 hours have passed.',
+      text: 'The 4 hour check catches Klaviyo’s pre-built flow, and the 12 hour check catches Shopify’s 10 hour wait. The 24 and 48 hour checks catch the second email, which Mailchimp sends at 1 day and Klaviyo recommends 20 to 48 hours after the first. The [mystery shopping](/blueprints/mystery-shopper) blueprint reads its inbox at the same 5 points, keeps each email with the minute it arrived, and calls a reminder missing only after 48 hours.',
     },
 
     { kind: 'h2', id: 'how-many', text: 'How many abandoned cart emails should you send?' },
@@ -187,12 +183,11 @@ export const post: BlogPost = {
         ['Omnisend', '3 in its checkout presets', '30 to 60 min (its guide)', '24 h and 72 h (its guide)'],
         ['Mailchimp', '3 in its classic series', '1 h', '1 day and 3 days'],
         ['Shopify Messaging', '1 email', '10 h for a second automation', 'Workflow edited in Shopify Flow'],
-        ['Stores in Obsession’s index', 'None from 48% after a basket', 'Half within about 1 h', 'None from 50% after a checkout'],
       ],
     },
     {
       kind: 'p',
-      text: 'Half the reminders stores send arrive within about an hour, at the fast end of that advice. The wider gap is the stores that send no reminder at all, after a basket or after a checkout.',
+      text: 'The advice runs from 30 minutes to 10 hours for the first email. The bigger risk is a flow that sends nothing at all, after a basket or after a checkout, because a flow that never starts leaves no row in its report.',
     },
     {
       kind: 'p',
@@ -254,7 +249,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'In the index, 48% of stores sent no reminder after a basket and 50% sent none after a checkout. A store can run one of the two flows and miss the other, so test each one.',
+      text: 'A store can run one of the two flows and miss the other, so test each one.',
     },
 
     { kind: 'h2', id: 'test-tonight', text: 'How to test your abandoned cart emails tonight' },
@@ -281,11 +276,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your online store is already in Obsession’s index, the [store lookup](/lookup) shows this test already run. Type an email at your store’s own address, and the store’s entry, the page the index keeps for your store, comes to that inbox. It holds every email after a sign-up, a product view, a basket and a checkout, each dated and set against every other store.',
+      text: 'To run it every week without the evenings, the [mystery shopping](/blueprints/mystery-shopper) blueprint does the same test as a new customer. A persona, an AI agent with its own inbox, number and browser under one name, fills the basket, starts the checkout and reads its inbox at 4, 8, 12, 24 and 48 hours.',
     },
     {
       kind: 'p',
-      text: 'Agencies that do email, retention or conversion work get [early access](/lookup#agencies) instead: every store already in the index, plus up to 5 stores they run or pitch, added with the brand’s OK. We check each agency before we set up access.',
+      text: 'Agencies that do email, retention or conversion work run it across every client they keep and every brand they pitch, with each brand’s OK for its own store.',
     },
 
     { kind: 'h2', id: 'cost', text: 'What does a silent abandoned cart flow cost?' },
@@ -322,19 +317,19 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession keeps what companies show only to their customers, step by step and dated. For an online store, that means each email after a sign-up, a basket or a checkout, kept with the minute it arrived and set beside every other store. The accounts stay subscribed, a fresh sign-up can run [every step again each week](/use-cases/leak-checks-for-ecommerce-stores), and the index is built for millions of companies.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its blueprints are ready jobs that Obsession runs for any team. For an online store, the persona keeps each email after a sign-up, a basket or a checkout with the minute it arrived, in one event log. It stays subscribed, and a fresh sign-up can run [every step again each week](/use-cases/leak-checks-for-ecommerce-stores).',
     },
     {
       kind: 'cta',
-      text: 'See every email your store sends after a basket and a checkout, the minute each one arrived, and where your store sits against every other store in the index.',
-      to: '/lookup',
-      label: 'Look up your store',
+      text: 'Every email your store sends after a basket and a checkout, the minute each one arrived, read at 4, 8, 12, 24 and 48 hours, every week and beside the stores you compete with.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'stores-and-clients', text: 'How do you check this for your store, the leaders in your category and your clients?' },
     {
       kind: 'p',
-      text: 'For your own online store, the [store lookup](/lookup) shows when your first basket and checkout reminders arrived, what each one said and where nothing came, beside every other store in the index. With Obsession, you can put your store beside the biggest stores in your category, read the same way. You see how fast their first reminder goes out, how many they send and whether they add a code.',
+      text: 'For your own online store, the mystery shopping blueprint shows when your first basket and checkout reminders arrived, what each one said and where nothing came. Pointed at the biggest stores in your category, it reads them the same way, so you see how fast their first reminder goes out, how many they send and whether they add a code.',
     },
     {
       kind: 'list',
@@ -352,7 +347,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'It keeps going on its own. The accounts stay subscribed, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000, on an index built for millions of companies. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
+      text: 'It keeps going on its own. Each persona stays subscribed, free while it waits, and a fresh sign-up runs every step again each week. It works the same for one store or a list of 3,000. The [retention agency use case](/use-cases/leak-checks-for-retention-agencies) shows how agencies run it across every client, from the first pitch to the monthly report.',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },
@@ -361,8 +356,8 @@ export const post: BlogPost = {
       items: [
         {
           q: 'When should you send abandoned cart emails?',
-          a: 'Send the first abandoned cart email 1 to 4 hours after the basket is left, a second about 24 hours later, and an optional third at 48 to 72 hours. Klaviyo recommends 2 to 4 hours for the first. Half the reminders sent by stores in Obsession’s index arrived within about an hour (13 November 2026).',
-          link: { label: 'See when your store’s first reminder arrives', to: '/lookup' },
+          a: 'Send the first abandoned cart email 1 to 4 hours after the basket is left, a second about 24 hours later, and an optional third at 48 to 72 hours. Klaviyo recommends 2 to 4 hours for the first.',
+          link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
         },
         {
           q: 'What is the usual abandoned cart email timing?',
@@ -378,7 +373,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Do abandoned cart emails work?',
-          a: 'Yes. Klaviyo’s 2026 benchmarks across more than 110,000 customers put abandoned cart emails at $6.77 of revenue per recipient, more than any other flow. The top 10% of brands reach $13.70. In Obsession’s index on 13 November 2026, 48% of stores still sent no reminder after a basket.',
+          a: 'Yes. Klaviyo’s 2026 benchmarks across more than 110,000 customers put abandoned cart emails at $6.77 of revenue per recipient, more than any other flow. The top 10% of brands reach $13.70. A flow can still stop without an error, so test it as a new customer after every change.',
         },
         {
           q: 'What is an abandoned cart email series?',
@@ -393,7 +388,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'The platform figures come from Klaviyo’s, Shopify’s, Omnisend’s and Mailchimp’s own help pages and guides, checked on 14 November 2026. The index figures cover every basket and checkout in Obsession’s index on 13 November 2026. An email from the welcome series doesn’t count as a reminder. Those are part of the 1,500 sign-ups, baskets and checkouts run at real companies, and counting. They show what stores send a new customer; which delay brings back the most orders is a separate question, and your own flow report answers it for your store. Help pages change, so check the page before you act.',
+      text: 'The platform figures come from Klaviyo’s, Shopify’s, Omnisend’s and Mailchimp’s own help pages and guides, checked on 14 November 2026. The September sample is a real run of our own, and Larchwood is an example store. Which delay brings back the most orders is a separate question, and your own flow report answers it for your store. Help pages change, so check the page before you act.',
     },
   ],
 
@@ -417,7 +412,7 @@ export const post: BlogPost = {
     'ecommerce-email-marketing-benchmarks',
     'black-friday-checklist-new-customer',
     '/glossary/abandoned-cart-email',
-    '/lookup',
+    'recipe:mystery-shopper',
     '/use-cases/leak-checks-for-ecommerce-stores',
   ],
 }

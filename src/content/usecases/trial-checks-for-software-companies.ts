@@ -1,22 +1,28 @@
+import { kitPathOf } from '../kitPaths'
+import { personaCostLine, plans } from '../prices'
 import type { UseCaseStudy } from '../types'
 
-/* Trial checks for software companies (/use-cases/trial-checks-for-software-companies), 9 Nov rewrite: what software
-   companies show only to signed-up users (onboarding emails, trial limits, upgrade prompts, signed-in prices, offers to
-   stay), for a product team's own trial and its competitors', looked up in Search or Insights, a table or a webhook.
-   Larkfield's dead welcome links and Quillon's trial-only 40% off come from Home; every name and figure is invented
-   and `fine` says so. The agents appear only in the answer on where the data comes from. */
+/* Trial checks for software companies (/use-cases/trial-checks-for-software-companies), 22 Nov 2026 rewrite for the
+   toolkit position: a persona (its own browser, inbox and number) starts each competitor's free trial and keeps it open,
+   and every onboarding email, limit, upgrade prompt and offer to stay lands in the event log. Trial teardown runs it for
+   teams who don't code; QA on your own flows checks the reader's own trial after each release. Part of the Watch the
+   market kit. Larkfield's dead welcome links and Quillon's trial-only 40% off are invented, and `fine` says so. Prices
+   come from prices.ts. */
+
+const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
+const planWords = `the Free plan, then ${fees.slice(0, -1).join(', ')} or ${fees[fees.length - 1]} a month`
 
 export const study: UseCaseStudy = {
   name: 'Trial checks for software companies',
-  line: 'Every email, limit, prompt and offer a trial user gets, from your app and your competitors’.',
+  line: 'A persona in every competitor’s trial, keeping each email, limit, prompt and offer.',
 
   meta: {
     path: '/use-cases/trial-checks-for-software-companies',
-    title: 'Trial checks for software companies: behind the sign-up',
+    title: 'Software companies: every competitor’s trial, day by day',
     description:
-      'The onboarding emails, trial limits, upgrade prompts, signed-in prices and cancel offers of your app and your competitors’, each dated with a screenshot.',
+      'AI agents start your competitors’ free trials and keep every onboarding email, trial limit, upgrade prompt and offer to stay, each dated with a screenshot.',
     answer:
-      'Obsession records what software companies show only to signed-up users: onboarding emails, trial limits, upgrade prompts, signed-in prices and cancel offers. Each fact is dated, with the email or a screenshot, for your own product and your competitors. Look up one app, or ask a question across many.',
+      'Obsession gives software companies AI agents that start every competitor’s free trial and keep it open to the end. Each is a persona with its own browser, inbox and number. Every onboarding email, trial limit, upgrade prompt and offer to stay lands in your event log, dated, with a screenshot.',
     ogImage: '/og/trial-checks-for-software-companies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -27,36 +33,37 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Early access',
-    headline: 'Every competitor’s trial, from sign-up to cancel, dated.',
-    sub: 'The onboarding emails, trial limits, upgrade prompts, signed-in prices and offers to stay, at your app and every competitor you name. Each with the email or the screenshot, and the day it appeared.',
+    pill: 'Watch the market kit',
+    headline: 'Every competitor’s trial, from sign-up to the offer to stay.',
+    sub: 'Obsession gives software companies AI agents that start every competitor’s free trial and keep it open to the end. Every onboarding email, trial limit, upgrade prompt and offer to stay lands in your event log, dated, with a screenshot.',
     example: { chips: ['Larkfield, a team calendar app', '5 competitors', '14 day trials'] },
     flow: [
       {
         label: 'What you name',
         title: 'Your trial and 5 competitors',
-        items: ['Your sign-up page', 'Each competitor’s free trial', 'The customer profiles to sign up as'],
+        items: ['Your sign-up page', 'Each competitor’s free trial', 'Who signs up, by role and country'],
         foot: 'Web, iOS or Android',
       },
       {
-        label: 'What comes back',
-        title: 'Every fact, dated',
-        items: ['Onboarding emails and texts', 'Trial limits and upgrade prompts', 'Signed-in prices and offers', 'The offer to stay at cancel'],
-        foot: 'Each with its screenshot',
+        label: 'Obsession',
+        title: 'A persona in each trial',
+        items: ['A browser that keeps its logins', 'An inbox for every email', 'A number for every code', 'Trial teardown runs it'],
+        foot: 'Free while it waits',
       },
       {
         label: 'Where it lands',
-        title: 'Where your team works',
-        items: ['Search: one app', 'Insights: a question across many', 'A webhook, Clay or the API'],
-        foot: 'Nothing to install',
+        title: 'Your event log',
+        items: ['Slack or a webhook', 'A sheet or your CRM', 'Your own AI agent'],
+        foot: 'Each event dated, with its screenshot',
       },
     ],
     capture: {
       kind: 'waitlist',
       source: 'usecase-software-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'trial',
     },
+    secondary: { label: 'See the blueprint', to: '/blueprints/trial-teardown' },
   },
 
   how: {
@@ -66,7 +73,7 @@ export const study: UseCaseStudy = {
       {
         title: 'Set it up',
         line: 'Which apps, as which users, and what a good trial looks like.',
-        chips: ['Your app and any competitor', 'Trial user · US', 'Team admin · 20 seats', 'Pays only on a card you fund'],
+        chips: ['Your app and any competitor', 'Trial user · US', 'Team admin · 20 seats', 'Stops before payment'],
         steps: [
           {
             title: 'Name the apps',
@@ -74,8 +81,8 @@ export const study: UseCaseStudy = {
             example: 'Larkfield names its own sign-up and 5 competitors: Quillon, Velloway, Hollin, Wrenfield and Fieldmark.',
           },
           {
-            title: 'Pick who signs up',
-            line: 'The customer profiles and country to sign up as. A team admin and a solo user see different limits and offers.',
+            title: 'Define who signs up',
+            line: 'Each persona is a new user you define, by role, team size and country. A team admin and a solo user see different limits.',
             example: 'A trial user in the US, a new visitor in the UK and a team admin with 20 seats.',
           },
           {
@@ -86,14 +93,14 @@ export const study: UseCaseStudy = {
         ],
       },
       {
-        title: 'Obsession runs the trials',
-        line: 'Each account stays open to the end of the trial and after it.',
+        title: 'Trial teardown runs the trials',
+        line: 'A persona stays signed in at each app to the end of the trial and after it.',
         screen: 'battlecard',
-        chips: ['Its own inbox', 'Its own phone number', 'Its own browser', 'Says it’s AI'],
+        chips: ['Its own browser', 'Its own inbox', 'Its own number', 'Says it’s an AI'],
         steps: [
           {
             title: 'Every email, link and prompt',
-            line: 'Each account confirms its email, follows the onboarding, opens every link and comes back on the days you set.',
+            line: 'It confirms its email, follows the onboarding, opens every link and comes back on the days you set.',
             example: 'Tue 09:02: signed up at Larkfield. 09:03: the welcome email. 09:04: its Open the app button leads to staging.larkfield.example, a closed site.',
           },
           {
@@ -103,7 +110,7 @@ export const study: UseCaseStudy = {
           },
           {
             title: 'Offers to stay',
-            line: 'The discount before the trial ends and the offer when someone cancels, including the ones never on the pricing page.',
+            line: 'The discount before the trial ends and the offer at cancel, including ones never on the pricing page.',
             example: 'Day 12 at Quillon: 40% off the first year, for trial users only. At cancel: 50% off for 3 months.',
           },
         ],
@@ -120,32 +127,33 @@ export const study: UseCaseStudy = {
       { title: 'Limits that move', line: 'A free plan cut from 5 projects to 3, or an upgrade prompt moved to day 5.' },
       { title: 'Competitors’ private offers', line: 'The discount or extra week a competitor sends only to its trial users.' },
     ],
-    answer: 'Each finding comes back with the email as it arrived, the page it led to and the time of both.',
+    answer: 'Each finding lands with the email as it arrived, the page it led to and the time of both.',
   },
 
   outputs: {
     heading: 'What product and growth teams do with it.',
+    sub: 'Each use shows up in activation, conversion and retention, where you can watch it.',
     groups: [
       {
         items: [
           {
             title: 'Fix a break the day it starts',
-            line: 'Not the month churn moves.',
+            line: 'Before it shows up in activation.',
             example: 'The dead welcome links reached #growth through a webhook at 09:05 on Tuesday, and were fixed by 11:00.',
           },
           {
             title: 'Check a release didn’t break onboarding',
-            line: 'Sign up again after every release.',
+            line: 'A new persona signs up after every release.',
             example: 'After the switch to a new email tool, the day 3 email stopped. It was back the next morning.',
           },
           {
             title: 'Match a competitor’s offer, or don’t',
-            line: 'Ask Insights what competitors send their trial users.',
-            example: '3 of 5 project management apps email a discount before the trial ends. None show it on their pricing page.',
+            line: 'Ask your own agent what competitors send their trial users.',
+            example: 'Most of the 5 email a discount before the trial ends. None show it on their pricing page.',
           },
           {
             title: 'Benchmark your onboarding',
-            line: 'How many emails, how soon and what each asks for, against 5 competitors.',
+            line: 'How many emails, how soon and what each asks for, against every competitor.',
             example: 'Larkfield sends 4 emails in 14 days. Its competitors send 6 to 11.',
           },
         ],
@@ -157,14 +165,14 @@ export const study: UseCaseStudy = {
     recipe: {
       label: 'The blueprint',
       title: 'Trial teardown',
-      line: 'Every onboarding email, prompt and offer in a trial, day by day.',
-      cta: { label: 'Learn more', to: '/blueprints/trial-teardown' },
+      line: 'Every onboarding email, prompt and offer in a competitor’s trial, by trial day.',
+      cta: { label: 'See the blueprint', to: '/blueprints/trial-teardown' },
     },
     sample: {
-      label: '1 real run',
-      title: 'Sample data',
-      line: 'Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.',
-      cta: { label: 'See it', to: '/sample-output' },
+      label: 'For your own trial',
+      title: 'QA on your own flows',
+      line: 'A new persona through your sign-up after every release, and the step that broke.',
+      cta: { label: 'See the blueprint', to: '/blueprints/website-audit' },
     },
   },
 
@@ -174,12 +182,8 @@ export const study: UseCaseStudy = {
     heading: 'What software teams ask.',
     items: [
       {
-        q: 'What does Obsession do for software companies?',
-        a: 'Obsession records what software companies show only to signed-up users: onboarding emails, trial limits, upgrade prompts, signed-in prices and cancel offers. Each fact is dated, with the email or a screenshot, for your own product and your competitors. Look up one app, or ask a question across many.',
-      },
-      {
         q: 'Where does the data come from?',
-        a: 'From real accounts. Obsession’s agents sign up, start trials and cancel the way any user can, from the customer profiles and countries you choose, and keep each account open for months. Every email is kept as it arrived, with its sender checked.',
+        a: 'From real trials. A persona signs up, starts the trial and cancels the way any user can, as the role and country you choose. Its browser keeps its logins, so each account stays open for months. Every email is kept as it arrived, with its sender checked.',
       },
       {
         q: 'Will these sign-ups show up in our numbers?',
@@ -187,7 +191,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Is it allowed to start a competitor’s trial?',
-        a: 'Obsession does only what any user can, through the sign-up anyone can use. It says it’s an AI when it talks to a person, and it never signs in to an account that isn’t its own. Our guide sets out the law in the US, the UK and the EU; it isn’t legal advice.',
+        a: 'A persona does only what any user can, through the sign-up anyone can use. It says it’s an AI when it talks to a person, and it never signs in to an account that isn’t its own. Our guide sets out the law in the US, the UK and the EU; it isn’t legal advice.',
         link: { label: 'Is it legal to sign up to a competitor?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
       },
       {
@@ -196,19 +200,25 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Does it pay for anything?',
-        a: 'Only if you choose. A paid trial runs on a card you fund, never on fake payment details.',
+        a: 'Only with your own card. Without one, a persona stops before payment, and it never uses fake payment details.',
+      },
+      {
+        q: 'How is it priced?',
+        a: `${personaCostLine} It costs nothing while it waits, and Trial teardown is billed on the pieces it uses. Start on ${planWords}.`,
+        link: { label: 'See pricing', to: '/pricing' },
       },
     ],
   },
 
   final: {
-    heading: 'Which apps should we look up first?',
-    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
+    heading: 'Put a persona in every competitor’s trial.',
+    sub: 'Start with your own trial and one competitor’s, so you can see what it does to activation, conversion and retention.',
     capture: {
       kind: 'waitlist',
       source: 'usecase-software-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'trial',
     },
+    link: { label: 'See the Watch the market kit', to: kitPathOf.watch },
   },
 }

@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* Guide 8 of the week's slate (_research/seo/plan/week-2nov/SLATE.md and WRITER_BRIEF.md, Seun's go on 1 Nov 2026),
    built on the 3 Oct Post 4 spec in docs/SEARCH.md section 5 with the brief's changes. It owns "speed to lead
@@ -26,7 +25,7 @@ import { AI_CUSTOMER } from '../glossary'
    Left out on purpose: Workato's figures, every Gartner figure, Marklinea's re-test (its page shows no results on
    1 Nov 2026), Drift's 433 company report (its original could not be read), SaaStr's own account (no date on its page),
    6sense's buyer survey (its figures don't show on its own pages), Apollo, and any PilotX figure. corrivale.example
-   and every time in both illustrations are invented. No dashes. */
+   and every time in both illustrations are invented. No dashes. Rewritten 22 Nov 2026 for the toolkit position. */
 
 const LRM = 'https://www.mortech.com/hs-fs/hub/25649/file-13535879-pdf/docs/mit_study.pdf'
 const INSIDESALES_2007 = 'https://www.insidesales.com/?p=5512'
@@ -55,7 +54,7 @@ export const post: BlogPost = {
   description:
     'Speed to lead statistics, graded: where the 5 minute rule and the Harvard study come from, what Clay found in 2026 and how sales teams time their replies.',
   answer:
-    'The speed to lead statistics that hold up state their method and sample, like Clay’s 2026 test, in which two thirds of 6,346 companies never replied to a demo request. The 5 minute rule comes from a 2007 study of phone calls at 6 companies, and no study has been found behind “78% buy from the first to respond”. Obsession times how fast, and how well, any company answers a new enquiry by form, chat, email and phone, your own team included, and keeps every reply dated with the email, transcript or call.',
+    'The speed to lead statistics that hold up state their method and sample, like Clay’s 2026 test, in which two thirds of 6,346 companies never replied to a demo request. The 5 minute rule comes from a 2007 study of phone calls at 6 companies, and no study has been found behind “78% buy from the first to respond”. Obsession’s lead response checks blueprint times how fast, and how well, any company answers a new enquiry by form, chat, email and phone, your own team included, and keeps every reply dated.',
   primaryKeyword: 'speed to lead statistics',
   keywords: [
     'speed to lead data',
@@ -67,7 +66,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-11-01',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 14,
   order: 5,
   authors: [
@@ -387,29 +386,26 @@ export const post: BlogPost = {
       text: 'A team with 5 ways in, each tested 5 times a week, runs 25 tests a week before any retest. Each one needs an inbox and a phone watched for days, and reps soon learn the tester’s name.',
     },
 
-    { kind: 'h2', id: 'ai-customers', text: 'How AI customers time a team’s replies' },
+    { kind: 'h2', id: 'ai-customers', text: 'How AI agents time a team’s replies' },
     {
       kind: 'p',
-      /* The first mention of AI customers in the guide's own text carries the definition link (the lead's rule, 1 Nov 2026). */
-      text: '**' +
-        AI_CUSTOMER.definition.replace('An AI customer', 'An [AI customer](/blog/ai-customers)') +
-        '** For a sales team, the evidence is the reply itself, with the time and channel it came on. [How AI customers work](/blog/how-ai-customers-work) shows each step.',
+      text: '**An AI agent can play the test lead. On Obsession it is a persona, an AI agent with its own inbox and phone number under one name.** For a sales team, the evidence is the reply itself, with the time and channel it came on. [How AI agents work as customers](/blog/how-ai-customers-work) shows each step.',
     },
     {
       kind: 'p',
-      text: 'AI customers act as the test leads. Each has its own inbox and phone number. It fills in the form, opens the chat and calls the sales line at the times the team picks, evenings and weekends included. It keeps every reply with its time and channel. Whether it also says it’s a test is the team’s setting.',
+      text: 'Personas act as the test leads. Each has its own inbox and phone number. It fills in the form, opens the chat and calls the sales line at the times the team picks, evenings and weekends included. It keeps every reply with its time and channel. Whether it also says it’s a test is the team’s setting.',
     },
     {
       kind: 'p',
-      text: 'Obsession keeps what any company shows only to its customers, each dated with the email or screenshot. Its [speed to lead](/blueprints/lead-leaks) blueprint asks by form, chat, email and phone as the buyer profile the team picks, then times and keeps every reply, at your own company and any competitor you name. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Obsession is the toolkit for AI agents, one API and one bill. Its [lead response checks](/blueprints/lead-leaks) blueprint, a speed to lead test, asks by form, chat, email and phone as the buyer profile the team picks. It times and keeps every reply in the event log, at your own company and any competitor you name.',
     },
     {
       kind: 'p',
-      text: 'The same checks reach the team’s own AI agents. [Sales agent check](/blueprints/sales-agent-check) asks the AI agent in the site chat about prices, stock and delivery every day and checks each answer against the price list. [Outbound agent check](/blueprints/outbound-agent-check) joins the lists of an AI SDR, an AI agent that writes to prospects for the team, and checks every email and call it sends against the team’s rules. [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out who each agent works for.',
+      text: 'The same checks reach the team’s own AI agents. [Sales agent check](/blueprints/sales-agent-check) asks the AI agent in the site chat about prices, stock and delivery every day and checks each answer against the price list. [Outbound agent check](/blueprints/outbound-agent-check) joins the lists of an AI SDR, an AI agent that writes to prospects for the team, and checks every email and call it sends against the team’s rules. [Support agents and agents as customers, compared](/blog/ai-customer-service-agent-vs-ai-customer) sets out who each agent works for.',
     },
     {
       kind: 'p',
-      text: 'Each Obsession agent says it’s an AI when it talks to a person. Where a form puts a CAPTCHA, a puzzle that blocks automated visitors, or a bot block in front of a step, the agent stops and the report names the step it couldn’t test. [What every Obsession agent will and won’t do](/agents) sets out the full list. Why a lead went to the wrong owner sits in the router and the CRM, where the team’s own tools show it.',
+      text: 'Each Obsession agent says it’s an AI when it talks to a person. Where a form puts a CAPTCHA, a puzzle that blocks automated visitors, or a bot block in front of a step, the agent stops and the event log names the step it couldn’t test. [What every Obsession agent will and won’t do](/agents) sets out the full list. Why a lead went to the wrong owner sits in the router and the CRM, where the team’s own tools show it.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to time your replies, compared', compare: true },
@@ -453,10 +449,10 @@ export const post: BlogPost = {
           'Forms that break outright',
         ],
         [
-          'Obsession (ours): [Lead leaks](/blueprints/lead-leaks), [Sales agent check](/blueprints/sales-agent-check), [Outbound agent check](/blueprints/outbound-agent-check)',
+          'Obsession (ours): [Lead response checks](/blueprints/lead-leaks), [Sales agent check](/blueprints/sales-agent-check), [Outbound agent check](/blueprints/outbound-agent-check), [Phone](/phone)',
           'Test enquiries by form, chat and phone at set times, every first reply timed and kept',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Why a lead was misrouted sits in the CRM the team connects',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at a CAPTCHA or bot block\nWhy a lead was misrouted sits in the CRM the team connects',
           'The first reply a buyer gets on every way in, at the times the team picks',
         ],
       ],

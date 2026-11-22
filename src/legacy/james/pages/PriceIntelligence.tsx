@@ -6,7 +6,7 @@ import { at } from '../components/stagger'
 import { Count, Step, Win } from '../components/UseCase'
 import './PriceIntelligence.css'
 
-/* Use case (9 Nov rewrite): a price intelligence firm adds member and signed-in prices, beside public ones, per store,
+/* Use case (22 Nov rewrite): a price intelligence firm adds member and signed-in prices, beside public ones, per store,
    dated with screenshots, to the sources it already collects. The firm, its client, the retailers, products, prices and
    figures are made up, and the small print says so. The hero's headline and sub, the questions and the small print come
    from the content file (content/usecases), whose hero.flow mirrors the flow here. */
@@ -133,7 +133,7 @@ export function PriceIntelligence() {
       <section className="section sunken">
         <div className="wrap">
           <SectionHead
-            kicker="Behind the login"
+            kicker="What a member sees"
             title="A crawler sees the shop window. A member sees the shop."
             lede="Retailers keep their sharpest prices and offers for signed-in members. None of it is on the public product page or in the flyer."
           />
@@ -142,7 +142,7 @@ export function PriceIntelligence() {
               ['Member prices', 'The price shown once you’re signed in, or with the loyalty card linked to the account.'],
               ['Welcome coupons', 'The code or credit that lands after joining, and what it takes to use it.'],
               ['Offers that arrive later', 'The email on day 3, the text on day 7, the win back coupon after 3 weeks.'],
-              ['Prices by store', 'Online prices change once you pick a store or a postcode. Each account shops from the city you choose.'],
+              ['Prices by store', 'Online prices change once you pick a store or a postcode. Each persona shops from the city you choose.'],
             ].map(([h, p]) => (
               <Reveal as="li" key={h} className="card">
                 <h3 className="h3">{h}</h3>
@@ -169,9 +169,9 @@ export function PriceIntelligence() {
             </div>
             <div className="ours">
               <p className="kicker">Obsession runs</p>
-              <h3 className="h3">The accounts, the inboxes and the waiting.</h3>
+              <h3 className="h3">The members, the inboxes and the waiting.</h3>
               <ul>
-                <li>A member account per retailer and city, with its own inbox, Italian mobile number and browser</li>
+                <li>A persona per retailer and city, with its own inbox, Italian mobile number and browser</li>
                 <li>The sign-ups, the store choice and the readings on your basket</li>
                 <li>Each account kept open for as long as you track it</li>
                 <li>A screenshot or the message behind every observation</li>
@@ -185,8 +185,8 @@ export function PriceIntelligence() {
         <div className="wrap">
           <SectionHead
             kicker="Step by step"
-            title="From a list of retailers to member prices in your platform."
-            lede="How the firm in this example adds member prices to 1 client’s coffee basket, across 120 Italian grocery retailers."
+            title="You name the retailers and the basket. A persona signs in at each one."
+            lede="A price intelligence firm adds member prices to 1 client’s coffee basket, across 120 Italian grocery retailers."
           />
 
           <div className="uc-phase first">
@@ -198,7 +198,7 @@ export function PriceIntelligence() {
             n={1}
             title="Name the retailers and the basket"
             line="The retailers, the products and the cities to shop from. Use the basket you already track for the client."
-            pick="The firm names 120 grocery retailers, the 40 item coffee basket it tracks for its client, and 3 cities."
+            pick="The firm names 120 grocery retailers, the 40 item coffee basket it tracks for its client, and 3 cities: Milano, Roma and Napoli."
           >
             <Win title="New watch · Retailers and basket">
               <div className="uc-fld">
@@ -250,7 +250,7 @@ export function PriceIntelligence() {
             n={2}
             title="Choose what to capture"
             line="Public and member price on every item, the welcome offer, and every email and text after sign-up. Fixed rules decide each reading, so the same page always gives the same answer."
-            pick="Member prices every week, daily around Black Friday, and every email and text as it arrives."
+            pick="Member prices every morning, and every email and text as it arrives."
           >
             <Win title="New watch · Configure">
               <div className="uc-cfg">
@@ -290,7 +290,7 @@ export function PriceIntelligence() {
                     <p className="uc-lab">Rules</p>
                     <ul className="uc-rules uc-seq">
                       <li style={at(5)}>Read each price signed out, then signed in, on the same page</li>
-                      <li style={at(6)}>Record the store and city every price belongs to</li>
+                      <li style={at(6)}>Keep the store and city on every price</li>
                       <li style={at(7)}>
                         Keep each account open, <em>month after month</em>
                       </li>
@@ -300,14 +300,14 @@ export function PriceIntelligence() {
                   <div className="uc-fld">
                     <p className="uc-lab">How often</p>
                     <div className="uc-seg">
-                      <span>Daily</span>
-                      <span className="on">Weekly</span>
+                      <span className="on">Daily</span>
+                      <span>Weekly</span>
                       <span>Monthly</span>
                     </div>
                   </div>
                   <div className="uc-fld">
-                    <p className="uc-lab">Around key dates</p>
-                    <div className="uc-field uc-dd">Daily, 20 November to 2 December</div>
+                    <p className="uc-lab">Readings</p>
+                    <div className="uc-field uc-dd">Every morning, Black Friday week included</div>
                   </div>
                 </div>
               </div>
@@ -318,7 +318,7 @@ export function PriceIntelligence() {
             n={3}
             title="Choose where it lands"
             line="A file in the shape your platform takes, 1 row per observation with its screenshot, or a webhook the day a price moves. Product matching stays with your team."
-            pick="The firm takes a daily file, plus a webhook for anything that arrives between files."
+            pick="The firm takes a daily file, plus a webhook for anything between files."
           >
             <Win title="New watch · Delivery">
               <ul className="uc-ins">
@@ -329,7 +329,7 @@ export function PriceIntelligence() {
                   Webhook<small>The day a price moves</small>
                 </li>
                 <li>
-                  API or MCP<small>Look up any retailer</small>
+                  API or MCP<small>From your code or your AI agent</small>
                 </li>
                 <li>
                   Google Sheets<small>The same fields, in a sheet</small>
@@ -363,21 +363,21 @@ export function PriceIntelligence() {
           </Step>
 
           <div className="uc-phase">
-            <h3>Obsession does the collecting</h3>
+            <h3>A persona does the collecting</h3>
             <span>Steps 4 to 6 · 30 days in this example</span>
           </div>
 
           <Step
             n={4}
-            title="Each retailer gets its own member account"
-            line="Its own inbox, an Italian mobile number and a browser set to the city you chose. It joins the way any customer can and, in this example, buys nothing. It says it’s AI when it talks to a person."
+            title="Each retailer gets its own member"
+            line="A persona with its own inbox, an Italian mobile number and a browser set to the city you chose. It joins the way any customer can and, in this example, buys nothing. It says it’s AI when it talks to a person."
           >
             <Win title="Corvalle · Milano">
               <div className="uc-s6">
                 <div className="uc-id">
                   <div className="uc-row uc-between">
                     <span className="uc-mh">Corvalle</span>
-                    <span className="tag idle">Account 7C1D</span>
+                    <span className="tag idle">Persona 7C1D</span>
                   </div>
                   <dl className="uc-idrows">
                     <div>
@@ -539,7 +539,7 @@ export function PriceIntelligence() {
 
           <Step
             n={7}
-            title="A record behind every observation"
+            title="A screenshot behind every observation"
             line="Each row carries the retailer, the store, the dates, the conditions and a link to the screenshot or the message, like your flyer and newsletter observations."
           >
             <Win title="Observation · Corvalle · Text">
@@ -572,8 +572,8 @@ export function PriceIntelligence() {
 
           <Step
             n={8}
-            title="Next to flyers, web campaigns and newsletters"
-            line="Member offers become 1 more line on your promo calendar, so your client sees whether the coffee promotion reached the flyer, the website, the newsletter or only the members."
+            title="1 more line on your promo calendar"
+            line="Member offers sit beside flyers, web campaigns and newsletters, so your client sees whether the coffee promotion reached the flyer, the website, the newsletter or only the members."
           >
             <Win title="Promo calendar · Corvalle · Coffee">
               <div className="pr-cal-wrap">
@@ -624,7 +624,7 @@ export function PriceIntelligence() {
 
       <section className="section sunken">
         <div className="wrap">
-          <SectionHead kicker="What you can sell" title="A new module for the clients you already have." />
+          <SectionHead kicker="What you can sell" title="Sell it as a new module to the clients you already have." />
           <div className="pr-sell">
             {[
               {
@@ -633,7 +633,7 @@ export function PriceIntelligence() {
                 items: [
                   ['Check member promotions ran', 'Turn agreed loyalty promotions into evidence, as you already do for flyers.', 'The 20% coffee offer reached Corvalle members, 5 to 11 October.'],
                   ['See whose products get the member price', 'Member price against public price, per retailer and per item.', 'At Corvalle, members get Competitor B’s macinato 21% off and Brand A’s 16% off.'],
-                  ['Catch price erosion behind the login', 'Which retailer goes below a threshold first, for members only.', 'Brand A macinato: 2,49 € for Corvalle members on 14 October.'],
+                  ['Catch member-only price erosion', 'Which retailer goes below a threshold first, for members only.', 'Brand A macinato: 2,49 € for Corvalle members on 14 October.'],
                 ],
               },
               {
@@ -641,7 +641,7 @@ export function PriceIntelligence() {
                 roles: 'Pricing, loyalty and CRM',
                 items: [
                   ['Benchmark the welcome offer', 'What each competitor gives a new member, and what it takes to use it.', 'Corvalle: 5 € off a 30 € shop, valid 14 days.'],
-                  ['Read competitors’ member prices on your basket', 'Your tracking basket, read as a member at each competitor.', '14 of 40 items carry a member price at Corvalle.'],
+                  ['Read competitors’ member prices on your basket', 'Your tracking basket, read as a member at each competitor.', 'Corvalle shows a member price on 14 basket items.'],
                   ['Map the messages after sign-up', 'Every email and text a competitor sends new members, by day.', '9 messages in 30 days, 3 with a coupon.'],
                 ],
               },
@@ -681,8 +681,8 @@ export function PriceIntelligence() {
             <Link to="/blueprints/price-watch">
               <span className="kicker">The blueprint</span>
               <span className="h3">Price watch</span>
-              <span className="muted">Prices, offers and terms as a customer sees them, on the schedule you set.</span>
-              <span className="uc-more-go">Learn more →</span>
+              <span className="muted">A persona signs in at each retailer every morning and reads member prices, offers and subscriber codes.</span>
+              <span className="uc-more-go">See the blueprint →</span>
             </Link>
           </Reveal>
           <Reveal className="card">
@@ -690,7 +690,7 @@ export function PriceIntelligence() {
               <span className="kicker">1 real run</span>
               <span className="h3">Sample data</span>
               <span className="muted">Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.</span>
-              <span className="uc-more-go">See it →</span>
+              <span className="uc-more-go">See sample data →</span>
             </Link>
           </Reveal>
           <p className="uc-fine">{study.fine}</p>
@@ -702,6 +702,8 @@ export function PriceIntelligence() {
         line={study.final.sub ?? ''}
         source="usecase-price-final"
         withCompany={false}
+        button={study.final.capture.button}
+        link={study.final.link}
       />
     </div>
   )

@@ -16,7 +16,8 @@ import type { BlogPost } from './types'
    that page states it (a £40 basket left at 02:57 on Tuesday 22 September 2026, no reminder in 48 hours).
    Not used, on purpose: the site's 93% and 77% and 128 stores (base to confirm with James), any PilotX audit figure,
    any ranking of causes by how often they happen (nobody has measured it), and the r/Emailmarketing code limit post
-   (its poster may be a vendor). Buyer words (sign up, welcome email, basket, pop up); no dashes. */
+   (its poster may be a vendor). Buyer words (sign up, welcome email, basket, pop up); no dashes.
+   Rewritten 22 Nov 2026 for the toolkit position. */
 
 const JOYJOYA = 'https://joyjoya.com/blogs/podcast/why-your-welcome-email-isn-t-working-i-tested-362-brands'
 const BENCH = 'https://www.klaviyo.com/products/email-marketing/benchmarks'
@@ -42,7 +43,6 @@ const SH_AUTO_CREATE = 'https://help.shopify.com/en/manual/promoting-marketing/c
 const SH_DISCOUNT = 'https://help.shopify.com/en/manual/discounts/discount-types/percentage-fixed-amount'
 const SH_FAQ = 'https://help.shopify.com/en/manual/discounts/discounts-faq'
 const SAMPLE = 'https://useobsession.com/sample-output'
-const LEAKS = '/use-cases/leak-checks-for-ecommerce-stores'
 const DELIVERY = '/blueprints/delivery-monitoring'
 
 export const post: BlogPost = {
@@ -53,7 +53,7 @@ export const post: BlogPost = {
   description:
     'Klaviyo flow not sending a welcome or basket email: sort the failure as silent, late, broken or wrong, check the cause, and cost one month of it.',
   answer:
-    'When a Klaviyo flow is not sending, the missing welcome or basket email has a cause in one of 4 places: the list or event never starts the flow, the flow skips the shopper, the message isn’t live, or a code or link fails. Test as a new customer with a control address, wait 48 hours, then read the message’s Skipped reasons to see which. Obsession keeps every email your store sends a new customer after a sign-up, a basket and a checkout, dated, and flags each missing one when its window closes, every week.',
+    'When a Klaviyo flow is not sending, the missing welcome or basket email has a cause in one of 4 places: the list or event never starts the flow, the flow skips the shopper, the message isn’t live, or a code or link fails. Test as a new customer with a control address, wait 48 hours, then read the message’s Skipped reasons to see which. Obsession’s mystery shopping blueprint signs up to your store as a new customer every week, keeps every email after a sign-up, a basket and a checkout, dated, and flags each missing one when its window closes.',
   primaryKeyword: 'klaviyo flow not sending',
   keywords: [
     'klaviyo flow not sending',
@@ -67,7 +67,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   order: 2,
   authors: [
@@ -168,7 +168,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If your online store is already in Obsession’s index, the [store lookup](/lookup) holds this test for you. Type an email at your store’s own address, and its entry comes to that inbox. It shows every email after a sign-up, a product view, a basket and a checkout. Each one is dated and read at 4, 8, 12, 24 and 48 hours.',
+      text: 'The [store lookup](/lookup) shows the same test for an online store: every email after a sign-up, a product view, a basket and a checkout, each dated and read at 4, 8, 12, 24 and 48 hours.',
     },
 
     { kind: 'h2', id: 'silent', text: 'Causes of a silent flow' },
@@ -267,7 +267,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'When each reminder should arrive, and what stores in Obsession’s index actually send, is in the guide to [abandoned cart email timing](/blog/abandoned-cart-email-sequence).',
+      text: 'When each reminder should arrive, and when stores send them, is in the guide to [abandoned cart email timing](/blog/abandoned-cart-email-sequence).',
     },
 
     { kind: 'h2', id: 'broken', text: 'Causes of a broken email' },
@@ -363,9 +363,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What every store you pitch or keep sends a new customer after a sign-up, a text opt-in and a basket, each message dated, and what never came. Agencies start in early access.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      text: 'Not building agents? Pick a blueprint, and Obsession runs it. Mystery shopping keeps what every store you pitch or keep sends a new customer after a sign-up, a text opt-in and a basket, each message dated, and flags what never came.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'by-hand', text: 'Limits of testing by hand' },
@@ -384,17 +384,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. On your own store its agents [shop as new customers](' +
-        LEAKS +
-        ') every week and after every change, and Obsession’s [delivery monitoring](' +
+      text: 'Obsession is the toolkit for AI agents, one API and one bill. On your own store its [mystery shopping](/blueprints/mystery-shopper) blueprint shops as a new customer every week and after every change, and its [delivery monitoring](' +
         DELIVERY +
-        ') checks that every email, text and login code arrives. For 20 client stores, or a store that changes every week, use Obsession. A silent flow is one of the failures that [customer journey testing](/blog/ai-customers-find-revenue-leaks) looks for.',
+        ') blueprint checks that every email, text and login code arrives. For 20 client stores, or a store that changes every week, use Obsession. A silent flow is one of the failures that [customer journey testing](/blog/ai-customers-find-revenue-leaks) looks for.',
     },
     {
       kind: 'cta',
-      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, every week and after every change, and every reminder that never came. Stores start in early access.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Every email, text and login code your store sends after a sign-up, a basket and a checkout, checked after every change. Obsession’s delivery monitoring blueprint flags each one that is late or missing, with its time.',
+      to: '/blueprints/delivery-monitoring',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'before-the-freeze', text: 'When to test before Black Friday' },

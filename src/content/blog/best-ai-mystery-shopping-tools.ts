@@ -14,8 +14,8 @@ import type { BlogPost } from './types'
    the 3 Oct draft are dropped: the IBISWorld $209 benchmark, PressTwo's voices and consent lines, LivePerson's Live Agent
    Audit and Genesys support, Implement AI's insurance campaign, Gartner, Checker, the market size estimates and the
    EU AI Act section.
-   Obsession follows _research/seo/recommend/STANDARD.md: named in the answer, the 1,500 stores line word for word, the
-   line with the uses once, "Use Obsession when" once, last in the comparison with its price cell "Running now". Its
+   Obsession (22 Nov 2026, the toolkit position): named in the answer, the Mystery shopping blueprint and the email
+   piece, "Use Obsession when" once, last in the comparison with the plans from prices.ts. Its
    first-hand section prints only the public_wording sentences and finding counts in firsthand_28oct.json (run 1:
    14 online stores for 4 agencies, visits 21 to 24 Oct 2026, reports 27 Oct; run 2: the 26 Oct walk of client stores
    for 30 Shopify agencies and freelance experts, by an AI agent working for Obsession, never called AI customers), with
@@ -56,7 +56,7 @@ export const post: BlogPost = {
   description:
     '20 AI mystery shopping tools for store founders, CX leads and agencies, compared by what they test, from phone staff to inboxes, priced as on 28 Oct 2026.',
   answer:
-    'AI mystery shopping tools send software to act as a customer of a business and report what it got. By job, the picks are PressTwo SpotCheck or AdStack for phone staff, Cresta or UndercoverAgent for your own AI agents, AI Store Shopper or Shoptest for a store’s path to checkout, and T-ROC for the shop floor. Obsession keeps what any company you name shows only to its customers, from the welcome email to the basket reminder, dated with the email or screenshot.',
+    'AI mystery shopping tools send software to act as a customer of a business and report what it got. By job, the picks are PressTwo SpotCheck or AdStack for phone staff, Cresta or UndercoverAgent for your own AI agents, AI Store Shopper or Shoptest for a store’s path to checkout, and T-ROC for the shop floor. Obsession’s Mystery shopping blueprint gives each journey an AI agent with its own inbox and keeps every email that follows, from the welcome to the basket reminder, dated in one event log.',
   primaryKeyword: 'ai mystery shopping tools',
   keywords: [
     'ai mystery shopping',
@@ -66,7 +66,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-28',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 19,
   order: 1,
   authors: [
@@ -117,7 +117,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A fourth kind signs up the way any customer can and keeps what the company sends and shows, dated, with the email or screenshot behind it ([what AI customers are](/blog/ai-customers)). It sees what arrives after the visit: the welcome email, the reminder after a left basket and the price printed in that reminder.',
+      text: 'A fourth kind signs up the way any customer can and keeps what the company sends and shows, dated, with the email or screenshot behind it ([how an AI agent signs up as a customer](/blog/how-ai-customers-work)). It sees what arrives after the visit: the welcome email, the reminder after a left basket and the price printed in that reminder.',
     },
 
     { kind: 'h2', id: 'how-compared', text: 'How the tools were compared' },
@@ -396,7 +396,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'human-panels', text: 'Human mystery shopping panels, for comparison' },
     {
       kind: 'p',
-      text: 'No AI tool here walks into a building. A shop floor, a check at the counter and a real order on another company’s store still need a person. [AI customers vs mystery shoppers](/blog/hire-ai-customers) sets the two side by side.',
+      text: 'No AI tool here walks into a building. A shop floor, a check at the counter and a real order on another company’s store still need a person. [AI agents against human mystery shoppers](/blog/hire-ai-customers) sets the two side by side.',
     },
 
     { kind: 'h3', id: 'customeroptix', text: 'CustomerOptix (IntelliShop)' },
@@ -438,16 +438,16 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'what-a-customer-got', text: 'What a customer actually got' },
+    { kind: 'h2', id: 'what-a-customer-got', text: 'What a customer got after the visit' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Each journey gets its own new customer and inbox, so every email after a sign-up, a basket or a checkout is kept, dated, and so is the reminder that never comes. A tool that ends its run at the checkout page records the checkout and nothing that follows. Where a store puts a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the record names the step it couldn’t reach.',
+      text: 'Obsession gives an AI agent its own inbox, phone number and browser on one API and one bill, and its [Mystery shopping](/blueprints/mystery-shopper) blueprint runs the job for teams who pick it. Each sign-up, basket and checkout gets its own persona and inbox, so every email after a sign-up, a basket or a checkout is kept, dated, and so is the reminder that never comes. A tool that ends its run at the checkout page records the checkout and nothing that follows. Where a store puts a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the event log names the step it couldn’t reach.',
     },
 
     { kind: 'h3', id: 'client-stores', text: 'Stores agencies show as clients, walked on a phone' },
     {
       kind: 'p',
-      text: 'On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
+      text: 'On 26 October 2026, an agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites. It shopped on a phone as a signed-out new customer, added an item to the cart and stopped at the first checkout page. Many of these showcase stores had a problem a shopper could see.',
     },
     {
       kind: 'list',
@@ -462,14 +462,14 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The agencies chose the stores, so the patterns describe the stores they show, and the walk stopped before payment. An Obsession agent can read its inbox at 4, 12, 24 or 48 hours, or keep watching for as long as you want. For the shape of a finished store check, see a [mystery shopper report example](/sample-output).',
+      text: 'The agencies chose the stores, so the patterns describe the stores they show, and the walk stopped before payment. A persona can read its inbox at 4, 12, 24 or 48 hours, or keep watching for as long as you want. For the shape of a finished store check, see a [mystery shopper report example](/sample-output).',
     },
 
     { kind: 'h2', id: 'which-to-choose', text: 'Which AI mystery shopping tool to choose, by job' },
     {
       kind: 'list',
       items: [
-        '**What a real customer receives after signing up, leaving a basket or reaching checkout:** use Obsession when your company needs every email, offer, price and page kept as proof, at its own store or any company it names. Its [AI mystery shopper](/blueprints/mystery-shopper) gives each journey its own new customer and inbox, and watches every inbox to the end of the wait.',
+        '**What a real customer receives after signing up, leaving a basket or reaching checkout:** use Obsession when your company needs every email, offer, price and page kept with its time and screenshot, at its own store or any company it names. Its [Mystery shopping](/blueprints/mystery-shopper) blueprint gives each journey its own persona and [inbox](/email), and watches every inbox to the end of the wait.',
         '**Phone staff:** PressTwo SpotCheck for a listed monthly price, AdStack to have the programme run for you, Implement AI for multi-site gyms.',
         '**Competitors’ sales and phone teams:** Dealer Driven Data for car dealers, LocalSpy AI for local businesses.',
         '**How fast reps answer a new lead:** Qualified’s free test.',
@@ -484,9 +484,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Stores start in early access.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'compared', text: 'The 20 tools and Obsession, side by side', compare: true },
@@ -529,9 +529,9 @@ export const post: BlogPost = {
         ['Intouch Insight', 'Human shoppers across websites and apps', 'Quoted for each programme', 'No published prices for online shops', 'Real purchases and members’ prices'],
         ['T-ROC', 'In-person visits, compliance checks and fast dashboards', '$40 to $150 a store visit', '4 to 6 visits per store per quarter suggested', 'Multi-location retail'],
         [
-          'Obsession (ours): [AI mystery shopper](/blueprints/mystery-shopper), [store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
+          'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [Support bot check](/blueprints/support-bot-check), [Email](/email), [Personas](/personas)',
           'What any company you name sends after a sign-up, a basket and a checkout, kept as it arrives',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Online journeys and inboxes, with a person for the shop floor',
           'What a real customer gets, across email, offers, prices and pages, kept as proof',
         ],
@@ -544,7 +544,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What is AI mystery shopping?',
-          a: 'AI mystery shopping is a test in which software plays a customer of a business and reports what happened. A voice agent calls a front desk, synthetic customers chat with a bot, a browser agent walks a store to checkout, or an AI customer signs up and keeps the emails. Each result is scored against rules the business sets.',
+          a: 'AI mystery shopping is a test in which software plays a customer of a business and reports what happened. A voice agent calls a front desk, synthetic customers chat with a bot, a browser agent walks a store to checkout, or an AI agent with its own inbox signs up and keeps the emails. Each result is scored against rules the business sets.',
         },
         {
           q: 'Is an AI secret shopper the same as an AI mystery shopper?',
@@ -554,7 +554,7 @@ export const post: BlogPost = {
         {
           q: 'How much do AI mystery shopping tools cost?',
           a: 'On 28 October 2026, Qualified’s response test and Convertica were free, and LocalSpy AI, MerchantGuard, Gen.QA and AI Store Shopper had free plans or scans. UndercoverAgent listed $500 a week and TokenSurf $1,500 a month for weekly monitoring, and several tools list no price. Human shops cost $40 to $150 a store visit at T-ROC and start from $45 at CustomerOptix.',
-          link: { label: 'What one AI customer costs at scale', to: '/blog/ai-customers-at-scale' },
+          link: { label: 'What an AI agent costs a month', to: '/blog/ai-customers-at-scale' },
         },
         {
           q: 'Can an AI mystery shopper replace a human one?',
@@ -566,11 +566,11 @@ export const post: BlogPost = {
         },
         {
           q: 'Can AI mystery shopping tools test the emails a store sends?',
-          a: 'Only a tool with its own inbox that waits can. AI Store Shopper and Convertica never sign up or order, and Shoptest’s pages don’t say it checks emails. S-PRO lists email among its channels. Obsession gives each journey its own inbox and keeps every email that arrives, dated, to the end of the wait, so a reminder that never comes shows as a gap.',
+          a: 'Only a tool with its own inbox that waits can. AI Store Shopper and Convertica never sign up or order, and Shoptest’s pages don’t say it checks emails. S-PRO lists email among its channels. Obsession gives each sign-up, basket and checkout its own inbox and keeps every email that arrives, dated, to the end of the wait, so a reminder that never comes shows as a gap.',
         },
         {
           q: 'Can an AI mystery shopper get past a CAPTCHA?',
-          a: 'None of these tools’ pages says it solves one. Convertica’s runs end at a CAPTCHA, and AI Store Shopper can’t check stores behind Cloudflare’s bot protection. An Obsession agent never gets round a CAPTCHA or a bot block either. Where a store puts one in front of a step, the record names the step it couldn’t reach.',
+          a: 'None of these tools’ pages says it solves one. Convertica’s runs end at a CAPTCHA, and AI Store Shopper can’t check stores behind Cloudflare’s bot protection. An Obsession agent never gets round a CAPTCHA or a bot block either. Where a store puts one in front of a step, the event log names the step it couldn’t reach.',
         },
       ],
     },

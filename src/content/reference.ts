@@ -79,13 +79,13 @@ export const refUi = {
   },
 }
 
-const access = (source: string): Capture => ({ kind: 'waitlist', source, button: 'Request early access', interest: 'competitor' })
+const access = (source: string): Capture => ({ kind: 'waitlist', source, button: 'Start free', interest: 'competitor' })
 
 /* The close every reference page shares: early access, and the sample data as the quiet second path. */
 export const refFinal = (source: string): Final => ({
-  heading: 'Which company should we look up first?',
+  heading: 'What will your agent need first?',
   capture: access(source),
-  link: { label: 'See sample data', to: '/sample-output' },
+  link: { label: 'Browse blueprints', to: '/blueprints' },
 })
 
 /* A hub: the page's meta, its hero (the reader pages' hero: the words and early access on the left, the hub's 1 picture
@@ -99,16 +99,14 @@ export type ReferenceHub = {
   final: Final
 }
 
-const sample: Cta = { label: 'See sample data', to: '/sample-output' }
-
 export const alternativesHub: ReferenceHub = {
   meta: {
     path: '/alternatives',
     title: 'Alternatives to MailCharts, Panoramata, Klue and Crayon',
     description:
-      'Alternatives to MailCharts, Panoramata, Klue, Crayon and Competiscan, sorted by job from each tool’s own pages, with what competitors show customers.',
+      'Alternatives to MailCharts, Panoramata, Klue, Crayon and Competiscan, sorted by job from each tool’s own pages, with Obsession’s blueprints last.',
     answer:
-      'Each alternatives page sorts the tools that do the same job as MailCharts, Panoramata, Klue, Crayon or Competiscan by the job a team needs done, from each tool’s own pages with its price as listed. The last job on every page is what competitors show only to signed-up customers, which Obsession keeps for any company you name.',
+      'Each page sorts the tools that do the same job as MailCharts, Panoramata, Klue, Crayon or Competiscan, from each tool’s own pages with its price as listed. Obsession sits last, with the blueprint that runs the job on your own list.',
     ogImage: '/og/alternatives.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -119,9 +117,9 @@ export const alternativesHub: ReferenceHub = {
   reader: 'marketing',
   hero: {
     headline: 'Alternatives to the tools teams use to watch competitors.',
-    sub: 'Each alternatives page sorts the tools that do the same job as MailCharts, Panoramata, Klue, Crayon or Competiscan by the job a team needs done, from each tool’s own pages with its price as listed. The last job on every page is what competitors show only to signed-up customers, which Obsession keeps for any company you name.',
+    sub: 'Each page sorts the tools that do the same job as MailCharts, Panoramata, Klue, Crayon or Competiscan, from each tool’s own pages with its price as listed. Obsession sits last, with the blueprint that runs the job on your own list.',
     capture: access('alternatives-hero'),
-    secondary: sample,
+    secondary: { label: 'Browse blueprints', to: '/blueprints' },
   },
   art: {
     kind: 'report',
@@ -132,7 +130,7 @@ export const alternativesHub: ReferenceHub = {
       { name: 'Email archives', cells: ['MailCharts, Panoramata', 'Brands on their index or your plan'] },
       { name: 'Competitive intelligence', cells: ['Klue, Crayon', 'What competitors publish and your team hears'] },
       { name: 'Consumer panels', cells: ['Competiscan', 'The sectors the panel covers'] },
-      { name: 'Behind the login', cells: ['Obsession', 'Any company you name'], tone: 'ok' },
+      { name: 'Blueprints on personas', cells: ['Obsession', 'Any competitor you name'], tone: 'ok' },
     ],
     notes: ['Each page sorts the alternatives by the job they do, with the price each tool lists.'],
   },
@@ -145,7 +143,7 @@ export const alternativesHub: ReferenceHub = {
       },
       {
         q: 'Why is Obsession on every page?',
-        a: 'Because one job none of these tools describe is keeping what a company shows only to signed-up customers: its emails after a sign-up, member prices, trial limits and the offer in its cancel flow. Obsession keeps that for any company you name, so it sits last on every page, beside the tools rather than instead of them.',
+        a: 'Because its blueprints run the same jobs on your own list: personas sign up to each competitor, stay subscribed, and keep every email, price and offer in the event log. It sits last on every page, beside the tools rather than instead of them.',
       },
       {
         q: 'Is there an Exa, Tavily or Firecrawl alternatives page?',
@@ -159,11 +157,11 @@ export const alternativesHub: ReferenceHub = {
 export const glossaryHub: ReferenceHub = {
   meta: {
     path: '/glossary',
-    title: 'Glossary: login walls, member prices, save offers and more',
+    title: 'Glossary: AI agent, email, texting and cloud browser terms',
     description:
-      'Plain definitions of the words for what companies show only to customers: login wall, member price, trial limit, save offer, one-click unsubscribe, DKIM.',
+      'Plain definitions of the words around AI agents, email, texts and browsers: MCP, DKIM, headless browser, login wall, SMS STOP and one-click unsubscribe.',
     answer:
-      'The glossary defines the words for what companies show only to signed-up customers, from a login wall and a member price to a save offer, one-click unsubscribe and DKIM, each in a sentence or two. Each term links the guides, blueprints and comparisons that use it.',
+      'The glossary defines the words around AI agents and the pieces they use, from MCP and a headless browser to DKIM, SMS STOP and a login wall, each in a sentence or two. Each term links the piece, blueprint and guides that use it.',
     ogImage: '/og/glossary.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -172,10 +170,10 @@ export const glossaryHub: ReferenceHub = {
   },
   reader: 'sales',
   hero: {
-    headline: 'The words for what companies show only to customers.',
-    sub: 'The glossary defines the words for what companies show only to signed-up customers, from a login wall and a member price to a save offer, one-click unsubscribe and DKIM, each in a sentence or two. Each term links the guides, blueprints and comparisons that use it.',
+    headline: 'The words around AI agents, in a sentence or two.',
+    sub: 'The glossary defines the words around AI agents and the pieces they use, from MCP and a headless browser to DKIM, SMS STOP and a login wall, each in a sentence or two. Each term links the piece, blueprint and guides that use it.',
     capture: access('glossary-hero'),
-    secondary: sample,
+    secondary: { label: 'Browse blueprints', to: '/blueprints' },
   },
   art: {
     kind: 'flow',
@@ -187,7 +185,7 @@ export const glossaryHub: ReferenceHub = {
       { label: 'Member price', detail: '£24, not £29', tone: 'ok' },
       { label: 'Save offer', detail: '50% off to stay', tone: 'ok' },
     ],
-    foot: 'Northwind is an invented company. Every step past the login wall is shown only to customers, and each is a term in the glossary.',
+    foot: 'Northwind is an invented company. Each step a persona meets on a site is a term in the glossary.',
   },
   final: refFinal('glossary-final'),
 }

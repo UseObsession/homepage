@@ -18,7 +18,8 @@ import type { BlogPost } from './types'
    out from their published credit prices and plans, and the note says so. Firecrawl's Interact quote about logins
    contains a dash, so it is paraphrased. Exa's Websets page redirected to its app and wasn't read, so Websets isn't
    described. The MCP command from /developers isn't printed: mcp.useobsession.com had no DNS record on 11 Nov, so the
-   post links /developers instead. quillon.example and every offer in the 2 illustrations are invented. */
+   post links /developers instead. quillon.example and every offer in the 2 illustrations are invented.
+   22 Nov 2026: moved to the toolkit position (Obsession gives the agent an inbox, a number and a signed-in browser). */
 
 const EXA_HOME = 'https://exa.ai/'
 const EXA_SEARCH = 'https://exa.ai/products/search'
@@ -49,12 +50,12 @@ const PAR_MCP = 'https://parallel.ai/mcp'
 export const post: BlogPost = {
   slug: 'exa-vs-tavily-vs-firecrawl',
   title: 'Exa vs Tavily vs Firecrawl vs Parallel: the web search APIs for AI agents, compared',
-  dek: 'Four APIs that give AI agents the public web, compared on index, freshness, speed and price per 1,000 from their own pages on 11 November 2026. Beside them, Obsession covers what a company sends and shows only its signed-up customers.',
+  dek: 'Four APIs that give AI agents the public web, compared on index, freshness, speed and price per 1,000 from their own pages on 11 November 2026. Beside them, Obsession gives an agent its own inbox, phone number and a browser that stays signed in, for what a company sends after the sign-up.',
   metaTitle: 'Exa vs Tavily vs Firecrawl vs Parallel for agent developers',
   description:
-    'Exa vs Tavily vs Firecrawl vs Parallel for AI agents, compared on index, freshness, speed, price per 1,000 and MCP, plus the data behind the login.',
+    'Exa vs Tavily vs Firecrawl vs Parallel for AI agents, compared on index, freshness, speed, price per 1,000 and MCP, plus what search can’t receive.',
   answer:
-    'Exa vs Tavily comes down to the job: Exa searches its own index of 100 billion documents by meaning, and Tavily pairs fast search with page extraction in one credit-priced API. Firecrawl turns any page or site into clean markdown, and Parallel adds deep research and monitors on its own index, all four reading the public web. Obsession gives agents what a company shows only its signed-up customers, such as the welcome email and member price, each dated with its screenshot, by API or MCP (the standard way agents call tools).',
+    'Exa vs Tavily comes down to the job: Exa searches its own index of 100 billion documents by meaning, and Tavily pairs fast search with page extraction in one credit-priced API. Firecrawl turns any page or site into clean markdown, and Parallel adds deep research and monitors on its own index, all four reading the public web. Obsession gives an agent its own inbox, phone number and a browser that stays signed in, so it receives what a company sends after the sign-up, and many teams use it beside a search API.',
   primaryKeyword: 'exa vs tavily',
   keywords: [
     'exa vs firecrawl',
@@ -66,7 +67,7 @@ export const post: BlogPost = {
   ],
   category: 'Behind the login',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 16,
   order: 2,
   authors: [
@@ -82,7 +83,7 @@ export const post: BlogPost = {
       rows: [
         { name: 'Search APIs', cells: ['Home page: 10% off', 'Not reached'], tone: 'info' },
         { name: 'Scraper', cells: ['The pop-up as markdown', 'Not reached'], tone: 'info' },
-        { name: 'Obsession', cells: ['Welcome email, 15% code', 'Delivery offer, £24 price'], tone: 'ok' },
+        { name: 'Agent on Obsession', cells: ['Welcome email, 15% code', 'Delivery offer, £24 price'], tone: 'ok' },
       ],
       notes: [
         'Search APIs: Exa, Tavily, Parallel. Scraper: Firecrawl.',
@@ -341,28 +342,28 @@ export const post: BlogPost = {
       text: 'The welcome email went to an inbox, and the second arrived days after any browser session had ended. A search index stores pages and holds no inbox, and a scraper reads what a page shows at the moment it visits. Firecrawl could read the £24 price by signing in to a Quillon account your team holds, but the emails never reach a page. So the honest answer from the four APIs is the 10% the page promises, and the 15% code goes unseen.',
     },
 
-    { kind: 'h2', id: 'behind-the-login', text: 'What a company shows only its customers' },
+    { kind: 'h2', id: 'behind-the-login', text: 'What a company sends after the sign-up' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. It gives an agent its own [inbox](/email), a [phone number](/phone) for texts and login codes, and a [browser](/browser) that stays signed in for weeks, under one identity as a [persona](/personas).',
     },
     {
       kind: 'p',
-      text: 'Exa, Tavily, Firecrawl and Parallel give agents the public web, what any visitor can read. Obsession gives them what a company shows only to its customers, behind the login, dated and kept for as long as anyone follows the company. Search for what a company publishes and look up Obsession for what it sends and shows its customers; an agent can call both in the same answer.',
+      text: 'Exa, Tavily, Firecrawl and Parallel give agents the public web, what any visitor can read. An agent on Obsession signs up the way any customer can and receives what the company sends next. Search covers what a company publishes, and the inbox and browser cover what it sends, so many teams use both in the same agent.',
     },
     {
       kind: 'p',
-      text: 'In the Quillon example, a call to facts for quillon.example returns the welcome email with its 15% code, the delivery offer and the £24 signed-in price. Each comes with the time it arrived and the email or screenshot behind it. Obsession signs up the way any customer can and keeps each account open for months. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. [The sample data](/sample-output) shows one real store’s record, and [the web behind the login](/blog/the-web-behind-the-login) explains what sits behind each step.',
+      text: 'In the Quillon example, the persona’s inbox gets the welcome email with its 15% code, and email.received reaches the agent’s webhook about 50 ms after it lands. Its browser stays signed in, so on Thursday it reads the £24 signed-in price, and page.visited keeps a screenshot. [The sample data](/sample-output) shows a real store’s sign-ups and baskets, and [the web behind the login](/blog/the-web-behind-the-login) explains what sits behind each step.',
     },
     {
       kind: 'p',
-      text: '[The API and MCP](/developers) expose it as 5 verbs: lookup, facts, evidence, index and notify. TypeScript and Python SDKs call the same verbs, and a webhook delivers each new fact. It is priced per call or per company watched, never per token, and every key has a spending cap you set.',
+      text: 'One call makes the whole identity: obsession.personas.create({ inbox: true, phone: "US", browser: true }). The Free plan includes 3 inboxes, 1 number and 10 browser hours. Past it, a browser hour is $0.10 with no charge per GB, and an inbox is $0.50 a month.',
     },
     {
       kind: 'cta',
-      text: '5 verbs for your agents and your code. Look up any company, get each fact with its email or screenshot, add a company not yet covered, and receive each new fact at your webhook.',
-      to: '/developers',
-      label: 'See the API and MCP',
+      text: 'An inbox, a phone number and a browser that stays signed in, for every agent, on one API and one bill. Search the public web with any of the four, and give the agent the rest here.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'compared', text: 'Exa, Tavily, Firecrawl and Parallel compared', compare: true },
@@ -419,11 +420,11 @@ export const post: BlogPost = {
           'Deep research, enrichment and monitoring',
         ],
         [
-          'Obsession (ours): lookup, facts, evidence, index, notify',
-          'What a company shows only its customers: emails, texts, member prices, trial limits and cancel offers, each dated with its screenshot',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Every step short of paying, from the day a company is added',
-          'What any company sends and shows its customers, kept for as long as you follow it',
+          'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone) and [Personas](/personas)',
+          'An inbox, a number and a browser that stays signed in, under one identity, for weeks',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'No web search of its own; pair it with a search API',
+          'What a company sends after the sign-up, and logins that last',
         ],
       ],
     },
@@ -431,12 +432,12 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'by-job', text: 'Which API fits which job' },
     {
       kind: 'p',
-      text: 'Use Obsession when your agent needs what a company sends and shows only its customers, at any company you name. That covers the welcome series, member and signed-in prices, trial limits and cancel offers, each dated with the email or screenshot behind it and kept for as long as you follow the company. For the public web, pick by job.',
+      text: 'Use Obsession when your agent needs to sign up, receive the emails and texts that follow, or stay signed in to a site for weeks. That covers the welcome series, login codes, member and signed-in prices and trial emails, each event dated with the email or screenshot. For the public web, pick by job.',
     },
     {
       kind: 'list',
       items: [
-        '**What any company sends and shows its customers, dated, by API or MCP:** Obsession.',
+        '**An inbox, a phone number and a browser that stays signed in, on one API:** Obsession.',
         '**Search by meaning across the public web, plus company and people data:** Exa.',
         '**The fastest grounding call in an agent loop:** Parallel’s turbo mode at about 200 ms and $1 per 1,000, or Tavily at a 180 ms median.',
         '**Search and page text in one credit-priced API:** Tavily.',
@@ -471,7 +472,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'A real store’s record, in every format it comes in: each email and page dated, and the reminders that never came.',
+      text: 'A real store’s sign-ups and baskets, in every format they come in: each email and page dated, and the reminders that never came.',
       to: '/sample-output',
       label: 'See sample data',
     },
@@ -506,7 +507,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can any of these APIs see what a company shows only to signed-up customers?',
-          a: 'Their pages describe the public web, licensed publishers and partner data, and Firecrawl can sign in to an account your team owns for a session of minutes. None of their pages describes receiving a company’s emails after a sign-up or keeping them dated. Obsession collects what companies show only to customers, such as emails, member prices, trial limits and cancel offers, each dated with a screenshot, by API or MCP.',
+          a: 'Their pages describe the public web, licensed publishers and partner data, and Firecrawl can sign in to an account your team owns for a session of minutes. None of their pages describes receiving a company’s emails after a sign-up or keeping them dated. Obsession gives an agent its own inbox, phone number and a browser that stays signed in for weeks, so it receives those emails and texts itself, each one dated.',
           link: { label: 'See the API and MCP', to: '/developers' },
         },
       ],

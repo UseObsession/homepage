@@ -34,7 +34,6 @@ const KL_CHECKLIST = 'https://klaviyo.com/blog/the-complete-checklist-audit-your
 const NETALICO = 'https://netalico.com/pages/shopify-klaviyo-agency'
 const CLOUD_BROWSER = 'https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt'
 
-const USE_CASE = '/use-cases/leak-checks-for-retention-agencies'
 
 export const post: BlogPost = {
   slug: 'klaviyo-experts-win-upwork-jobs-from-shopify-brands',
@@ -44,7 +43,7 @@ export const post: BlogPost = {
   description:
     'Klaviyo experts on Upwork: sign up to the Shopify brand’s store as a new customer, see what its emails miss, and open your proposal with it.',
   answer:
-    'To win Upwork Klaviyo jobs from Shopify brands, become the brand’s customer before you bid: within the hour of the job post, sign up to its store, leave a basket and start a checkout. Open the proposal with what its emails got wrong and when, such as a welcome email that came without the code the pop-up promised. For hundreds of prospects a month, Obsession keeps what each brand sends a new customer, dated with the email itself, by API, MCP or a table.',
+    'To win Upwork Klaviyo jobs from Shopify brands, become the brand’s customer before you bid: within the hour of the job post, sign up to its store, leave a basket and start a checkout. Open the proposal with what its emails got wrong and when, such as a welcome email that came without the code the pop-up promised. For hundreds of prospects a month, Obsession’s Prospect intelligence blueprint signs up to each brand as a persona and returns what it sends a new customer, dated with the email itself.',
   primaryKeyword: 'upwork klaviyo jobs',
   keywords: [
     'klaviyo expert upwork',
@@ -58,7 +57,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-29',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   order: 1,
   authors: [
@@ -235,7 +234,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Why retention agencies need AI customers](/blog/ai-customers-for-retention-agencies) sets out the weekly routine across clients, their competitors and the agency’s prospects.',
+      text: '[The guide for retention agencies](/blog/ai-customers-for-retention-agencies) sets out the weekly routine across clients, their competitors and the agency’s prospects.',
     },
 
     { kind: 'h2', id: 'your-sum', text: 'Your sum: hours by hand against one client won' },
@@ -298,9 +297,9 @@ export const post: BlogPost = {
           'A one-off sign-up you can watch',
         ],
         [
-          'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Mystery shopper](/blueprints/mystery-shopper)',
+          'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Mystery shopping](/blueprints/mystery-shopper)',
           'What any store you name sends a new customer at each step, from the US or the UK, each email kept as it arrived',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Why a flow didn’t send sits inside the brand’s account',
           'Hundreds or thousands of prospects a month, then weekly and monthly client checks',
         ],
@@ -308,15 +307,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Each check is run by an Obsession agent, a customer that says it’s an AI ([how the data is collected](/blog/ai-customers)). Its agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to. Each check is run by a persona that says it’s an AI, and [AI agents as customers](/blog/ai-customers) sets out what one sees.',
     },
     {
       kind: 'p',
-      text: 'Obsession runs as many agents as a prospect list needs, each with its own inbox, phone number and browser, and each doing one thing. One signs up, one browses, one leaves a basket and one starts a checkout, each shopping from the US or the UK to match the brand’s market. Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test, so you know exactly what to check by hand. It runs at 300 brands a month, 1,000 or 5,000. It’s built for millions of companies, each looked up in one call.',
+      text: 'Obsession runs as many agents as a prospect list needs, each with its own inbox, phone number and browser, and each doing one thing. One signs up, one browses, one leaves a basket and one starts a checkout, each shopping from the US or the UK to match the brand’s market. Where a store puts a CAPTCHA in front of a step, the event log names the step it couldn’t pass, so you know exactly what to check by hand. It runs at 300 brands a month, 1,000 or 5,000, with a persona waiting at each brand between reads.',
     },
     {
       kind: 'p',
-      text: 'Use Obsession when your agency checks hundreds of prospects a month and wants the hours in your sum back, with a finding about each brand’s own store in every proposal. Each prospect is read at the hours you choose: 4 hours for an Upwork job, 12 or 24 for a warm lead, 48 before any call, or for as long as you want to keep watching. After the win, the same checks run on each client every week before the Monday report. Brands that won’t pay a retainer get a monthly check, and your agency can run it for every brand it serves. Obsession’s ready-made job for pitch lists, [prospect intelligence](/blueprints/prospect-intelligence), returns a verdict for every company on the list, with the email or page that shows it.',
+      text: 'Use Obsession when your agency checks hundreds of prospects a month and wants the hours in your sum back, with a finding about each brand’s own store in every proposal. Each prospect is read at the hours you choose: 4 hours for an Upwork job, 12 or 24 for a warm lead, 48 before any call, or for as long as you want to keep watching. After the win, the same checks run on each client every week before the Monday report. Brands that won’t pay a retainer get a monthly check, and your agency can run it for every brand it serves. Obsession’s blueprint for pitch lists, [Prospect intelligence](/blueprints/prospect-intelligence), returns a verdict for every company on the list, with the email or page that shows it.',
     },
     {
       kind: 'p',
@@ -326,9 +325,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Open every pitch with the store’s own emails, and the ones that never came. See what any store sends a new customer after a sign-up and a basket, each message dated with the email itself, for the stores you pitch and the clients you keep. Agencies start in early access, onboarding teams now.',
-      to: USE_CASE,
-      label: 'Request early access',
+      text: 'Open every pitch with the store’s own emails, and the ones that never came. Prospect intelligence signs up to every store on your list as a new customer, and the same checks keep running on the clients you win.',
+      to: '/blueprints/prospect-intelligence',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'when-you-dont-need-it', text: 'When a check before the proposal isn’t needed' },

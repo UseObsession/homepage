@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
 
 /* The why series, Spec F (24 Oct 2026): why companies that sell to Shopify brands need AI customers. It owns "shopify
    store leads" (primary), with "ecommerce store leads", "shopify store lead list", "find shopify stores", "shopify app
@@ -28,7 +27,7 @@ import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
    (403), BuiltWith's Trustpilot reviews, RepVue and Vendr figures, the research files' secondhand prices, call notes,
    the offers' sales wording, Gartner, ChatGPT agent, any Obsession price, customer or result,
    the site's 93% and 128 stores, any PilotX figure. The 5 stores, the sales team and every timing in the
-   illustrations are invented. No dashes. */
+   illustrations are invented. No dashes. Rewritten 22 Nov 2026 for the toolkit position. */
 
 const SL_KLAVIYO = 'https://storeleads.app/reports/technology/Klaviyo'
 const SL_OMNISEND = 'https://storeleads.app/reports/technology/Omnisend'
@@ -66,7 +65,7 @@ export const post: BlogPost = {
   description:
     'Shopify store leads show what a store has installed. What its customers receive shows if it works, so vendors selling to Shopify brands open with proof.',
   answer:
-    'Companies that sell to Shopify brands, such as email and SMS platforms, Shopify app vendors and deliverability vendors, use Shopify store leads to see what a store has installed, and only a customer of the store sees whether it works. A new customer of each store records what arrives, from the welcome email to the text after the opt in, so sales opens with a fact the store can check and customer success sees each account’s messages before the renewal. Obsession keeps what any store shows only to its customers, dated with the email or screenshot, and puts each fact back on your lead list’s rows in Clay, your CRM or a table.',
+    'Companies that sell to Shopify brands, such as email and SMS platforms, Shopify app vendors and deliverability vendors, use Shopify store leads to see what a store has installed, and only a customer of the store sees whether it works. A new customer of each store records what arrives, from the welcome email to the text after the opt in, so sales opens with a fact the store can check and customer success sees each account’s messages before the renewal. Obsession, the toolkit for AI agents, runs this as its prospect intelligence blueprint and puts each email and text back on your lead list’s rows in Clay, your CRM or a table.',
   primaryKeyword: 'shopify store leads',
   keywords: [
     'shopify store leads',
@@ -79,7 +78,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   order: 17,
   authors: [
@@ -109,7 +108,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Email and SMS platforms, Shopify app vendors and deliverability vendors sell to the same customers, Shopify and direct to consumer brands, and grow by winning more of them. AI customers show their sales and customer success teams what each store’s new customers receive, which no install list records. [What AI customers are](/blog/ai-customers) defines the term, and [why AI customers matter](/blog/why-ai-customers-matter) makes the case for every company.',
+      text: 'Email and SMS platforms, Shopify app vendors and deliverability vendors sell to the same customers, Shopify and direct to consumer brands, and grow by winning more of them. An AI agent that signs up as a customer at each store shows their sales and customer success teams what each store’s new customers receive, which no install list records. [AI agents as customers](/blog/ai-customers) explains the idea, and [why AI agents as customers matter](/blog/why-ai-customers-matter) makes the case for every company.',
     },
     {
       kind: 'p',
@@ -238,7 +237,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The cheaper each check, the fewer brands it takes to pay back, so put any tool’s yearly price in place of the hours. [AI customers at scale](/blog/ai-customers-at-scale) prices an AI customer line by line, at about $2 a month for one that watches one company’s email at published retail prices.',
+      text: 'The cheaper each check, the fewer brands it takes to pay back, so put any tool’s yearly price in place of the hours. [AI agent cost per month](/blog/ai-customers-at-scale) prices each piece line by line, from $0.50 a month for an inbox that receives one store’s email.',
     },
 
     { kind: 'h2', id: 'workload', text: 'The workload of checking stores by hand' },
@@ -257,7 +256,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `${CUSTOMER_SIDE_OBSERVABILITY.definition} For a vendor, [customer-side observability](/blog/customer-side-observability) is a routine set once per product: a pass mark for each check written before the first run, a cadence, and a named owner for each fail.`,
+      text: 'For a vendor, [monitoring from the customer’s side](/blog/customer-side-observability) is a routine set once per product: a pass mark for each check written before the first run, a cadence, and a named owner for each fail.',
     },
     {
       kind: 'table',
@@ -272,11 +271,11 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'jobs', text: 'What AI customers do for a vendor’s team' },
-    { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
+    { kind: 'h2', id: 'jobs', text: 'What a persona does for a vendor’s team' },
+    { kind: 'p', text: '**A persona is an AI agent with its own inbox, phone number and browser under one name.** It signs up at a store the way any customer does and keeps every email and text that arrives.' },
     {
       kind: 'p',
-      text: 'Each store on the list and each customer account gets its own new customer, through the sign up any customer can use. Obsession runs this today. It keeps what any company shows only to its customers, each dated with the email or screenshot, for as long as you follow the company, and for a vendor that means what each store’s customers receive, as a fact for the first email and the renewal. The same 5 jobs serve an email or SMS platform, a Shopify app and a deliverability vendor, each pointed at the gap its product closes.',
+      text: 'Each store on the list and each customer account gets its own persona, through the sign up any customer can use. On Obsession, 4 blueprints run these jobs, and every email and text lands in the event log, dated, ready for the first email and the renewal. The same 5 jobs serve an email or SMS platform, a Shopify app and a deliverability vendor, each pointed at the gap its product closes.',
     },
     { kind: 'h3', id: 'before-first-touch', text: '1. A fact for every store before the first touch' },
     {
@@ -286,7 +285,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'competitor-stores', text: '2. Stores on a competitor’s platform, sorted by what they send' },
     {
       kind: 'p',
-      text: '**The check:** an AI customer on the list of each store running a competitor’s email, SMS or loyalty tool, logging every email and text from the day it joins. **A pass:** each store’s sends dated, with how often it sends and what it offers. **That week:** RevOps sorts the territory by what stores do, the account executive brings a store’s own emails to discovery, and product marketing adds what a competitor’s customers send to the battlecard. [Email and SMS tracking](/blueprints/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side. Archives of brands’ past emails are compared in [competitor email tracking tools](/blog/competitor-email-tracking-tools).',
+      text: '**The check:** a persona on the list of each store running a competitor’s email, SMS or loyalty tool, logging every email and text from the day it joins. **A pass:** each store’s sends dated, with how often it sends and what it offers. **That week:** RevOps sorts the territory by what stores do, the account executive brings a store’s own emails to discovery, and product marketing adds what a competitor’s customers send to the battlecard. [Email and SMS tracking](/blueprints/email-sms-tracking) subscribes to every brand on a list and sets their emails and texts side by side. Archives of brands’ past emails are compared in [competitor email tracking tools](/blog/competitor-email-tracking-tools).',
     },
     { kind: 'h3', id: 'placement', text: '3. Where a prospect’s mail lands' },
     {
@@ -296,12 +295,12 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'accounts', text: '4. Every customer account, every week' },
     {
       kind: 'p',
-      text: '**The check:** an AI customer on each customer’s store, receiving the welcome, texts, reminders or points emails the product sends for that store. **A pass:** every message the product powers arrives inside its deadline. **That week:** customer success fixes a break before the account’s shoppers notice, shows what they received at the quarterly review, and flags any account whose emails stop or texts go quiet ahead of its renewal. [Account watch](/blueprints/account-watch) stays a customer of every account and flags churn and upsell with the play drafted.',
+      text: '**The check:** a persona on each customer’s store, receiving the welcome, texts, reminders or points emails the product sends for that store. **A pass:** every message the product powers arrives inside its deadline. **That week:** customer success fixes a break before the account’s shoppers notice, shows what they received at the quarterly review, and flags any account whose emails stop or texts go quiet ahead of its renewal. [Account watch](/blueprints/account-watch) stays a customer of every account and flags churn and upsell with the play drafted.',
     },
     { kind: 'h3', id: 'releases', text: '5. Your own product after every release' },
     {
       kind: 'p',
-      text: '**The check:** a test store your team runs on its own product, where AI customers sign up, opt in and wait after every release, as [Delivery monitoring](/blueprints/delivery-monitoring) does for a company’s first 14 days. **A pass:** every email, text and code the product sends arrives inside its deadline. **That week:** engineering fixes or rolls back a release before merchants’ shoppers miss a message.',
+      text: '**The check:** a test store your team runs on its own product, where personas sign up, opt in and wait after every release, as [Delivery monitoring](/blueprints/delivery-monitoring) does for a company’s first 14 days. **A pass:** every email, text and code the product sends arrives inside its deadline. **That week:** engineering fixes or rolls back a release before merchants’ shoppers miss a message.',
     },
 
     { kind: 'h2', id: 'what-changes', text: 'What changes in 2026 and 2027' },
@@ -328,7 +327,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each shift changes what a store’s customers receive, or who reads it, while its install list stays the same. AI customers on each prospect’s and customer’s list record the change the week it starts, so the first line of a sequence and the renewal conversation both rest on what customers received.',
+      text: 'Each shift changes what a store’s customers receive, or who reads it, while its install list stays the same. Personas on each prospect’s and customer’s list catch the change the week it starts, so the first line of a sequence and the renewal conversation both rest on what customers received.',
     },
 
     { kind: 'h2', id: 'options', text: 'Shopify store leads and other options, compared', compare: true },
@@ -388,25 +387,25 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking), [Delivery monitoring](/blueprints/delivery-monitoring), [Account watch](/blueprints/account-watch)',
           'What every store on the list and every account sends its customers, each email and text dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at bot walls, CAPTCHAs and identity checks',
           'What each store’s customers receive, as proof for the first email',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your team needs a fact about what each store’s customers receive, for the first email or the renewal, use Obsession. For 10 to 20 top accounts a quarter, a rep with a new address and a phone is enough. The options combine: a store lead list chooses the stores, Clay finds the people, a library holds past emails, and Obsession records what each store sends its new customers now. [AI agents for marketing teams, sales and agencies](/blog/ai-customers-for-commercial-teams) sets out the same checks for marketing, agencies and CX.',
+      text: 'If your team needs a fact about what each store’s customers receive, for the first email or the renewal, use Obsession. For 10 to 20 top accounts a quarter, a rep with a new address and a phone is enough. The options combine: a store lead list chooses the stores, Clay finds the people, a library holds past emails, and Obsession’s personas keep what each store sends its new customers now. [AI agents for marketing teams, sales and agencies](/blog/ai-customers-for-commercial-teams) sets out the same checks for marketing, agencies and CX.',
     },
 
-    { kind: 'h2', id: 'when-not', text: 'When a vendor doesn’t need AI customers' },
+    { kind: 'h2', id: 'when-not', text: 'When a vendor doesn’t need a persona at every store' },
     {
       kind: 'list',
       items: [
         '**Growth comes from the App Store alone.** A vendor with no outbound list and no named accounts has nowhere to use the fact.',
         '**The product works where customers never look,** such as accounting, inventory or fraud screening. Install data and company size qualify that list.',
         '**A short list of top accounts.** At 10 to 20 accounts a quarter, a rep with a new address and a phone covers it.',
-        '**Last year’s emails from a brand.** An AI customer holds what arrives from the day it joins, so an earlier Black Friday needs a library that already covered the brand.',
+        '**Last year’s emails from a brand.** A persona holds what arrives from the day it joins, so an earlier Black Friday needs a library that already covered the brand.',
         '**A sender’s own placement before a big send.** A seed test, which sends to mailboxes the testing vendor controls, answers it.',
       ],
     },
@@ -425,9 +424,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What each store on your list sends its customers, ready before the first email, with every fact dated and its screenshot linked, from a domain in Clay, your CRM or your own agent.',
-      to: '/sales',
-      label: 'Request early access',
+      text: 'Not building agents? Pick a blueprint, and Obsession runs it. Prospect intelligence signs up at every store on your list and puts each email and text, dated, on its row in Clay or your CRM.',
+      to: '/blueprints/prospect-intelligence',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about Shopify store leads' },
@@ -453,15 +452,15 @@ export const post: BlogPost = {
         },
         {
           q: 'What do email deliverability tools do?',
-          a: 'They help a sender reach the inbox: authentication checks for SPF, DKIM and DMARC, Google Postmaster Tools for the spam rate Gmail reports, and placement tests of a test email. They measure the sender’s own mail. A prospect’s placement shows in a subscriber’s inbox, which an AI customer holds.',
+          a: 'They help a sender reach the inbox: authentication checks for SPF, DKIM and DMARC, Google Postmaster Tools for the spam rate Gmail reports, and placement tests of a test email. They measure the sender’s own mail. A prospect’s placement shows in a subscriber’s inbox, which a persona holds.',
         },
         {
-          q: 'Do AI customers replace Store Leads or BuiltWith?',
-          a: 'No. A store lead list says which stores fit, and AI customers say what each one sends its customers. Most teams use the list to choose the stores and put the facts back on the same rows.',
+          q: 'Does a persona replace Store Leads or BuiltWith?',
+          a: 'No. A store lead list says which stores fit, and a persona says what each one sends its customers. Most teams use the list to choose the stores and put the facts back on the same rows.',
         },
         {
-          q: 'Does a store know an AI customer signed up?',
-          a: 'It joins through the public sign up any customer uses, so it appears as a subscriber. When an AI customer talks to a person, by chat, email or phone, it says it is an AI. This is not legal advice.',
+          q: 'Does a store know a persona signed up?',
+          a: 'It joins through the public sign up any customer uses, so it appears as a subscriber. When a persona talks to a person, by chat, email or phone, it says it is an AI. This is not legal advice.',
         },
       ],
     },

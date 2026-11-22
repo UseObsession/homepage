@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Delivery monitoring (/recipes/delivery-monitoring). Check your own journeys. The persona version (20 Nov 2026,
+/* Delivery monitoring (/blueprints/delivery-monitoring). Check your own journeys. The persona version (20 Nov 2026,
    James): after every release, new personas you define sign up to your own product (or a client's, with their OK),
    each with its own inbox and phone number and a home connection in a country you sell in. They live your first 14
    days, sleep between messages and wake on each one, and every email, text and login code is timed against when it was
@@ -47,7 +47,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-delivery-monitoring-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'delivery',
     },
   },
@@ -159,6 +159,7 @@ export const recipe: Recipe = {
       {
         q: 'How do I know our welcome emails and login codes arrive?',
         a: 'Delivery monitoring sends new personas through your sign up in each country you sell in, each with its own inbox and a local number. They live your first 14 days and flag any email, text or code that never arrives.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Why 14 days?',
@@ -167,6 +168,7 @@ export const recipe: Recipe = {
       {
         q: 'Are the inboxes and numbers real?',
         a: 'Yes. Each persona has its own inbox and a local number in the country you pick, so a text a network blocks never reaches it either.',
+        link: { label: 'See phone numbers for AI agents', to: '/phone' },
       },
       {
         q: 'Can it check our launch emails and texts?',
@@ -174,17 +176,23 @@ export const recipe: Recipe = {
       },
       { q: 'Does it see our real users’ data?', a: 'No. It sees only what its own personas receive.' },
       { q: 'Can agencies run it for clients?', a: 'Yes, with each client’s OK, each with its own log to forward.' },
+      {
+        q: 'What does Delivery monitoring cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox, a local number and browser hours. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
+      },
     ],
   },
 
   final: {
     heading: 'Find the message your new users never got.',
-    sub: 'Early access includes the API and MCP, set up with the founders.',
+    sub: 'Try it on the Free plan. Your release pipeline can start each run through the API.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-delivery-monitoring-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'delivery',
     },
+    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
   },
 }

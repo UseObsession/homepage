@@ -106,7 +106,10 @@ export const blogLive = posts.length > 0
 /* The reference pages (content/reference.ts): comparisons in the order /compare lists them, alternatives likewise, and
    the glossary A to Z. A page's file is named for the last part of its address (the prerender checks). */
 const REF_ORDER: Record<ReferenceKind, string[]> = {
-  compare: ['exa', 'firecrawl', 'tavily', 'parallel', 'browserbase', 'mailcharts', 'panoramata', 'klue'].map((s) => `/compare/obsession-vs-${s}`),
+  compare: [
+    '/compare/agentmail-twilio-browserbase-e2b',
+    ...['agentmail', 'browserbase', 'exa', 'firecrawl', 'tavily', 'parallel', 'mailcharts', 'panoramata', 'klue'].map((s) => `/compare/obsession-vs-${s}`),
+  ],
   alternatives: ['mailcharts', 'panoramata', 'klue', 'crayon', 'competiscan'].map((s) => `/alternatives/${s}`),
   term: [],
 }

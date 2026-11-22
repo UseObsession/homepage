@@ -32,10 +32,10 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'client-site.com',
       add: 'Add another client',
     },
-    micro: 'Onboarding a limited number of teams. Name up to 5 clients to start with.',
+    micro: 'Free plan, no credit card. Name up to 5 clients to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
-      micro: 'Onboarding a limited number of teams. Early access adds up to 5 clients for you.',
+      micro: 'Free plan, no credit card. We add up to 5 clients for you.',
       help: 'Up to 5 client websites you run or pitch, with the owner’s OK. A persona joins each one and keeps everything it is sent.',
       done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
@@ -47,10 +47,10 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'your-store.com',
       add: 'Add a competitor',
     },
-    micro: 'Onboarding a limited number of teams. Name the store to start with.',
+    micro: 'Free plan, no credit card. Name the store to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
-      micro: 'Onboarding a limited number of teams. Early access adds up to 5 stores for you.',
+      micro: 'Free plan, no credit card. We add up to 5 stores for you.',
       help: 'Yours, a competitor’s, or a client’s with their OK. A persona signs up and leaves a basket, and keeps everything each store sends. Up to 5 in all.',
       done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
@@ -62,10 +62,10 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'Chat page, phone or website',
       add: 'Add another agent',
     },
-    micro: 'Onboarding a limited number of teams. Name the AI agent to start with.',
+    micro: 'Free plan, no credit card. Name the AI agent to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
     free: {
-      micro: 'Onboarding a limited number of teams. Early access adds up to 5 AI agents for you.',
+      micro: 'Free plan, no credit card. We add up to 5 AI agents for you.',
       help: 'Its chat page, phone number or website. Yours, a competitor’s, or a client’s with their OK. A persona asks it what people ask and keeps every answer, word for word. Up to 5.',
       done: 'We’ll email {email} to set up your access, with {list} added for you.',
     },
@@ -77,7 +77,7 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'your-site.com',
       add: 'Add a competitor',
     },
-    micro: 'Onboarding a limited number of teams. Name the site to start with.',
+    micro: 'Free plan, no credit card. Name the site to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   companies: {
@@ -87,7 +87,7 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'competitor.com',
       add: 'Add a company',
     },
-    micro: 'Onboarding a limited number of teams. Name up to 5 companies to start with.',
+    micro: 'Free plan, no credit card. Name up to 5 companies to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   /* A sales team, asked by who they are (lib/join askOf), never by a page. */
@@ -98,7 +98,7 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'account.com',
       add: 'Add an account',
     },
-    micro: 'Onboarding a limited number of teams. Name up to 5 accounts or prospects to start with.',
+    micro: 'Free plan, no credit card. Name up to 5 accounts or prospects to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   api: {
@@ -108,8 +108,8 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'company.com',
       add: 'Add a company',
     },
-    micro: 'Onboarding a limited number of teams to the API and MCP.',
-    done: 'We’ll email {email} to set up API access, with {list} ready.',
+    micro: 'Free plan, no credit card. We set up your API key and MCP with you.',
+    done: 'We’ll email {email} to set up your API key, with {list} ready.',
     none: 'We’ll email {email} to set up API access.',
   },
   any: {
@@ -119,7 +119,7 @@ export const offers: Record<OfferId, Offer> = {
       placeholder: 'company.com',
       add: 'Add a site',
     },
-    micro: 'Onboarding a limited number of teams.',
+    micro: 'Free plan, no credit card. We set up your API key and MCP with you.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   index: {
@@ -193,7 +193,7 @@ export const suggested: Record<string, string[]> = {
 
 export const join = {
   privacy: { text: 'We keep what you tell us to set up your access and email you about Obsession.', link: 'Privacy notice', to: '/privacy' },
-  head: { title: 'You’re on the early access list.', step: (n: number, of: number) => `${n} of ${of}` },
+  head: { title: 'Let’s set up your account.', step: (n: number, of: number) => `${n} of ${of}` },
   role: {
     title: 'What best describes you?',
     help: 'So the rest fits what you do.',
@@ -226,15 +226,15 @@ export const join = {
     },
   },
   recipes: {
-    title: 'What data do you want first?',
+    title: 'What should your agents do first?',
     suggested: 'Suggested for you',
     help: 'Pick any.',
     helpPicked: 'Pick any. We ticked the one you were reading.',
     error: 'Pick at least 1.',
   },
   useCase: {
-    label: 'What do you want to look up, and why?',
-    placeholder: 'Name the companies and the data you need.',
+    label: 'What will your agents do?',
+    placeholder: 'The job, and the pieces or blueprints it needs.',
   },
   actions: { next: 'Continue', back: 'Back', finish: 'Finish', edit: 'Change your answers', resume: 'Finish setting up' },
   done: {
@@ -244,7 +244,7 @@ export const join = {
   },
   saved: { failed: 'Some answers didn’t save.', retry: 'Try again' },
   /* The thank you's list of what they told us. */
-  sum: { you: 'You', site: 'Website', brands: 'To add', agents: 'AI agents', recipes: 'Data' },
+  sum: { you: 'You', site: 'Website', brands: 'To add', agents: 'AI agents', recipes: 'Blueprints' },
   /* Another form on a page where the sign up already happened. */
-  joined: 'You’re on the early access list as {email}.',
+  joined: 'We have your email, {email}, and we’ll set you up.',
 }

@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/trial-limit: the definition query for the caps on a free trial or free plan. The trial teardown recipe
    and the software use case carry the job; this page owns "what is a trial limit". */
@@ -70,7 +69,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For a free trial, that means each limit as it appears inside the product, the prompt that comes with it and every onboarding email, filed by trial day.`,
+      text: 'Obsession’s [Trial teardown](/blueprints/trial-teardown) blueprint signs up for a free trial and logs each limit as it appears inside the product, the prompt that comes with it and every onboarding email, filed by trial day.',
     },
     {
       kind: 'p',

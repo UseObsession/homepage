@@ -97,10 +97,10 @@ const pieces: HomePieces = {
   items: pieceOrder.map((id) => ({ ...PIECES[id], to: piecePaths[id], whole: id === 'personas' })),
 }
 
-/* Every form on Home is the early access form. Its line ("Onboarding a limited number of teams.") is content/join.ts. */
+/* Every form on Home is the early access form. Its line ("Free plan, no credit card.") is content/join.ts. */
 const access = {
   kind: 'waitlist',
-  button: 'Request early access',
+  button: 'Start free',
   interest: 'any',
 } as const
 
@@ -243,11 +243,11 @@ export const page: Page = {
         link: { label: 'See the blueprint', to: '/blueprints/lead-leaks' },
       },
       {
-        name: 'The web behind the login, as data',
-        line: 'Personas sign up and bring back the prices, emails and offers shown only after sign up.',
-        status: 'For data teams',
+        name: 'Price watch',
+        line: 'Check competitors’ member prices and codes every morning, beside the public ones.',
+        status: 'For pricing teams',
         reader: 'developers',
-        link: { label: 'See the use case', to: '/use-cases/web-behind-the-login' },
+        link: { label: 'See the blueprint', to: '/blueprints/price-watch' },
       },
     ],
   },

@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Ad landing check (/recipes/ad-landing-check). Check your own journeys. The persona version (20 Nov 2026, James):
+/* Ad landing check (/blueprints/ad-landing-check). Check your own journeys. The persona version (20 Nov 2026, James):
    each morning a persona you define opens every live ad's landing page as a shopper, straight from the ad's link (so no
    click is paid for), on a phone and a desktop, from a home connection in the country the ad targets, so it sees the
    price and stock a local shopper sees. It records whether the page loads, whether the offer and price match the ad and
@@ -47,7 +47,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-adcheck-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'adcheck',
     },
   },
@@ -157,7 +157,7 @@ export const recipe: Recipe = {
   ],
 
   table: {
-    heading: 'Every ad you pay for, every morning, not the few someone remembers.',
+    heading: 'Every ad you pay for, checked every morning.',
     line: 'By hand, 6 ads’ pages at 5 minutes each is 3.5 hours a week.',
     cols: ['By hand', 'Ad landing check'],
     rows: [
@@ -179,6 +179,7 @@ export const recipe: Recipe = {
       {
         q: 'How does it open each page?',
         a: 'Straight from the ad’s link, on a phone and a desktop, from the country the ad targets. No click is paid for, so your ad numbers stay true.',
+        link: { label: 'See the cloud browser', to: '/browser' },
       },
       { q: 'Does it change our ads?', a: 'No. It reads your ad accounts and changes nothing. Pausing an ad stays with your team.' },
       {
@@ -188,18 +189,25 @@ export const recipe: Recipe = {
       {
         q: 'Can it follow a competitor’s ads?',
         a: 'That’s Ad tracking: the ads competitors run in public, followed to each page, price and code.',
+        link: { label: 'See the blueprint', to: '/blueprints/ad-tracking' },
+      },
+      {
+        q: 'What does Ad landing check cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours on a phone and a desktop, from each ad’s country. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
     ],
   },
 
   final: {
     heading: 'Know every ad you pay for lands on a page that can sell.',
-    sub: 'Early access includes the API and MCP, set up with the founders.',
+    sub: 'Try it on the Free plan. Connect your ad accounts, and the first check runs at 07:00.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-adcheck-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'adcheck',
     },
+    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
   },
 }

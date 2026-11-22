@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/welcome-series: the definition query for the emails a new subscriber gets. "abandoned cart email not
    sending" stays with its post (docs/SEARCH.md §2); this page owns "what is a welcome series". */
@@ -74,7 +73,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For a welcome series, that means every email and text from the first welcome to the last, each with the time it arrived after the sign-up. Each is kept raw with its sender checked, so a code, a late send or an email that never came is on file. For your own store, [look up your store’s emails](/lookup) to see whether a new subscriber gets its welcome, and how fast.`,
+      text: 'Obsession’s [Mystery shopping](/blueprints/mystery-shopper) blueprint signs up as a customer and logs every email and text from the first welcome to the last, each with the time it arrived after the sign-up. A persona’s [inbox](/email) keeps each one raw with its sender checked, so a code, a late send or an email that never came is on file.',
     },
     {
       kind: 'faq',
@@ -100,6 +99,7 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    '/email',
     'welcome-email-series-best-practices',
     '/glossary/triggered-flow',
     '/glossary/abandoned-cart-email',

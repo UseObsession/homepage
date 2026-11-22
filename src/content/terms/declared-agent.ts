@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/declared-agent. /agents owns "declared AI agent" and defines it for Obsession's own agents (docs/SEARCH.md
    §2); this page defines the general term and links /agents with that phrase as the anchor. */
@@ -54,7 +53,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'obsession', text: 'Where Obsession’s agents fit' },
     {
       kind: 'p',
-      text: `${ENTITY} Every Obsession agent is a [declared AI agent](/agents): it says it’s an AI agent from Obsession when it talks to a person, links to the page that explains it, never gets round a CAPTCHA or a bot block, and keeps every receipt as it arrived. Who asked for the visit stays private unless they choose to be named.`,
+      text: 'Every Obsession agent runs as a [persona](/personas), an AI agent with its own inbox, number and browser under one name. Each is a [declared AI agent](/agents): it says it’s an AI agent from Obsession when it talks to a person, links to the page that explains it and never gets round a CAPTCHA or a bot block.',
     },
     {
       kind: 'faq',
@@ -77,6 +76,7 @@ export const ref: ReferencePage = {
   ],
   sources: [],
   related: [
+    '/personas',
     '/agents',
     '/glossary/web-bot-auth',
     '/glossary/login-wall',

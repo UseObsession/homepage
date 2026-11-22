@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Ad tracking (/recipes/ad-tracking). Watch other companies. Screen: ads.
+/* Ad tracking (/blueprints/ad-tracking). Watch other companies. Screen: ads.
    The persona version (20 Nov 2026): a persona in the reader's country reads the ads competitors run in public each
    morning and follows each one to the page, price and code behind it, on phone and desktop. Where an ad offers a code
    for signing up, the persona signs up and keeps what arrives. Each page is opened directly, so no click is paid for.
@@ -46,7 +46,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-ad-tracking-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'ads',
     },
   },
@@ -79,7 +79,7 @@ export const recipe: Recipe = {
     ],
     finding: 'Competitor A started 9 ads overnight, led by a free gift and a gift set £2 under yours.',
     fix: 'Posted to #pricing in Slack, with the ad and its page side by side.',
-    ledger: 'Every ad and page screenshotted on phone and desktop. Each page opened directly, so nobody paid for a click.',
+    ledger: 'Every ad and page screenshotted on phone and desktop. Each page opened directly, so no click was paid for.',
   },
 
   steps: [
@@ -154,33 +154,45 @@ export const recipe: Recipe = {
     heading: 'Nobody pays for a click. Every offer is dated, with its screenshot.',
     items: [
       {
-        q: 'How do I see what happens after a competitor’s ad, not only the ad?',
+        q: 'How do I see the page and offer behind a competitor’s ad?',
         a: 'Ad tracking’s persona opens the page each public ad points to on phone and desktop, signs up where the ad offers a code, and keeps the offer behind every ad, dated.',
       },
       {
         q: 'Does Ad tracking click on paid ads?',
         a: 'No. It reads the ads in the public ad libraries and opens each landing page from its link, so nobody pays for a click.',
+        link: { label: 'See the cloud browser', to: '/browser' },
       },
       {
         q: 'Does it sign up at competitors?',
         a: 'Where an ad offers a code for signing up, yes, so you see what a new subscriber gets. The persona has its own inbox, and who asked is never shown.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
       },
-      { q: 'Can it check our own ads?', a: 'That’s Ad landing check: every live ad of yours, opened from its link each morning.' },
+      {
+        q: 'Can it check our own ads?',
+        a: 'That’s Ad landing check: every live ad of yours, opened from its link each morning.',
+        link: { label: 'See the blueprint', to: '/blueprints/ad-landing-check' },
+      },
       {
         q: 'How many brands can it follow?',
         a: 'As many as you name, every morning, for as long as you need. Run one, or a fleet of thousands.',
+      },
+      {
+        q: 'What does Ad tracking cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours, and an inbox where an ad offers a code. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
     ],
   },
 
   final: {
     heading: 'See the offer behind your competitors’ ads.',
-    sub: 'Tell us which competitors to follow. We’ll set up the first personas with you.',
+    sub: 'Try it on the Free plan. Name your competitors, and the first read runs the next morning.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-ad-tracking-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'ads',
     },
+    link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
   },
 }

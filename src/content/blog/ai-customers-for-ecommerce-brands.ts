@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
 
 /* The why series, Spec A (24 Oct 2026): why ecommerce brands need AI customers. It owns "ai agents for ecommerce"
    (primary) and the secondary phrasings from Google autocomplete (US and UK, 24 Oct): ai agents for ecommerce business,
@@ -24,7 +23,7 @@ import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
    Otterly.AI stands for AI visibility tools.
    Left out on purpose: Gartner, ChatGPT agent, Workato, Grep, any PilotX audit figure, the site's 93% and 128 stores,
    the brand personas' sales lines, Reddit quotes (not re-openable), Klaviyo's "42% of GMV" wording (the newsroom page
-   says 42% of total revenue), any Obsession price. oakhaven.example, its rival and every figure in both illustrations
+   says 42% of total revenue), any Obsession price (22 Nov: the toolkit position, prices.ts). oakhaven.example, its rival and every figure in both illustrations
    are invented. No dashes. */
 
 const GORGIAS = 'https://www.gorgias.com/ai-agent'
@@ -69,7 +68,7 @@ export const post: BlogPost = {
   description:
     'AI agents for ecommerce that shop as customers: what a store and its competitors send new customers, and what a silent flow costs before Black Friday.',
   answer:
-    'Ecommerce brands use AI agents for ecommerce that shop as customers because much of their revenue runs through automated emails, texts, codes and reminders that can stop working without raising an error, and a customer sees the failure first. An agent that is a real customer of the store and its competitors, and asks AI assistants what shoppers ask, keeps what it receives as evidence, every week and after every change. Obsession keeps what any store shows only to its customers, yours and every competitor’s, from the welcome code to the basket reminder, each dated with the email or screenshot.',
+    'Ecommerce brands use AI agents for ecommerce that shop as customers because much of their revenue runs through automated emails, texts, codes and reminders that can stop working without raising an error, and a customer sees the failure first. An agent that is a real customer of the store and its competitors, and asks AI assistants what shoppers ask, keeps each email, text and answer it receives, dated, every week and after every change. Obsession’s Mystery shopping blueprint does it with a persona, an AI agent with its own inbox, number and browser, and every email, code and reminder lands dated in one event log.',
   primaryKeyword: 'ai agents for ecommerce',
   keywords: [
     'ai agents for ecommerce business',
@@ -82,7 +81,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   order: 12,
   authors: [
@@ -93,7 +92,7 @@ export const post: BlogPost = {
     art: {
       kind: 'log',
       title: 'oakhaven.example · the run up to Black Friday',
-      who: 'The store’s AI customer, and 1 at a competitor, 17 to 25 November',
+      who: 'A persona at the store, and 1 at a competitor, 17 to 25 November',
       status: { tone: 'fail', text: '2 failed, 1 late' },
       rows: [
         { time: 'Tue 17 Nov', text: 'Teaser email arrives', detail: 'Early access from Thursday, Promotions tab', tone: 'ok' },
@@ -110,7 +109,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Founders, heads of ecommerce, and growth and CRM leads at Shopify and direct to consumer brands can use AI customers to see their store as its customers do, from the sign up to what AI assistants say about it.',
+      text: 'Founders, heads of ecommerce, and growth and CRM leads at Shopify and direct to consumer brands can send AI agents as customers to see their store as its customers do, from the sign up to what AI assistants say about it.',
     },
     {
       kind: 'p',
@@ -118,7 +117,7 @@ export const post: BlogPost = {
         GORGIAS +
         ') sells, supports and engages customers 24/7, and [Shopify’s Sidekick](' +
         SIDEKICK +
-        ') is an AI commerce assistant that works with a store’s own data. An AI customer works for your company from the customer’s side, and [what AI customers are](/blog/ai-customers) defines the term in full. The case for every company is in [why AI customers matter](/blog/why-ai-customers-matter).',
+        ') is an AI commerce assistant that works with a store’s own data. An agent as a customer works for your company from the customer’s side, and [AI agents as customers](/blog/ai-customers) sets out what one sees. The case for every company is in [why every company needs one](/blog/why-ai-customers-matter).',
     },
     {
       kind: 'p',
@@ -255,7 +254,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Set the saving against what checking costs. Checking those 4 flows daily by hand, at 15 minutes each, takes 30 hours a month, which is $13,633 a year at [$37.87 an hour](' +
         BLS +
-        '), the 2025 US median pay for market research analysts. On the example, it breaks even at 1.2 to 2.4 breaks a year. What AI customers cost to run, line by line at published prices, is in [AI customers at scale](/blog/ai-customers-at-scale).',
+        '), the 2025 US median pay for market research analysts. On the example, it breaks even at 1.2 to 2.4 breaks a year. What agents cost to run, line by line at published prices, is in [the cost guide](/blog/ai-customers-at-scale).',
     },
 
     { kind: 'h2', id: 'workload', text: 'Shopify website monitoring by hand' },
@@ -288,7 +287,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `A store that runs these checks as a routine is practising [customer-side observability](/blog/customer-side-observability). ${CUSTOMER_SIDE_OBSERVABILITY.definition} For a store, it rests on 3 things:`,
+      text: 'A routine of these checks, set out in full in [the guide to testing from the customer’s side](/blog/customer-side-observability), rests on pass marks, a cadence and an owner for each fail:',
     },
     {
       kind: 'list',
@@ -301,24 +300,24 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'what-ai-customers-do', text: 'AI agents for ecommerce: what AI customers do' },
+    { kind: 'h2', id: 'what-ai-customers-do', text: 'AI agents for ecommerce: what an agent does as a customer' },
     {
       kind: 'p',
-      text: `**${AI_CUSTOMER.definition}** It receives what any new customer receives, at the store and at every competitor. AI customers working for your company do 5 jobs for a store, each with a check, a pass mark and an action for that week.`,
+      text: '**An AI agent as a customer signs up, fills a basket and asks questions at a store the way any customer can, and keeps what the store sends, dated.** It receives what any new customer receives, at the store and at every competitor. Agents working for your company do 5 jobs for a store, each with a check, a pass mark and an action for that week.',
     },
     {
       kind: 'table',
-      caption: 'The jobs AI customers do for a store, with the blueprint that runs each one',
+      caption: 'The jobs an agent does for a store as a customer, with the blueprint that runs each one',
       cols: ['Job', 'The check', 'A pass', 'That week'],
       rows: [
         [
-          'Your journeys after every change: [Website audit](/blueprints/website-audit)',
+          'Your journeys after every change: [QA on your own flows](/blueprints/website-audit)',
           'Sign up, use the code, leave a basket, stop at checkout',
           'Every email on time, with the right code and product',
           'The step’s owner fixes it, and the journey runs again',
         ],
         [
-          'Every journey end to end: [Mystery shopper](/blueprints/mystery-shopper)',
+          'Every journey end to end: [Mystery shopping](/blueprints/mystery-shopper)',
           'From the first click to the last email, on a phone and a laptop',
           'Every promise kept, each step timed',
           'Fails ranked by revenue a day',
@@ -345,7 +344,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs these jobs today. It keeps what any company shows only to its customers, each dated with the email or screenshot, for as long as you follow the company, and for a store that means what a real customer gets after the sign up, the click and the checkout, at the store and at every competitor. Its agents say they are AI whenever they talk to a person, never use fake payment details, and place a real order only on a card your company funds.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to. Each job in the table is a blueprint: a persona shops your store and every competitor, and each email, code and price lands in your event log, dated. Its agents say they’re AI when they talk to a person, stop before payment unless given the customer’s own card and never use fake payment details.',
     },
 
     { kind: 'h2', id: 'next', text: 'What changes in 2026 and 2027' },
@@ -374,7 +373,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each change adds a reader or a rule that a store’s own reports don’t follow, and each is checked the way a welcome email is: write down what the store’s pages say, act as a customer would, and compare. AI customers repeat that every week and after every change, so a wrong price in an AI answer or a dead code after a discount change is found the week it starts. The Shopify settings to review and a readiness test are in [agentic commerce for merchants](' +
+      text: 'Each change adds a reader or a rule that a store’s own reports don’t follow, and each is checked the way a welcome email is: write down what the store’s pages say, act as a customer would, and compare. An agent as a customer repeats that every week and after every change, so a wrong price in an AI answer or a dead code after a discount change is found the week it starts. The Shopify settings to review and a readiness test are in [agentic commerce for merchants](' +
         AGENTIC +
         ').',
     },
@@ -441,23 +440,23 @@ export const post: BlogPost = {
           'One off checks of a page or form',
         ],
         [
-          'Obsession (ours): [Website audit](/blueprints/website-audit), [Mystery shopper](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Listings and AI answers](/blueprints/listings-ai-answers)',
-          'What your store and its competitors show new customers, every email, code and price dated with proof',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
-          'What a real customer gets after sign up, click and checkout, kept as proof',
+          'Obsession (ours): [QA on your own flows](/blueprints/website-audit), [Mystery shopping](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Listings and AI answers](/blueprints/listings-ai-answers)',
+          'What your store and its competitors show new customers, every email, code and price dated in one event log',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment, and at CAPTCHAs and bot blocks',
+          'What a new customer gets after sign up, click and checkout, dated',
         ],
       ],
     },
 
-    { kind: 'h2', id: 'when-not', text: 'When a store doesn’t need AI customers' },
+    { kind: 'h2', id: 'when-not', text: 'When a store can skip an agent as a customer' },
     {
       kind: 'list',
       items: [
         '**A store that rarely changes,** runs no paid traffic and has 1 or 2 flows. A new address, a phone and a sheet, once a month and after every change, cover it.',
         '**Uptime at every hour.** A scripted monitor alerts within minutes when a page or the cart goes down.',
         '**A brand that sells mainly through marketplaces or wholesale** and sends no flows of its own. Its customers’ messages come from someone else’s systems.',
-        '**Last year’s competitor campaigns.** An AI customer holds what arrives from the day it joins, so earlier emails need an archive that already covered the brand.',
+        '**Last year’s competitor campaigns.** A persona holds what arrives from the day it joins, so earlier emails need an archive that already holds them.',
       ],
     },
 
@@ -477,13 +476,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What any store sends a new customer after a sign-up, a basket and a checkout, yours and every competitor’s, each message dated with the email or screenshot.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
-    },
-    {
-      kind: 'p',
-      text: 'The quickest first step is the [store lookup](/lookup). Type an email at your online store’s own address. If your store is in the index, its entry comes to that inbox, with every email after a sign-up, a basket and a checkout beside every other store.',
+      text: 'What your store and every competitor send a new customer after a sign-up, a basket and a checkout. Mystery shopping runs it every week, each message dated with the email or screenshot.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI agents for ecommerce' },
@@ -492,15 +487,15 @@ export const post: BlogPost = {
       items: [
         {
           q: 'What are AI agents for ecommerce?',
-          a: 'AI agents for ecommerce are AI systems that do work for or around an online store. Most work for the store, such as support agents that answer shoppers. AI customers work on the customer’s side, shopping the store and its competitors as new customers and keeping what arrives as evidence.',
+          a: 'AI agents for ecommerce are AI systems that do work for or around an online store. Most work for the store, such as support agents that answer shoppers. AI agents as customers work on the customer’s side, shopping the store and its competitors as new customers and keeping what arrives, dated.',
         },
         {
           q: 'How can AI agents help an ecommerce business?',
-          a: 'They answer shoppers, draft campaigns and handle admin. AI customers add the customer’s view: whether each email, text, code and reminder arrives as promised, what competitors offer and what AI assistants say.',
+          a: 'They answer shoppers, draft campaigns and handle admin. An agent as a customer adds the customer’s view: whether each email, text, code and reminder arrives as promised, what competitors offer and what AI assistants say.',
         },
         {
           q: 'What AI tools should a Shopify store use?',
-          a: 'One per job: a support agent for customer questions, Shopify’s Sidekick for admin tasks, an uptime monitor for the pages, and AI customers for what shoppers receive after the sign up.',
+          a: 'One per job: a support agent for customer questions, Shopify’s Sidekick for admin tasks, an uptime monitor for the pages, and an agent as a customer, such as Obsession’s Mystery shopping blueprint, for what shoppers receive after the sign up.',
         },
         {
           q: 'How do I monitor my Shopify website?',

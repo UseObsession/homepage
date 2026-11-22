@@ -1,10 +1,20 @@
+import { plans } from '../prices'
 import type { UseCaseStudy } from '../types'
 
-/* Funnel QA for CRO agencies (/use-cases/funnel-qa-for-cro-agencies), 9 Nov rewrite: the record of what each brand's
-   funnel shows and sends after a sign-up (the pop-up's offer, the welcome email and its code, the reminders, the texts),
-   dated, before the pitch and before and after every test, by Search, Insights, a table or a webhook. 1 brand carries
-   the 10 steps (Ferrow Coffee, invented, at a .example address); the only real facts are our 1,500 runs and Brand G.
-   Drawn by src/pages/CroAgencies.tsx, which keeps the app windows' rows and numbers. */
+/* Funnel QA for CRO agencies (/use-cases/funnel-qa-for-cro-agencies), rewritten 22 Nov 2026 for the toolkit position: a
+   persona goes through each brand's pop-up, waits for the email and takes the code to checkout, before the pitch and
+   every morning a test is live. It runs on email, phone and the browser, through the Mystery shopping, QA on your own
+   flows and Ad landing check blueprints. 1 brand carries the 10 steps (Ferrow Coffee, invented, at a .example address);
+   Brand G is the only real run. Drawn by src/pages/CroAgencies.tsx (3 phases of 4, 2 and 4, so the step count stays),
+   which keeps the app windows' rows and numbers. The film is left off: it closed on a free offer. */
+
+const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
+const orList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} or ${items[items.length - 1]}`)
+
+const sub =
+  'Obsession, the toolkit for AI agents, sends a persona through each brand’s pop-up. A persona is an AI agent with its own inbox, number and browser under one name. It signs up, waits for the welcome email and takes the code to checkout, before the pitch and every morning a test is live.'
+
+const answer = `${sub} Mystery shopping, QA on your own flows and Ad landing check run it, and each result lands in Slack, a Google Sheet or your webhook.`
 
 export const study: UseCaseStudy = {
   name: 'Funnel QA for CRO agencies',
@@ -12,11 +22,10 @@ export const study: UseCaseStudy = {
 
   meta: {
     path: '/use-cases/funnel-qa-for-cro-agencies',
-    title: 'Funnel QA for CRO agencies: from the pop-up to checkout',
+    title: 'Funnel QA for CRO agencies: pop-up to checkout, as a shopper',
     description:
-      'What each brand’s funnel sends after the sign-up: the pop-up’s code, the welcome email, basket and checkout reminders, each dated, before and after a test.',
-    answer:
-      'Obsession collects what each brand’s funnel shows and sends after a sign-up: the pop-up’s offer, the welcome email and its code, the basket and checkout reminders and the texts. Each one is dated, with the email itself and the time it arrived. CRO agencies look up a prospect before the pitch, and check every test variant before launch and each morning it’s live.',
+      'A persona signs up through each brand’s pop-up, waits for the email and tries the code at checkout, before the pitch and every morning a test is live.',
+    answer,
     ogImage: '/og/funnel-qa-for-cro-agencies.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -27,10 +36,8 @@ export const study: UseCaseStudy = {
   },
 
   hero: {
-    pill: 'Early access',
     headline: 'What each brand’s funnel sends, before and after every test.',
-    sub: 'The pop-up’s offer, the welcome email and its code, the basket and checkout reminders and the texts, at every brand you pitch or test. Each one dated, with the email itself and the time it arrived.',
-    video: { youtube: 'g7w1gAbIAWc', label: 'Watch how it works', title: 'Funnel QA for CRO agencies: how it works' },
+    sub,
     example: { chips: [] },
     flow: [
       {
@@ -41,9 +48,9 @@ export const study: UseCaseStudy = {
       },
       {
         label: 'Obsession',
-        title: 'A new account at each brand',
+        title: 'A persona at each brand',
         items: ['From the page behind a live ad', 'Its own inbox and number', 'Its own browser, on mobile', 'New customer · US'],
-        foot: 'Every message, dated',
+        foot: 'Every message, dated, in the event log',
       },
       {
         label: 'Back to you',
@@ -55,40 +62,41 @@ export const study: UseCaseStudy = {
     capture: {
       kind: 'waitlist',
       source: 'usecase-cro-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'mystery',
     },
+    secondary: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
   },
 
   /* The 10 steps, in the 3 phases the page draws them in. Each step's app window is in the page. */
   how: {
-    heading: 'The pitch, the test and the readout, from 1 record.',
-    sub: 'How an agency looks up Ferrow Coffee’s funnel, wins the account and checks every variant it tests.',
+    heading: 'The pitch, the test and the readout, from one event log.',
+    sub: 'How an invented agency checks Ferrow Coffee’s funnel, wins the account and tests every variant.',
     steps: [
       {
         title: 'Before the pitch',
         line: 'Steps 1 to 4',
         steps: [
           {
-            title: 'Look up the brands you’ll pitch',
-            line: 'Paste a list, upload a CSV, connect Clay or call the API. A brand already in the index returns its record at once. One that isn’t, you Watch.',
-            example: 'The agency pastes the 12 brands in November’s pipeline. 8 are in the index. Ferrow Coffee and 3 others aren’t, so it watches them. Ferrow’s founder has a call booked for Thursday.',
+            title: 'Name the brands you’ll pitch',
+            line: 'Paste a list, upload a CSV, connect Clay or call the API. Each brand gets its own persona.',
+            example: 'The agency pastes the 12 brands in November’s pipeline. Ferrow Coffee’s founder has a call booked for Thursday.',
           },
           {
             title: 'Choose who signs up, and where',
             line: 'Pick the customer profile and country, where the visit starts and what it does. Each step has its own deadline, so a missing email counts once its time is up.',
-            example: 'New customer · US, on mobile. Start from the page behind each live ad, sign up through the pop-up, take the code to checkout. Each new fact goes by webhook to #new-business.',
+            example: 'New customer · US, on mobile. Start from the page behind each live ad, sign up through the pop-up, take the code to checkout. Each result goes by webhook to #new-business.',
           },
           {
-            title: 'A new account at each brand',
-            line: 'Its own inbox, mobile number and browser, for that brand only. It opens the page behind the live ad from the ad’s own link, so no click is paid for, signs up and keeps a screenshot of every step.',
+            title: 'A persona at each brand',
+            line: 'Its own inbox, mobile number and browser, for that brand only. It opens the page behind the live ad from the ad’s own link, so no click is paid for, then signs up and screenshots every step.',
             example: 'Ferrow Coffee, 10:12 on Monday 2 Nov: opened the page behind its “20% off your first bag” ad and signed up through the pop-up on mobile. The pop-up offered 15%.',
           },
           {
-            title: '1 question across the pipeline',
-            line: 'Ask Insights across the list and get a report with a row per brand: the offer against the ad, what showed on screen, the minutes to the first email and the code at checkout.',
+            title: 'The pipeline, side by side',
+            line: 'A report with a row per brand: the offer against the ad, what showed on screen, the minutes to the first email and the code at checkout.',
             example:
-              '“Which of November’s brands lose the code after the pop-up?” 4 pop-ups didn’t match the ad, 6 sent no email within an hour and 3 codes were rejected at checkout. 6 have 2 or more leaks, Ferrow Coffee among them.',
+              '4 pop-ups didn’t match the ad, 6 sent no email within an hour and 3 codes were rejected at checkout. 6 have 2 or more leaks, Ferrow Coffee among them.',
           },
         ],
       },
@@ -98,13 +106,13 @@ export const study: UseCaseStudy = {
         steps: [
           {
             title: 'A slide for the teardown',
-            line: 'Each brand’s record as a slide: the ad, the pop-up, the email and the checkout, each dated, on 1 link anyone can open, the brand included.',
+            line: 'Each brand’s result as a slide: the ad, the pop-up, the email and the checkout, each dated, on 1 link anyone can open, the brand included.',
             example:
               'Ferrow Coffee: the ad said 20% off, the pop-up 15%. The welcome email came 7 hours later, and FERROW15 was rejected at checkout on a subscription.',
           },
           {
             title: 'The prospect beside its competitors',
-            line: 'Look up its competitors the same way, so the pitch shows the brand’s sign-up next to theirs.',
+            line: 'Give its competitors a persona too, so the pitch shows the brand’s sign-up next to theirs.',
             example:
               'Ferrow’s first email came after 7 hours. Its 5 competitors averaged 4 minutes. Only Ferrow’s code fails on a subscription, and none of the 6 shows its code on screen.',
           },
@@ -116,7 +124,7 @@ export const study: UseCaseStudy = {
         steps: [
           {
             title: 'Every variant, before launch',
-            line: 'Give it each variant’s preview link. Before launch, a new account signs up through every variant on mobile and desktop, waits for the email and takes the code to checkout.',
+            line: 'Give it each variant’s preview link. Before launch, a new persona signs up through every variant on mobile and desktop, waits for the email and takes the code to checkout.',
             example:
               'Ferrow signs, and 3 quick wins ship that week: the pop-up matches the ad, the welcome email sends at once and the code works on a subscription. Test 1 shows the code on screen. The night before launch, both variants’ emails come within a minute and both codes work.',
           },
@@ -127,8 +135,8 @@ export const study: UseCaseStudy = {
               'Friday 20 Nov, day 5 of test 1: B is ahead on opt-in rate, not yet significant. After an overnight update to the pop-up app, B takes the email and gives no code. Fixed by 09:00, and the 26 hours since the last good check are left out of both arms.',
           },
           {
-            title: 'Before and after, on record',
-            line: 'The client’s funnel stays watched from the page behind its live ads: the pop-up, the email and the code. The record from the pitch is the before, from day 1.',
+            title: 'Before and after, in the event log',
+            line: 'The client’s funnel stays checked from the page behind its live ads: the pop-up, the email and the code. The check from the pitch is the before, from day 1.',
             example: 'Ferrow, from the pitch to Cyber Monday: the first email from 7 hours to 38 seconds, and a code that works on a subscription.',
           },
           {
@@ -154,25 +162,24 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'QA stops at the submit',
-        line: 'Waiting for the email and trying the code at checkout, on every variant, every morning a test is live, is a strategist’s whole week. So nobody does it.',
+        line: 'Waiting for the email and trying the code on every variant, every morning a test is live, is a strategist’s whole week.',
       },
     ],
-    answer:
-      'Obsession keeps the record of what each brand sends after the sign-up, dated, with the email itself and the time it arrived, before anyone hands you a login.',
+    answer: 'Obsession keeps a persona at each brand, so you see what it sends after the sign-up before anyone hands you a login.',
   },
 
   fit: {
     heading: 'Your audit covers the page. Obsession covers what comes after.',
     line: 'Nothing changes in how you research, test or report. Your team still owns the hypothesis, the test and the call.',
     items: [
-      { title: 'Search', line: 'One brand: its facts, the emails and screenshots behind them, and its record.' },
-      { title: 'Insights', line: 'One question across your pipeline, answered as a report with a row per brand.' },
-      { title: 'Where you work', line: 'Columns in Clay or Google Sheets, a webhook to Slack, the API or MCP.' },
+      { title: 'One brand', line: 'Its pop-up, its emails and the screenshot behind each step, in your event log.' },
+      { title: 'Your pipeline', line: 'A report with a row per brand, every week or every morning a test is live.' },
+      { title: 'Where you work', line: 'Columns in Clay or Google Sheets, Slack or a webhook.' },
     ],
   },
 
   outputs: {
-    heading: 'What you do with the record.',
+    heading: 'From the first teardown to the monthly readout.',
     groups: [
       {
         items: [
@@ -205,11 +212,11 @@ export const study: UseCaseStudy = {
     ],
   },
 
-  /* Our own runs, right after the invented pipeline: the count Home uses, and Brand G, the 1 real record (content/sample.ts),
-     fact for fact. `shop` is required by the type and is not drawn on this page. */
+  /* The real run, right after the invented pipeline: Brand G (content/sample.ts), fact for fact. `shop` is required by
+     the type and is not drawn on this page. */
   found: {
-    heading: '1,500 sign-ups, baskets and checkouts run at real companies, and counting.',
-    line: 'Brand G, a real skincare store, checked in September: what came after each step, and what never came.',
+    heading: 'A real store, checked the same way in September.',
+    line: 'Brand G, a UK skincare store: what came after each step, and what never came.',
     items: [
       {
         label: 'Brand G · Basket left',
@@ -230,65 +237,59 @@ export const study: UseCaseStudy = {
         shop: 'ferula',
       },
     ],
-    cta: { label: 'See the sample data', to: '/sample-output' },
+    cta: { label: 'See sample data', to: '/sample-output' },
   },
 
-  /* The 3 recipes the page runs (before the pitch, every test, every ad), and the 1 real run. */
+  /* The 3 blueprints the page runs (before the pitch, every test, every ad), and the 1 real run. */
   more: {
     recipe: {
       label: 'Before the pitch',
-      title: 'Prospect intelligence',
-      line: 'What each brand on your list sends after the sign-up.',
-      cta: { label: 'Learn more', to: '/blueprints/prospect-intelligence' },
+      title: 'Mystery shopping',
+      line: 'A persona signs up through each brand’s pop-up and logs every email, text and code.',
+      cta: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
     },
     second: {
       label: 'Every test',
-      title: 'Website audit',
-      line: 'A new sign-up after every release or every morning, with a screenshot of any break.',
-      cta: { label: 'Learn more', to: '/blueprints/website-audit' },
+      title: 'QA on your own flows',
+      line: 'A new persona through every variant after each release or each morning, with a screenshot of any break.',
+      cta: { label: 'See the blueprint', to: '/blueprints/website-audit' },
     },
     third: {
       label: 'Every ad',
       title: 'Ad landing check',
-      line: 'Every live ad’s page, opened from its link each morning.',
-      cta: { label: 'Learn more', to: '/blueprints/ad-landing-check' },
+      line: 'Every live ad’s page each morning: it loads, matches the ad’s offer and has stock.',
+      cta: { label: 'See the blueprint', to: '/blueprints/ad-landing-check' },
     },
     sample: {
       label: '1 real run',
       title: 'Sample data',
       line: 'Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.',
-      cta: { label: 'See it', to: '/sample-output' },
+      cta: { label: 'See sample data', to: '/sample-output' },
     },
   },
 
-  fine: 'The agency, the brands and their .example addresses, the people, the ads, the test, the phone number and every figure on their screens are made up. The 1,500 runs and Brand G’s record are real. Clay, Google Sheets and Slack are trademarks of their owners.',
+  fine: 'The agency, the brands and their .example addresses, the people, the ads, the test, the phone number and every figure on their screens are made up. Brand G is a real store, its name hidden. Clay, Google Sheets and Slack are trademarks of their owners.',
 
   faq: {
     heading: 'What CRO agencies ask.',
     items: [
       {
         q: 'What does Obsession do for CRO agencies?',
-        a: 'Obsession collects what each brand’s funnel shows and sends after a sign-up: the pop-up’s offer, the welcome email and its code, the basket and checkout reminders and the texts. Each one is dated, with the email itself and the time it arrived. CRO agencies look up a prospect before the pitch, and check every test variant before launch and each morning it’s live.',
+        a: answer,
+        link: { label: 'See the blueprint', to: '/blueprints/mystery-shopper' },
       },
       {
         q: 'We do conversion, not email. Why does this matter to us?',
-        a: 'Because the conversion isn’t finished at the sign-up. A code that never comes, or one rejected at checkout, loses the first order from paid visitors who already gave their email. That’s CVR and revenue per visitor, in the step neither your audit nor your testing tool can see.',
+        a: 'Because the conversion isn’t finished at the sign-up. A code that never comes, or one rejected at checkout, loses the first order from paid visitors who already gave their email. That’s conversion rate and revenue per visitor, in the step neither your audit nor your testing tool can see.',
+      },
+      {
+        q: 'Which pieces does it use?',
+        a: 'Email, phone and the browser, under 1 persona per brand. Mystery shopping runs the pitch, QA on your own flows runs every variant and Ad landing check runs every ad, on the same key and bill.',
+        link: { label: 'Check your own sign-up and AI agents', to: '/kits/test-sign-up-and-agents' },
       },
       {
         q: 'Can’t we sign up with a spare inbox?',
-        a: 'A VA can sign up through 12 pop-ups in an afternoon. Obsession keeps every account open, tries each code on a subscription the minute it lands, keeps each email as it arrived with its headers, and does it again every morning a test is live, across your whole pipeline.',
-      },
-      {
-        q: 'Where does the data come from?',
-        a: 'From real accounts. Obsession’s agents sign up through each brand’s pop-up the way any customer can, from the customer profiles and countries you choose, and keep each account open for months. Every email is kept as it arrived, with its sender checked.',
-      },
-      {
-        q: 'What if a brand isn’t in the index yet?',
-        a: 'Click Watch. Obsession signs up from the page behind its live ad, as the customer profile and country you pick, and keeps the account open. What it is sent joins the brand’s record the day it arrives. A brand already covered returns its history at once.',
-      },
-      {
-        q: 'What counts as a leak?',
-        a: 'Anything a new customer should get and doesn’t, by a deadline you set: a pop-up off the ad’s offer, nothing on screen after the sign-up, no email within the hour, the promised code missing, a code rejected at checkout, a link to a closed store.',
+        a: 'A VA can sign up through 12 pop-ups in an afternoon. A persona keeps every account open, tries each code on a subscription the minute it lands and keeps each email with its headers. It does it again every morning a test is live, across your whole pipeline.',
       },
       {
         q: 'Does it click the brand’s ads?',
@@ -300,41 +301,34 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Do our clients have to agree?',
-        a: 'Yes. A client’s store is checked with the client’s OK, and they install nothing. A brand you’re about to pitch you can look up before the call.',
-      },
-      {
-        q: 'Will a brand or another agency know who’s asking?',
-        a: 'No. Anyone can see that a brand is covered, and since when, but never who asked. Your list, your settings and your slides stay yours.',
-      },
-      {
-        q: 'Can the slide go out under our name?',
-        a: 'Yes. The slide carries your name and logo. The evidence link opens on a page anyone can check, under Obsession’s name or, with white label, yours.',
+        a: 'Yes. A client’s store is checked with the client’s OK, and they install nothing. A brand you’re about to pitch is signed up to the way any customer can.',
       },
       {
         q: 'How many brands can it cover?',
-        a: 'Your whole pipeline and every client at once: a list of 1,000 brands is looked up in one go, and each account stays open for months.',
+        a: 'Your whole pipeline and every client at once. A list of 1,000 brands runs in one go, and each persona stays for months.',
       },
       {
-        q: 'Does it buy anything?',
-        a: 'If you choose. A code check stops at checkout. A real order goes on a card you fund, never on fake payment details.',
+        q: 'What does it cost?',
+        a: `Start on the Free plan, with no credit card. Paid plans are ${orList(fees)} a month, and a blueprint is billed on the pieces it uses.`,
+        link: { label: 'See pricing', to: '/pricing' },
       },
       {
-        q: 'Is it legal?',
-        a: 'Obsession does only what any customer can, on the pages and forms anyone can use. It says it’s an AI when it talks to a person, never uses fake payment details and never signs in to an account that isn’t its own. Any company can opt out at useobsession.com/agents. This isn’t legal advice.',
+        q: 'Is it legal, and does it buy anything?',
+        a: 'A persona does only what any customer can, on the pages and forms anyone can use. It says it’s an AI when it talks to a person and stops before payment unless given your own card. It never uses fake payment details, never gets round a CAPTCHA or a bot block, stops at any identity check and never clicks paid ads at volume. This isn’t legal advice.',
         link: { label: 'Is it legal to sign up to a competitor?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
       },
     ],
   },
 
   final: {
-    heading: 'Which brands should we look up first?',
-    sub: 'Early access includes API and MCP access, lookups of every company already covered, and up to 5 companies added for you, set up with the founders.',
+    heading: 'See what every brand you pitch sends after its pop-up.',
+    sub: 'The same persona checks every test you run, so you can see it in conversion rate, pitches won and clients kept.',
     capture: {
       kind: 'waitlist',
       source: 'usecase-cro-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'mystery',
     },
-    link: { label: 'See how agencies use Obsession', to: '/agencies' },
+    link: { label: 'See the kit', to: '/kits/test-sign-up-and-agents' },
   },
 }

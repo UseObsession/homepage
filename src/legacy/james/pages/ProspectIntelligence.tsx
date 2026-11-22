@@ -7,7 +7,7 @@ import { at } from '../components/stagger'
 import { Count, Play, Step, Win } from '../components/UseCase'
 import { allRecipeIds, recipes, type RecipeId } from '../content/recipes'
 
-/* Use case (9 Nov rewrite): an outbound agency gets a column of facts on its client's Clay rows, what each brand emails
+/* Use case (22 Nov rewrite): an outbound agency gets a column of facts on its client's Clay rows, what each brand emails
    and texts a new customer and what never came, each dated with a screenshot. The agency, client, brands, people and
    numbers are made up, and the small print says so. The hero's headline and sub, the questions and the small print come
    from the content file (content/usecases), whose hero.flow mirrors the flow here. */
@@ -94,15 +94,15 @@ export function ProspectIntelligence() {
               </div>
               <div className="uc-node mid">
                 <span className="kicker">Obsession</span>
-                <b>Each brand, as a new customer</b>
+                <b>A persona at each brand</b>
                 <ul>
-                  <li>Its history, if it’s covered</li>
-                  <li>Watched from today, if not</li>
-                  <li>Profile: New customer · UK</li>
+                  <li>Its own inbox</li>
+                  <li>A UK mobile number</li>
+                  <li>Signs up as a new customer</li>
                   <li>Every fact dated</li>
                 </ul>
                 <span className="uc-node-foot">
-                  <span className="uc-live" /> Watching 300 brands
+                  <span className="uc-live" /> Prospect intelligence on 300 brands
                 </span>
               </div>
               <div className="uc-pipe" aria-hidden="true">
@@ -154,7 +154,7 @@ export function ProspectIntelligence() {
           </ul>
           <Reveal className="uc-gives">
             <p>
-              <b>Obsession gives you a dated fact about each brand,</b> with its receipt, about the exact problem your client’s
+              <b>Obsession gives you a dated fact about each brand,</b> with its screenshot, about the exact problem your client’s
               product fixes.
             </p>
           </Reveal>
@@ -175,7 +175,7 @@ export function ProspectIntelligence() {
               </li>
               <li>
                 <b>Everything else still works</b>
-                Google Sheets, a CSV, the API or MCP, or a pasted list for one offs, like 25 brands before a pitch.
+                Google Sheets, a CSV, the API or MCP, or a pasted list for one-offs, like 25 brands before a pitch.
               </li>
             </ul>
           </Reveal>
@@ -186,8 +186,8 @@ export function ProspectIntelligence() {
         <div className="wrap">
           <SectionHead
             kicker="Step by step"
-            title="From a Clay view to facts on every row."
-            lede="How the agency in this example runs it for 1 client, an SMS app, across 300 UK ecommerce brands."
+            title="Point Prospect intelligence at a Clay view. Each row gets its facts."
+            lede="An outbound agency runs it for 1 client, an SMS app, across 300 UK ecommerce brands."
           />
 
           <div className="uc-phase first">
@@ -198,7 +198,7 @@ export function ProspectIntelligence() {
           <Step
             n={1}
             title="Create a watch"
-            line="A watch is 1 list of companies, the facts to collect and how long to keep each account open. Start from a blueprint, or describe what you want to know."
+            line="A watch is 1 list of companies, the facts to collect and how long each persona stays signed up. Start from a blueprint, or describe what you want to know."
             pick="The agency starts a new watch on SMS app prospects."
           >
             <Win title="Obsession · Watches">
@@ -216,7 +216,7 @@ export function ProspectIntelligence() {
                 </li>
                 <li style={at(1)}>
                   <b>
-                    Pitch: helpdesk prospect<small>From the Speed to lead blueprint</small>
+                    Pitch: helpdesk prospect<small>From the Lead response checks blueprint</small>
                   </b>
                   <span>25 brands</span>
                   <span className="tag idle">Once</span>
@@ -235,7 +235,7 @@ export function ProspectIntelligence() {
           <Step
             n={2}
             title="Pick a blueprint"
-            line="A blueprint sets up the facts for 1 job. Launch it as it is, change anything, or describe what you want to know in your own words."
+            line="A blueprint is a job Obsession runs on its pieces. Launch it as it is, change anything, or describe the job in your own words."
             pick={
               <>
                 <b>The agency picks Prospect intelligence:</b> a fact about each company you’re about to write to. Competitor tracking is for
@@ -258,7 +258,7 @@ export function ProspectIntelligence() {
                 </li>
               </ul>
               <div className="uc-sets">
-                <b>Prospect intelligence sets up for each company:</b>
+                <b>Prospect intelligence gives each company a persona:</b>
                 <span>a customer profile</span>
                 <span>an inbox and a UK number</span>
                 <span>a browser</span>
@@ -360,7 +360,7 @@ export function ProspectIntelligence() {
             line="Connect Clay, upload a CSV, call the API or paste a list. With Clay you pick a table and a view you’ve already filtered, point at the website column, and choose where each fact lands."
             pick={
               <>
-                <b>The agency connects Clay.</b> It uses its “SMS popup” view, so no lookup is spent on a brand with no texts at all, and turns
+                <b>The agency connects Clay.</b> It uses its “SMS popup” view, so no persona goes to a brand with no texts at all, and turns
                 on new rows so the watch grows with the table.
               </>
             }
@@ -410,7 +410,7 @@ export function ProspectIntelligence() {
                 <span className="uc-tog" />
                 <div>
                   <b>Watch new rows too</b>
-                  <small>Rows added to this view later get their own watch automatically. Rows that leave the view stop.</small>
+                  <small>Rows added to this view later get their own persona automatically. Rows that leave the view stop.</small>
                 </div>
               </div>
               <div className="uc-ready">
@@ -427,10 +427,10 @@ export function ProspectIntelligence() {
           <Step
             n={5}
             title="Check and start"
-            line="1 summary of what will happen. A brand already covered returns its facts at once. The rest fill in as their emails and texts arrive, with each verdict at 48 hours."
+            line="One summary of what will happen. Each fact fills in as emails and texts arrive, with each verdict at 48 hours."
             pick={
               <>
-                <b>The agency saves it as a blueprint,</b> “SMS app client”, ready to rerun for the next SMS client it signs.
+                <b>The agency saves it as its own blueprint,</b> “SMS app client”, ready to rerun for the next SMS client it signs.
               </>
             }
           >
@@ -459,21 +459,21 @@ export function ProspectIntelligence() {
           </Step>
 
           <div className="uc-phase">
-            <h3>Obsession does the watching</h3>
+            <h3>The personas do the waiting</h3>
             <span>Steps 6 to 8 · 48 hours in this example</span>
           </div>
 
           <Step
             n={6}
-            title="Each brand gets its own customer account"
-            line="Its own inbox, UK mobile number and browser, used for that 1 brand only. It signs up the way any customer can and keeps a screenshot at every step. It says it’s AI when it talks to a person."
+            title="Each brand gets its own persona"
+            line="Its own inbox, UK mobile number and browser, used for that one brand. It signs up the way any customer can, keeps a screenshot at every step and says it’s an AI when it talks to a person."
           >
             <Win title="UK ecommerce TAM · Tidewren Swim">
               <div className="uc-s6">
                 <div className="uc-id">
                   <div className="uc-row uc-between">
                     <span className="uc-mh">Tidewren Swim</span>
-                    <span className="tag idle">Account 4F2A</span>
+                    <span className="tag idle">Persona 4F2A</span>
                   </div>
                   <dl className="uc-idrows">
                     <div>
@@ -586,7 +586,7 @@ export function ProspectIntelligence() {
                   ['16:42', 'Halvard & Moss sent its second text'],
                   ['16:39', 'Larkbound sent its third email'],
                   ['10:14', 'Tidewren Swim: no text after 24 hours, second run started from a fresh number'],
-                  ['09:20', '12 new rows arrived from Clay and started their own watch'],
+                  ['09:20', '12 new rows arrived from Clay, each with its own persona'],
                 ].map(([t, e], i) => (
                   <li key={t} style={at(i + 4)}>
                     <time>{t}</time>
@@ -683,10 +683,10 @@ export function ProspectIntelligence() {
 
           <Step
             n={9}
-            title="The receipt behind every fact"
+            title="The proof behind every fact"
             line="The verdict, a timeline with every step’s time, the screenshots and the emails and texts themselves. 1 link anyone can open, including the brand."
           >
-            <Win title="Evidence · Tidewren Swim">
+            <Win title="Event log · Tidewren Swim">
               <div className="uc-verdict">
                 <span className="uc-lab">Gap found</span>
                 <b>Opted in for texts on 15 September. No texts in 48 hours.</b>
@@ -790,7 +790,7 @@ export function ProspectIntelligence() {
 
       <section className="section sunken">
         <div className="wrap">
-          <SectionHead kicker="Once the facts are in" title="What you do with the facts." />
+          <SectionHead kicker="Once the facts are in" title="The facts sharpen the list, time the email and win the next client." />
           <Reveal className="uc-opener">
             <div>
               <p className="kicker">The opener</p>
@@ -838,8 +838,8 @@ export function ProspectIntelligence() {
             {[
               ['A sharper list', 'Write only where there’s a gap', 'Filter the Clay table on the Fact column and leave the rest out of the sequence.', '61 of 300 brands get the SMS email this month.'],
               ['Triggers', 'Changes become reasons to write', 'Weekly checks tell you when to write, and when to stop.', 'Tidewren sent its first text: pause the sequence.'],
-              ['Something to sell', 'A monthly add on per client', 'Brand facts for each SaaS client: brands checked, gaps open, gaps fixed, each with its screenshot.', 'SMS app prospects, October: 73 open gaps, 12 fixed.'],
-              ['Winning clients', 'Open the pitch with facts', 'Paste 25 brands from a prospect’s TAM before the first call.', '“9 of 25 brands you’d sell to took a text opt in and never sent one.”'],
+              ['Something to sell', 'A monthly add-on per client', 'Brand facts for each SaaS client: brands checked, gaps open, gaps fixed, each with its screenshot.', 'SMS app prospects, October: 73 open gaps, 12 fixed.'],
+              ['Winning clients', 'Open the pitch with facts', 'Paste 25 brands from a prospect’s TAM before the first call.', '“Of the 25 brands you’d sell to, 9 took a text opt in and never sent one.”'],
             ].map(([k, h, p, eg]) => (
               <Reveal as="li" key={k} className="card uc-way">
                 <p className="kicker">{k}</p>
@@ -869,7 +869,7 @@ export function ProspectIntelligence() {
               <span className="kicker">The blueprint</span>
               <span className="h3">Prospect intelligence</span>
               <span className="muted">Every check it can run, and everything you can change.</span>
-              <span className="uc-more-go">Learn more →</span>
+              <span className="uc-more-go">See the blueprint →</span>
             </Link>
           </Reveal>
           <Reveal className="card">
@@ -877,7 +877,7 @@ export function ProspectIntelligence() {
               <span className="kicker">1 real run</span>
               <span className="h3">Sample data</span>
               <span className="muted">Brand G, a real skincare store: a £40 basket left at 02:57 on 22 Sep, still no reminder 48 hours later.</span>
-              <span className="uc-more-go">See it →</span>
+              <span className="uc-more-go">See sample data →</span>
             </Link>
           </Reveal>
           <p className="uc-fine">{study.fine}</p>
@@ -889,6 +889,8 @@ export function ProspectIntelligence() {
         line={study.final.sub ?? ''}
         source="usecase-clay-final"
         withCompany={false}
+        button={study.final.capture.button}
+        link={study.final.link}
       />
     </div>
   )

@@ -4,6 +4,7 @@
    worked examples (content/catalog.ts), never their words. */
 import { catalog, type CatalogRecipe } from './catalog'
 import type { Cta, ReaderId, RecipeGroup, RecipeId } from './types'
+import { kitLinks, kitsPath, type KitId } from './kitPaths'
 import { ways } from './ways'
 
 export type NavPage = { label: string; to: string; line?: string }
@@ -106,27 +107,56 @@ export type NavIcon =
   | 'phone'
   | 'browser'
   | 'sandbox'
+  | 'check'
+  | 'key'
+  | 'flask'
 export type NavTool = NavPage & { line: string; icon: NavIcon }
 export type NavColumn = { label: string; items: NavTool[] }
+
+/* Each kit's icon in the menus (components/Nav ICONS). */
+const KIT_ICONS: Record<KitId, NavIcon> = { talk: 'chat', test: 'check', build: 'api', portals: 'key', watch: 'watch', train: 'flask' }
+
+/* The bar's menus, rebuilt 22 Nov 2026 (Seun: "cleaner ... right now it feels like a dump"): Products holds the 6 pieces
+   with a short line each, then the 2 ways in beside them (Blueprints for teams who don't code, the API and MCP for
+   developers) and a slim row to the prices. Solutions holds the kits (each job agents do) and the teams who use them,
+   by name only. The integrations left the menu for /developers and the footer. */
+const kitTools: NavTool[] = kitLinks.map((k) => ({ label: k.name, line: k.line, to: k.path, icon: KIT_ICONS[k.id] }))
+const teams: NavPage[] = [
+  { label: 'Sales and RevOps', to: '/sales' },
+  { label: 'Marketing', to: '/marketing' },
+  { label: 'Support and AI operations', to: '/verify' },
+  { label: 'Agencies', to: '/agencies' },
+  { label: 'Online stores', to: '/use-cases/leak-checks-for-ecommerce-stores' },
+  { label: 'B2B software', to: '/use-cases/sales-intelligence-behind-the-login' },
+  { label: 'Banks and fintechs', to: '/use-cases/journey-checks-for-banks-and-fintechs' },
+  { label: 'Compliance', to: '/use-cases/opt-out-and-cancel-checks-for-compliance-teams' },
+]
 
 const menus = {
   products: {
     label: 'Products',
     button: 'Products menu',
-    /* Since 21 Nov (James: one API for the pieces an agent needs, plus recipes): each piece's own page, then the
-       blueprints and the API. Pricing left this menu for the bar (James, 21 Nov). The footer's Products column is this
-       list, then Pricing (content/footer.ts). The pieces are in the founders' order (piecePaths.ts pieceOrder): Email,
-       Personas, Browser, Phone, Sandbox, Messaging. */
+    /* The pieces, in the founders' order (piecePaths.ts pieceOrder). */
+    piecesLabel: 'Pieces',
     items: [
-      { label: 'Email', line: 'Inboxes your agents send and receive from', to: '/email', icon: 'mail' },
-      { label: 'Personas', line: 'Every piece under one identity', to: '/personas', icon: 'users' },
-      { label: 'Browser', line: 'A cloud browser that keeps its logins', to: '/browser', icon: 'browser' },
-      { label: 'Phone', line: 'Numbers, texts and calls for agents', to: '/phone', icon: 'phone' },
-      { label: 'Sandbox', line: 'A computer to run code when a task needs one', to: '/sandbox', icon: 'sandbox' },
-      { label: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram', to: '/messaging', icon: 'chat' },
-      { label: 'Blueprints', line: 'Ready-made AI agent templates, or your own job', to: '/blueprints', icon: 'recipes' },
-      { label: 'API and MCP', line: 'One API for every piece, and MCP for your agent', to: '/developers', icon: 'api' },
+      { label: 'Email', line: 'Inboxes that send and receive', to: '/email', icon: 'mail' },
+      { label: 'Personas', line: 'Every piece, one identity', to: '/personas', icon: 'users' },
+      { label: 'Browser', line: 'Stays signed in for weeks', to: '/browser', icon: 'browser' },
+      { label: 'Phone', line: 'Numbers for texts and calls', to: '/phone', icon: 'phone' },
+      { label: 'Sandbox', line: 'Runs code when a task needs it', to: '/sandbox', icon: 'sandbox' },
+      { label: 'Messaging', line: 'iMessage, WhatsApp, Slack, Telegram', to: '/messaging', icon: 'chat' },
     ] satisfies NavTool[],
+    /* The 2 ways in, beside the pieces: build on the API, or pick a job Obsession runs. */
+    waysLabel: 'Build or pick',
+    ways: [
+      { label: 'API and MCP', line: 'One key for every piece', to: '/developers', icon: 'api' },
+      { label: 'Blueprints', line: 'Jobs Obsession runs for you', to: '/blueprints', icon: 'recipes' },
+    ] satisfies NavTool[],
+    prices: [
+      { label: 'Pricing', to: '/pricing' },
+      { label: 'Every rate', to: '/pricing/rates' },
+    ] satisfies NavPage[],
+    /* Kept for the footer's Integrations column (content/footer.ts) and /developers; no longer in the menu. */
     integrations: {
       label: 'Integrations',
       items: [
@@ -141,34 +171,17 @@ const menus = {
   solutions: {
     label: 'Solutions',
     button: 'Solutions menu',
+    kitsLabel: 'Kits',
+    kits: kitTools,
+    kitsAll: { label: 'All kits', to: kitsPath } satisfies NavPage,
+    teamsLabel: 'Teams',
+    teams,
+    teamsAll: { label: 'Every use case', to: '/use-cases' } satisfies NavPage,
+    /* The 2 columns as the footer and the phone sheet list them. */
     columns: [
-      {
-        label: 'Use cases',
-        items: [
-          { label: 'Mystery shopping', line: 'Shop a store as a new shopper, and keep what follows', to: '/blueprints/mystery-shopper', icon: 'cart' },
-          { label: 'QA on your own flows', line: 'Sign up to your product as a new user', to: '/blueprints/website-audit', icon: 'software' },
-          { label: 'Competitor trials', line: 'Every email a competitor’s trial sends', to: '/blueprints/trial-teardown', icon: 'clock' },
-          { label: 'Lead response checks', line: 'Time the first email, text and call', to: '/blueprints/lead-leaks', icon: 'mail' },
-          { label: 'Prospect audits', line: 'Shop a prospect’s store before the pitch', to: '/blueprints/prospect-intelligence', icon: 'target' },
-          { label: 'Price watch', line: 'Member prices, every week', to: '/blueprints/price-watch', icon: 'tag' },
-          { label: 'AI agent checks', line: 'What support bots and voice lines say', to: '/verify', icon: 'chat' },
-          { label: 'The web behind the login', line: 'What companies show people only after sign up', to: '/use-cases/web-behind-the-login', icon: 'search' },
-        ],
-      },
-      {
-        label: 'Teams and industries',
-        items: [
-          { label: 'Marketing', line: 'A persona on every competitor’s list', to: '/marketing', icon: 'megaphone' },
-          { label: 'Sales', line: 'What each account sends a new sign up', to: '/sales', icon: 'briefcase' },
-          { label: 'Agencies and resellers', line: 'Sell our checks to clients under your brand', to: '/agencies', icon: 'users' },
-          { label: 'Banks and fintechs', line: 'Apply as a persona, keep every step', to: '/use-cases/journey-checks-for-banks-and-fintechs', icon: 'bank' },
-          { label: 'Online stores', line: 'The emails after every basket', to: '/use-cases/leak-checks-for-ecommerce-stores', icon: 'cart' },
-          { label: 'B2B software', line: 'Trials, demos and onboarding, as a new user', to: '/use-cases/sales-intelligence-behind-the-login', icon: 'software' },
-          { label: 'Compliance', line: 'Cancel, unsubscribe and STOP, recorded', to: '/use-cases/opt-out-and-cancel-checks-for-compliance-teams', icon: 'shield' },
-          { label: 'Funds and analysts', line: 'Offers and prices, dated, every week', to: '/use-cases/consumer-promotions-data-for-funds', icon: 'chart' },
-        ],
-      },
-    ] satisfies NavColumn[],
+      { label: 'Kits', items: kitTools },
+      { label: 'Teams', items: teams },
+    ] as { label: string; items: NavPage[] }[],
   },
   resources: {
     label: 'Resources',

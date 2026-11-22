@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
 
 /* Guide 9 of the week's slate (_research/seo/plan/week-2nov/SLATE.md, spec 9, and WRITER_BRIEF.md, batch 3; Seun's go
    on 1 Nov 2026). It owns "ai agent observability" and its neighbours from Google autocomplete, US and UK, 31 Oct 2026
@@ -51,7 +50,7 @@ export const post: BlogPost = {
   description:
     'AI agent observability tools compared: Langfuse, LangSmith, Phoenix, Datadog, Helicone and Braintrust, with prices, and what only a customer sees.',
   answer:
-    'AI agent observability records the prompt, each model call and each tool call an AI agent makes, with its cost and speed, so a team can see why an answer went wrong. Langfuse, LangSmith, Arize Phoenix, Datadog, Helicone and Braintrust collect these traces, and most also score the answers. Obsession keeps what the customer got after the run, from each live chat, inbox or voice line answer to the promised email, dated, by API or MCP (the way AI agents call tools).',
+    'AI agent observability records the prompt, each model call and each tool call an AI agent makes, with its cost and speed, so a team can see why an answer went wrong. Langfuse, LangSmith, Arize Phoenix, Datadog, Helicone and Braintrust collect these traces, and most also score the answers. Obsession checks the other side, sending an AI agent with its own inbox and phone number to ask the live chat, email and voice line, and keeping each answer and what followed in one event log.',
   primaryKeyword: 'ai agent observability',
   keywords: [
     'ai agent observability tools',
@@ -62,7 +61,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your AI agents',
   published: '2026-11-01',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 16,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -337,15 +336,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `[Customer-side observability](/blog/customer-side-observability) covers that side. ${CUSTOMER_SIDE_OBSERVABILITY.definition}`,
+      text: 'A check from the customer’s side covers that view. An AI agent with its own inbox and phone number asks the live chat, email and voice line what customers ask, and keeps each answer and what followed.',
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Obsession is the toolkit for AI agents, with an [inbox](/email), a [phone number](/phone) and a [browser](/browser) for every agent on one API and one bill. Every answer and email lands in one event log, dated.',
     },
     {
       kind: 'p',
-      text: 'For a team running an AI agent, Obsession asks the live chat, inbox and voice line what customers ask, every day and after every update, and sets each answer beside the company’s policy. Then it asks for a person and waits for the email or callback the agent promised. The visitor is an Obsession agent, a customer that says it’s an AI, as [what every Obsession agent will and won’t do](/agents) sets out. Collecting as a customer this way is what the term [AI customers](/blog/ai-customers) names.',
+      text: 'For a team running an AI agent, Obsession’s blueprints ask the live chat, inbox and voice line what customers ask, every day and after every update, and set each answer beside the company’s policy. Then the persona asks for a person and waits for the email or callback the agent promised. It says it’s an AI, as [what every Obsession agent will and won’t do](/agents) sets out.',
     },
     {
       kind: 'list',
@@ -362,8 +361,8 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'What your AI agents tell customers on chat, email and the phone, word for word. Every answer is kept as a dated transcript or call beside the page it should match, with the email, refund or callback that followed.',
-      to: '/verify',
-      label: 'Request early access',
+      to: '/blueprints/support-bot-check',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'compared', text: 'AI agent observability tools compared', compare: true },
@@ -422,9 +421,9 @@ export const post: BlogPost = {
           'Teams on LangChain or LangGraph',
         ],
         [
-          'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Drift watch](/blueprints/drift-watch), [Resolution check](/blueprints/resolution-check)',
+          'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Drift watch](/blueprints/drift-watch), [Resolution check](/blueprints/resolution-check), [Phone](/phone)',
           'The live agent’s answers on chat, email and phone, each dated, and whether what it promised arrived',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'The cause sits in the agent’s traces',
           'What customers were told and got, every day',
         ],
@@ -452,15 +451,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For developers, the same index is a tool their own agents can call. [MCP](' +
+      text: 'For developers, the same pieces are tools their own agents can call. [MCP](' +
         MCP_INTRO +
-        '), the Model Context Protocol, is an open source standard for connecting AI applications to outside systems. Obsession offers its index over MCP, over an API that code calls directly, and through SDKs, ready-made code libraries. All three expose 5 verbs: lookup, facts, evidence, index and notify, and teams start in early access with API and MCP access. [AI customers for developers](/blog/ai-customers-for-developers) covers building on it, and [long running AI agents](/blog/long-running-ai-agents) covers agents that wait for weeks.',
+        '), the Model Context Protocol, is an open source standard for connecting AI applications to outside systems. Obsession offers its inbox, phone number, browser and sandbox over MCP, over an API that code calls directly, and through SDKs, ready-made code libraries. Each answer and email lands as an event, such as message.received or email.received, at the team’s webhook, a web address in its own code that receives each event. [The developer guide](/blog/ai-customers-for-developers) covers building on it, and [long running AI agents](/blog/long-running-ai-agents) covers agents that wait for weeks.',
     },
     {
       kind: 'cta',
-      text: 'What companies show only signed-up customers, as an API for your agents: emails, member prices, trial limits, quotes and offers, each dated, behind 5 verbs over MCP, the API and SDKs.',
-      to: '/developers',
-      label: 'See the API and MCP',
+      text: 'Give your own agent an inbox, a phone number and a browser to test with, on one key, with every answer and email in one event log.',
+      to: '/developers#join',
+      label: 'Start free',
     },
 
     { kind: 'h2', id: 'set-up', text: 'How to set up AI agent observability' },
@@ -510,8 +509,8 @@ export const post: BlogPost = {
           a: 'It sees what happens inside the agent during the run. The email, refund or callback that follows often comes from other systems, and an agent a vendor runs is traced in the vendor’s own systems. Seeing those means being the customer: asking on the live channels and waiting for what arrives.',
         },
         {
-          q: 'How is AI agent observability different from customer-side observability?',
-          a: 'AI agent observability watches the agent from the inside, through its own telemetry. Customer-side observability watches the company from where its customers stand, by being one of them, and keeps what arrives over days and weeks. The two meet when a failed check points to its trace.',
+          q: 'How is AI agent observability different from a check from the customer’s side?',
+          a: 'AI agent observability watches the agent from the inside, through its own telemetry. A check from the customer’s side watches the company from where its customers stand, by being one of them, and keeps what arrives over days and weeks. The two meet when a failed check points to its trace.',
         },
       ],
     },

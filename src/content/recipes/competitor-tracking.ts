@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Competitor tracking (/recipes/competitor-tracking). Watch other companies. Screen: rivals.
+/* Competitor tracking (/blueprints/competitor-tracking). Watch other companies. Screen: rivals.
    The persona version (20 Nov 2026): a persona the reader defines signs up at each competitor they name and keeps the
    account open for as long as they hold it. Everything it is sent, every email, text, offer, member price and public
    ad, comes back on 1 dated timeline with screenshots, by API, MCP, a table or Slack. Kept from James's page: the
@@ -47,7 +47,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-competitor-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'competitor',
     },
   },
@@ -88,7 +88,7 @@ export const recipe: Recipe = {
   steps: [
     {
       title: 'Name your competitors',
-      line: 'Web addresses, a CSV, Clay or the API. Any company, with no list to check first.',
+      line: 'Any company, by web address, a CSV, Clay or the API.',
     },
     {
       title: 'Define the persona',
@@ -185,6 +185,7 @@ export const recipe: Recipe = {
       {
         q: 'Where do the emails and prices come from?',
         a: 'From a real account at each competitor. The persona signs up the way anyone can, from the country you choose, and keeps the account open for months as the same person.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'When do events start landing in my event log?',
@@ -203,17 +204,23 @@ export const recipe: Recipe = {
         a: 'As many as you name, each with its own persona, inbox and number. Run one, or a fleet of thousands.',
       },
       { q: 'What if a competitor asks for ID?', a: 'The persona stops at that step, and your event log keeps what the check asked for.' },
+      {
+        q: 'What does Competitor tracking cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox, a number and browser hours for prices and pages. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
+      },
     ],
   },
 
   final: {
     heading: 'See your competitors’ next offer the day it lands.',
-    sub: 'Tell us which competitors to watch. We’ll set up the first personas with you.',
+    sub: 'Try it on the Free plan with the competitor you watch most.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-competitor-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'competitor',
     },
+    link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
   },
 }

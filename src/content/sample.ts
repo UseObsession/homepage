@@ -156,7 +156,7 @@ export const sample: SamplePage = {
       { value: '5', label: 'messages, all on welcome and browse' },
       { value: '15', label: 'screenshots kept with the events' },
     ],
-    cta: { label: 'Request early access', to: '#get-one' },
+    cta: { label: 'Start free', to: '#get-one' },
   },
 
   /* Every kind, as it arrived and as data (12 Nov, James). Home's console with the same data, and tabs on top: each tab
@@ -345,7 +345,7 @@ export const sample: SamplePage = {
     capture: {
       kind: 'waitlist',
       source: 'sample-output-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'any',
     },
   },

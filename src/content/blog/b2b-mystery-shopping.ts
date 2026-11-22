@@ -15,7 +15,7 @@ import type { BlogPost } from './types'
    guideline on mystery shopping (March 2020), Service Monitor's trade and B2B page, PressTwo's SpotCheck page and
    Qualified's Test My Response Time page. Obsession is described in the words of the Lead leaks, Mystery shopper, Sales
    agent check and Outbound agent check pages and /agents. Texts are left out of every claim about Obsession. No Workato
-   or Gartner figure. The request values are example inputs. larkfield.example and its replies are invented. No dashes. */
+   or Gartner figure. The request values are example inputs. larkfield.example and its replies are invented. No dashes. Rewritten 22 Nov 2026 for the toolkit position. */
 
 const CLAY = 'https://www.clay.com/blog/claygent-experiment-speed-to-lead'
 const REVENUEHERO = 'https://www.revenuehero.io/blog/b2b-lead-response-times'
@@ -34,12 +34,12 @@ export const post: BlogPost = {
   description:
     'B2B mystery shopping tests a sales funnel the way a buyer meets it: the first reply, the questions, the follow ups and the quote. How sales teams run it.',
   answer:
-    'B2B mystery shopping tests a sales funnel as a buyer meets it: a test buyer asks for a demo and records who replies, how fast, the questions and the price quoted. Run it on your company’s own form, chat and sales line, because a test lead sent to a competitor’s sales team spends their staff’s time on a lead that isn’t real. Obsession keeps every reply your demo form and chat give a buyer, dated with the email or screenshot, after every routing change, by API, MCP or a table.',
+    'B2B mystery shopping tests a sales funnel as a buyer meets it: a test buyer asks for a demo and records who replies, how fast, the questions and the price quoted. Run it on your company’s own form, chat and sales line, because a test lead sent to a competitor’s sales team spends their staff’s time on a lead that isn’t real. Obsession’s lead response checks blueprint sends that test buyer and keeps every reply your demo form, chat and sales line give, dated, after every routing change.',
   primaryKeyword: 'b2b mystery shopping',
   keywords: ['b2b mystery shopper', 'saas mystery shopping'],
   category: 'Check your own journeys',
   published: '2026-11-01',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -193,7 +193,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Published tests already show how companies reply, and a team’s own form, chat and sales line are the ones it can fix. To watch competitors, [AI customers](/blog/ai-customers) join their public sign-ups the way any customer can and keep each email, offer and price they send, as [competitor tracking](/blueprints/competitor-tracking) does.',
+      text: 'Published tests already show how companies reply, and a team’s own form, chat and sales line are the ones it can fix. To watch competitors, [AI agents acting as customers](/blog/ai-customers) join their public sign-ups the way any customer can and keep each email, offer and price they send, as the [competitor tracking](/blueprints/competitor-tracking) blueprint does.',
     },
 
     { kind: 'h2', id: 'ai-agents', text: 'AI agents on both sides of the form' },
@@ -220,11 +220,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Lead leaks](/blueprints/lead-leaks) sends a test lead through a company’s own form, chat and phone, and times every first reply on each channel. It shows who in the CRM picked each lead up, names each lead nobody answered and drafts the routing fix in the CRM the team connects, live after the team’s OK. Callbacks are logged as replies, and automatic replies are logged apart.',
+      text: '[Lead response checks](/blueprints/lead-leaks) sends a test lead through a company’s own form, chat and phone, and times every first reply on each channel. It shows who in the CRM picked each lead up, names each lead nobody answered and drafts the routing fix in the CRM the team connects, live after the team’s OK. Callbacks are logged as replies, and automatic replies are logged apart.',
     },
     {
       kind: 'p',
-      text: 'The test buyer is an Obsession agent, a customer that says it’s an AI when it talks to a person. It never uses fake payment details and never gets round a CAPTCHA or a bot block, as [what every agent keeps to](/agents) sets out. Whether it also says it’s a test from your company is your company’s setting. Where a form puts a CAPTCHA or a bot check in front of a step, the record names the step it couldn’t reach.',
+      text: 'The test buyer is a persona, an AI agent with its own inbox and phone number under one name. It says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block, as [what every agent keeps to](/agents) sets out. Whether it also says it’s a test from your company is your company’s setting. Where a form puts a CAPTCHA or a bot check in front of a step, the event log names the step it couldn’t reach.',
     },
     {
       kind: 'p',
@@ -232,13 +232,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Obsession is the toolkit for AI agents, giving every agent an inbox, a phone number and a browser through one API and one bill. Every reply the test buyer gets lands in one event log, in order and dated, and reaches Slack, a sheet or the CRM.',
     },
     {
       kind: 'cta',
-      text: 'What each account and competitor sends its own customers, ready before the call, with every fact dated and its screenshot linked. Sales teams start in early access, with any company they name added on request.',
-      to: '/sales',
-      label: 'Request early access',
+      text: 'Not building agents? Pick a blueprint, and Obsession runs it. Lead response checks asks your form, chat and sales line for a demo at the hours you pick and times every first reply.',
+      to: '/blueprints/lead-leaks',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to mystery shop a B2B sales funnel, compared', compare: true },
@@ -289,10 +289,10 @@ export const post: BlogPost = {
           'Setting a target',
         ],
         [
-          'Obsession (ours): [Lead leaks](/blueprints/lead-leaks), [Mystery shopper](/blueprints/mystery-shopper), [Sales agent check](/blueprints/sales-agent-check), [Outbound agent check](/blueprints/outbound-agent-check)',
+          'Obsession (ours): [Lead response checks](/blueprints/lead-leaks), [Mystery shopping](/blueprints/mystery-shopper), [Sales agent check](/blueprints/sales-agent-check), [Outbound agent check](/blueprints/outbound-agent-check)',
           'Every reply a buyer gets from a demo form, chat and sales line, kept with its time and its email, screenshot or call',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Real leads and their deals stay in the team’s CRM',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at a CAPTCHA or bot block\nReal leads and their deals stay in the team’s CRM',
           'What a buyer meets on every way in, every day',
         ],
       ],

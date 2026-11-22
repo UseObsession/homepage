@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
 
 /* The why series, Spec E (24 Oct 2026): why Shopify Plus build and migration agencies need AI customers. It owns
    "shopify launch checklist" (primary) and, from Google autocomplete (US and UK, 24 Oct 2026, autocomplete_wave_b and
@@ -77,7 +76,7 @@ export const post: BlogPost = {
   description:
     'A Shopify launch checklist from the customer’s side for Plus agencies: what breaks after go live, what it costs in retainers and how to check each release.',
   answer:
-    'A Shopify launch checklist for a Plus agency keeps its customer-side checks running after go live, from the welcome email to order emails and old links. A launch or migration is judged in the weeks after it, so each step is checked through the first 30 days and after every release. Obsession keeps what each client store sends a new customer after launch and every release, dated with the email or screenshot, by API, MCP or a table.',
+    'A Shopify launch checklist for a Plus agency keeps its customer-side checks running after go live, from the welcome email to order emails and old links. A launch or migration is judged in the weeks after it, so each step is checked through the first 30 days and after every release. Obsession’s QA on your own flows blueprint runs a persona through each client store after launch and every release, and every email, text and page lands dated in one event log.',
   primaryKeyword: 'shopify launch checklist',
   keywords: [
     'shopify launch checklist',
@@ -91,7 +90,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   order: 16,
   authors: [
@@ -102,7 +101,7 @@ export const post: BlogPost = {
     art: {
       kind: 'log',
       title: 'wrenfield.example · the first 30 days on Shopify Plus',
-      who: 'The store’s AI customer, from launch day to day 30',
+      who: 'A persona at the store, from launch day to day 30',
       status: { tone: 'fail', text: '3 failed, 1 fixed' },
       rows: [
         { time: 'Day 0', text: 'Launch checks pass', detail: 'Sign up, code, basket and checkout on a phone', tone: 'ok' },
@@ -119,7 +118,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Shopify Plus agencies design, build and migrate stores on Shopify Plus, Shopify’s plan for larger brands, then support them on monthly retainers. AI customers give the agency’s delivery and support teams a standing view of each client store as a new customer receives it, from launch day onward. [What AI customers are](/blog/ai-customers) defines the term, and [why every company needs AI customers](/blog/why-ai-customers-matter) makes the wider case.',
+      text: 'Shopify Plus agencies design, build and migrate stores on Shopify Plus, Shopify’s plan for larger brands, then support them on monthly retainers. AI agents as customers give the agency’s delivery and support teams a standing view of each client store as a new customer receives it, from launch day onward. [AI agents as customers](/blog/ai-customers) sets out what one sees, and [why every company needs one](/blog/why-ai-customers-matter) makes the wider case.',
     },
     {
       kind: 'p',
@@ -209,7 +208,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The client’s side of the sum is the revenue a day of the broken step × the days it goes unnoticed, which average half the gap between checks: about 15 days with a monthly review, 3.5 with a weekly check and half a day with a daily one. [How AI customers find revenue leaks](/blog/ai-customers-find-revenue-leaks) works it from a flow report.',
+      text: 'The client’s side of the sum is the revenue a day of the broken step × the days it goes unnoticed, which average half the gap between checks: about 15 days with a monthly review, 3.5 with a weekly check and half a day with a daily one. [The revenue leaks guide](/blog/ai-customers-find-revenue-leaks) works it from a flow report.',
     },
     {
       kind: 'p',
@@ -236,7 +235,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Sold as a care plan line, the same routine sits inside the $500 to $2,000 a month that Tenten’s guide tells merchants to budget for post launch support. Put any tool’s yearly price in place of the hours: [AI customers at scale](/blog/ai-customers-at-scale) prices an AI customer line by line at published retail prices.',
+      text: 'Sold as a care plan line, the same routine sits inside the $500 to $2,000 a month that Tenten’s guide tells merchants to budget for post launch support. Put any tool’s yearly price in place of the hours: [The cost guide](/blog/ai-customers-at-scale) prices an agent line by line at published prices.',
     },
 
     { kind: 'h2', id: 'checklist', text: 'The Shopify launch checklist, from the customer’s side' },
@@ -288,20 +287,20 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `A team that runs this as a routine is practising [customer-side observability](/blog/customer-side-observability). ${CUSTOMER_SIDE_OBSERVABILITY.definition} For a Plus agency it rests on pass marks written before launch, a cadence tied to launches and releases, and a named owner for each fail. [1Digital’s guide](` +
+      text: 'A team that runs this as a routine, set out in [the guide to testing from the customer’s side](/blog/customer-side-observability), needs pass marks written before launch, a cadence tied to launches and releases, and a named owner for each fail. [1Digital’s guide](' +
         ONEDIGITAL +
         ') says retainers that cover only reactive support “function like insurance”. A retainer that runs this routine shows the client, every week, what its customers received.',
     },
 
-    { kind: 'h2', id: 'what-ai-customers-do', text: 'What AI customers do for a Plus agency' },
-    { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
+    { kind: 'h2', id: 'what-ai-customers-do', text: 'What a persona does for a Plus agency' },
+    { kind: 'p', text: '**A persona is an AI agent with its own inbox, phone number and browser under one name. It signs up, fills a basket and asks questions at a store the way any new customer can, and keeps what the store sends, dated.**' },
     {
       kind: 'p',
-      text: 'For a Plus agency, each client store gets its own AI customers, with the client’s OK, from launch day onward. They run the checklist on the cadence the agency sets and keep every email, text and page exactly as it arrived, each email’s DKIM signature checked on arrival and kept with its key.',
+      text: 'For a Plus agency, each client store gets its own personas, with the client’s OK, from launch day onward. They run the checklist on the cadence the agency sets and keep every email, text and page in the event log exactly as it arrived, each email’s DKIM signature checked on arrival and kept with its key.',
     },
     {
       kind: 'table',
-      caption: 'The jobs AI customers do for a Plus agency, with the blueprint that runs each one',
+      caption: 'The jobs a persona does for a Plus agency, with the blueprint that runs each one',
       cols: ['Job', 'The check', 'A pass', 'That week'],
       rows: [
         [
@@ -311,13 +310,13 @@ export const post: BlogPost = {
           'Each fail sent to its owner, then run again',
         ],
         [
-          'Every release: [Website audit](/blueprints/website-audit)',
+          'Every release: [QA on your own flows](/blueprints/website-audit)',
           'Sign up, sign in code, a code and checkout after each deploy',
           'A pass for every step, minutes after the release',
           'Fixed or rolled back before the client sees it',
         ],
         [
-          'Before and after cutover: [Mystery shopper](/blueprints/mystery-shopper)',
+          'Before and after cutover: [Mystery shopping](/blueprints/mystery-shopper)',
           'The same journeys run on the old store, then on the new one',
           'The new store sends everything the old one did',
           'Missing flows rebuilt before hypercare ends',
@@ -338,7 +337,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For a Plus agency, that is what each client store’s new customers get after launch, with a fresh sign-up after every release you name and a preview link that runs every journey on a new theme before it goes live. An Obsession agent says it’s an AI whenever it talks to a person, and any real order goes on a card the client or the agency funds.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to. For a Plus agency, that means what each client store’s new customers get after launch, with a fresh sign-up after every release you name and a preview link that runs every journey on a new theme before it goes live. A persona says it’s an AI when it talks to a person and stops before payment unless given the client’s own card.',
     },
 
     { kind: 'h2', id: 'what-changes', text: 'What changes on Shopify in 2026 and 2027' },
@@ -366,7 +365,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Each change can stop a step a customer depends on without an alert reaching the agency. AI customers repeat the checks after each platform change and each release, so a code refused after a Functions rebuild is found the week it starts. [Agentic commerce for merchants](' +
+      text: 'Each change can stop a step a customer depends on without an alert reaching the agency. Personas repeat the checks after each Shopify change and each release, so a code refused after a Functions rebuild is found the week it starts. [Agentic commerce for merchants](' +
         AGENTIC_GUIDE +
         ') sets out the readiness test for AI shopping agents, and [what ChatGPT says about your store](' +
         AI_ANSWERS +
@@ -428,22 +427,22 @@ export const post: BlogPost = {
           'Redirect checks at launch',
         ],
         [
-          'Obsession (ours): [Website audit](/blueprints/website-audit), [Mystery shopper](/blueprints/mystery-shopper), [Delivery monitoring](/blueprints/delivery-monitoring), [Partner checks](/blueprints/partner-checks)',
+          'Obsession (ours): [QA on your own flows](/blueprints/website-audit), [Mystery shopping](/blueprints/mystery-shopper), [Delivery monitoring](/blueprints/delivery-monitoring), [Partner checks](/blueprints/partner-checks)',
           'What each client store sends a new customer from launch day, every email, text and code kept as it arrived',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Stops at bot walls and CAPTCHAs',
-          'What a client’s customers get after launch and every release, kept as proof',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment, and at CAPTCHAs and bot blocks',
+          'What a client’s customers get after launch and every release, dated',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'If your agency needs to see what each client store’s customers receive after launch and every release, use Obsession. It keeps what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table. For a build handed over at launch, the checklist by hand on launch day is enough. The options combine. A test suite catches code regressions before a release, a crawler checks redirects at launch, a monitoring app watches checkout between releases, and Obsession keeps what each new customer of the store received. For an audit of a store’s own data as well, use the [Shopify store audit checklist](' +
+      text: 'If your agency needs to see what each client store’s customers receive after launch and every release, use Obsession. Its blueprints run a persona through every client store, and each email, text and page lands in one event log, dated. For a build handed over at launch, the checklist by hand on launch day is enough. The options combine. A test suite catches code regressions before a release, a crawler checks redirects at launch, a monitoring app watches checkout between releases, and Obsession keeps what each new customer of the store received. For an audit of a store’s own data as well, use the [Shopify store audit checklist](' +
         AUDIT_CHECKLIST +
         ').',
     },
 
-    { kind: 'h2', id: 'when-not', text: 'When a Plus agency doesn’t need AI customers' },
+    { kind: 'h2', id: 'when-not', text: 'When a Plus agency can check by hand' },
     {
       kind: 'list',
       items: [
@@ -469,9 +468,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'See what each client store sends a new customer after the sign up, from the pop up’s code to the basket and checkout reminders, each dated with the email itself. A fresh sign-up runs after every release. Agencies start in early access, onboarding teams now.',
-      to: '/use-cases/funnel-qa-for-cro-agencies',
-      label: 'Request early access',
+      text: 'See what each client store sends a new customer after the sign up, from the pop up’s code to the basket and checkout reminders, each dated with the email itself. QA on your own flows runs a fresh sign-up after every release.',
+      to: '/blueprints/website-audit',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about Shopify launch checklists' },

@@ -29,9 +29,9 @@ export const recipe: Recipe = {
   line: 'Personas shop a store as new shoppers and show every email, text and missing reminder.',
   gets: 'Every email and text a store sends a new shopper, dated, and the reminders that never came.',
   kit: [
-    'A persona per journey, at your store or each client store',
+    'A persona for each journey: sign up, browse, basket and checkout',
     'Its own inbox, phone number and home connection',
-    'Sign up, browse, basket and checkout',
+    'Your store, or each client store with its owner’s OK',
     'Stops before payment and at any identity check',
     'Waiting as long as you choose, waking on each email and text',
     'A report per store, every message dated',
@@ -59,7 +59,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-mystery-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'mystery',
     },
   },
@@ -165,7 +165,7 @@ export const recipe: Recipe = {
     heading: 'Every store’s journeys land in your event log and the tools you already use.',
     items: [
       { format: 'A report per store', line: 'Every step and message, timed, from sign up to the last email, ready to share.' },
-      { format: 'The receipts', line: 'Screenshots, each raw email with its sender checked, and texts as received.' },
+      { format: 'Screenshots and raw emails', line: 'Every step on screen, each raw email with its sender checked, and every text as received.' },
       { format: 'The silences', line: 'A reminder that never came, with the inbox and the hours it was watched.' },
       { format: 'Week on week', line: 'Each run beside the one before, so a change stands out.' },
       { format: 'One table', line: 'A row per store in Clay, Baserow or Supabase.' },
@@ -183,7 +183,7 @@ export const recipe: Recipe = {
   ],
 
   table: {
-    heading: '2 of 3 client stores sent no basket reminder in 48 hours.',
+    heading: 'The candles and outdoor gear clients sent no basket reminder in 48 hours.',
     line: 'The same journeys at each client store, by the same persona, in the same week.',
     cols: ['Homeware client', 'Candles client', 'Outdoor gear client'],
     rows: [
@@ -201,6 +201,7 @@ export const recipe: Recipe = {
       {
         q: 'What is an AI mystery shopper?',
         a: 'A persona run by AI agents that shops a store as a new shopper. It has its own name, inbox, phone number and home connection, and brings back every page, email and text, each dated.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Is this mystery shopping software or a service?',
@@ -213,6 +214,7 @@ export const recipe: Recipe = {
       {
         q: 'How many stores can I check?',
         a: 'As many as you like. Each shop counts toward what your plan covers at list rates. The months above show 30, 150 and 500 client stores, or 1 store shopped monthly, weekly or daily. For reports in your own brand, see the Enterprise plan on the pricing page.',
+        link: { label: 'See pricing', to: '/pricing' },
       },
       {
         q: 'How often should it run?',
@@ -242,17 +244,23 @@ export const recipe: Recipe = {
         q: 'How long does a persona wait after a shop?',
         a: 'As long as you choose. A persona stays yours until you let it go, so it can come back months later as the same shopper, and every new email joins your event log the day it arrives.',
       },
+      {
+        q: 'What does mystery shopping cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox, a number and browser hours to shop with. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
+      },
     ],
   },
 
   final: {
-    heading: 'Which stores should your first personas shop?',
-    sub: 'Tell us your store, or your client stores, and the shopper. We’ll set up your first personas with you.',
+    heading: 'Find the reminder your store, or a client’s, never sends.',
+    sub: 'Try it on the Free plan on your own store, or a client store with its owner’s OK.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-mystery-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'mystery',
     },
+    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
   },
 }

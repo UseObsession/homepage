@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Price watch (/recipes/price-watch). Watch other companies. Screen: prices. Home's tile calls it "Price watch".
+/* Price watch (/blueprints/price-watch). Watch other companies. Screen: prices. Home's tile calls it "Price watch".
    The persona version (20 Nov 2026): a persona the reader defines, connecting from their country, opens an account at
    each competitor and joins its email list. Each morning it reads what that competitor charges: public and member
    prices, offers, delivery and the codes sent only to subscribers, and dates every change with before and after
@@ -46,7 +46,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-price-watch-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'prices',
     },
   },
@@ -160,6 +160,7 @@ export const recipe: Recipe = {
       {
         q: 'How is Price watch different from a price tracker?',
         a: 'A price tracker reads the public page. Price watch’s persona also signs in and joins each competitor’s email list, so it sees the member price and the code a new subscriber is sent.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
       },
       {
         q: 'Can Price watch see the price at checkout?',
@@ -168,6 +169,7 @@ export const recipe: Recipe = {
       {
         q: 'Which countries can Price watch read prices in?',
         a: 'Any country you choose. Price watch’s persona connects from a home connection there, so it sees the prices, currency and delivery a local shopper sees.',
+        link: { label: 'See the cloud browser', to: '/browser' },
       },
       {
         q: 'Do competitors know who asked?',
@@ -177,17 +179,23 @@ export const recipe: Recipe = {
         q: 'How many competitors can Price watch cover?',
         a: 'Price watch covers as many as you add, every morning. Run one, or a fleet of thousands.',
       },
+      {
+        q: 'What does Price watch cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours to read each price, and an inbox for each email list. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See how a persona works', to: '/personas' },
+      },
     ],
   },
 
   final: {
     heading: 'Know by morning when a competitor undercuts you.',
-    sub: 'Tell us which competitors to watch. We’ll set up the first personas with you.',
+    sub: 'Try it on the Free plan with your closest competitors.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-price-watch-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'prices',
     },
+    link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
   },
 }

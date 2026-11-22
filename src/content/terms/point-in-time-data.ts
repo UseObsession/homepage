@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/point-in-time-data: for a fund analyst testing a signal on consumer companies. The one outside fact (what
    ALFRED keeps) is from the St. Louis Fed's own page, read 11 Nov 2026. The picture is a signed-in price recorded day
@@ -68,14 +67,14 @@ export const ref: ReferencePage = {
       kind: 'p',
       text: 'For an analyst reading a consumer company, that history is the dataset. It shows how deep the company’s discounts ran each month, when its member prices rose and how often it emailed customers. It counts in a backtest only if it was recorded on the day, with the evidence that it was seen then.',
     },
-    { kind: 'h2', id: 'how-its-kept', text: 'How a point-in-time record of what companies show customers is kept' },
+    { kind: 'h2', id: 'how-its-kept', text: 'How a dated history of what companies show customers is kept' },
     {
       kind: 'p',
       text: 'Each entry needs the value, the date it was seen and the evidence behind it, such as the email itself or a screenshot of the signed-in page. Kept by hand, that means one person per company signing in on a schedule and filing every email, for years.',
     },
     {
       kind: 'p',
-      text: `${ENTITY} Each fact is filed with the date it arrived, so the history shows what a company showed on each day, for as long as anyone follows it. Funds use it as [alternative data for investors](/use-cases/consumer-promotions-data-for-funds), with history from the day collection starts.`,
+      text: 'Obsession’s [Email and SMS tracking](/blueprints/email-sms-tracking) and [Price watch](/blueprints/price-watch) blueprints file each fact in the event log with the date it arrived, so the history shows what a company showed on each day. Funds use it as [alternative data for investors](/use-cases/consumer-promotions-data-for-funds), with history from the day collection starts.',
     },
     {
       kind: 'faq',

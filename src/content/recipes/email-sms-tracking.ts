@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Email and SMS tracking (/recipes/email-sms-tracking). Watch other companies. Screen: inbox.
+/* Email and SMS tracking (/blueprints/email-sms-tracking). Watch other companies. Screen: inbox.
    The persona version (20 Nov 2026): a persona the reader defines subscribes to every brand on their list, with its
    own inbox and texting number, and keeps every email and text each brand sends, with its offer, code and arrival
    time, side by side on 1 timeline. Where Competitor tracking is every event from 1 competitor, this is the inbox
@@ -46,7 +46,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-email-sms-tracking-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'email-sms',
     },
   },
@@ -165,10 +165,12 @@ export const recipe: Recipe = {
       {
         q: 'How do I see what competitors email without a spare inbox?',
         a: 'Name them. Email and SMS tracking subscribes as a persona with its own inbox and texting number, and logs every email, text, offer and code with its arrival time and a screenshot.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
       },
       {
         q: 'Where do the messages come from?',
         a: 'From real subscriptions. The persona signs up the way anyone can, from the country you choose, and stays on each list for months.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Does it ever reply or buy?',
@@ -181,19 +183,25 @@ export const recipe: Recipe = {
       { q: 'Can it follow our own emails too?', a: 'Yes. Name your own brand, and your messages sit next to every competitor’s.' },
       {
         q: 'How is it different from an email archive?',
-        a: 'Archives like MailCharts and Milled keep newsletters from their own list of brands. Email and SMS tracking covers any brand you name, texts included, as the persona you define.',
+        a: 'An email archive keeps newsletters from its own list of brands. Email and SMS tracking covers any brand you name, texts included, as the persona you define.',
+      },
+      {
+        q: 'What does Email and SMS tracking cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox and a texting number. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See phone numbers for AI agents', to: '/phone' },
       },
     ],
   },
 
   final: {
     heading: 'Get every competitor’s emails and texts without signing up yourself.',
-    sub: 'Tell us which brands to subscribe to. We’ll set up the first personas with you.',
+    sub: 'Try it on the Free plan with the brands you watch most.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-email-sms-tracking-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'email-sms',
     },
+    link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
   },
 }

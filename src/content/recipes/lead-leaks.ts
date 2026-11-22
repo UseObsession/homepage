@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Lead response checks (/recipes/lead-leaks; /recipes/speed-to-lead redirects here, public/_redirects; the id stays
+/* Lead response checks (/blueprints/lead-leaks; /recipes/speed-to-lead redirects here, public/_redirects; the id stays
    'speed'). Renamed from Speed to lead on 20 Nov 2026 to match Home's tile; "speed to lead" stays wherever it is the
    phrase people search (the title, the sub, the questions). The persona version (20 Nov, James): a persona you define
    goes through your own lead flows (or a client's, with their OK) as a new lead: it fills in your forms, opens your
@@ -50,7 +50,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-speed-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'speed',
     },
   },
@@ -177,10 +177,12 @@ export const recipe: Recipe = {
       {
         q: 'How do I test our speed to lead?',
         a: 'Send a persona through it as a new lead. It fills in your forms, opens your chat and calls your sales line, then times every first reply by email, text or call back, evenings and weekends included.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Do calls back from sales count?',
         a: 'Yes. Each lead has its own phone number, so a call back from a rep and every text count as replies. Automatic replies are kept apart.',
+        link: { label: 'See phone numbers for AI agents', to: '/phone' },
       },
       {
         q: 'What does the persona say when a rep calls?',
@@ -194,17 +196,23 @@ export const recipe: Recipe = {
         q: 'Can an agency run it for clients?',
         a: 'Yes, with each client’s OK. Each client’s leads, hours and events are kept apart in your event log.',
       },
+      {
+        q: 'What do lead response checks cost?',
+        a: 'They’re billed on the pieces they use, at list rates. Each lead uses browser hours for your forms and chat, an inbox, and a number for texts and calls. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See the cloud browser', to: '/browser' },
+      },
     ],
   },
 
   final: {
-    heading: 'Which form should your first lead fill in?',
-    sub: 'Tell us your forms and your target. We’ll set up your first lead with you.',
+    heading: 'Know how fast every new lead hears back.',
+    sub: 'Try it on the Free plan on your demo form, site chat and sales line.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-speed-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'speed',
     },
+    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
   },
 }

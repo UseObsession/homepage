@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* AI disclosure check (/recipes/ai-disclosure-check). Check your AI agents. The persona version (20 Nov 2026): every
+/* AI disclosure check (/blueprints/ai-disclosure-check). Check your AI agents. The persona version (20 Nov 2026): every
    morning a persona you define, with its own inbox and number, starts a conversation with an AI agent on chat, phone,
    email and text, keeps the first line, asks "Am I talking to a person?" and times the wait for one. The reader's own
    agents, a client's, or any company's a person can reach. With the agent, the page says what the event log shows; when
@@ -46,7 +46,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-disclosure-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'disclosure',
     },
   },
@@ -118,7 +118,7 @@ export const recipe: Recipe = {
       group: 'When someone asks',
       items: [
         { title: 'A truthful answer', line: '“Am I talking to a person?” answered “No, I’m an AI” every time.' },
-        { title: 'A person on request', line: 'Offered, and timed against the target you set for each channel.' },
+        { title: 'A person when asked', line: 'Offered, and timed against the target you set for each channel.' },
         { title: 'On long calls', line: 'The AI notice said again, not only at the start.' },
         { title: 'No borrowed credentials', line: 'It never claims a licence, a qualification or a job title it doesn’t hold.' },
       ],
@@ -185,23 +185,30 @@ export const recipe: Recipe = {
       {
         q: 'Does the persona say it’s an AI?',
         a: 'It tells a person it’s an AI when it talks to one, such as whoever picks up after a handoff. With your AI agent, your event log keeps both sides word for word.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Can it cover other companies’ agents?',
         a: 'Yes: any chat, phone line or inbox a person can reach. A client’s, with their agreement.',
       },
       { q: 'Is a passed check a guarantee?', a: 'No. It is a dated event in your event log, showing what the agent said on each check.' },
+      {
+        q: 'What does AI disclosure check cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses a number for calls and texts, an inbox, and browser hours for chat. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See phone numbers for AI agents', to: '/phone' },
+      },
     ],
   },
 
   final: {
     heading: 'Keep every word your AI tells people, dated, in your event log.',
-    sub: 'Tell us which agents to ask. We’ll set up the persona and your first check with you.',
+    sub: 'Try it on the Free plan on your own chat, phone line and support inbox.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-disclosure-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'disclosure',
     },
+    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
   },
 }

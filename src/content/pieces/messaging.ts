@@ -104,6 +104,6 @@ export const messaging: PiecePage = {
 
   final: {
     heading: 'Put your agent where people already message.',
-    capture: { kind: 'waitlist', button: 'Request early access', interest: 'any', source: 'piece-messaging' },
+    capture: { kind: 'waitlist', button: 'Start free', interest: 'any', source: 'piece-messaging' },
   },
 }

@@ -1,13 +1,13 @@
 import type { Recipe } from '../types'
 
-/* Trial teardown (/recipes/trial-teardown). Watch other companies. Screen: battlecard. Home's tile calls it
+/* Trial teardown (/blueprints/trial-teardown). Watch other companies. Screen: battlecard. Home's tile calls it
    "Competitor trials".
    The persona version (20 Nov 2026): a persona you define starts each competitor's free trial as a new user, signs in
    like one, and brings every event of the trial back to the event log, day by day: what sign up asks, the free plan's limits, and
    every onboarding email, prompt and offer, each dated with screenshots. Its events land in a CRM, Slack, a table or
    the API. Sold as designed: no index, no "already covered", no caps.
    The run and the comparison are examples and match the screen (Competitor A 20% off on day 13, Competitor B closed on
-   day 6 when a rep wrote, Competitor C 30% off). Every FAQ answer names the recipe, for AI search. */
+   day 6 when a rep wrote, Competitor C 30% off). Every FAQ answer names the blueprint, for AI search. */
 
 export const recipe: Recipe = {
   id: 'trial',
@@ -47,7 +47,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-trial-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'trial',
     },
   },
@@ -171,26 +171,35 @@ export const recipe: Recipe = {
       {
         q: 'Will the competitor know who asked?',
         a: 'No. Trial teardown’s persona has its own name, inbox and number, so the trial sees 1 new user. Who asked is never shown.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Can I run Trial teardown on my own trial?',
         a: 'Yes. Point Trial teardown at your own app to read your onboarding the way a new user does, after every release.',
+        link: { label: 'See the blueprint', to: '/blueprints/website-audit' },
       },
       {
         q: 'How long does Trial teardown take?',
         a: 'Trial teardown takes as long as the trial. The first emails land in minutes, and the whole trial is in your event log the day it ends.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
+      },
+      {
+        q: 'What does Trial teardown cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours, an inbox, and a local number where a trial asks for one. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],
   },
 
   final: {
     heading: 'Know every competitor’s trial offer before your buyer quotes it.',
-    sub: 'Tell us whose trials to sit through. We’ll set up the first personas with you.',
+    sub: 'Try it on the Free plan with the competitor your reps lose to most.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-trial-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'trial',
     },
+    link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
   },
 }

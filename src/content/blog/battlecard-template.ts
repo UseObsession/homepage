@@ -18,7 +18,8 @@ import type { BlogPost } from './types'
    teardown and competitor tracking recipes and /alternatives/klue. Kestrel Mail, Tidewell and Brightpoint are invented,
    at .example addresses, as is every figure about them. Left out on purpose: the platform behind each email (not a
    battlecard fact), any promised lift in win rate, any price figure for Obsession. General information on trial terms,
-   never legal advice. No dashes. */
+   never legal advice. No dashes. 22 Nov 2026: Obsession lines moved to the toolkit position (personas, blueprints,
+   prices.ts); Insights and the index are out. */
 
 const KLUE_AUTO = 'https://klue.com/topics/automated-battlecards'
 const CRAYON_STATE = 'https://www.crayon.co/state-of-competitive-intelligence'
@@ -42,7 +43,7 @@ export const post: BlogPost = {
   description:
     'A battlecard template for sales enablement teams: 12 sections to copy, with one kept current from what each competitor sends new customers, dated.',
   answer:
-    'A battlecard template is the set of sections a sales enablement team fills in for each competitor, from its pitch and pricing to objections and proof, each line dated. The section that goes stale first is what the competitor shows new customers, such as its trial limits, discounts and save offers, so date each one with a screenshot. Obsession keeps what each competitor shows only to its customers, dated with the email or screenshot, by API, MCP (the standard way AI agents call tools) or a table.',
+    'A battlecard template is the set of sections a sales enablement team fills in for each competitor, from its pitch and pricing to objections and proof, each line dated. The section that goes stale first is what the competitor shows new customers, such as its trial limits, discounts and save offers, so date each one with a screenshot. Obsession’s trial teardown blueprint sends a persona to start each competitor’s trial and keeps every limit, email and save offer, dated with its screenshot.',
   primaryKeyword: 'battlecard template',
   keywords: [
     'competitor battlecard template',
@@ -54,7 +55,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 13,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -306,7 +307,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For a battlecard, [trial teardown](/blueprints/trial-teardown) keeps each competitor’s trial by trial day, from what sign-up asks to the offer on the last day. The terms rule in step 1 applies here too: run a trial only where that competitor’s terms allow it. [Competitor tracking](/blueprints/competitor-tracking) keeps every email, offer and signed-in price on 1 dated timeline, for as long as you follow the competitor. Insights asks one question across every competitor you name, such as “what does each one offer on the last day of its trial?”, and answers with a row per company. Section 5 then stays current on every card at once. [Exa’s page for go-to-market (GTM) teams](' +
+      text: 'Obsession, the toolkit for AI agents, fills section 5 with blueprints. [Trial teardown](/blueprints/trial-teardown) sends a persona, an AI agent with its own inbox, number and browser under one name, through each competitor’s trial by trial day, from what sign-up asks to the offer on the last day. The terms rule in step 1 applies here too: run a trial only where that competitor’s terms allow it. [Competitor tracking](/blueprints/competitor-tracking) keeps every email, offer and signed-in price on 1 dated timeline, for as long as you follow the competitor. Every result lands in one event log, so section 5 stays current on every card at once. [Exa’s page for go-to-market (GTM) teams](' +
         EXA_GTM +
         ') offers “Company and people data every GTM team can act on”, with monitors for job posts, funding rounds, leadership changes and product launches. Obsession adds what each competitor sends the people who sign up, and both can feed one card ([Obsession vs Exa](/compare/obsession-vs-exa)).',
     },
@@ -318,9 +319,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What each competitor sends its customers, from the welcome email and trial limits to the save offer, each dated with its screenshot, on every card you keep.',
-      to: '/#join',
-      label: 'Request early access',
+      text: 'Trial teardown: a persona starts each competitor’s trial and keeps the welcome email, trial limits and save offer, each dated with its screenshot, for every card you keep.',
+      to: '/blueprints/trial-teardown',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'tools', text: 'Competitive battlecards: the tools compared', compare: true },
@@ -386,21 +387,21 @@ export const post: BlogPost = {
           'News and public pages for reps and agents',
         ],
         [
-          'Obsession (ours): Trial teardown, Competitor tracking, Insights, API and MCP',
-          'Trial limits, upgrade prompts, emails and save offers, dated',
-          'Early access, onboarding teams now\nPriced per call or per company watched',
-          'Every journey stops short of paying',
+          'Obsession (ours): [Trial teardown](/blueprints/trial-teardown), [Competitor tracking](/blueprints/competitor-tracking), API and MCP',
+          'Trial limits, upgrade prompts, emails and save offers, dated, in one event log',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment and at any identity check',
           'Section 5 on every card',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For section 5, use Obsession: it keeps each competitor’s trial, emails and offers, dated with the screenshot, for every competitor on your list. The facts reach a CI tool over the API, MCP or a webhook, a message sent to your own system the moment a fact lands. To write, store and deliver the cards, use Klue or Crayon, or a template and your CRM. To watch public pricing pages, use Visualping, and for news and public pages, Exa. With 3 to 5 competitors and an hour a week to spare, the template and a sheet do the job.',
+      text: 'For section 5, use Obsession’s trial teardown and competitor tracking blueprints, which keep each competitor’s trial, emails and offers, dated with the screenshot, for every competitor on your list. Every result reaches a CI tool over the API, MCP (the standard way AI agents call tools) or a webhook, a message sent to your own system the moment it lands. To write, store and deliver the cards, use Klue or Crayon, or a template and your CRM. To watch public pricing pages, use Visualping, and for news and public pages, Exa. With 3 to 5 competitors and an hour a week to spare, the template and a sheet do the job.',
     },
     {
       kind: 'p',
-      text: 'The other guides for revenue teams cover the same competitors from each role’s side. [Competitor monitoring](/blog/competitor-monitoring) serves competitive intelligence teams, and [competitive intelligence for product marketing](/blog/competitive-intelligence-for-product-marketing) covers launches and positioning. [Win loss analysis](/blog/win-loss-analysis) covers why deals were won or lost. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'The other guides for revenue teams cover the same competitors from each role’s side. [Competitor monitoring](/blog/competitor-monitoring) serves competitive intelligence teams, and [competitive intelligence for product marketing](/blog/competitive-intelligence-for-product-marketing) covers launches and positioning. [Win loss analysis](/blog/win-loss-analysis) covers why deals were won or lost. [Sales intelligence for B2B revenue teams](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
@@ -441,7 +442,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Do Klue and Crayon show what a competitor sends its trial users?',
-          a: 'Their pages don’t describe it. Klue describes cards fed by CRM data, calls, win-loss interviews and public monitoring, and Crayon describes monitoring and scheduled research such as pricing updates. Obsession keeps what each competitor shows the people who sign up, dated, and its facts can feed the cards either tool holds.',
+          a: 'Their pages don’t describe it. Klue describes cards fed by CRM data, calls, win-loss interviews and public monitoring, and Crayon describes monitoring and scheduled research such as pricing updates. Obsession’s personas keep what each competitor shows the people who sign up, dated, and every result can feed the cards either tool holds.',
           link: { label: 'Obsession vs Klue', to: '/compare/obsession-vs-klue' },
         },
       ],

@@ -1,9 +1,9 @@
 import type { Recipe } from '../types'
 
-/* Account watch (/recipes/account-watch). Watch other companies. Screen: acctwatch.
+/* Account watch (/blueprints/account-watch). Watch other companies. Screen: acctwatch.
    The persona version (20 Nov 2026): a persona the reader defines signs up at each company they sell to and keeps the
    account open for as long as they hold it. What each company sends it (emails that stop, links that break, offers
-   that change, a journey or a site that fails) comes back dated and lands on the account's record in the reader's
+   that change, a sign-up or a site that fails) comes back dated and lands on the account's record in the reader's
    CRM. Public news and job posts sit beside them as a supplement, never the product. No tracking of individual staff
    (the old "your champion leaves" check is gone), no reading of the reader's usage, tickets or calls. Not offered to
    agencies. Sold as designed: no index, no caps. The run is an example and says so; the `acctwatch` screen keeps its
@@ -47,7 +47,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-account-watch-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'account-watch',
     },
   },
@@ -162,6 +162,7 @@ export const recipe: Recipe = {
       {
         q: 'Where do the changes come from?',
         a: 'From real accounts. The persona signs up the way anyone can and keeps each account open for months, as the same person. News and job posts come from public pages.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Does it read our accounts’ data?',
@@ -173,17 +174,23 @@ export const recipe: Recipe = {
         a: 'It sees the most when your product touches what your accounts send: their emails, texts, checkout or booking.',
       },
       { q: 'How many accounts can it cover?', a: 'As many as you add, every morning. Run one, or a fleet of thousands.' },
+      {
+        q: 'What does Account watch cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox, a number and browser hours. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
+      },
     ],
   },
 
   final: {
     heading: 'Know what changed at every account before the call.',
-    sub: 'Tell us which accounts to watch. We’ll set up the first personas with you.',
+    sub: 'Try it on the Free plan with the accounts renewing soonest.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-account-watch-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'account-watch',
     },
+    link: { label: 'See the Watch the market kit', to: '/kits/watch-the-market' },
   },
 }

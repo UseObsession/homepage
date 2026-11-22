@@ -1,51 +1,36 @@
 import type { BlogPost } from './types'
 
-/* The AI customers series, the pillar (24 Oct 2026; retitled "Why every company needs AI customers" the same day, same
-   address, linking every audience deep dive): the thesis, under the invitation "Meet your first AI
-   customers". Readers: founders, heads of growth, CX and ecommerce, agency founders, sales leaders and investors who
-   want the case for the category in plain terms. It owns "why AI customers matter".
-   The argument: every company has a customer side it doesn't watch (what customers receive, against what the company
-   sends); 4 reasons it matters more now (weekly change, AI answering for companies, AI shopping for people, proof
-   worth more than claims), what changes with AI customers, the reader's own number, who it is for and who can wait,
-   then the invitation. Fair throughout: analytics, manual checks and mystery shoppers are described by what they do
-   well, and the article says who doesn't need AI customers yet.
-   Read on 24 Oct 2026: McKinsey's agentic commerce forecast (17 Oct 2025), Adobe's 2025 holiday results, Shopify's
-   agentic storefronts help page (Gartner's pages were behind a bot wall, so its figures are left out); reused from checked live articles: Joy Joya's 362 brand test,
-   Klaviyo's 2026 benchmarks, the CMA's 9 March 2026 guidance on AI agents, Moffatt v Air Canada (McCarthy Tétrault, Fox
-   Business). The money example uses the reader's own report and invented figures, labelled. The store is invented.
-   No dashes. */
+/* Retitled 22 Nov 2026 in place (same address): the case for giving AI agents their own pieces. Codes, replies and
+   logins reach the agent itself, under one identity, on one bill. Readers: developers building agents and teams handing
+   jobs to agents. Sources reused from the earlier version (Joy Joya's 362 brand test, the CMA's 9 March 2026 guidance,
+   McKinsey, Adobe, Clay's 6,346 forms). Prices from prices.ts on 22 Nov. The supplier and agent are invented. No dashes. */
 
 const JOYJOYA = 'https://joyjoya.com/blogs/podcast/why-your-welcome-email-isn-t-working-i-tested-362-brands'
-const KLAVIYO_BENCH = 'https://www.klaviyo.com/products/email-marketing/benchmarks'
 const CMA = 'https://www.gov.uk/government/publications/complying-with-consumer-law-when-using-ai-agents/complying-with-consumer-law-when-using-ai-agents'
-const MCCARTHY = 'https://www.mccarthy.ca/en/insights/blogs/techlex/moffatt-v-air-canada-misrepresentation-ai-chatbot'
-const FOX = 'https://foxbusiness.com/lifestyle/air-canada-chatbot-gave-customer-wrong-info-airline-pay'
 const MCKINSEY = 'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-agentic-commerce-opportunity-how-ai-agents-are-ushering-in-a-new-era-for-consumers-and-merchants'
 const ADOBE = 'https://news.adobe.com/news/2026/01/adobe-holiday-shopping-season'
-const SHOPIFY_AGENTIC = 'https://help.shopify.com/en/manual/online-sales-channels/agentic-storefronts'
 const CLAY = 'https://www.clay.com/blog/claygent-experiment-speed-to-lead'
-const PRODUCT_AI = 'https://dnyuz.com/2026/09/25/ai-cant-take-over-your-holiday-shopping-quite-yet-a-new-study-suggests/'
 
 export const post: BlogPost = {
   slug: 'why-ai-customers-matter',
-  title: 'Why AI customers matter: what every company shows only its customers',
-  dek: 'What a company sends and what its customers receive have drifted apart, and only a customer sees the gap. AI customers are one way Obsession collects what companies show only to customers, at any company you name, and the gap is worth working out in your own numbers.',
-  metaTitle: 'Why AI customers matter: what only a customer of yours sees',
+  title: 'Why AI agents need their own inbox, phone number and browser',
+  dek: 'Sign-ups send codes, suppliers reply days later and portals expect the same user back next week. An agent with its own inbox, number and browser gets all of it itself, under one name, on one bill.',
+  metaTitle: 'Why AI agents need their own inbox, phone number and browser',
   description:
-    'Why AI customers matter: what a company sends and what its customers receive have drifted apart, and only a customer sees the gap, at any company.',
+    'Why AI agents need their own inbox, phone number and browser: login codes, replies and sessions reach the agent itself, under one identity, on one bill.',
   answer:
-    'AI customers matter because what a company sends and what its customers receive have drifted apart, and only a customer sees the difference: the welcome email that never came, the code refused at checkout, the chatbot quoting an old policy. An AI customer sees it at any company, every day, and keeps the evidence, at a cost low enough to follow every competitor, prospect and journey at once. Obsession collects that view this way, keeping what any company shows only to its customers, dated with the email or screenshot, by API, MCP or a table.',
-  primaryKeyword: 'why ai customers matter',
+    'AI agents need their own inbox, phone number and browser because their work sends codes, replies and logins back to an address. If those land in a person’s inbox or phone, a person stays in the loop and the job waits. With its own pieces under one identity, the agent gets every code, reply and session itself, and each one lands in an event log.',
+  primaryKeyword: 'why ai agents need their own inbox',
   keywords: [
-    'why every company needs ai customers',
-    'what customers actually receive',
-    'ai agents as customers',
-    'test ai chatbot as a customer',
-    'customer experience gap',
+    'do ai agents need email',
+    'why ai agents need a phone number',
+    'ai agent verification codes',
+    'one identity for ai agents',
+    'browser that stays signed in for ai agents',
   ],
   category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 7,
   order: 4,
   authors: [
@@ -54,35 +39,35 @@ export const post: BlogPost = {
   ],
   hero: {
     art: {
-      kind: 'report',
-      title: 'ivywell.example · sent, and received',
-      period: 'The company’s own reports beside 1 AI customer’s week',
-      cols: ['Message', 'The company’s report', 'What the customer got'],
+      kind: 'log',
+      title: 'One agent, one identity, one week',
+      who: 'ava@agents.northwind.example',
       rows: [
-        { name: 'Welcome email', cells: ['Sent to 412 new subscribers', 'Arrived in 2 minutes, Promotions tab'], tone: 'ok' },
-        { name: 'Text with the code', cells: ['Flow live', 'Never arrived'], tone: 'fail' },
-        { name: 'Basket reminder', cells: ['Sent after 1 hour', 'Arrived 26 hours later, no photo'], tone: 'late' },
-        { name: 'Chat: returns', cells: ['Resolved', 'Said 60 days. The policy says 30'], tone: 'fail' },
-        { name: 'Bedding set price', cells: ['£79 on the page', '£72 for subscribers, by email'], tone: 'info' },
+        { time: 'Mon 09:02', text: 'Signs up to a supplier portal', detail: 'In its own browser, as Ava', tone: 'info' },
+        { time: 'Mon 09:02', text: 'Login code arrives by email', detail: 'Read within a second', tone: 'ok' },
+        { time: 'Mon 09:03', text: 'Portal sends a text code', detail: 'To Ava’s own US number', tone: 'ok' },
+        { time: 'Wed 14:40', text: 'Supplier replies to the quote', detail: 'Same thread Ava started', tone: 'ok' },
+        { time: 'Fri 08:15', text: 'Returns to the portal', detail: 'Still signed in', tone: 'ok' },
+        { time: 'Fri 08:16', text: 'Portal asks for a passport', detail: 'Stops, and logs what it asked', tone: 'late' },
       ],
-      notes: ['An example on an invented store.', 'The company’s reports were right about what it sent. Only the customer saw what arrived.'],
+      foot: 'An example: the supplier and the agent are invented.',
     },
   },
 
   blocks: [
     {
       kind: 'p',
-      text: 'A company can count every email it sends, every visit and every chat it closes. What each customer receives, in what order, and how it lands, is visible from one place only: the customer’s side.',
+      text: 'An AI agent that works with other companies gets answers back. A sign-up sends a login code by email. A phone check sends a text. A supplier replies to a quote 3 days later. A portal expects the same user to return signed in next week.',
     },
     {
       kind: 'p',
-      text: 'That side holds many of a company’s costliest mistakes, and it changes faster than anyone checks it by hand. AI customers make it possible to watch it at every company that matters to you, every day, with evidence.',
+      text: 'Each of those arrives at an address. Give the agent its own inbox, phone number and browser, and they arrive at the agent. It reads the code, answers the reply and returns to the portal with nobody forwarding anything.',
     },
     {
       kind: 'p',
-      text: 'The gap is measurable. [A test of 362 ecommerce brands](' +
+      text: 'Testing a sign-up needs addresses that have never been used. [Joy Joya signed up to 362 ecommerce brands](' +
         JOYJOYA +
-        ') by Joy Joya, using new email addresses and phone numbers, found that 158 sent no welcome email and 20 sent an offer that didn’t match the pop up.',
+        ') with new email addresses and phone numbers, and found that 158 sent no welcome email.',
     },
     {
       kind: 'stat',
@@ -92,207 +77,190 @@ export const post: BlogPost = {
       href: JOYJOYA,
     },
 
-    { kind: 'h2', id: 'customer-side', text: 'The customer side of every company' },
+    { kind: 'h2', id: 'codes-replies-logins', text: 'Codes, replies and logins' },
     {
       kind: 'p',
-      text: 'Every report a company reads describes what it did: emails sent, flows live, tickets resolved. Those reports are accurate about the company’s actions. They can’t show whether the email reached the inbox or the Promotions tab, whether the code worked on the sale price, or whether the chatbot’s answer matched the policy page.',
+      text: 'Most of what an agent waits for falls into four kinds. Each needs a place of its own to land.',
     },
     {
-      kind: 'p',
-      text: 'The money sits on that side. Klaviyo’s own [2026 benchmarks](' +
-        KLAVIYO_BENCH +
-        ') show that automated flows such as welcome and basket emails were 5.3% of email sends and nearly 41% of email revenue. Those flows reach only subscribers and shoppers who left a basket, so a broken one is invisible to everyone else, including the team that built it.',
+      kind: 'list',
+      items: [
+        '**Codes.** Login codes, magic links and verification texts expire within minutes. The agent has to read each one as it arrives.',
+        '**Replies.** A supplier, a lead or a support desk answers hours or days later. The reply has to reach the thread the agent started.',
+        '**Logins.** A portal, a dashboard or a supplier account keeps a session. The agent’s browser has to keep it too, for weeks.',
+        '**Texts and calls.** A delivery text or a callback goes to a phone number. The agent needs a number that answers.',
+      ],
     },
 
-    { kind: 'h2', id: 'why-now', text: 'Why it matters more now' },
-    { kind: 'h3', id: 'weekly-change', text: 'Companies change every week' },
+    { kind: 'h2', id: 'shared-inbox', text: 'Where a shared inbox breaks' },
     {
       kind: 'p',
-      text: 'A new theme, a new app, an edited flow, a price change, a new chatbot prompt: each one can break a step that worked yesterday, and none of them sends an alert when a customer stops receiving something. The check that matters is the one run after each change, from the customer’s side.',
+      text: 'Many teams start by pointing an agent at a person’s inbox, or at one shared by every agent. That works for one agent reading one person’s mail.',
     },
-    { kind: 'h3', id: 'ai-answers', text: 'AI now answers for companies' },
     {
       kind: 'p',
-      text: 'Chatbots, voice agents and AI sales agents now speak to customers for the company, and the company owns what they say. In the UK, a business is responsible for what its AI agent does in the same way it is responsible for what an employee does, and the Competition and Markets Authority tells businesses to [regularly check how well an AI agent is performing](' +
-        CMA +
-        '). In February 2024 a British Columbia tribunal held Air Canada responsible for its chatbot’s answer and ordered it to pay a customer [CA$812](' +
-        FOX +
-        '), rejecting the argument that the chatbot was a separate entity, [as McCarthy Tétrault reports](' +
-        MCCARTHY +
-        ').',
+      text: 'It stops working as the agent does more. A code sent to a person waits until that person forwards it. Replies to 10 agents land in one inbox, and each agent has to sort out which are its own. A login tied to a person’s account breaks when they change the password or leave.',
     },
-    { kind: 'h3', id: 'ai-shops', text: 'AI now shops for people' },
+    {
+      kind: 'p',
+      text: 'One inbox, one number and one browser per agent keep each thread, code and session with the agent that started it.',
+    },
+
+    { kind: 'h2', id: 'one-identity', text: 'One identity across every piece' },
+    {
+      kind: 'p',
+      text: 'The pieces work best under one name. A persona is an AI agent with its own inbox, number and browser under one identity. A supplier sees the same name on the email, the text and the portal login.',
+    },
+    {
+      kind: 'p',
+      text: 'For developers it is one call, obsession.personas.create({ inbox: true, phone: "US", browser: true }). A new email reaches your webhook, the address your code listens on, as email.received. A text arrives as sms.received. The persona is free while it waits and wakes in 50 ms when a message lands.',
+    },
+    {
+      kind: 'p',
+      text: 'Every email, text, call and page the agent handles lands in one event log, dated and in order. A team reads what each agent received and when, across a fleet of agents at once. More on each piece is on the [persona page](/personas).',
+    },
+
+    { kind: 'h2', id: 'why-now', text: 'Why agents need it now' },
     {
       kind: 'p',
       text: '[McKinsey](' +
         MCKINSEY +
-        ') forecasts that by 2030 AI agents could orchestrate $900 billion to $1 trillion of US retail revenue, and $3 trillion to $5 trillion worldwide. The start is visible already: traffic from AI tools to US retail sites rose 693.4% in the 2025 holiday season, from a small base, [Adobe reported](' +
+        ') forecasts that by 2030 AI agents could orchestrate $900 billion to $1 trillion of US retail revenue, and $3 trillion to $5 trillion worldwide. Traffic from AI tools to US retail sites rose 693.4% in the 2025 holiday season, from a small base, [Adobe reported](' +
         ADOBE +
-        '), and [Shopify’s agentic storefronts](' +
-        SHOPIFY_AGENTIC +
-        ') are on by default for eligible stores. Companies will be judged by agents that read every page and every policy literally. An AI customer shows a company what those agents meet.',
+        ').',
     },
-    { kind: 'h3', id: 'proof', text: 'Proof is worth more than claims' },
     {
       kind: 'p',
-      text: 'As more writing, reports and screenshots are produced by AI, the scarce thing is a record that something happened. An email kept exactly as it arrived, with its time and the sender’s signature checked on arrival, is a record anyone can open and test. That is the kind of evidence a client, a board or a court can rely on. For an agency, it ends the argument about whether a client’s flow fired ([showing clients every flow that fired](/blog/show-clients-every-flow-fired)).',
+      text: 'Agents that buy, book and ask for people deal with companies built for people. Those companies send codes, confirmations and replies to an email address and a phone number.',
+    },
+    {
+      kind: 'p',
+      text: 'Measuring how companies answer takes the same pieces. When [Clay’s agents submitted 6,346 demo and contact forms](' +
+        CLAY +
+        '), two thirds of the companies never replied. Counting that needs an address and a number for every reply, kept for weeks.',
+    },
+    {
+      kind: 'p',
+      text: 'A company also answers for what its agent does. In the UK, a business is responsible for its AI agent as it is for an employee. The Competition and Markets Authority tells businesses to [regularly check how well an AI agent is performing](' +
+        CMA +
+        '). An agent with its own identity, and every message it sent and received in one log, gives that check something to read.',
     },
 
-    { kind: 'h2', id: 'three-sides', text: 'Your company, your competitors and your partners' },
-    {
-      kind: 'p',
-      text: 'The customer side exists at every company, so AI customers point 3 ways, and each answers a question the other 2 can’t.',
-    },
-    {
-      kind: 'list',
-      items: [
-        '**Your own company.** Does every journey still work after this week’s release: the pop up, the welcome, the basket reminder, the code, the support bot? A silent fault here costs money every day, so a check after each change pays first. The method is in [how AI customers find revenue leaks](/blog/ai-customers-find-revenue-leaks).',
-        '**Your competitors and prospects.** What does a competitor offer a new customer this week, and how fast does a prospect answer a demo request? When [Clay’s agents submitted 6,346 demo and contact forms](' +
-          CLAY +
-          '), two thirds of the companies never replied: the kind of fact a sales team can open a conversation with.',
-        '**Your partners and AI assistants.** Does a deals site still show an expired code, and what do AI assistants tell shoppers about your prices? In a study Product.ai ran and Business Insider reported, [85% of the 913 AI shopping answers it could verify matched the current or listed price](' +
-          PRODUCT_AI +
-          '), so about 1 in 7 didn’t.',
-      ],
-    },
-    {
-      kind: 'p',
-      text: 'How marketing, sales, agency and CX teams put each one to work is in [AI customers for commercial teams](/blog/ai-customers-for-commercial-teams).',
-    },
-
-    { kind: 'h2', id: 'what-changes', text: 'What changes with AI customers' },
+    { kind: 'h2', id: 'cost', text: 'What it costs per agent' },
     {
       kind: 'table',
-      caption: 'Common questions, answered today and answered with AI customers',
-      cols: ['Question', 'How it is answered today', 'With AI customers'],
+      caption: 'Obsession’s list rates on 22 November 2026, the same on every plan',
+      cols: ['Piece', 'Price'],
       rows: [
-        ['Did the welcome email arrive?', 'Someone signs up by hand now and then', 'Every day, at every store, with the email kept'],
-        ['What are competitors offering subscribers?', 'A spare inbox per competitor, read when someone remembers', 'Every competitor’s emails, texts and prices on 1 timeline'],
-        ['Does our chatbot quote the right policy?', 'A test before launch', 'The same questions every day and after every update'],
-        ['What does this prospect’s customer get?', 'A guess from its website', 'A dated finding the prospect can open'],
-        ['How many companies can we check?', 'As many as people have hours for', '100,000 at once, built for millions'],
+        ['Inbox', '$0.50 a month'],
+        ['Emails', '$0.40 per 1,000, sent or received'],
+        ['US or UK number', '$2 a month'],
+        ['Texts', '$0.015 each, sent or received'],
+        ['Calls', '$0.012 a minute, in or out'],
+        ['Browser', '$0.10 an hour, no charge per GB'],
+        ['Persona', 'Free while it waits'],
+        ['Event log', '$5 per million events'],
       ],
     },
     {
       kind: 'p',
-      text: 'The tools that exist do their jobs well. Analytics shows where visitors drop, email reports show what was sent, and a mystery shopper brings human judgement to a visit. AI customers add the part none of them cover: being the customer, at any company, for as long as it takes, with the evidence kept.',
+      text: 'An agent with its own inbox and US number costs $2.50 a month before usage, whether a team runs 1 or 10,000. Waiting between messages costs nothing.',
     },
-
-    { kind: 'h2', id: 'your-number', text: 'What a silent message costs, in your numbers' },
     {
       kind: 'p',
-      text: 'Take your email platform’s report for the flow you rely on most, often the welcome series. The cost of it going silent is its daily revenue multiplied by the days until someone notices.',
+      text: 'The Free plan includes 3 inboxes, 3,000 emails, 1 number that receives texts and calls, 10 browser hours and 100,000 events, with no credit card. Paid plans are $20, $99 or $499 a month, and each fee covers at least that much usage at these rates.',
     },
+
+    { kind: 'h2', id: 'when-shared-is-enough', text: 'When a shared inbox is enough' },
     {
       kind: 'list',
       items: [
-        '**Your flow’s revenue a day:** from your platform’s flow report, over the last 30 days, divided by 30.',
-        '**Days until noticed:** without a daily check, the time until the monthly report or a customer’s complaint.',
-        '**Cost of the silence:** revenue a day × days until noticed.',
+        'An agent that only reads and drafts replies to one person’s own mail can use that person’s inbox.',
+        'An agent that only reads public pages needs a search API, with no inbox or number. The options are compared in [the best web search APIs for AI agents](/blog/best-web-search-api-for-ai-agents).',
+        'A sign-up checked by hand once a month needs one spare address, used by a person.',
       ],
     },
-    {
-      kind: 'p',
-      text: 'An example with invented figures: a welcome series reporting £36,000 over 30 days earns £1,200 a day. Silent for 9 days before anyone notices, it costs £10,800. Found the morning after the change that broke it, it costs £1,200.',
-    },
-    {
-      kind: 'p',
-      text: 'The same sum works for an agency (a client’s retainer, kept because the fault was found first) and for a sales team (a meeting won with a finding the prospect can open).',
-    },
 
-    { kind: 'h2', id: 'who-for', text: 'Who it is for, and who can wait' },
+    { kind: 'h2', id: 'who', text: 'Who gives agents their own pieces' },
     {
       kind: 'list',
       items: [
-        '**It pays first** for companies that change often, buy paid traffic, compete on offers, run AI agents in front of customers, or check many companies at once, as agencies and sales teams do.',
-        '**It can wait** for a business that changes rarely, runs no paid traffic and has few competitors. Signing up by hand once a month and after every change covers it.',
-      ],
-    },
-
-    { kind: 'h2', id: 'by-business', text: 'Why each kind of company needs AI customers' },
-    {
-      kind: 'p',
-      text: 'The sum changes with the business. A guide for each kind of company works through its money, its workload and its options:',
-    },
-    {
-      kind: 'list',
-      items: [
-        '**Ecommerce brands.** Most owned revenue runs through automated messages and steps that fail without an error. [Why ecommerce brands need AI customers](/blog/ai-customers-for-ecommerce-brands).',
-        '**Retention agencies.** Clients stay when they can see what their customers received. [Why retention agencies need AI customers](/blog/ai-customers-for-retention-agencies).',
-        '**CRO and performance agencies.** Paid traffic is only as good as the page, code and emails it lands on. [Why CRO and performance agencies need AI customers](/blog/ai-customers-for-cro-agencies).',
-        '**Shopify Plus agencies.** A launch is judged in the weeks after go-live, when the client’s customers find what broke. [Why Shopify Plus agencies need AI customers](/blog/ai-customers-for-shopify-plus-agencies).',
-        '**Companies that sell to Shopify brands.** Install data says what a store has, never whether it works. [Why companies that sell to Shopify brands need AI customers](/blog/ai-customers-for-ecommerce-vendors).',
-        '**B2B sales teams.** A demo request is worth only as much as the first reply a buyer gets. [Why B2B sales teams need AI customers](/blog/ai-customers-for-b2b-sales-teams).',
-        '**CX teams.** A company answers for its AI agent as it does for an employee. [Why CX teams need AI customers](/blog/ai-customers-for-cx-teams).',
-        '**Developers.** An agent that deals with another company has to stay its customer for months. [Why developers need AI customers](/blog/long-running-ai-agents), and [what to build with AI customers](/blog/what-to-build-with-ai-customers).',
-        '**Every team in one company.** Marketing, sales, agencies, ecommerce and CX, side by side, in [AI customers for commercial teams](/blog/ai-customers-for-commercial-teams).',
+        '**Developers building agent products** give each user’s agent an inbox and a number in one call, through [the API, or MCP, the standard way AI agents call tools](/developers). See [building AI agent products](/kits/build-agent-products).',
+        '**QA and growth engineers** give each test journey its own persona, which waits days for the day-7 email. See [testing your sign-up and AI agents](/kits/test-sign-up-and-agents).',
+        '**Teams working behind logins** give an agent a [browser that stays signed in](/browser), with an inbox and number for every login code. See [work behind logins](/kits/work-behind-logins).',
+        '**Teams that talk to customers** give a voice or text agent its own [phone number](/phone). See [talking to customers](/kits/talk-to-customers).',
+        '**Teams without developers** pick a [blueprint](/blueprints), a ready job Obsession runs on these pieces, with the results sent to Slack, a sheet or the CRM.',
       ],
     },
     {
       kind: 'p',
-      text: 'Every job an AI customer does, with the page that runs each one, is set out in [AI customer use cases](/blog/ai-agent-use-cases-for-business), and for online stores and their agencies in [AI customer use cases in ecommerce](/blog/agentic-ai-use-cases-in-ecommerce).',
+      text: 'How agents sign in to websites is in [can AI agents log in to websites](/blog/can-ai-agents-log-in-to-websites). How they make and take calls is in [can AI make phone calls](/blog/can-ai-make-phone-calls). How they stay on one job for weeks is in [long-running AI agents](/blog/long-running-ai-agents).',
     },
 
-    { kind: 'h2', id: 'meet', text: 'How teams start' },
+    { kind: 'h2', id: 'start', text: 'How teams start' },
     {
       kind: 'p',
-      text: 'If your company needs to see what customers receive from it, its competitors or its prospects, use Obsession. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Teams start in early access, onboarding teams now: API and MCP access, lookups of every company already covered, and companies added on request. Start where the money is: your own store’s journeys ([leak checks for ecommerce stores](/use-cases/leak-checks-for-ecommerce-stores)), the stores an agency works on ([leak checks for retention agencies](/use-cases/leak-checks-for-retention-agencies)), or your closest competitors. How the data is collected is in [how AI customers work](/blog/how-ai-customers-work), and what the term means is in [AI customers](/blog/ai-customers).',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to.',
     },
     {
       kind: 'cta',
-      text: 'See what only a customer sees, at a real UK skincare store in September 2026: every inbox watched for 48 hours, every email and screenshot kept, and a £40 basket left at 02:57 that got no reminder.',
-      to: '/sample-output',
-      label: 'See sample data',
+      text: 'Give your agent its own inbox, number and browser in one call. The Free plan includes 3 inboxes, 1 number and 10 browser hours, with no credit card.',
+      to: '/developers#join',
+      label: 'Start free',
+    },
+    {
+      kind: 'cta',
+      text: 'Not building agents? Pick a blueprint, and Obsession runs it.',
+      to: '/blueprints',
+      label: 'Browse blueprints',
     },
 
-    { kind: 'h2', id: 'questions', text: 'Questions about why AI customers matter' },
+    { kind: 'h2', id: 'questions', text: 'Questions about an AI agent’s own inbox, number and browser' },
     {
       kind: 'faq',
       items: [
         {
-          q: 'Why do AI customers matter?',
-          a: 'They see what a company’s customers actually receive, which the company’s own reports can’t show, and they keep the evidence. They do it at any company, every day, at a cost that makes checking every competitor and journey practical.',
+          q: 'Why does an AI agent need its own email address?',
+          a: 'Sign-ups, suppliers and leads send codes and replies by email. With its own address, the agent reads each one as it arrives, in its own threads, with nobody forwarding it.',
         },
         {
-          q: 'Can’t my analytics show me this?',
-          a: 'Analytics shows what visitors did on your site and what your tools sent. It can’t show whether an email arrived, which tab it landed in, or what a customer was told by your chatbot.',
+          q: 'Can’t my agent use my Gmail?',
+          a: 'For one agent reading your own mail, yes. Once it signs up to sites, waits for replies or works beside other agents, codes wait on you and threads mix. Its own inbox keeps them apart.',
         },
         {
-          q: 'Isn’t a manual check once a month enough?',
-          a: 'For a business that changes rarely, yes. For one that changes weekly or buys paid traffic, a fault can run for weeks between checks.',
+          q: 'Does an agent need a phone number if it has email?',
+          a: 'Often. Many sites send a verification text, and many people reply by text or call back. A number lets the agent receive both.',
         },
         {
-          q: 'Who should start with AI customers?',
-          a: 'Companies that change often, buy paid traffic or run AI agents in front of customers, and agencies and sales teams that check many companies at once. A business that changes rarely can sign up by hand once a month and after each change.',
+          q: 'What is a persona?',
+          a: 'An AI agent with its own inbox, phone number and browser under one name. On Obsession a persona is free while it waits and wakes in 50 ms when a message lands.',
+          link: { label: 'Personas', to: '/personas' },
         },
         {
-          q: 'Do AI customers replace mystery shoppers?',
-          a: 'They cover the digital journeys every day at software cost. A human mystery shopper still brings judgement to a store visit or a phone call.',
+          q: 'What does it cost?',
+          a: 'An inbox is $0.50 a month and a US or UK number $2 a month, with emails, texts, calls and browser hours billed as used. The Free plan includes 3 inboxes, 1 number and 10 browser hours.',
+          link: { label: 'See pricing', to: '/pricing' },
         },
         {
-          q: 'Are AI customers the same as AI shopping agents?',
-          a: 'No. An AI shopping agent buys for a person. An AI customer is a customer of a company that records what the company sends, and buys only when its owner funds a real order.',
+          q: 'What does the agent do at a CAPTCHA or an identity check?',
+          a: 'It stops. An agent on Obsession says it’s an AI when it talks to a person, never gets round a CAPTCHA or a bot block, and stops at any identity check. It stops before payment unless given the customer’s own payment card.',
+          link: { label: 'How our agents behave', to: '/agents' },
         },
       ],
     },
     {
       kind: 'note',
-      title: 'How we checked this',
-      text: 'Every outside source was read on 24 October 2026. The store, its report and the money example use invented figures. For legal questions about AI agents, take advice for your own case.',
+      title: 'Prices and examples',
+      text: 'Prices are Obsession’s list rates on 22 November 2026, from its pricing page. The supplier and the agent in the examples are invented.',
     },
   ],
 
   sources: [
     { title: 'Why your welcome email isn’t working (I tested 362 brands)', publisher: 'Joy Joya (Laryssa Wirstiuk)', url: JOYJOYA, date: '2026-07-27' },
-    { title: '2026 email marketing benchmarks by industry', publisher: 'Klaviyo', url: KLAVIYO_BENCH, date: '2026' },
-    { title: 'Complying with consumer law when using AI agents', publisher: 'UK Competition and Markets Authority (GOV.UK)', url: CMA, date: '2026-03-09' },
-    { title: 'Air Canada chatbot gave a customer wrong info and the airline had to pay', publisher: 'Fox Business', url: FOX, date: '2024-02-19' },
-    { title: 'Moffatt v. Air Canada: A Misrepresentation by an AI Chatbot', publisher: 'McCarthy Tétrault', url: MCCARTHY, date: '2024-02-19' },
     { title: 'Agentic commerce: how agents are ushering in a new era', publisher: 'McKinsey & Company', url: MCKINSEY, date: '2025-10-17' },
     { title: 'Holiday shopping season drove a record $257.8 billion online with consumers embracing generative AI tools', publisher: 'Adobe', url: ADOBE, date: '2026-01-07' },
-    { title: 'Shopify agentic storefronts', publisher: 'Shopify Help Center', url: SHOPIFY_AGENTIC },
     { title: 'We asked 6,346 companies for a demo. Most never wrote back.', publisher: 'Clay', url: CLAY, date: '2026-09-22' },
-    { title: 'AI can’t take over your holiday shopping quite yet, a new study suggests', publisher: 'Business Insider, via DNYUZ', url: PRODUCT_AI, date: '2026-09-25' },
+    { title: 'Complying with consumer law when using AI agents', publisher: 'UK Competition and Markets Authority (GOV.UK)', url: CMA, date: '2026-03-09' },
   ],
-  related: ['/email', '/phone', '/browser', 'ai-customers', 'how-ai-customers-work', 'ai-customers-find-revenue-leaks', 'hire-ai-customers', 'recipe:mystery-shopper', '/sample-output'],
+  related: ['/email', '/phone', '/browser', '/personas', 'ai-customers-for-developers', 'can-ai-agents-log-in-to-websites', 'long-running-ai-agents', '/blueprints'],
 }

@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/the-web-behind-the-login: the category's definition, said the same way everywhere (docs/SEARCH.md §2).
    Home owns the brand phrase and the blog's guide (/blog/the-web-behind-the-login) owns "web behind the login" as a
@@ -61,11 +60,11 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'how-its-indexed', text: 'How the web behind the login is collected' },
     {
       kind: 'p',
-      text: `${ENTITY} A company’s history starts the day it is covered and builds for as long as anyone follows it, so it can’t be filled in later.`,
+      text: 'Obsession’s [cloud browser](/browser) can sign up as a customer, and a persona’s [inbox](/email) keeps what arrives, dated, in the event log. History starts the day collection starts, so it can’t be filled in later.',
     },
     {
       kind: 'p',
-      text: 'An Obsession agent signs up as any customer can, says it’s an AI when it talks to a person, goes every step short of paying, never invents identity details and never gets round a CAPTCHA or a bot block ([what every agent keeps to](/agents)). How it compares with search APIs, scrapers and email archives is on [the compare page](/compare), and one real record is in [the sample data](/sample-output).',
+      text: 'An Obsession agent signs up as any customer can, says it’s an AI when it talks to a person, goes every step short of paying, never invents identity details and never gets round a CAPTCHA or a bot block ([what every agent keeps to](/agents)). How it compares with search APIs, scrapers and email archives is on [the compare page](/compare), and one real run is in [the sample data](/sample-output).',
     },
     {
       kind: 'faq',
@@ -88,6 +87,8 @@ export const ref: ReferencePage = {
   ],
   sources: [],
   related: [
+    '/use-cases/web-behind-the-login',
+    '/browser',
     'the-web-behind-the-login',
     '/glossary/login-wall',
     '/glossary/member-price',

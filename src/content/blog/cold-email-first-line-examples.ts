@@ -18,7 +18,8 @@ import type { BlogPost } from './types'
    /compare ("every step short of paying"); the platform behind an email follows /sales ("Their emails have come from a
    new platform since 2 October"). Fennick Home and every fact in the lines and pictures are invented examples. Left out:
    any reply-rate lift for our own lines (none measured), Gong's 87% buyer figure (it links only to a gated guide). No
-   dashes. General information, never legal advice. */
+   dashes. General information, never legal advice. 
+   22 Nov 2026: moved to the toolkit position (the prospect intelligence blueprint and a persona per account). */
 
 const CLAYGENT = 'https://www.clay.com/claygent'
 const GONG = 'https://www.gong.io/resources/labs/4-data-backed-ways-to-increase-your-email-reply-rate-and-book-that-meeting/'
@@ -38,7 +39,7 @@ export const post: BlogPost = {
   description:
     'Cold email first line examples for SDRs: 24 openers by vendor type, each built on what the prospect’s customers received, with the fact behind it.',
   answer:
-    'The best cold email first line examples open on a problem the prospect’s own customers met, such as “I signed up to your store on Monday, and your welcome email arrived 7 hours later.” A compliment on a podcast can now be drafted for every rep at once, while a line about the prospect’s own emails is true of one company. Obsession keeps what each company on your list shows only to its customers, dated with a screenshot, by API, MCP (the standard way AI agents call tools) or a table.',
+    'The best cold email first line examples open on a problem the prospect’s own customers met, such as “I signed up to your store on Monday, and your welcome email arrived 7 hours later.” A compliment on a podcast can now be drafted for every rep at once, while a line about the prospect’s own emails is true of one company. On Obsession the prospect intelligence blueprint signs an AI agent up as a customer at every company on your list and writes each fact, dated with its screenshot, back to your rows.',
   primaryKeyword: 'cold email first line examples',
   keywords: [
     'personalized cold email first line',
@@ -51,7 +52,7 @@ export const post: BlogPost = {
   category: 'Watch other companies',
   order: 5,
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 18,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -354,15 +355,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For outbound, Obsession’s [prospect intelligence](/blueprints/prospect-intelligence) signs up, opts in to texts and asks the chat at every company on your list. It writes each fact, its date and its screenshot back to the same rows in Clay, a sheet or the CRM, for as long as you set. It also shows the platform that sent each email, and the week an account’s emails start coming from a different one, as on [the page for sales teams](/sales). [Exa](' +
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its blueprints are ready jobs Obsession runs for any team. For outbound, the [prospect intelligence](/blueprints/prospect-intelligence) blueprint gives a persona, an AI agent with its own inbox, number and browser, to every company on your list. It signs up, opts in to texts and asks the chat. It writes each fact, its date and its screenshot back to the same rows in Clay, a sheet or the CRM, for as long as you set. It also shows the platform that sent each email, and the week an account’s emails start coming from a different one, as on [the page for sales teams](/sales). [Exa](' +
         EXA +
-        ') gives reps the public web in seconds; Obsession gives them what each account sends the people who sign up, and a team can use both. Run it on the accounts your SDRs open this month, so you can see what it does to reply rates, meetings booked and opportunities.',
+        ') gives reps the public web in seconds, and an agent on Obsession receives what each account sends the people who sign up, so many teams use both. Run it on the accounts your SDRs open this month, so you can see what it does to reply rates, meetings booked and opportunities.',
     },
     {
       kind: 'cta',
       text: 'What each account on your list sends its own customers, from the welcome email to the chat answer, dated with a screenshot and ready for the first line.',
-      to: '/#join',
-      label: 'Request early access',
+      to: '/blueprints/prospect-intelligence',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'options', text: 'Where SDRs get first line facts, compared', compare: true },
@@ -413,30 +414,30 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking), [Trial teardown](/blueprints/trial-teardown)',
-          'Keeps what each account shows only to its customers: emails, texts, chat answers, trial emails, the platform that sent each email',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'An account not yet covered starts its history the day it is added\nOrders and identity checks stay with your own team',
+          'Keeps what each account sends a new customer: emails, texts, chat answers, trial emails, the platform that sent each email',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'History starts the day a persona signs up\nStops before payment and at any identity check',
           'First lines about the prospect’s own customers, for every account on the list',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For a first line about what the prospect’s own customers received, use Obsession, which keeps it dated for every account on your list, for as long as you set. Public research and Exa give the context on the company. AI research agents draft lines from public facts across a whole list, and signing up by hand works for a short list of top accounts.',
+      text: 'For a first line about what the prospect’s own customers received, use Obsession’s prospect intelligence blueprint, which keeps it dated for every account on your list, for as long as you set. Public research and Exa give the context on the company. AI research agents draft lines from public facts across a whole list, and signing up by hand works for a short list of top accounts.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
     {
       kind: 'list',
       items: [
-        '**Lines about orders need an order.** Delivery emails, returns and review requests after a purchase reach only someone who bought. Obsession covers every step short of paying, so those lines come from an order your own team placed.',
+        '**Lines about orders need an order.** Delivery emails, returns and review requests after a purchase reach only someone who bought. A persona stops before payment unless it is given your own card, so those lines come from an order your own team placed.',
         '**One sign-up is one customer’s view.** A new UK subscriber on a phone sees what that store shows new UK subscribers on phones. Say so in the line when it matters.',
         '**A fact that isn’t a problem is not a first line.** Many sign-ups will turn up nothing worth saying. That is useful too: it moves the account down the list.',
       ],
     },
     {
       kind: 'p',
-      text: 'When the prospect replies, the [sales business case template](/blog/sales-business-case-template) opens the next call with the same screenshot. Teams that want each fact as a field in their own tools can follow [Clay custom signals](/blog/clay-custom-signals). Start with the 10 accounts your SDRs most want to meet this month, and write each first line from their own inbox. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'When the prospect replies, the [sales business case template](/blog/sales-business-case-template) opens the next call with the same screenshot. Teams that want each fact as a field in their own tools can follow [Clay custom signals](/blog/clay-custom-signals). Start with the 10 accounts your SDRs most want to meet this month, and write each first line from their own inbox. [The sales intelligence use case](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
@@ -463,7 +464,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How do you personalize cold emails at scale?',
-          a: 'Collect one fact per account from what it sends its own customers, then write each line from the template. By hand that takes about 15 minutes an account plus the waiting window. Obsession collects those facts for every account on a list and writes each one, with its date and screenshot, back to the same rows.',
+          a: 'Collect one fact per account from what it sends its own customers, then write each line from the template. By hand that takes about 15 minutes an account plus the waiting window. Obsession’s prospect intelligence blueprint collects those facts for every account on a list and writes each one, with its date and screenshot, back to the same rows.',
           link: { label: 'Prospect intelligence', to: '/blueprints/prospect-intelligence' },
         },
         {

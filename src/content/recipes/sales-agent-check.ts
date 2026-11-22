@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Sales agent check (/recipes/sales-agent-check). Check your AI agents. Screen: salescheck (Mon 07:01 on WhatsApp: the
+/* Sales agent check (/blueprints/sales-agent-check). Check your AI agents. Screen: salescheck (Mon 07:01 on WhatsApp: the
    Duo bundle quoted at €89 where the price list at 07:00 says €189; checkout €89.00, stopped before payment; 27 bundle
    chats last week).
    The persona version (20 Nov 2026): a shopper persona you define (new, returning or a member), with its own WhatsApp
@@ -48,7 +48,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-sales-agent-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'sales-agent',
     },
   },
@@ -178,6 +178,7 @@ export const recipe: Recipe = {
       {
         q: 'Can Sales agent check ask a competitor’s agent?',
         a: 'Yes. A persona asks a competitor’s shopping assistant what any shopper can ask and keeps each quote with its time. It has its own name and number, so nothing points back to you.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Does Sales agent check buy anything?',
@@ -190,18 +191,25 @@ export const recipe: Recipe = {
       {
         q: 'Which agents can Sales agent check cover?',
         a: 'Sales agent check covers any AI that sells, from a vendor or built in house: on site chat, WhatsApp, text or in an app.',
+        link: { label: 'See messaging for AI agents', to: '/messaging' },
+      },
+      {
+        q: 'What does Sales agent check cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours for chat and checkout, and WhatsApp messages or texts. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See the cloud browser', to: '/browser' },
       },
     ],
   },
 
   final: {
     heading: 'Catch a wrong price the morning it appears.',
-    sub: 'Tell us which agent to shop with and who the shopper should be. We’ll set up your first run with you.',
+    sub: 'Try it on the Free plan with your best-selling bundle.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-sales-agent-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'sales-agent',
     },
+    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
   },
 }

@@ -21,7 +21,8 @@ import type { BlogPost } from './types'
    the preview-link theme check in the live use case page's words, last in the comparison with "Running now", one plain
    recommendation in the verdict. brightfern.example and everything in both pictures are invented. No store, agency or
    person checked is named. No Gartner, PilotX, 93%, 128 stores, Gmail tab, MCP address or waitlist. Buyer words; no
-   dashes. */
+   dashes. 22 Nov 2026: Obsession lines moved to the toolkit position (Obsession personas, blueprints, prices.ts); the
+   1,500 line and the 26 Oct walk are out. */
 
 const HELP = 'https://help.shopify.com/en/manual/online-store/simgym'
 const CHANGELOG =
@@ -43,7 +44,7 @@ export const post: BlogPost = {
   description:
     'Shopify SimGym review: how its AI shoppers compare themes, SimGym pricing, how accurate Shopify’s research found it, and what it misses after the click.',
   answer:
-    'Shopify SimGym is an app by Shopify that sends AI shoppers through a store’s live theme, a draft theme or both, and in a comparison predicts which theme earns more add-to-carts. Shopify’s pages describe its shoppers browsing, adding to cart and giving feedback, and say nothing of signing up, receiving emails or trying a discount code. For what a customer receives after the click, Obsession keeps every email, code and page your store or any competitor shows a new customer, dated with the email or screenshot.',
+    'Shopify SimGym is an app by Shopify that sends AI shoppers through a store’s live theme, a draft theme or both, and in a comparison predicts which theme earns more add-to-carts. Shopify’s pages describe its shoppers browsing, adding to cart and giving feedback, and say nothing of signing up, receiving emails or trying a discount code. For what a customer receives after the click, Obsession, the toolkit for AI agents, sends a persona with its own inbox that keeps every email, code and page your store or any competitor shows a new customer, dated.',
   primaryKeyword: 'shopify simgym',
   keywords: [
     'simgym review',
@@ -51,12 +52,11 @@ export const post: BlogPost = {
     'simgym pricing',
     'simgym app',
     'ai shoppers shopify',
-    'ai customer simulation',
     'simgym alternative',
   ],
   category: 'Check your own journeys',
   published: '2026-10-29',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 14,
   order: 0,
   authors: [
@@ -67,8 +67,8 @@ export const post: BlogPost = {
     art: {
       kind: 'report',
       title: 'brightfern.example',
-      period: 'An AI shopper and an AI customer at one store',
-      cols: ['What it does', 'Simulated shopper', 'AI customer'],
+      period: 'An AI shopper and an Obsession persona at one store',
+      cols: ['What it does', 'Simulated shopper', 'Obsession persona'],
       rows: [
         { name: 'Browses a draft theme', cells: ['Yes, its main use', 'Yes, via preview link'] },
         { name: 'Adds to cart', cells: ['Yes, its measure', 'Yes'] },
@@ -79,7 +79,7 @@ export const post: BlogPost = {
         { name: 'Shops competitor stores', cells: ['Your own store', 'Any store you name'] },
       ],
       notes: [
-        'A simulated shopper predicts how a crowd would browse a theme. An AI customer keeps what a real new customer receives.',
+        'A simulated shopper predicts how a crowd would browse a theme. An Obsession persona keeps what a real new customer receives.',
         'Brightfern is an invented store.',
       ],
     },
@@ -227,42 +227,42 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. One way it collects them is the AI customer ([what AI customers are](/blog/ai-customers)): an agent that signs up the way any customer can. It keeps what the store sends, dated, with the email or screenshot behind it. Each journey (sign up, browse, leave a basket, start a checkout) has its own inbox, watched for as long as you choose. On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts chose to show on their own websites.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to. An Obsession persona is an AI agent with its own inbox, number and browser under one name. It signs up to a store the way any customer can and keeps what the store sends, dated, with the email or screenshot behind it. Each journey (sign up, browse, leave a basket, start a checkout) gets its own persona, watched for as long as you choose. [AI agents as customers](/blog/ai-customers) covers what such an agent sees.',
     },
     {
       kind: 'list',
       items: [
         '**A sign-up with a real inbox.** Neither Shopify’s help centre nor its research describes a shopper typing in an email address, and every email a store sends a new customer starts there.',
         '**The welcome email and its code.** Whether it arrives within minutes, from a sender the shopper recognises, with the code the pop up promised. If it never comes, [why a welcome or basket email never arrives](/blog/welcome-basket-email-not-sending) works through the causes.',
-        '**Codes and offers at checkout.** In Shopify’s study, the product each shopper hunted was described without discounts. The 26 October walk found offers that broke between the page and the cart. A banner promised free shipping while the cart set a spend threshold. Carts dropped a subscription price, never added a promised free gift, or added a protection charge the shopper hadn’t chosen.',
+        '**Codes and offers at checkout.** In Shopify’s study, the product each shopper hunted was described without discounts. Offers can break between the page and the cart. A banner can promise free shipping while the cart sets a spend threshold, and a cart can drop a subscription price, leave out a promised free gift or add a protection charge the shopper hadn’t chosen.',
         '**The checkout reminder.** Whether anything arrives after a shopper leaves a checkout with their email typed in, and whether it shows the item at the price the store showed.',
-        '**What arrives over 48 hours and weeks.** A simulation lasts minutes. A first reminder can come after 30 minutes or 10 hours, so it is called missing only once the window the store chose has closed. Over weeks, offers go stale: the walk found a sale banner still up the day after the sale ended.',
+        '**What arrives over 48 hours and weeks.** A simulation lasts minutes. A first reminder can come after 30 minutes or 10 hours, so it is called missing only once the window the store chose has closed. Over weeks, offers go stale, such as a sale banner still up the day after the sale ends.',
         '**Competitors’ stores.** Shopify’s pages describe tests of the store that installed it. A competitor’s welcome offer, prices and reminders need a customer at the competitor.',
         '**The page behind an ad.** Shopify’s pages describe shoppers who browse the storefront, and don’t describe starting from an ad’s link. A shopper from an ad lands on the page the ad links to, expecting the price or offer the ad showed.',
       ],
     },
     {
       kind: 'p',
-      text: 'SimGym’s shoppers and AI customers both meet bot checks. The help centre says bot protection or traffic limits can block SimGym’s shoppers and leave their visits unfinished. A CAPTCHA is a puzzle that blocks automated visitors. Obsession keeps a record of every journey, and where a store puts a CAPTCHA in front of a step, the record names the step it couldn’t reach.',
+      text: 'SimGym’s shoppers and Obsession personas both meet bot checks. The help centre says bot protection or traffic limits can block SimGym’s shoppers and leave their visits unfinished. A CAPTCHA is a puzzle that blocks automated visitors. An Obsession persona never gets round a CAPTCHA, and the event log names the step where it stopped.',
     },
 
-    { kind: 'h2', id: 'side-by-side', text: 'Simulated shoppers and AI customers, side by side' },
+    { kind: 'h2', id: 'side-by-side', text: 'Simulated shoppers and Obsession personas, side by side' },
     {
       kind: 'p',
-      text: 'The two answer different questions. SimGym asks how a crowd of the store’s shoppers would browse this theme. An AI customer asks what a customer receives. That second question is where sales are lost after the click, through a refused code, a reminder that never came or a free shipping promise the cart dropped.',
+      text: 'The two answer different questions. SimGym asks how a crowd of the store’s shoppers would browse this theme. An Obsession persona asks what a customer receives. That second question is where sales are lost after the click, through a refused code, a reminder that never came or a free shipping promise the cart dropped.',
     },
     {
       kind: 'p',
-      text: 'On a Shopify store, Obsession’s agents open the page behind your ads from their links and sign up through the pop up. They take the welcome code to checkout, leave a basket or a checkout, and keep every email and page with the time it arrived. Before a launch, they take a draft theme’s preview link and run every journey on the new theme first. The store’s team chooses when to read the results, at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants. The same platform checks every competitor’s prices, offers and delivery each morning, and asks AI assistants what they tell buyers about the store. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, and it is built to look up millions of companies, each in one call.',
+      text: 'On a Shopify store, Obsession’s personas open the page behind your ads from their links and sign up through the pop up. They take the welcome code to checkout, leave a basket or a checkout before payment, and keep every email and page with the time it arrived. Before a launch, they take a draft theme’s preview link and run every journey on the new theme first. The store’s team reads the results at 4, 12, 24 or 48 hours, or keeps the personas watching for as long as it wants. The [price watch](/blueprints/price-watch) blueprint reads every competitor’s prices each morning, and [listings and AI answers](/blueprints/listings-ai-answers) asks AI assistants what they tell buyers about the store. A fleet of personas runs these checks at 300, 1,000 or 5,000 brands a month, each one free while it waits.',
     },
     {
       kind: 'art',
       caption:
-        'A new theme can win its add-to-cart comparison while an AI customer still finds a refused welcome code and no checkout reminder within 48 hours. Both failures come after the click.',
+        'A new theme can win its add-to-cart comparison while an Obsession persona still finds a refused welcome code and no checkout reminder within 48 hours. Both failures come after the click.',
       art: {
         kind: 'log',
         title: 'brightfern.example',
-        who: 'An AI customer on the new theme',
+        who: 'A persona on the new theme',
         status: { tone: 'fail', text: '2 gaps' },
         rows: [
           { time: '0 min', text: 'Opened the ad’s page', detail: 'New theme, in stock', tone: 'ok' },
@@ -278,8 +278,8 @@ export const post: BlogPost = {
     {
       kind: 'table',
       caption:
-        'SimGym predicts a crowd’s choice between 2 themes in minutes, and an AI customer keeps what 1 real customer receives over hours or weeks. From Shopify’s and Obsession’s pages, 29 October 2026',
-      cols: ['', 'SimGym’s AI shoppers', 'An AI customer'],
+        'SimGym predicts a crowd’s choice between 2 themes in minutes, and an Obsession persona keeps what 1 real customer receives over hours or weeks. From Shopify’s and Obsession’s pages, 29 October 2026',
+      cols: ['', 'SimGym’s AI shoppers', 'An Obsession persona'],
       rows: [
         ['The question', 'Which theme a crowd prefers', 'What a customer receives'],
         ['Where it runs', 'Your store’s live and draft themes', 'Any store you name, competitors included'],
@@ -330,10 +330,10 @@ export const post: BlogPost = {
           'A free second view of a theme, with replays',
         ],
         [
-          'Obsession (ours): [Store leak checks](/use-cases/leak-checks-for-ecommerce-stores), [Mystery shopper](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking)',
-          'Every email, code and page any store you name shows a new customer, from sign-up to checkout, kept with its time',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Leaves the theme A/B decision to SimGym or a live A/B test, and payment to a test order',
+          'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [QA on your own flows](/blueprints/website-audit), [Competitor tracking](/blueprints/competitor-tracking)',
+          'A persona with its own inbox keeps every email, code and page any store you name shows a new customer, from sign-up to checkout, with its time',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment unless given your own card, and leaves the theme A/B decision to SimGym or a live A/B test',
           'What customers receive after the click, at your store and competitors’, every week',
         ],
       ],
@@ -343,7 +343,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Everything after the click, every week:** use Obsession. It keeps every email and page a new customer gets after signing up, taking the welcome code to checkout and waiting for the reminders, at your own store and at the competitors you name. Before a launch, the same journeys run on the draft theme from its preview link.',
+        '**Everything after the click, every week:** use Obsession’s [mystery shopping](/blueprints/mystery-shopper) blueprint. A persona keeps every email and page a new customer gets after signing up, taking the welcome code to checkout and waiting for the reminders, at your own store and at the competitors you name. Before a launch, the same journeys run on the draft theme from its preview link.',
         '**A theme, layout or menu decision before launch:** SimGym. Test one change at a time, as Shopify advises, and read the result as a prediction.',
         '**A big redesign on a store with steady traffic:** confirm it with a live A/B test once SimGym has narrowed the options.',
         '**A free second simulation with session replays:** Avada Shop Sim.',
@@ -356,9 +356,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Stores start in early access.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Mystery shopping: personas sign up, fill a basket and stop before payment at your store and your competitors’, and every email, text and missing reminder lands in your event log, dated.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
     {
       kind: 'p',
@@ -366,9 +366,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What each brand’s funnel sends after the pop-up, from the code to the basket and checkout reminders, each dated, at every brand you pitch or test, before and after each test. Agencies start in early access.',
+      text: 'What each brand’s funnel sends after the pop-up, from the code to the basket and checkout reminders, each dated, at every brand you pitch or test, before and after each test.',
       to: '/use-cases/funnel-qa-for-cro-agencies',
-      label: 'Request early access',
+      label: 'See how it works',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about Shopify SimGym' },
@@ -385,11 +385,11 @@ export const post: BlogPost = {
         },
         {
           q: 'Can SimGym test my checkout?',
-          a: 'Shopify’s pages describe AI shoppers that browse, add to cart and describe what they found, and its research measures add-to-cart. Its paper shows an example shopper going on to checkout, within set limits on which cart and checkout steps it may take. Shopify’s pages don’t describe paying, giving an email address, receiving emails or trying a discount code. EcommerceFastlane’s review says SimGym’s feedback covers the checkout experience, and that it doesn’t test the checkout flow beyond the add-to-cart. Codes, totals and the emails after a checkout need a test order by hand, or AI customers that start a real checkout and watch the inbox.',
+          a: 'Shopify’s pages describe AI shoppers that browse, add to cart and describe what they found, and its research measures add-to-cart. Its paper shows an example shopper going on to checkout, within set limits on which cart and checkout steps it may take. Shopify’s pages don’t describe paying, giving an email address, receiving emails or trying a discount code. EcommerceFastlane’s review says SimGym’s feedback covers the checkout experience, and that it doesn’t test the checkout flow beyond the add-to-cart. Codes, totals and the emails after a checkout need a test order by hand, or an Obsession persona that starts a real checkout, stops before payment and watches the inbox.',
         },
         {
           q: 'What is an AI shopper?',
-          a: 'An AI shopper is software that browses a store the way a person would, choosing what to click from what it sees on the page. In SimGym, each one is given a persona built from the store’s own visitors, such as how price-sensitive it is and how far it browses. An AI customer goes further: it becomes a real customer with its own inbox and keeps what the store sends.',
+          a: 'An AI shopper is software that browses a store the way a person would, choosing what to click from what it sees on the page. In SimGym, each one is given a persona built from the store’s own visitors, such as how price-sensitive it is and how far it browses. An Obsession persona goes further. It signs up as a customer with its own inbox and keeps what the store sends.',
         },
         {
           q: 'SimGym vs A/B testing: what’s the difference?',
@@ -397,14 +397,14 @@ export const post: BlogPost = {
         },
         {
           q: 'What’s an alternative to SimGym?',
-          a: 'For another AI shopper simulation, Avada Shop Sim is free and sends up to 20 AI shoppers a run with a replay of each session. For real buyers’ behaviour, run a live A/B test. For what a customer receives after the click, use Obsession, which keeps every email and page a new customer gets at your store or any competitor, from the sign-up to the welcome code at checkout, each dated.',
+          a: 'For another AI shopper simulation, Avada Shop Sim is free and sends up to 20 AI shoppers a run with a replay of each session. For real buyers’ behaviour, run a live A/B test. For what a customer receives after the click, use Obsession’s mystery shopping blueprint, where a persona keeps every email and page a new customer gets at your store or any competitor, from the sign-up to the welcome code at checkout, each dated.',
         },
       ],
     },
     {
       kind: 'note',
       title: 'About the store examples',
-      text: 'In the 26 October walk, an Obsession agent went through each store on a phone as a signed-out new customer and stopped at the first checkout page. No store or agency is named, and Brightfern is invented.',
+      text: 'Brightfern and every time in its examples are invented. No real store or agency is named.',
     },
   ],
 

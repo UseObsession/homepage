@@ -22,8 +22,21 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | ai agent templates | `/blueprints` | Title, description, first sentence, the questions H2 |
 | mystery shopping software, mystery shopper software | `/blueprints/mystery-shopper` | Title, description, a question; `/blog/best-ai-mystery-shopping-tools` dropped both and links here |
 | ai agent inbox | `/blog/ai-customers-for-developers` | Retitled 21 Nov; it hands "email api for ai agents" to `/email` and links it |
+| ai agent kits | `/kits` | Title, H1, description (added 22 Nov, the revamp) |
+| ai agents that talk to customers, ai receptionist phone number | `/kits/talk-to-customers` | Title, H1, description |
+| test sign-up flow, test your sign-up as a new customer | `/kits/test-sign-up-and-agents` | Title, H1, description |
+| build ai agent products | `/kits/build-agent-products` | Title, H1, description |
+| ai agents for portals | `/kits/work-behind-logins` | Title, H1, description |
+| watch the market with ai agents | `/kits/watch-the-market` | Title, H1, description |
+| rl environments for ai agents | `/kits/train-and-test-agents` | Title, description (suggested 22 Nov; no other page owns it) |
+| agentmail vs, obsession vs agentmail | `/compare/obsession-vs-agentmail` | Title, H1, description (22 Nov) |
+| agentmail plus twilio, ai agent stack in one api | `/compare/agentmail-twilio-browserbase-e2b` | Title, H1, description (the bundle page, 22 Nov) |
+| ai agent as a customer, ai agents as customers | `/blog/ai-customers` | Retitled 22 Nov ("AI agents as customers: what an agent sees when it signs up, buys and asks"); replaces the AI customers row below |
+| ai agent sign up | `/blog/how-ai-customers-work` | Retitled 22 Nov ("How an AI agent signs up as a customer") |
+| why ai agents need their own inbox | `/blog/why-ai-customers-matter` | Retitled 22 Nov ("Why AI agents need their own inbox, phone number and browser") |
+| customer-side observability | `/blog/customer-side-observability` | Retitled 22 Nov ("test your own journeys the way customers meet them"); same primary |
 
-Blueprint titles own the job as a verb ("Track competitors’ emails and texts"); guides keep the noun phrase ("competitor email tracking tools"). Not worth a title: persona for ai agent, event log, ai agent blueprint, ai agent identity. Not built yet (the plan's waves): `/compare/obsession-vs-agentmail`, alternatives pages for AgentMail, Browserbase, E2B and Mailosaur, the AI agent infrastructure guide, best email API, browser and sandbox for AI agents, and an OTP testing guide.
+Blueprint titles own the job as a verb ("Track competitors’ emails and texts"); guides keep the noun phrase ("competitor email tracking tools"). Not worth a title: persona for ai agent, event log, ai agent blueprint, ai agent identity. Not built yet (the plan's waves): alternatives pages for AgentMail, Browserbase, E2B and Mailosaur, the AI agent infrastructure guide, best email API, browser and sandbox for AI agents, and an OTP testing guide.
 
 ---
 
@@ -134,16 +147,16 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/blog/crm-data-enrichment-fields` | crm data enrichment, crm enrichment fields, account scoring model, lead scoring signals. Added 11 Nov 2026 |
 | `/blog/how-to-see-competitor-ads` | how to see competitor ads, competitor ads, see competitors’ facebook ads, google ads transparency center (competitor ad tracking and competitor ad monitoring moved to `/blog/competitor-ad-tracking-tools` on 14 Nov 2026) |
 | `/blog/competitor-ad-tracking-tools` | competitor ad tracking, competitive ad tracking, competitor ad tracker, competitor ad monitoring, competitor ad tracking tools, best competitor ad tracking tools (how to see competitor ads and competitor ads stay with `/blog/how-to-see-competitor-ads`; following an ad to its offer with `/recipes/ad-tracking`). Added 14 Nov 2026 |
-| `/blog/ai-customers` | AI customers, AI customer, what are AI customers |
+| `/blog/ai-customers` | Superseded 22 Nov: see the toolkit table above (ai agent as a customer) |
 | `/blog/ai-customer-service-agent-vs-ai-customer` | AI customer service agent vs AI customer, what is an AI customer service agent, is HubSpot's Customer Agent an AI customer, personal AI agents |
 | `/blog/how-ai-customers-work` | how AI customers work, can an AI agent sign up, AI agent inbox and phone number |
-| `/blog/why-ai-customers-matter` | why AI customers matter, why every company needs AI customers, meet your first AI customers (the pillar: links every audience deep dive) |
+| `/blog/why-ai-customers-matter` | Superseded 22 Nov: see the toolkit table above (why ai agents need their own inbox) |
 | `/blog/customer-side-observability` | customer-side observability, CX observability, outside-in observability |
 | `/blog/ai-agent-observability` | ai agent observability, ai agent observability tools, ai agent observability platform, ai agent observability open source, ai agent observability and evaluation, ai agent observability opentelemetry (customer-side observability stays with `/blog/customer-side-observability`; long running agents with `/blog/long-running-ai-agents`; AI agent testing tools with `/blog/best-ai-chatbot-testing-tools`). Added 1 Nov 2026 (Google autocomplete, US and UK, 31 Oct); "ai agent observability" moved here the same day from the keywords of `/blog/customer-side-observability` |
 | `/blog/hire-ai-customers` | hire an AI agent, hire AI customers, AI customers vs mystery shoppers |
 | `/blog/ai-customers-find-revenue-leaks` | customer journey testing, revenue leaks, abandoned cart email not sending |
 | `/blog/ai-customers-at-scale` | AI agent cost per month, cost of AI agents, AI agent vs human cost, mystery shopping cost |
-| `/blog/ai-customers-for-developers` | email API for AI agents, give your AI agent a phone number, MCP server for ecommerce |
+| `/blog/ai-customers-for-developers` | Superseded 22 Nov: ai agent inbox (the toolkit table above); email api for ai agents belongs to `/email` |
 | `/blog/ai-customers-for-commercial-teams` | AI agents for marketing teams, AI for sales teams, AI for agencies |
 | `/blog/future-of-ai-customers` | machine customers, future of shopping with AI (the head term agentic commerce stays left alone, per Terms we leave alone) |
 | `/blog/best-ai-mystery-shopping-tools` | AI mystery shopping tools, AI mystery shopping, mystery shopping software, AI secret shopper (AI mystery shopper stays with `/recipes/mystery-shopper`) |

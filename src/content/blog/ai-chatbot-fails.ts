@@ -3,7 +3,7 @@ import type { BlogPost } from './types'
 /* Guide 6 of the week's slate (_research/seo/plan/week-2nov/SLATE.md, spec 6; WRITER_BRIEF.md, batch 2; Seun's go,
    1 Nov 2026). It owns "ai chatbot fails" and ai bot fails, ai chatbot error and ai chatbot problems (Google
    autocomplete, US and UK, 31 Oct). Left to their owners and linked with their phrases: chatbot giving wrong answers
-   (/recipes/support-bot-check), AI chatbot testing tools (best-ai-chatbot-testing-tools), AI agent QA
+   (/blueprints/support-bot-check), AI chatbot testing tools (best-ai-chatbot-testing-tools), AI agent QA
    (ai-customers-for-cx-teams) and testing a store chat on returns (test-store-chatbot-returns-policy). Readers: CX leads,
    ecommerce teams with a store chat, and anyone about to launch an AI agent.
    Every case read at source on 1 Nov 2026: the Civil Resolution Tribunal's own decision in Moffatt v. Air Canada (2024
@@ -15,7 +15,8 @@ import type { BlogPost } from './types'
    Article 50 of the AI Act (EUR-Lex consolidated text of 27 Jul 2026). The trust-and-failure claims in
    research_27oct.json are about shoppers' agents meeting stores, so none is used here; Taco Bell is the newer voice
    case. Obsession follows STANDARD.md: named in the answer, the entity sentence once (11 Nov 2026), the 1,500 line in
-   the site’s words, "Use Obsession when" once, and the /verify call to action in its words. harlow.example is invented. No dashes. */
+   the site’s words, "Use Obsession when" once, and the /verify call to action in its words. harlow.example is invented. No dashes.
+   22 Nov 2026: moved to the toolkit position (the support bot and voice agent check blueprints; no 1,500 line). */
 
 const BI = 'https://www.businessinsider.com/car-dealership-chevrolet-chatbot-chatgpt-pranks-chevy-2023-12'
 const BBC_DPD = 'https://www.bbc.com/news/technology-68025677'
@@ -36,12 +37,12 @@ export const post: BlogPost = {
   description:
     'AI chatbot fails at Air Canada, DPD, Cursor and New York City: what each bot told customers, what it cost, and how CX teams catch them before customers.',
   answer:
-    'AI chatbot fails are public cases where a business’s chatbot or voice agent misbehaved or gave a false policy, price or promise, like the refund rule Air Canada had to honour. A customer or reporter found each one first, and some followed an update, so CX teams catch them by asking the live chat what customers ask and checking each answer against policy. Obsession asks your company’s chat and phone line what customers ask, every day and after every update, and keeps each answer dated, to look up by API or MCP (the way AI agents call tools).',
+    'AI chatbot fails are public cases where a business’s chatbot or voice agent misbehaved or gave a false policy, price or promise, like the refund rule Air Canada had to honour. A customer or reporter found each one first, and some followed an update, so CX teams catch them by asking the live chat what customers ask and checking each answer against policy. On Obsession the support bot check blueprint asks your chat what customers ask every morning and after every update, and keeps each answer word for word, dated, beside the policy page.',
   primaryKeyword: 'ai chatbot fails',
   keywords: ['ai bot fails', 'ai chatbot error', 'ai chatbot problems'],
   category: 'Check your AI agents',
   published: '2026-11-01',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 11,
   order: 3,
   authors: [
@@ -252,15 +253,15 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-customers', text: 'Every answer your agents give, kept and dated' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its blueprints are ready jobs Obsession runs for any team, on a persona, an AI agent with its own inbox, number and browser under one name.',
     },
     {
       kind: 'p',
-      text: 'For a CX team, Obsession chats with, emails and calls the agents your company runs, every morning and after every update. It asks what customers ask and sets each answer beside the policy page as it read that minute. Then it asks for a person and watches its own inbox for the refund or email the agent promised.',
+      text: 'For a CX team, the [support bot check](/blueprints/support-bot-check) and [voice agent check](/blueprints/voice-agent-check) blueprints chat with, email and call the agents your company runs, every morning and after every update. It asks what customers ask and sets each answer beside the policy page as it read that minute. Then it asks for a person and watches its own inbox for the refund or email the agent promised.',
     },
     {
       kind: 'p',
-      text: 'The visitor is an Obsession agent, a customer that says it’s an AI, and this way of collecting is what the term [AI customers](/blog/ai-customers) names. Each agent keeps to the rules on [its own page](/agents): no fake payment details, and no getting round a CAPTCHA or a bot block. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'The persona says it’s an AI when it talks to a person. It stops before payment unless given your own card, never uses fake payment details, never gets round a CAPTCHA or a bot block, and stops at any identity check, as [its own page](/agents) sets out. Every answer lands in one event log, dated, with the transcript or recording.',
     },
     {
       kind: 'p',
@@ -269,8 +270,8 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'What your chat, email and phone agents tell customers, word for word. Every answer is kept as a dated transcript or call beside the policy it should match, and your team hears of a changed answer the day it changes.',
-      to: '/verify',
-      label: 'Request early access',
+      to: '/blueprints/support-bot-check',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about AI chatbot fails' },

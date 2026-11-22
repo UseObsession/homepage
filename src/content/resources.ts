@@ -9,11 +9,11 @@ import type { BlogIndexPage, Capture, Final, ResourcesPage, UseCasesIndexPage } 
 const access = (source: string): Capture => ({
   kind: 'waitlist',
   source,
-  button: 'Request early access',
+  button: 'Start free',
   interest: 'any',
 })
 
-/* The shared close (the blog index uses it too). Its line, "Onboarding a limited number of teams.", is content/join.ts. */
+/* The shared close (the blog index uses it too). Its line, "Free plan, no credit card.", is content/join.ts. */
 const final = (source: string): Final => ({
   heading: 'Which company should we look up first?',
   capture: access(source),

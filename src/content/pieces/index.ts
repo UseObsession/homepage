@@ -29,8 +29,8 @@ export const pieceAt = (path: string): PiecePage | undefined => pieces.find((p) 
    the labels over the piece's events and the channels; the channels themselves and the line on a server that's down
    are content/delivery.ts, the same words as Home, the recipe pages and /developers). */
 export const pieceUi = {
-  pill: 'Early access',
-  primary: { label: 'Request early access', to: '#join' },
+  pill: 'Free plan, no credit card',
+  primary: { label: 'Start free', to: '#join' },
   secondary: { label: 'See pricing', to: '#pricing' },
   code: 'The code',
   allPrices: { label: 'See every price', to: '/pricing/rates' },

@@ -16,9 +16,10 @@ export const footer = {
   columns: [
     /* Products is the bar's Products menu (content/nav.ts): the 6 pieces, Blueprints, API and MCP; then Pricing, which
        left that menu for the bar (21 Nov). */
-    { label: products.label, links: [...names(products.items), nav.menus.pricing] },
+    { label: products.label, links: [...names(products.items), ...names(products.ways), nav.menus.pricing] },
     { label: products.integrations.label, links: [...names(products.integrations.items), products.integrations.all] },
-    ...solutions.columns.map((c) => ({ label: c.label, links: names(c.items) })),
+    { label: solutions.kitsLabel, links: [...names(solutions.kits), solutions.kitsAll] },
+    { label: solutions.teamsLabel, links: [...solutions.teams, solutions.teamsAll] },
     /* Then the menu's first 2 More links: Look up your site, Every resource. */
     { label: resources.label, links: [...names(resources.items), ...resources.more.items.slice(0, 2)] },
     {

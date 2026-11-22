@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/battlecard: for a CI lead or sales enablement. "competitor battlecard template" stays with its owner
    (docs/SEARCH.md §2); this page owns the definition. Klue is described from its own integrations page, read
@@ -68,7 +67,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For a battlecard, every changed line can then link to the dated screenshot of the competitor’s trial limit, upgrade prompt or cancel offer behind it.`,
+      text: 'Obsession’s [Competitor tracking](/blueprints/competitor-tracking) and [Trial teardown](/blueprints/trial-teardown) blueprints sign up as a customer, so a changed line can link to the dated screenshot of the trial limit, upgrade prompt or cancel offer behind it.',
     },
     {
       kind: 'faq',

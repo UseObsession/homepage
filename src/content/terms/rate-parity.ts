@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/rate-parity: the definition query for rate parity and parity clauses. "rate parity testing" stays with
    its own post (docs/SEARCH.md §2); this page owns "what is rate parity". General information, never legal advice. */
@@ -65,7 +64,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} For rate parity, that means the public price and the signed-in or member price for the same room and dates on each channel, side by side. Each is dated with its screenshot, so a disparity shows the day it starts.`,
+      text: 'Obsession’s [Price watch](/blueprints/price-watch) blueprint, run from the [cloud browser](/browser), logs the public price and the signed-in or member price for the same room and dates on each channel, side by side. Each is dated with its screenshot, so a disparity shows the day it starts.',
     },
     {
       kind: 'faq',
@@ -96,6 +95,7 @@ export const ref: ReferencePage = {
     },
   ],
   related: [
+    '/browser',
     '/glossary/signed-in-price',
     '/glossary/member-price',
     '/glossary/login-wall',

@@ -2,7 +2,7 @@
    the prerender). It recomputes every blueprint's typical months with the engine from src/lib/pricing (the JSON's
    defaults, as the founders' calculator works them out: what each run uses x the list piece rates, model tokens at cost
    plus 10%) and reads the prerendered pages in dist/: each blueprint page's table and each tab of the audience pages'
-   pricing (the month each card describes and "$N a month", the free run first as "Your first run" and "Free"; founders,
+   pricing (the month each card describes and "$N a month", the Free plan first as "On the Free plan" and "Free" (22 Nov: never a free run); founders,
    22 Nov 2026: no per-card line on how it's paid, 1 line in the section instead), a blueprint's variants behind its
    switch (mystery shopping: Agencies, then Ecommerce brands, with the page's default chosen), the plan cards on /pricing
    (each plan's fee, its monthly usage in dollars, Free's allowances, Enterprise's first-month floor and its months free
@@ -45,7 +45,7 @@ const tiersOf = (bp) =>
   E.blueprintVariants(pricing, bp.id).flatMap((v) =>
     E.blueprintMonths(v, pricing).map((t) => ({
       key: `${v.variantLabel ? `${v.variantLabel}, ` : ''}${t.name}`,
-      name: t.free ? 'Your first run' : t.covers,
+      name: t.free ? 'On the Free plan' : t.covers,
       price: t.free ? 'Free' : dollars(t.estimate),
       per: t.free ? '' : 'a month',
       estimate: t.estimate,
@@ -86,7 +86,7 @@ const compare = (where, cards, bp) => {
     expect(`${where}, month ${i + 1}: name`, c.name, w.name)
     expect(`${where}, ${w.key}: figure`, c.price, w.price)
     expect(`${where}, ${w.key}: a month`, c.per, w.per)
-    expect(`${where}, ${w.key}: button`, c.cta, 'Start with a free run')
+    expect(`${where}, ${w.key}: button`, c.cta, 'Start free')
     for (const old of ['s-bpp__note', 's-bpp__lead', 's-bpp__for']) if (c.html.includes(old)) problems.push(`${where}, ${w.key}: the card still has its ${old} line`)
     for (const bad of [/when paid from/i, /worked out from/i, /\bAbout \$/, /Enterprise/, /Talk to us/, /Recommended/, /\bplans\b/i, /\bthis plan\b/i])
       if (bad.test(c.body)) problems.push(`${where}, ${w.key}: the card says "${c.body.match(bad)[0]}"`)
@@ -97,7 +97,7 @@ const compare = (where, cards, bp) => {
 /* The section's 1 line says how every price is worked out and paid. */
 const lineIn = (where, html) => {
   const head = text(html.slice(0, html.indexOf('class="s-bpp')))
-  if (!/worked out from what each run uses/i.test(head) || !/at list rates/.test(head)) problems.push(`${where}: the section's line doesn't say the prices are worked out from what each run uses, at list rates`)
+  if (!/(worked out from what each run uses|billed on the pieces it uses)/i.test(head) || !/at list rates/.test(head)) problems.push(`${where}: the section's line doesn't say the prices are worked out from what each run uses, at list rates`)
 }
 
 /* 1. Every blueprint page (a variant has none: its months follow its blueprint's, behind the switch, Agencies first). */

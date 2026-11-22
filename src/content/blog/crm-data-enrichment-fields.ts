@@ -14,8 +14,8 @@ import type { BlogPost } from './types'
    HubSpot's enrichment, property type and lead scoring help pages; Salesforce's custom field types page; Clay's pricing
    page (cards show annual billing, $167 and $446; monthly $185 and $495 per its own FAQ and plan cards); BuiltWith's
    plans; Bombora's intent page (no update frequency stated, so none given); Exa's home, pricing and GTM pages. Header
-   rules from RFC 6376 (DKIM d=) and RFC 5321 (return-path). The sending platform line stays inside what the live site
-   says: Obsession shows the platform behind each email, with its sender checked, and the week that changes.
+   rules from RFC 6376 (DKIM d=) and RFC 5321 (return-path). The sending platform line reads the email headers
+   (22 Nov).
    Points, windows and hours are labelled example inputs. larkfield.example, fennick.example and tidewell.example are
    invented. No dashes. */
 
@@ -43,7 +43,7 @@ export const post: BlogPost = {
   description:
     'CRM data enrichment for RevOps: a copyable field spec for what each account sends its own customers, with update rules for routing and account scoring.',
   answer:
-    'CRM data enrichment adds outside data to the accounts and contacts in a CRM, usually firmographics, contacts, technographics and intent, so routing and scoring run on facts nobody typed in. For B2B software vendors whose product touches their accounts’ customers, the next fields record what each account sends them: its welcome email, its texts and the platform that sends its email. Obsession keeps what any company shows only to its customers, dated with the email or screenshot, and lands each fact as a CRM field by API, MCP (the standard way AI agents call tools) or a table.',
+    'CRM data enrichment adds outside data to the accounts and contacts in a CRM, usually firmographics, contacts, technographics and intent, so routing and scoring run on facts nobody typed in. For B2B software vendors whose product touches their accounts’ customers, the next fields record what each account sends them: its welcome email, its texts and the platform that sends its email. Obsession’s account watch blueprint signs up to each account as a customer and lands each value as a CRM field, dated with the email or screenshot.',
   primaryKeyword: 'crm data enrichment',
   keywords: [
     'crm data enrichment',
@@ -56,7 +56,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 15,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -335,25 +335,25 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'obsession', text: 'Filling the fields for every account' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. For RevOps, a persona, an AI agent with its own inbox, number and browser under one name, signs up to each account as a customer and waits for what it sends.',
     },
     {
       kind: 'p',
-      text: 'For RevOps, a domain goes in and the behaviour fields come back on the same account record, each value dated with its email or screenshot. They arrive through the [API](/developers), MCP, a webhook (an address in your app that receives each fact as it lands) or a table such as Clay. Obsession shows the platform behind each email, with its sender checked, and the week that changes. A router can then act the week an account’s emails start coming from a new platform. [Account watch](/blueprints/account-watch) puts each change on the account’s record in the CRM every morning. [Prospect intelligence](/blueprints/prospect-intelligence) does the same for a list of target accounts, and [prospect intelligence with Clay](/use-cases/prospect-intelligence-with-clay) shows the facts landing as columns.',
+      text: 'A domain goes in and the behaviour fields come back on the same account record, each value dated with its email or screenshot. They arrive through the [API](/developers), MCP (the standard way AI agents call tools), a webhook (an address in your app that receives each result as it lands) or a table such as Clay. Each email arrives whole, with the headers that name the email service that sent it, so a router can act the week an account starts sending from another service. [Account watch](/blueprints/account-watch) puts each change on the account’s record in the CRM every morning. [Prospect intelligence](/blueprints/prospect-intelligence) does the same for a list of target accounts, and [prospect intelligence with Clay](/use-cases/prospect-intelligence-with-clay) shows the results landing as columns.',
     },
     {
       kind: 'p',
-      text: 'Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. [The sample data](/sample-output) is one real store’s record, in every format it comes in.',
+      text: 'Each persona is free while it waits. The blueprint is billed on the pieces it uses, such as an inbox at $0.50 a month and emails at $0.40 per 1,000.',
     },
     {
       kind: 'p',
-      text: 'Start with the accounts in open opportunities, route on texts_live and platform_changed_on for a quarter, and compare them with the rest. That way you can see it in conversion rates from the fields your reps actually use, and in data quality, with every value carrying its date and its proof. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'Start with the accounts in open opportunities, route on texts_live and platform_changed_on for a quarter, and compare them with the rest. That way you can see it in conversion rates from the fields your reps actually use, and in data quality, with every value carrying its date and its proof. [The revenue team use case](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',
-      text: 'What each account shows only to its customers, as CRM fields: welcome emails, texts, sending platform and offers, each dated with its screenshot, by API, MCP or a table.',
-      to: '/#join',
-      label: 'Request early access',
+      text: 'A persona signs up to each account as a customer and lands its welcome emails, texts, sending service and offers as CRM fields, each dated with its screenshot.',
+      to: '/blueprints/account-watch',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'compared', text: 'CRM data enrichment tools compared', compare: true },
@@ -393,10 +393,10 @@ export const post: BlogPost = {
           'Company research and monitors at agent speed',
         ],
         [
-          'Obsession (ours): [Account watch](/blueprints/account-watch), [Prospect intelligence](/blueprints/prospect-intelligence); lookup, facts, notify',
-          'What each account shows only to its customers, dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Every step short of paying, at any company you name',
+          'Obsession (ours): [Account watch](/blueprints/account-watch), [Prospect intelligence](/blueprints/prospect-intelligence), [Email](/email)',
+          'What each account sends its own customers, dated, as CRM fields',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops at any identity check and before payment',
           'Behaviour fields that route and score',
         ],
       ],
@@ -422,7 +422,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What are the best CRM data enrichment tools?',
-          a: 'It depends on the field. ZoomInfo, Apollo and HubSpot’s own enrichment fill contacts and firmographics, and Clay asks several providers in turn for the same field. BuiltWith fills installed technologies, Bombora fills research intent, and Exa enriches records with cited sources from its company and people data. For what each account shows only to its customers, Obsession fills behaviour fields, each value dated with the email or screenshot.',
+          a: 'It depends on the field. ZoomInfo, Apollo and HubSpot’s own enrichment fill contacts and firmographics, and Clay asks several providers in turn for the same field. BuiltWith fills installed technologies, Bombora fills research intent, and Exa enriches records with cited sources from its company and people data. For what each account sends its customers, Obsession’s account watch blueprint fills behaviour fields, each value dated with the email or screenshot.',
         },
         {
           q: 'How do you build an account scoring model?',
@@ -438,7 +438,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can CRM enrichment show which email platform an account uses?',
-          a: 'An email’s own headers name it. The DKIM signature’s d= tag names the domain that took responsibility for the message, and the return-path holds the bounce address. When a company sends through an email platform, one of the 2 often belongs to it. Obsession shows the platform behind each email, with its sender checked, and the week that changes.',
+          a: 'An email’s own headers name it. The DKIM signature’s d= tag names the domain that took responsibility for the message, and the return-path holds the bounce address. When a company sends through an email platform, one of the 2 often belongs to it. Obsession’s inbox keeps each email whole, headers included, so the field changes the week an account moves to another email service.',
           link: { label: 'See sample data', to: '/sample-output' },
         },
       ],

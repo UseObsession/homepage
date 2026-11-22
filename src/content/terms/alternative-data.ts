@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/alternative-data: for a fund analyst or a fund's data sourcing lead. "alternative data providers" and
    "for hedge funds" stay with their owners (docs/SEARCH.md §2); this page owns the definition. The definition, its
@@ -73,7 +72,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `${ENTITY} Every email it keeps was sent to an account its own agents opened, so each series is [point-in-time](/glossary/point-in-time-data) data from its first day. Funds and analysts read it as [consumer promotions data](/use-cases/consumer-promotions-data-for-funds).`,
+      text: 'Obsession’s [Email and SMS tracking](/blueprints/email-sms-tracking) and [Price watch](/blueprints/price-watch) blueprints sign up as a customer and log what arrives, so each series is [point-in-time](/glossary/point-in-time-data) data from its first day. Funds and analysts read it as [consumer promotions data](/use-cases/consumer-promotions-data-for-funds).',
     },
     {
       kind: 'faq',

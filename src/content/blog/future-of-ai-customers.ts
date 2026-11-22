@@ -1,5 +1,4 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER } from '../glossary'
 
 /* The AI customers series, article 8 (24 Oct 2026): the future of AI customers. It owns "machine customers" (primary),
    "future of shopping ai" and "agentic commerce". Readers: founders and ecommerce, CX and product leads planning for
@@ -53,7 +52,7 @@ export const post: BlogPost = {
   description:
     'Machine customers and agentic commerce on 24 October 2026: what is live, announced and forecast, how companies answer with agents, and what to do now.',
   answer:
-    'Machine customers are nonhuman economic actors that obtain goods or services in exchange for payment, in a definition CMSWire attributes to Gartner, and in commerce they include AI agents that search, buy and contact companies for people. On 24 October 2026 agents can already shop through Shopify, Google and ChatGPT, Visa and Mastercard are deploying payments for agents, and companies answer with AI agents of their own. Obsession keeps what any company shows only to its customers, including what its AI agents tell them, dated with the email, screenshot or transcript, for lookup by API, MCP or a table.',
+    'Machine customers are nonhuman economic actors that obtain goods or services in exchange for payment, in a definition CMSWire attributes to Gartner, and in commerce they include AI agents that search, buy and contact companies for people. On 24 October 2026 agents can already shop through Shopify, Google and ChatGPT, Visa and Mastercard are deploying payments for agents, and companies answer with AI agents of their own. Obsession is the toolkit for AI agents, one API and one bill, and its blueprints check what a company’s own AI agents tell customers, word for word and dated.',
   primaryKeyword: 'machine customers',
   keywords: [
     'future of shopping ai',
@@ -65,7 +64,7 @@ export const post: BlogPost = {
   ],
   category: 'Behind the login',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 10,
   order: 11,
   authors: [
@@ -75,7 +74,7 @@ export const post: BlogPost = {
   hero: {
     art: {
       kind: 'chat',
-      title: 'hollowmere.example · an AI customer asks the store’s agent',
+      title: 'hollowmere.example · an AI agent asks',
       turns: [
         { from: 'customer', text: 'I’m an AI agent. Can the oak bed frame reach Leeds by Friday 27 November?', time: '09:02' },
         { from: 'bot', name: 'Hollowmere assistant', text: 'Yes. Order today and it arrives in 2 days.', time: '09:02' },
@@ -124,7 +123,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `**AI customers** sit on the same side of the counter for a different reason. ${AI_CUSTOMER.definition} Where a machine customer buys for someone, an AI customer is there to observe what a company sends its customers, and buys only when its owner funds a real order. The full definition is in [AI customers](/blog/ai-customers).`,
+      text: '**AI agents as customers** sit on the same side of the counter for a different reason. On Obsession that agent is a persona, an AI agent with its own inbox, number and browser under one name. It signs up to a company to see what it sends its customers. Where a machine customer buys for someone, a persona buys only with its owner’s own card. The full explanation is in [AI agents as customers](/blog/ai-customers).',
     },
 
     { kind: 'h2', id: 'agents-act', text: 'Agents now shop and ask for people' },
@@ -275,21 +274,21 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'AI customers fit in that gap. An AI customer becomes a customer of a company, so it can ask the questions a shopper’s agent asks, wait for the emails and texts that follow, and keep every answer and message as it arrived. Its owner can be the company itself, checking its own agents and checkout, or a team watching competitors, partners and what AI assistants say about them.',
+      text: 'Personas fit in that gap. A persona becomes a customer of a company, so it can ask the questions a shopper’s agent asks, wait for the emails and texts that follow, and keep every answer and message in an event log as it arrived. Its owner can be the company itself, checking its own agents and checkout, or a team watching competitors, partners and what AI assistants say about them.',
     },
     {
       kind: 'p',
-      text: 'An AI customer keeps the rules of the category. It says it is an AI whenever it talks to a person, as [Article 50 of the EU AI Act](' +
+      text: 'A persona on Obsession keeps the rules of the category. It says it is an AI whenever it talks to a person, as [Article 50 of the EU AI Act](' +
         AI_ACT +
         ') requires of AI systems that talk to people, with duties that [apply from 2 August 2026](' +
         AI_ACT_113 +
-        '). It never gets round a CAPTCHA or a bot wall, and names the step it couldn’t test. How one signs up, sleeps and keeps its evidence is in [how AI customers work](/blog/how-ai-customers-work).',
+        '). It stops at a CAPTCHA, a bot wall or an identity check, and names the step it couldn’t test. How one signs up, sleeps and keeps every email and answer is in [how AI agents work as customers](/blog/how-ai-customers-work).',
     },
     {
       kind: 'cta',
-      text: 'What every AI agent your company runs tells customers, on chat and voice, word for word and dated, beside the page it should match, every day and after every update.',
-      to: '/verify',
-      label: 'Request early access',
+      text: 'Not building agents? Pick a blueprint, and Obsession runs it. The support bot check asks your chatbot what customers ask, every day and after every update, and keeps each answer beside the page it should match.',
+      to: '/blueprints/support-bot-check',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits' },
@@ -315,7 +314,7 @@ export const post: BlogPost = {
         '**Put a number on your AI channel.** Count last month’s sessions from AI assistants and the orders placed inside AI checkouts, with the method in [agentic commerce for merchants](/blog/agentic-commerce-for-merchants). Revenue exposed to a wrong answer is your AI revenue a day × the days until you would notice. With invented figures, £350 a day for 21 days is £7,350 of orders placed while an answer was wrong.',
         '**Decide your channels.** In Shopify, under Sales channels, then Agentic, check which AI channels list your products and where each order is placed.',
         '**Write a rule for agent traffic.** Decide which agents may browse, build a basket and check out, and set it in your bot management. Cloudflare’s Verified bots and Shopify’s higher limits for signed traffic are 2 controls that exist today.',
-        '**Ask your own agent what a shopper’s agent would ask.** Price, stock, a delivery date, the returns window and cancelling an order, each in a new chat 3 times, and again after every update. A pass is an answer that matches your pages every time. The method is in [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy). To run it every day, use Obsession: it keeps what your agent, and any other company’s, tells customers, word for word and dated.',
+        '**Ask your own agent what a shopper’s agent would ask.** Price, stock, a delivery date, the returns window and cancelling an order, each in a new chat 3 times, and again after every update. A pass is an answer that matches your pages every time. The method is in [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy). To run it every day, use Obsession’s [support bot check](/blueprints/support-bot-check), which keeps each answer word for word and dated.',
         '**Make your agent say it is an AI** and hand over to a person when asked. In the EU, Article 50 transparency duties apply from 2 August 2026.',
         '**Keep what your agent said,** with the time of each turn, so a dispute about a promise can be settled from the record.',
         '**Ask the AI assistants about your store** and fix each wrong answer at its source, with the method in [what ChatGPT says about your store](/blog/what-chatgpt-says-about-your-store).',
@@ -323,9 +322,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Every email a new customer gets from your store and your competitors after a sign-up, a basket and a checkout, each with the time it arrived, and the ones that never come.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Every email a new customer gets from your store and your competitors after a sign-up, a basket and a checkout, each with the time it arrived, and the ones that never come. Obsession’s mystery shopping blueprint runs it on any store you name.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions about machine customers and agentic commerce' },
@@ -349,8 +348,8 @@ export const post: BlogPost = {
           a: 'Yes, for some products and merchants, through ChatGPT’s Instant Checkout, Google’s Universal Cart with Google Pay, and Shopify’s MCP servers for trusted agents.',
         },
         {
-          q: 'Are machine customers the same as AI customers?',
-          a: 'No. A machine customer buys for a person or a business. An AI customer becomes a customer of a company to keep what it sends and shows as evidence, and buys only when its owner funds a real order.',
+          q: 'Are machine customers the same as AI agents that act as customers?',
+          a: 'No. A machine customer buys for a person or a business. An agent that acts as a customer, such as a persona on Obsession, signs up to a company to keep what it sends and shows, and buys only with its owner’s own card.',
         },
         {
           q: 'Will AI agents contact customer service?',

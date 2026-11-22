@@ -1,7 +1,7 @@
 import type { Recipe } from '../types'
 
-/* Vendor agent check (/recipes/vendor-agent-check). Check your AI agents. Screen: vendorcheck (choosing between Vendor
-   B and Vendor C; 20 cases from your tickets over 2 weeks, 19 Sep to 3 Oct; B passes 17 of 20, C 12; case H-01, a
+/* Vendor agent check (/blueprints/vendor-agent-check). Check your AI agents. Screen: vendorcheck (choosing between Vendor
+   B and Vendor C; 20 cases from your tickets over 2 weeks, 19 Sep to 3 Oct; B passes 17/20, C 12; case H-01, a
    person within 3 min: B in 1 min 50 s, C none in 6 min).
    The persona version (20 Nov 2026): a persona you define, with its own inbox and number on every agent, brings the
    reader's hardest cases to each shortlisted vendor's AI agent before they sign, asks the same way on every agent and
@@ -49,7 +49,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-vendor-agent-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'vendor-agent',
     },
   },
@@ -81,7 +81,7 @@ export const recipe: Recipe = {
       },
       { time: '22 Sep 10:52', text: 'The same case on Vendor C: “How can I help?” 3 times, and no person in 6 minutes. Your policy says 3.' },
       { time: '29 Sep', text: 'Both fail a refund on day 35 and an expired code. Vendor B also fails an order edit. Vendor C fails 6 more, from an address change to a data deletion request.' },
-      { time: '3 Oct', text: 'Every case run on both. Vendor B passes 17 of 20, Vendor C 12.' },
+      { time: '3 Oct', text: 'Every case run on both. Vendor B passes 17 of your 20 cases, Vendor C 12.' },
     ],
     finding: 'Vendor B passed 17 of your 20 cases and Vendor C 12. Asked for a person, Vendor C kept the persona waiting 6 minutes where your policy says 3.',
     fix: 'A side by side report for procurement, with both transcripts on every case. The choice stays yours.',
@@ -159,7 +159,7 @@ export const recipe: Recipe = {
     heading: 'Decide in 2 weeks, before an agent you’d turn down goes live.',
     cols: ['A vendor’s trial', 'With Vendor agent check'],
     rows: [
-      { label: 'Evidence', values: ['A demo, a deck and a live trial', 'Your own cases, run on every agent'] },
+      { label: 'What you decide on', values: ['A demo, a deck and a live trial', 'Your own cases, run on every agent'] },
       { label: 'Time to decide', values: ['A 90 day trial', '2 weeks'] },
       { label: 'Who it’s tried on', values: ['Your customers, during the trial', 'Your cases, asked by a persona'] },
       { label: 'A fair comparison', values: ['Each vendor in a different week, on different tickets','The same cases and channels on each'] },
@@ -177,6 +177,7 @@ export const recipe: Recipe = {
       {
         q: 'Where do the cases come from?',
         a: 'Vendor agent check takes them from your own tickets, your hardest included, each with the policy that decides it. Each case is asked as the persona’s own, so no real person’s details reach a vendor.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Will a vendor bill us for the tests?',
@@ -194,17 +195,23 @@ export const recipe: Recipe = {
         q: 'What happens after we sign?',
         a: 'Vendor agent check runs the same cases monthly on the agent you chose, and you see which answers changed.',
       },
+      {
+        q: 'What does Vendor agent check cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses browser hours for chat and portals, an inbox, and a number for calls. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See the cloud browser', to: '/browser' },
+      },
     ],
   },
 
   final: {
     heading: 'Choose your AI agent on your own cases, before you sign.',
-    sub: 'Tell us your shortlist and your hardest cases. We’ll set up the persona and the first run with you.',
+    sub: 'Try it on the Free plan with 20 cases from your own tickets.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-vendor-agent-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'vendor-agent',
     },
+    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
   },
 }

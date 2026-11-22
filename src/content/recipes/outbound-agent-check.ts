@@ -1,6 +1,6 @@
 import type { Recipe } from '../types'
 
-/* Outbound agent check (/recipes/outbound-agent-check). Check your AI agents. Screen: outcheck (40 messages read, 3
+/* Outbound agent check (/blueprints/outbound-agent-check). Check your AI agents. Screen: outcheck (40 messages read, 3
    flagged: 30% off over the 15% limit, a text at 03:12 inside quiet hours, a claimed customer you don't have; STOP
    honoured; "AI SDR paused by your rule"). The screen quotes the claimed customer by name; the copy never names it.
    The persona version (20 Nov 2026): personas you define as prospects, each with its own name, inbox and number, sit on
@@ -47,7 +47,7 @@ export const recipe: Recipe = {
     capture: {
       kind: 'waitlist',
       source: 'recipe-outbound-agent-hero',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'outbound-agent',
     },
   },
@@ -78,7 +78,7 @@ export const recipe: Recipe = {
       { time: 'Wed 09:14', text: 'Email: it claims a customer you don’t have.' },
       { time: 'Wed 10:02', text: 'Persona 2 texts STOP. “You’re unsubscribed.” Nothing follows.' },
     ],
-    finding: '3 of 40 messages broke your rules: 30% off where your limit is 15%, a text at 03:12 and a customer you don’t have.',
+    finding: '40 messages read. 3 broke your rules: 30% off where your limit is 15%, a text at 03:12 and a customer you don’t have.',
     fix: 'Each flag in #sales-ops the minute it landed, and your AI SDR paused by the rule you set.',
     ledger: '40 messages kept, 37 within your rules, each dated.',
   },
@@ -170,6 +170,7 @@ export const recipe: Recipe = {
       {
         q: 'How do the personas get on our lists?',
         a: 'You add Outbound agent check’s personas, or your client does. Each has its own name, inbox and number.',
+        link: { label: 'See inboxes for AI agents', to: '/email' },
       },
       {
         q: 'Can Outbound agent check read a competitor’s AI SDR?',
@@ -178,6 +179,7 @@ export const recipe: Recipe = {
       {
         q: 'Does the persona say it’s an AI?',
         a: 'Whenever it talks to a person, such as a rep who joins the thread or picks up a call. With your AI SDR, your event log keeps both sides word for word.',
+        link: { label: 'See how a persona works', to: '/personas' },
       },
       {
         q: 'Will the personas skew our numbers?',
@@ -187,17 +189,23 @@ export const recipe: Recipe = {
         q: 'Can Outbound agent check pause our AI SDR?',
         a: 'Only if you set that rule. Then a flagged message pauses it until you’ve looked.',
       },
+      {
+        q: 'What does Outbound agent check cost?',
+        a: 'It’s billed on the pieces it uses, at list rates. Each persona uses an inbox and a number for texts and calls. A persona is free while it waits. Try it on the Free plan.',
+        link: { label: 'See phone numbers for AI agents', to: '/phone' },
+      },
     ],
   },
 
   final: {
     heading: 'Read what your AI SDR sends, the way your prospects read it.',
-    sub: 'Tell us which AI SDR to watch and who the prospects should be. We’ll set up your first personas with you.',
+    sub: 'Try it on the Free plan with 2 prospect personas on your own lists.',
     capture: {
       kind: 'waitlist',
       source: 'recipe-outbound-agent-final',
-      button: 'Request early access',
+      button: 'Start free',
       interest: 'outbound-agent',
     },
+    link: { label: 'See the Test sign-up and agents kit', to: '/kits/test-sign-up-and-agents' },
   },
 }

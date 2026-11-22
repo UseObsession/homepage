@@ -1,7 +1,6 @@
 import type { BlogPost } from './types'
-import { AI_CUSTOMER, CUSTOMER_SIDE_OBSERVABILITY } from '../glossary'
 
-/* The why series, Spec G (24 Oct 2026): why B2B sales teams need AI customers. It owns "speed to lead" (primary), with
+/* The why series, Spec G (24 Oct 2026): why B2B sales teams test as buyers (AI agents as customers since 22 Nov). It owns "speed to lead" (primary), with
    "what is speed to lead", "speed to lead meaning", "speed to lead ai", "speed to lead ai agent", "inbound lead response
    time", "inbound lead follow up" and "lead response time" (Google autocomplete, US and UK, 24 Oct 2026, in
    why-series/autocomplete_wave_b.json and _b2.json). "speed to lead test" and "lead response time audit" are left to
@@ -64,7 +63,7 @@ export const post: BlogPost = {
   description:
     'Speed to lead for B2B sales teams: what CRM reports miss, what a slow demo request costs, and how to time every form, chat and sales line as a buyer.',
   answer:
-    'Speed to lead, the time from a buyer’s demo request to the company’s first reply, is usually measured inside the CRM from the moment a lead has an owner, so requests that never reach an owner go uncounted. A test from the buyer’s side fills in the team’s own demo form, uses its chat and calls its sales line, every day and after every routing change, and times each first reply with the evidence. Obsession times how fast, and how well, any company answers a new enquiry by form, chat, email and phone, your own included, and keeps every reply dated with the email, transcript or call.',
+    'Speed to lead, the time from a buyer’s demo request to the company’s first reply, is usually measured inside the CRM from the moment a lead has an owner, so requests that never reach an owner go uncounted. A test from the buyer’s side fills in the team’s own demo form, uses its chat and calls its sales line, every day and after every routing change, and times each first reply with the evidence. Obsession’s Lead response checks blueprint asks any company by form, chat, email and phone as a buyer, your own included, and keeps every reply dated in one event log.',
   primaryKeyword: 'speed to lead',
   keywords: [
     'speed to lead',
@@ -78,7 +77,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-24',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   order: 18,
   authors: [
@@ -105,7 +104,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Heads of RevOps, sales development and marketing operations, VPs of Sales and founders at B2B companies of 50 to 1,000 staff depend on demo requests that arrive through a form, a chat or the sales line. [AI customers](/blog/ai-customers) send those requests as buyers would and time every reply from the buyer’s side. [Why every company needs AI customers](/blog/why-ai-customers-matter) sets out the case for any company. For a sales team, it rests on the requests that fail before the CRM sees them and on how long a buyer waits for a person.',
+      text: 'Heads of RevOps, sales development and marketing operations, VPs of Sales and founders at B2B companies of 50 to 1,000 staff depend on demo requests that arrive through a form, a chat or the sales line. An AI agent with its own inbox and phone number can send those requests as a buyer would and time every reply from the buyer’s side. [Why every company should test what its customers receive](/blog/why-ai-customers-matter) sets out the case for any company. For a sales team, it rests on the requests that fail before the CRM sees them and on how long a buyer waits for a person.',
     },
     {
       kind: 'stat',
@@ -197,7 +196,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**Bookings at risk a day:** demo requests a day on the broken path × the share of requests that become won deals × the first-year contract value, halved for a cautious figure, since some buyers write again, call or wait.',
-        '**Days until found:** on average half the gap between checks, so about 15 days with a monthly check, 3.5 with a weekly test and half a day with a daily one ([how AI customers find revenue leaks](' +
+        '**Days until found:** on average half the gap between checks, so about 15 days with a monthly check, 3.5 with a weekly test and half a day with a daily one ([finding revenue leaks with AI agents](' +
           LEAKS +
           ') explains the rule).',
         '**Cost of the break:** bookings at risk a day × days until found.',
@@ -239,7 +238,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Set that payback against what the test costs. By hand, a daily test of 4 ways in takes about 6 hours a week, or about $15,300 a year at the [US median wage for management analysts](' +
         BLS +
-        '), $48.97 an hour in May 2025, which the low case covers with the first break it finds. [What AI customers cost to run](/blog/ai-customers-at-scale) is worked out line by line from published prices.',
+        '), $48.97 an hour in May 2025, which the low case covers with the first break it finds. [What an AI agent costs a month](/blog/ai-customers-at-scale) is worked out line by line from published prices.',
     },
 
     { kind: 'h2', id: 'workload', text: 'Testing inbound lead response time by hand' },
@@ -253,7 +252,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `Run as a routine, this work is [customer-side observability](/blog/customer-side-observability). ${CUSTOMER_SIDE_OBSERVABILITY.definition} For a sales team it has 3 parts, written before the first test.`,
+      text: 'Run as a routine, the test has 3 parts, written before the first request goes out.',
     },
     {
       kind: 'list',
@@ -264,31 +263,30 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'jobs', text: 'What AI customers do for B2B sales teams' },
-    { kind: 'p', text: `**${AI_CUSTOMER.definition}**` },
+    { kind: 'h2', id: 'jobs', text: 'What AI agents test for B2B sales teams' },
     {
       kind: 'p',
-      text: 'A sales team uses AI customers as buyers of its own company. Each has its own inbox and phone number, fills in the demo form, opens the chat or calls the sales line, says it is an AI to anyone who talks to it, and keeps every reply with its time and channel. An AI SDR, an AI agent that answers and writes to buyers, works for the company, while an AI customer works for RevOps as one of those buyers, as [AI customer service agents vs AI customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out.',
+      text: 'A sales team sends personas as buyers of its own company. A persona is an AI agent with its own inbox, phone number and browser under one name. Each one fills in the demo form, opens the chat or calls the sales line, says it is an AI to anyone who talks to it, and keeps every reply with its time and channel. An AI SDR, an AI agent that answers and writes to buyers, works for the company, while a persona works for RevOps as one of those buyers, as [support agents against agents as customers](/blog/ai-customer-service-agent-vs-ai-customer) sets out.',
     },
     {
       kind: 'table',
-      caption: '6 jobs for AI customers in a B2B sales team, each with its check, its pass mark and what the team does with the result that week',
+      caption: '6 jobs for personas in a B2B sales team, each with its check, its pass mark and what the team does with the result that week',
       cols: ['Job', 'The check', 'A pass', 'That week'],
       rows: [
         [
-          'Every way in: [Lead leaks](/blueprints/lead-leaks)',
+          'Every way in: [Lead response checks](/blueprints/lead-leaks)',
           'Form, chat and sales line at set times each weekday',
           'A person replies within target, with an owner in the CRM',
           'Each fail goes to its owner with the evidence',
         ],
         [
-          'Evenings and weekends: [Lead leaks](/blueprints/lead-leaks)',
+          'Evenings and weekends: [Lead response checks](/blueprints/lead-leaks)',
           'A request at 21:00 on Friday and on Sunday',
           'An owner set and a reply by 09:30 the next working day',
           'Out of hours rule or holiday calendar fixed',
         ],
         [
-          'After every change: [Lead leaks](/blueprints/lead-leaks)',
+          'After every change: [Lead response checks](/blueprints/lead-leaks)',
           'The same paths after every routing change',
           'Every path that passed before still passes',
           'The change fixed or rolled back that day',
@@ -315,7 +313,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs this today. It keeps what any company shows only to its customers, each dated with the email or screenshot. Its [speed to lead](/blueprints/lead-leaks) blueprint asks by form, chat, email and phone as the buyer profile the team picks, then times and keeps every reply, at your own company and any competitor you name, at the hours the team picks, evenings and weekends included. The prospect side of a sales team’s week is covered in [AI for sales teams](' +
+      text: 'Obsession runs each of these as a blueprint, so the team picks the job and gets every reply back. Its [Lead response checks](/blueprints/lead-leaks) blueprint asks by form, chat, email and phone as the buyer profile the team picks, then times every reply and keeps it in one event log, at your own company and any competitor you name, evenings and weekends included. The prospect side of a sales team’s week is covered in [AI for sales teams](' +
         COMMERCIAL +
         '#sales).',
     },
@@ -402,9 +400,9 @@ export const post: BlogPost = {
           'Forms that break outright',
         ],
         [
-          'Obsession (ours): [Lead leaks](/blueprints/lead-leaks), [Sales agent check](/blueprints/sales-agent-check), [Outbound agent check](/blueprints/outbound-agent-check), [Account watch](/blueprints/account-watch)',
+          'Obsession (ours): [Lead response checks](/blueprints/lead-leaks), [Sales agent check](/blueprints/sales-agent-check), [Outbound agent check](/blueprints/outbound-agent-check), [Account watch](/blueprints/account-watch), [Phone](/phone)',
           'Test leads use the form, chat and phone at set times and time every first reply',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Real leads’ outcomes sit in the CRM the team connects',
           'The first reply a buyer gets on every way in, timed and kept',
         ],
@@ -415,7 +413,7 @@ export const post: BlogPost = {
       text: 'If your team needs to know the first reply a buyer gets on every form, chat and sales line, timed from the moment the buyer presses send, use Obsession. For a spot check after a change, a test request by hand is enough. Many teams combine 2 of these. A router and a CRM report time every lead the system holds, and a customer-side test times the path around them, from the buyer pressing send to the first reply.',
     },
 
-    { kind: 'h2', id: 'when-not', text: 'When a sales team doesn’t need AI customers' },
+    { kind: 'h2', id: 'when-not', text: 'When a sales team doesn’t need AI agents to test it' },
     {
       kind: 'list',
       items: [
@@ -435,12 +433,12 @@ export const post: BlogPost = {
         '**Write the pass marks:** an owner in the CRM within 5 minutes, a first reply from a person within the team’s target, and the buyer’s question answered.',
         '**Send 1 tagged test request through each path** at 21:00 on a weekday and on Saturday, from a new address with a real question, and keep every reply with its time.',
         '**Compare what the CRM logged with what the inbox and phone received,** including requests that never appeared in the CRM.',
-        '**Fill in the cost sum** with last quarter’s figures to set how often to test, and write the brief as [hiring AI customers](/blog/hire-ai-customers) sets out.',
+        '**Fill in the cost sum** with last quarter’s figures to set how often to test, and write the brief as [hiring AI agents as customers](/blog/hire-ai-customers) sets out.',
       ],
     },
     {
       kind: 'cta',
-      text: 'How fast, and how well, your own team and every competitor you name answer a new enquiry, each reply timed and kept exactly as it arrived.',
+      text: 'How fast, and how well, your own team and every competitor you name answer a new enquiry, each reply timed and kept in one event log exactly as it arrived.',
       to: '/blueprints/lead-leaks',
       label: 'See the blueprint',
     },
@@ -463,7 +461,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What is a speed to lead AI agent?',
-          a: 'An AI agent that answers new leads within seconds on chat or email, qualifies them and routes them to sales or books a meeting, such as Qualified’s Piper or Intercom’s Fin for Sales. It works for the company, and an AI customer tests it as a buyer.',
+          a: 'An AI agent that answers new leads within seconds on chat or email, qualifies them and routes them to sales or books a meeting, such as Qualified’s Piper or Intercom’s Fin for Sales. It works for the company, and a persona tests it as a buyer.',
         },
         {
           q: 'What is inbound lead follow up?',

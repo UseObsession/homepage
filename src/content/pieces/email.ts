@@ -89,6 +89,7 @@ export const email: PiecePage = {
       {
         q: 'What is an email API for AI agents?',
         a: 'An API that gives an agent its own inbox. The agent sends and receives email through code, and a webhook tells your app about each new message.',
+        link: { label: 'AgentMail, Twilio, Browserbase and E2B in one API', to: '/compare/agentmail-twilio-browserbase-e2b' },
       },
       {
         q: 'Can I use only the email API?',
@@ -111,6 +112,6 @@ export const email: PiecePage = {
 
   final: {
     heading: 'Give every agent its own inbox.',
-    capture: { kind: 'waitlist', button: 'Request early access', interest: 'any', source: 'piece-email' },
+    capture: { kind: 'waitlist', button: 'Start free', interest: 'any', source: 'piece-email' },
   },
 }

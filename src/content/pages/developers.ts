@@ -326,7 +326,7 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'Early access',
+    pill: 'Free plan, no credit card',
     pillTo: '#join',
     headline: 'The API for AI agents: inboxes, phone numbers and browsers.',
     sub: 'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill.',

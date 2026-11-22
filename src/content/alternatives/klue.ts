@@ -3,7 +3,8 @@ import { ENTITY } from '../site'
 
 /* /alternatives/klue. Every tool fact is from the tool's own pages, read 11 Nov 2026
    (_research/seo/pagetypes-11nov/research/ci_panels.json; Klue, Crayon, Kompyte, Contify, AlphaSense and Visualping
-   re-read the same day). "competitive intelligence tools" is left to the incumbents (docs/SEARCH.md §2). */
+   re-read the same day; Visualping re-read 22 Nov 2026, unchanged). "competitive intelligence tools" is left to the
+   incumbents (docs/SEARCH.md §2). Obsession's side (22 Nov): the Trial teardown blueprint. */
 
 const KLUE = 'https://klue.com/'
 const KLUE_PRICING = 'https://klue.com/pricing'
@@ -18,14 +19,14 @@ export const ref: ReferencePage = {
   kind: 'alternatives',
   name: 'Klue alternatives',
   company: 'Klue',
-  line: 'Battlecard platforms, market intelligence, page monitors and what competitors show customers, each by the job it does.',
+  line: 'Battlecard platforms, market news, page monitors and a persona in each competitor’s trial, each by the job it does.',
   meta: {
     path: '/alternatives/klue',
-    title: 'Klue alternatives for competitive intelligence teams, by job',
+    title: 'Klue alternatives (2026): 6 options for CI and battlecards',
     description:
-      'Klue alternatives by job: battlecard platforms, market intelligence, page monitors, and what competitors show only to customers, from each tool’s pages.',
+      'Klue alternatives by job: battlecard platforms, market news, page monitors, and a persona in each competitor’s trial, each from its own pages, dated.',
     answer:
-      'The best Klue alternative depends on the job: Crayon or Kompyte for battlecards fed by automated competitor monitoring, Contify or AlphaSense for market intelligence from news, filings and expert calls, and Visualping to watch chosen pages for changes. For what competitors show only to signed-up customers, such as trial limits, upgrade prompts, onboarding emails and cancel offers, Obsession keeps it dated and looked up by API, MCP or a table.',
+      'The best Klue alternative depends on the job: Crayon or Kompyte for battlecards fed by automated competitor monitoring, Contify or AlphaSense for market research from news, filings and expert calls, and Visualping to watch chosen pages for changes. For what competitors show new users, such as trial limits, upgrade prompts, onboarding emails and cancel offers, Obsession’s Trial teardown blueprint puts a persona in each trial and dates every step.',
     ogImage: '/og/alternatives-klue.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -34,8 +35,8 @@ export const ref: ReferencePage = {
       { name: 'Klue', path: '/alternatives/klue' },
     ],
   },
-  title: 'Klue alternatives: by job, including what competitors show only to customers',
-  dek: 'Teams look past Klue for a published price, a lighter tool, or evidence no interview can give. Each option by the job it does, from its own pages.',
+  title: 'Klue alternatives: every option by job, from each tool’s own pages',
+  dek: 'Teams look past Klue for a published price, a lighter tool, or evidence no interview can give. Each option is sorted by the job it does, with its price as listed.',
   primaryKeyword: 'klue alternatives',
   keywords: ['klue alternative', 'alternatives to klue', 'klue competitors', 'competitive intelligence saas'],
   checked: '2026-11-11',
@@ -65,9 +66,9 @@ export const ref: ReferencePage = {
       },
       {
         name: 'Obsession',
-        who: 'Behind the login',
-        nodes: ['Any competitor you name', 'Trials, emails, prices, offers', 'API, MCP or a table'],
-        links: ['keeps, dated', 'looked up by'],
+        who: 'Trial teardown blueprint',
+        nodes: ['Competitors you name', 'A persona in each trial', 'Slack, a sheet or the API'],
+        links: ['joined by', 'sent to'],
         lit: 1,
         ours: true,
       },
@@ -132,11 +133,11 @@ export const ref: ReferencePage = {
           'Watching public pricing pages',
         ],
         [
-          'Obsession (ours): Search, Insights, Watch, API and MCP',
-          'Trials, onboarding emails, member prices, cancel offers',
-          'Early access, onboarding teams now\nPriced per call or per company watched',
-          'Stops before payment and any identity check',
-          'Evidence of what competitors show customers',
+          'Obsession (ours): Trial teardown and Competitor tracking blueprints',
+          'A persona in each trial: limits, emails, prompts, offers',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment and at any identity check',
+          'Evidence of what competitors show new users',
         ],
       ],
     },
@@ -155,10 +156,17 @@ export const ref: ReferencePage = {
       kind: 'p',
       text: `[Visualping](${VISUALPING}) starts free at 150 checks a month across 5 pages, runs from $14 to $350 a month on paid plans, and says “REST API and MCP server access come with every plan, including the free one.”`,
     },
-    { kind: 'h3', id: 'behind-the-login', text: 'For what competitors show only to signed-up customers' },
+    { kind: 'h3', id: 'personas', text: 'For what competitors show new users' },
+    { kind: 'p', text: ENTITY },
     {
       kind: 'p',
-      text: `${ENTITY} For a software competitor that is its [trial limit](/glossary/trial-limit), the day its [upgrade prompt](/glossary/upgrade-prompt) appears, every onboarding email and the [save offer](/glossary/save-offer) in its cancel flow, each with the screen or the email behind it, ready for a [battlecard](/glossary/battlecard). Klue and Obsession are compared side by side on [Obsession vs Klue](/compare/obsession-vs-klue).`,
+      text: 'For this job, teams pick the [Trial teardown blueprint](/blueprints/trial-teardown). A persona, an AI agent with its own inbox and number under one name, starts each software competitor’s trial as a new user. It keeps the [trial limit](/glossary/trial-limit), the day the [upgrade prompt](/glossary/upgrade-prompt) appears, every onboarding email and the [save offer](/glossary/save-offer) in the cancel flow. Each comes with the screen or email behind it, ready for a [battlecard](/glossary/battlecard). Klue and Obsession are compared side by side on [Obsession vs Klue](/compare/obsession-vs-klue).',
+    },
+    {
+      kind: 'cta',
+      text: 'A persona in each competitor’s trial, every email and prompt dated.',
+      to: '/blueprints/trial-teardown',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'choose', text: 'Which Klue alternative to choose' },
@@ -168,7 +176,7 @@ export const ref: ReferencePage = {
         '**You want battlecards with automated monitoring:** Crayon, or Kompyte if your team works in Semrush.',
         '**You want market and industry news, filings and expert views:** Contify or AlphaSense.',
         '**You only need to know when a public page changes:** Visualping.',
-        '**You need proof of what competitors show their customers, inside your battlecards, tools or AI agent:** Obsession, beside whichever CI platform you run.',
+        '**You need proof of what competitors show new users, inside your battlecards, tools or AI agent:** Obsession, beside whichever CI platform you run.',
       ],
     },
     {
@@ -176,7 +184,7 @@ export const ref: ReferencePage = {
       items: [
         {
           q: 'What is the best Klue alternative?',
-          a: 'It depends on the job: Crayon or Kompyte for battlecards and monitoring, Contify or AlphaSense for market intelligence, Visualping for page changes, and Obsession for what competitors show only to signed-up customers.',
+          a: 'It depends on the job: Crayon or Kompyte for battlecards and monitoring, Contify or AlphaSense for market news and research, Visualping for page changes, and Obsession for what competitors show new users in their trials.',
         },
         {
           q: 'How much does Klue cost?',
@@ -184,12 +192,12 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Which alternative shows a competitor’s free trial?',
-          a: 'Of the tools here, Obsession is the one whose pages describe signing up the way any customer can and keeping a competitor’s plans, limits, upgrade prompts and onboarding emails, each dated.',
+          a: 'Of the tools here, Obsession is the one whose pages describe a persona that signs up the way any customer can and keeps a competitor’s plans, limits, upgrade prompts and onboarding emails, each dated.',
           link: { label: 'Software trials use case', to: '/use-cases/trial-checks-for-software-companies' },
         },
         {
           q: 'Can I use Obsession with Klue or Crayon?',
-          a: 'Yes. Obsession’s facts reach your tools over the API, MCP or a webhook, each linked to its receipt, so a CI team can put them on the battlecards it already keeps.',
+          a: 'Yes. Obsession’s events reach your tools over the API, MCP or a webhook, each with its screenshot or email, so a CI team can put them on the battlecards it already keeps.',
         },
       ],
     },
@@ -216,6 +224,7 @@ export const ref: ReferencePage = {
     'recipe:trial-teardown',
     'recipe:competitor-tracking',
     '/use-cases/trial-checks-for-software-companies',
+    '/personas',
     '/sales',
   ],
 }

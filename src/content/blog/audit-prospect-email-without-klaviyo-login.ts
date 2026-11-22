@@ -43,7 +43,7 @@ export const post: BlogPost = {
   description:
     'Run a Klaviyo flow audit on a prospect without their login: sign up as a new customer, record 48 hours of email and SMS, and send the owner the result.',
   answer:
-    'To run a Klaviyo flow audit on a prospect without their login, sign up to their store as a new customer and record every email and text for 48 hours. Send the owner the emails as they arrived, with their times, and leave the audit inside their Klaviyo account until they agree to work with you. Obsession keeps what any store you name sends a new customer, every email dated as it arrived, on a link the prospect can open.',
+    'To run a Klaviyo flow audit on a prospect without their login, sign up to their store as a new customer and record every email and text for 48 hours. Send the owner the emails as they arrived, with their times, and leave the audit inside their Klaviyo account until they agree to work with you. Obsession’s Prospect intelligence blueprint signs up to any store you name as a persona, and every email lands dated as it arrived, on a link the prospect can open.',
   primaryKeyword: 'klaviyo flow audit',
   keywords: [
     'email flow audit',
@@ -54,7 +54,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 10,
   order: 6,
   authors: [
@@ -212,7 +212,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For brands already in Obsession’s index, the 48 hours have already run. Early access looks up every store in the index and adds up to 5 stores you run or pitch, with the brand’s OK ([how agencies get access](/lookup#agencies)).',
+      text: 'To run the same 48 hours across a pitch list, Obsession’s [Prospect intelligence](/blueprints/prospect-intelligence) blueprint gives each store its own persona, which signs up on the phone and keeps every screen and email, dated.',
     },
 
     { kind: 'h2', id: 'what-one-inbox-cant-prove', text: 'What an outside audit can’t show' },
@@ -300,13 +300,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For a prospect, an [Obsession agent](/agents) runs the same sign up and keeps each email as it arrived. It says it’s an AI when it talks to a person, and each result comes back as a link the prospect can open. To audit 40 prospects without 160 addresses to watch, use Obsession.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to. For a prospect, a [persona](/personas) runs the same sign up and keeps each email in the event log as it arrived. It says it’s an AI when it talks to a person, and each result comes back as a link the prospect can open. To audit 40 prospects without 160 addresses to watch, use Obsession.',
     },
     {
       kind: 'cta',
-      text: 'Open every pitch with the store’s own emails, and the ones that never came. See what any store sends a new customer after a sign-up, a text opt-in and a basket, each message dated with the email itself, on a link the prospect can open. Agencies start in early access, onboarding teams now.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      text: 'Open every pitch with the store’s own emails, and the ones that never came. Prospect intelligence shows what any store sends a new customer after a sign-up, a text opt-in and a basket, each message dated, on a link the prospect can open.',
+      to: '/blueprints/prospect-intelligence',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'five-prospects-this-week', text: 'Next steps: audit 5 prospects in one week' },
@@ -320,9 +320,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'For a full pitch list, open each pitch on what the prospect sends its signed-up customers, from the welcome email to the reminder that never came. Every fact is dated with a screenshot, in Clay, your CRM or a sheet.',
-      to: '/agencies',
-      label: 'Request early access',
+      text: 'For a full pitch list, open each pitch on what the prospect sends a new customer, from the welcome email to the reminder that never came. Every step is dated with a screenshot, in Clay, your CRM or a sheet.',
+      to: '/blueprints',
+      label: 'Browse blueprints',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

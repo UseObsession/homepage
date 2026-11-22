@@ -20,7 +20,7 @@ import type { BlogPost } from './types'
    stores, any PilotX audit figure, retainer price ranges (weak sources), baskets at rival stores. harbourline.example,
    its rivals and every figure in the 2 illustrations and the worked example are invented. Buyer words; no dashes.
    11 Nov 2026 (SEO revamp wave 1): title, description, answer, Obsession's lines, its comparison row and the calls to
-   action moved to the live position (the web behind the login, early access); no free offer. */
+   action moved to the live position (the web behind the login, early access); no free offer. Rewritten 22 Nov 2026 for the toolkit position. */
 
 const KL_DELIVERY = 'https://help.klaviyo.com/hc/en-us/articles/35283141315099'
 const KL_BENCH = 'https://www.klaviyo.com/products/email-marketing/benchmarks'
@@ -70,7 +70,7 @@ export const post: BlogPost = {
   description:
     'An email marketing audit template for agencies and CRM teams: the account, deliverability and what a new subscriber receives, each with a pass mark.',
   answer:
-    'To do an email marketing audit, check 3 layers: inside the account (forms, flows, Smart Sending, segments, campaigns and attribution), deliverability (SPF, DKIM, DMARC, the Gmail, Yahoo and Microsoft sender rules, spam and bounce rates), and the customer’s view (what a new subscriber receives over 14 days, when, in which Gmail tab, beside 2 or 3 competitors). Give every failed check a priority and estimate its cost from the client’s own flow report. For the customer’s view, Obsession keeps every email the brand and its competitors send a new subscriber, dated as it arrived, by API, MCP (the standard way AI agents call tools) or a table.',
+    'To do an email marketing audit, check 3 layers: inside the account (forms, flows, Smart Sending, segments, campaigns and attribution), deliverability (SPF, DKIM, DMARC, the Gmail, Yahoo and Microsoft sender rules, spam and bounce rates), and the customer’s view (what a new subscriber receives over 14 days, when, in which Gmail tab, beside 2 or 3 competitors). Give every failed check a priority and estimate its cost from the client’s own flow report. For the customer’s view, Obsession’s blueprints keep every email the brand and its competitors send a new subscriber, dated as it arrived.',
   primaryKeyword: 'email marketing audit',
   keywords: [
     'email marketing audit checklist',
@@ -85,7 +85,7 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   order: 14,
   authors: [
@@ -372,17 +372,17 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 competitors each, it takes 50 new addresses and 14 days of reading inboxes, and the record lives only in your sheet. Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. Its [delivery monitoring](/blueprints/delivery-monitoring) watches the first 14 days at each client and flags anything that never comes, and its [email and SMS tracking](/blueprints/email-sms-tracking) keeps every email each competitor sends, dated as it arrived.',
+      text: 'By hand, layer 3 costs little for 1 client. For 10 clients with 3 competitors each, it takes 50 new addresses and 14 days of reading inboxes, and the results live only in your sheet. Obsession is the toolkit for AI agents, giving every agent an inbox, a phone number and a browser through one API and one bill. Its [delivery monitoring](/blueprints/delivery-monitoring) blueprint watches the first 14 days at each client and flags anything that never comes, and its [email and SMS tracking](/blueprints/email-sms-tracking) blueprint keeps every email each competitor sends, dated as it arrived.',
     },
     {
       kind: 'cta',
-      text: 'Open every pitch with the store’s own emails, and the ones that never came: what any store sends after a sign-up and a basket, each message dated and kept as it arrived, for prospects, clients and their competitors.',
-      to: '/use-cases/leak-checks-for-retention-agencies',
-      label: 'Request early access',
+      text: 'Not building agents? Pick a blueprint, and Obsession runs it. Mystery shopping keeps what any store sends after a sign-up and a basket, each message dated, for prospects, clients and their competitors.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
     {
       kind: 'p',
-      text: 'For an online store, layer 3 can start from a [Klaviyo email audit from the customer’s side](/lookup). Type an email at the store’s own address. If the store is in Obsession’s index, its entry arrives with every email a new customer got after a sign-up, a basket and a checkout, dated and set against every other store. Agencies look up client and prospect stores through [early access](/lookup#agencies), once we’ve checked the agency.',
+      text: 'For an online store, layer 3 can start from a [Klaviyo email audit from the customer’s side](/lookup), which shows every email a new customer got after a sign-up, a basket and a checkout, dated and set beside other stores. Agencies run the same check on client and prospect stores with the [mystery shopping](/blueprints/mystery-shopper) blueprint.',
     },
 
     { kind: 'h2', id: 'audit-report', text: 'The report the client reads' },
@@ -495,15 +495,15 @@ export const post: BlogPost = {
         [
           'Obsession (ours): [Delivery monitoring](/blueprints/delivery-monitoring), [Email and SMS tracking](/blueprints/email-sms-tracking), [Competitor tracking](/blueprints/competitor-tracking)',
           'The first 14 days at each client, with anything that never comes flagged\nEvery competitor email, offer and code on 1 timeline, dated',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Sees what a new customer receives\nThe account’s own reports stay in layers 1 and 2',
-          'What a real subscriber gets from each client and competitor, every week, kept as proof',
+          'What a real subscriber gets from each client and competitor, every week, each email kept as it arrived',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For layer 3 across many clients and their competitors every week, use Obsession, which keeps every email each brand sends a new subscriber, dated, for as long as you follow it. For 1 to 5 clients audited at onboarding, Klaviyo’s reports, Postmaster Tools, a few new Gmail addresses and a sheet cover all 3 layers, and no paid tool is needed.',
+      text: 'For layer 3 across many clients and their competitors every week, use Obsession, whose blueprints keep every email each brand sends a new subscriber, dated, for as long as you follow it. For 1 to 5 clients audited at onboarding, Klaviyo’s reports, Postmaster Tools, a few new Gmail addresses and a sheet cover all 3 layers, and no paid tool is needed.',
     },
     {
       kind: 'p',
@@ -527,9 +527,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'What every client and prospect sends its signed-up customers, from the welcome email to the reminder that never came, each dated with a screenshot. Open a pitch on it, and report it straight to the client.',
-      to: '/agencies',
-      label: 'Request early access',
+      text: 'What every client and competitor sends its signed-up customers, from the welcome email to the reminder that never came, each dated with a screenshot. Pick the blueprints for each layer 3 check, and Obsession runs them every week.',
+      to: '/blueprints',
+      label: 'Browse blueprints',
     },
 
     { kind: 'h2', id: 'questions', text: 'Questions' },

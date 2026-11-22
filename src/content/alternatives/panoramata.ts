@@ -3,7 +3,8 @@ import { ENTITY } from '../site'
 
 /* /alternatives/panoramata. Every tool fact is from the tool's own pages, read 11 Nov 2026
    (_research/seo/pagetypes-11nov/research/email_intel.json; Panoramata, MailCharts, Reyo, SendView, Foreplay and
-   Competitor Inbox re-read the same day). */
+   Competitor Inbox re-read the same day). Panoramata, SendView and Competitor Inbox re-read 22 Nov 2026 (Competitor
+   Inbox's Starter fell from $25 to $15). Obsession's side (22 Nov): the Competitor tracking blueprint. */
 
 const PANO = 'https://www.panoramata.co/'
 const PANO_PRICING = 'https://www.panoramata.co/pricing'
@@ -17,14 +18,14 @@ export const ref: ReferencePage = {
   kind: 'alternatives',
   name: 'Panoramata alternatives',
   company: 'Panoramata',
-  line: 'Campaign libraries, ad libraries, inboxes for the competitors you name, and the web behind the login, each with its price.',
+  line: 'Campaign libraries, ad libraries, inboxes for the competitors you name, and a persona at each one, each with its price.',
   meta: {
     path: '/alternatives/panoramata',
-    title: 'Panoramata alternatives for tracking competitors’ marketing',
+    title: 'Panoramata alternatives (2026): 6 ways to track campaigns',
     description:
-      'Panoramata alternatives by job: campaign and ad libraries, inboxes for competitors you name, and what competitors show only to customers, with each price.',
+      'Panoramata alternatives by job: campaign and ad libraries, inboxes for competitors you name, and a persona that signs up at each one, each with its price.',
     answer:
-      'The best Panoramata alternative depends on the job: MailCharts or Reyo for a library of ecommerce campaigns, Foreplay for an ad library, and SendView or Competitor Inbox to keep every email from the competitors you name. For what any company shows only to signed-up customers, from emails and texts to member prices, trial limits and cancel offers, Obsession keeps it dated and looked up by API, MCP or a table.',
+      'The best Panoramata alternative depends on the job: MailCharts or Reyo for a library of ecommerce campaigns, Foreplay for an ad library, and SendView or Competitor Inbox to keep every email from the competitors you name. For every email, text, offer and member price a competitor shows a new customer, Obsession’s Competitor tracking blueprint signs a persona up at each one and sends what it gets to your own tools.',
     ogImage: '/og/alternatives-panoramata.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -33,8 +34,8 @@ export const ref: ReferencePage = {
       { name: 'Panoramata', path: '/alternatives/panoramata' },
     ],
   },
-  title: 'Panoramata alternatives: by job, including what competitors show only to customers',
-  dek: 'Teams leave Panoramata for one channel done deeply, a smaller bill, or the prices and offers behind the sign-up. Each option, by job, with its price as listed.',
+  title: 'Panoramata alternatives: every option by job, with its price',
+  dek: 'Teams leave Panoramata for one channel done deeply, a smaller bill, or the prices and offers behind a sign-up. Each option is sorted by job, with its price as listed.',
   primaryKeyword: 'panoramata alternatives',
   keywords: ['panoramata alternative', 'alternatives to panoramata', 'panoramata competitors', 'panoramata pricing'],
   checked: '2026-11-11',
@@ -64,9 +65,9 @@ export const ref: ReferencePage = {
       },
       {
         name: 'Obsession',
-        who: 'Behind the login',
-        nodes: ['Any company you name', 'Emails, prices, trials, offers', 'API, MCP or a table'],
-        links: ['keeps, dated', 'looked up by'],
+        who: 'Competitor tracking blueprint',
+        nodes: ['Competitors you name', 'A persona at each one', 'Slack, a sheet or the API'],
+        links: ['joined by', 'sent to'],
         lit: 1,
         ours: true,
       },
@@ -84,7 +85,7 @@ export const ref: ReferencePage = {
       items: [
         '**The entry plan’s limits.** Startup, at $99 a month, covers 20 competitors and 6 months of history, with email and ad libraries; SMS, landing page and flow libraries start on Professional at $179 a month.',
         '**Breadth when one channel is the job.** A team that needs only competitors’ emails, or only ads, may want a tool built for that one channel.',
-        '**The campaign, not the customer side.** Its pages don’t describe member or signed-in prices, trial limits, quotes behind forms or cancel flows.',
+        '**Campaigns, with nothing past the sign-up.** Its pages don’t describe member or signed-in prices, trial limits, quotes behind forms or cancel flows.',
       ],
     },
 
@@ -92,12 +93,12 @@ export const ref: ReferencePage = {
     {
       kind: 'table',
       compare: true,
-      caption: 'From each tool’s own pages, read 11 November 2026, with the price each lists. Not described means its pages don’t say.',
+      caption: 'From each tool’s own pages, read 11 November 2026, with the price each lists. Panoramata, SendView and Competitor Inbox re-read on 22 November 2026. Not described means its pages don’t say.',
       cols: ['Option', 'What it does well', 'Price as listed', 'Where it stops', 'Best for'],
       rows: [
         [
-          'MailCharts: email search, journeys, reports',
-          'Ecommerce email and SMS journeys to browse',
+          'MailCharts: email search, compare, reports',
+          'Ecommerce email and SMS campaigns to browse',
           'Not listed\nContact us to get started',
           'Its own index of brands',
           'Campaign ideas and benchmarks',
@@ -126,15 +127,15 @@ export const ref: ReferencePage = {
         [
           'Competitor Inbox: emails from competitors you add',
           'An archive per competitor',
-          'Starter $25 a month, 1 competitor\nBusiness $249 a month, 25',
+          'Starter $15 a month, 1 competitor\nBusiness $249 a month, 25',
           'Email only\nCompetitors capped by plan',
           'A few competitors',
         ],
         [
-          'Obsession (ours): Search, Insights, Watch, API and MCP',
-          'Any company you name, emails to cancel offers',
-          'Early access, onboarding teams now\nPriced per call or per company watched',
-          'Stops before payment and any identity check',
+          'Obsession (ours): Competitor tracking, Email and SMS tracking and Ad tracking blueprints',
+          'A persona at each competitor: emails, texts, offers, member prices',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Stops before payment and at any identity check',
           'The whole customer side, in your tools',
         ],
       ],
@@ -152,12 +153,19 @@ export const ref: ReferencePage = {
     { kind: 'h3', id: 'emails', text: 'For every email from the competitors you name' },
     {
       kind: 'p',
-      text: `[SendView](${SENDVIEW}) tracks up to 10 companies for $69 a month and 50 for $169. [Competitor Inbox](${COMP_INBOX}) starts at $25 a month for 1 competitor and reaches $249 for 25. Both keep emails only.`,
+      text: `[SendView](${SENDVIEW}) tracks up to 10 companies for $69 a month and 50 for $169. [Competitor Inbox](${COMP_INBOX}) starts at $15 a month for 1 competitor and reaches $249 for 25, as listed on 22 November 2026. Both keep emails only.`,
     },
-    { kind: 'h3', id: 'behind-the-login', text: 'For what competitors show only to signed-up customers' },
+    { kind: 'h3', id: 'personas', text: 'For every email, offer and price a competitor shows a new customer' },
+    { kind: 'p', text: ENTITY },
     {
       kind: 'p',
-      text: `${ENTITY} Beside the emails and texts sit the [member price](/glossary/member-price), the [trial limit](/glossary/trial-limit), the [upgrade prompt](/glossary/upgrade-prompt) and the [save offer](/glossary/save-offer) in the cancel flow, each kept for as long as you follow the company. Panoramata and Obsession are compared side by side on [Obsession vs Panoramata](/compare/obsession-vs-panoramata).`,
+      text: 'For this job, teams pick the [Competitor tracking blueprint](/blueprints/competitor-tracking). A persona, an AI agent with its own inbox and number under one name, signs up at each competitor and keeps the account open. Beside the emails and texts sit the [member price](/glossary/member-price), the [trial limit](/glossary/trial-limit), the [upgrade prompt](/glossary/upgrade-prompt) and the [save offer](/glossary/save-offer), each dated in your event log. Panoramata and Obsession are compared side by side on [Obsession vs Panoramata](/compare/obsession-vs-panoramata).',
+    },
+    {
+      kind: 'cta',
+      text: 'A persona at each competitor, every email, offer and price dated.',
+      to: '/blueprints/competitor-tracking',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'choose', text: 'Which Panoramata alternative to choose' },
@@ -167,7 +175,7 @@ export const ref: ReferencePage = {
         '**You want ecommerce campaigns to browse, on a smaller bill:** Reyo, or MailCharts if a quote suits you.',
         '**Ads are the job:** Foreplay.',
         '**You name the competitors and want every email:** SendView or Competitor Inbox.',
-        '**You need prices, trials and cancel offers beside the campaigns, for any company, in your own tools or an AI agent:** Obsession.',
+        '**You want member prices, trials and cancel offers beside the campaigns, for the competitors you name, in your own tools or an AI agent:** Obsession.',
       ],
     },
     {
@@ -175,7 +183,7 @@ export const ref: ReferencePage = {
       items: [
         {
           q: 'What is the best Panoramata alternative?',
-          a: 'It depends on the job: Reyo or MailCharts for ecommerce campaigns, Foreplay for ads, SendView or Competitor Inbox for the competitors you name, and Obsession for what any company shows only to signed-up customers, emails to cancel offers.',
+          a: 'It depends on the job: Reyo or MailCharts for ecommerce campaigns, Foreplay for ads, SendView or Competitor Inbox for the competitors you name, and Obsession for every email, offer and price a competitor shows a persona, from the welcome email to the cancel offer.',
         },
         {
           q: 'How much does Panoramata cost?',
@@ -183,11 +191,11 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Is there a cheaper alternative to Panoramata?',
-          a: 'For email only, Competitor Inbox starts at $25 a month for 1 competitor and SendView at $69 a month for 10 companies. Reyo starts at €69 a month for ecommerce campaigns.',
+          a: 'For email only, Competitor Inbox starts at $15 a month for 1 competitor and SendView at $69 a month for 10 companies, as listed on 22 November 2026. Reyo starts at €69 a month for ecommerce campaigns, read on 11 November 2026.',
         },
         {
           q: 'Does any alternative show competitors’ member prices?',
-          a: 'Obsession is the one tool here whose pages describe keeping the price a signed-in customer sees beside the public one, dated with a screenshot.',
+          a: 'Obsession is the one tool here whose pages describe a persona that signs in and keeps the member price beside the public one, dated with a screenshot.',
           link: { label: 'What a member price is', to: '/glossary/member-price' },
         },
       ],
@@ -213,8 +221,10 @@ export const ref: ReferencePage = {
     'how-to-see-competitor-ads',
     'competitor-ad-tracking-tools',
     'ecommerce-competitive-intelligence',
+    'recipe:competitor-tracking',
     'recipe:ad-tracking',
     'recipe:email-sms-tracking',
+    '/personas',
     '/marketing',
   ],
 }

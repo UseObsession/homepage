@@ -83,12 +83,41 @@ const PATHS: Record<PersonaIcon, ReactNode> = {
   ),
   code: <path d="M5.5 4.5 2 8l3.5 3.5M10.5 4.5 14 8l-3.5 3.5M9 3l-2 10" />,
   retry: <path d="M13 8a5 5 0 1 1-1.6-3.7M13.2 2.6v2.8h-2.8" />,
+  /* The kits (content/kitPaths.ts): a check for testing, a key for logins, a flask for training. */
+  check: (
+    <>
+      <circle cx="8" cy="8" r="5.5" />
+      <path d="m5.6 8.2 1.7 1.7 3.2-3.6" />
+    </>
+  ),
+  key: (
+    <>
+      <circle cx="5.5" cy="10.5" r="2.5" />
+      <path d="m7.3 8.7 5.2-5.2M10.6 5.4l1.6 1.6M12 4l1.4 1.4" />
+    </>
+  ),
+  flask: (
+    <>
+      <path d="M6.2 2h3.6M6.8 2v4.2L3 12.6a1 1 0 0 0 .9 1.4h8.2a1 1 0 0 0 .9-1.4L9.2 6.2V2" />
+      <path d="M4.6 10h6.8" />
+    </>
+  ),
+
   domain: (
     <>
       <circle cx="8" cy="8" r="2.4" />
       <path d="M10.4 8v1.1a1.7 1.7 0 0 0 3.4 0V8a5.8 5.8 0 1 0-2.3 4.6" />
     </>
   ),
+}
+
+/* The same drawing placed inside another svg (the kits' orbit, components/kit/KitOrbit): a nested svg at x, y, size. */
+export function PersonaGlyphAt({ name, x, y, size }: { name: PersonaIcon; x: number; y: number; size: number }) {
+  return (
+    <svg x={x} y={y} width={size} height={size} viewBox="0 0 16 16" aria-hidden="true" focusable="false" className="ob-glyph">
+      {PATHS[name]}
+    </svg>
+  )
 }
 
 export function PersonaGlyph({ name }: { name: PersonaIcon }) {

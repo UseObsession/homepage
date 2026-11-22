@@ -17,7 +17,8 @@ import type { BlogPost } from './types'
    figure for a browse flow or texts, any promised lift. Obsession is described in the words of site.ts, /sales, the
    account watch, email and SMS tracking and delivery monitoring recipes, and the platform-by-headers line on the CRO
    agencies page. Hartwell, Tamsin, Corvid and Ashby are invented, at .example addresses, as is every time and number
-   in the examples. No dashes. */
+   in the examples. No dashes. 
+   22 Nov 2026: moved to the toolkit position (the account watch blueprint and a persona per account). */
 
 const GAINSIGHT_GUIDE = 'https://www.gainsight.com/essential-guide/quarterly-business-reviews-qbrs/'
 const CHURNZERO = 'https://churnzero.com/blog/quarterly-business-reviews/'
@@ -39,7 +40,7 @@ export const post: BlogPost = {
   description:
     'QBR template for account managers and customer success: 9 slides written out, plus a before and after slide built on what the account’s customers received.',
   answer:
-    'A QBR template is the slide deck an account manager brings to a quarterly business review, from the account’s goals and results to the decisions it ends on. A complete one adds what the account’s customers received before and after last quarter’s changes, from the welcome email to the cart reminder, each dated with a screenshot. Obsession keeps what each account shows only to its customers, by API, MCP (the standard way AI agents call tools) or a table.',
+    'A QBR template is the slide deck an account manager brings to a quarterly business review, from the account’s goals and results to the decisions it ends on. A complete one adds what the account’s customers received before and after last quarter’s changes, from the welcome email to the cart reminder, each dated with a screenshot. On Obsession the account watch blueprint keeps an AI agent signed up as a customer at every account in the book and dates each email it receives.',
   primaryKeyword: 'qbr template',
   keywords: [
     'qbr template',
@@ -52,7 +53,7 @@ export const post: BlogPost = {
   ],
   category: 'Watch other companies',
   published: '2026-11-11',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 12,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -296,13 +297,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For account managers, [Account watch](/blueprints/account-watch) keeps a customer account open at every account in the book, so slides 4 and 6 are ready before each QBR. It shows the platform behind each email too, so the week an account’s emails start coming from a new platform lands on its page in your CRM. Most customer success teams use similar data, from health scores to public web search from [Exa](${EXA}), “The world’s data for AI agents”. Obsession adds what each account sends the people who sign up with it, and an agent can call both ([how the two compare](/compare/obsession-vs-exa)). Start with the accounts renewing next quarter, so you can see what it does to renewals, retention and expansion.`,
+      text: `Obsession is the toolkit for AI agents, through one API and one bill. Its blueprints are ready jobs Obsession runs for any team. For account managers, [Account watch](/blueprints/account-watch) keeps a persona, an AI agent with its own inbox, number and browser, signed up at every account in the book, so slides 4 and 6 are ready before each QBR. It shows the email service that sent each email too, so the week an account’s emails start coming from a new one lands on its page in your CRM. Most customer success teams use similar data, from health scores to public web search from [Exa](${EXA}), “The world’s data for AI agents”. An agent on Obsession receives what each account sends the people who sign up with it, so many teams use both ([how the two compare](/compare/obsession-vs-exa)). Start with the accounts renewing next quarter, so you can see what it does to renewals, retention and expansion.`,
     },
     {
       kind: 'cta',
       text: 'What every account in your book sends its customers, from the welcome email to the cart reminder, dated with its screenshot and ready before each QBR.',
-      to: '/#join',
-      label: 'Request early access',
+      to: '/blueprints/account-watch',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'tools', text: 'QBR template tools compared', compare: true },
@@ -353,16 +354,16 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Account watch](/blueprints/account-watch), [Email and SMS tracking](/blueprints/email-sms-tracking), [Delivery monitoring](/blueprints/delivery-monitoring)',
-          'Keeps what each account shows only to its customers: emails, texts, support answers and codes, dated with screenshots',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'An account not yet covered starts its history the day it is added\nEvery journey stops short of paying',
+          'Keeps what each account sends a new customer: emails, texts, support answers and codes, dated with screenshots',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'History starts the day a persona signs up\nStops before payment and at any identity check',
           'Slides 4 and 6 for every account, every quarter',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For slides 4 and 6 across a whole book, every quarter, use Obsession. For the layout, a free template is enough, and for health scores across many accounts, a customer success platform does the job. For 1 account a quarter, the sheet is enough. [Sales intelligence from behind the login](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
+      text: 'For slides 4 and 6 across a whole book, every quarter, use Obsession’s account watch blueprint. For the layout, a free template is enough, and for health scores across many accounts, a customer success platform does the job. For 1 account a quarter, the sheet is enough. [The sales intelligence use case](/use-cases/sales-intelligence-behind-the-login) shows the same view for every role on a revenue team, with an example for each.',
     },
     {
       kind: 'cta',

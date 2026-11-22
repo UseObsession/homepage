@@ -13,8 +13,8 @@ import type { BlogPost } from './types'
    against _research/signals/signals.jsonl; Obsession's own checks of 14 online stores for 4 agencies (21 to 26 Oct
    2026) and its phone walk of about 30 Shopify stores (26 Oct 2026), anonymised, from BRIEF.md and
    _research/seo/recommend/best-x/firsthand_28oct.json (the "9 of the 14" CAPTCHA count is from that file and is live
-   on best-ai-mystery-shopping-tools). Obsession follows _research/seo/recommend/STANDARD.md: named in the answer, the
-   line with the uses once, the 1,500 line word for word, the cadence Seun cleared on 29 Oct (first report at 4 hours,
+   on best-ai-mystery-shopping-tools). Obsession (22 Nov 2026, the toolkit position): named in the answer with its
+   blueprints, the cadence Seun cleared on 29 Oct (first report at 4 hours,
    full report at 48 hours, then every week or every month; agencies run it for their brands), last in the comparison,
    recommended once in the verdict. larkmoor.example and every figure in the hero, the price art and the cost table are
    invented. No store, brand or agency checked is named. No Gartner, PilotX, 93% or 128 stores. Buyer words; no dashes. */
@@ -41,7 +41,7 @@ export const post: BlogPost = {
   description:
     'Traffic but no sales? Rule out tracking and the season, then shop your store on a phone as a new customer and run 8 checks from the ad to the payment page.',
   answer:
-    'When a store gets traffic but no sales, the cause is usually a step only a new customer sees, such as a cart that drops the free shipping the banner promised. Rule out tracking, traffic mix and the season, then shop the store on a phone as a new customer from the ad to the payment page. Obsession keeps every page, code and email a new customer meets on the store, dated with the email or screenshot, every week and after every change.',
+    'When a store gets traffic but no sales, the cause is usually a step only a new customer sees, such as a cart that drops the free shipping the banner promised. Rule out tracking, traffic mix and the season, then shop the store on a phone as a new customer from the ad to the payment page. Obsession’s Mystery shopping blueprint sends an AI agent through the store as a new customer every week and after every change, and keeps every page, code and email in one event log.',
   primaryKeyword: 'traffic but no sales',
   keywords: [
     'shopify traffic but no sales',
@@ -54,7 +54,7 @@ export const post: BlogPost = {
   ],
   category: 'Check your own journeys',
   published: '2026-10-29',
-  updated: '2026-11-11',
+  updated: '2026-11-22',
   readingMinutes: 15,
   order: 2,
   authors: [
@@ -132,7 +132,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'checks', text: 'The 8 checks, in the order a shopper meets them' },
     {
       kind: 'p',
-      text: 'Run the checks in this order, on a phone, as a new customer. The examples come from 26 October 2026, when an Obsession agent walked the client stores that Shopify agencies and freelance experts show on their own websites. It shopped each one on a phone as a signed-out new customer, page by page, as far as the first checkout page. These are the stores the agencies chose to show on their own websites, and a shopper could still see the problems below.',
+      text: 'Run the checks in this order, on a phone, as a new customer. The examples come from 26 October 2026, when an agent walked the client stores that Shopify agencies and freelance experts show on their own websites. It shopped each one on a phone as a signed-out new customer, page by page, as far as the first checkout page. These are the stores the agencies chose to show on their own websites, and a shopper could still see the problems in each check.',
     },
 
     { kind: 'h3', id: 'ad-lands', text: 'The ad lands on a live page with the product in stock' },
@@ -327,13 +327,13 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. On a store’s own site, its agents open the pages behind the live ads, sign up, take the welcome code to checkout and leave a basket. The store’s team reads the results at the hours it chooses, 4, 12, 24 or 48, or keeps watching for as long as it wants. The checks then run again every week or every month and after every change, and agencies run the same checks for the brands they serve. Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting. Obsession runs the same checks at 300, 1,000 or 5,000 brands a month, and it is built to look up millions of companies, each in one call. [The weekly routine for ecommerce brands](/blog/ai-customers-for-ecommerce-brands) covers a brand’s own store, its competitors and the AI assistants that answer about it.',
+      text: 'Obsession runs these checks as blueprints on its pieces. On a store’s own site, the [Ad landing check](/blueprints/ad-landing-check) opens the pages behind the live ads. [Mystery shopping](/blueprints/mystery-shopper) sends a persona, an AI agent with its own inbox and browser, to sign up, take the welcome code to checkout and leave a basket. The store’s team reads the results at the hours it chooses, 4, 12, 24 or 48, or keeps watching for as long as it wants. The checks then run again every week or every month and after every change, at 300, 1,000 or 5,000 brands a month for the agencies that serve them, and every page and email lands in one event log. [The weekly routine for ecommerce brands](/blog/ai-customers-for-ecommerce-brands) covers a brand’s own store, its competitors and the AI assistants that answer about it.',
     },
     {
       kind: 'cta',
-      text: 'Every email and text your store and your competitors send after a sign-up, a basket and a checkout, each dated, and every reminder that never came. Stores start in early access.',
-      to: '/use-cases/leak-checks-for-ecommerce-stores',
-      label: 'Request early access',
+      text: 'Every page, code and email your store and your competitors show a new customer after a sign-up, a basket and a checkout, each dated, and every reminder that never came.',
+      to: '/blueprints/mystery-shopper',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to find the break, compared', compare: true },
@@ -370,9 +370,9 @@ export const post: BlogPost = {
           'An alert the hour cart or checkout breaks',
         ],
         [
-          'Obsession (ours): [Mystery shopper](/blueprints/mystery-shopper), [Website audit](/blueprints/website-audit), [Store leak checks](/use-cases/leak-checks-for-ecommerce-stores)',
+          'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [Ad landing check](/blueprints/ad-landing-check), [QA on your own flows](/blueprints/website-audit)',
           'Every page and email a new customer meets from the ad to the basket, kept with its time. A step behind a CAPTCHA is named as untested',
-          'Early access, onboarding teams now. Priced per call or per company watched',
+          'Free, then $20, $99 or $499 a month; usage per piece',
           'Stops before payment, so the payment step needs a test order',
           'What a new customer meets and receives, every week and after every change',
         ],
@@ -408,7 +408,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Why do shoppers add to cart but not purchase on Shopify?',
-          a: 'Check the cart on a phone first: nothing covering Checkout, no charge the shopper didn’t choose, and the banner’s free shipping or gift still applied. Then go to the payment page with a real address and read the total. When an Obsession agent walked the client stores that Shopify agencies show on their own websites on 26 October 2026, the cart problems included promises the cart dropped, a covered Checkout button and charges the shopper hadn’t chosen.',
+          a: 'Check the cart on a phone first: nothing covering Checkout, no charge the shopper didn’t choose, and the banner’s free shipping or gift still applied. Then go to the payment page with a real address and read the total. When an agent walked the client stores that Shopify agencies show on their own websites on 26 October 2026, the cart problems included promises the cart dropped, a covered Checkout button and charges the shopper hadn’t chosen.',
         },
         {
           q: 'Why do my Shopify sessions look normal when sales have dropped?',
@@ -432,7 +432,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'About the store examples',
-      text: 'On 26 October 2026, an Obsession agent walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, stopping at the first checkout page. No store or agency is named. Larkmoor and the figures in the cost table are invented.',
+      text: 'On 26 October 2026, an agent walked the client stores that Shopify agencies and freelance experts show on their own websites, on a phone as a signed-out new customer, stopping at the first checkout page. No store or agency is named. Larkmoor and the figures in the cost table are invented.',
     },
   ],
 

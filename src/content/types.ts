@@ -556,6 +556,7 @@ export type PersonaStart = {
 export type PersonaIcon =
   | 'mail' | 'phone' | 'chat' | 'browser' | 'sandbox' | 'persona'
   | 'sleep' | 'home' | 'person' | 'users' | 'cap' | 'stop' | 'webhook' | 'record' | 'clock' | 'code' | 'retry' | 'domain'
+  | 'check' | 'key' | 'flask'
 /* The pieces as 1 ruled sheet (HomePieces): each its icon, name, 1 line, the call that starts it, and `to`, its page
    (content/piecePaths.ts); the whole cell links there. `whole` draws the cell solid: the persona, every piece in one. */
 export type HomePieces = {

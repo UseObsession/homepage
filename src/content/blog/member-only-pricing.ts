@@ -17,8 +17,8 @@ import type { BlogPost } from './types'
    2025 (filed 11 Feb 2026), the Commission's DMA note on Booking (14 Nov 2024), Lighthouse's Rate Insight page,
    Prisync's pricing page and Price2Spy's ecommerce and pricing pages. Undated pages carry no date in the sources.
    The Costco table's middle line (5,778) is our subtraction from the 10-K's own lines, named as such. Every company in
-   the two illustrations is invented (.example). Obsession's lines follow the use case page and Price watch recipe as
-   live on 11 Nov; no index size, no customer, no free offer. British English, numerals, no dashes. */
+   the two illustrations is invented (.example). Obsession's lines follow the use case page and Price watch blueprint as
+   of 22 Nov; no index size, no customer, no free offer. British English, numerals, no dashes. */
 
 const CMA_CASE = 'https://www.gov.uk/cma-cases/loyalty-pricing-in-the-groceries-sector'
 const TESCO_FY26 = 'https://www.tescoplc.com/media/ch1fbgss/tesco-plc-preliminary-results-statement-fy26.pdf'
@@ -51,7 +51,7 @@ export const post: BlogPost = {
   description:
     'How retailers, clubs and hotels price members, what the CMA found on loyalty pricing, and how to track competitors’ member prices beside public ones.',
   answer:
-    'Member-only pricing is a lower price a company shows only to customers who join, sign in or pay a fee: a supermarket’s loyalty price, a club’s member savings, a hotel’s member rate. Price trackers read the page any visitor sees, so they miss member prices shown after sign-in, in an app or by email, which can differ for every customer. Obsession keeps each competitor’s member price beside its public one, per store and profile, dated with its screenshot, by API, MCP (the standard way AI agents call tools) or a table.',
+    'Member-only pricing is a lower price a company shows only to customers who join, sign in or pay a fee: a supermarket’s loyalty price, a club’s member savings, a hotel’s member rate. Price trackers read the page any visitor sees, so they miss member prices shown after sign-in, in an app or by email, which can differ for every customer. Obsession’s price watch blueprint signs in to each competitor as a member and reads the member price beside the public one every morning, dated with its screenshot.',
   primaryKeyword: 'member only pricing',
   keywords: [
     'loyalty pricing',
@@ -65,7 +65,7 @@ export const post: BlogPost = {
   category: 'Watch other companies',
   order: 7,
   published: '2026-11-11',
-  updated: '2026-11-14',
+  updated: '2026-11-22',
   readingMinutes: 15,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -339,11 +339,11 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'obsession', text: 'Where Obsession fits' },
     {
       kind: 'p',
-      text: 'Obsession collects what companies show only to customers, step by step: their screens, emails and texts, member prices, trial limits, quotes and cancel offers, each dated with a screenshot. Teams and AI agents look up any company through the API or MCP, and a company not yet covered is added on request. For a pricing team, that is each competitor’s member price beside its public one, per store and customer profile. The welcome coupon and every later offer are kept as they arrive, for as long as the team follows the competitor. Funds read the same offers as [consumer promotions data](/use-cases/consumer-promotions-data-for-funds), each kept with the time it was seen. Search and scraping APIs such as Exa, Tavily and Firecrawl give AI agents the public web, what any visitor can read. Obsession gives them what a company shows its customers behind the login, and the two work together ([Exa alternatives, sorted by job](/blog/exa-alternatives)). Obsession’s agents have run 1,500 sign-ups, baskets and checkouts at real companies, and counting.',
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. For a pricing team, a persona, an AI agent with its own inbox, number and browser under one name, joins each competitor from the customer profile and city the team picks. Its [browser stays signed in](/browser), so it reads the member price beside the public one every morning. Its inbox and number keep the welcome coupon and every later offer as they arrive, in one event log. Teams who don’t code run it as the [price watch](/blueprints/price-watch) blueprint, and [a worked example](/use-cases/member-prices-for-price-intelligence) follows a pricing team’s week. Funds read the same offers as [consumer promotions data](/use-cases/consumer-promotions-data-for-funds), each kept with the time it was seen. Web search APIs give AI agents the public web, what any visitor can read. A browser that stays signed in reaches the member price, and the two work together ([Exa alternatives, sorted by job](/blog/exa-alternatives)).',
     },
     {
       kind: 'p',
-      text: '[The web behind the login](/blog/the-web-behind-the-login) explains what sits behind each sign-up, login and checkout, and the [sample data](/sample-output) shows a real store’s record in every format it comes in. [Compare Obsession](/compare) with search engines, email archives and panels.',
+      text: '[The web behind the login](/blog/the-web-behind-the-login) explains what sits behind each sign-up, login and checkout. The [sample data](/sample-output) shows what real sign-ups at a UK skincare store received in 48 hours, and [Obsession compared](/compare) sets its pieces beside other tools.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to track member prices, side by side', compare: true },
@@ -363,10 +363,10 @@ export const post: BlogPost = {
         ['Price2Spy', 'Says it monitors prices behind logins', 'Not listed\nPremium on request', 'No published prices', 'Retailer prices behind a login'],
         ['Lighthouse Rate Insight', 'Live rate shops of travel agents, brand sites and metasearch', 'Not listed\nFree trial', 'Rates after sign-in not described', 'Hotels’ public rates'],
         [
-          'Obsession (ours): [Price watch](/blueprints/price-watch), [Member prices](/use-cases/member-prices-for-price-intelligence)',
+          'Obsession (ours): [Price watch](/blueprints/price-watch), [Browser](/browser), [Personas](/personas)',
           'Member and public prices side by side, per store and profile, with every later offer',
-          'Early access, onboarding teams now. Priced per call or per company watched',
-          'Product matching stays with your team',
+          'Free, then $20, $99 or $499 a month; usage per piece',
+          'Product matching stays with your team; stops at any identity check and before payment',
           'Competitors’ member prices, kept as proof over time',
         ],
       ],
@@ -381,12 +381,12 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'which-to-choose', text: 'Which way to track member prices' },
     {
       kind: 'p',
-      text: 'Use Obsession when your team needs competitors’ member prices that sit behind a sign-in, in an app or in an email, per store and customer profile. Each one is kept with a dated screenshot for as long as you follow the competitor.',
+      text: 'Use Obsession when your team needs competitors’ member prices that sit behind a sign-in, in an app or in an email, per store and customer profile. Each reading lands in the event log with a dated screenshot, for as long as the persona stays a member.',
     },
     {
       kind: 'list',
       items: [
-        '**Member prices behind a sign-in, with every offer that follows:** Obsession’s [Price watch](/blueprints/price-watch) reads public and member prices each morning, plus the codes sent to subscribers, and each gap arrives with its screenshot.',
+        '**Member prices behind a sign-in, with every offer that follows:** Obsession’s [price watch](/blueprints/price-watch) blueprint reads public and member prices each morning, plus the codes sent to subscribers, and each gap arrives with its screenshot.',
         '**Public and displayed loyalty prices across thousands of products:** a public price tracker such as Prisync. [The best competitor price tracking tools](/blog/best-competitor-price-tracking-tools) compares 14 of them by job.',
         '**A hotel’s public rates across travel agents and brand sites:** a rate shopper such as Lighthouse.',
         '**Prices behind a login at a set of retailers, collected by a vendor:** Price2Spy, after reading each competitor’s terms.',
@@ -397,9 +397,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Member prices beside public ones, at every retailer you track: the price a signed-in member sees, the welcome coupon and the offers that follow by email and text, per store, each dated with its screenshot.',
-      to: '/use-cases/member-prices-for-price-intelligence',
-      label: 'Request early access',
+      text: 'A persona signs in to every retailer you track and reads the member price beside the public one each morning, with the welcome coupon and every offer that follows, each dated with its screenshot.',
+      to: '/blueprints/price-watch',
+      label: 'See the blueprint',
     },
 
     { kind: 'h2', id: 'faq', text: 'Questions about member-only pricing' },
@@ -428,12 +428,12 @@ export const post: BlogPost = {
         },
         {
           q: 'Can price intelligence software track member prices?',
-          a: 'Some can, in part. Price2Spy says it monitors prices behind logins. Lighthouse’s Rate Insight runs live rate shops across travel agents, brand websites and metasearch, and its page doesn’t describe rates shown after sign-in. Prisync’s pricing page doesn’t mention member prices. Obsession keeps each competitor’s member price beside its public one, per store and customer profile, with every later offer.',
+          a: 'Some can, in part. Price2Spy says it monitors prices behind logins. Lighthouse’s Rate Insight runs live rate shops across travel agents, brand websites and metasearch, and its page doesn’t describe rates shown after sign-in. Prisync’s pricing page doesn’t mention member prices. Obsession’s price watch blueprint reads each competitor’s member price beside its public one, per store and customer profile, with every later offer.',
           link: { label: 'Member prices for price intelligence', to: '/use-cases/member-prices-for-price-intelligence' },
         },
         {
-          q: 'How does Obsession collect competitors’ member prices?',
-          a: 'An Obsession agent, a customer that says it’s an AI, joins each competitor the way any customer can, from the customer profile and city your team picks, and keeps the account open. It reads every price signed out and signed in on the same page, with a screenshot of each, and keeps every email and text as it arrives. It never invents identity details.',
+          q: 'How does Obsession read competitors’ member prices?',
+          a: 'A persona joins each competitor the way any customer can, from the customer profile and city your team picks, and its browser stays signed in. It reads every price signed out and signed in on the same page, with a screenshot of each, and its inbox and number keep every email and text as they arrive. It says it’s an AI when it talks to a person, never invents identity details and stops at any identity check.',
           link: { label: 'What every Obsession agent does', to: '/agents' },
         },
       ],

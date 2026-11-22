@@ -1,5 +1,4 @@
 import type { ReferencePage } from '../reference'
-import { ENTITY } from '../site'
 
 /* /glossary/mystery-shopping: for a CX or research lead who wants the practice defined fairly. "mystery shopping
    software", "AI mystery shopping" and "AI mystery shopper" stay with their pages, and "is mystery shopping legal" with
@@ -61,7 +60,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'collected-as-data', text: 'What companies show customers, collected as data' },
     {
       kind: 'p',
-      text: `${ENTITY} Where a mystery shopper keeps the test hidden, every Obsession agent says it’s an AI when it talks to a person.`,
+      text: 'Where a mystery shopper keeps the test hidden, every Obsession agent says it’s an AI when it talks to a person. Obsession’s [Mystery shopping](/blueprints/mystery-shopper) blueprint runs the online part: a persona signs up and logs each email and text in the event log.',
     },
     {
       kind: 'p',
