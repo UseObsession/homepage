@@ -2,25 +2,31 @@ import { askShared } from '../shared5'
 import { consoleHeading } from '../console'
 import type { Page, PricingTabs } from '../types'
 
-/* Marketing (/marketing), the 9 Nov rewrite to Home's story: marketing teams at brands get every competitor's emails,
-   texts, offers and prices, as their signed-up customers see them, dated. The page: the hero > the hand work today (a
-   spare inbox, the Promotions tab, a spreadsheet) > 4 jobs by team > asked in plain words > Brand G, the 1 real run >
-   questions > early access. Every use case screen is an example; every company in an answer is invented. */
+/* Marketing (/marketing), the toolkit rewrite (22 Nov 2026, James: "fix the marketing and sales positioning"): a persona
+   the reader defines signs up at each competitor they name and keeps the account open, and every email, text, offer and
+   price it is sent lands in their event log, dated, with a screenshot. The blueprints run it (competitor tracking,
+   email and SMS tracking, price watch, ad tracking, delivery monitoring). Sold as designed, as on the blueprint pages:
+   no index, no "already covered", no caps. The page: the hero > the hand work today (a spare inbox, the Promotions tab,
+   a spreadsheet) > 4 jobs by team > asked in plain words > Brand G, the 1 real run > questions > early access. Every
+   use case screen is an example; every company in an answer is invented. Never name a competitor of ours. */
 
-/* The code example: a competitor's emails, then one not covered yet added and pushed to a webhook. */
-const CODE = `import os
-from obsession import Obsession
+/* The code example, in the API's own names (pages/developers.ts): the blueprint signs up at each competitor, and every
+   result reaches a webhook. */
+const CODE = `import { Obsession } from "obsession"
 
-ob = Obsession(api_key=os.environ["OBSESSION_API_KEY"])
+const obsession = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
 
-# Every email our competitors sent in the last 30 days
-for company in ["fernhollow.example", "northfold.example"]:
-    for fact in ob.facts(company, kind="email", since="30d"):
-        print(fact.seen_at, company, fact.sentence, fact.receipt_url)
+// A persona signs up at each competitor and keeps the account open
+await obsession.blueprints.run("competitor-tracking", {
+  competitors: ["fernhollow.example", "northfold.example", "wrenfield.example"],
+  persona: { role: "new subscriber", country: "UK" },
+})
 
-# Not covered yet? Add it, and get each new email at your webhook
-ob.index(["wrenfield.example"], how="newsletter")
-ob.notify(on="fact.created", destination="https://example.com/hooks/obsession")`
+// Every email, text, offer and price, at your webhook as it lands
+await obsession.events.subscribe({
+  url: "https://example.com/hooks/obsession",
+  events: ["blueprint.result"],
+})`
 
 const access = { kind: 'waitlist', button: 'Request early access', interest: 'email-sms' } as const
 
@@ -29,9 +35,9 @@ export const page: Page = {
     path: '/marketing',
     title: 'Competitor emails, texts, offers and prices · Obsession',
     description:
-      'Every competitor’s emails, texts, offers and prices, as their signed-up customers get them, each dated with a screenshot. No spare inbox, no spreadsheet.',
+      'A persona signs up at each competitor and keeps every email, text, offer and price it’s sent, dated with a screenshot. No spare inbox, no spreadsheet.',
     answer:
-      'Obsession collects the emails, texts, offers and prices your competitors send their signed-up customers, each dated with a screenshot. Look up any competitor, and one not covered yet is added the day you ask.',
+      'A persona you define signs up at each competitor you name and keeps the account open. Every email, text, offer and price it’s sent lands in your event log, dated, with a screenshot.',
     ogImage: '/og/marketing.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -43,7 +49,7 @@ export const page: Page = {
     pill: 'Early access',
     pillTo: '#join',
     headline: 'See every email, text and offer your competitors send.',
-    sub: 'Obsession collects the emails, texts, offers and prices your competitors send their signed-up customers, each dated with a screenshot. Any competitor not covered yet is added the day you ask.',
+    sub: 'A persona you define signs up at each competitor you name and keeps the account open. Every email, text, offer and price it’s sent lands in your event log, dated, with a screenshot.',
     capture: { ...access, source: 'marketing-hero' },
     secondary: { label: 'See sample data', to: '/sample-output' },
     proof: [],
@@ -54,7 +60,7 @@ export const page: Page = {
 
   gapPair: {
     heading: 'Most teams still keep up with a spare inbox and a spreadsheet.',
-    line: 'Obsession keeps every message, for every competitor you name.',
+    line: 'A persona at each competitor keeps every message, for as long as you hold it.',
     tools: {
       label: 'What you have today',
       items: [
@@ -121,7 +127,7 @@ export const page: Page = {
   ask: {
     ...askShared,
     heading: 'Ask what your competitors sent, in plain words.',
-    line: 'Connect Obsession once to Claude Code or Codex, or call it from code. Every answer links the emails and pages behind it.',
+    line: 'Connect Obsession once to Claude Code or Codex and ask across your event log, or call it from code. Every answer links the emails and pages behind it.',
     areas: ['Competitors', 'Your own list', 'Any company you name'],
     examples: [
       {
@@ -144,7 +150,7 @@ export const page: Page = {
         ],
         receipts: 'Screenshots: 9 pages, dated and linked',
       },
-      { where: 'Code', q: 'Get every new competitor email at our webhook.', file: 'competitors.py', code: CODE },
+      { where: 'Code', q: 'Get every new competitor email at our webhook.', file: 'competitors.ts', code: CODE },
     ],
   },
 
@@ -160,29 +166,29 @@ export const page: Page = {
     items: [
       {
         q: 'What does Obsession do for a marketing team?',
-        a: 'Obsession collects the emails, texts, offers and prices your competitors send their signed-up customers, each dated with a screenshot. Look up one competitor, or ask one question across all of them and get a row for each.',
+        a: 'A persona you define signs up at each competitor you name and keeps the account open. Every email, text, offer and price it’s sent lands in your event log, dated, with a screenshot. Ask one question across all of them and get a row for each.',
       },
       {
-        q: 'How is this different from MailCharts, Milled or Panoramata?',
-        a: 'They keep newsletters for their own list of brands. Obsession covers any company you name, and every step after the sign-up: texts, basket reminders, member prices, checkout codes and cancel offers.',
+        q: 'How is this different from an email archive?',
+        a: 'An email archive keeps newsletters from its own list of brands. Obsession signs up at any company you name and keeps every step after the sign up: texts, basket reminders, member prices, checkout codes and cancel offers.',
       },
       {
         q: 'Do I have to sign up to competitors myself?',
-        a: 'No. Obsession’s agents sign up, start trials and fill baskets the way any customer can, from the customer profiles and countries you choose, and keep each account open for months. Nothing lands in your inbox.',
+        a: 'No. The persona signs up, starts trials and fills baskets the way anyone can, from the country you choose, and keeps each account open for months. It has its own inbox and number, so nothing lands in yours.',
       },
       {
         q: 'Where do I see it?',
-        a: 'In Obsession, by API or MCP, in your own AI agent, or in a table you already use: Clay, Google Sheets or a webhook.',
+        a: 'In your event log, by API or MCP from your own agent, or sent where you already work: Slack, Clay, Google Sheets or a webhook.',
       },
       {
         q: 'What does early access include?',
-        a: 'API and MCP access, lookups of every company already covered, and up to 5 competitors added for you. You set it up with the founders.',
+        a: 'API and MCP keys, and a free first run of every blueprint. Tell us which competitors to start with, and we set it up with you.',
       },
     ],
   },
 
   final: {
-    heading: 'Which competitors should we look up first?',
+    heading: 'Which competitors should we sign up to first?',
     capture: { ...access, source: 'marketing-final' },
   },
 }

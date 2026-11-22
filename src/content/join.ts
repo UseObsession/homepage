@@ -1,7 +1,7 @@
 /* The early access form's words: the line under every form and the card that opens once the email is saved
    (components/CaptureForm, components/JoinCard, lib/join.ts). Since 9 Nov every form is early access, never a
-   waitlist and never a free check: API and MCP access, lookups of every company already covered, and up to 5
-   companies added for you, set up with the founders. A page's offer only changes the brands question and the thank
+   waitlist and never a free check: API and MCP keys, and up to 5 companies, stores or agents to start with, set up
+   with the founders (22 Nov 2026: no lookups, no "already covered"). A page's offer only changes the brands question and the thank
    you. The `free` words are what a form of kind 'mystery' or 'verify' shows; they say early access too.
 
    Offers, worked out from the form (lib/join.ts offerOf):
@@ -82,12 +82,12 @@ export const offers: Record<OfferId, Offer> = {
   },
   companies: {
     ask: {
-      title: 'Which companies should we look up first?',
-      help: 'Competitors, prospects or accounts. Up to 5.',
+      title: 'Which companies should we watch first?',
+      help: 'Competitors, prospects or accounts. Up to 5. A persona signs up to each one and keeps what it sends.',
       placeholder: 'competitor.com',
       add: 'Add a company',
     },
-    micro: 'Onboarding a limited number of teams. Name up to 5 companies to look up first.',
+    micro: 'Onboarding a limited number of teams. Name up to 5 companies to start with.',
     done: 'We’ll email {email} to set up your access, starting with {list}.',
   },
   /* A sales team, asked by who they are (lib/join askOf), never by a page. */
