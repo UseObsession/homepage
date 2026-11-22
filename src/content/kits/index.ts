@@ -36,7 +36,7 @@ export const kitUi = {
   allPrices: { label: 'Every rate', to: '/pricing/rates' },
   billed: 'A blueprint is billed on the pieces it uses.',
   priceHeading: 'Priced per piece, on one bill.',
-  priceLine: 'Start free, then pay list rates for what runs.',
+  priceLine: 'Start free, then pay for what runs, at list rates.',
   api: { label: 'The API and MCP', to: '/developers' },
   browse: { label: 'Browse all blueprints', to: '/blueprints' },
   watch: 'They watch',

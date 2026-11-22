@@ -1,0 +1,135 @@
+/* Home's "how it fits" (HomeFit.tsx), on the design system's tokens: 4 stage cards on one row joined by connectors, over
+   the event log every stage writes to; a soft tint from the top and the crosshair texture James's sections use. */
+
+.h-fit__head { max-width: 46rem; }
+.h-fit__fig { margin: var(--ob-space-48) 0 0; display: grid; gap: var(--ob-space-16); }
+.h-fit__map {
+  position: relative;
+  display: grid;
+  gap: var(--ob-space-16);
+  padding: var(--ob-space-24);
+  border: var(--ob-border-hair) solid var(--ob-line-strong);
+  border-radius: var(--ob-radius-xl);
+  background:
+    radial-gradient(110% 80% at 50% 0%, rgba(var(--ob-tint-rgb), 0.07), transparent 60%),
+    var(--ob-surface);
+  box-shadow: var(--ob-shadow-3);
+}
+
+/* ---- The 4 stages ---- */
+.h-fit__stages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--ob-space-24);
+}
+.h-fit__stage {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-8);
+  padding: var(--ob-space-20);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-bg);
+}
+.h-fit__num { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); }
+.h-fit__name { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.h-fit__line { font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+.h-fit__chips { display: flex; flex-wrap: wrap; gap: var(--ob-space-6); margin-top: var(--ob-space-8); }
+.h-fit__chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 var(--ob-space-8);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-pill);
+  font: var(--ob-type-caption);
+  color: var(--ob-text);
+  text-decoration: none;
+  transition: border-color var(--ob-dur-fast) var(--ob-ease-out), background-color var(--ob-dur-fast) var(--ob-ease-out);
+}
+.h-fit__chip--plain { font-family: var(--ob-font-mono); color: var(--ob-text-2); }
+.h-fit__chip:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) {
+  a.h-fit__chip:hover { border-color: var(--ob-text); background: rgba(var(--ob-tint-rgb), 0.06); }
+}
+
+/* The connector between 2 stages: a hairline across the gap, with an arrowhead, and a light that travels it. */
+.h-fit__link {
+  position: absolute;
+  top: 34px;
+  right: calc(-1 * var(--ob-space-24) - 1px);
+  width: calc(var(--ob-space-24) + 2px);
+  height: 1px;
+  background: var(--ob-line-strong);
+  overflow: visible;
+}
+.h-fit__link::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid var(--ob-text-2);
+  border-right: 1px solid var(--ob-text-2);
+  rotate: 45deg;
+}
+.h-fit__link i { position: absolute; top: -1px; left: 0; width: 10px; height: 3px; border-radius: 2px; background: var(--ob-success); opacity: 0; }
+
+/* ---- The event log every stage writes to ---- */
+.h-fit__log {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ob-space-16);
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-bg-sunken, var(--ob-bg));
+}
+.h-fit__log-label { display: inline-flex; align-items: center; gap: var(--ob-space-8); font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-2); text-transform: uppercase; white-space: nowrap; }
+.h-fit__live { width: 8px; height: 8px; border-radius: 50%; background: var(--ob-success); box-shadow: 0 0 0 3px var(--ob-success-bg); }
+.h-fit__rows { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ob-space-12); }
+.h-fit__row { display: grid; gap: 2px; padding-left: var(--ob-space-12); border-left: var(--ob-border-hair) solid var(--ob-line); min-width: 0; }
+.h-fit__at { font: var(--ob-type-mono-sm); color: var(--ob-text-3); font-variant-numeric: tabular-nums; }
+.h-fit__kind { font: var(--ob-type-mono-sm); color: var(--ob-text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.h-fit__text { font: var(--ob-type-caption); color: var(--ob-text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.h-fit__cap { font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); text-align: center; text-wrap: balance; }
+.h-fit__doors { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--ob-space-12); margin-top: var(--ob-space-40); }
+
+/* ---- Tablets: 2 by 2; phones: a column with the connectors pointing down ---- */
+@media (max-width: 1040px) {
+  .h-fit__stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .h-fit__link { display: none; }
+  .h-fit__rows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .h-fit__map { padding: var(--ob-space-12); }
+  .h-fit__stages { grid-template-columns: 1fr; gap: var(--ob-space-12); }
+  .h-fit__log { grid-template-columns: 1fr; }
+  .h-fit__rows { grid-template-columns: 1fr; }
+}
+
+/* ---- Motion: once on entry, then only the light on each connector ---- */
+@keyframes h-fit-rise {
+  from { opacity: 0; translate: 0 var(--ob-shift-sm, 6px); }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes h-fit-travel {
+  0% { left: 0; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { left: calc(100% - 10px); opacity: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .h-fit__map[data-armed] .h-fit__stage,
+  .h-fit__map[data-armed] .h-fit__row { opacity: 0; }
+  .h-fit__map.is-in .h-fit__stage { animation: h-fit-rise var(--ob-dur-slow, 0.5s) var(--ob-ease-out) both calc(var(--i) * 130ms); }
+  .h-fit__map.is-in .h-fit__row { animation: h-fit-rise var(--ob-dur-slow, 0.5s) var(--ob-ease-out) both calc(700ms + var(--i) * 260ms); }
+  .h-fit__map.is-in .h-fit__stage .h-fit__link i { animation: h-fit-travel 2.8s var(--ob-ease-in-out, ease-in-out) calc(1.2s + var(--i) * 0.5s) infinite; }
+}

@@ -32,12 +32,13 @@ export function KitAt({ path }: { path: string }) {
   return kit ? <Kit kit={kit} /> : null
 }
 
-function KitHero({ kit }: { kit: KitPage }) {
+/* The hero every kit and team page shares: the tag, the H1 (the searched phrase, then the claim after its colon), the 2
+   sentences, Start free and the second button, then the scene in its product window. */
+export function SceneHero({ pill, headline, sub, second, scene, place }: { pill: string; headline: string; sub: string; second: { label: string; to: string }; scene: KitPage['scene']; place: string }) {
   const id = useId()
-  const cut = kit.hero.headline.indexOf(': ')
-  const key = cut > 0 ? kit.hero.headline.slice(0, cut + 1) : kit.hero.headline
-  const claim = cut > 0 ? kit.hero.headline.slice(cut + 2) : ''
-  const second = kit.blueprints ? ui.blueprints : ui.code
+  const cut = headline.indexOf(': ')
+  const key = cut > 0 ? headline.slice(0, cut + 1) : headline
+  const claim = cut > 0 ? headline.slice(cut + 2) : ''
   return (
     <section className="s-pk-hero k-hero" aria-labelledby={`${id}-h`}>
       <div className="s-wrap s-pk-hero__wrap">
@@ -45,13 +46,13 @@ function KitHero({ kit }: { kit: KitPage }) {
         <div className="s-pk-hero__words ob-anim-hero">
           <a className="s-pk-hero__tag" href={ui.primary.to}>
             <span className="s-pk-hero__dot" aria-hidden="true" />
-            {ui.pill}
+            {pill}
           </a>
           <h1 className="s-pk-hero__h" id={`${id}-h`}>
             <span className="s-pk-hero__key">{key}</span>
             {claim && <span className="s-pk-hero__claim"> {claim}</span>}
           </h1>
-          <p className="s-pk-hero__sub">{kit.hero.sub}</p>
+          <p className="s-pk-hero__sub">{sub}</p>
           <div className="s-pk-hero__act">
             <a className="ob-btn ob-btn--lg" href={ui.primary.to}>
               <span className="ob-btn-label">{ui.primary.label}</span>
@@ -62,14 +63,14 @@ function KitHero({ kit }: { kit: KitPage }) {
           </div>
         </div>
         <div className="s-pk-hero__stage s-bp-cross k-hero__stage ob-anim-hero-object">
-          <KitScene scene={kit.scene} ui={ui} kit={kit.name} />
+          <KitScene scene={scene} ui={ui} kit={place} />
         </div>
       </div>
     </section>
   )
 }
 
-function KitPrices({ keys, id }: { keys: PriceKey[]; id: string }) {
+export function KitPrices({ keys, id }: { keys: PriceKey[]; id: string }) {
   const hid = useId()
   return (
     <section className="s-section s-pk-price" data-tone="alt" id={id} aria-labelledby={`${hid}-h`}>
@@ -103,9 +104,8 @@ function KitPrices({ keys, id }: { keys: PriceKey[]; id: string }) {
   )
 }
 
-function KitBlueprints({ kit }: { kit: KitPage }) {
+export function BlueprintGrid({ b }: { b?: { heading: string; line: string; slugs: string[] } }) {
   const hid = useId()
-  const b = kit.blueprints
   if (!b) return null
   return (
     <section className="s-section k-bps" id="blueprints" aria-labelledby={`${hid}-h`}>
@@ -167,19 +167,19 @@ function KitCode({ kit }: { kit: KitPage }) {
   )
 }
 
-function KitWho({ kit }: { kit: KitPage }) {
+export function WhoSection({ who, examples: ex }: { who: KitPage['who']; examples?: KitPage['examples'] }) {
   const hid = useId()
-  const examples = (kit.examples?.paths ?? []).map((p) => studyByPath[p]).filter(Boolean)
+  const examples = (ex?.paths ?? []).map((p) => studyByPath[p]).filter(Boolean)
   return (
     <section className="s-section k-who" data-tone="alt" id="who" aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
         <div className="s-bp-head">
           <h2 className="s-bp-h" id={`${hid}-h`}>
-            {kit.who.heading}
+            {who.heading}
           </h2>
         </div>
         <ul className="k-who__list">
-          {kit.who.items.map((w) => (
+          {who.items.map((w) => (
             <li className="k-who__item" key={w.role}>
               <span className="k-who__role">{w.role}</span>
               <span className="k-who__gets">{w.gets}</span>
@@ -191,7 +191,7 @@ function KitWho({ kit }: { kit: KitPage }) {
         </ul>
         {examples.length > 0 && (
           <div className="k-who__ex">
-            <span className="k-who__ex-label">{kit.examples?.heading}</span>
+            <span className="k-who__ex-label">{ex?.heading}</span>
             <ul className="k-who__chips">
               {examples.map((s) => (
                 <li key={s.path}>
@@ -211,12 +211,12 @@ function KitWho({ kit }: { kit: KitPage }) {
 export function Kit({ kit }: { kit: KitPage }) {
   return (
     <>
-      <KitHero kit={kit} />
+      <SceneHero pill={ui.pill} headline={kit.hero.headline} sub={kit.hero.sub} second={kit.blueprints ? ui.blueprints : ui.code} scene={kit.scene} place={kit.name} />
       <PieceTogether together={kit.pieces} named={named} label={kit.pieces.heading} id="pieces" />
       <KitPrices keys={kit.pieces.prices} id="pricing" />
-      <KitBlueprints kit={kit} />
+      <BlueprintGrid b={kit.blueprints} />
       <KitCode kit={kit} />
-      <KitWho kit={kit} />
+      <WhoSection who={kit.who} examples={kit.examples} />
       <Faq faq={kit.faq} id="questions" className="s-faq--ruled" />
       <FinalCta final={kit.final} id="join" />
     </>

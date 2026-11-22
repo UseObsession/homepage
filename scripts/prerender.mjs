@@ -345,6 +345,8 @@ const llmsSections = [
   ['Pieces', ofKind('piece')],
   /* Each job agents do, as the pieces and blueprints it uses (content/kits). */
   ['Kits', ofKind('kits', 'kit')],
+  /* Each team, with the use cases from the six jobs (content/teams). */
+  ['Teams', ofKind('team')],
   /* The comparisons, alternatives and glossary (content/reference.ts), each under its hub. */
   ['Compare', ofKind('compare', 'comparison')],
   ['Alternatives', ofKind('alternatives-hub', 'alternatives')],

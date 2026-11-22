@@ -10,6 +10,7 @@ import { headFor } from './content/head'
 import { ctaFor, nav } from './content/nav'
 import { absolute, cleanPath } from './content/paths'
 import { kitLinks, kitsPath } from './content/kitPaths'
+import { teamPathList, teamPathSet } from './content/teamPaths'
 import { pieceOrder, piecePaths } from './content/piecePaths'
 import { recipeWords, refWords, studyWords } from './content/words'
 import { JAMES_PATHS, isJamesPath } from './legacy/jamesPaths'
@@ -55,6 +56,8 @@ const Piece = page<{ path: string }>('Piece', 'PieceAt')
 /* Each kit's own page (content/kits, 22 Nov), one component for all 6, and the hub. */
 const Kit = page<{ path: string }>('Kit', 'KitAt')
 const Kits = page('Kits')
+/* Each team's page (content/teams, 22 Nov), one component for all 8, at the addresses the nav's Teams column links. */
+const Team = page<{ path: string }>('Team', 'TeamAt')
 const Agents = page('Agents')
 const NotFound = page('NotFound')
 const Reference = page<{ path: string }>('Reference', 'ReferenceAt')
@@ -104,6 +107,7 @@ const PAGES: Record<string, LazyPage> = {
 function routeOf(path: string): { page: LazyPage; words?: { preload: () => Promise<unknown> } } {
   const p = cleanPath(path)
   const [, first, slug] = p.split('/')
+  if (teamPathSet.has(p)) return { page: Team }
   if (PAGES[p]) return { page: PAGES[p] }
   if (PIECES.has(p)) return { page: Piece }
   if (KITS.has(p)) return { page: Kit }
@@ -388,17 +392,13 @@ export function AppRoutes() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="agencies" element={<Agencies />} />
         <Route path="compare" element={<Compare />} />
         <Route path="compare/:slug" element={<ReferenceRoute base="compare" />} />
         <Route path="alternatives" element={<AlternativesHub />} />
         <Route path="alternatives/:slug" element={<ReferenceRoute base="alternatives" />} />
         <Route path="glossary" element={<GlossaryHub />} />
         <Route path="glossary/:slug" element={<ReferenceRoute base="glossary" />} />
-        <Route path="sales" element={<Sales />} />
-        <Route path="marketing" element={<Marketing />} />
         <Route path="developers" element={<Developers />} />
-        <Route path="verify" element={<Verify />} />
         <Route path="blueprints" element={<Recipes />} />
         <Route path="blueprints/:slug" element={<RecipeRoute />} />
         {/* Recipes were renamed blueprints (21 Nov 2026); the host answers the old addresses with a 301 first. */}
@@ -409,7 +409,6 @@ export function AppRoutes() {
         <Route path={JAMES_PATHS.prospect.slice(1)} element={<ProspectIntelligence />} />
         <Route path={JAMES_PATHS.price.slice(1)} element={<PriceIntelligence />} />
         <Route path={JAMES_PATHS.retention.slice(1)} element={<RetentionAgencies />} />
-        <Route path={JAMES_PATHS.stores.slice(1)} element={<EcommerceStores />} />
         <Route path={JAMES_PATHS.cro.slice(1)} element={<CroAgencies />} />
         <Route path="use-cases/web-behind-the-login" element={<WebBehindTheLogin />} />
         <Route path="use-cases/:slug" element={<UseCaseRoute />} />
@@ -423,6 +422,9 @@ export function AppRoutes() {
         <Route path="pricing/rates" element={<PricingRates />} />
         {pieceOrder.map((id) => (
           <Route key={id} path={piecePaths[id].slice(1)} element={<Piece key={id} path={piecePaths[id]} />} />
+        ))}
+        {teamPathList.map((p) => (
+          <Route key={p} path={p.slice(1)} element={<Team key={p} path={p} />} />
         ))}
         <Route path="kits" element={<Kits />} />
         {kitLinks.map((k) => (

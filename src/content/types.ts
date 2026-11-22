@@ -682,6 +682,7 @@ export type Page = {
   personaRecipes?: PersonaRecipes
   personaBuild?: PersonaBuild
   homeHow?: HomeHow
+  homeFit?: HomeFit
   homeUseCase?: HomeUseCase
 }
 
@@ -1177,4 +1178,17 @@ export type BlueprintJourneys = {
   defaults: string[]
   tiers: { base: number; each: Record<string, number> }[]
   round: { step: number; smallStep: number; wholeFrom: number }
+}
+
+/* Home's "how it fits" (22 Nov 2026, components/persona/HomeFit): pieces make an agent, a persona gives it one name,
+   blueprints give it a job, kits group the jobs; every event from all of them lands in one event log under them. Each
+   stage is a name, 1 line and chips that link to the pages behind it; the log is 3 to 5 events as they land; the 2 doors
+   are the developer's and the non-coder's. */
+export type HomeFit = {
+  heading: string
+  line: string
+  stages: { name: string; line: string; chips: { label: string; to?: string }[] }[]
+  log: { label: string; rows: { at: string; kind: string; text: string }[] }
+  doors: { dev: Cta; team: Cta }
+  caption: string
 }

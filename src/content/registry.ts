@@ -10,6 +10,7 @@
    The site's own pages (Recipes index, Sample output, Privacy, Agents, 404, Resources, Use cases, Blog) live in
    site.ts, sample.ts and resources.ts; the 2 reference hubs (/alternatives, /glossary) in reference.ts. */
 import { sample } from './sample'
+import { teamPathSet } from './teamPaths'
 import { agentsPage, notFoundPage, privacyPage, recipesPage } from './site'
 import type { BlogPost } from './blog/types'
 import type { ReferenceKind, ReferencePage } from './reference'
@@ -86,7 +87,11 @@ const studyRank = (path: string) => {
   const i = STUDY_ORDER.indexOf(path)
   return i === -1 ? STUDY_ORDER.length : i
 }
-export const studies: UseCaseStudy[] = Object.values(studyFiles).sort((a, b) => studyRank(a.meta.path) - studyRank(b.meta.path))
+/* The 4 industry pages the nav's Teams column links are team pages since 22 Nov (content/teams), so their old study files
+   are left out here: one page per address. */
+export const studies: UseCaseStudy[] = Object.values(studyFiles)
+  .filter((s) => !teamPathSet.has(s.meta.path))
+  .sort((a, b) => studyRank(a.meta.path) - studyRank(b.meta.path))
 export const studyByPath: Record<string, UseCaseStudy | undefined> = Object.fromEntries(studies.map((s) => [s.meta.path, s]))
 /* The file each worked example came from, by its address. */
 export const studyFileOf: Record<string, string> = Object.fromEntries(Object.entries(studyFiles).map(([file, s]) => [s.meta.path, nameOf(file)]))

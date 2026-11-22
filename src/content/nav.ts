@@ -127,7 +127,7 @@ const teams: NavPage[] = [
   { label: 'Support and AI operations', to: '/verify' },
   { label: 'Agencies', to: '/agencies' },
   { label: 'Online stores', to: '/use-cases/leak-checks-for-ecommerce-stores' },
-  { label: 'B2B software', to: '/use-cases/sales-intelligence-behind-the-login' },
+  { label: 'B2B software', to: '/use-cases/trial-checks-for-software-companies' },
   { label: 'Banks and fintechs', to: '/use-cases/journey-checks-for-banks-and-fintechs' },
   { label: 'Compliance', to: '/use-cases/opt-out-and-cancel-checks-for-compliance-teams' },
 ]
@@ -304,7 +304,7 @@ export const pageCtas: Record<string, Cta> = {
   /* Home (21 Nov): the bar's button matches the hero's, to the page's own early access form. */
   '/': { label: 'Start building', to: '#join', bar: 'Start building' },
   /* The resellers page (21 Nov): the bar's button matches its forms' (early access), to its own form. */
-  '/agencies': { label: 'Get early access', to: '#join', bar: 'Get early access' },
+  '/agencies': { label: 'Start free', to: '#join', bar: 'Start free' },
 }
 
 export function ctaFor(path: string): Cta {

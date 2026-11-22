@@ -93,7 +93,7 @@ const PIECES: Record<PieceId, { icon: PersonaIcon; name: string; line: string; c
 
 const pieces: HomePieces = {
   heading: 'One API, not five vendors.',
-  line: 'Every piece comes through one key, one webhook and one bill.',
+  line: 'An inbox, a number, messaging, a browser and a computer to run code, on one key, one webhook and one bill.',
   items: pieceOrder.map((id) => ({ ...PIECES[id], to: piecePaths[id], whole: id === 'personas' })),
 }
 
@@ -154,9 +154,63 @@ export const page: Page = {
 
   homePieces: pieces,
 
+  /* How it fits (#fit, 22 Nov 2026, components/persona/HomeFit): pieces, the persona, blueprints and kits left to right,
+     over the event log they all write to, with the 2 doors under it. */
+  homeFit: {
+    heading: 'Pieces make an agent. Blueprints give it a job.',
+    line: 'Use one piece through the API, put them together as a persona, or pick a blueprint and Obsession runs it. Kits group all of it by the job.',
+    stages: [
+      {
+        name: 'Pieces',
+        line: 'An inbox, a phone number, messaging, a browser and a computer to run code. Each works alone.',
+        chips: [
+          { label: 'Email', to: '/email' },
+          { label: 'Phone', to: '/phone' },
+          { label: 'Messaging', to: '/messaging' },
+          { label: 'Browser', to: '/browser' },
+          { label: 'Sandbox', to: '/sandbox' },
+        ],
+      },
+      {
+        name: 'Persona',
+        line: 'The pieces under one name: one AI agent, free while it waits for the next message.',
+        chips: [{ label: 'juno@larkfield.example' }, { label: '+1 415 555 0142' }, { label: 'Personas', to: '/personas' }],
+      },
+      {
+        name: 'Blueprints',
+        line: 'A ready job Obsession runs on a persona, for teams who don’t write code.',
+        chips: [
+          { label: 'Mystery shopping', to: '/blueprints/mystery-shopper' },
+          { label: 'Competitor tracking', to: '/blueprints/competitor-tracking' },
+          { label: 'Voice agent check', to: '/blueprints/voice-agent-check' },
+        ],
+      },
+      {
+        name: 'Kits',
+        line: 'The pieces and blueprints one job needs, grouped by the job.',
+        chips: [
+          { label: 'Talk to customers', to: '/kits/talk-to-customers' },
+          { label: 'Watch the market', to: '/kits/watch-the-market' },
+          { label: 'All kits', to: '/kits' },
+        ],
+      },
+    ],
+    log: {
+      label: 'Event log',
+      rows: [
+        { at: '09:04', kind: 'email.received', text: '“Can we move to Friday?”' },
+        { at: '09:04', kind: 'sms.received', text: 'Your code is 482913' },
+        { at: '09:05', kind: 'page.visited', text: 'Booking page · screenshot saved' },
+        { at: '09:06', kind: 'blueprint.result', text: 'Weekly report sent to Slack' },
+      ],
+    },
+    doors: { dev: { label: 'Start building', to: '/developers' }, team: { label: 'Browse blueprints', to: '/blueprints' } },
+    caption: 'Every piece, persona, blueprint and kit writes to the same event log, on one bill. Larkfield is an invented example.',
+  },
+
   personaAnatomy: {
-    heading: 'A persona is every piece under one identity.',
-    line: 'Its inbox, number, channels, browser and sandbox share one name, and it waits on our runtime for free.',
+    heading: 'A persona is one AI agent with its own inbox, number and browser.',
+    line: 'Every piece shares one name, and the persona waits on our runtime for free until something arrives.',
     parts: [
       { name: 'One identity', line: 'Each email, text and page belongs to the same agent.', eg: 'Juno, bookings at Larkfield' },
       { name: 'An inbox and/or a phone number', line: 'Its own address and number, for email, texts and calls.', eg: 'juno@larkfield.example · +1 415 555 0142' },
@@ -174,8 +228,8 @@ export const page: Page = {
      straight to the voice agent, and the log keeps the call's events. `loop` is the picture's words; `label` says the
      whole picture for screen readers and llms-full.txt. Under it, the link to every channel's code on /developers. */
   homeHow: {
-    heading: 'From the first call to months of messages, every event reaches your agent.',
-    line: 'Every email, text, call, webhook or new spreadsheet row is saved in your event log, then reaches your agent. Its reply is the next event.',
+    heading: 'Every email, text and call reaches your agent, or your team.',
+    line: 'Each event is saved in your event log, then sent to your agent, your servers or Slack. Its reply is the next event.',
     loop: {
       label:
         'Set up once: pick pieces, a persona or a blueprint, and say where your agent runs. Then a loop of 3 stops. Something happens: a message, a webhook or a new spreadsheet or CSV row comes in, or your agent acts. It is saved in your event log, in order. Then it reaches your agent, on our runtime as a handler in about 50 ms or on your servers through a webhook, the API or MCP, or a person in Slack, Zapier, Make or n8n. What your agent does next is a new event. Live call audio goes straight to your voice agent, and the log keeps each call’s start, end and transcript.',
@@ -270,6 +324,11 @@ export const page: Page = {
       {
         q: 'What is Obsession?',
         a: 'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
+      },
+      {
+        q: 'Do I need to write code?',
+        a: 'No. Pick a blueprint, say where results go, and Obsession runs it. Developers use the API, SDKs or MCP.',
+        link: { label: 'Browse blueprints', to: '/blueprints' },
       },
       {
         q: 'Can I use just one piece, like email?',
