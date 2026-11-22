@@ -669,14 +669,15 @@ export function blueprintMonth(blueprint, scenario, pricing, o = {}, ctxIn) {
     return { id, name: r.name, n: x, unit: r.unit, rate: r.rate, amount: x * r.rate, cost: x * r.wholesale };
   });
   const ours = tierCost(blueprint, tier, pricing, o, ctx);
-  /* Holding margins (o.hold 'margin'), supplier costs that are in no piece (proxy data, CAPTCHAs) are passed on at the
-     month's margin at the reference suppliers, so the month's margin stays exactly where it was. Zero at the reference
-     suppliers. */
+  /* Holding margins (o.hold 'margin'), every piece already keeps its own margin (pieceMargins). Supplier costs that are
+     in no piece (proxy data and CAPTCHAs, included with the browser) are passed on too: the change in them from the
+     reference suppliers, at the month's margin there. Zero at the reference suppliers. The month's margin can still move
+     a little with the mix of pieces (a cheaper model makes the higher-margin pieces a bigger share). */
   if (o.hold === 'margin') {
     const refMonth = blueprintMonth(blueprint, tier, pricing, referenceOverrides(o));
-    const keep = refMonth.margin ?? 0;
-    const owed = ours.cost / (1 - keep) - lines.reduce((s, l) => s + l.amount, 0);
-    if (Math.abs(owed) > 1e-9) lines.push({ id: 'passThrough', name: 'Other supplier costs, at the same margin', n: 1, unit: 'a month', rate: owed, amount: owed, cost: 0 });
+    const extra = (ours.groups.proxy ?? 0) - (refMonth.groups.proxy ?? 0);
+    const owed = extra / (1 - (refMonth.margin ?? 0));
+    if (Math.abs(owed) > 1e-9) lines.push({ id: 'passThrough', name: 'Proxy data and CAPTCHAs, at the same margin', n: 1, unit: 'a month', rate: owed, amount: owed, cost: 0 });
   }
   const total = lines.reduce((s, l) => s + l.amount, 0);
   const estimate = roundEstimate(total, pricing);
