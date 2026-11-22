@@ -432,5 +432,6 @@ export const post: BlogPost = {
     'recipe:document-chaser',
     'recipe:order-receipt-ledger',
     'recipe:travel-booking-agent',
+    '/no-code',
   ],
 }

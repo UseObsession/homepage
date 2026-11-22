@@ -273,7 +273,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Pick a job, say where the results go, and Obsession runs it, from timing your speed to lead to keeping every email a competitor sends a new customer. Each blueprint is billed on the pieces it uses.',
+      text: 'Pick a job, say where the results go, and Obsession runs it, from timing your speed to lead to keeping every email a competitor sends a new customer. Each blueprint is billed on the pieces it uses, and the [jobs for teams that don’t write code](/no-code) are grouped by team.',
       to: '/blueprints',
       label: 'Browse blueprints',
     },
@@ -355,5 +355,5 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'n8n', url: N8N_PRICING },
   ],
 
-  related: ['/use-cases/ai-recruiter', '/use-cases/otp-testing', '/blueprints/test-sign-up-and-agents', 'recipe:lead-leaks', 'recipe:support-bot-check', 'ai-agent-use-cases-for-business', 'can-ai-agents-log-in-to-websites'],
+  related: ['/use-cases/ai-recruiter', '/use-cases/otp-testing', '/blueprints/test-sign-up-and-agents', 'recipe:lead-leaks', 'recipe:support-bot-check', 'ai-agent-use-cases-for-business', 'can-ai-agents-log-in-to-websites', '/no-code'],
 }

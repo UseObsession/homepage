@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { NoCodeFormat, NoCodePage } from '../../content/pages/no-code'
+import type { NoCodeFormat, NoCodePage } from '../../content/noCode'
 import { useInView } from '../../hooks/useReveal'
 import { FormatIcon, formatName } from './formats'
 import './NoCodeWeek.css'
@@ -8,7 +8,7 @@ import './NoCodeWeek.css'
    results from different teams, each card in the format that team works in (Slack, email, the CRM, a sheet, a PDF, the
    team's AI assistant), so a reader sees the range of jobs and that the format never matters before reading a word.
    The days arrive left to right once, when the window enters the view; nothing moves under prefers-reduced-motion, and
-   before the page's script runs the whole week shows. Words: content/pages/no-code.ts (week). */
+   before the page's script runs the whole week shows. Words: content/noCode.ts (week). */
 export function NoCodeWeek({ week }: { week: NoCodePage['week'] }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.15)
   const [armed, setArmed] = useState(false)

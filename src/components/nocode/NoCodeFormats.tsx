@@ -1,4 +1,4 @@
-import type { NoCodePage } from '../../content/pages/no-code'
+import type { NoCodePage } from '../../content/noCode'
 import { FormatIcon } from './formats'
 import './NoCodeFormats.css'
 

@@ -58,6 +58,8 @@
 @media (max-width: 560px) {
   .nc-week__day { grid-template-columns: minmax(0, 1fr); }
   .nc-week__dayname { padding-top: 0; }
+  /* One card a day on a phone: the week, its range of teams and formats, in half the height. */
+  .nc-week__card:nth-child(n + 3) { display: none; }
 }
 
 /* Motion: the days arrive left to right, once, as the window enters the view. */

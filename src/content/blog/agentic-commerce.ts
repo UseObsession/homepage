@@ -45,7 +45,7 @@ const VISA_2025 = 'https://investor.visa.com/news/news-details/2025/Visa-and-Par
 
 export const post: BlogPost = {
   slug: 'agentic-commerce',
-  title: 'Agentic commerce: how AI agents buy, book and order for shoppers and companies, and what they need',
+  title: 'Agentic commerce: how AI agents buy, book and order, and what they need',
   dek: 'What agentic commerce means, with the examples live on 23 November 2026, from Muse and Alexa to Google AI Mode, Walmart and Amazon Business. To buy on its own, an AI agent needs an identity, an inbox, a phone number, a browser, a card and a log of every order.',
   metaTitle: 'Agentic commerce: how AI agents buy, book and order (2026)',
   description:
@@ -169,20 +169,20 @@ export const post: BlogPost = {
         '**Amazon’s Alexa for Shopping** includes [Buy for Me](' +
           AMAZON_ALEXA +
           '), which buys eligible products on other stores’ sites with the shopper’s main address and card. It also auto-buys an item once it reaches a set price. Amazon says Rufus helped over 300 million customers in 2025, and Alexa for Shopping is fully available in 13 countries.',
-        '**Google** has offered [agentic checkout](' +
+        '**Google** began rolling out [agentic checkout](' +
           GOOGLE_CHECKOUT +
-          ') in the US since 13 November 2025. A shopper tracks an item, and once its price falls inside their budget, Google buys it on the merchant’s site with Google Pay after they confirm. In September 2026 Google said the Universal Commerce Protocol already [enables direct checkout for hundreds of thousands of brands and retailers](' +
+          ') in the US on 13 November 2025, with eligible merchants. A shopper tracks an item, and once its price falls inside their budget, Google buys it on the merchant’s site with Google Pay after they confirm. In September 2026 Google said the Universal Commerce Protocol already [enables direct checkout for hundreds of thousands of brands and retailers](' +
           GOOGLE_UCP +
           ').',
         '**ChatGPT:** [OpenAI’s merchant page](' +
           OPENAI_MERCHANTS +
           ') says it is moving away from a standalone Instant Checkout. Shoppers discover and compare products in ChatGPT, then complete the purchase on the merchant’s own website or app.',
-        '**Shop** lets personal agents such as ChatGPT, Claude and Muse [prepare checkouts, place approved orders, reorder and track orders](' +
+        '**Shop** lets personal agents such as Muse, Instinct and Claude Duet [prepare checkouts, place approved orders, reorder and track orders](' +
           SHOP_AGENTS +
           ') through a shopper’s Shop account. Instead of approving each order, a shopper can switch on Allow agent to pay for me and set a weekly, monthly or total budget.',
         '**Walmart** [announced an Agent Gateway](' +
           TC_WALMART +
-          ') on 21 October 2026, through which approved agents search and buy. Its Agent Profiles, due in November, let a customer approve each purchase or set a spending limit. The same TechCrunch report says Amazon has started blocking agents from buying for shoppers on its own site.',
+          ') on 21 October 2026, through which approved agents search and buy. Its Agent Profiles, rolling out from November, let a customer approve each purchase or set a spending limit. The same TechCrunch report says Amazon has started blocking agents from buying for shoppers on its own site.',
       ],
     },
     { kind: 'h3', id: 'travel', text: 'Agents that book travel' },
@@ -194,14 +194,14 @@ export const post: BlogPost = {
         UCP +
         ') names Amadeus, Booking.com, Expedia Group, Hilton, Marriott and Trip.com among its co-developers.',
     },
-    { kind: 'h3', id: 'for-companies', text: 'Agents that buy for companies' },
+    { kind: 'h3', id: 'for-companies', text: 'Agents in company purchasing' },
     {
       kind: 'p',
       text: '[Forrester’s headline prediction for 2027](' +
         FORRESTER +
         ') is that AI agents will influence 75% of B2B purchase decisions, and it expects fully autonomous buying to stay with high-volume, low-risk, repeatable purchases. Those are the orders procurement teams place every week: gloves, cleaning supplies, spare parts, a routine trip rebooked. On 27 October 2026 [Amazon Business](' +
         AMAZON_BUSINESS +
-        ') brought its AI-powered procurement into e-procurement systems, starting with Procurify and Lio. Those systems share each organisation’s purchasing policies, budgets and order history with Amazon Business, which recommends products inside the buyer’s own system and keeps to the rules the organisation has already set.',
+        ') brought its AI-powered recommendations into e-procurement systems, with partners including Procurify and Lio. Those systems share each organisation’s purchasing policies, budgets and order history with Amazon Business, which recommends products inside the buyer’s own system and keeps to the rules the organisation has already set. The buyer still places the order.',
     },
     {
       kind: 'p',
@@ -228,7 +228,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**An identity:** a name, an email address and a phone number a store can send to. It also needs a way to show it is an agent. [Web Bot Auth](/glossary/web-bot-auth), a signature that tells a website which company’s agent is visiting, is how Visa and Mastercard recognise registered agents, [according to Cloudflare](' +
+        '**An identity:** a name, an email address and a phone number a store can send to. It also needs a way to show it is an agent. [Web Bot Auth](/glossary/web-bot-auth), a signature that tells a website which company’s agent is visiting, is the agent authentication layer both Visa and Mastercard use, [according to Cloudflare](' +
           CLOUDFLARE +
           ').',
         '**An inbox:** for the order confirmation, the receipt, booking changes and sign-in links.',
@@ -297,7 +297,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '[Adobe forecasts](' +
         ADOBE +
-        ') that traffic from AI assistants to US retail sites will rise 130% year on year between 1 November and 31 December 2026. In December 2025 [Visa predicted](' +
+        ') that AI traffic to US retail sites will rise 130% year on year between 1 November and 31 December 2026. In December 2025 [Visa predicted](' +
         VISA_2025 +
         ') that millions of consumers would use AI agents to complete purchases by this holiday season. Black Friday is Friday 27 November 2026.',
     },
@@ -355,7 +355,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What are examples of agentic commerce?',
-          a: 'Meta’s Muse shops and books travel for people in the US and pays through Link. Amazon’s Buy for Me buys on other stores’ sites with the shopper’s address and card. Google buys a tracked item once its price falls inside the shopper’s budget, and books hotels in AI Mode. Walmart lets approved agents search and buy through its Agent Gateway, and Amazon Business brings AI-powered procurement into e-procurement systems.',
+          a: 'Meta’s Muse shops and books travel for people in the US and pays with Link. Amazon’s Buy for Me buys on other stores’ sites with the shopper’s address and card. Google can buy a tracked item once its price falls inside the shopper’s budget and the shopper confirms, and books hotels in AI Mode. Walmart lets approved agents search and buy through its Agent Gateway, and Amazon Business recommends products inside e-procurement systems.',
         },
         {
           q: 'Can AI agents buy online today?',

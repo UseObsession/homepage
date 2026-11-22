@@ -343,5 +343,6 @@ export const post: BlogPost = {
     'recipe:competitor-tracking',
     'what-can-ai-agents-do-for-business',
     'competitor-email-tracking-tools',
+    '/no-code',
   ],
 }

@@ -8,7 +8,7 @@ import { PersonaGlyph } from '../components/persona/icons'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
 import { catalog } from '../content/catalog'
-import { noCodePage as p } from '../content/pages/no-code'
+import { noCodePage as p } from '../content/noCode'
 import { plans } from '../content/prices'
 import '../components/persona/blueprint.css'
 import './NoCode.css'
@@ -17,7 +17,7 @@ import './NoCode.css'
    a working week at one invented company; what an agent does for each team (8 teams, 3 blueprints each, the KPIs they
    move); how it works (Home's teams section, its own heading); the same result in any format; what it costs, from
    prices.ts; the rules every agent follows; the handoff to developers; questions; the form. Words:
-   content/pages/no-code.ts. */
+   content/noCode.ts. */
 
 const nameOf = Object.fromEntries(catalog.recipes.map((r) => [r.slug, r.name]))
 

@@ -1,8 +1,8 @@
-import type { KitReader } from '../kitPaths'
-import type { Cta, Faq, Final, HomeTeams, Meta, PersonaIcon } from '../types'
-import { page as home } from './home'
+import type { KitReader } from './kitPaths'
+import type { Cta, Faq, Final, HomeTeams, Meta, PersonaIcon } from './types'
+import { page as home } from './pages/home'
 
-/* /no-code (23 Nov 2026, _research/seo/no-code-23nov/PLAN.md): the front door for teams that don't write code, beside
+/* /no-code (23 Nov 2026; beside pricing.ts, since content/pages/ holds only Page words, _research/seo/no-code-23nov/PLAN.md): the front door for teams that don't write code, beside
    /developers, as the hero's two doors and the bar's two links. Seun: "a dedicated page for them, premium and clear to
    anyone ... value driven ... gives them the full picture of how they would leverage blueprints", then "professional
    copy, not dumbed down ... without vagueness". It owns "ai agents for non technical people", "ai agents without
@@ -55,8 +55,7 @@ export const noCodePage: NoCodePage = {
     title: 'AI agents for non-technical teams: ready-made jobs, no code',
     description:
       'AI agents for non-technical teams: choose a ready-made job, configure it in plain language and get results in Slack, email or your CRM. Free to start.',
-    answer:
-      'AI agents for non-technical teams are ready-made jobs, called blueprints, that you configure in plain language. Each runs on an agent with its own phone number, inbox and browser, and delivers results to the tools your team already uses.',
+    answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'No code', path: '/no-code' },
@@ -282,7 +281,7 @@ export const noCodePage: NoCodePage = {
       },
       {
         q: 'How is this different from automation tools?',
-        a: 'Automation tools move data between apps you already use. A blueprint gives an AI agent its own phone number, inbox and browser, so it can do work that needs one: take a call, receive a sign-in code or work inside a portal. Its results can still flow into those tools.',
+        a: 'Automation tools move data between apps you already use. A blueprint gives an AI agent its own phone number, inbox and browser. That lets it do the work that needs them: take a call, receive a sign-in code or work inside a portal. Its results can still flow into those tools.',
       },
       {
         q: 'Where do results go?',

@@ -132,7 +132,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '**Visa and Mastercard.** [Visa](' +
         VISA +
-        ') calls Visa Intelligent Commerce its portfolio for AI agents. It includes the Trusted Agent Protocol, which lets merchants identify trusted agents, and Intelligent Commerce Connect, a single integration across payment schemes, token providers and agent platforms. Visa puts its network at 4.8 billion payment credentials and over 175 million merchant locations. [Mastercard](' +
+        ') calls Visa Intelligent Commerce its portfolio for AI agents. It includes the Trusted Agent Protocol, which Visa describes as a framework for verifying agents and blocking malicious bots. Visa puts its network at 4.8 billion payment credentials and over 175 million merchant locations. [Mastercard](' +
         MASTERCARD +
         ') says only registered agents can transact under Agent Pay, each governed and traced with Mastercard network tokens.',
     },
@@ -174,7 +174,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '**Stripe and Crossmint.** [Stripe Issuing for agents](' +
         STRIPE_ISSUING +
-        '), in private preview, lets a business decide what an agent can spend, where and how much before each purchase. The agent then pays with a single-use card, a Shared Payment Token or an agentic network token from Visa or Mastercard. [Crossmint](' +
+        '), available by application, lets a business decide what an agent can spend, where and how much before each purchase. The agent then pays with a single-use card, a Shared Payment Token or an agentic network token from Visa or Mastercard. [Crossmint](' +
         CROSSMINT +
         ') covers both kinds of money: stablecoin wallets the agent holds, and secure access to a user’s own credit and debit cards with spending limits and approvals.',
     },
@@ -208,7 +208,7 @@ export const post: BlogPost = {
       cols: ['Company', 'What it builds', 'What it does well', 'From its own pages'],
       rows: [
         ['OpenAI: ChatGPT', 'Shopping in ChatGPT, built on ACP', 'Product discovery from merchants’ feeds; Shopify and Etsy catalogues already connected', 'Live in the US; purchases finish on the merchant’s site or app'],
-        ['Google: AI Mode and Gemini', 'Universal Cart, with checkout through Google Pay', 'Saves items from many retailers, tracks price drops, finds promo codes', 'Live in the US since 15 October 2026'],
+        ['Google: AI Mode and Gemini', 'Universal Cart, with checkout through Google Pay', 'Saves items from many retailers, tracks price drops, finds promo codes', 'Rolling out in the US from 15 October 2026'],
         ['Amazon: Alexa for Shopping', 'Rufus and Alexa+ in one assistant, with Buy for Me', 'Buys eligible items from other stores with the customer’s address and card', 'In full across 13 countries'],
         ['Microsoft: Copilot Checkout', 'Checkout inside Copilot', 'The store stays merchant of record on its own payment and fraud systems', 'English-language merchants selling to US buyers'],
         ['Perplexity', 'Shopping with checkout through PayPal', 'Buy and keep talking in the same window', 'Free to all US users since 25 November 2025'],
@@ -241,7 +241,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Black Friday, Friday 27 November 2026, is the first since Universal Cart went live in the US, and the first big test of shoppers letting an agent hold one basket across several retailers.',
+      text: 'Black Friday, Friday 27 November 2026, is the first since Universal Cart began rolling out in the US. In our view, it is the first large test of shoppers letting an agent hold one basket across several retailers.',
     },
     { kind: 'h3', id: 'for-companies', text: 'Agents that buy for companies' },
     {
@@ -281,9 +281,9 @@ export const post: BlogPost = {
         ['Shopify', 'Agentic storefronts and Shopify Catalog', 'Sells a store’s products in ChatGPT, Google AI Mode and Gemini, Copilot and Meta', 'On by default for eligible stores'],
         ['commercetools', 'AI Hub', 'Handles UCP, ACP and MCP, so each AI channel needs no new integration', 'Catalogue to Meta’s Muse; cart transfer to Universal Cart'],
         ['Salesforce', 'Agentforce Commerce', 'Catalogue and checkout for consumer AI channels, with ACP through Stripe and support for AP2', 'Announced 17 November 2025'],
-        ['Cloudflare', 'Agentic commerce on its network', 'Verifies agents with [Web Bot Auth](/glossary/web-bot-auth), a signature on each agent request, and scores traffic in under 1 ms', 'Connects to Visa’s Trusted Agent Protocol, Mastercard Agent Pay, x402 and AP2'],
+        ['Cloudflare', 'Agentic commerce on its network', 'Verifies agents with [Web Bot Auth](/glossary/web-bot-auth), a signature on each agent request, in under 1 ms, Cloudflare says', 'Connects to Visa’s Trusted Agent Protocol, Mastercard Agent Pay, x402 and AP2'],
         ['Forter', 'Agentic Orchestration', 'Fraud and identity decisions on agent orders, one integration across protocols', 'Says agents check out 10x faster with 5x fewer tokens than by scraping'],
-        ['nekuda', 'WebMCP tools (actions a site offers agents in the browser)', 'Shows what agents can do on a site, tests it and builds what’s missing', 'Tool Studio coming soon'],
+        ['nekuda', 'WebMCP tools (actions a site offers agents in the browser)', 'Shows what agents can do on a site, tests it and builds what’s missing', 'Tool control coming soon'],
       ],
     },
     {
@@ -300,7 +300,7 @@ export const post: BlogPost = {
         SALESFORCE +
         ') on 17 November 2025 that Agentforce Commerce would connect catalogues and checkout to ChatGPT through ACP with Stripe, and support AP2. [Cloudflare](' +
         CLOUDFLARE +
-        ') lets a store welcome verified agents and block the rest, host MCP servers that agents query for stock and prices, and connect to the agent payment standards. [Forter’s Agentic Orchestration](' +
+        ') verifies agents with Web Bot Auth, runs MCP servers, the tool endpoints agents call, on Cloudflare Workers, and connects to the agent payment standards. [Forter’s Agentic Orchestration](' +
         FORTER +
         ') runs agent checkout across protocols through one no-code integration. It also makes fraud and identity decisions on agent orders. [nekuda](' +
         NEKUDA +
@@ -350,7 +350,7 @@ export const post: BlogPost = {
         [
           'AgentPhone: numbers for agents',
           'Calls and texts on one webhook, plus iMessage',
-          'Number: $3 a month\nCalls: 13¢ a minute\nTexts: 2¢ a segment\niMessage: from $150 a line a month',
+          'Number: $3 a month\nCalls: 13¢ to 22¢ a minute\nTexts: 2¢ a segment\niMessage: from $150 a line a month',
           'Phone and messaging only',
           'Agents that live on the phone',
         ],
@@ -446,7 +446,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can an AI agent have its own credit card?',
-          a: 'Yes, through issuers that build for agents. Stripe Issuing for agents, in private preview, issues cards with spend controls. Privacy issues virtual cards with spend limits. Crossmint gives agents wallets and controlled access to a user’s own cards, and Coinbase gives agents stablecoin wallets with a spending limit.',
+          a: 'Yes, through issuers that build for agents. Stripe Issuing for agents, available by application, issues cards with spend controls. Privacy issues virtual cards with spend limits. Crossmint gives agents wallets and controlled access to a user’s own cards, and Coinbase gives agents stablecoin wallets with a spending limit.',
         },
         {
           q: 'Can shoppers still buy inside ChatGPT?',

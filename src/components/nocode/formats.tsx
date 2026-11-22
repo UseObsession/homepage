@@ -1,4 +1,4 @@
-import type { NoCodeFormat } from '../../content/pages/no-code'
+import type { NoCodeFormat } from '../../content/noCode'
 
 /* The formats a blueprint's results arrive in, as the no-code page draws them: a short name and a 16px line icon each,
    on the site's icon grid (stroke in currentColor). */
