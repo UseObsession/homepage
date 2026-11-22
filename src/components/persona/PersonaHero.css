@@ -23,8 +23,8 @@
   pointer-events: none;
 }
 .s-ph { isolation: isolate; }
-/* The hero's own bottom space is the gap to the first section. */
-.s-ph + .s-section { padding-top: 0; }
+/* The first section opens a step below the hero, so the facts strip at the screen's foot keeps its own air. */
+.s-ph + .s-section { padding-top: clamp(56px, 7vw, 96px); }
 
 /* 1 track the wrap's width, never wider: the chip's code would otherwise widen it to the code's length on a phone. */
 .s-ph-words {
