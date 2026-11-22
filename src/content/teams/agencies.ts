@@ -127,6 +127,11 @@ export const team: TeamPage = {
   examples: {
     heading: 'Worked examples',
     paths: ['/use-cases/leak-checks-for-retention-agencies', '/use-cases/funnel-qa-for-cro-agencies', '/use-cases/prospect-intelligence-with-clay'],
+    /* The mystery shopping blueprint's real run and the store lookup built on it (Seun, 23 Nov 2026). */
+    links: [
+      { label: 'Sample output from a real store', to: '/sample-output' },
+      { label: 'Look up a store', to: '/lookup' },
+    ],
   },
 
   faq: {
