@@ -1,4 +1,4 @@
-import { useEffect, useId, useState, type CSSProperties } from 'react'
+import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { Crumbs } from '../components/Crumbs'
 import { FormatIcon } from '../components/nocode/formats'
@@ -8,198 +8,309 @@ import { FinalCta } from '../components/sections/FinalCta'
 import { catalog } from '../content/catalog'
 import { noCodePage as p } from '../content/noCode'
 import { plans } from '../content/prices'
+import type { PersonaIcon } from '../content/types'
 import { useInView } from '../hooks/useReveal'
 import './NoCode.css'
 
-/* /no-code: the page for teams that don't write code. The hero offers two ways in, each drawn as it happens: a blueprint
-   running, and a team's own AI making a call through Obsession. Then what AI can't do on its own, the jobs by team
-   (typical months from the catalog), connecting your own AI (#connect), every size, the rules and the cost, questions,
-   the form. Words: content/noCode.ts. */
+/* /no-code: the page for teams that don't write code. The story: the hero's console (one example company's teams, each
+   with its blueprint running; it moves team by team until the reader picks one), what an agent can do once it's
+   equipped, the reader's team's first job (typical months from the catalog), every size from 2 agents to 1,200, the two
+   ways to start (a ready-made job, or the AI tools the team already uses), the rules and the cost, questions, the form.
+
+   Every picture keeps the site's camera bar (premium-illustration): 1 to 3 beats, a gentle lean-in toward the point, a
+   spotlight that dims the rest, and a hairline to a short note that states the point. Motion plays once as a picture
+   enters the view; the console's team cycle and its live light are its only loops, and the cycle stops for good when
+   the reader takes over. Under reduced motion every picture shows its finished scene and its note, still, and every
+   control works. Nothing hides before the page's script arms a picture (data-armed), so the prerender, crawlers and
+   readers without script get every word. Words: content/noCode.ts. */
 
 const recipeBySlug = Object.fromEntries(catalog.recipes.map((r) => [r.slug, r]))
-const typicalOf = (slug: string) => {
+const monthsOf = (slug: string) => {
   const r = recipeBySlug[slug]
   if (!r) throw new Error(`pages/NoCode.tsx: no blueprint "${slug}" in the catalog (content/noCode.ts)`)
   const months = r.tiers.filter((t) => !t.free)
-  return { name: r.name, month: (months.find((t) => t.featured) ?? months[months.length - 1])?.estimate ?? 0 }
+  return { name: r.name, months, featured: months.find((t) => t.featured) ?? months[months.length - 1], top: months[months.length - 1] }
 }
 const usd = (n: number) => (Number.isInteger(n) ? `$${n.toLocaleString('en-US')}` : `$${n.toFixed(2)}`)
 const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1 ')
-const delay = (n: number) => ({ ['--d' as string]: n }) as CSSProperties
+const vars = (o: Record<string, number | string>) => o as CSSProperties
+const REDUCE = '(prefers-reduced-motion: reduce)'
 
-/* Entrances play once, as a block first scrolls into view. Items hide for it only after the page's script has armed the
-   block, so the prerender, crawlers and readers without script get every word at once. */
-function useEntrance<T extends Element>(threshold = 0.1) {
+/* Motion allowed (false on the server and under reduced motion). */
+function useMotion() {
+  const [ok, setOk] = useState(false)
+  useEffect(() => setOk(!window.matchMedia(REDUCE).matches), [])
+  return ok
+}
+
+/* Plays once as a picture first enters the view. Before then, and only with motion allowed, the picture is armed, so its
+   entrance can start from hidden; without script or motion it is its finished scene. */
+function useEntrance<T extends Element>(threshold = 0.2) {
+  const motion = useMotion()
   const { ref, inView } = useInView<T>(threshold)
-  const [armed, setArmed] = useState(false)
   const [seen, setSeen] = useState(false)
   useEffect(() => {
     if (inView) setSeen(true)
-    else if (!seen) setArmed(true)
-  }, [inView, seen])
-  return { ref, armed, seen, cls: seen ? ' is-in' : '' }
+  }, [inView])
+  return { ref, motion, seen, armed: motion && !seen, cls: seen && motion ? ' is-in' : '' }
 }
 
-const Chev = () => (
-  <svg className="nc-chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+const Chev = ({ className = 'nc-chev' }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 16 16" aria-hidden="true" focusable="false">
     <path d="M6 3.5 10.5 8 6 12.5" />
   </svg>
 )
-const Glyph = ({ name }: { name: Parameters<typeof PersonaGlyph>[0]['name'] }) => (
-  <span className="nc-ic" aria-hidden="true">
+const Glyph = ({ name, className = 'nc-ic' }: { name: PersonaIcon; className?: string }) => (
+  <span className={className} aria-hidden="true">
     <PersonaGlyph name={name} />
   </span>
 )
+/* A beat's note: a hairline from the picture to a small label that states its point. */
+const Note = ({ text, className = '' }: { text: string; className?: string }) => (
+  <p className={`nc-note-label ${className}`}>
+    <i aria-hidden="true" />
+    <span>{text}</span>
+  </p>
+)
+const Bar = ({ crumb }: { crumb: [string, string] }) => (
+  <div className="nc-win__bar" aria-hidden="true">
+    <span className="nc-win__dots">
+      <i />
+      <i />
+      <i />
+    </span>
+    <span className="nc-win__crumb">
+      <b>{crumb[0]}</b>
+      <span>/</span>
+      {crumb[1]}
+    </span>
+  </div>
+)
 
-/* ---- The two ways in ---- */
+/* ---- The hero's console: one company's teams, each with its blueprint running ---- */
 
-function BlueprintWindow() {
-  const b = p.doors.blueprint
+const CYCLE = 6200
+
+function HeroConsole() {
+  const c = p.console
+  const n = c.teams.length
+  const motion = useMotion()
+  const { ref, inView } = useInView<HTMLElement>(0.2)
+  const [at, setAt] = useState(0)
+  const [auto, setAuto] = useState(true)
+  /* The beat's second half: lean in on the newest row, dim the rest, draw the note. At rest it is on. */
+  const [lean, setLean] = useState(true)
+  const [seen, setSeen] = useState(false)
+  const [ring, setRing] = useState(0)
+  const tabsId = useId()
+  useEffect(() => {
+    if (inView) setSeen(true)
+  }, [inView])
+  const team = c.teams[at]
+
+  /* Each team's beat: its rows arrive, then the camera leans in and the note draws. */
+  useEffect(() => {
+    if (!motion || !seen) return
+    setLean(false)
+    const t = window.setTimeout(() => setLean(true), team.rows.length * 300 + 650)
+    return () => window.clearTimeout(t)
+  }, [at, motion, seen, team.rows.length])
+
+  /* Team by team, until the reader picks one, and only while the console is in view. */
+  useEffect(() => {
+    if (!motion || !seen || !auto || !inView) return
+    const t = window.setTimeout(() => setAt((i) => (i + 1) % n), CYCLE)
+    return () => window.clearTimeout(t)
+  }, [at, motion, seen, auto, inView, n])
+
+  const pick = (i: number) => {
+    setAuto(false)
+    setAt(i)
+    setRing((r) => r + 1)
+  }
+  const playing = motion && seen
   return (
-    <div className="nc-win" aria-hidden="true">
-      <div className="nc-win__bar">
-        <span className="nc-win__dots">
-          <i />
-          <i />
-          <i />
-        </span>
-        <span className="nc-win__crumb">Blueprints / {b.name}</span>
-      </div>
-      <div className="nc-win__head">
-        <div>
-          <p className="nc-win__name">{b.name}</p>
-          <p className="nc-win__sub">{b.company}</p>
+    <figure
+      ref={ref}
+      className={'nc-con' + (playing ? ' is-play' : '') + (lean ? ' is-lean' : '') + (auto && playing ? ' is-auto' : '')}
+      data-armed={motion && !seen ? '' : undefined}
+      data-reader={team.reader}
+    >
+      <div className="nc-win nc-con__win">
+        <div className="nc-win__bar" aria-hidden="true">
+          <span className="nc-win__dots">
+            <i />
+            <i />
+            <i />
+          </span>
+          <span className="nc-win__crumb">
+            <b>{c.org}</b>
+            <span>/</span>
+            {c.page}
+          </span>
+          <span className="nc-win__search">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+              <circle cx="7" cy="7" r="4.25" />
+              <path d="M10.2 10.2 13 13" />
+            </svg>
+            {c.search}
+          </span>
         </div>
-        <span className="nc-live">
-          <i />
-          {b.status}
-        </span>
-      </div>
-      <ol className="nc-win__rows">
-        {b.rows.map((r, i) => (
-          <li key={r.text} className="nc-anim" style={delay(i + 1)}>
-            <time>{r.at}</time>
-            <Glyph name={r.icon} />
-            <span>{r.text}</span>
-          </li>
-        ))}
-      </ol>
-      <p className="nc-win__out nc-anim" style={delay(b.rows.length + 1)}>
-        <FormatIcon id={b.result.format} />
-        {b.result.text}
-      </p>
-    </div>
-  )
-}
-
-function ChatWindow() {
-  const c = p.doors.chat
-  return (
-    <div className="nc-win nc-win--chat" aria-hidden="true">
-      <div className="nc-win__bar">
-        <span className="nc-win__dots">
-          <i />
-          <i />
-          <i />
-        </span>
-        <span className="nc-win__crumb">{c.app}</span>
-      </div>
-      <div className="nc-chat">
-        <p className="nc-chat__ask nc-anim" style={delay(1)}>
-          {c.ask}
-        </p>
-        <p className="nc-chat__tool nc-anim" style={delay(2)}>
-          <Glyph name="persona" />
-          {c.tool}
-        </p>
-        <ol className="nc-chat__steps">
-          {c.steps.map((s, i) => (
-            <li key={s.text} className="nc-anim" style={delay(i + 3)}>
-              <time>{s.at}</time>
-              <span>{s.text}</span>
-            </li>
-          ))}
-        </ol>
-        <p className="nc-chat__answer nc-anim" style={delay(c.steps.length + 3)}>
-          {c.answer}
-        </p>
-      </div>
-    </div>
-  )
-}
-
-function Doors() {
-  const e = useEntrance<HTMLDivElement>(0.08)
-  const [job, ai] = p.doors.items
-  return (
-    <figure className="nc-doors-fig">
-      <div ref={e.ref} className={'nc-doors' + e.cls} data-armed={e.armed ? '' : undefined}>
-        {[job, ai].map((d) => (
-          <article key={d.id} className={`nc-door nc-door--${d.id}`} data-reader={d.id === 'job' ? 'founders' : 'developers'}>
-            <div className="nc-door__words">
-              <p className="nc-door__kicker">{d.kicker}</p>
-              <h2 className="nc-door__title">{d.title}</h2>
-              <p className="nc-door__line">{tie(d.line)}</p>
-              {d.cta.to.startsWith('#') ? (
-                <a className="nc-door__cta" href={d.cta.to}>
-                  {d.cta.label}
-                  <Chev />
-                </a>
-              ) : (
-                <Link className="nc-door__cta" to={d.cta.to}>
-                  {d.cta.label}
-                  <Chev />
-                </Link>
-              )}
+        <div className="nc-con__body">
+          <div className="nc-con__side" role="tablist" aria-label={c.pick} aria-orientation="vertical">
+            <p className="nc-con__side-h" aria-hidden="true">
+              {c.pick}
+            </p>
+            {c.teams.map((t, i) => (
+              <button
+                key={t.id}
+                type="button"
+                role="tab"
+                id={`${tabsId}-${t.id}`}
+                aria-selected={i === at}
+                aria-controls={`${tabsId}-panel`}
+                tabIndex={i === at ? 0 : -1}
+                className={'nc-con__team' + (auto && playing && i === (at + 1) % n ? ' is-next' : '')}
+                data-reader={t.reader}
+                onClick={() => pick(i)}
+                onKeyDown={(e) => {
+                  if (!['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft'].includes(e.key)) return
+                  e.preventDefault()
+                  const next = (at + (e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : -1) + n) % n
+                  pick(next)
+                  document.getElementById(`${tabsId}-${c.teams[next].id}`)?.focus()
+                }}
+              >
+                <Glyph name={t.icon} />
+                <span className="nc-con__team-words">
+                  <b>{t.name}</b>
+                  <span>{t.blueprint}</span>
+                </span>
+                {i === at && auto && playing && <i className="nc-con__prog" key={`p-${at}`} style={vars({ '--cycle': `${CYCLE}ms` })} aria-hidden="true" />}
+                {i === at && ring > 0 && <i className="nc-ring" key={`r-${ring}`} aria-hidden="true" />}
+              </button>
+            ))}
+          </div>
+          <div className="nc-con__main" role="tabpanel" id={`${tabsId}-panel`} aria-labelledby={`${tabsId}-${team.id}`}>
+            <div className="nc-con__head">
+              <span className="nc-con__who">
+                <span className="nc-con__live" aria-hidden="true" />
+                {team.blueprint}
+              </span>
+              <span className="nc-con__meta">
+                <span className="nc-con__count">{team.count}</span>
+                <span className="nc-con__state">{c.running}</span>
+              </span>
             </div>
-            {d.id === 'job' ? <BlueprintWindow /> : <ChatWindow />}
-          </article>
-        ))}
+            <ol className="nc-con__log" key={team.id}>
+              {team.rows.map((r, i) => (
+                <li key={r.text} className={'nc-con__row' + (r.tone ? ` is-${r.tone}` : '')} style={vars({ '--i': i })}>
+                  <time>{r.at}</time>
+                  <Glyph name={r.icon} className="nc-ic nc-ic--sm" />
+                  <span>{r.text}</span>
+                </li>
+              ))}
+            </ol>
+            <Note key={`n-${team.id}`} text={team.note} className="nc-con__note" />
+            <p className="nc-con__out">
+              <FormatIcon id={team.format} />
+              <span>{c.status(n)}</span>
+            </p>
+          </div>
+        </div>
       </div>
-      <figcaption className="nc-caption">{p.doors.caption}</figcaption>
+      <figcaption className="nc-caption">{c.caption}</figcaption>
     </figure>
   )
 }
 
-/* ---- What AI can't do on its own ---- */
+/* ---- What an agent can do once it's equipped ---- */
 
-function Gap({ hid }: { hid: string }) {
-  const g = p.gap
-  const e = useEntrance<HTMLDivElement>(0.1)
+function Equip() {
+  const e = p.equip
+  const motion = useMotion()
+  const { ref, inView } = useInView<HTMLDivElement>(0.35)
+  const [state, setState] = useState<'alone' | 'equipped'>('equipped')
+  const played = useRef(false)
+  /* With motion allowed it starts on its own, then switches once as it comes into view. */
+  useEffect(() => {
+    if (motion && !played.current) setState('alone')
+  }, [motion])
+  useEffect(() => {
+    if (!motion || !inView || played.current) return
+    played.current = true
+    const t = window.setTimeout(() => setState('equipped'), 1100)
+    return () => window.clearTimeout(t)
+  }, [motion, inView])
+  const on = state === 'equipped'
   return (
-    <div ref={e.ref} className={'nc-gap' + e.cls} data-armed={e.armed ? '' : undefined} role="table" aria-labelledby={hid}>
-      <div className="nc-gap__row nc-gap__row--head" role="row">
-        <span role="columnheader">{g.cols.task}</span>
-        <span role="columnheader">{g.cols.alone}</span>
-        <span role="columnheader">{g.cols.with}</span>
-      </div>
-      {g.rows.map((r, i) => (
-        <div key={r.task} className="nc-gap__row nc-anim" style={delay(i)} role="row">
-          <span className="nc-gap__task" role="rowheader">
-            <Glyph name={r.icon} />
-            {r.task}
+    <figure className="nc-eq-fig">
+      <div ref={ref} className={'nc-eq' + (on ? ' is-on' : '')}>
+        <div className="nc-eq__top">
+          <span className="nc-eq__who">
+            <Glyph name="persona" />
+            <b>{e.agent.name}</b>
           </span>
-          <span className="nc-gap__alone" role="cell">
-            <svg className="nc-mark" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-              <path d="M4.5 4.5 11.5 11.5M11.5 4.5 4.5 11.5" />
-            </svg>
-            <span>
-              <b className="nc-gap__label">{g.cols.alone}</b>
-              {r.alone}
-            </span>
-          </span>
-          <span className="nc-gap__with" role="cell">
-            <svg className="nc-mark" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-              <path d="M3.5 8.5 6.5 11.5 12.5 4.5" />
-            </svg>
-            <span>
-              <b className="nc-gap__label">{g.cols.with}</b>
-              {r.with}
-            </span>
-          </span>
+          <div className="nc-seg" role="group" aria-label={e.states.label}>
+            {(['alone', 'equipped'] as const).map((s) => (
+              <button
+                key={s}
+                type="button"
+                aria-pressed={state === s}
+                onClick={() => {
+                  played.current = true
+                  setState(s)
+                }}
+              >
+                {e.states[s]}
+              </button>
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
+        <div className="nc-eq__body">
+          <div className="nc-eq__think">
+            <p className="nc-eq__h">{e.agent.can}</p>
+            <ul>
+              {e.agent.think.map((t) => (
+                <li key={t}>
+                  <svg className="nc-mark nc-mark--yes" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M3.5 8.5 6.5 11.5 12.5 4.5" />
+                  </svg>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="nc-eq__act">
+            <p className="nc-eq__h">{e.agent.act}</p>
+            <ul>
+              {e.rows.map((r, i) => (
+                <li key={r.ability} className="nc-eq__row" style={vars({ '--i': i })}>
+                  <Glyph name={r.icon} />
+                  <span className="nc-eq__ability">
+                    <b>{r.ability}</b>
+                    <span className="nc-eq__alone">
+                      <svg className="nc-mark nc-mark--lock" viewBox="0 0 16 16" aria-hidden="true">
+                        <rect x="4" y="7.2" width="8" height="6" rx="1.3" />
+                        <path d="M5.8 7.2V5.6a2.2 2.2 0 0 1 4.4 0v1.6" />
+                      </svg>
+                      {r.alone}
+                    </span>
+                    <Link className="nc-eq__job" to={`/blueprints/${r.slug}`} tabIndex={on ? 0 : -1} aria-hidden={!on}>
+                      <span className="nc-eq__piece">{r.piece}</span>
+                      {tie(r.job)}
+                      <Chev />
+                    </Link>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <Note text={e.note} className="nc-eq__note" />
+      <figcaption className="nc-caption">{e.caption}</figcaption>
+    </figure>
   )
 }
 
@@ -237,20 +348,12 @@ function Jobs() {
         ))}
       </div>
       {j.teams.map((t, i) => (
-        <div
-          key={t.id}
-          role="tabpanel"
-          id={`${tabsId}-panel-${t.id}`}
-          aria-labelledby={`${tabsId}-tab-${t.id}`}
-          hidden={i !== at}
-          className="nc-panel"
-          data-reader={t.reader}
-        >
+        <div key={t.id} role="tabpanel" id={`${tabsId}-panel-${t.id}`} aria-labelledby={`${tabsId}-tab-${t.id}`} hidden={i !== at} className="nc-panel" data-reader={t.reader}>
           <ul className="nc-panel__jobs">
             {t.jobs.map((job, k) => {
-              const bp = typicalOf(job.slug)
+              const bp = monthsOf(job.slug)
               return (
-                <li key={job.slug + job.line} className="nc-job" style={delay(k)}>
+                <li key={job.slug + job.line} className="nc-job" style={vars({ '--d': k })}>
                   <Link className="nc-job__link" to={`/blueprints/${job.slug}`}>
                     <span className="nc-job__name">
                       {bp.name}
@@ -260,7 +363,7 @@ function Jobs() {
                     <span className="nc-job__month">
                       <span>{j.typical}</span>
                       <b>
-                        {usd(bp.month)} <small>a month</small>
+                        {usd(bp.featured.estimate)} <small>a month</small>
                       </b>
                     </span>
                   </Link>
@@ -296,35 +399,183 @@ function Jobs() {
   )
 }
 
-/* ---- Every size, biggest first ---- */
+/* ---- Every size, biggest first: dots for the agents each runs, then blueprints at volume ---- */
 
 function Scale() {
   const s = p.scale
-  const e = useEntrance<HTMLOListElement>(0.1)
-  const top = Math.log10(Math.max(...s.rows.map((r) => r.agents)) + 1)
+  const e = useEntrance<HTMLOListElement>(0.15)
   return (
     <figure className="nc-scale-fig">
+      <p className="nc-scale__legend" aria-hidden="true">
+        <i />
+        {s.legend}
+      </p>
       <ol ref={e.ref} className={'nc-scale' + e.cls} data-armed={e.armed ? '' : undefined}>
-        {s.rows.map((r, i) => (
-          <li key={r.name} className="nc-scale__row nc-anim" style={delay(i)}>
-            <span className="nc-scale__who">
-              <b>{r.name}</b>
-              <span>{r.size}</span>
-            </span>
-            <span className="nc-scale__bar" aria-hidden="true">
-              <i style={{ width: `${Math.max(6, (Math.log10(r.agents + 1) / top) * 100).toFixed(1)}%` }} />
-            </span>
-            <span className="nc-scale__n">
-              {r.agents.toLocaleString('en-US')} <small>{r.agents === 1 ? 'agent' : 'agents'}</small>
-            </span>
-            <Link className="nc-scale__job" to={`/blueprints/${r.slug}`}>
-              {tie(r.job)}
-              <Chev />
-            </Link>
-          </li>
-        ))}
+        {s.rows.map((r, i) => {
+          const dots = Math.max(1, Math.round(r.agents / 10))
+          return (
+            <li key={r.name} className="nc-scale__row" style={vars({ '--r': i })}>
+              <span className="nc-scale__who">
+                <b>{r.name}</b>
+                <span>{r.size}</span>
+              </span>
+              <span className="nc-scale__dots" aria-hidden="true">
+                {Array.from({ length: dots }, (_, k) => (
+                  <i key={k} style={vars({ '--k': Math.min(k, 80) })} />
+                ))}
+              </span>
+              <span className="nc-scale__n">
+                {r.agents.toLocaleString('en-US')} <small>agents</small>
+              </span>
+              <Link className="nc-scale__job" to={`/blueprints/${r.slug}`}>
+                {tie(r.job)}
+                <Chev />
+              </Link>
+            </li>
+          )
+        })}
       </ol>
+      <div className="nc-vol">
+        <p className="nc-formats__label">{s.volume.label}</p>
+        <ul className="nc-vol__list">
+          {s.volume.slugs.map((slug) => {
+            const bp = monthsOf(slug)
+            return (
+              <li key={slug}>
+                <Link className="nc-vol__card" to={`/blueprints/${slug}`}>
+                  <span className="nc-vol__name">
+                    {bp.name}
+                    <Chev />
+                  </span>
+                  <span className="nc-vol__covers">{tie(bp.top.covers)}</span>
+                  <b className="nc-vol__month">
+                    {usd(bp.top.estimate)} <small>{s.volume.per}</small>
+                  </b>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
       <figcaption className="nc-caption">{s.caption}</figcaption>
+    </figure>
+  )
+}
+
+/* ---- The two ways in: a blueprint approved in plain words, and a team's own AI making a call ---- */
+
+function Sheet() {
+  const w = p.ways.sheet
+  const e = useEntrance<HTMLDivElement>(0.35)
+  return (
+    <div ref={e.ref} className={'nc-win nc-sheet' + e.cls} data-armed={e.armed ? '' : undefined} aria-hidden="true">
+      <Bar crumb={[w.crumb, w.name]} />
+      <div className="nc-sheet__rig">
+        <p className="nc-sheet__name">
+          <Glyph name="check" className="nc-ic nc-ic--sm" />
+          {w.name}
+        </p>
+        <dl className="nc-sheet__fields">
+          {w.fields.map(([k, v], i) => (
+            <div key={k} style={vars({ '--i': i })}>
+              <dt>{k}</dt>
+              <dd>{v}</dd>
+            </div>
+          ))}
+        </dl>
+        <div className="nc-sheet__foot">
+          <span className="nc-sheet__go">{w.button}</span>
+          <span className="nc-sheet__run">
+            <span className="nc-con__live" />
+            <b>{w.running}</b>
+            <span className="nc-sheet__pips">
+              {Array.from({ length: 12 }, (_, k) => (
+                <i key={k} style={vars({ '--k': k })} />
+              ))}
+            </span>
+          </span>
+          <svg className="nc-ptr" viewBox="0 0 16 16">
+            <path d="M3 1.5v12.2l3.1-3 2.05 4.6 2.15-.95-2-4.5h4.3Z" />
+          </svg>
+          <i className="nc-sheet__ring" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Chat() {
+  const c = p.ways.chat
+  const e = useEntrance<HTMLDivElement>(0.35)
+  return (
+    <div ref={e.ref} className={'nc-win nc-chatwin' + e.cls} data-armed={e.armed ? '' : undefined} aria-hidden="true">
+      <Bar crumb={[c.app, 'New chat']} />
+      <div className="nc-chat">
+        <p className="nc-chat__ask nc-anim" style={vars({ '--i': 0 })}>
+          {c.ask}
+        </p>
+        <p className="nc-chat__tool nc-anim" style={vars({ '--i': 1 })}>
+          <Glyph name="persona" className="nc-ic nc-ic--xs" />
+          {c.tool}
+        </p>
+        <ol className="nc-chat__steps">
+          {c.steps.map((s, i) => (
+            <li key={s.text} className="nc-anim" style={vars({ '--i': i + 2 })}>
+              <time>{s.at}</time>
+              <span>{s.text}</span>
+            </li>
+          ))}
+        </ol>
+        <p className="nc-chat__answer nc-anim" style={vars({ '--i': c.steps.length + 2 })}>
+          {c.answer}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+function Ways({ hid }: { hid: string }) {
+  const w = p.ways
+  return (
+    <figure className="nc-ways-fig">
+      <div className="nc-ways">
+        <article className="nc-way" data-reader="founders" aria-labelledby={`${hid}-w1`}>
+          <div className="nc-way__words">
+            <p className="nc-kicker">{w.job.kicker}</p>
+            <h3 className="nc-way__title" id={`${hid}-w1`}>
+              {w.job.title}
+            </h3>
+            <p className="nc-way__line">{w.job.line}</p>
+          </div>
+          <Sheet />
+          <Note text={w.sheet.note} />
+          <Link className="ob-btn ob-btn--secondary nc-way__cta" to={w.job.cta.to}>
+            <span className="ob-btn-label">{w.job.cta.label}</span>
+          </Link>
+        </article>
+        <article className="nc-way" data-reader="developers" id="connect" aria-labelledby={`${hid}-w2`}>
+          <div className="nc-way__words">
+            <p className="nc-kicker">{w.ai.kicker}</p>
+            <h3 className="nc-way__title" id={`${hid}-w2`}>
+              {w.ai.title}
+            </h3>
+            <p className="nc-way__line">{w.ai.line}</p>
+          </div>
+          <Chat />
+          <Note text={w.chat.note} />
+          <ul className="nc-tools" aria-label={w.ai.kicker}>
+            {w.tools.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+          <a className="ob-btn ob-btn--secondary nc-way__cta" href={w.ai.cta.to}>
+            <span className="ob-btn-label">{w.ai.cta.label}</span>
+          </a>
+        </article>
+      </div>
+      <figcaption className="nc-caption">
+        {w.caption} {w.toolsNote}
+      </figcaption>
     </figure>
   )
 }
@@ -333,40 +584,48 @@ function Scale() {
 
 export function NoCode() {
   const hid = useId()
-  const c = p.connect
   return (
     <>
       <section className="s-section nc-hero" aria-labelledby={`${hid}-h`}>
-        <div className="s-wrap s-wrap--wide">
-          <Crumbs className="nc-crumbs" />
-          <div className="nc-hero__words ob-anim-hero">
-            <p className="nc-pill">{p.hero.pill}</p>
-            <h1 className="nc-h1" id={`${hid}-h`}>
-              {p.hero.headline}
-            </h1>
-            <p className="nc-sub">{p.hero.sub}</p>
+        <div className="s-wrap s-wrap--wide nc-hero__grid">
+          <div className="nc-hero__words">
+            <Crumbs className="nc-crumbs" />
+            <div className="ob-anim-hero nc-hero__in">
+              <p className="nc-pill">{p.hero.pill}</p>
+              <h1 className="nc-h1" id={`${hid}-h`}>
+                {p.hero.headline}
+              </h1>
+              <p className="nc-sub">{p.hero.sub}</p>
+              <div className="nc-act">
+                <Link className="ob-btn ob-btn--lg" to={p.hero.primary.to}>
+                  <span className="ob-btn-label">{p.hero.primary.label}</span>
+                </Link>
+                <a className="ob-btn ob-btn--lg ob-btn--secondary" href={p.hero.secondary.to}>
+                  <span className="ob-btn-label">{p.hero.secondary.label}</span>
+                </a>
+              </div>
+              <p className="nc-hero__note">{p.hero.note}</p>
+            </div>
           </div>
-          <Doors />
-          <p className="nc-note">{p.hero.note}</p>
+          <HeroConsole />
         </div>
       </section>
 
-      <section className="s-section nc-sec" data-tone="alt" id="gap" aria-labelledby={`${hid}-g`}>
-        <div className="s-wrap">
+      <section className="s-section nc-sec" data-tone="alt" id="equipped" aria-labelledby={`${hid}-e`}>
+        <div className="s-wrap nc-split">
           <header className="nc-head">
-            <h2 className="nc-h2" id={`${hid}-g`}>
-              {p.gap.heading}
+            <h2 className="nc-h2" id={`${hid}-e`}>
+              {p.equip.heading}
             </h2>
-            <p className="nc-line">{p.gap.line}</p>
+            <p className="nc-line">{p.equip.line}</p>
           </header>
-          <Gap hid={`${hid}-g`} />
+          <Equip />
         </div>
       </section>
 
       <section className="s-section nc-sec" id="jobs" aria-labelledby={`${hid}-j`}>
         <div className="s-wrap">
           <header className="nc-head">
-            <p className="nc-kicker">{p.doors.items[0].kicker}</p>
             <h2 className="nc-h2" id={`${hid}-j`}>
               {p.jobs.heading}
             </h2>
@@ -376,42 +635,7 @@ export function NoCode() {
         </div>
       </section>
 
-      <section className="s-section nc-sec" data-tone="alt" id="connect" aria-labelledby={`${hid}-c`}>
-        <div className="s-wrap nc-connect">
-          <div className="nc-connect__words">
-            <p className="nc-kicker">{p.doors.items[1].kicker}</p>
-            <h2 className="nc-h2" id={`${hid}-c`}>
-              {c.heading}
-            </h2>
-            <p className="nc-line">{c.line}</p>
-            <ol className="nc-steps">
-              {c.steps.map((s, i) => (
-                <li key={s.title}>
-                  <span className="nc-steps__n">{i + 1}</span>
-                  <span>
-                    <b>{s.title}</b>
-                    {s.line}
-                  </span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div className="nc-connect__tools">
-            <ul className="nc-tools">
-              {c.tools.map((t) => (
-                <li key={t.name} className="nc-tool">
-                  <Glyph name={t.icon} />
-                  <b>{t.name}</b>
-                  <span>{t.how}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="nc-formats__note">{c.note}</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="s-section nc-sec" id="scale" aria-labelledby={`${hid}-s`}>
+      <section className="s-section nc-sec" data-tone="alt" id="scale" aria-labelledby={`${hid}-s`}>
         <div className="s-wrap">
           <header className="nc-head">
             <h2 className="nc-h2" id={`${hid}-s`}>
@@ -420,6 +644,18 @@ export function NoCode() {
             <p className="nc-line">{p.scale.line}</p>
           </header>
           <Scale />
+        </div>
+      </section>
+
+      <section className="s-section nc-sec" id="start" aria-labelledby={`${hid}-w`}>
+        <div className="s-wrap">
+          <header className="nc-head">
+            <h2 className="nc-h2" id={`${hid}-w`}>
+              {p.ways.heading}
+            </h2>
+            <p className="nc-line">{p.ways.line}</p>
+          </header>
+          <Ways hid={hid} />
         </div>
       </section>
 
@@ -445,9 +681,7 @@ export function NoCode() {
               {plans.map((pl) => (
                 <li key={pl.id}>
                   <b>{pl.name}</b>
-                  <span>
-                    {pl.monthly != null ? (pl.monthly === 0 ? '$0' : `${usd(pl.monthly)} a month`) : pl.from != null ? `from ${usd(pl.from)} a month` : ''}
-                  </span>
+                  <span>{pl.monthly != null ? (pl.monthly === 0 ? '$0' : `${usd(pl.monthly)} a month`) : pl.from != null ? `from ${usd(pl.from)} a month` : ''}</span>
                 </li>
               ))}
             </ul>

@@ -1,53 +1,70 @@
 import type { KitReader } from './kitPaths'
+import { ENTITY } from './site'
 import type { Cta, Faq, Final, Meta, PersonaIcon } from './types'
 
-/* /no-code: the page for teams that don't write code (pages/NoCode.tsx). Two ways in, side by side from the hero: hire
-   the job done (pick a blueprint, and Obsession runs it), or make the AI the team already uses capable (connect
-   Obsession to Claude, ChatGPT, Zapier, Make or n8n). Then what AI can't do on its own, the jobs by team, connecting
-   your own AI, every size, the rules and the cost, questions, the form. It owns "ai agents without coding", "no code ai
-   agents" and "ai agents for business teams". Every company, person and number in a picture is an example; prices and
-   typical months come from content/prices.ts and the catalog, never typed here. */
+/* /no-code: the page for teams that don't write code (pages/NoCode.tsx). Two ways in: hire the job done (pick a
+   blueprint, and Obsession runs it) or make the AI the team already uses capable (Claude, ChatGPT, Zapier, Make, n8n).
+   The story: a company's teams with their blueprints running (the hero's console, which the reader can drive); what an
+   agent can do once it's equipped; the reader's own team's first job; every size, from 2 agents to 1,200; the two ways
+   to start; the rules and the cost; questions; the form. It owns "ai agents without coding", "no code ai agents" and
+   "ai agents for business teams". Every company, person and number in a picture is an example; prices, typical months
+   and volumes come from content/prices.ts and the catalog, never typed here. */
 
 export type NoCodeFormat = 'slack' | 'email' | 'crm' | 'sheet' | 'pdf' | 'assistant' | 'any'
 
-type Door = { id: 'job' | 'ai'; kicker: string; title: string; line: string; cta: Cta }
+/* A row in a console: its time, what happened (icon and words), and its tone. */
+export type ConsoleRow = { at: string; icon: PersonaIcon; text: string; tone?: 'ok' | 'flag' }
 
 export type NoCodePage = {
   meta: Meta
-  hero: { pill: string; headline: string; sub: string; note: string }
-  /* The two ways in, each with its picture: a blueprint running, and a team's AI using Obsession's phone. */
-  doors: {
-    items: [Door, Door]
-    blueprint: { name: string; company: string; status: string; rows: { at: string; text: string; icon: PersonaIcon }[]; result: { format: NoCodeFormat; text: string } }
-    chat: { app: string; ask: string; tool: string; steps: { at: string; text: string }[]; answer: string }
+  hero: { pill: string; headline: string; sub: string; primary: Cta; secondary: Cta; note: string }
+  /* The hero's picture: one example company's teams, each with its blueprint running. It cycles team by team until the
+     reader picks one; each team's beat ends on its finding (`note`), drawn as a hairline and a label. */
+  console: {
+    org: string
+    page: string
+    search: string
+    pick: string
+    running: string
+    teams: { id: string; name: string; reader: KitReader; icon: PersonaIcon; blueprint: string; count: string; format: NoCodeFormat; rows: ConsoleRow[]; note: string }[]
+    status: (n: number) => string
     caption: string
   }
-  gap: {
+  equip: {
     heading: string
     line: string
-    cols: { task: string; alone: string; with: string }
-    rows: { icon: PersonaIcon; task: string; alone: string; with: string }[]
+    agent: { name: string; can: string; think: string[]; act: string }
+    states: { alone: string; equipped: string; label: string }
+    rows: { piece: string; icon: PersonaIcon; ability: string; alone: string; job: string; slug: string }[]
+    note: string
+    caption: string
   }
   jobs: {
     heading: string
     line: string
     typical: string
-    teams: { id: string; name: string; reader: KitReader; icon: PersonaIcon; jobs: { slug: string; line: string }[]; moves: string[] }[]
     moves: string
+    teams: { id: string; name: string; reader: KitReader; icon: PersonaIcon; jobs: { slug: string; line: string }[]; moves: string[] }[]
     formats: { label: string; items: { id: NoCodeFormat; name: string }[]; note: string }
     all: (n: number) => Cta
-  }
-  connect: {
-    heading: string
-    line: string
-    tools: { name: string; how: string; icon: PersonaIcon }[]
-    steps: { title: string; line: string }[]
-    note: string
   }
   scale: {
     heading: string
     line: string
+    legend: string
     rows: { name: string; size: string; agents: number; job: string; slug: string }[]
+    volume: { label: string; slugs: string[]; per: string }
+    caption: string
+  }
+  ways: {
+    heading: string
+    line: string
+    job: { kicker: string; title: string; line: string; cta: Cta }
+    ai: { kicker: string; title: string; line: string; cta: Cta }
+    sheet: { crumb: string; name: string; fields: [string, string][]; button: string; running: string; note: string }
+    chat: { app: string; ask: string; tool: string; steps: { at: string; text: string }[]; answer: string; note: string }
+    tools: string[]
+    toolsNote: string
     caption: string
   }
   rules: { heading: string; items: { icon: PersonaIcon; text: string }[] }
@@ -57,17 +74,19 @@ export type NoCodePage = {
   final: Final
 }
 
-const headline = 'Hand off the job, or give your team’s AI what it needs to do it.'
+const headline = 'AI agents without coding, for the work your team does every day.'
 const sub =
-  'Not building agents? Pick a blueprint, and Obsession runs the job every day. Already using Claude, ChatGPT, Zapier or n8n? Give those agents a phone number, an inbox and a browser, without code.'
+  'Front desks return every missed call. Sales teams call every new lead within a minute. Finance teams pull invoices from vendor portals. Pick a ready-made blueprint and Obsession runs the job, or give ChatGPT, Claude or Zapier a phone, an inbox and a browser.'
 
 export const noCodePage: NoCodePage = {
   meta: {
     path: '/no-code',
-    title: 'AI agents without coding: ready-made jobs, or equip your own AI',
+    title: 'AI agents without coding: ready-made jobs for every team',
     description:
-      'AI agents without coding: pick a blueprint and Obsession runs the job, or give Claude, ChatGPT, Zapier or n8n a phone number, inbox and browser.',
-    answer: `${headline} ${sub}`,
+      'AI agents without coding for front desk, sales, finance and operations teams: ready-made jobs Obsession runs, or your own AI with a phone and inbox.',
+    /* The search answer: the page's own claim, then the whole toolkit in the entity's first sentence (content/site.ts), so
+       an assistant that quotes it names Obsession whole. */
+    answer: `${headline} ${sub} ${ENTITY.split('. ')[0]}.`,
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'No code', path: '/no-code' },
@@ -78,67 +97,121 @@ export const noCodePage: NoCodePage = {
     pill: 'For teams that don’t code',
     headline,
     sub,
-    note: 'Free plan, no credit card. Results arrive in Slack, email, your CRM or a sheet.',
+    primary: { label: 'Browse blueprints', to: '/blueprints' },
+    secondary: { label: 'Start free', to: '#join' },
+    note: 'Free plan, no credit card.',
   },
 
-  doors: {
-    items: [
+  console: {
+    org: 'Brightwell Group',
+    page: 'Blueprints running',
+    search: 'Search jobs and results',
+    pick: 'Teams',
+    running: 'Running',
+    teams: [
       {
-        id: 'job',
-        kicker: 'Hire the job done',
-        title: 'Pick a blueprint. Obsession runs it.',
-        line: 'A finished job, running every day: missed calls returned, invoices pulled from vendor portals, competitors’ offers kept. You choose what counts and where results go.',
-        cta: { label: 'Browse blueprints', to: '/blueprints' },
+        id: 'front-desk',
+        name: 'Front desk',
+        reader: 'sales',
+        icon: 'phone',
+        blueprint: 'Missed call text back',
+        count: '412 calls',
+        format: 'slack',
+        rows: [
+          { at: '21:04', icon: 'phone', text: 'Missed call at the Leeds clinic' },
+          { at: '21:04', icon: 'chat', text: 'Texted back: Thursday at 10:00 or 14:30?' },
+          { at: '21:07', icon: 'chat', text: 'Reply: Thursday at 10 works' },
+          { at: '21:07', icon: 'check', text: 'Booked Thursday 10:00, Leeds', tone: 'ok' },
+        ],
+        note: '96 booked overnight, posted to #front-desk',
       },
       {
-        id: 'ai',
-        kicker: 'Make your AI capable',
-        title: 'Give the AI you already use a phone, an inbox and a browser.',
-        line: 'Connect Obsession to Claude, ChatGPT, Zapier, Make or n8n. Your agents can then take calls, receive sign-in codes and work inside portals.',
-        cta: { label: 'Connect your AI', to: '#connect' },
+        id: 'sales',
+        name: 'Sales',
+        reader: 'sales',
+        icon: 'users',
+        blueprint: 'Speed-to-lead callback',
+        count: '310 leads',
+        format: 'crm',
+        rows: [
+          { at: '09:12', icon: 'mail', text: 'New enquiry: kitchen refit, Bristol' },
+          { at: '09:12', icon: 'phone', text: 'Called back in 41 seconds' },
+          { at: '09:15', icon: 'check', text: 'Survey booked for Tuesday', tone: 'ok' },
+          { at: '09:15', icon: 'record', text: 'Lead updated in the CRM' },
+        ],
+        note: 'Every lead called within a minute',
+      },
+      {
+        id: 'finance',
+        name: 'Finance',
+        reader: 'founders',
+        icon: 'check',
+        blueprint: 'Invoice collector',
+        count: '62 invoices',
+        format: 'sheet',
+        rows: [
+          { at: '07:00', icon: 'key', text: 'Signed in to 60 vendor portals' },
+          { at: '07:02', icon: 'mail', text: 'Sign-in code received and entered' },
+          { at: '07:18', icon: 'check', text: '41 new invoices downloaded', tone: 'ok' },
+          { at: '07:19', icon: 'stop', text: '2 portals asked for a new password', tone: 'flag' },
+        ],
+        note: 'Filed to the AP sheet before 07:30',
+      },
+      {
+        id: 'marketing',
+        name: 'Marketing',
+        reader: 'marketing',
+        icon: 'record',
+        blueprint: 'Competitor tracking',
+        count: '37 emails',
+        format: 'email',
+        rows: [
+          { at: '08:00', icon: 'mail', text: 'Northfield: 30% off kitchens, ends Sunday' },
+          { at: '08:00', icon: 'record', text: 'Halden cut 18 prices overnight', tone: 'flag' },
+          { at: '08:01', icon: 'browser', text: 'Each offer page kept with its screenshot' },
+          { at: '08:05', icon: 'mail', text: 'Summary sent to marketing', tone: 'ok' },
+        ],
+        note: '3 new offers before the team logs on',
+      },
+      {
+        id: 'operations',
+        name: 'Operations',
+        reader: 'founders',
+        icon: 'key',
+        blueprint: 'Load tracking',
+        count: '312 loads',
+        format: 'slack',
+        rows: [
+          { at: '06:00', icon: 'key', text: 'Signed in to 8 carrier portals' },
+          { at: '06:04', icon: 'browser', text: '312 loads read, every page kept' },
+          { at: '06:05', icon: 'stop', text: '2 loads running late', tone: 'flag' },
+          { at: '06:05', icon: 'chat', text: 'Posted to #ops with new arrival times', tone: 'ok' },
+        ],
+        note: 'Late loads flagged before customers ask',
       },
     ],
-    blueprint: {
-      name: 'Missed call text back',
-      company: 'Brightwell Dental · 12 clinics',
-      status: 'Running',
-      rows: [
-        { at: '21:04', text: 'Missed call from a new patient', icon: 'phone' },
-        { at: '21:04', text: 'Texted back: Thursday at 10:00 or 14:30?', icon: 'chat' },
-        { at: '21:07', text: 'Reply: Thursday at 10 works', icon: 'chat' },
-        { at: '21:07', text: 'Booked Thursday 10:00', icon: 'check' },
-      ],
-      result: { format: 'slack', text: 'Posted to #front-desk' },
-    },
-    chat: {
-      app: 'Claude',
-      ask: 'Call Harlow Freight and confirm Friday’s delivery window. Email me the answer.',
-      tool: 'Obsession · phone and email',
-      steps: [
-        { at: '10:12', text: 'Called Harlow Freight from the ops number' },
-        { at: '10:14', text: 'Confirmed Friday, 08:00 to 10:00' },
-        { at: '10:14', text: 'Emailed ops@northgate.example' },
-      ],
-      answer: 'Done. Harlow confirmed Friday between 08:00 and 10:00, and the call is in your event log.',
-    },
-    caption: 'Two example teams: one runs a blueprint, the other asks its own AI to make the call.',
+    status: (n) => `${n} blueprints running · results in Slack, a CRM, a sheet and email`,
+    caption: 'One example company: every team’s job running on its own schedule, each result where that team works.',
   },
 
-  gap: {
-    heading: 'AI can write the message. On its own, it can’t make the call.',
-    line: 'The jobs that cost a team hours need a phone number, an inbox, a browser that stays signed in, and days of follow-up. Obsession gives an agent all four.',
-    cols: { task: 'The job', alone: 'AI on its own', with: 'With Obsession' },
+  equip: {
+    heading: 'AI can already think. Equipped by Obsession, it can finish the job.',
+    line: 'A chat assistant drafts the reply. An agent with its own phone number, inbox and browser makes the call, receives the code, signs in to the portal and follows up for days.',
+    agent: { name: 'An AI agent', can: 'Can think', think: ['Plan the steps', 'Write the reply', 'Decide what’s next'], act: 'Can act' },
+    states: { alone: 'On its own', equipped: 'Equipped by Obsession', label: 'Show the agent' },
     rows: [
-      { icon: 'phone', task: 'Return a missed call at 9pm', alone: 'Drafts a reply for someone to send', with: 'Calls back from its own number and books the slot' },
-      { icon: 'key', task: 'Sign in to a supplier portal', alone: 'Can’t receive the sign-in code', with: 'Receives the code in its inbox and signs in' },
-      { icon: 'clock', task: 'Chase a missing document', alone: 'Stops when the chat ends', with: 'Follows up on day 2 and day 4 until the file arrives' },
-      { icon: 'record', task: 'Keep 40 competitors’ offers', alone: 'Sees only their public pages', with: 'Subscribes to each one and keeps every email and price' },
+      { piece: 'Phone', icon: 'phone', ability: 'Take and return calls', alone: 'No number to call from', job: 'Missed calls returned within a minute', slug: 'missed-call-text-back' },
+      { piece: 'Inbox', icon: 'mail', ability: 'Receive sign-in codes and replies', alone: 'No address to receive a code', job: 'Invoices pulled from 300 vendor portals', slug: 'invoice-collector' },
+      { piece: 'Browser', icon: 'browser', ability: 'Stay signed in to portals', alone: 'Can’t keep a session open', job: 'Loads read across 25 carrier portals', slug: 'load-tracking' },
+      { piece: 'Persona', icon: 'persona', ability: 'Follow up for days', alone: 'Stops when the chat ends', job: 'Missing documents chased until they arrive', slug: 'document-chaser' },
     ],
+    note: 'Each ability opens a job your team runs today',
+    caption: 'The same agent on its own and equipped by Obsession. Each ability links to the blueprint it makes possible.',
   },
 
   jobs: {
-    heading: 'Pick a job. Obsession runs it on your schedule.',
-    line: 'Each blueprint is a finished job. Choose one, say what counts and where results go, and it keeps running until you change it.',
+    heading: 'Find your team’s first job.',
+    line: 'Each blueprint is a finished job, with its typical month at your volume. Pick one, say what counts and where results go, and it keeps running until you change it.',
     typical: 'Typical month',
     moves: 'Moves',
     teams: [
@@ -255,28 +328,10 @@ export const noCodePage: NoCodePage = {
     all: (n) => ({ label: `Browse all ${n} blueprints`, to: '/blueprints' }),
   },
 
-  connect: {
-    heading: 'Claude, ChatGPT and Zapier, now with a phone, an inbox and a browser.',
-    line: 'Already using them? Connect Obsession once, then ask in plain words. Your AI makes the call, receives the code or signs in to the portal, and every step lands in your event log.',
-    tools: [
-      { name: 'Claude', icon: 'chat', how: 'Add Obsession as a connector, then ask Claude to call, email or sign in.' },
-      { name: 'ChatGPT', icon: 'chat', how: 'Connect Obsession, then give ChatGPT jobs that need a phone or an inbox.' },
-      { name: 'Zapier', icon: 'webhook', how: 'Start a Zap from every call, text, email or code your agent receives.' },
-      { name: 'Make', icon: 'webhook', how: 'Run a scenario the moment a reply, a code or a page change arrives.' },
-      { name: 'n8n', icon: 'webhook', how: 'Trigger a workflow from any event in your event log.' },
-      { name: 'Clay', icon: 'record', how: 'Send every result to a Clay table, one row per company.' },
-    ],
-    steps: [
-      { title: 'Connect', line: 'Add Obsession to the AI tool your team already uses. No code.' },
-      { title: 'Ask', line: 'Say the job in plain words: call this supplier, sign in to that portal, follow up on Friday.' },
-      { title: 'Receive', line: 'The answer comes back in the same chat or flow, and every step is kept in your event log.' },
-    ],
-    note: 'Using a tool that isn’t here? We build the integration.',
-  },
-
   scale: {
     heading: 'From 2 agents for a founder to 1,200 across an enterprise.',
-    line: 'The same blueprints run for one location or hundreds, and each blueprint page prices the month at your volume.',
+    line: 'The same blueprints run for one location or hundreds. An enterprise reorders supplies for 400 sites; a founder answers every enquiry within a minute. Each blueprint page prices the month at your volume.',
+    legend: 'Each dot is 10 agents',
     rows: [
       { name: 'Enterprises', size: '5,000+ people', agents: 1200, job: 'Reorder supplies for 400 sites from 60 suppliers', slug: 'supplier-reorder-agent' },
       { name: 'Mid-market companies', size: '200 to 5,000 people', agents: 150, job: 'Call every inbound lead within a minute, across 3 brands', slug: 'speed-to-lead-callback' },
@@ -284,7 +339,53 @@ export const noCodePage: NoCodePage = {
       { name: 'Multi-location businesses', size: '10 to 200 people', agents: 40, job: 'Text back missed calls at 40 clinics', slug: 'missed-call-text-back' },
       { name: 'Founders and consultants', size: 'A team of one', agents: 2, job: 'Answer every new enquiry within a minute', slug: 'speed-to-lead-callback' },
     ],
-    caption: 'Example deployments by company size.',
+    volume: { label: 'At volume, priced on each blueprint’s page', slugs: ['load-tracking', 'imessage-assistant', 'invoice-collector', 'missed-call-text-back'], per: 'a month' },
+    caption: 'Example deployments by company size, and the largest typical month on four blueprint pages.',
+  },
+
+  ways: {
+    heading: 'Start with a ready-made job, or with the AI tools you already use.',
+    line: 'Hand Obsession a finished job, or give the AI your team already uses the phone, inbox and browser it was missing. Neither needs code, and many teams do both.',
+    job: {
+      kicker: 'Ready-made jobs',
+      title: 'Pick a blueprint, and Obsession runs the job every day.',
+      line: 'Say what counts and where results go, in plain words. It keeps running until you change it.',
+      cta: { label: 'Browse blueprints', to: '/blueprints' },
+    },
+    ai: {
+      kicker: 'Your own AI tools',
+      title: 'Give ChatGPT, Claude or Zapier a phone, an inbox and a browser.',
+      line: 'Connect Obsession once, then ask in plain words. Your AI makes the call, receives the code or signs in, and every step lands in your event log.',
+      cta: { label: 'Start free', to: '#join' },
+    },
+    sheet: {
+      crumb: 'Blueprints',
+      name: 'Missed call text back',
+      fields: [
+        ['When', 'A call goes unanswered'],
+        ['Do', 'Text back within a minute, offer the next free slot'],
+        ['Where', '12 clinics'],
+        ['Results to', '#front-desk in Slack'],
+      ],
+      button: 'Approve and run',
+      running: 'Running at 12 clinics',
+      note: 'Set up in plain words, running today',
+    },
+    chat: {
+      app: 'Claude',
+      ask: 'Call Harlow Freight and confirm Friday’s delivery window. Email me the answer.',
+      tool: 'Obsession · phone and email',
+      steps: [
+        { at: '10:12', text: 'Called Harlow Freight from the ops number' },
+        { at: '10:14', text: 'Confirmed Friday, 08:00 to 10:00' },
+        { at: '10:14', text: 'Emailed ops@northgate.example' },
+      ],
+      answer: 'Done. Harlow confirmed Friday between 08:00 and 10:00, and the call is in your event log.',
+      note: 'Your own AI, now able to call',
+    },
+    tools: ['Claude', 'ChatGPT', 'Zapier', 'Make', 'n8n', 'Clay'],
+    toolsNote: 'Using a tool that isn’t here? We build the integration.',
+    caption: 'Two example teams: one approves a blueprint, the other asks its own AI to make the call.',
   },
 
   rules: {
@@ -308,7 +409,7 @@ export const noCodePage: NoCodePage = {
   dev: {
     heading: 'Your developers build on the same pieces.',
     line: 'An inbox, a phone number and a browser for each agent, through one API and MCP. Your team’s blueprints keep running beside it.',
-    link: { label: 'Build with the API', to: '/developers' },
+    link: { label: 'See the API and MCP', to: '/developers' },
   },
 
   faq: {
@@ -338,7 +439,7 @@ export const noCodePage: NoCodePage = {
       {
         q: 'What does it cost?',
         a: 'Start on the Free plan, with no credit card. Each blueprint page shows what a typical month costs at your volume.',
-        link: { label: 'Pricing', to: '/pricing' },
+        link: { label: 'See pricing', to: '/pricing' },
       },
       {
         q: 'Is it safe to let an agent contact people for us?',

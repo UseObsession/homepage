@@ -11,8 +11,8 @@ export type DoorId = 'build' | 'blueprint' | 'connect'
 
 export const doors: { id: DoorId; icon: PersonaIcon; title: string; line: string; sheet: string }[] = [
   { id: 'build', icon: 'code', title: 'Build with the API', line: 'Give your agents email, phone, messaging, a browser and a sandbox, in code.', sheet: 'Build with the API' },
-  { id: 'blueprint', icon: 'check', title: 'Run a blueprint', line: 'Pick a ready-made job, and Obsession runs it every day.', sheet: 'Run a blueprint' },
-  { id: 'connect', icon: 'chat', title: 'Connect our AI', line: 'Give Claude, ChatGPT, Zapier, Make or n8n a phone, an inbox and a browser.', sheet: 'Connect our AI' },
+  { id: 'blueprint', icon: 'check', title: 'Run a ready-made job', line: 'Pick a blueprint, and Obsession runs the job every day.', sheet: 'Run a blueprint' },
+  { id: 'connect', icon: 'chat', title: 'Connect our AI tools', line: 'Give ChatGPT, Claude, Zapier, Make or n8n a phone, an inbox and a browser.', sheet: 'Connect our AI' },
 ]
 
 export const pieces: { id: PieceId; name: string }[] = [
