@@ -121,7 +121,7 @@ export function PersonaHero({ hero, start }: { hero: Hero; start: PersonaStart }
           {hero.note && <p className="s-ph-note">{hero.note}</p>}
         </div>
         {hero.proof.length > 0 && (
-          <dl className="s-ph-facts s-bp-cross">
+          <dl className="s-ph-facts">
             {hero.proof.map((f) => (
               <div className="s-ph-fact" key={f.value}>
                 <dt className="s-ph-fact-v">{f.value}</dt>

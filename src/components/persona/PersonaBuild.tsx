@@ -10,7 +10,7 @@ import './PersonaBuild.css'
 export function PersonaBuild({ build, id }: { build: Build; id?: string }) {
   const hid = useId()
   return (
-    <section className="s-section s-bp-ruled s-pb" id={id} aria-labelledby={hid}>
+    <section className="s-section s-pb" id={id} aria-labelledby={hid}>
       <div className="s-wrap s-pb-grid">
         <div className="s-pb-words">
           <h2 className="s-bp-h" id={hid}>

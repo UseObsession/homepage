@@ -24,7 +24,7 @@ function Slab() {
 export function PersonaAnatomy({ anatomy, id }: { anatomy: Anatomy; id?: string }) {
   const hid = useId()
   return (
-    <section className="s-section s-bp-ruled s-pa" id={id} aria-labelledby={`${hid}-h`}>
+    <section className="s-section s-pa" id={id} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap s-pa-grid">
         <div className="s-pa-words">
           <h2 className="s-bp-h" id={`${hid}-h`}>

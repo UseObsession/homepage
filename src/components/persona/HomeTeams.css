@@ -156,9 +156,9 @@
 /* ---- What every blueprint comes with: four plain facts on one ruled row ---- */
 .h-tm__inc { margin-top: var(--ob-space-48, var(--ob-space-40)); }
 .h-tm__inc-h { margin: 0 0 var(--ob-space-16); font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); }
-.h-tm__inc-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: var(--ob-border-hair) solid var(--ob-line); }
-.h-tm__inc-item { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: var(--ob-space-12); padding: var(--ob-space-20) var(--ob-space-16) var(--ob-space-20) 0; }
-.h-tm__inc-item + .h-tm__inc-item { padding-left: var(--ob-space-16); border-left: var(--ob-border-hair) solid var(--ob-line); }
+/* What every blueprint comes with: 4 cards with air between them, the pieces' card on the teams page's terms. */
+.h-tm__inc-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ob-space-12); }
+.h-tm__inc-item { display: grid; grid-template-columns: 30px minmax(0, 1fr); align-content: start; gap: var(--ob-space-12); padding: var(--ob-space-20); border-radius: var(--ob-radius-xl); background: var(--ob-sheen), var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1); }
 .h-tm__inc-ic { display: grid; place-items: center; width: 30px; height: 30px; border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-sm); color: var(--ob-text-2); }
 .h-tm__inc-ic svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 .h-tm__inc-words { display: grid; gap: 2px; min-width: 0; }
@@ -178,16 +178,12 @@
   .h-tm__team { grid-template-columns: 8px auto; min-height: 40px; padding: var(--ob-space-6) var(--ob-space-12); border-color: var(--ob-line); border-radius: var(--ob-radius-pill); }
   .h-tm__team-words span { display: none; }
   .h-tm__inc-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .h-tm__inc-item:nth-child(3) { padding-left: 0; border-left: 0; }
-  .h-tm__inc-item:nth-child(n + 3) { border-top: var(--ob-border-hair) solid var(--ob-line); }
 }
 @media (max-width: 560px) {
   .h-tm__step { padding: var(--ob-space-16); }
   .h-tm__sentence { font: var(--ob-type-small); line-height: 1.75; }
   .h-tm__bp { flex-direction: column; align-items: flex-start; gap: var(--ob-space-8); }
   .h-tm__inc-list { grid-template-columns: minmax(0, 1fr); }
-  .h-tm__inc-item, .h-tm__inc-item + .h-tm__inc-item { padding-left: 0; border-left: 0; }
-  .h-tm__inc-item + .h-tm__inc-item { border-top: var(--ob-border-hair) solid var(--ob-line); }
 }
 
 /* ---- Motion: the steps arrive in order and each blank fills in turn ---- */

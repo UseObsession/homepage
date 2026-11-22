@@ -18,10 +18,10 @@ function callLines(call: string) {
   return at > 0 ? [tight.slice(0, at), <wbr key="b" />, tight.slice(at)] : tight
 }
 
-export function HomePieces({ pieces, id }: { pieces: Pieces; id?: string }) {
+export function HomePieces({ pieces, id, tone }: { pieces: Pieces; id?: string; tone?: 'alt' }) {
   const hid = useId()
   return (
-    <section className="s-section s-pz" id={id} aria-labelledby={`${hid}-h`}>
+    <section className="s-section s-pz" id={id} data-tone={tone} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
         <div className="s-bp-head">
           <h2 className="s-bp-h" id={`${hid}-h`}>

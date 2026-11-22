@@ -27,7 +27,7 @@ const Chev = ({ className }: { className: string }) => (
   </svg>
 )
 
-export function HomeBlueprints({ words, id }: { words: Words; id?: string }) {
+export function HomeBlueprints({ words, id, tone }: { words: Words; id?: string; tone?: 'alt' }) {
   const hid = useId()
   const { ref, inView } = useInView<HTMLUListElement>(0.12)
   const [armed, setArmed] = useState(false)
@@ -35,7 +35,7 @@ export function HomeBlueprints({ words, id }: { words: Words; id?: string }) {
     if (!inView) setArmed(true)
   }, [inView])
   return (
-    <section className="s-section h-bp" id={id} aria-labelledby={`${hid}-h`}>
+    <section className="s-section h-bp" id={id} data-tone={tone} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
         <div className="h-bp__head">
           <div className="s-bp-head">

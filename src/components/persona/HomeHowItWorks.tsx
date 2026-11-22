@@ -49,7 +49,7 @@ const PlaceIcon = ({ id }: { id: 'runtime' | 'servers' | 'person' }) => (
   </svg>
 )
 
-export function HomeHowItWorks({ how, id }: { how: HomeHow; id?: string }) {
+export function HomeHowItWorks({ how, id, tone }: { how: HomeHow; id?: string; tone?: 'alt' }) {
   const hid = useId()
   const L = how.loop
   const root = useRef<HTMLDivElement>(null)
@@ -153,7 +153,7 @@ export function HomeHowItWorks({ how, id }: { how: HomeHow; id?: string }) {
   const from = (n: number) => ({ 'data-from': n }) as Record<string, number>
 
   return (
-    <section className="s-section h-how" id={id} aria-labelledby={`${hid}-h`}>
+    <section className="s-section h-how" id={id} data-tone={tone} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
         <div className="s-bp-head h-how__head">
           <h2 className="s-bp-h" id={`${hid}-h`}>

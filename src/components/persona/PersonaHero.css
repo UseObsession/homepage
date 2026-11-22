@@ -189,12 +189,16 @@
   color: var(--ob-text-2);
 }
 
-/* The 3 facts: a ruled row at the container's width, the facts split by hairlines. */
+/* The 3 facts: one rounded strip at the doors' width, centred under them, the facts split by hairlines. */
 .s-ph-facts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin: clamp(48px, 6vw, 80px) 0 0;
-  border-bottom: var(--ob-border-hair) solid var(--ob-line);
+  width: min(100%, 860px);
+  margin: clamp(32px, 4vw, 48px) auto 0;
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1);
+  overflow: hidden;
 }
 .s-ph-fact {
   display: grid;
@@ -224,7 +228,7 @@
     grid-template-columns: minmax(0, 9ch) minmax(0, 1fr);
     align-items: baseline;
     gap: var(--ob-space-16);
-    padding: var(--ob-space-16) 0;
+    padding: var(--ob-space-16) var(--ob-space-20);
     text-align: left;
   }
   .s-ph-fact + .s-ph-fact { border-left: 0; border-top: var(--ob-border-hair) solid var(--ob-line); }
