@@ -1,0 +1,146 @@
+/* app-reorder (23 Nov 2026): Your company / Agents / Supplier reorders. Supplier reorder agent for Lantern Kitchen, an
+   invented restaurant group with 18 sites. Top: the 4 suppliers, each signed in with the group's own account (Corvel
+   Coffee ends held, with the hollow mark), and the 2 lines the event log just wrote. Below: this morning's orders, 1 row
+   per supplier, with the order number, items, total and delivery date; the held one carries a band and its price
+   beside the agreed price. Foot: the 2 lines it keeps, and the toast to #purchasing.
+   Story (4.3 s): the stock sheet line lands, the suppliers sign in one by one (each mark circles, then lands, or goes
+   hollow for the held one), the confirmation lands in the log, the orders land row by row and each flips from Ordering
+   to its order number, the held row lights, Needs you goes 0 to 1, the toast.
+   Geometry (design px, main 556 x 414, padding 14): header 14..38, suppliers 50..118, orders 130..338, foot 362..400.
+   Rest state (no .play) = the finished scene. Monochrome, like every screen. */
+
+.app-reorder .ax-main{grid-template-columns:minmax(0,1fr);grid-template-rows:24px auto auto;align-content:start;gap:12px;padding:14px}
+
+/* ---------- header ---------- */
+.app-reorder .ro-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-reorder .ro-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-reorder .ro-meta{padding-top:2px;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-reorder .ro-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-reorder .ro-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-reorder .ro-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* sidebar: the list this job belongs to; Needs you gains the held order */
+.app-reorder .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-reorder .ax-clients a.on i{background:var(--fg-2)}
+.app-reorder .ro-nb{display:inline-grid}
+.app-reorder .ro-nb b{grid-area:1/1;font-weight:inherit}
+.app-reorder .ro-nb b:first-child{opacity:0}
+
+/* the status mark slot and stacked words: only the last state shows at rest */
+.app-reorder .ro-mk{display:grid;place-items:center;flex:none;width:12px;height:12px}
+.app-reorder .ro-mk>svg{grid-area:1/1}
+.app-reorder .ro-mk .w0{opacity:0}
+.ilwrap .app-reorder .ro-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.app-reorder .ro-st,.app-reorder .ro-sv{display:grid;min-width:0}
+.app-reorder .ro-st>span,.app-reorder .ro-sv>span{grid-area:1/1}
+.app-reorder .v0{opacity:0}
+
+/* ---------- the 4 suppliers ---------- */
+.app-reorder .ro-sp{display:grid;grid-template-rows:44px 24px;overflow:hidden}
+.app-reorder .ro-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:8px 10px 0}
+.app-reorder .ro-tile{display:grid;align-content:center;gap:6px;padding:0 9px;border-radius:8px;background:rgb(var(--fg-rgb) / .03);box-shadow:0 0 0 1px var(--line) inset;min-width:0}
+.app-reorder .ro-tile.held{background:rgb(var(--fg-rgb) / .055)}
+.app-reorder .ro-tn{display:flex;align-items:center;gap:6px;min-width:0}
+.app-reorder .ro-tn b{font:500 11px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-reorder .ro-st{font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-reorder .ro-st .v1{color:var(--fg-2)}
+/* the log's last 2 lines, under the tiles */
+.app-reorder .ro-log{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 12px;border-top:1px solid var(--line);
+  background:rgb(var(--fg-rgb) / .02);font-size:10.5px;color:var(--fg-2);white-space:nowrap}
+.app-reorder .ro-log>span{display:flex;align-items:center;gap:7px;min-width:0}
+.app-reorder .ro-log time{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-reorder .ro-log code{font:500 10.5px/1 var(--mono);color:var(--fg)}
+
+/* ---------- this morning's orders ---------- */
+.app-reorder .ro-tb{position:relative;display:grid;overflow:hidden}
+.app-reorder .ro-th{display:flex;align-items:center;justify-content:space-between;height:26px;padding:0 12px;border-bottom:1px solid var(--line-2)}
+.app-reorder .ro-th b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-reorder .ro-ct{font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-reorder .ro-g{display:grid;grid-template-columns:84px 88px minmax(0,1fr) 62px 72px 14px;align-items:center;column-gap:10px;padding:0 12px}
+.app-reorder .ro-g>*{min-width:0}
+.app-reorder .ro-ch{height:22px;font:500 10.5px/1 var(--sans);color:var(--fg-3);background:rgb(var(--fg-rgb) / .02);box-shadow:0 -1px 0 var(--line) inset}
+.app-reorder .ro-r{position:relative;height:34px;box-shadow:0 -1px 0 var(--line) inset}
+.app-reorder .ro-o{display:flex;align-items:center;gap:7px;min-width:0}
+.app-reorder .ro-sv{font:500 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap}
+.app-reorder .ro-sv .v0{font-weight:400;color:var(--fg-3)}
+.app-reorder .ro-sup{font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-reorder .ro-it{display:grid;gap:4px;min-width:0}
+.app-reorder .ro-it b{font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-reorder .ro-it small{font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-reorder .ro-tot{text-align:right;font:500 11px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-reorder .ro-due{font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* the held order: a band, its total dimmed, its price note and status brighter */
+.app-reorder .ro-r.held{background:rgb(var(--fg-rgb) / .05)}
+.app-reorder .ro-r.held .ro-it small{color:var(--fg-2)}
+.app-reorder .ro-r.held .ro-tot{color:var(--fg-3)}
+.app-reorder .ro-r.held .ro-due{font-family:var(--sans);color:var(--fg)}
+
+/* the proof marker: a tiny capture of the supplier's page */
+.app-reorder .ro-pf{position:relative;flex:none;display:block;width:12px;height:10px;border-radius:2px;box-shadow:0 0 0 1px rgb(var(--fg-rgb) / .32) inset}
+.app-reorder .ro-pf::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px 2px 0 0;background:rgb(var(--fg-rgb) / .32)}
+
+.app-reorder .ro-f{display:flex;align-items:center;justify-content:space-between;gap:12px;height:24px;padding:0 12px;font-size:10.5px;color:var(--fg-3);background:rgb(var(--fg-rgb) / .02)}
+.app-reorder .ro-f span{display:flex;align-items:center;gap:7px;white-space:nowrap}
+
+/* ---------- foot: the 2 lines it keeps, the toast ---------- */
+.app-reorder .ro-note{position:absolute;left:14px;bottom:14px;height:38px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:4px;
+  font-size:10.5px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.app-reorder .ro-note span{grid-column:2}
+.ilwrap .app-reorder .ro-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-reorder .ro-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-reorder .ro-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-reorder .ro-toast b{font-weight:500;color:var(--fg)}
+.app-reorder .ro-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play, and only for readers who allow it) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes rord-on{from{opacity:1}to{opacity:1}}
+  @keyframes rord-show{from{opacity:0}to{opacity:1}}
+  @keyframes rord-hide{from{opacity:1}to{opacity:0}}
+  @keyframes rord-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes rord-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+  @keyframes rord-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes rord-spin{to{transform:rotate(360deg)}}
+  @keyframes rord-spinr{to{transform:rotate(-360deg)}}
+  @keyframes rord-home{from{transform:none}to{transform:translate(-24.6965px,24.6965px) scale(.8)}}
+  @keyframes rord-sqin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(.7525)}}
+  @keyframes rord-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}30%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .05)}}
+  @keyframes rord-pulse{0%,100%{opacity:1}50%{opacity:.15}}
+  @keyframes rord-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. the stock sheet line lands; each supplier signs in at its own moment: the mark circles, then lands or goes hollow */
+  .app-reorder.play .ro-l1{animation:rord-land .4s var(--ease) .45s both;}
+  .app-reorder.play .ro-tile .w0{animation:rord-on .01s linear both,rord-hide .2s var(--ob-ease-in) var(--ro-e) forwards;}
+  .app-reorder.play .ro-tile .w0 .sig-rot{animation:rord-spin .6s linear .3s 2;}
+  .app-reorder.play .ro-tile .w0 .sig-orb{animation:rord-spinr .6s linear .3s 2;}
+  .app-reorder.play .ro-tile .w1{animation:rord-show .2s var(--ease) var(--ro-e) both;}
+  .app-reorder.play .ro-tile .w1.st-landed .sig-sq{animation:rord-home .55s var(--snap) var(--ro-e) both;}
+  .app-reorder.play .ro-tile .w1.st-landed .sig-gap{animation:rord-show .3s var(--ease) calc(var(--ro-e) + .15s) both;}
+  .app-reorder.play .ro-tile .w1.st-needs .sig-sq{animation:rord-sqin .45s var(--snap) var(--ro-e) both;}
+  .app-reorder.play .ro-tile .v0{animation:rord-on .01s linear both,rord-out .25s var(--ob-ease-in) var(--ro-e) forwards;}
+  .app-reorder.play .ro-tile .v1{animation:rord-in .35s var(--ease) calc(var(--ro-e) + .05s) both;}
+  .app-reorder.play .ro-tile.held{animation:rord-glow 1.2s var(--ease) calc(var(--ro-e) + .2s) both;}
+  .app-reorder.play .ro-l2{animation:rord-land .4s var(--ease) 1.65s both;}
+
+  /* 2. the orders land row by row; each flips from Ordering to its order number; the held row lights */
+  .app-reorder.play .ro-ct{animation:rord-show .35s var(--ease) 2s both;}
+  .app-reorder.play .ro-r{animation:rord-land .4s var(--ease) var(--ro-t) both;}
+  .app-reorder.play .ro-r.held{animation:rord-land .4s var(--ease) var(--ro-t) both,rord-glow 1.2s var(--ease) calc(var(--ro-t) + .45s) both;}
+  .app-reorder.play .ro-r .w0{animation:rord-on .01s linear both,rord-hide .2s var(--ob-ease-in) calc(var(--ro-t) + .45s) forwards;}
+  .app-reorder.play .ro-r .w1{animation:rord-show .2s var(--ease) calc(var(--ro-t) + .45s) both;}
+  .app-reorder.play .ro-r .w1.st-landed .sig-sq{animation:rord-home .55s var(--snap) calc(var(--ro-t) + .45s) both;}
+  .app-reorder.play .ro-r .w1.st-landed .sig-gap{animation:rord-show .3s var(--ease) calc(var(--ro-t) + .6s) both;}
+  .app-reorder.play .ro-r .w1.st-needs .sig-sq{animation:rord-sqin .45s var(--snap) calc(var(--ro-t) + .45s) both;}
+  .app-reorder.play .ro-r .v0{animation:rord-on .01s linear both,rord-out .25s var(--ob-ease-in) calc(var(--ro-t) + .4s) forwards;}
+  .app-reorder.play .ro-r .v1{animation:rord-in .35s var(--ease) calc(var(--ro-t) + .45s) both;}
+  .app-reorder.play .ro-r .ro-pf{animation:rord-show .3s var(--ease) calc(var(--ro-t) + .6s) both;}
+  .app-reorder.play .ro-f{animation:rord-show .35s var(--ease) 3.25s both;}
+
+  /* 3. Needs you goes 0 to 1, the note, then the toast to #purchasing */
+  .app-reorder.play .ro-nb b:first-child{animation:rord-on .01s linear both,rord-out .25s var(--ob-ease-in) 3.25s forwards;}
+  .app-reorder.play .ro-nb b:last-child{animation:rord-in .3s var(--ease) 3.3s both;}
+  .app-reorder.play .ro-note{animation:rord-show .4s var(--ease) .3s both;}
+  .app-reorder.play .ro-toast{animation:rord-toast .45s var(--ease) 3.7s both;}
+  .app-reorder.play .ro-toast .sig-sq{animation:rord-pulse 2.6s ease-in-out 4.3s infinite;}
+}

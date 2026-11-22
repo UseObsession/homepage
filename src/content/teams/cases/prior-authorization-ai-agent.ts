@@ -48,6 +48,8 @@ export const useCase: TeamPage = {
       { icon: 'record', label: 'Each answer goes to your queue' },
     ],
     who: 'Auth agent 2 at northgate.example',
+    note: 'Both answers in your queue by 06:32',
+    fleet: '15 agents · 6,000 requests a month',
     rows: [
       { at: 'Mon · 06:30', kind: 'page.visited', text: 'portal.payer.example/login' },
       { at: 'Mon · 06:30', kind: 'sms.received', text: 'Your one-time code is 307518' },
@@ -103,9 +105,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Checks for the agents your team relies on.',
+    heading: 'Read every prior authorisation in payer portals, and check the agents your team relies on.',
     line: 'Each runs without code and posts what it found to Slack, a sheet or your webhook.',
-    slugs: ['vendor-agent-check', 'resolution-check', 'voice-agent-check'],
+    slugs: ['prior-authorization-status', 'vendor-agent-check', 'resolution-check', 'voice-agent-check'],
   },
 
   prices: ['browser', 'inbox', 'number', 'sms', 'voice', 'persona'],
@@ -140,7 +142,7 @@ export const useCase: TeamPage = {
       {
         q: 'How do our engineers connect a payer portal?',
         a: 'Create a browser with obsession.browsers.create({ home: "US" }) and drive it with Playwright over CDP. It keeps its session for weeks, and each login code reaches your code as email.received or sms.received.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'Can we use it with patient data?',

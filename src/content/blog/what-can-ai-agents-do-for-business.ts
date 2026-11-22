@@ -350,7 +350,7 @@ export const post: BlogPost = {
           'Companies on Microsoft 365',
         ],
         [
-          'Obsession (ours): six types of blueprints, from [Talk to customers](/blueprints/talk-to-customers) to [Train and test agents](/blueprints/train-and-test-agents)',
+          'Obsession (ours): seven types of blueprints, from [Talk to customers](/blueprints/talk-to-customers) to [Buy, book and order](/blueprints/buy-book-and-order)',
           'An inbox, number, browser and sandbox per agent, or a blueprint that runs the job',
           'Free, then $20, $99 or $499 a month; usage per piece',
           'Stops before payment and at any identity check',
@@ -429,5 +429,9 @@ export const post: BlogPost = {
     'recipe:competitor-tracking',
     'ai-agent-use-cases-for-business',
     'can-ai-make-phone-calls',
+    'recipe:document-chaser',
+    'recipe:order-receipt-ledger',
+    'recipe:travel-booking-agent',
+    '/no-code',
   ],
 }

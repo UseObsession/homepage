@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'trial',
   slug: 'trial-teardown',
   name: 'Trial teardown',
-  group: 'Watch other companies',
+  group: 'Work behind logins',
   line: 'A persona starts a competitor’s trial as a new user and keeps every email, prompt and offer.',
   gets: 'The whole trial on 1 page, from what sign up asks to the offer on the last day.',
   kit: [

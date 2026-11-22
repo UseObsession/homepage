@@ -19,7 +19,7 @@ export const recipe: Recipe = {
   id: 'voice-agent',
   slug: 'voice-agent-check',
   name: 'Voice agent check',
-  group: 'Check your AI agents',
+  group: 'Talk to customers',
   line: 'Personas call your voice agent, then wait days for the text, email and callback it promised.',
   gets: 'Every call recorded and transcribed, and every text, email and callback after it, or the silence.',
   kit: [

@@ -83,7 +83,7 @@ const access = (source: string): Capture => ({ kind: 'waitlist', source, button:
 
 /* The close every reference page shares: Start free, and the blueprints as the quiet second path. */
 export const refFinal = (source: string): Final => ({
-  heading: 'Start with the piece your agent needs first.',
+  heading: 'Start with the piece your agent needs, or a ready-made job.',
   capture: access(source),
   link: { label: 'Browse blueprints', to: '/blueprints' },
 })

@@ -30,7 +30,7 @@ export type TeamPage = {
   /* The price rows shown, from prices.ts. */
   prices: PriceKey[]
   who: KitPage['who']
-  examples?: { heading: string; paths: string[] }
+  examples?: KitPage['examples']
   faq: Faq
   final: Final
 }

@@ -34,20 +34,21 @@ export const useCase: TeamPage = {
 
   scene: {
     steps: [
-      { icon: 'phone', label: 'A new patient calls at lunch' },
-      { icon: 'check', label: 'The agent books a cleaning' },
-      { icon: 'mail', label: 'It emails the new patient forms' },
-      { icon: 'chat', label: 'It texts a reminder the day before' },
+      { icon: 'chat', label: 'A reminder goes out the day before' },
+      { icon: 'phone', label: 'The patient texts to move it' },
+      { icon: 'check', label: 'The agent finds a free slot' },
+      { icon: 'record', label: 'Your schedule updates itself' },
     ],
     who: 'Sky, the front desk agent at Brightwater Dental',
+    note: 'Rebooked by text, no phone tag',
+    fleet: '40 practices · one number each',
     rows: [
-      { at: 'Thu 12:47', kind: 'call.received', text: '+1 303 555 0164 · 3 min 20 s · transcript kept' },
-      { at: 'Thu 12:50', kind: 'call.ended', text: 'New patient booked: cleaning and exam, Tue 9:00 · confirmation texted' },
-      { at: 'Thu 12:51', kind: 'email.sent', text: 'Your new patient forms · frontdesk@brightwater-dental.example' },
-      { at: 'Mon 09:05', kind: 'sms.received', text: '“Yes, see you Tuesday at 9”', tone: 'ok' },
-      { at: 'Mon 09:05', kind: 'webhook', text: 'Visit confirmed in your scheduling system' },
+      { at: 'Mon 09:00', kind: 'email.sent', text: 'Reminder: cleaning and exam, Tue 9:00 · also sent by text' },
+      { at: 'Mon 12:41', kind: 'sms.received', text: '“Can I move it to Thursday? Work came up.”' },
+      { at: 'Mon 12:42', kind: 'blueprint.result', text: 'Moved to Thu 11:30 · confirmation texted', tone: 'ok' },
+      { at: 'Mon 12:42', kind: 'webhook', text: 'Your scheduling system updated · the Tuesday slot is free again' },
     ],
-    caption: 'A lunchtime call booked, the forms emailed and the visit confirmed by text, on one identity. Brightwater Dental is an invented example.',
+    caption: 'A patient rebooked by text in a minute, and the Tuesday slot freed for someone else. Brightwater Dental is an invented example.',
   },
 
   uses: {
@@ -95,9 +96,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Hear what your agent tells patients, every morning.',
+    heading: 'Confirm every appointment, return every missed call, and hear what your agent tells patients.',
     line: 'No code. Name the practice’s number or booking form, and every answer lands in Slack, a sheet or your inbox.',
-    slugs: ['voice-agent-check', 'lead-leaks', 'ai-disclosure-check'],
+    slugs: ['appointment-reminders', 'missed-call-text-back', 'voice-agent-check', 'lead-leaks', 'ai-disclosure-check'],
   },
 
   prices: ['number', 'voice', 'sms', 'register', 'inbox', 'whatsapp'],

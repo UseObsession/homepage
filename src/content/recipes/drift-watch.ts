@@ -12,7 +12,7 @@ export const recipe: Recipe = {
   id: 'drift',
   slug: 'drift-watch',
   name: 'Drift watch',
-  group: 'Check your AI agents',
+  group: 'Train and test agents',
   line: 'A persona asks your AI agent your hardest cases daily and after every update, and shows what changed.',
   gets: 'Every answer that changed, found the day it changed, with its before and after.',
   kit: [

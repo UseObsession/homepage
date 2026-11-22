@@ -13,6 +13,7 @@ import { FinalCta } from '../components/sections/FinalCta'
 import { RecipeKit } from '../components/sections/RecipeKit'
 import { KitBadge, KitCards, KitLinkAction, kitOfBlueprint, type BlueprintKitOf } from '../components/blueprint/BlueprintKit'
 import { RunsOn } from '../components/blueprint/RunsOn'
+import { BlueprintDoors } from '../components/blueprint/BlueprintDoors'
 import { drawnFor, type Workspace } from '../components/workspace'
 import { blueprintUi } from '../content/blueprint-ui'
 import { catalog } from '../content/catalog'
@@ -255,6 +256,10 @@ export function RecipePage({ recipe: r }: { recipe: Recipe }) {
           <RecipeKit name={r.name} items={r.kit} ui={ui.kit} className="s-rp-how__kit" />
         </div>
         {r.settings && r.settings.length > 0 && <Settings settings={r.settings} />}
+      </Section>
+
+      <Section id="doors" heading={ui.doors.heading} line={ui.doors.line} className="s-rp-doors">
+        <BlueprintDoors r={r} />
       </Section>
 
       <Section id="run" heading={ui.run.heading} line={r.gets} tone="paper" className="s-rp-run">

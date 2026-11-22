@@ -2,9 +2,11 @@ import { createElement, useEffect, useId, useRef, useState, useSyncExternalStore
 import { Link, useLocation } from 'react-router-dom'
 import { capture as copy } from '../content/capture'
 import { join } from '../content/join'
+import { setup } from '../content/setup'
 import type { Capture } from '../content/types'
 import { track } from '../lib/analytics'
-import { arrivedFrom, begin, microOf, newId, offerOf, useJoin } from '../lib/join'
+import { arrivedFrom, newId } from '../lib/join'
+import { begin, doorOf, useSetup } from '../lib/setup'
 import { WAITLIST_URL, isEmail, isWorkEmail, submitSignup } from '../lib/waitlist'
 import { StatusMark } from './Logo'
 import './CaptureForm.css'
@@ -12,23 +14,21 @@ import './CaptureForm.css'
    chunk of its own that loads on demand, and a style a lazy chunk imports would land after tones.css). */
 import './JoinCard.css'
 
-/* The 1 capture form: every form on the site is the waitlist (docs/REBUILD.md, section 9), on the design system's
-   .ob-pill-form. It asks for the email only, with the page's own offer as its button ("Check 5 stores free", "Check
-   my AI agent free", "Join the waitlist"); the line under it says they're joining the waitlist and what they get
-   (content/join.ts, worked out from the form by lib/join offerOf). Once the email is saved, the form becomes the card
-   (components/JoinCard) in the same spot: name and company, up to 5 brands in the offer's words, the recipes they
-   want first and an optional use case.
-   - Before the script loads it is a real form: method="post" to the waitlist script, which takes form posts too. Once
+/* The 1 capture form, on the design system's .ob-pill-form: every form on the site starts the Free plan. It asks for the
+   work email only, with the page's own button; the line under it fits the page (content/setup.ts micro). Once the email
+   is saved, the form becomes the sign-up card (components/SetupCard) in the same spot: how the team will use Obsession,
+   what it needs first, and who to set it up for.
+   - Before the script loads it is a real form: method="post" to the sign-up script, which takes form posts too. Once
      hydrated it checks the email itself and sends JSON without leaving the page.
    - Errors show 3 ways: the message under the pill, the danger edge, and aria-invalid with aria-describedby.
    - Sending and success are announced through 1 live region that stays mounted; a second submit while sending does
      nothing.
-   - The email never waits for the card: it is sent and saved first, with a sign up ID that ties every later step to
-     its row (waitlist/Code.js). The card's code is a chunk fetched on demand, warmed the moment a reader touches a form,
-     so a page nobody signs up on carries none of it. If it can't load, the form says "You're on the list."
-   - 1 sign up per visit (lib/join keeps it for a day): every form on every page shows its card, and a reload opens it
+   - The email never waits for the card: it is sent and saved first, with a sign-up ID that ties every later step to its
+     row (waitlist/Code.js). The card's code is a chunk fetched on demand, warmed the moment a reader touches a form, so
+     a page nobody signs up on carries none of it. If it can't load, the form gives the plain thank you.
+   - 1 sign up per visit (lib/setup keeps it for a day): every form on every page shows its card, and a reload opens it
      where they left it. Only the form they typed in moves the focus.
-   - An older waitlist script (version 1) keeps the email only: the form then says the plain thank you. */
+   - An older sign-up script (version 1) keeps the email only: the form then gives the plain thank you. */
 
 type Problem = { field: 'email' | 'form'; text: string } | null
 type Card = ComponentType<{ owner: boolean }>
@@ -42,9 +42,9 @@ let card: Card | null = null
 let cardLoad: Promise<Card | null> | null = null
 const cardListeners = new Set<() => void>()
 function loadCard() {
-  cardLoad ??= import('./JoinCard')
+  cardLoad ??= import('./SetupCard')
     .then((m) => {
-      card = m.JoinCard
+      card = m.SetupCard
       cardListeners.forEach((l) => l())
       return card
     })
@@ -70,11 +70,12 @@ let ownerId = ''
 export function CaptureForm({ capture, className = '' }: { capture: Capture; className?: string }) {
   const uid = useId()
   const { pathname } = useLocation()
-  const { offer, free } = offerOf(capture, pathname)
-  const micro = microOf(offer, free)
+  /* The page's starting answer for the card (build, blueprint, connect, or none), and the line under the box for it. */
+  const door = doorOf(pathname, capture.interest)
+  const micro = setup.micro[door || 'none']
 
   const hydrated = useHydrated()
-  const signup = useJoin()
+  const signup = useSetup()
   const loadedCard = useCard()
   const [email, setEmail] = useState('')
   const [trap, setTrap] = useState('')
@@ -130,7 +131,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
       source: capture.source,
       page: pathname,
       interest: capture.interest,
-      offer: `${offer}${free ? ' (free check)' : ''}`,
+      offer: door || 'none',
       arrived_from: from,
       website: trap,
     })
@@ -147,7 +148,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     }
     moved.current = true
     /* Counted in Google Analytics if the visitor allowed it: the offer, never the email. */
-    if (!res.preview) track('generate_lead', { form: offer, free: free ? 'yes' : 'no' })
+    if (!res.preview) track('generate_lead', { form: door || 'none' })
     /* An older script keeps the email and nothing after it: no card. */
     const script = res.preview ? 3 : (res.v ?? 1)
     if (script < 2) {
@@ -165,7 +166,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
       setJoined(true)
       return
     }
-    setLive(join.head.title)
+    setLive(setup.head.title)
     ownerId = uid
     begin({
       sid,
@@ -176,8 +177,6 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
       page: pathname,
       source: capture.source,
       interest: capture.interest,
-      offer,
-      free,
       arrivedFrom: from,
     })
   }

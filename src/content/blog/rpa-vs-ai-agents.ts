@@ -299,5 +299,9 @@ export const post: BlogPost = {
     'recipe:vendor-agent-check',
     'can-ai-agents-log-in-to-websites',
     'ai-agent-observability',
+    'recipe:prior-authorization-status',
+    'recipe:load-tracking',
+    'recipe:invoice-collector',
+    'recipe:supplier-reorder-agent',
   ],
 }

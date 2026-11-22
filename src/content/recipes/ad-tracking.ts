@@ -12,7 +12,7 @@ export const recipe: Recipe = {
   id: 'ads',
   slug: 'ad-tracking',
   name: 'Ad tracking',
-  group: 'Watch other companies',
+  group: 'Watch the market',
   line: 'A persona follows each ad your competitors run in public to its page, price and code.',
   gets: 'Each new competitor ad and its offer, every morning, beside the page it lands on.',
   kit: [

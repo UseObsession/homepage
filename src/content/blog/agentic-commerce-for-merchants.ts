@@ -75,15 +75,11 @@ export const post: BlogPost = {
   description:
     'Agentic commerce for Shopify and DTC stores: what’s live in ChatGPT, Google AI Mode and Copilot, the settings to check, and a readiness test you run.',
   answer:
-    'Agentic commerce is shopping in which an AI agent searches, compares and builds a basket for a shopper, who approves the purchase in the AI app or on the store’s own checkout. To check a store is ready, ask the main AI assistants your customers’ questions, check the product data and policies agents read, and walk an agent from search to the checkout handoff. Obsession’s blueprints ask AI assistants and a store’s own sales agent what shoppers ask, keep each answer word for word and dated, and follow it to checkout.',
-  primaryKeyword: 'agentic commerce',
+    'Agentic commerce for merchants is selling to shoppers whose AI agents search, compare and build a basket, then hand the purchase to the shopper to approve in the AI app or on the store’s own checkout. To check a store is ready, ask the main AI assistants your customers’ questions, check the product data and policies agents read, and walk an agent from search to the checkout handoff. Obsession’s blueprints ask AI assistants and a store’s own sales agent what shoppers ask, keep each answer word for word and dated, and follow it to checkout.',
+  primaryKeyword: 'agentic commerce for merchants',
   keywords: [
-    'agentic commerce for merchants',
-    'what is agentic commerce',
     'how do ai shopping agents work',
     'agentic commerce readiness check',
-    'agentic commerce protocol',
-    'universal commerce protocol',
     'agentic checkout',
     'shopify agentic storefronts',
     'google ai mode shopping',
@@ -626,5 +622,6 @@ export const post: BlogPost = {
     'test-store-chatbot-returns-policy',
     'black-friday-checklist-new-customer',
     '/use-cases/leak-checks-for-ecommerce-stores',
+    'recipe:agent-checkout-test',
   ],
 }

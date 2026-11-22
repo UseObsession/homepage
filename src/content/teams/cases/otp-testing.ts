@@ -41,6 +41,8 @@ export const useCase: TeamPage = {
       { icon: 'record', label: 'A missing code reaches your CI' },
     ],
     who: 'Login journey, 2 test users at ledgerly.example',
+    note: 'The UK code never came',
+    fleet: '80 test users · 12 countries',
     rows: [
       { at: '14:02', kind: 'page.visited', text: 'ledgerly.example/login · code requested · screenshot saved' },
       { at: '14:02', kind: 'sms.received', text: 'US +1 · Your Ledgerly code is 604218 · 4 s' },
@@ -96,9 +98,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Checks that run after every release.',
+    heading: 'Sign in by text and email after every release.',
     line: 'Each posts a pass or fail to Slack, a sheet or your CI.',
-    slugs: ['delivery-monitoring', 'website-audit'],
+    slugs: ['sign-in-code-check', 'delivery-monitoring', 'website-audit'],
   },
 
   prices: ['number', 'sms', 'voice', 'inbox', 'browser', 'persona'],

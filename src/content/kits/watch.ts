@@ -3,7 +3,7 @@ import type { KitPage } from './types'
 
 /* Watch the market (/blueprints/watch-the-market): personas sign up to competitors, stay subscribed, start their trials and
    check member prices, for teams that want the result rather than the build. Product Marketing book, job 5. The scene
-   is the site's one real run: Brand G, a UK skincare store, September 2026 (/sample-output). */
+   is a member price only a signed-up persona sees, at an invented competitor (_research/illus/AUDIT_23nov.md). */
 
 const sub =
   'Personas, AI agents with their own inbox, number and browser, sign up to your competitors and stay subscribed. They start trials and check member prices every morning. Pick a blueprint, and results land in Slack, a sheet or your CRM.'
@@ -28,19 +28,22 @@ export const watch: KitPage = {
 
   scene: {
     steps: [
-      { icon: 'persona', label: 'Personas sign up as customers' },
-      { icon: 'clock', label: 'They stay and keep everything' },
-      { icon: 'browser', label: 'They check prices each morning' },
-      { icon: 'record', label: 'A weekly report in Slack' },
+      { icon: 'persona', label: 'A persona signs up as a member' },
+      { icon: 'browser', label: 'It reads the public page too' },
+      { icon: 'mail', label: 'It keeps every member email' },
+      { icon: 'record', label: 'The difference reaches your team' },
     ],
-    who: 'Mystery shopping at Brand G, a UK skincare store',
+    who: 'A member persona at kestrelhome.example, a competitor',
+    note: 'Members pay £19. The public page says £24.',
+    fleet: '30 competitors · read every morning',
     rows: [
-      { at: '02:57', kind: 'page.visited', text: 'A £40 basket left in the cart' },
-      { at: '03:11', kind: 'page.visited', text: 'Checkout started, stopped before payment' },
-      { at: '48 hours', kind: 'blueprint.result', text: 'No basket or checkout reminder arrived', tone: 'fail' },
+      { at: 'Mon 06:00', kind: 'page.visited', text: 'Public page: Starter set at £24 · screenshot saved' },
+      { at: 'Mon 06:01', kind: 'page.visited', text: 'Signed in as a member: the same set at £19 · screenshot saved' },
+      { at: 'Mon 06:02', kind: 'email.received', text: '“Members only: an extra 10% off this week”' },
+      { at: 'Mon 06:03', kind: 'blueprint.result', text: 'Members pay £19 while the public page shows £24', tone: 'ok' },
+      { at: 'Mon 06:03', kind: 'webhook', text: 'Posted to #pricing in Slack' },
     ],
-    caption: 'A real run, September 2026: 4 personas signed up at Brand G, and in 48 hours neither the basket nor the checkout got a reminder.',
-    real: true,
+    caption: 'A member price and a members-only email that a public price check never sees. Kestrel Home is an invented example.',
   },
 
   pieces: {

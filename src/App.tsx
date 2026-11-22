@@ -31,6 +31,7 @@ const Compare = page('Compare')
 const Sales = page('Sales')
 const Marketing = page('Marketing')
 const Developers = page('Developers')
+const NoCode = page('NoCode')
 const Verify = page('Verify')
 const Recipes = page('Recipes')
 const Recipe = page<{ slug: string }>('Recipe')
@@ -78,6 +79,7 @@ const PAGES: Record<string, LazyPage> = {
   '/sales': Sales,
   '/marketing': Marketing,
   '/developers': Developers,
+  '/no-code': NoCode,
   '/verify': Verify,
   '/blueprints': Recipes,
   '/resources': Resources,
@@ -397,6 +399,7 @@ export function AppRoutes() {
         <Route path="glossary" element={<GlossaryHub />} />
         <Route path="glossary/:slug" element={<ReferenceRoute base="glossary" />} />
         <Route path="developers" element={<Developers />} />
+        <Route path="no-code" element={<NoCode />} />
         <Route path="blueprints" element={<Recipes />} />
         <Route path="blueprints/:slug" element={<RecipeRoute />} />
         {/* Recipes were renamed blueprints (21 Nov 2026); the host answers the old addresses with a 301 first. */}

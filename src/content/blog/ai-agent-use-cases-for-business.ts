@@ -761,5 +761,8 @@ export const post: BlogPost = {
     'recipe:vendor-agent-check',
     'recipe:outbound-agent-check',
     'recipe:sales-agent-check',
+    'recipe:document-chaser',
+    'recipe:order-receipt-ledger',
+    'recipe:supplier-reorder-agent',
   ],
 }

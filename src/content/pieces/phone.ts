@@ -56,6 +56,27 @@ export const phone: PiecePage = {
     code,
   },
 
+  scene: {
+    heading: 'One number for the call, the text and the code.',
+    line: 'Customers text back the number that called them, and sign-ups send codes to the number on file. One number per agent keeps all of it in one thread.',
+    steps: [
+      { icon: 'phone', label: 'A customer calls the agent’s number' },
+      { icon: 'chat', label: 'Later they text the same number' },
+      { icon: 'key', label: 'A sign-in code arrives there too' },
+      { icon: 'record', label: 'One thread in one log' },
+    ],
+    who: 'Sam, the bookings agent at harrowgate.example',
+    note: 'One number for calls, texts and codes',
+    fleet: '200 numbers · US and UK',
+    rows: [
+      { at: '09:12', kind: 'call.received', text: '+44 20 7946 0321 · 3 min 40 s · voice agent answered · transcript kept' },
+      { at: '09:16', kind: 'call.ended', text: 'Table for 6 on Friday at 19:30 · deposit link texted' },
+      { at: '11:02', kind: 'sms.received', text: 'Same caller: “Can we make it 8 people?”', tone: 'ok' },
+      { at: '11:03', kind: 'sms.received', text: 'Your booking system code is 551204' },
+      { at: '11:03', kind: 'webhook', text: 'Booking changed to 8 · sent to your reservations sheet' },
+    ],
+    caption: 'The caller texts back the same number, and the booking system’s code lands there too. Harrowgate is an invented example.',
+  },
   can: {
     heading: 'Your agent texts, calls and gets its codes on its own number.',
     line: 'A real phone number, run through code instead of a handset.',

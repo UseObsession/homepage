@@ -555,5 +555,6 @@ export const post: BlogPost = {
     'what-chatgpt-says-about-your-store',
     'test-store-chatbot-returns-policy',
     'recipe:website-audit',
+    'recipe:agent-checkout-test',
   ],
 }

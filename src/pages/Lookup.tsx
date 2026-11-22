@@ -428,7 +428,7 @@ export function Lookup() {
 
       <p className="s-wrap s-lookup__takedown">
         {p.takedown}{' '}
-        <a className="ob-btn ob-btn--link ob-btn--inline" href={`mailto:${p.takedownEmail}?subject=Take%20my%20site%27s%20entry%20down`}>
+        <a className="ob-btn ob-btn--link ob-btn--inline" href={`mailto:${p.takedownEmail}?subject=Take%20my%20site%27s%20report%20down`}>
           <span className="ob-btn-label">{p.takedownEmail}</span>
         </a>
         .

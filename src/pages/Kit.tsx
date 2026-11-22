@@ -198,7 +198,7 @@ export function WhoSection({ who, examples: ex }: { who: KitPage['who']; example
             </li>
           ))}
         </ul>
-        {examples.length > 0 && (
+        {(examples.length > 0 || (ex?.links?.length ?? 0) > 0) && (
           <div className="k-who__ex">
             <span className="k-who__ex-label">{ex?.heading}</span>
             <ul className="k-who__chips">
@@ -206,6 +206,13 @@ export function WhoSection({ who, examples: ex }: { who: KitPage['who']; example
                 <li key={s.path}>
                   <Link className="k-who__chip" to={s.path}>
                     {s.name}
+                  </Link>
+                </li>
+              ))}
+              {ex?.links?.map((l) => (
+                <li key={l.to}>
+                  <Link className="k-who__chip" to={l.to}>
+                    {l.label}
                   </Link>
                 </li>
               ))}

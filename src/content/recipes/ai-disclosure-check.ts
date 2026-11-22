@@ -12,7 +12,7 @@ export const recipe: Recipe = {
   id: 'disclosure',
   slug: 'ai-disclosure-check',
   name: 'AI disclosure check',
-  group: 'Check your AI agents',
+  group: 'Talk to customers',
   line: 'A persona asks AI agents on chat, phone, email and text about being AI, every day.',
   gets: 'Every channel, every day: the first line, the answer when asked and the wait for a person.',
   kit: [

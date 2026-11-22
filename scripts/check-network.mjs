@@ -42,7 +42,7 @@ const NOINDEX = /<meta name="robots" content="noindex"/
 const pages = new Map(files.map((f) => [pathOf(f), readFileSync(f, 'utf8')]).filter(([, html]) => !NOINDEX.test(html)))
 /* The six types of blueprints (content/kitPaths.ts, 22 Nov 2026) sit at /blueprints/<job> beside the blueprints; they
    are pages, not blueprints, so they need links in but no guides list of their own. */
-const TYPES = new Set(['talk-to-customers', 'test-sign-up-and-agents', 'build-agent-products', 'work-behind-logins', 'watch-the-market', 'train-and-test-agents'].map((s) => `/blueprints/${s}`))
+const TYPES = new Set(['talk-to-customers', 'test-sign-up-and-agents', 'build-agent-products', 'work-behind-logins', 'watch-the-market', 'train-and-test-agents', 'buy-book-and-order'].map((s) => `/blueprints/${s}`))
 const kindOf = (p) =>
   p.startsWith('/blog/') ? 'post' : TYPES.has(p) ? 'page' : p.startsWith('/blueprints/') ? 'recipe' : p.startsWith('/use-cases/') ? 'use case' : READERS.includes(p) ? 'reader' : 'page'
 const mainOf = (html) => {

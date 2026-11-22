@@ -96,6 +96,13 @@ const PATHS: Record<PersonaIcon, ReactNode> = {
       <path d="m7.3 8.7 5.2-5.2M10.6 5.4l1.6 1.6M12 4l1.4 1.4" />
     </>
   ),
+  cart: (
+    <>
+      <path d="M2 2.5h1.8l1.6 7.4h7l1.5-5.2H4.6" />
+      <circle cx="6.3" cy="12.7" r="1.05" />
+      <circle cx="11.5" cy="12.7" r="1.05" />
+    </>
+  ),
   flask: (
     <>
       <path d="M6.2 2h3.6M6.8 2v4.2L3 12.6a1 1 0 0 0 .9 1.4h8.2a1 1 0 0 0 .9-1.4L9.2 6.2V2" />

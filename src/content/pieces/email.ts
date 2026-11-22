@@ -51,6 +51,27 @@ export const email: PiecePage = {
     code,
   },
 
+  scene: {
+    heading: 'Its own inbox, so the code comes to the agent.',
+    line: 'Most sign-ups send a link or a code by email. With its own address, the agent receives it, opens it and carries on, and every email after it stays in the thread.',
+    steps: [
+      { icon: 'browser', label: 'It signs up on a supplier portal' },
+      { icon: 'mail', label: 'The link lands in its own inbox' },
+      { icon: 'check', label: 'It opens the link and carries on' },
+      { icon: 'record', label: 'Every email after is kept' },
+    ],
+    who: 'Ada, the purchasing agent at northpine.example',
+    note: 'Sign-in link opened 4 seconds after arriving',
+    fleet: '500 inboxes · one per agent',
+    rows: [
+      { at: '10:02:11', kind: 'page.visited', text: 'supplier.example/register · ada@northpine.example · screenshot saved' },
+      { at: '10:02:19', kind: 'email.received', text: '“Confirm your email” · link inside' },
+      { at: '10:02:23', kind: 'page.visited', text: 'Link opened 4 s after it arrived · account active', tone: 'ok' },
+      { at: '10:40', kind: 'email.received', text: 'Your trade price list · PDF attached' },
+      { at: 'Fri 09:00', kind: 'email.received', text: '“Prices rise 6% on 1 December”' },
+    ],
+    caption: 'An agent with its own address signs up, confirms by email and keeps every message after. Northpine is an invented example.',
+  },
   can: {
     heading: 'An email inbox for AI agents, with every thread kept.',
     line: 'Everything a person does with an inbox, done through code.',

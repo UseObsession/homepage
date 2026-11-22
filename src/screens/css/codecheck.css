@@ -1,0 +1,158 @@
+/* app-codecheck: Your company / Watches / Fernpay sign-in. Sign-in code check (Test sign-up and agents, 23 Nov 2026).
+   Every night at 02:00, 4 personas sign in to Fernpay with its own test accounts and ask for a one-time code: by text on
+   a US and a UK number, by email and by a call. Top: the 4 codes on 1 clock (0 to 8 minutes across 300px, 37.5px a
+   minute; the track starts 144px into the card), Fernpay's 5 minute expiry a dashed line at 187.5px with the time after
+   it hatched. The 1 thing: the UK text lands at 6:40 (250px), inside the hatched zone. Below: that text as evidence,
+   beside the sign-in page that refused it.
+   Story (5.4 s): 1 playhead sweeps the clock (a clock, so linear: 0:00 to 7:12 in 4 s); the US text, the email and the
+   call land in the first second; the UK lane keeps waiting, the playhead crosses the expiry line (the zone lights), the
+   UK text lands late and needs you; the evidence rises, Needs you goes 0 to 1, the toast.
+   The playhead and each lane's waiting line read 1 registered --cd-p (main thread, so it paints in any capture).
+   Rest state (no .play) = the finished scene. Every animation sits under prefers-reduced-motion: no-preference. */
+@property --cd-p{syntax:"<number>";inherits:true;initial-value:1}
+
+.app-codecheck .ax-main{padding:14px;gap:12px}
+
+/* ---------- head: the page, the schedule, the code's expiry ---------- */
+.app-codecheck .cd-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-codecheck .cd-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-codecheck .cd-meta{padding-top:2px;font-size:12px;color:var(--fg-3);white-space:nowrap}
+.app-codecheck .cd-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 6px;border-radius:8px;white-space:nowrap;
+  font-size:12px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-codecheck .cd-lk{display:grid;place-items:center;color:var(--fg-2)}
+.ilwrap .app-codecheck .cd-lk svg{width:13px;height:13px}
+
+/* sidebar: the product this watch belongs to; Needs you gains the late code */
+.app-codecheck .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-codecheck .ax-clients a.on i{background:var(--fg-2)}
+.app-codecheck .cd-nb{display:inline-grid}
+.app-codecheck .cd-nb b{grid-area:1/1;font-weight:inherit}
+.app-codecheck .cd-nb b:first-child{opacity:0}
+
+/* the channel icon and the status mark slot (stacked states, only the last shows at rest) */
+.app-codecheck .cd-ic{display:grid;place-items:center;width:14px;height:14px;flex:none;color:var(--fg-2)}
+.ilwrap .app-codecheck .cd-ic svg{width:13px;height:13px}
+.app-codecheck .cd-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.app-codecheck .cd-mk>svg{grid-area:1/1}
+.app-codecheck .cd-mk .w0{opacity:0}
+.ilwrap .app-codecheck .cd-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+
+/* ---------- the 4 codes on 1 clock ---------- */
+.app-codecheck .cd-tl{position:relative;display:grid;grid-template-rows:22px repeat(4,28px);border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-codecheck .cd-ru{position:relative;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-codecheck .cd-ch{position:absolute;left:12px;top:6px;font:500 11px/1 var(--sans);color:var(--fg-3)}
+.app-codecheck .cd-chr{left:auto;right:12px}
+.app-codecheck .cd-ru b{position:absolute;left:var(--cd-x);top:6px;padding-left:5px;font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-codecheck .cd-ru b::before{content:"";position:absolute;left:0;top:-1px;width:1px;height:12px;background:var(--line-3)}
+
+/* after the expiry: hatched, so any code that lands here reads as late without a word */
+.app-codecheck .cd-zone{position:absolute;top:0;bottom:0;left:331.5px;width:112.5px;pointer-events:none;
+  border-left:1px dashed var(--line-3);
+  background:repeating-linear-gradient(135deg,rgb(var(--fg-rgb) / .06) 0 1px,transparent 1px 6px)}
+.app-codecheck .cd-zone span{position:absolute;left:6px;top:6px;font:500 11px/1 var(--sans);color:var(--fg-2);white-space:nowrap}
+
+.app-codecheck .cd-ln{position:relative;display:grid;grid-template-columns:132px 300px minmax(0,1fr);align-items:center;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-codecheck .cd-l4{box-shadow:none}
+.app-codecheck .cd-lb{display:flex;align-items:center;gap:7px;min-width:0;white-space:nowrap}
+.app-codecheck .cd-lb b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-codecheck .cd-lb em{font:400 11px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+
+/* a lane: the wait as a thin line from the ask to the code, the code as a dot */
+.app-codecheck .cd-tr{position:relative;display:block;height:16px}
+.app-codecheck .cd-w{position:absolute;left:0;top:7.5px;height:1px;width:min(var(--cd-x),calc(var(--cd-p) * 300px));background:var(--fg-3)}
+.app-codecheck .cd-dot{position:absolute;z-index:1;left:calc(var(--cd-x) - 4px);top:4px;width:8px;height:8px;border-radius:50%;background:var(--fg);box-shadow:0 0 0 2px var(--panel-2)}
+.app-codecheck .cd-rs{display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.app-codecheck .cd-v{font:400 12px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+
+/* the UK lane, the one opened below: a long dashed wait, a hollow dot past the expiry, a band (needs you) */
+.app-codecheck .cd-l2{background:rgb(var(--fg-rgb) / .045)}
+.app-codecheck .cd-l2::before{content:"";position:absolute;left:0;top:7px;width:2px;height:14px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-codecheck .cd-l2 .cd-w{background:repeating-linear-gradient(90deg,var(--fg-2) 0 3px,transparent 3px 6px)}
+.app-codecheck .cd-l2 .cd-dot{background:var(--panel-2);box-shadow:0 0 0 1.6px var(--fg) inset,0 0 0 2px var(--panel-2),0 0 0 4px rgb(var(--fg-rgb) / .14)}
+.app-codecheck .cd-l2 .cd-v{font-weight:500;color:var(--fg)}
+
+/* the playhead, only while the clock runs */
+.app-codecheck .cd-ph{position:absolute;z-index:2;top:0;bottom:0;left:calc(144px + var(--cd-p) * 300px);width:1px;margin-left:-.5px;background:var(--fg);opacity:0;pointer-events:none}
+.app-codecheck .cd-ph::before{content:"";position:absolute;left:-3px;top:0;width:7px;height:5px;border-radius:0 0 2px 2px;background:var(--fg)}
+
+/* ---------- the late code, as evidence ---------- */
+.app-codecheck .cd-ev{border-radius:10px;overflow:hidden;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-codecheck .cd-eh{display:flex;align-items:center;gap:8px;height:26px;padding:0 12px;white-space:nowrap;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-codecheck .cd-eh b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-codecheck .cd-eh em{font:400 11px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+.app-codecheck .cd-tm{margin-left:auto;font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-codecheck .cd-eb{display:grid;grid-template-columns:minmax(0,1fr) 196px;gap:12px;padding:10px 12px 12px}
+.app-codecheck .cd-ek{display:block;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-codecheck .cd-msg{display:grid;gap:7px;align-content:start;min-width:0}
+.app-codecheck .cd-bub{padding:8px 10px;border-radius:10px 10px 10px 3px;background:rgb(var(--fg-rgb) / .06);box-shadow:0 0 0 1px var(--line-2) inset;
+  font:400 12px/1.4 var(--mono);color:var(--fg)}
+.app-codecheck .cd-fx{display:flex;align-items:baseline;gap:10px;font-size:12px;white-space:nowrap}
+.app-codecheck .cd-fx span{color:var(--fg-3)}
+.app-codecheck .cd-fx b{font-weight:500;color:var(--fg)}
+
+/* the sign-in page that refused it, drawn as a small window */
+.app-codecheck .cd-shot{display:flex;flex-direction:column;min-width:0}
+.app-codecheck .cd-url{display:flex;align-items:center;height:18px;padding:0 8px;border-radius:7px 7px 0 0;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-2) inset;
+  font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-codecheck .cd-pg{display:grid;gap:6px;padding:8px;border-radius:0 0 7px 7px;background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset;margin-top:-1px}
+.app-codecheck .cd-pt{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-codecheck .cd-in{display:flex;align-items:center;height:20px;padding:0 7px;border-radius:5px;box-shadow:0 0 0 1px var(--fg) inset;
+  font:400 12px/1 var(--mono);letter-spacing:.14em;color:var(--fg)}
+.app-codecheck .cd-er{display:flex;align-items:center;gap:6px;font:400 12px/1 var(--sans);color:var(--fg)}
+.app-codecheck .cd-er i{position:relative;width:10px;height:10px;border-radius:50%;box-shadow:0 0 0 1.4px var(--fg) inset;flex:none}
+.app-codecheck .cd-er i::after{content:"";position:absolute;left:4.3px;top:2.4px;width:1.4px;height:3.4px;border-radius:1px;background:var(--fg)}
+.app-codecheck .cd-shot .cd-ek{margin-top:6px}
+
+/* ---------- foot: the red lines, the toast ---------- */
+.app-codecheck .cd-note{position:absolute;left:14px;bottom:14px;height:40px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:3px;
+  font-size:11px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-codecheck .cd-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-codecheck .cd-note span{grid-column:2}
+.app-codecheck .cd-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-codecheck .cd-toast p{display:flex;align-items:baseline;gap:8px;font-size:12px;white-space:nowrap}
+.app-codecheck .cd-toast b{font-weight:500;color:var(--fg)}
+.app-codecheck .cd-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play, and only when the reader allows motion) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  @keyframes cd-p{from{--cd-p:0}to{--cd-p:.9}}
+  @keyframes cd-fade{from{opacity:0}to{opacity:1}}
+  @keyframes cd-hide{from{opacity:1}to{opacity:0}}
+  @keyframes cd-on{from{opacity:1}to{opacity:1}}
+  @keyframes cd-dot{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+  @keyframes cd-land{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @keyframes cd-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+  @keyframes cd-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes cd-spin{to{transform:rotate(360deg)}}
+  @keyframes cd-sqin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(.75)}}
+  @keyframes cd-pulse{0%,100%{opacity:1}50%{opacity:.2}}
+  @keyframes cd-zone{0%{background-color:rgb(var(--fg-rgb) / 0)}30%{background-color:rgb(var(--fg-rgb) / .09)}100%{background-color:rgb(var(--fg-rgb) / .02)}}
+  @keyframes cd-glow{0%{background-color:rgb(var(--fg-rgb) / .045)}30%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .045)}}
+  @keyframes cd-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. the clock runs: 1 playhead, 0:00 to 7:12 in 4 s; each lane's wait grows behind it */
+  .appx-il.play.app-codecheck .cd-tl{animation:cd-fade .5s var(--ease) .06s both,cd-p 4s linear .5s both}
+  .appx-il.play.app-codecheck .cd-ph{animation:cd-fade .2s var(--ease) .45s both,cd-hide .3s var(--ob-ease-in) 4.55s forwards}
+
+  /* 2. each code lands as the playhead reaches it: 3 in the first second */
+  .appx-il.play.app-codecheck .cd-dot{animation:cd-dot .35s var(--snap) var(--cd-t) both}
+  .appx-il.play.app-codecheck .cd-v{animation:cd-in .3s var(--ease) var(--cd-t) both}
+  .appx-il.play.app-codecheck .cd-l1 .cd-mk,.appx-il.play.app-codecheck .cd-l3 .cd-mk,.appx-il.play.app-codecheck .cd-l4 .cd-mk{animation:cd-fade .3s var(--ease) var(--cd-t) both}
+
+  /* 3. the UK lane keeps waiting; the playhead crosses the expiry and the zone lights */
+  .appx-il.play.app-codecheck .cd-l2 .w0{animation:cd-on .01s linear both,cd-hide .2s var(--ob-ease-in) 4.2s forwards}
+  .appx-il.play.app-codecheck .cd-l2 .w0 .sig-rot{animation:cd-spin .9s linear .5s 4 both}
+  .appx-il.play.app-codecheck .cd-zone{animation:cd-zone 1.4s var(--ease) 3.28s both}
+
+  /* 4. the UK text lands late, and needs you */
+  .appx-il.play.app-codecheck .cd-l2{animation:cd-glow 1.4s var(--ease) 4.25s both}
+  .appx-il.play.app-codecheck .cd-l2 .w1{animation:cd-fade .2s var(--ease) 4.2s both}
+  .appx-il.play.app-codecheck .cd-l2 .w1 .sig-sq{animation:cd-sqin .45s var(--snap) 4.2s both,cd-pulse 2.6s ease-in-out 5s infinite}
+  .appx-il.play.app-codecheck .cd-ev{animation:cd-land .5s var(--ease) 4.4s both}
+  .appx-il.play.app-codecheck .cd-nb b:first-child{animation:cd-on .01s linear both,cd-out .25s var(--ob-ease-in) 4.5s forwards}
+  .appx-il.play.app-codecheck .cd-nb b:last-child{animation:cd-in .3s var(--ease) 4.55s both}
+
+  /* 5. the toast */
+  .appx-il.play.app-codecheck .cd-toast{animation:cd-toast .45s var(--ease) 4.9s both}
+}

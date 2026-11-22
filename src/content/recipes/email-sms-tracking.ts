@@ -12,7 +12,7 @@ export const recipe: Recipe = {
   id: 'email-sms',
   slug: 'email-sms-tracking',
   name: 'Email and SMS tracking',
-  group: 'Watch other companies',
+  group: 'Watch the market',
   line: 'A persona on every brand’s list keeps each email and text, and shows who discounts first.',
   gets: 'Every email and text each brand sends, on 1 timeline, with the welcome series mapped.',
   kit: [

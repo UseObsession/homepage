@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'prospect',
   slug: 'prospect-intelligence',
   name: 'Prospect intelligence',
-  group: 'Watch other companies',
+  group: 'Watch the market',
   line: 'A persona signs up at each prospect and brings back what they send, for your pitch.',
   gets: 'A finding and an event log link on every row, back in Clay, your CRM or a sheet.',
   kit: [

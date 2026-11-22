@@ -45,6 +45,8 @@ export const team: TeamPage = {
       { icon: 'record', label: 'Every message after, dated' },
     ],
     who: 'A member persona at fernhill.example, a gym membership app',
+    note: 'An email 9 days after unsubscribing',
+    fleet: '120 checks a week',
     rows: [
       { at: '1 Nov · 09:10', kind: 'page.visited', text: 'Cancel flow · 4 steps · save offer on step 2' },
       { at: '1 Nov · 09:14', kind: 'page.visited', text: 'Unsubscribe link · confirmed' },

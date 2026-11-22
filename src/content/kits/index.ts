@@ -1,5 +1,6 @@
 import { kitLinks, type KitId } from '../kitPaths'
 import { build } from './build'
+import { buy } from './buy'
 import { portals } from './portals'
 import { talk } from './talk'
 import { test } from './test'
@@ -11,7 +12,7 @@ import { watch } from './watch'
    (pages/Recipes.tsx) groups every blueprint by type; App.tsx routes them and meta.ts, the sitemap and llms.txt read `kits`. */
 export type { KitPage } from './types'
 
-const byId: Record<KitId, KitPage> = { talk, test, build, portals, watch, train }
+const byId: Record<KitId, KitPage> = { talk, test, build, portals, watch, train, buy }
 
 export const kits: KitPage[] = kitLinks.map((k) => byId[k.id])
 
@@ -29,6 +30,7 @@ export const kitUi = {
   events: 'events',
   delivered: 'delivered',
   miss: 'a miss found',
+  replay: 'Replay',
   example: 'Example',
   real: 'Real run',
   prices: 'What it costs',
@@ -36,8 +38,8 @@ export const kitUi = {
   billed: 'A blueprint is billed on the pieces it uses.',
   priceHeading: 'Priced per piece, on one bill.',
   priceLine: 'Start free, then pay for what runs, at list rates.',
-  api: { label: 'The API and MCP', to: '/developers' },
-  browse: { label: 'Browse all blueprints', to: '/blueprints' },
+  api: { label: 'See the API and MCP', to: '/developers' },
+  browse: { label: 'Browse blueprints', to: '/blueprints' },
   watch: 'They watch',
   others: 'Other types of blueprints',
 }

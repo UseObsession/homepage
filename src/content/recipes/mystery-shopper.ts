@@ -25,7 +25,7 @@ export const recipe: Recipe = {
   id: 'mystery',
   slug: 'mystery-shopper',
   name: 'Mystery shopping',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'Personas shop a store as new shoppers and show every email, text and missing reminder.',
   gets: 'Every email and text a store sends a new shopper, dated, and the reminders that never came.',
   kit: [
@@ -223,6 +223,7 @@ export const recipe: Recipe = {
       {
         q: 'Do my clients need to agree?',
         a: 'Yes. Each client store is shopped with its owner’s OK. The personas shop the way anyone can, stop before payment and at any identity check, and say they’re an AI when they talk to a person.',
+        link: { label: 'Obsession for agencies', to: '/agencies' },
       },
       {
         q: 'How is this different from a shopper simulation?',
@@ -231,6 +232,12 @@ export const recipe: Recipe = {
       {
         q: 'Is the September run real?',
         a: 'Yes. In September 2026 personas took 4 journeys at Brand G, a skincare store, name hidden, and every inbox was watched for 48 hours. Every event from it is in the sample output.',
+        link: { label: 'See the sample output', to: '/sample-output' },
+      },
+      {
+        q: 'Can I see what a store sends before I start?',
+        a: 'Yes. The store lookup runs on this blueprint. Type your email at your store’s own address, and we send you that store’s report: every email it sent a new customer, timestamped and set beside every other store we’ve shopped.',
+        link: { label: 'Look up your store', to: '/lookup' },
       },
       {
         q: 'Does it place real orders?',

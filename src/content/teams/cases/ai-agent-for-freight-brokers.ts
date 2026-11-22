@@ -46,6 +46,8 @@ export const useCase: TeamPage = {
       { icon: 'record', label: 'The load is covered, in the log' },
     ],
     who: 'Coverage agent 6 at ridgeline.example',
+    note: 'Load covered 18 minutes after the call',
+    fleet: '20 agents · 900 loads a week',
     rows: [
       { at: 'Tue · 14:02', kind: 'call.ended', text: 'Dallas to Atlanta, dry van · $2.45 a mile agreed · transcript kept' },
       { at: 'Tue · 14:04', kind: 'email.sent', text: 'Rate confirmation, load 58213 · $2.45 a mile' },
@@ -101,9 +103,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Checks for your sales line and your agents.',
+    heading: 'Track every load in carrier portals, and check your sales line and agents.',
     line: 'Each runs without code and posts what it found to Slack, a sheet or your webhook.',
-    slugs: ['lead-leaks', 'voice-agent-check', 'vendor-agent-check'],
+    slugs: ['load-tracking', 'lead-leaks', 'voice-agent-check', 'vendor-agent-check'],
   },
 
   prices: ['voice', 'number', 'sms', 'inbox', 'browser', 'sandbox'],
@@ -138,7 +140,7 @@ export const useCase: TeamPage = {
       {
         q: 'How do AI agents for trucking stay signed in to load boards?',
         a: 'Create a browser with obsession.browsers.create({ home: "US" }) and drive it with Playwright over CDP. It keeps its session for weeks, and each login code reaches your code as email.received or sms.received.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'What if a signed rate confirmation shows the wrong rate?',

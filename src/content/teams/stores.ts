@@ -44,6 +44,8 @@ export const team: TeamPage = {
       { icon: 'record', label: 'What came, and what didn’t' },
     ],
     who: 'Mystery shopping at Brand G, a UK skincare store',
+    note: 'No basket or checkout reminder in 48 hours',
+    fleet: '4 personas · real run, September 2026',
     rows: [
       { at: '22 Sep · 02:57', kind: 'page.visited', text: 'Body Care Gift Set (£40) left in the basket' },
       { at: '22 Sep · 03:11', kind: 'page.visited', text: 'A £21 checkout left before payment' },

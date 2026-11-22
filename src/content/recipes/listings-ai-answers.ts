@@ -12,7 +12,7 @@ export const recipe: Recipe = {
   id: 'listings',
   slug: 'listings-ai-answers',
   name: 'Listings and AI answers',
-  group: 'Check your own journeys',
+  group: 'Watch the market',
   line: 'A persona checks AI answers and listings, and traces each wrong fact to its page.',
   gets: 'Every answer AI assistants and listings give about you, each wrong fact traced to its source.',
   kit: [

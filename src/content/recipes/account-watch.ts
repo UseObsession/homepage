@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'account-watch',
   slug: 'account-watch',
   name: 'Account watch',
-  group: 'Watch other companies',
+  group: 'Work behind logins',
   line: 'A persona signs up at each company you sell to and dates changes in your CRM.',
   gets: 'Every morning: the accounts whose emails stopped, links broke or offers changed, from your event log.',
   kit: [

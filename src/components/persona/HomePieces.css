@@ -1,6 +1,6 @@
-/* The pieces (HomePieces.tsx): 1 sheet, its cells split by 1px of the line colour showing between them (the grid's own
-   ground), so it reads as 1 sheet, not 6 cards. 3 across, 2 under 1000px, 1 on a phone. The persona's cell is drawn in
-   the page's solid ink with inverse text, in both themes. */
+/* The pieces (HomePieces.tsx): 6 cards with air between them, in the teams page's card (radius, sheen, inset hairline,
+   a soft shadow), 3 across, 2 under 1000px, 1 on a phone. The persona's card is drawn in the page's solid ink with
+   inverse text, in both themes. */
 
 .s-pz-grid {
   list-style: none;
@@ -8,11 +8,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--ob-border-hair);
-  border-radius: var(--ob-radius-lg);
-  overflow: hidden;
-  background: var(--ob-line);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line);
+  gap: var(--ob-space-16);
 }
 .s-pz-cell {
   position: relative;
@@ -21,10 +17,12 @@
   gap: var(--ob-space-16);
   min-width: 0;
   padding: var(--ob-space-28) var(--ob-space-28) var(--ob-space-24);
-  background: var(--ob-bg);
-  transition: background-color var(--ob-dur-fast, 0.15s) var(--ob-ease-out);
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1);
+  transition: background-color var(--ob-dur-fast, 0.15s) var(--ob-ease-out), translate var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out);
 }
-.s-pz-cell:hover { background: color-mix(in oklab, var(--ob-bg), var(--ob-text) 3%); }
+.s-pz-cell:hover { translate: 0 -2px; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight), var(--ob-shadow-2); }
 
 .s-pz-top { display: flex; align-items: center; gap: var(--ob-space-12); min-width: 0; }
 .s-pz-icon {
@@ -100,4 +98,7 @@
   .s-pz-cell,
   .s-pz-arrow { transition: none; }
   .s-pz-cell:hover .s-pz-arrow { translate: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-pz-cell:hover { translate: none; }
 }

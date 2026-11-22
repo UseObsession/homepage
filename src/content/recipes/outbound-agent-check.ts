@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'outbound-agent',
   slug: 'outbound-agent-check',
   name: 'Outbound agent check',
-  group: 'Check your AI agents',
+  group: 'Build agent products',
   line: 'Personas join your AI SDR’s lists, or a competitor’s, as prospects and keep every message.',
   gets: 'Every message an AI SDR sends, kept as it arrived, with the ones that break your rules flagged.',
   kit: [

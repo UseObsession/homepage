@@ -1,0 +1,141 @@
+/* app-inboxagent: Your company / Agents / support@northpine.example. Inbox agent (Build agent products, 23 Nov 2026).
+   An AI email agent on its own address, signed as Northpine's AI assistant (Northpine is invented). Left: the morning's
+   threads, newest first, each with how it ended. Right: Dana's thread, opened: her email, the reader's own handler
+   looking up the order, the reply, and the 2 events that bracket it (39 s apart). Sam's refund waits on a person in
+   Slack; Priya says "Send it" and it goes.
+   Story (4.3 s): Dana's email lands; the lookup works, then lands; the agent writes (3 dots), the reply lands; the 2
+   events and the 39 s; Sam's row turns from #support to Sent after OK, Needs you goes 1 to 0; the toast.
+   Rest state (no .play) = the finished scene. Every animation sits under prefers-reduced-motion: no-preference. */
+
+.app-inboxagent .ax-main{padding:14px;gap:12px}
+
+/* ---------- head: the agent, its address, how it signs ---------- */
+.app-inboxagent .ia-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-inboxagent .ia-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-inboxagent .ia-meta{padding-top:2px;font:400 12px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+.app-inboxagent .ia-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:12px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-inboxagent .ia-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-inboxagent .ia-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* sidebar: the inbox this agent answers; Needs you clears when Priya approves */
+.app-inboxagent .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-inboxagent .ax-clients a.on i{background:var(--fg-2)}
+.app-inboxagent .ia-nb{display:inline-grid}
+.app-inboxagent .ia-nb b{grid-area:1/1;font-weight:inherit}
+.app-inboxagent .ia-nb b:first-child{opacity:0}
+
+/* the status mark slot: stacked states, only the last shows at rest */
+.app-inboxagent .ia-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.app-inboxagent .ia-mk>svg{grid-area:1/1}
+.app-inboxagent .ia-mk .w0{opacity:0}
+.ilwrap .app-inboxagent .ia-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+
+/* ---------- the inbox: list and open thread ---------- */
+.app-inboxagent .ia-bd{display:grid;grid-template-columns:196px minmax(0,1fr);height:296px;border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+
+/* the list */
+.app-inboxagent .ia-ls{display:flex;flex-direction:column;min-width:0;box-shadow:-1px 0 0 var(--line-2) inset}
+.app-inboxagent .ia-lh{display:flex;align-items:center;justify-content:space-between;height:30px;padding:0 12px;flex:none;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-inboxagent .ia-lh b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-inboxagent .ia-lh span{font:400 11px/1 var(--mono);color:var(--fg-3)}
+.app-inboxagent .ia-it{position:relative;display:grid;gap:5px;padding:8px 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-inboxagent .ia-r1,.app-inboxagent .ia-r2{display:flex;align-items:center;gap:8px;min-width:0}
+.app-inboxagent .ia-r1 b{font:500 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-inboxagent .ia-r1 time{margin-left:auto;font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-inboxagent .ia-sj{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:400 12px/1.1 var(--sans);color:var(--fg-2)}
+.app-inboxagent .ia-st{display:inline-flex;align-items:center;gap:5px;flex:none;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+/* the open thread: a band and an edge bar */
+.app-inboxagent .ia-it.on{background:rgb(var(--fg-rgb) / .055)}
+.app-inboxagent .ia-it.on::before{content:"";position:absolute;left:0;top:9px;width:2px;height:24px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-inboxagent .ia-it.on .ia-sj{color:var(--fg)}
+/* Sam's refund: with a person, then sent after their OK */
+.app-inboxagent .ia-sw{display:inline-grid}
+.app-inboxagent .ia-sw>span{grid-area:1/1;display:inline-flex;align-items:center;justify-content:flex-end;gap:5px}
+.app-inboxagent .ia-sw .v0{opacity:0}
+.app-inboxagent .ia-sw .v1{color:var(--fg)}
+.app-inboxagent .ia-lf{margin-top:auto;display:flex;gap:12px;padding:10px 12px;font:400 11.5px/1 var(--sans);color:var(--fg-3);box-shadow:0 1px 0 var(--line-2) inset}
+.app-inboxagent .ia-lf b{font:500 11.5px/1 var(--mono);color:var(--fg)}
+
+/* the open thread */
+.app-inboxagent .ia-th{display:flex;flex-direction:column;gap:7px;min-width:0;padding:0 12px 12px}
+.app-inboxagent .ia-thh{display:flex;align-items:center;gap:8px;height:30px;margin:0 -12px 3px;padding:0 12px;flex:none;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-inboxagent .ia-thh b{font:600 12.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-inboxagent .ia-thh span{margin-left:auto;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-inboxagent .ia-m{display:grid;gap:6px;padding:9px 11px;border-radius:9px;box-shadow:0 0 0 1px var(--line-2) inset}
+.app-inboxagent .ia-fr{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.app-inboxagent .ia-fr b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-inboxagent .ia-fr time{margin-left:auto;font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-inboxagent .ia-m p{font:400 12px/1.45 var(--sans);color:var(--fg-2)}
+.app-inboxagent .ia-in{background:var(--panel)}
+/* the agent's reply: the raised card, its words in full ink */
+.app-inboxagent .ia-out{position:relative;background:rgb(var(--fg-rgb) / .055);box-shadow:0 0 0 1px var(--line-3) inset}
+.app-inboxagent .ia-out p{color:var(--fg)}
+.app-inboxagent .ia-wr{position:absolute;left:11px;bottom:12px;display:flex;gap:4px;opacity:0}
+.app-inboxagent .ia-wr i{width:5px;height:5px;border-radius:50%;background:var(--fg-3)}
+/* the lookup the reader's own handler made: a sunken line, in the agent's mono */
+.app-inboxagent .ia-tool{display:flex;align-items:center;gap:7px;height:26px;padding:0 10px;border-radius:7px;background:var(--bg-2);box-shadow:0 0 0 1px var(--line) inset;white-space:nowrap}
+.app-inboxagent .ia-tl{font:400 11.5px/1 var(--sans);color:var(--fg-3)}
+.app-inboxagent .ia-tt{min-width:0;overflow:hidden;text-overflow:ellipsis;font:400 11px/1 var(--mono);color:var(--fg)}
+/* the 2 events that bracket the reply, and the time between them */
+.app-inboxagent .ia-ev{margin-top:auto;display:flex;align-items:center;gap:8px;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-inboxagent .ia-ev i{flex:1;height:1px;background:var(--line-3)}
+.app-inboxagent .ia-ev b{padding:4px 7px;border-radius:5px;font:500 11px/1 var(--mono);color:var(--bg);background:var(--fg)}
+
+/* ---------- foot: the red lines, the toast ---------- */
+.app-inboxagent .ia-note{position:absolute;left:14px;bottom:14px;height:40px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:3px;
+  font-size:11px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-inboxagent .ia-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-inboxagent .ia-note span{grid-column:2}
+.app-inboxagent .ia-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-inboxagent .ia-toast p{display:flex;align-items:baseline;gap:8px;font-size:12px;white-space:nowrap}
+.app-inboxagent .ia-toast b{font-weight:500;color:var(--fg)}
+.app-inboxagent .ia-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play, and only when the reader allows motion) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  @keyframes ia-fade{from{opacity:0}to{opacity:1}}
+  @keyframes ia-hide{from{opacity:1}to{opacity:0}}
+  @keyframes ia-on{from{opacity:1}to{opacity:1}}
+  @keyframes ia-land{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @keyframes ia-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+  @keyframes ia-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes ia-spin{to{transform:rotate(360deg)}}
+  @keyframes ia-dot{0%,100%{opacity:.25}50%{opacity:1}}
+  @keyframes ia-blink{0%{opacity:1}50%{opacity:0}}
+  @keyframes ia-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}30%{background-color:rgb(var(--fg-rgb) / .1)}100%{background-color:rgb(var(--fg-rgb) / 0)}}
+  @keyframes ia-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. Dana's email lands in the open thread */
+  .appx-il.play.app-inboxagent .ia-in{animation:ia-land .45s var(--ease) var(--ia-t) both}
+
+  /* 2. the reader's handler looks the order up: it works, then lands */
+  .appx-il.play.app-inboxagent .ia-tool{animation:ia-land .4s var(--ease) var(--ia-t) both}
+  .appx-il.play.app-inboxagent .ia-tool .w0{animation:ia-on .01s linear both,ia-hide .2s var(--ob-ease-in) 1.75s forwards}
+  .appx-il.play.app-inboxagent .ia-tool .w0 .sig-rot{animation:ia-spin .7s linear 1.05s both}
+  .appx-il.play.app-inboxagent .ia-tool .w1{animation:ia-fade .25s var(--ease) 1.75s both}
+
+  /* 3. the agent writes, then the reply lands; the dots go as the words arrive */
+  .appx-il.play.app-inboxagent .ia-out{animation:ia-land .4s var(--ease) 1.85s both}
+  .appx-il.play.app-inboxagent .ia-wr{animation:ia-on .01s linear 1.9s both,ia-hide .2s var(--ob-ease-in) var(--ia-t) forwards}
+  .appx-il.play.app-inboxagent .ia-wr i{animation:ia-dot .6s ease-in-out 1.9s 1 both}
+  .appx-il.play.app-inboxagent .ia-wr i:nth-child(2){animation-delay:2s}
+  .appx-il.play.app-inboxagent .ia-wr i:nth-child(3){animation-delay:2.1s}
+  .appx-il.play.app-inboxagent .ia-tx,.appx-il.play.app-inboxagent .ia-out .ia-fr time{animation:ia-in .4s var(--ease) var(--ia-t) both}
+
+  /* 4. the 2 events and the 39 s between them */
+  .appx-il.play.app-inboxagent .ia-ev{animation:ia-fade .4s var(--ease) var(--ia-t) both}
+  .appx-il.play.app-inboxagent .ia-ev i{transform-origin:left;animation:ia-in .5s var(--ease) var(--ia-t) both}
+
+  /* 5. Sam's refund: with a person in #support, then sent after Priya's OK */
+  .appx-il.play.app-inboxagent .ia-sam{animation:ia-glow 1.4s var(--ease) 3.55s both}
+  .appx-il.play.app-inboxagent .ia-sw .v0{animation:ia-on .01s linear both,ia-out .25s var(--ob-ease-in) 3.55s forwards}
+  .appx-il.play.app-inboxagent .ia-sw .v0 .sig-sq{animation:ia-blink 1.06s steps(1,end) .6s 2}
+  .appx-il.play.app-inboxagent .ia-sw .v1{animation:ia-in .35s var(--ease) 3.6s both}
+  .appx-il.play.app-inboxagent .ia-nb b:first-child{animation:ia-on .01s linear both,ia-out .25s var(--ob-ease-in) 3.6s forwards}
+  .appx-il.play.app-inboxagent .ia-nb b:last-child{animation:ia-in .3s var(--ease) 3.65s both}
+
+  /* 6. the toast */
+  .appx-il.play.app-inboxagent .ia-toast{animation:ia-toast .45s var(--ease) 3.85s both}
+}

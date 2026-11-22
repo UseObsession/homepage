@@ -3,6 +3,7 @@ import { PieceDelivery } from '../components/piece/PieceDelivery'
 import { PieceHero } from '../components/piece/PieceHero'
 import { PieceLog } from '../components/piece/PieceLog'
 import { PiecePrices } from '../components/piece/PiecePrices'
+import { PieceScene } from '../components/piece/PieceScene'
 import { PieceTogether } from '../components/piece/PieceTogether'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
@@ -11,7 +12,8 @@ import { pieceAt, pieces, pieceUi as ui, type PiecePage } from '../content/piece
 import type { PieceId } from '../content/prices'
 
 /* A piece's own page (/email, /phone, /messaging, /browser, /sandbox, /personas, 21 Nov 2026), every word from
-   content/pieces. In order: the hero, with the code > what an agent can do with the piece (#features) > for Personas,
+   content/pieces. In order: the hero, with the code > the piece at work (#at-work: one agent's moment in the shared
+   product window, components/kit/KitScene) > what an agent can do with the piece (#features) > for Personas,
    its events in the event log (#event-log) > how its events reach you (#delivery: the piece's own event names beside the
    6 channels, in the words every piece page shares) > its prices from content/prices.ts (#pricing, the hero's second
    button) > how it works with the other pieces (#pieces) > questions (#questions) > the early access form (#join, the
@@ -33,6 +35,7 @@ export function Piece({ piece }: { piece: PiecePage }) {
   return (
     <>
       <PieceHero hero={piece.hero} ui={ui} />
+      {piece.scene && <PieceScene scene={piece.scene} place={piece.name} id="at-work" />}
       <PieceCan can={piece.can} id="features" />
       {piece.log && <PieceLog log={piece.log} ui={{ label: ui.log, shot: ui.shot }} id="event-log" />}
       <PieceDelivery heading={ui.delivery.heading} line={ui.delivery.line} events={piece.events} ui={ui.delivery} id="delivery" />

@@ -41,6 +41,8 @@ export const useCase: TeamPage = {
       { icon: 'users', label: 'A licensed agent takes it from there' },
     ],
     who: 'Quinn, the quotes agent at Larkspur Insurance',
+    note: 'Handed to a licensed agent, every word kept',
+    fleet: '25 agents · 3,000 quote calls a month',
     rows: [
       { at: '10:14', kind: 'call.received', text: '+1 614 555 0123 · 6 min 40 s · transcript kept' },
       { at: '10:20', kind: 'call.ended', text: 'Car insurance quote: $118 a month · quote texted' },
@@ -97,9 +99,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Check what your agent quotes, every day.',
+    heading: 'Chase every missing document, call every new lead, and check what your agent quotes.',
     line: 'No code. Name the number or the form, and every answer lands in Slack, a sheet or your CRM.',
-    slugs: ['voice-agent-check', 'lead-leaks', 'ai-disclosure-check', 'support-bot-check'],
+    slugs: ['document-chaser', 'speed-to-lead-callback', 'voice-agent-check', 'lead-leaks', 'ai-disclosure-check', 'support-bot-check'],
   },
 
   prices: ['number', 'voice', 'sms', 'register', 'inbox', 'persona'],

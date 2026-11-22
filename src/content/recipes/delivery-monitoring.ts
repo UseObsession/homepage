@@ -13,7 +13,7 @@ export const recipe: Recipe = {
   id: 'delivery',
   slug: 'delivery-monitoring',
   name: 'Delivery monitoring',
-  group: 'Check your own journeys',
+  group: 'Test sign-up and agents',
   line: 'Personas in each country you sell in live your first 14 days and time every message.',
   gets: 'Every message a new user should get, timed, and anything missing flagged the day it was due.',
   kit: [

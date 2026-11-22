@@ -19,6 +19,11 @@ export type RecipeId =
   | 'email-sms' | 'audit' | 'delivery' | 'account-watch' | 'listings'
   | 'adcheck' | 'partners'
   | 'support-bot' | 'voice-agent' | 'outbound-agent' | 'sales-agent' | 'vendor-agent' | 'resolution' | 'disclosure' | 'drift'
+  /* Wave 2 (23 Nov 2026): the 11 blueprints from competitors' customer stories (_research/seo/blueprints-22nov/PLAN.md). */
+  | 'missed-call' | 'reminders' | 'callback' | 'documents' | 'codes' | 'inbox-agent' | 'imessage' | 'prior-auth' | 'loads'
+  | 'invoices' | 'eval'
+  /* Buy, book and order (23 Nov 2026, _research/seo/agentic-commerce-23nov/PLAN.md). */
+  | 'agent-checkout' | 'travel' | 'reorder' | 'ledger'
 export type AudienceId = 'agencies' | 'founders' | 'sales' | 'marketing'
 /* The 5 readers, each with its own hue (styles/accents.css: [data-reader] sets --s-accent and --s-accent-glow). */
 export type ReaderId = AudienceId | 'developers'
@@ -83,7 +88,8 @@ export type HeroScreen = { tab: string; screen: ScreenName; line: string } & ({ 
    holds, erases, types the second and rests there (content/console.ts). The console is either category tabs of app
    screens (`screens`, Home) or example runs (`demos`, the audience pages and Developers). */
 export type Hero = {
-  pill: string
+  /* Optional: Home's hero has none, since its form's line says the same (23 Nov 2026). */
+  pill?: string
   /* Where the pill goes. Without it, the pill links to the open source code (nav.github). */
   pillTo?: string
   headline: string
@@ -553,13 +559,17 @@ export type PersonaStart = {
   chip: { code: string; copy: string; copied: string }
   /* The hero's two doors (23 Nov 2026): developers start from code (the chip and the primary button), teams that don't
      code start from a blueprint (a plain line and the secondary button), so both readers see their way in at once. */
-  doors?: { dev: { label: string }; noCode: { label: string; line: string } }
+  doors?: { dev: { label: string; cta?: Cta }; noCode: { label: string; line: string; cta?: Cta } }
+  /* The hero's email form (23 Nov 2026, Seun: "cta should collect email and form in the hero", then "I still want that
+     two paths for developers and teams"): when set, the hero draws hero.capture as its main action and, under it, the
+     two doors as path cards, each a whole link to its `cta` (the API, the blueprints). */
+  form?: boolean
 }
 /* The line drawings of Home's sections (components/persona/icons), on a 16px grid in the nav's style. */
 export type PersonaIcon =
   | 'mail' | 'phone' | 'chat' | 'browser' | 'sandbox' | 'persona'
   | 'sleep' | 'home' | 'person' | 'users' | 'cap' | 'stop' | 'webhook' | 'record' | 'clock' | 'code' | 'retry' | 'domain'
-  | 'check' | 'key' | 'flask'
+  | 'check' | 'key' | 'flask' | 'cart'
 /* The pieces as 1 ruled sheet (HomePieces): each its icon, name, 1 line, the call that starts it, and `to`, its page
    (content/piecePaths.ts); the whole cell links there. `whole` draws the cell solid: the persona, every piece in one. */
 export type HomePieces = {
@@ -622,7 +632,7 @@ export type HomeHow = {
     play: string
     examples: {
       who: string
-      kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train'
+      kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train' | 'buy'
       reader: 'sales' | 'agencies' | 'developers' | 'founders' | 'marketing'
       org: string
       scale: string
@@ -715,10 +725,16 @@ export type Page = {
 
 /* A recipe's own page (/recipes/SLUG). James's recipe pages are the base: their structure stays.
    A recipe comes with all its infrastructure already set up; `kit` is what choosing it spins up. */
+/* Since the 22 Nov call a blueprint's group is its type: the six jobs AI agents do (content/kitPaths), so the hub, the
+   form's chips, the footer and every grid sort by the same six names. */
 export type RecipeGroup =
-  | 'Watch other companies'
-  | 'Check your own journeys'
-  | 'Check your AI agents'
+  | 'Talk to customers'
+  | 'Test sign-up and agents'
+  | 'Build agent products'
+  | 'Work behind logins'
+  | 'Watch the market'
+  | 'Train and test agents'
+  | 'Buy, book and order'
 export type Recipe = {
   id: RecipeId
   slug: string
@@ -730,6 +746,9 @@ export type Recipe = {
   gets: string
   /* What choosing it sets up, a few words each (agent ID, inboxes, numbers, browsers, schedule, screenshots of every step). */
   kit: string[]
+  /* The developer door (23 Nov 2026): what a developer gets in one line, the call that starts the blueprint or hooks into
+     it (8 lines at most), and the events it writes to the event log, each with a real event name from content/delivery. */
+  build?: { line: string; code: string; events: { kind: string; text: string }[] }
   meta: Meta
   hero: { headline: string; sub: string; screen: ScreenName; capture: Capture }
   /* The recipe's 1 buyer (21 Nov 2026: the buyer study sold each recipe to its 1 buyer, and James approved each), named
@@ -1020,7 +1039,7 @@ export type UseCasesIndexPage = {
   meta: Meta
   hero: IndexHero
   /* Since 22 Nov: every use case and team page under the kit whose job it does (pages/UseCases.tsx), in kitLinks' order. */
-  byKit: { kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train'; paths: string[] }[]
+  byKit: { kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train' | 'buy'; paths: string[] }[]
   orbit: { label: string; caption: string }
   group: LinkGroup
   /* The two guides that set out every job an AI customer does, each row linking the guide. */

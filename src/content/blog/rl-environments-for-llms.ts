@@ -412,5 +412,5 @@ export const post: BlogPost = {
     { title: 'SWE-bench', publisher: 'GitHub (SWE-bench)', url: SWEBENCH },
   ],
 
-  related: ['/use-cases/ai-agent-evaluation', '/blueprints/train-and-test-agents', 'recipe:drift-watch', 'ai-agent-observability', 'long-running-ai-agents'],
+  related: ['/use-cases/ai-agent-evaluation', '/blueprints/train-and-test-agents', 'recipe:drift-watch', 'ai-agent-observability', 'long-running-ai-agents', 'recipe:nightly-agent-evaluation'],
 }

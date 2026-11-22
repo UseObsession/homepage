@@ -16,6 +16,31 @@ export const recipePage = {
   /* The hero's pill, as on every page's hero. The way back (Home / Blueprints / this blueprint) is the breadcrumb above it. */
   pill: 'Blueprint',
 
+  /* Two doors on every blueprint (23 Nov 2026, _research/seo/blueprints-22nov/PLAN.md section 1): teams that don't code run
+     it as it is and get results in any format (Seun, 23 Nov: "it doesn't matter the format"); developers start it from
+     code or their agent and hook into its events. A blueprint's own `build` gives its call and events; without one, the
+     page shows the general call and its blueprint.result event. */
+  doors: {
+    heading: 'Run it as it is, or build on it.',
+    line: 'Teams that don’t code fill in the settings and get results in any format. Developers start it from code or from their own agent, and hook into every event.',
+    run: {
+      who: 'For teams',
+      name: 'Run it',
+      steps: ['Fill in the settings above, in plain words.', 'Pick where results go.', 'It runs on your schedule until you stop it.'],
+      formats: ['Slack', 'Email', 'Your CRM', 'Clay', 'Google Sheets', 'A PDF report', 'Your AI assistant', 'Any tool you use'],
+      formatsNote: 'Use another tool, and we build the connection.',
+      cta: { label: 'Start free', to: '#join' },
+    },
+    build: {
+      who: 'For developers',
+      name: 'Build on it',
+      line: 'Start it from your code or your agent over MCP, and subscribe to what it brings back.',
+      events: 'What it writes to your event log',
+      label: 'blueprint.ts',
+      cta: { label: 'See the code for each channel', to: '/developers#delivery' },
+    },
+  },
+
   /* What the blueprint spins up: its `kit`, landing 1 by 1. */
   kit: {
     heading: 'A ready job that runs on the pieces, with nothing to host.',

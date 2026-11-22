@@ -1,6 +1,6 @@
 /* The navigation's words and structure (components/Nav). Since 21 Nov it says what Home says: inboxes, phone numbers,
    browsers and sandboxes for AI agents through one API, plus recipes, ours or your own, with sample data as
-   the second button and "Start building" as the call to action. Structure: _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the recipes and
+   the second button and "Start free" as the call to action. Structure: _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the recipes and
    worked examples (content/catalog.ts), never their words. */
 import { catalog, type CatalogRecipe } from './catalog'
 import type { Cta, ReaderId, RecipeGroup, RecipeId } from './types'
@@ -18,22 +18,18 @@ export type NavJob = { name: string; line: string; to: string; examples: NavReci
 /* A card in the Resources menu: who it is for (or what it is), its name, and what happened in 1 line. */
 export type NavCard = NavPage & { line: string; kicker: string }
 
-/* The 3 jobs, in the order the menu, the phone sheet, the footer and the Recipes index list them (COPY.md, "One
-   taxonomy"): whose data it is. Other companies (competitors, prospects, accounts), your own company, and the AI
-   agents you run. */
-export const JOBS: RecipeGroup[] = ['Watch other companies', 'Check your own journeys', 'Check your AI agents']
+/* The six types of blueprints (22 Nov call: the kits became these), in the order the menu, the phone sheet, the footer,
+   the hub and the form's chips list them: content/kitPaths' order. A blueprint's group is its type. */
+export const JOBS: RecipeGroup[] = ['Talk to customers', 'Test sign-up and agents', 'Build agent products', 'Work behind logins', 'Watch the market', 'Train and test agents', 'Buy, book and order']
 
 /* Each job's anchor on /recipes (pages/Recipes gives each job's section this id). */
 export const jobAnchor = (g: RecipeGroup) => g.toLowerCase().replace(/[^a-z]+/g, '-')
 
-/* The name a job shows in the Recipes menu and on /recipes. The group value stays (recipes, anchors and the join card
-   read it); since 9 Nov the AI agents job is the event log of what AI agents tell people, as /verify says. */
-export const jobLabel = (g: RecipeGroup) => (g === 'Check your AI agents' ? 'What AI agents say' : g)
+/* The name a type shows: its own name, as content/kitPaths gives it. */
+export const jobLabel = (g: RecipeGroup) => g
 
 /* A job with a page of its own links to it after its recipes. */
-const MORE: Partial<Record<RecipeGroup, NavPage>> = {
-  'Check your AI agents': { label: 'See how it works', to: ways.verify.to },
-}
+const MORE: Partial<Record<RecipeGroup, NavPage>> = {}
 
 const recipeLink = (r: Pick<CatalogRecipe, 'id' | 'name' | 'slug'>): NavRecipe => ({ id: r.id, label: r.name, to: `/blueprints/${r.slug}` })
 const recipeById = Object.fromEntries(catalog.recipes.map((r) => [r.id, r])) as Record<RecipeId, CatalogRecipe>
@@ -50,14 +46,15 @@ export const recipeGroups: NavRecipeGroup[] = JOBS.map((name) => ({
    featured card is the sample data. Check your AI agents leads to its own page, /verify, which lists its recipes; the
    other jobs lead to their section of /recipes. */
 const JOB_MENU: Record<RecipeGroup, { line: string; examples: RecipeId[]; to?: string }> = {
-  'Watch other companies': { line: 'Their emails, prices, trials and offers, after sign-up.', examples: ['competitor', 'prospect'] },
-  'Check your own journeys': { line: 'Your own sign up, lead forms and emails, as a new user gets them.', examples: ['adcheck', 'speed'] },
-  'Check your AI agents': {
-    line: 'What support chats, voice lines and sales agents tell a persona, word for word.',
-    examples: ['support-bot', 'voice-agent'],
-    to: ways.verify.to,
-  },
+  'Talk to customers': { line: 'Missed calls texted back, reminders sent, every lead called.', examples: ['missed-call', 'reminders'], to: '/blueprints/talk-to-customers' },
+  'Test sign-up and agents': { line: 'Your own sign-up, codes and emails, as a new user gets them.', examples: ['mystery', 'codes'], to: '/blueprints/test-sign-up-and-agents' },
+  'Build agent products': { line: 'Starters for agents with their own inbox and iMessage line.', examples: ['inbox-agent', 'imessage'], to: '/blueprints/build-agent-products' },
+  'Work behind logins': { line: 'Portals checked every morning, documents collected.', examples: ['prior-auth', 'loads'], to: '/blueprints/work-behind-logins' },
+  'Watch the market': { line: 'Competitors’ emails, prices, trials and ads, dated.', examples: ['competitor', 'prices'], to: '/blueprints/watch-the-market' },
+  'Train and test agents': { line: 'Your agent scored on real tasks, every night.', examples: ['eval', 'drift'], to: '/blueprints/train-and-test-agents' },
+  'Buy, book and order': { line: 'Supplies reordered, trips booked, every receipt kept.', examples: ['reorder', 'travel'], to: '/blueprints/buy-book-and-order' },
 }
+
 
 export const recipeJobs: NavJob[] = JOBS.map((name) => {
   const j = JOB_MENU[name]
@@ -114,7 +111,7 @@ export type NavTool = NavPage & { line: string; icon: NavIcon }
 export type NavColumn = { label: string; items: NavTool[] }
 
 /* Each kit's icon in the menus (components/Nav ICONS). */
-const KIT_ICONS: Record<KitId, NavIcon> = { talk: 'chat', test: 'check', build: 'api', portals: 'key', watch: 'watch', train: 'flask' }
+const KIT_ICONS: Record<KitId, NavIcon> = { talk: 'chat', test: 'check', build: 'api', portals: 'key', watch: 'watch', train: 'flask', buy: 'cart' }
 
 /* The bar's menus, rebuilt 22 Nov 2026 (Seun: "cleaner ... right now it feels like a dump"): Products holds the 6 pieces
    with a short line each, then the 2 ways in beside them (Blueprints for teams who don't code, the API and MCP for
@@ -175,7 +172,7 @@ const menus = {
     kitsLabel: 'Blueprints by job',
     kits: kitTools,
     kitsAll: { label: 'Every blueprint', to: kitsPath } satisfies NavPage,
-    teamsLabel: 'Teams',
+    teamsLabel: 'By team',
     teams,
     /* The use cases people search most (Google suggestions, 22 Nov 2026), by name; the rest are on /use-cases. */
     useCasesLabel: 'Use cases',
@@ -186,12 +183,13 @@ const menus = {
       { label: 'Prior authorization', to: '/use-cases/prior-authorization-ai-agent' },
       { label: 'Freight brokers', to: '/use-cases/ai-agent-for-freight-brokers' },
       { label: 'Agent evaluation', to: '/use-cases/ai-agent-evaluation' },
+      { label: 'Agentic commerce', to: '/use-cases/agentic-commerce' },
     ] satisfies NavPage[],
     useCasesAll: { label: 'Every use case', to: '/use-cases' } satisfies NavPage,
     /* The 2 columns as the footer and the phone sheet list them. */
     columns: [
       { label: 'Blueprints by job', items: kitTools },
-      { label: 'Teams', items: teams },
+      { label: 'By team', items: teams },
     ] as { label: string; items: NavPage[] }[],
   },
   resources: {
@@ -218,6 +216,9 @@ const menus = {
     },
   },
   developers: { label: 'Developers', to: '/developers' } satisfies NavPage,
+  /* Beside Developers since 23 Nov 2026: the front door for teams that don't write code, as the hero's two doors. Named for
+     who the reader is, not the skill they lack (Seun, 23 Nov: "For teams"); the address keeps the searched words. */
+  noCode: { label: 'For teams', to: '/no-code' } satisfies NavPage,
   pricing: { label: 'Pricing', to: '/pricing' } satisfies NavPage,
 }
 
@@ -240,7 +241,7 @@ export const nav = {
     label: 'Blueprints',
     to: '/blueprints',
     button: 'Blueprints menu',
-    all: { label: 'Browse all blueprints', to: '/blueprints' } satisfies NavPage,
+    all: { label: 'Browse blueprints', to: '/blueprints' } satisfies NavPage,
     /* The featured card: the 1 real run, the sample data. */
     feature: {
       label: 'See one real run',
@@ -295,25 +296,25 @@ export const nav = {
       : null,
     all: { label: 'Every resource', to: '/resources' } satisfies NavPage,
   },
-  /* The header's call to action on every page. Since 21 Nov it is Home's: "Start building", to Home's early access
+  /* The header's call to action on every page. Since 23 Nov it is "Start free", to Home's sign-up
      form; each page's own form stays where it is. `bar` is what the bar itself shows: past 16 characters the button
-     covers the logo on a 375 to 390px phone, and "Start building" is 14. */
-  cta: { label: 'Start building', to: '/#join', bar: 'Start building' } satisfies Cta,
+     covers the logo on a 375 to 390px phone; "Start free" is 10. */
+  cta: { label: 'Start free', to: '/#join', bar: 'Start free' } satisfies Cta,
   /* The second button, before the call to action: in the bar where it fits (Nav.css), in the sheet otherwise. Since 9 Nov
      the sample data, not Star on GitHub (the key keeps its old name; components/Nav reads it). */
-  github: { label: 'Sample data', to: '/sample-output' } satisfies Cta,
+  github: { label: 'Blueprints', to: '/blueprints' } satisfies Cta,
   menu: { open: 'Open menu', close: 'Close menu', sheet: 'Menu' },
   theme: { row: 'Theme', toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
 }
 
-/* The few pages whose header button differs from nav.cta ("Start building", to Home's form, on every other page). */
+/* The few pages whose header button differs from nav.cta ("Start free", to Home's form, on every other page). */
 export const pageCtas: Record<string, Cta> = {
   /* On /lookup, the header's "Look up your site" goes to the page's own box. */
   '/lookup': { label: 'Look up your site', to: '#lookup', bar: 'Lookup your site' },
   /* A company asking about an agent that visited it writes to us: the page's own call to action, not early access. */
   '/agents': catalog.agentsCta,
   /* Home (21 Nov): the bar's button matches the hero's, to the page's own early access form. */
-  '/': { label: 'Start building', to: '#join', bar: 'Start building' },
+  '/': { label: 'Start free', to: '#join', bar: 'Start free' },
   /* The resellers page (21 Nov): the bar's button matches its forms' (early access), to its own form. */
   '/agencies': { label: 'Start free', to: '#join', bar: 'Start free' },
 }

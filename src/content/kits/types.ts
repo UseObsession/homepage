@@ -1,6 +1,6 @@
 import type { KitId } from '../kitPaths'
 import type { PieceId, PriceKey } from '../prices'
-import type { Faq, Final, Meta, PersonaIcon } from '../types'
+import type { Cta, Faq, Final, Meta, PersonaIcon } from '../types'
 
 /* The words of a kit's own page (/blueprints/SLUG, 22 Nov 2026), drawn by pages/Kit.tsx in this order: the hero (the job, in
    1 line, and 2 sentences) > the scene (4 steps and 1 agent's event log, components/kit/KitScene) > the pieces in the kit
@@ -18,7 +18,7 @@ export type KitPage = {
   name: string
   meta: Meta
   hero: { headline: string; sub: string }
-  scene: { steps: KitStep[]; who: string; rows: KitRow[]; caption: string; real?: boolean }
+  scene: { steps: KitStep[]; who: string; note: string; fleet: string; rows: KitRow[]; caption: string; real?: boolean }
   /* The pieces this job uses, each with what it does here. Names and addresses come from the piece pages. */
   pieces: { heading: string; line: string; items: { piece: PieceId; line: string }[]; prices: PriceKey[] }
   /* The blueprints in this kit, by slug (content/recipes): names and lines come from each blueprint's own file. */
@@ -28,7 +28,8 @@ export type KitPage = {
   /* Who uses it: the role, what lands in their hands, and the measures they watch it in (persona-kpis). */
   who: { heading: string; items: { role: string; gets: string; watch: string }[] }
   /* Worked examples already on the site, by address. */
-  examples?: { heading: string; paths: string[] }
+  /* `links` adds pages that aren't use cases (the sample output, the store lookup) as chips after them. */
+  examples?: { heading: string; paths: string[]; links?: Cta[] }
   faq: Faq
   final: Final
 }

@@ -44,6 +44,8 @@ export const useCase: TeamPage = {
       { icon: 'webhook', label: 'The reply reaches your app' },
     ],
     who: 'Rep 214, an AI SDR at pipewell.example',
+    note: 'A reply from the account, a meeting booked',
+    fleet: '500 reps · each with its own inbox',
     rows: [
       { at: '09:00', kind: 'page.visited', text: 'harbourline.example/pricing · new Enterprise plan · screenshot saved' },
       { at: '09:02', kind: 'email.sent', text: 'First email to the head of RevOps at Harbourline' },

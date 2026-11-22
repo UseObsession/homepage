@@ -33,6 +33,8 @@ export const test: KitPage = {
       { icon: 'record', label: 'What came, and what didn’t' },
     ],
     who: 'Journey 14, a test persona at app.example',
+    note: 'The day-7 email never came',
+    fleet: '60 journeys · run on every release',
     rows: [
       { at: 'Day 0 · 08:00', kind: 'page.visited', text: 'app.example/signup · screenshot saved' },
       { at: 'Day 0 · 08:00', kind: 'sms.received', text: 'Your code is 482913' },
@@ -58,7 +60,7 @@ export const test: KitPage = {
   blueprints: {
     heading: 'Checks that run after every release.',
     line: 'Obsession goes through your sign-up, checkout and forms as a new customer, and posts what it found to Slack, a sheet or your CI.',
-    slugs: ['website-audit', 'delivery-monitoring', 'mystery-shopper', 'lead-leaks', 'ad-landing-check', 'partner-checks'],
+    slugs: ['website-audit', 'delivery-monitoring', 'sign-in-code-check', 'mystery-shopper', 'lead-leaks', 'ad-landing-check', 'partner-checks'],
   },
 
   who: {

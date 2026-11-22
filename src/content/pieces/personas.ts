@@ -115,7 +115,7 @@ export const personas: PiecePage = {
       },
       {
         q: 'What lands in the event log?',
-        a: `Every page the persona visited and every email, text and call it sent or got, each dated, with screenshots of the pages, beside the events from your other pieces and blueprints. Nothing in it is changed or deleted. Read it with obsession.events.list(), or subscribe once with obsession.events.subscribe(). The event log costs ${prices.log.amount} ${prices.log.unit}. ${prices.log.note}`,
+        a: `Every page the persona visited and every email, text and call it sent or got, each dated, with screenshots of the pages, beside the events from your other pieces and blueprints. Nothing in it is edited after it lands. Read it with obsession.events.list(), or subscribe once with obsession.events.subscribe(). The event log costs ${prices.log.amount} ${prices.log.unit}. ${prices.log.note}`,
       },
       {
         q: 'Do I need a persona to use the other pieces?',

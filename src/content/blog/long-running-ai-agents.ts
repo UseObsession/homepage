@@ -612,6 +612,5 @@ export const post: BlogPost = {
     'ai-customers-at-scale',
     'recipe:website-audit',
     'recipe:competitor-tracking',
-    'recipe:prospect-intelligence',
-  ],
+    'recipe:prospect-intelligence','recipe:load-tracking'],
 }

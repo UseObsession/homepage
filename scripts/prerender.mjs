@@ -340,7 +340,7 @@ await writeFile(
 const link = (e) => `- [${e.name}](${absolute(e.meta.path)}): ${e.meta.answer}`
 const ofKind = (...kinds) => entries.filter((e) => kinds.includes(e.kind)).map(link)
 const llmsSections = [
-  ['Pages', ofKind('home', 'audience', 'developers', 'pricing', 'verify', 'recipes', 'sample', 'lookup', 'resources')],
+  ['Pages', ofKind('home', 'audience', 'developers', 'no-code', 'pricing', 'verify', 'recipes', 'sample', 'lookup', 'resources')],
   /* Each piece an agent can take on its own (content/pieces). */
   ['Pieces', ofKind('piece')],
   /* Each job agents do, as the pieces and blueprints it uses (content/kits). */

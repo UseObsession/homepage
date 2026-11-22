@@ -34,6 +34,8 @@ export const team: TeamPage = {
       { icon: 'record', label: 'Speed to lead lands in your CRM' },
     ],
     who: 'A test lead on the demo form at northwind.example',
+    note: '11 h 32 min to the first call',
+    fleet: '40 test leads a month',
     rows: [
       { at: 'Tue 21:40', kind: 'page.visited', text: 'northwind.example/demo · form sent · screenshot saved' },
       { at: 'Tue 21:41', kind: 'email.received', text: 'Thanks for your interest · automatic reply' },

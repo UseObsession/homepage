@@ -501,7 +501,6 @@ export const post: BlogPost = {
     'traffic-but-no-sales',
     'shopify-store-audit-checklist',
     'black-friday-checklist-new-customer',
-    LEAKS,
     'recipe:website-audit',
     'recipe:mystery-shopper',
   ],

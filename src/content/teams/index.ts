@@ -22,5 +22,5 @@ export const teamPaths = new Set([...teams, ...cases].map((t) => t.meta.path))
 export const teamAt = (path: string): TeamPage | undefined => [...teams, ...cases].find((t) => t.meta.path === path)
 
 export const teamUi = {
-  second: { label: 'See the use cases', to: '#use-cases' },
+  second: { label: 'Browse blueprints', to: '/blueprints' },
 }

@@ -118,15 +118,16 @@ export const page: Page = {
   },
 
   hero: {
-    pill: 'Early access',
-    pillTo: '#join',
+    /* No pill: the form's own line under the box says "Free plan, no credit card", so the hero says it once. */
     /* Locked by James, 21 Nov: "toolkit" leads, the sub names what is in the kit at once. */
     headline: 'The toolkit for AI agents. One API, one bill.',
-    /* 23 Nov 2026 (Seun): the sub names both ways in, so a team that doesn't code knows from the first screen that
-       Obsession is for them too; the doors under it say how each starts. */
-    sub: 'An inbox, a phone number and a browser for every agent, used alone or together. Developers build on them in code; every other team picks a blueprint, and Obsession runs the job end to end.',
-    /* Not drawn on Home (its hero has buttons, not a form); the Hero contract asks for one. */
+    /* 23 Nov 2026 (Seun, version 1 of the hero copy): the whole toolkit in one sentence (every piece, under one identity),
+       then both ways in, so a developer and a team that doesn't code each see their door on the first screen. */
+    sub: 'Give every AI agent its own inbox, phone number and browser, plus messaging and a computer to run code, all under one identity. Developers build on them in code. Every other team picks a blueprint, and Obsession runs the job.',
+    /* The hero's main action (23 Nov 2026): the email form, then the sign-up card asks which way in. */
     capture: { ...access, source: 'home-hero' },
+    /* The scale and the proof, under the form. */
+    note: 'One agent or 10,000. Every email, text, call and page lands in your event log.',
     secondary: { label: 'Browse blueprints', to: '/blueprints' },
     /* 3 facts, true by design: no prices, no country. 50 ms is James's figure (20 Nov). */
     proof: [
@@ -138,12 +139,17 @@ export const page: Page = {
   },
 
   personaStart: {
-    primary: { label: 'Start building', to: '#join' },
+    primary: { label: 'Start free', to: '#join' },
     chip: { code: 'obsession.personas.create({ inbox: true, phone: "US", browser: true })', copy: 'Copy the code', copied: 'Copied' },
     doors: {
-      dev: { label: 'For developers' },
-      noCode: { label: 'For teams that don’t code', line: 'Choose a ready-made job, set it up in plain language, and get results in the tools you already use.' },
+      dev: { label: 'For developers', cta: { label: 'See the API and MCP', to: '/developers' } },
+      noCode: {
+        label: 'For teams',
+        line: 'Choose a ready-made job, set it up in plain language, and get results in the tools you already use.',
+        cta: { label: 'Browse blueprints', to: '/blueprints' },
+      },
     },
+    form: true,
   },
 
   /* The share image's card (scripts/og.mjs): 1 persona's events in the event log, Juno of the slab diagram, through 3 pieces. */
@@ -165,10 +171,10 @@ export const page: Page = {
      James's words from 22 Nov; blueprints serve developers too, so it no longer opens "For teams without engineers". */
   homeBlueprints: {
     heading: 'Pick a blueprint. We run the job, you get the report.',
-    line: 'Six types of blueprints, one for each job AI agents do. Results are delivered in any format: Slack, email, your CRM, Clay, Google Sheets, a PDF or your own Claude agent.',
+    line: 'Seven types of blueprints, one for each job AI agents do. Results are delivered in any format: Slack, email, your CRM, Clay, Google Sheets, a PDF or your own Claude agent.',
     unit: { one: 'blueprint', many: 'blueprints' },
     more: 'more',
-    all: { label: 'See every blueprint', to: '/blueprints' },
+    all: { label: 'Browse blueprints', to: '/blueprints' },
   },
 
   /* For teams that don't write code (#teams, 23 Nov 2026, components/persona/HomeTeams). Seun: will non-technical teams
@@ -291,7 +297,7 @@ export const page: Page = {
         { icon: 'stop', name: 'Clear operating rules', line: 'It identifies itself as an AI, uses only the logins you provide and stops at any identity check.' },
       ],
     },
-    primary: { label: 'Browse every blueprint', to: '/blueprints' },
+    primary: { label: 'Browse blueprints', to: '/blueprints' },
     secondary: { label: 'Start free', to: '#join' },
     free: 'Free plan, no credit card.',
   },
@@ -302,7 +308,7 @@ export const page: Page = {
      invented. */
   homeProblem: {
     heading: 'Your AI agent can think. Obsession equips it to act.',
-    line: 'An AI agent can plan and write, but without its own inbox, phone number and browser it can’t receive a login code, take a call or stay signed in to a portal. Obsession gives it all three under one name, or runs the whole job for you as a blueprint.',
+    line: 'An AI agent can plan and write, but without its own inbox, phone number and browser it can’t receive a login code, take a call or stay signed in to a portal. Obsession gives it all three under one identity, or runs the whole job for you as a blueprint.',
     states: { alone: 'On its own', equipped: 'Equipped by Obsession', label: 'Show the agent' },
     card: {
       name: 'Juno',
@@ -335,7 +341,7 @@ export const page: Page = {
       slugs: ['mystery-shopper', 'voice-agent-check', 'competitor-tracking'],
       runs: 'Runs on',
       out: 'Results land in Slack, a sheet, your CRM or our dashboard.',
-      link: { label: 'See every blueprint', to: '/blueprints' },
+      link: { label: 'Browse blueprints', to: '/blueprints' },
     },
     caption: 'One example AI agent before and after Obsession equips it. Larkfield is invented.',
     link: { label: 'See every piece', to: '#pieces' },
@@ -366,7 +372,7 @@ export const page: Page = {
     line: 'Each one is recorded in your event log with the original recording, email or screenshot, then routed to your agent, your servers or your team. Whatever the agent does next is recorded as well.',
     loop: {
       label:
-        'Set up once: pick pieces, a persona or a blueprint, and say where results go. Then a loop of three stops. Something happens: a call, an email, a text or a page change comes in, or your agent acts. It is saved in your event log, in order, with the email, screenshot or recording behind it. Then it reaches your agent on our runtime in about 50 ms, your agent on your servers, or a person in Slack. What your agent does next is a new event. Six examples play through it, one for each type of blueprint, each at the volume a real team runs. A dental group answers 1,200 calls a day across 40 clinics. A delivery app tests 24 sign-ups every night. An AI sales startup runs 500 inboxes. A freight broker checks 60 carrier portals. A retailer reads 12,000 competitor prices every morning. An AI lab runs 2,000 training tasks a night. Live call audio streams straight to your voice agent, and the log keeps each call’s start, end and transcript.',
+        'Set up once: pick pieces, a persona or a blueprint, and say where results go. Then a loop of three stops. Something happens: a call, an email, a text or a page change comes in, or your agent acts. It is saved in your event log, in order, with the email, screenshot or recording behind it. Then it reaches your agent on our runtime in about 50 ms, your agent on your servers, or a person in Slack. What your agent does next is a new event. Seven examples play through it, one for each type of blueprint, each at the volume a real team runs. A dental group answers 1,200 calls a day across 40 clinics. A delivery app tests 24 sign-ups every night. An AI sales startup runs 500 inboxes. A freight broker checks 60 carrier portals. A retailer reads 12,000 competitor prices every morning. An AI lab runs 2,000 training tasks a night. A restaurant group places 900 reorders a month. Live call audio streams straight to your voice agent, and the log keeps each call’s start, end and transcript.',
       setup: { name: 'Set up once', line: 'Pick pieces, a persona or a blueprint, and say where results go.' },
       happens: { name: 'Something happens', line: 'A call, email, text or page change, around the clock.' },
       log: { name: 'Your event log', line: 'Every event in order, with its email, screenshot or recording.' },
@@ -485,6 +491,23 @@ export const page: Page = {
           out: { at: '03:12:46', kind: 'page.visited', text: 'Task 1,208 · sign-up page opened' },
           tally: 'Last night: 2,000 runs, each with its own inbox, phone number and browser',
         },
+        {
+          who: 'Procurement',
+          kit: 'buy',
+          reader: 'founders',
+          org: 'A restaurant group with 18 sites',
+          scale: '900 reorders a month, 40 suppliers',
+          from: 'A supplier confirms an order',
+          before: [
+            { at: '09:12:41', kind: 'page.visited', text: 'Supplier 12 · 6 cases in the basket, paid with your card' },
+            { at: '09:12:58', kind: 'sms.received', text: 'Supplier 3 · delivery arriving Wednesday' },
+          ],
+          in: { at: '09:13:20', kind: 'email.received', text: 'Order SX-20931 confirmed · £318.40' },
+          place: 'runtime',
+          does: 'Your agent matches it to the order and adds the delivery date',
+          out: { at: '09:13:21', kind: 'blueprint.result', text: 'Order, amount and delivery date in your sheet' },
+          tally: 'This month: 900 reorders across 40 suppliers, every receipt matched to its order',
+        },
       ],
     },
     link: { label: 'See the code for each channel', to: '/developers#delivery' },
@@ -500,7 +523,7 @@ export const page: Page = {
   personaBuild: {
     heading: 'One key, from the first inbox to a fleet of personas.',
     line: 'Create an inbox, a number or a whole persona from code, or let your agent do it over MCP. Subscribe once to hear from all of them.',
-    cta: { label: 'For developers', to: '/developers' },
+    cta: { label: 'See the API and MCP', to: '/developers' },
     codeLabel: 'agent.ts',
     code: BUILD_CODE,
   },
@@ -527,7 +550,7 @@ export const page: Page = {
       },
       {
         q: 'What is the event log?',
-        a: 'One place per account where every event from every piece, persona and blueprint lands, in order and dated, with its proof: the email as it arrived, or a screenshot of the page. Nothing in it is changed or deleted.',
+        a: 'One place per account where every event from every piece, persona and blueprint lands, in order and dated, with its proof: the email as it arrived, or a screenshot of the page. Nothing in it is edited after it lands.',
       },
       {
         q: 'How do events reach my app?',
@@ -535,7 +558,7 @@ export const page: Page = {
       },
       {
         q: 'Does a persona say it’s an AI?',
-        a: 'Yes, whenever it talks to a person. It signs up the way anyone can, on pages open to everyone, and you choose where it goes.',
+        a: 'Yes, whenever it talks to a person. It signs up the way anyone can, signs in only with logins you give it, and you choose where it goes.',
       },
     ],
   },
@@ -544,6 +567,6 @@ export const page: Page = {
     heading: 'Start with the piece your agent needs first.',
     sub: 'Tell us which pieces, or which blueprint, and we’ll set you up on the Free plan.',
     /* James's line (21 Nov), on this closing button only; the hero's main button still says what it does. */
-    capture: { ...access, button: 'Kit up your agent', source: 'home-final' },
+    capture: { ...access, button: 'Start free', source: 'home-final' },
   },
 }

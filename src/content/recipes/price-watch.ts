@@ -12,7 +12,7 @@ export const recipe: Recipe = {
   id: 'prices',
   slug: 'price-watch',
   name: 'Price watch',
-  group: 'Watch other companies',
+  group: 'Work behind logins',
   line: 'Every morning a persona signs in at each competitor and reads member prices and subscriber codes.',
   gets: 'Every price change and subscriber code, dated, with the screenshot before and after.',
   kit: [

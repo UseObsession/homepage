@@ -51,6 +51,8 @@ export const train: KitPage = {
       { icon: 'record', label: 'The log scores every step' },
     ],
     who: 'Run 4,812, an evaluation run at an AI lab',
+    note: 'Every step scored from the log',
+    fleet: '10,000 runs tonight',
     rows: [
       { at: '00:00', kind: 'page.visited', text: 'shop.example/signup · screenshot saved' },
       { at: '00:01', kind: 'sms.received', text: 'Your code is 730215' },
@@ -77,7 +79,7 @@ export const train: KitPage = {
   blueprints: {
     heading: 'Keep testing agents after they ship.',
     line: 'Obsession asks your hardest cases after every update, runs them on vendors’ agents before you sign, and tests every resolution you’re billed for.',
-    slugs: ['drift-watch', 'vendor-agent-check', 'resolution-check'],
+    slugs: ['nightly-agent-evaluation', 'drift-watch', 'vendor-agent-check', 'resolution-check'],
   },
 
   code: {

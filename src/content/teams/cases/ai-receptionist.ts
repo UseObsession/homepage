@@ -40,6 +40,8 @@ export const useCase: TeamPage = {
       { icon: 'record', label: 'Every call lands in the log' },
     ],
     who: 'Robin, the receptionist at Hollybrook Plumbing',
+    note: 'Booked at 9pm, with nobody at the desk',
+    fleet: '8 locations · every call answered',
     rows: [
       { at: '21:04', kind: 'call.received', text: '+1 512 555 0187 · 4 min 05 s · transcript kept' },
       { at: '21:08', kind: 'call.ended', text: 'Booked: water heater repair, Thu 8 to 10 am · confirmation texted', tone: 'ok' },
@@ -95,9 +97,9 @@ export const useCase: TeamPage = {
   },
 
   blueprints: {
-    heading: 'Check your receptionist the way a caller would.',
-    line: 'No code. Name the number, and every answer lands in Slack, a sheet or your inbox.',
-    slugs: ['voice-agent-check', 'lead-leaks', 'ai-disclosure-check'],
+    heading: 'Text back every missed call, confirm every booking, and check your receptionist.',
+    line: 'No code. Pick a job, name the number, and every result lands in Slack, a sheet or your inbox.',
+    slugs: ['missed-call-text-back', 'appointment-reminders', 'voice-agent-check', 'lead-leaks', 'ai-disclosure-check'],
   },
 
   prices: ['number', 'voice', 'sms', 'register', 'inbox', 'persona'],

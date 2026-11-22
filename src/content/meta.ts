@@ -6,6 +6,7 @@ import { alternativesHub, glossaryHub, type ReferenceHub, type ReferenceKind } f
 import { blogPage, resourcesPage, useCasesPage } from './resources'
 import { SITE, absolute, cleanPath } from './paths'
 import { lookupPage } from './pages/lookup'
+import { noCodePage } from './noCode'
 import { pieces } from './pieces'
 import { kits } from './kits'
 import { cases, teams } from './teams'
@@ -20,6 +21,7 @@ export type PageKind =
   | 'home'
   | 'audience'
   | 'developers'
+  | 'no-code'
   | 'compare'
   | 'verify'
   | 'recipes'
@@ -133,7 +135,7 @@ const behind = pages['web-behind-the-login']
 
 /* Every prerendered page, in the order the sitemap and llms.txt list them. */
 export const entries: Entry[] = [
-  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill, findings: home.shareFindings, faq: home.faq, source: 'src/content/pages/home.ts' },
+  { kind: 'home', meta: ogFor(home.meta), name: 'Home', headline: home.hero.headline, line: home.meta.ogLine ?? home.hero.pill ?? home.hero.headline, findings: home.shareFindings, faq: home.faq, source: 'src/content/pages/home.ts' },
   /* Each piece's own page (content/pieces, 21 Nov): Email, Phone, Messaging, Browser, Sandbox, Personas. */
   ...pieces.map(
     (p): Entry => ({
@@ -167,6 +169,16 @@ export const entries: Entry[] = [
     line: firstSentence(dev.hero.sub),
     faq: dev.faq,
     source: 'src/content/pages/developers.ts',
+  },
+  /* The front door for teams that don't write code (content/noCode.ts, 23 Nov 2026), beside /developers. */
+  {
+    kind: 'no-code',
+    meta: ogFor(noCodePage.meta),
+    name: crumbName(noCodePage.meta, 'For teams'),
+    headline: noCodePage.hero.headline,
+    line: firstSentence(noCodePage.hero.sub),
+    faq: noCodePage.faq,
+    source: 'src/content/noCode.ts',
   },
   /* What each piece costs (content/pricing.ts): its own words, not a Page, like the lookup. Its share card's line is
      its own `line`, and its questions are FAQPage. */

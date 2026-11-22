@@ -48,6 +48,8 @@ export const portals: KitPage = {
       { icon: 'record', label: 'Screenshot and result in the log' },
     ],
     who: 'Claims agent 3 at a medical billing company',
+    note: 'From sign-in to claim status in two minutes',
+    fleet: '40 agents · 1,900 claims a day',
     rows: [
       { at: '07:30', kind: 'page.visited', text: 'portal.payer.example/login' },
       { at: '07:30', kind: 'email.received', text: 'Your verification code is 551203' },
@@ -73,7 +75,7 @@ export const portals: KitPage = {
   blueprints: {
     heading: 'Jobs that sign in for you, every morning.',
     line: 'Obsession signs in, starts trials and reads what each company shows its signed-in customers.',
-    slugs: ['price-watch', 'trial-teardown', 'account-watch'],
+    slugs: ['prior-authorization-status', 'load-tracking', 'invoice-collector', 'price-watch', 'trial-teardown', 'account-watch'],
   },
 
   code: {

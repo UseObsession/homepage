@@ -5,8 +5,8 @@ import type { TeamPage } from './types'
    for their clients under their own brand (prospect research, mystery shopping, QA, lead response, competitor
    tracking, AI agent checks), and agent platforms give their users the pieces. White label comes with Enterprise.
    Product Marketing book, jobs 2, 3 and 5; Top 3 Buyers ranking (CRO, retention and lifecycle agencies; voice AI
-   builders; agent platforms; mystery shopping firms); Commercial View persona `agency` (22 Nov 2026). The scene is the
-   site's one real run: Brand G, a UK skincare store, September 2026 (/sample-output). */
+   builders; agent platforms; mystery shopping firms); Commercial View persona `agency` (22 Nov 2026). The scene is a
+   prospecting run across 300 stores, an invented example; the real Brand G run is the stores page's (_research/illus/AUDIT_23nov.md). */
 
 /* Enterprise's starting price, from prices.ts: its floor is on the first month's bill. */
 const enterprise = plans.find((p) => p.id === 'enterprise')
@@ -35,19 +35,21 @@ export const team: TeamPage = {
 
   scene: {
     steps: [
-      { icon: 'domain', label: 'Add a client or a prospect' },
-      { icon: 'persona', label: 'A persona shops as a new customer' },
+      { icon: 'domain', label: 'Add 300 stores you want to win' },
+      { icon: 'persona', label: 'A persona shops each as a new customer' },
       { icon: 'clock', label: 'It waits 48 hours for every email' },
-      { icon: 'record', label: 'A report under your brand' },
+      { icon: 'record', label: 'A pitch list, sorted by the gap' },
     ],
-    who: 'Mystery shopping at Brand G, a UK skincare store',
+    who: 'Prospect shopping for a retention agency, 300 stores this week',
+    note: 'Your pitch list, sorted by the gap',
+    fleet: '300 stores · 1,840 emails kept',
     rows: [
-      { at: '02:57', kind: 'page.visited', text: 'A £40 basket left in the cart' },
-      { at: '03:11', kind: 'page.visited', text: 'Checkout started, stopped before payment' },
-      { at: '48 hours', kind: 'blueprint.result', text: 'No basket or checkout reminder arrived', tone: 'fail' },
+      { at: 'Mon 02:00', kind: 'page.visited', text: '300 stores · a sign-up and a basket at each · screenshots saved' },
+      { at: 'Mon to Wed', kind: 'email.received', text: '1,840 emails kept, each with the time it arrived' },
+      { at: 'Wed 02:00', kind: 'blueprint.result', text: '112 stores sent no basket reminder in 48 hours', tone: 'fail' },
+      { at: 'Wed 02:01', kind: 'webhook', text: 'Pitch list sent to your sheet: store, gap and the email itself' },
     ],
-    caption: 'A real run, September 2026: 4 sign-ups and baskets at Brand G, and no reminder in 48 hours. Every client’s run is kept the same way.',
-    real: true,
+    caption: 'One run across 300 stores an agency wants to win, sorted by what each one never sent. The agency and its run are an invented example.',
   },
 
   uses: {
@@ -125,6 +127,11 @@ export const team: TeamPage = {
   examples: {
     heading: 'Worked examples',
     paths: ['/use-cases/leak-checks-for-retention-agencies', '/use-cases/funnel-qa-for-cro-agencies', '/use-cases/prospect-intelligence-with-clay'],
+    /* The mystery shopping blueprint's real run and the store lookup built on it (Seun, 23 Nov 2026). */
+    links: [
+      { label: 'Sample output from a real store', to: '/sample-output' },
+      { label: 'Look up a store', to: '/lookup' },
+    ],
   },
 
   faq: {

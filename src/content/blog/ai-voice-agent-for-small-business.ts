@@ -346,5 +346,5 @@ export const post: BlogPost = {
     { title: 'Receptionists: Occupational Outlook Handbook', publisher: 'U.S. Bureau of Labor Statistics', url: BLS, date: '2026-10-29' },
   ],
 
-  related: ['/use-cases/ai-receptionist', '/blueprints/talk-to-customers', 'recipe:voice-agent-check', 'ai-voice-agent-testing', 'can-ai-make-phone-calls', '10dlc-registration'],
+  related: ['/use-cases/ai-receptionist', '/blueprints/talk-to-customers', 'recipe:voice-agent-check', 'ai-voice-agent-testing', 'can-ai-make-phone-calls', '10dlc-registration', 'recipe:missed-call-text-back', 'recipe:appointment-reminders'],
 }

@@ -342,5 +342,5 @@ export const post: BlogPost = {
     { title: 'LLM01:2025 Prompt Injection', publisher: 'OWASP Gen AI Security Project', url: OWASP_INJECTION, date: '2025' },
   ],
 
-  related: ['/use-cases/imessage-ai-assistant', '/use-cases/ai-recruiter', '/blueprints/build-agent-products', 'recipe:support-bot-check', 'recipe:voice-agent-check', 'long-running-ai-agents', 'why-ai-customers-matter'],
+  related: ['/use-cases/imessage-ai-assistant', '/use-cases/ai-recruiter', '/blueprints/build-agent-products', 'recipe:support-bot-check', 'recipe:voice-agent-check', 'long-running-ai-agents', 'why-ai-customers-matter', 'recipe:inbox-agent', 'recipe:imessage-assistant'],
 }

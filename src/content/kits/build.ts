@@ -49,15 +49,17 @@ export const build: KitPage = {
       { icon: 'persona', label: 'A persona per agent' },
       { icon: 'webhook', label: 'One webhook for every event' },
     ],
-    who: 'Junior, the accounts agent at acme.example',
+    who: 'The agent for user 8,412 in Tallyroom, a bookkeeping app',
+    note: 'Each user’s agent gets an inbox and number',
+    fleet: '8,412 personas, one per user',
     rows: [
-      { at: '10:14', kind: 'email.received', text: 'Invoice INV-2207 from supplier.example' },
-      { at: '10:14', kind: 'sandbox.finished', text: '3 line items read in 1.8 s' },
-      { at: '10:15', kind: 'email.sent', text: 'Approved, paying on the 30th' },
-      { at: '10:22', kind: 'message.received', text: 'Slack: “Did the Acme invoice go through?”' },
-      { at: '10:22', kind: 'webhook', text: 'Your agent replied in the thread', tone: 'ok' },
+      { at: '09:00:00', kind: 'personas.create', text: 'User 8,412 · an inbox, a number and a browser, ready in 1.2 s', tone: 'ok' },
+      { at: '09:04', kind: 'email.received', text: 'A supplier receipt, forwarded by the user · PDF attached' },
+      { at: '09:04', kind: 'sandbox.finished', text: 'Receipt read: £84.20, VAT £14.03' },
+      { at: '09:05', kind: 'email.sent', text: 'Filed under March expenses. Anything else?' },
+      { at: '09:31', kind: 'sms.received', text: '“Can you chase the Harbour invoice?”' },
     ],
-    caption: 'One agent with an inbox, a sandbox and Slack: four events, one log, one webhook. acme.example is an invented example.',
+    caption: 'One call gives each new user’s agent its own inbox, number and browser, and every event after it lands in one log. Tallyroom is an invented example.',
   },
 
   pieces: {
@@ -75,9 +77,9 @@ export const build: KitPage = {
   },
 
   blueprints: {
-    heading: 'Check the agents you ship, as a customer would.',
-    line: 'Obsession joins your AI SDR’s lists and shops with your sales agent, and keeps every message it sends.',
-    slugs: ['outbound-agent-check', 'sales-agent-check'],
+    heading: 'Start an agent product, then check it as a customer would.',
+    line: 'Starters for an inbox agent and an iMessage assistant, and checks that join your AI SDR’s lists and shop with your sales agent, keeping every message it sends.',
+    slugs: ['inbox-agent', 'imessage-assistant', 'outbound-agent-check', 'sales-agent-check'],
   },
 
   code: {
@@ -113,7 +115,7 @@ export const build: KitPage = {
       {
         q: 'Can my own agent use it?',
         a: 'Yes. Add it with claude mcp add obsession, and your agent can create inboxes, numbers and browsers itself.',
-        link: { label: 'The API and MCP', to: '/developers' },
+        link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
         q: 'Can each of my users get their own identity?',
