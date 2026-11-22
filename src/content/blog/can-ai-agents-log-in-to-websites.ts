@@ -575,7 +575,10 @@ export const post: BlogPost = {
     { title: 'Exa: search API for AI agents', publisher: 'Exa', url: EXA },
   ],
 
-  related: ['/use-cases/otp-testing', '/use-cases/prior-authorization-ai-agent', '/use-cases/ai-agent-for-property-management', 
+  related: [
+    '/use-cases/otp-testing',
+    '/use-cases/prior-authorization-ai-agent',
+    '/use-cases/ai-agent-for-property-management',
     '/browser',
     '/email',
     'scrape-data-behind-login',
@@ -586,5 +589,10 @@ export const post: BlogPost = {
     'recipe:competitor-tracking',
     '/personas',
     '/agents',
-    '/developers','recipe:sign-in-code-check', 'recipe:prior-authorization-status'],
+    '/developers',
+    'recipe:sign-in-code-check',
+    'recipe:prior-authorization-status',
+    'recipe:travel-booking-agent',
+    'recipe:supplier-reorder-agent',
+  ],
 }

@@ -627,7 +627,7 @@ export type HomeHow = {
     play: string
     examples: {
       who: string
-      kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train'
+      kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train' | 'buy'
       reader: 'sales' | 'agencies' | 'developers' | 'founders' | 'marketing'
       org: string
       scale: string

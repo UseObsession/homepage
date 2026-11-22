@@ -1,0 +1,160 @@
+/* app-travelbook (23 Nov 2026): Your company / Agents / Travel desk. Travel booking agent for Brackwell, an invented
+   consultancy. Left: Tom's request from #travel, the 2 caps from the travel policy, the fares and rooms checked (2
+   flights and the hotel sent, 1 fare over the cap left out, the 2 picked carry a band) and Tom's pick in the thread.
+   Right: the trip, its total and its own log, each line as the event log wrote it, Wednesday's schedule change last
+   with a band. Foot: the 2 lines it keeps, and the toast.
+   Story (4.4 s): the request lands, the caps show, the options land row by row (each mark circles, then lands; the
+   £312 fare dims and is marked left out), the log fills alongside, Tom's pick lands and the 2 picked rows light, the
+   bookings and confirmations land, the total turns to £476 and the trip to Booked, the schedule change lands, the
+   toast.
+   Geometry (design px, main 556 x 414, padding 14): header 14..38, cards 50..348 (left 306, gap 12, right 210), foot
+   362..400. Rest state (no .play) = the finished scene. Monochrome, like every screen. */
+
+.app-travelbook .ax-main{grid-template-columns:minmax(0,1fr);grid-template-rows:24px 298px;align-content:start;gap:12px;padding:14px}
+
+/* ---------- header ---------- */
+.app-travelbook .tb-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-travelbook .tb-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;color:var(--fg);white-space:nowrap}
+.app-travelbook .tb-meta{padding-top:2px;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-travelbook .tb-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 4px;border-radius:8px;white-space:nowrap;
+  font-size:11px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-travelbook .tb-av{display:grid;place-items:center;flex:none;width:16px;height:16px;border-radius:5px;background:var(--fg)}
+.ilwrap .app-travelbook .tb-av svg.sig{width:10px;height:10px;color:var(--bg)}
+
+/* sidebar: the travel desk this trip belongs to */
+.app-travelbook .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-travelbook .ax-clients a.on i{background:var(--fg-2)}
+
+/* stacked states: only the last shows at rest */
+.app-travelbook .tb-mk{display:grid;place-items:center;flex:none;width:12px;height:12px}
+.app-travelbook .tb-mk>svg{grid-area:1/1}
+.app-travelbook .tb-mk .w0{opacity:0}
+.ilwrap .app-travelbook .tb-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+.ilwrap .app-travelbook .tb-mk svg.tb-out{width:12px;height:12px;color:var(--fg-3)}
+.app-travelbook .tb-sv{display:inline-grid;min-width:0}
+.app-travelbook .tb-sv>span{grid-area:1/1}
+.app-travelbook .v0{opacity:0}
+
+.app-travelbook .tb-cols{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:12px;min-height:0}
+
+/* ---------- left: the request, the caps, the options, the pick ---------- */
+.app-travelbook .tb-req{display:grid;grid-template-rows:68px 30px 24px repeat(4,34px) minmax(0,1fr);overflow:hidden;min-width:0}
+.app-travelbook .tb-msg{display:grid;grid-template-columns:18px minmax(0,1fr);grid-template-rows:18px auto;column-gap:8px;row-gap:4px;align-content:start;padding:9px 12px}
+.app-travelbook .tb-ava{display:grid;place-items:center;width:18px;height:18px;border-radius:5px;font:600 10px/1 var(--sans);color:var(--fg-2);background:var(--panel-3);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-travelbook .tb-ava.sm{width:16px;height:16px;border-radius:4px}
+.app-travelbook .tb-mt{display:flex;align-items:center;gap:8px;min-width:0}
+.app-travelbook .tb-mt b{font:600 11.5px/1 var(--sans);color:var(--fg)}
+.app-travelbook .tb-mt span{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-travelbook .tb-mb{grid-column:1/3;font:400 11px/14px var(--sans);color:var(--fg-2)}
+
+.app-travelbook .tb-pol{display:flex;align-items:center;gap:6px;padding:0 12px;border-top:1px solid var(--line);min-width:0}
+.app-travelbook .tb-cap{display:inline-flex;align-items:center;height:19px;padding:0 7px;border-radius:5px;white-space:nowrap;
+  font:500 10.5px/1 var(--sans);color:var(--fg-2);background:rgb(var(--fg-rgb) / .04);box-shadow:0 0 0 1px var(--line-2) inset}
+
+.app-travelbook .tb-oh{display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-top:1px solid var(--line-2);background:rgb(var(--fg-rgb) / .02)}
+.app-travelbook .tb-oh b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-travelbook .tb-ct{font:400 10.5px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+
+.app-travelbook .tb-o{position:relative;display:grid;grid-template-columns:12px minmax(0,1fr) 74px;align-items:center;column-gap:9px;padding:0 12px;box-shadow:0 1px 0 var(--line) inset}
+.app-travelbook .tb-o>*{min-width:0}
+.app-travelbook .tb-on{display:grid;gap:4px;min-width:0}
+.app-travelbook .tb-n1{display:flex;align-items:center;gap:6px;min-width:0}
+.app-travelbook .tb-n1 b{font:500 11.5px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-travelbook .tb-on small{font:400 10.5px/1 var(--mono);color:var(--fg-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-travelbook .tb-tag{display:inline-flex;align-items:center;height:15px;padding:0 5px;border-radius:4px;font:500 10px/1 var(--sans);color:var(--bg);background:var(--fg);white-space:nowrap}
+.app-travelbook .tb-tag.dash{color:var(--fg-3);background:none;outline:1px dashed var(--line-3);outline-offset:-1px}
+.app-travelbook .tb-pr{display:grid;justify-items:end;gap:4px;text-align:right}
+.app-travelbook .tb-pr b{font:500 12px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-travelbook .tb-pr small{font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+/* the 2 Tom picked carry a band; the fare over the cap is dimmed */
+.app-travelbook .tb-o.pick{background:rgb(var(--fg-rgb) / .05)}
+.app-travelbook .tb-o.over .tb-n1 b,.app-travelbook .tb-o.over .tb-on small,.app-travelbook .tb-o.over .tb-pr{opacity:.55}
+
+.app-travelbook .tb-rep{display:flex;align-items:center;gap:8px;padding:0 12px;border-top:1px solid var(--line-2);min-width:0}
+.app-travelbook .tb-rep p{display:flex;align-items:baseline;gap:7px;font-size:11px;color:var(--fg-2);white-space:nowrap}
+.app-travelbook .tb-rep b{font-weight:600;color:var(--fg)}
+.app-travelbook .tb-rep span{font:400 10.5px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* ---------- right: the trip, its total, its log ---------- */
+.app-travelbook .tb-trip{display:grid;grid-template-rows:26px 52px minmax(0,1fr);overflow:hidden;min-width:0}
+.app-travelbook .tb-th{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px;border-bottom:1px solid var(--line-2)}
+.app-travelbook .tb-th b{font:500 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-travelbook .tb-st{justify-items:end}
+.app-travelbook .tb-tot{display:flex;align-items:center;gap:10px;padding:0 12px;border-bottom:1px solid var(--line)}
+.app-travelbook .tb-big{font:600 20px/1 var(--display);letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums}
+.app-travelbook .tb-big.dim{color:var(--fg-3)}
+.app-travelbook .tb-tl{display:grid;gap:4px;min-width:0}
+.app-travelbook .tb-tl b{font:500 11.5px/1 var(--sans);color:var(--fg)}
+.app-travelbook .tb-tl small{font:400 10.5px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+
+.app-travelbook .tb-log{display:grid;grid-auto-rows:30px;align-content:start;padding:2px 0}
+.app-travelbook .tb-log li{display:grid;align-content:center;gap:4px;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset;min-width:0}
+.app-travelbook .tb-log li:last-child{box-shadow:none}
+.app-travelbook .tb-l1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.app-travelbook .tb-l1 code{font:500 10px/1 var(--mono);color:var(--fg)}
+.app-travelbook .tb-l1 time{font:400 10px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.app-travelbook .tb-l2{font:400 10.5px/1 var(--sans);color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Wednesday's schedule change: a band, its words brighter */
+.app-travelbook .tb-log li.chg{background:rgb(var(--fg-rgb) / .05)}
+.app-travelbook .tb-log li.chg .tb-l2{color:var(--fg)}
+
+/* ---------- foot: the 2 lines it keeps, the toast ---------- */
+.app-travelbook .tb-note{position:absolute;left:14px;bottom:14px;height:38px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:4px;
+  font-size:10.5px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.app-travelbook .tb-note span{grid-column:2}
+.ilwrap .app-travelbook .tb-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-travelbook .tb-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-travelbook .tb-toast p{display:flex;align-items:baseline;gap:8px;font-size:11.5px;white-space:nowrap}
+.app-travelbook .tb-toast b{font-weight:500;color:var(--fg)}
+.app-travelbook .tb-toast p span{color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* ---------- motion (only with .play, and only for readers who allow it) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes tvb-on{from{opacity:1}to{opacity:1}}
+  @keyframes tvb-show{from{opacity:0}to{opacity:1}}
+  @keyframes tvb-hide{from{opacity:1}to{opacity:0}}
+  @keyframes tvb-land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes tvb-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+  @keyframes tvb-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes tvb-spin{to{transform:rotate(360deg)}}
+  @keyframes tvb-spinr{to{transform:rotate(-360deg)}}
+  @keyframes tvb-home{from{transform:none}to{transform:translate(-24.6965px,24.6965px) scale(.8)}}
+  @keyframes tvb-pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+  @keyframes tvb-dim{from{opacity:1}to{opacity:.55}}
+  @keyframes tvb-glow{0%{background-color:rgb(var(--fg-rgb) / 0)}30%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .05)}}
+  @keyframes tvb-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. the request lands, the policy's caps show */
+  .app-travelbook.play .tb-msg{animation:tvb-land .45s var(--ease) .3s both;}
+  .app-travelbook.play .tb-cap:nth-child(1){animation:tvb-show .35s var(--ease) .6s both;}
+  .app-travelbook.play .tb-cap:nth-child(2){animation:tvb-show .35s var(--ease) .72s both;}
+  .app-travelbook.play .tb-ct{animation:tvb-show .35s var(--ease) .9s both;}
+
+  /* 2. the options land row by row: each mark circles, then lands; the fare over the cap dims and is left out */
+  .app-travelbook.play .tb-o{animation:tvb-land .4s var(--ease) var(--tb-t) both;}
+  .app-travelbook.play .tb-o .w0{animation:tvb-on .01s linear both,tvb-hide .2s var(--ob-ease-in) calc(var(--tb-t) + .4s) forwards;}
+  .app-travelbook.play .tb-o .w0 .sig-rot{animation:tvb-spin .6s linear var(--tb-t) 1;}
+  .app-travelbook.play .tb-o .w0 .sig-orb{animation:tvb-spinr .6s linear var(--tb-t) 1;}
+  .app-travelbook.play .tb-o .w1{animation:tvb-show .2s var(--ease) calc(var(--tb-t) + .4s) both;}
+  .app-travelbook.play .tb-o .w1 .sig-sq{animation:tvb-home .55s var(--snap) calc(var(--tb-t) + .4s) both;}
+  .app-travelbook.play .tb-o .w1 .sig-gap{animation:tvb-show .3s var(--ease) calc(var(--tb-t) + .55s) both;}
+  .app-travelbook.play .tb-o.over .tb-n1 b,.app-travelbook.play .tb-o.over .tb-on small,.app-travelbook.play .tb-o.over .tb-pr{animation:tvb-dim .35s var(--ease) calc(var(--tb-t) + .4s) both;}
+  .app-travelbook.play .tb-o.over .tb-out{animation:tvb-pop .35s var(--snap) calc(var(--tb-t) + .4s) both;}
+  .app-travelbook.play .tb-o.over .tb-tag{animation:tvb-pop .35s var(--snap) calc(var(--tb-t) + .45s) both;}
+
+  /* 3. Tom picks in the thread; the 2 picked rows light and take their tag */
+  .app-travelbook.play .tb-rep{animation:tvb-land .4s var(--ease) 2s both;}
+  .app-travelbook.play .tb-o.pick{animation:tvb-land .4s var(--ease) var(--tb-t) both,tvb-glow 1.2s var(--ease) 2.1s both;}
+  .app-travelbook.play .tb-o.pick .tb-tag{animation:tvb-pop .35s var(--snap) 2.15s both;}
+
+  /* 4. the trip's log fills alongside; the total turns to £476 and the trip to Booked; the change lands last */
+  .app-travelbook.play .tb-log li{animation:tvb-land .4s var(--ease) var(--tb-t) both;}
+  .app-travelbook.play .tb-log li.chg{animation:tvb-land .4s var(--ease) var(--tb-t) both,tvb-glow 1.2s var(--ease) calc(var(--tb-t) + .4s) both;}
+  .app-travelbook.play .tb-sv .v0{animation:tvb-on .01s linear both,tvb-out .25s var(--ob-ease-in) 2.95s forwards;}
+  .app-travelbook.play .tb-sv .v1{animation:tvb-in .35s var(--ease) 3s both;}
+  .app-travelbook.play .tb-tl{animation:tvb-show .35s var(--ease) 3.05s both;}
+
+  /* 5. the 2 lines it keeps, then the toast */
+  .app-travelbook.play .tb-note{animation:tvb-show .4s var(--ease) .3s both;}
+  .app-travelbook.play .tb-toast{animation:tvb-toast .45s var(--ease) 3.9s both;}
+}

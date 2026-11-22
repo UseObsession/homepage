@@ -511,5 +511,5 @@ export const post: BlogPost = {
     { title: 'Shoptest: Monitoring & Alerts', publisher: 'Shopify App Store', url: SHOPTEST_APP },
   ],
 
-  related: ['shopify-simgym-review-ai-shoppers-vs-ai-customers', 'shopify-store-audit-checklist', 'traffic-but-no-sales', 'welcome-basket-email-not-sending', 'recipe:mystery-shopper'],
+  related: ['shopify-simgym-review-ai-shoppers-vs-ai-customers', 'shopify-store-audit-checklist', 'traffic-but-no-sales', 'welcome-basket-email-not-sending', 'recipe:mystery-shopper', 'recipe:agent-checkout-test'],
 }

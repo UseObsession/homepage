@@ -302,5 +302,6 @@ export const post: BlogPost = {
     'recipe:prior-authorization-status',
     'recipe:load-tracking',
     'recipe:invoice-collector',
+    'recipe:supplier-reorder-agent',
   ],
 }

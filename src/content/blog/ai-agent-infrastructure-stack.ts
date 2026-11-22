@@ -371,5 +371,6 @@ export const post: BlogPost = {
     '/compare/agentmail-twilio-browserbase-e2b',
     'recipe:inbox-agent',
     'recipe:imessage-assistant',
+    'recipe:order-receipt-ledger',
   ],
 }

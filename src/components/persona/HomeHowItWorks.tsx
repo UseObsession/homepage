@@ -7,13 +7,13 @@ import './HomeHowItWorks.css'
 /* How it works on Home (#how). James's loop of 21 Nov (set up once; something happens; it's saved in your event log; it
    reaches your agent or a person; whatever the agent does next is a new event), redrawn on 22 Nov so any reader, and each
    buyer, sees it work: one real-looking example per buyer plays through the three stops. Since 23 Nov there is one example
-   for each of the six types of blueprints, each at the volume a real team runs it: the team and its company, how much
+   for each of the seven types of blueprints, each at the volume a real team runs it: the team and its company, how much
    comes in (a stack of cards behind the one that plays), the events just before it in the log, and the week's total,
    which links that type of blueprint. An event card arrives at
    "Something happens", travels the wire into the log as a dated row, travels on and lights the place it reaches (the
    agent on our runtime, on your servers, or a person), shows what happens there, and, when an agent acts, comes back
    round the return path as the next row in the log. The tabs pick the team: front desks, product and QA, AI startups,
-   operations, pricing teams and AI labs. Live call audio is the figure's caption.
+   operations, pricing teams, AI labs and procurement. Live call audio is the figure's caption.
 
    Motion explains the order of things and nothing else. The tour plays only in view, moves to the next buyer every 7.5 s,
    and stops on Pause or after a tab the reader picks. Under prefers-reduced-motion nothing moves and nothing advances by

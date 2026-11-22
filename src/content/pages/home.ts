@@ -366,7 +366,7 @@ export const page: Page = {
     line: 'Each one is recorded in your event log with the original recording, email or screenshot, then routed to your agent, your servers or your team. Whatever the agent does next is recorded as well.',
     loop: {
       label:
-        'Set up once: pick pieces, a persona or a blueprint, and say where results go. Then a loop of three stops. Something happens: a call, an email, a text or a page change comes in, or your agent acts. It is saved in your event log, in order, with the email, screenshot or recording behind it. Then it reaches your agent on our runtime in about 50 ms, your agent on your servers, or a person in Slack. What your agent does next is a new event. Six examples play through it, one for each type of blueprint, each at the volume a real team runs. A dental group answers 1,200 calls a day across 40 clinics. A delivery app tests 24 sign-ups every night. An AI sales startup runs 500 inboxes. A freight broker checks 60 carrier portals. A retailer reads 12,000 competitor prices every morning. An AI lab runs 2,000 training tasks a night. Live call audio streams straight to your voice agent, and the log keeps each call’s start, end and transcript.',
+        'Set up once: pick pieces, a persona or a blueprint, and say where results go. Then a loop of three stops. Something happens: a call, an email, a text or a page change comes in, or your agent acts. It is saved in your event log, in order, with the email, screenshot or recording behind it. Then it reaches your agent on our runtime in about 50 ms, your agent on your servers, or a person in Slack. What your agent does next is a new event. Seven examples play through it, one for each type of blueprint, each at the volume a real team runs. A dental group answers 1,200 calls a day across 40 clinics. A delivery app tests 24 sign-ups every night. An AI sales startup runs 500 inboxes. A freight broker checks 60 carrier portals. A retailer reads 12,000 competitor prices every morning. An AI lab runs 2,000 training tasks a night. A restaurant group places 900 reorders a month. Live call audio streams straight to your voice agent, and the log keeps each call’s start, end and transcript.',
       setup: { name: 'Set up once', line: 'Pick pieces, a persona or a blueprint, and say where results go.' },
       happens: { name: 'Something happens', line: 'A call, email, text or page change, around the clock.' },
       log: { name: 'Your event log', line: 'Every event in order, with its email, screenshot or recording.' },
@@ -484,6 +484,23 @@ export const page: Page = {
           does: 'Your grader scores the run and starts the next task',
           out: { at: '03:12:46', kind: 'page.visited', text: 'Task 1,208 · sign-up page opened' },
           tally: 'Last night: 2,000 runs, each with its own inbox, phone number and browser',
+        },
+        {
+          who: 'Procurement',
+          kit: 'buy',
+          reader: 'founders',
+          org: 'A restaurant group with 18 sites',
+          scale: '900 reorders a month, 40 suppliers',
+          from: 'A supplier confirms an order',
+          before: [
+            { at: '09:12:41', kind: 'page.visited', text: 'Supplier 12 · 6 cases in the basket, paid with your card' },
+            { at: '09:12:58', kind: 'sms.received', text: 'Supplier 3 · delivery arriving Wednesday' },
+          ],
+          in: { at: '09:13:20', kind: 'email.received', text: 'Order SX-20931 confirmed · £318.40' },
+          place: 'runtime',
+          does: 'Your agent matches it to the order and adds the delivery date',
+          out: { at: '09:13:21', kind: 'blueprint.result', text: 'Order, amount and delivery date in your ledger' },
+          tally: 'This month: 900 reorders across 40 suppliers, every receipt matched to its order',
         },
       ],
     },

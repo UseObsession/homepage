@@ -1,0 +1,120 @@
+/* app-ledger: Ashgrove / Ledger / Orders this week. Order and receipt ledger (Buy, book and order, 23 Nov 2026).
+   Ashgrove Kitchens runs a reorder agent and a travel agent, each on its own inbox and number. Top: this week's latest
+   5 orders, one row each (order, merchant, amount, when it was confirmed, the receipt with its mark, delivery), read
+   from the agents' emails and texts. The 1 thing: PW-20931's receipt is £412.80 against £398.00 confirmed, drawn as a
+   band with a hollow mark (needs you). Below: the confirmation and the receipt side by side, the £14.80 named.
+   Story (3.4 s): the rows arrive one by one, newest first; the flagged row's receipt is matched last (its mark turns
+   while the other receipts are already in), lands at £412.80 and goes hollow; the band lights, the emails rise, Needs
+   you goes 0 to 1, the toast.
+   Rest state (no .play) = the finished scene. Every animation sits under prefers-reduced-motion: no-preference. */
+
+.app-ledger .ax-main{padding:14px;gap:12px}
+
+/* ---------- head: the ledger, the agents, where it syncs ---------- */
+.app-ledger .ld-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-ledger .ld-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-ledger .ld-meta{padding-top:2px;font-size:12px;color:var(--fg-3);white-space:nowrap}
+.app-ledger .ld-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 6px;border-radius:8px;white-space:nowrap;
+  font-size:12px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+
+/* sidebar: the agents this ledger reads; Needs you gains the flagged receipt */
+.app-ledger .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-ledger .ax-clients a.on i{background:var(--fg-2)}
+.app-ledger .ld-nb{display:inline-grid}
+.app-ledger .ld-nb b{grid-area:1/1;font-weight:inherit}
+.app-ledger .ld-nb b:first-child{opacity:0}
+
+/* icons and the status mark slot (stacked states, only the last shows at rest) */
+.app-ledger .ld-ic{display:grid;place-items:center;width:14px;height:14px;flex:none;color:var(--fg-2)}
+.ilwrap .app-ledger .ld-ic svg{width:13px;height:13px}
+.app-ledger .ld-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.app-ledger .ld-mk>svg{grid-area:1/1}
+.app-ledger .ld-mk .w0{opacity:0}
+.ilwrap .app-ledger .ld-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+
+/* ---------- the ledger: 1 row per order ---------- */
+.app-ledger .ld-tb{display:grid;grid-template-rows:22px repeat(5,26px);border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-ledger .ld-r{position:relative;display:grid;grid-template-columns:80px 84px 64px 76px 92px minmax(0,1fr);column-gap:8px;align-items:center;padding:0 12px;
+  white-space:nowrap;box-shadow:0 -1px 0 var(--line) inset}
+.app-ledger .ld-r:last-child{box-shadow:none}
+.app-ledger .ld-hd{box-shadow:0 -1px 0 var(--line-2) inset;font:500 11px/1 var(--sans);color:var(--fg-3)}
+.app-ledger .ld-n{text-align:right;padding-right:8px}
+.app-ledger .ld-or{display:flex;align-items:center;gap:6px;font:400 11px/1 var(--mono);color:var(--fg)}
+.ilwrap .app-ledger .ld-or .ld-ic svg{width:12px;height:12px}
+.app-ledger .ld-mc{font:500 12px/1 var(--sans);color:var(--fg);overflow:hidden;text-overflow:ellipsis}
+.app-ledger .ld-am{font:400 12px/1 var(--mono);color:var(--fg);font-variant-numeric:tabular-nums}
+.app-ledger .ld-t{font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-ledger .ld-rc{display:flex;align-items:center;gap:5px;min-width:0}
+.app-ledger .ld-rv{font:400 12px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.app-ledger .ld-waiting .ld-rv{font:400 12px/1 var(--sans);color:var(--fg-3)}
+
+/* the flagged order: a band and a bar, the receipt in full ink */
+.app-ledger .ld-needs{background:rgb(var(--fg-rgb) / .045)}
+.app-ledger .ld-needs::before{content:"";position:absolute;left:0;top:6px;width:2px;height:14px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-ledger .ld-needs .ld-rv{font-weight:500;color:var(--fg)}
+
+/* ---------- the flagged order, as evidence ---------- */
+.app-ledger .ld-ev{border-radius:10px;overflow:hidden;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-ledger .ld-eh{display:flex;align-items:center;gap:8px;height:26px;padding:0 12px;white-space:nowrap;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-ledger .ld-eh b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-ledger .ld-eh em{font:400 11px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+.app-ledger .ld-df{margin-left:auto;display:inline-flex;align-items:center;height:18px;padding:0 7px;border-radius:5px;
+  font:500 11px/1 var(--mono);color:var(--fg);box-shadow:0 0 0 1px var(--fg) inset}
+.app-ledger .ld-eb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;padding:10px 12px 12px}
+
+/* each email as it arrived: when, what it says, its total */
+.app-ledger .ld-mail{display:grid;gap:5px;align-content:start;padding:8px 10px;border-radius:8px;background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset;min-width:0}
+.app-ledger .ld-mail b{font:500 12px/1.2 var(--sans);color:var(--fg)}
+.app-ledger .ld-ek{display:block;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-ledger .ld-li{display:flex;justify-content:space-between;gap:8px;font:400 12px/1.2 var(--sans);color:var(--fg-2);white-space:nowrap}
+.app-ledger .ld-tot{padding-top:5px;box-shadow:0 1px 0 var(--line-2) inset;color:var(--fg);font-weight:500}
+.app-ledger .ld-tot span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.app-ledger .ld-hot{box-shadow:0 0 0 1px var(--fg) inset}
+.app-ledger .ld-add{color:var(--fg);font-weight:500;text-decoration:underline dashed 1px;text-underline-offset:3px}
+
+/* ---------- foot: the red lines, the toast ---------- */
+.app-ledger .ld-note{position:absolute;left:14px;bottom:14px;height:40px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:3px;
+  font-size:11px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-ledger .ld-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-ledger .ld-note span{grid-column:2}
+.app-ledger .ld-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-ledger .ld-toast p{display:flex;align-items:baseline;gap:8px;font-size:12px;white-space:nowrap}
+.app-ledger .ld-toast b{font-weight:500;color:var(--fg)}
+.app-ledger .ld-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play, and only when the reader allows motion) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  @keyframes ld-fade{from{opacity:0}to{opacity:1}}
+  @keyframes ld-hide{from{opacity:1}to{opacity:0}}
+  @keyframes ld-on{from{opacity:1}to{opacity:1}}
+  @keyframes ld-row{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @keyframes ld-land{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @keyframes ld-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+  @keyframes ld-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes ld-spin{to{transform:rotate(360deg)}}
+  @keyframes ld-sqin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(.75)}}
+  @keyframes ld-pulse{0%,100%{opacity:1}50%{opacity:.2}}
+  @keyframes ld-glow{0%{background-color:rgb(var(--fg-rgb) / .045)}30%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .045)}}
+  @keyframes ld-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. the rows arrive one by one, newest first */
+  .appx-il.play.app-ledger .ld-tb{animation:ld-fade .5s var(--ease) .06s both}
+  .appx-il.play.app-ledger .ld-row{animation:ld-row .45s var(--ease) var(--ld-t) both}
+
+  /* 2. the flagged row's receipt is matched last: its mark turns, then the receipt lands and goes hollow */
+  .appx-il.play.app-ledger .ld-needs .w0{animation:ld-on .01s linear both,ld-hide .2s var(--ob-ease-in) 1.9s forwards}
+  .appx-il.play.app-ledger .ld-needs .w0 .sig-rot{animation:ld-spin .9s linear .4s 2 both}
+  .appx-il.play.app-ledger .ld-needs .ld-rv{animation:ld-in .3s var(--ease) 1.9s both}
+  .appx-il.play.app-ledger .ld-needs .w1{animation:ld-fade .2s var(--ease) 1.9s both}
+  .appx-il.play.app-ledger .ld-needs .w1 .sig-sq{animation:ld-sqin .45s var(--snap) 1.9s both,ld-pulse 2.6s ease-in-out 2.6s infinite}
+  .appx-il.play.app-ledger .ld-needs{animation:ld-row .45s var(--ease) var(--ld-t) both,ld-glow 1.4s var(--ease) 1.95s both}
+
+  /* 3. the emails rise side by side, Needs you goes 0 to 1 */
+  .appx-il.play.app-ledger .ld-ev{animation:ld-land .5s var(--ease) 2.35s both}
+  .appx-il.play.app-ledger .ld-nb b:first-child{animation:ld-on .01s linear both,ld-out .25s var(--ob-ease-in) 2.45s forwards}
+  .appx-il.play.app-ledger .ld-nb b:last-child{animation:ld-in .3s var(--ease) 2.5s both}
+
+  /* 4. the toast */
+  .appx-il.play.app-ledger .ld-toast{animation:ld-toast .45s var(--ease) 2.9s both}
+}

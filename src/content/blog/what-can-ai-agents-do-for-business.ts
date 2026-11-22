@@ -430,5 +430,7 @@ export const post: BlogPost = {
     'ai-agent-use-cases-for-business',
     'can-ai-make-phone-calls',
     'recipe:document-chaser',
+    'recipe:order-receipt-ledger',
+    'recipe:travel-booking-agent',
   ],
 }

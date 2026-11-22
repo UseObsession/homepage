@@ -1,0 +1,150 @@
+/* app-agentcheckout: Haldane / Watches / Checkout, as AI agents. Agent checkout test (Buy, book and order, 23 Nov 2026).
+   Every morning at 07:00, 3 personas shop haldane.example the way shoppers' AI agents do (a UK desktop, a UK phone, a US
+   desktop). Top: the 3 shoppers on 1 step rail, Product to Payment, 60px a step (dots at 30, 90, 150, 210 and 270px; the
+   rail starts 144px into the card). Both UK shoppers reach payment; the US shopper meets a CAPTCHA at checkout, drawn
+   as a hatched cell over that step, and the run stops there. Below: that step as evidence, the checkout page beside the
+   events it wrote and the 2 abandoned checkout emails that followed.
+   Story (4 s): the 3 shoppers move along the rail together, a step every .55 s, each a little behind the one above;
+   the UK shoppers land on payment; the US shopper's line stops short, the hatched cell lights and its mark goes hollow
+   (needs you); the evidence rises, Needs you goes 0 to 1, the toast.
+   Rest state (no .play) = the finished scene. Every animation sits under prefers-reduced-motion: no-preference. */
+
+.app-agentcheckout .ax-main{padding:14px;gap:12px}
+
+/* ---------- head: the page, the schedule, the payment line ---------- */
+.app-agentcheckout .ac-h{display:flex;align-items:center;gap:8px;height:24px;min-width:0}
+.app-agentcheckout .ac-h h2{font:600 16px/1.2 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.app-agentcheckout .ac-meta{padding-top:2px;font-size:12px;color:var(--fg-3);white-space:nowrap}
+.app-agentcheckout .ac-id{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:24px;padding:0 10px 0 6px;border-radius:8px;white-space:nowrap;
+  font-size:12px;color:var(--fg-2);background:rgb(var(--fg-rgb) / .035);box-shadow:0 0 0 1px var(--line-2) inset}
+
+/* sidebar: the journey this watch belongs to; Needs you gains the blocked checkout */
+.app-agentcheckout .ax-clients a.on{color:var(--fg);background:rgb(var(--fg-rgb) / .07)}
+.app-agentcheckout .ax-clients a.on i{background:var(--fg-2)}
+.app-agentcheckout .ac-nb{display:inline-grid}
+.app-agentcheckout .ac-nb b{grid-area:1/1;font-weight:inherit}
+.app-agentcheckout .ac-nb b:first-child{opacity:0}
+
+/* icons and the status mark slot (stacked states, only the last shows at rest) */
+.app-agentcheckout .ac-ic{display:grid;place-items:center;width:14px;height:14px;flex:none;color:var(--fg-2)}
+.ilwrap .app-agentcheckout .ac-ic svg{width:13px;height:13px}
+.app-agentcheckout .ac-mk{display:grid;place-items:center;width:12px;height:12px;flex:none}
+.app-agentcheckout .ac-mk>svg{grid-area:1/1}
+.app-agentcheckout .ac-mk .w0{opacity:0}
+.ilwrap .app-agentcheckout .ac-mk svg.sig{width:12px;height:12px;color:var(--fg)}
+
+/* ---------- the 3 shoppers on 1 step rail ---------- */
+.app-agentcheckout .ac-tl{position:relative;display:grid;grid-template-rows:22px repeat(3,30px);border-radius:10px;overflow:hidden;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-agentcheckout .ac-ru{position:relative;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-agentcheckout .ac-ch{position:absolute;left:12px;top:6px;font:500 11px/1 var(--sans);color:var(--fg-3)}
+.app-agentcheckout .ac-chr{left:auto;right:12px}
+.app-agentcheckout .ac-ru b{position:absolute;left:var(--ac-x);top:6px;transform:translateX(-50%);font:500 11px/1 var(--sans);color:var(--fg-3);white-space:nowrap}
+
+.app-agentcheckout .ac-ln{position:relative;display:grid;grid-template-columns:132px 300px minmax(0,1fr);align-items:center;padding:0 12px;box-shadow:0 -1px 0 var(--line) inset}
+.app-agentcheckout .ac-l3{box-shadow:none}
+.app-agentcheckout .ac-lb{display:flex;align-items:center;gap:7px;min-width:0;white-space:nowrap}
+.app-agentcheckout .ac-lb b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-agentcheckout .ac-lb em{font:400 11px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+
+/* a lane: the line it travelled, a dot for each step it passed */
+.app-agentcheckout .ac-tr{position:relative;display:block;height:18px}
+.app-agentcheckout .ac-tr::before{content:"";position:absolute;left:30px;width:240px;top:8.5px;height:1px;background:var(--line-2)}
+.app-agentcheckout .ac-w{position:absolute;left:30px;top:8.5px;height:1px;width:240px;background:var(--fg-3)}
+.app-agentcheckout .ac-d{position:absolute;z-index:1;left:calc(26px + var(--ac-i) * 60px);top:5px;width:8px;height:8px;border-radius:50%;background:var(--fg);box-shadow:0 0 0 2px var(--panel-2)}
+.app-agentcheckout .ac-d.ac-no{background:var(--panel-2);box-shadow:0 0 0 1px var(--line-3) inset,0 0 0 2px var(--panel-2)}
+.app-agentcheckout .ac-rs{display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.app-agentcheckout .ac-v{font:400 12px/1 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+
+/* the US lane, the one opened below: its line stops at the hatched checkout cell; a band (needs you) */
+.app-agentcheckout .ac-l3{background:rgb(var(--fg-rgb) / .045)}
+.app-agentcheckout .ac-l3::before{content:"";position:absolute;left:0;top:8px;width:2px;height:14px;border-radius:0 2px 2px 0;background:var(--fg)}
+.app-agentcheckout .ac-l3 .ac-w{width:152px}
+.app-agentcheckout .ac-blk{position:absolute;z-index:1;left:182px;top:0;width:56px;height:18px;display:grid;place-items:center;border-radius:5px;
+  font:500 11px/1 var(--mono);letter-spacing:.02em;color:var(--fg);
+  background:repeating-linear-gradient(135deg,rgb(var(--fg-rgb) / .1) 0 1px,transparent 1px 5px),var(--panel-2);
+  box-shadow:0 0 0 1px var(--fg) inset,0 0 0 3px rgb(var(--fg-rgb) / .1)}
+.app-agentcheckout .ac-l3 .ac-v{font-weight:500;color:var(--fg)}
+
+/* ---------- the step that stopped it, as evidence ---------- */
+.app-agentcheckout .ac-ev{border-radius:10px;overflow:hidden;background:var(--panel-2);box-shadow:0 0 0 1px var(--line-2) inset}
+.app-agentcheckout .ac-eh{display:flex;align-items:center;gap:8px;height:26px;padding:0 12px;white-space:nowrap;box-shadow:0 -1px 0 var(--line-2) inset}
+.app-agentcheckout .ac-eh b{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-agentcheckout .ac-eh em{font:400 11px/1 var(--mono);font-style:normal;color:var(--fg-3)}
+.app-agentcheckout .ac-tm{margin-left:auto;font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
+.app-agentcheckout .ac-eb{display:grid;grid-template-columns:200px minmax(0,1fr);gap:14px;padding:10px 12px 12px}
+
+/* the checkout page as the shopper saw it: a small window, the form under a CAPTCHA card */
+.app-agentcheckout .ac-shot{display:flex;flex-direction:column;min-width:0}
+.app-agentcheckout .ac-url{display:flex;align-items:center;height:18px;padding:0 8px;border-radius:7px 7px 0 0;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-2) inset;
+  font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-agentcheckout .ac-pg{position:relative;display:grid;gap:7px;padding:9px 9px 10px;border-radius:0 0 7px 7px;background:var(--panel);box-shadow:0 0 0 1px var(--line-2) inset;margin-top:-1px}
+.app-agentcheckout .ac-pt{font:500 12px/1 var(--sans);color:var(--fg)}
+.app-agentcheckout .ac-fd{display:grid;gap:5px;opacity:.5}
+.app-agentcheckout .ac-fd i{display:block;height:12px;border-radius:4px;box-shadow:0 0 0 1px var(--line-2) inset}
+.app-agentcheckout .ac-cap{display:flex;align-items:center;gap:8px;height:26px;padding:0 9px;border-radius:6px;background:var(--panel-3);
+  box-shadow:0 0 0 1px var(--fg) inset,0 8px 16px -10px rgb(0 0 0 / calc(.7 * var(--sh-k,1)));font:500 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
+.app-agentcheckout .ac-box{width:12px;height:12px;flex:none;border-radius:3px;box-shadow:0 0 0 1.4px var(--fg) inset}
+
+/* the events that step wrote, and what came after */
+.app-agentcheckout .ac-log{display:grid;gap:9px;align-content:start;min-width:0}
+.app-agentcheckout .ac-log li{display:grid;gap:4px;padding-left:10px;box-shadow:1px 0 0 var(--line-2) inset}
+.app-agentcheckout .ac-log li.ac-stop{box-shadow:2px 0 0 var(--fg) inset}
+.app-agentcheckout .ac-ek{display:block;font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
+.app-agentcheckout .ac-log li>span:last-child{font:400 12px/1.35 var(--sans);color:var(--fg-2)}
+.app-agentcheckout .ac-log li.ac-stop>span:last-child{color:var(--fg);font-weight:500}
+
+/* ---------- foot: the red lines, the toast ---------- */
+.app-agentcheckout .ac-note{position:absolute;left:14px;bottom:14px;height:40px;display:grid;grid-template-columns:12px auto;align-content:center;column-gap:7px;row-gap:3px;
+  font-size:11px;line-height:1;color:var(--fg-3);white-space:nowrap}
+.ilwrap .app-agentcheckout .ac-note svg{grid-row:1/3;align-self:center;width:12px;height:12px;color:var(--fg-3)}
+.app-agentcheckout .ac-note span{grid-column:2}
+.app-agentcheckout .ac-toast{gap:10px;padding:8px 8px 8px 12px}
+.app-agentcheckout .ac-toast p{display:flex;align-items:baseline;gap:8px;font-size:12px;white-space:nowrap}
+.app-agentcheckout .ac-toast b{font-weight:500;color:var(--fg)}
+.app-agentcheckout .ac-toast p span{color:var(--fg-3)}
+
+/* ---------- motion (only with .play, and only when the reader allows motion) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  @keyframes ac-fade{from{opacity:0}to{opacity:1}}
+  @keyframes ac-hide{from{opacity:1}to{opacity:0}}
+  @keyframes ac-on{from{opacity:1}to{opacity:1}}
+  @keyframes ac-grow{from{width:0}}
+  @keyframes ac-dot{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+  @keyframes ac-blk{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+  @keyframes ac-land{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @keyframes ac-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-4px)}}
+  @keyframes ac-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes ac-spin{to{transform:rotate(360deg)}}
+  @keyframes ac-sqin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(.75)}}
+  @keyframes ac-pulse{0%,100%{opacity:1}50%{opacity:.2}}
+  @keyframes ac-glow{0%{background-color:rgb(var(--fg-rgb) / .045)}30%{background-color:rgb(var(--fg-rgb) / .12)}100%{background-color:rgb(var(--fg-rgb) / .045)}}
+  @keyframes ac-toast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* 1. the 3 shoppers move together, a step every .55 s, each a little behind the one above */
+  .appx-il.play.app-agentcheckout .ac-tl{animation:ac-fade .5s var(--ease) .06s both}
+  .appx-il.play.app-agentcheckout .ac-w{animation:ac-grow 2.2s linear calc(.5s + var(--ac-o)) both}
+  .appx-il.play.app-agentcheckout .ac-l3 .ac-w{animation-duration:1.39s}
+  .appx-il.play.app-agentcheckout .ac-d{animation:ac-dot .35s var(--snap) calc(.45s + var(--ac-o) + var(--ac-i) * .55s) both}
+  .appx-il.play.app-agentcheckout .ac-d.ac-no{animation:ac-fade .3s var(--ease) 2.6s both}
+
+  /* 2. both UK shoppers land on payment */
+  .appx-il.play.app-agentcheckout .ac-l1 .ac-rs,.appx-il.play.app-agentcheckout .ac-l2 .ac-rs{animation:ac-in .3s var(--ease) calc(2.75s + var(--ac-o)) both}
+
+  /* 3. the US shopper stops at checkout: the CAPTCHA cell, its mark goes hollow, the band lights */
+  .appx-il.play.app-agentcheckout .ac-l3 .w0{animation:ac-on .01s linear both,ac-hide .2s var(--ob-ease-in) 2.45s forwards}
+  .appx-il.play.app-agentcheckout .ac-l3 .w0 .sig-rot{animation:ac-spin .9s linear .5s 2 both}
+  .appx-il.play.app-agentcheckout .ac-blk{animation:ac-blk .4s var(--snap) 2.4s both}
+  .appx-il.play.app-agentcheckout .ac-l3{animation:ac-glow 1.4s var(--ease) 2.45s both}
+  .appx-il.play.app-agentcheckout .ac-l3 .ac-v{animation:ac-in .3s var(--ease) 2.45s both}
+  .appx-il.play.app-agentcheckout .ac-l3 .w1{animation:ac-fade .2s var(--ease) 2.45s both}
+  .appx-il.play.app-agentcheckout .ac-l3 .w1 .sig-sq{animation:ac-sqin .45s var(--snap) 2.45s both,ac-pulse 2.6s ease-in-out 3.2s infinite}
+
+  /* 4. the evidence rises, Needs you goes 0 to 1 */
+  .appx-il.play.app-agentcheckout .ac-ev{animation:ac-land .5s var(--ease) 2.9s both}
+  .appx-il.play.app-agentcheckout .ac-nb b:first-child{animation:ac-on .01s linear both,ac-out .25s var(--ob-ease-in) 3s forwards}
+  .appx-il.play.app-agentcheckout .ac-nb b:last-child{animation:ac-in .3s var(--ease) 3.05s both}
+
+  /* 5. the toast */
+  .appx-il.play.app-agentcheckout .ac-toast{animation:ac-toast .45s var(--ease) 3.4s both}
+}

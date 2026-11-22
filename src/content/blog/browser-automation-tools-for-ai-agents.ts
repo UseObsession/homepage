@@ -440,5 +440,6 @@ export const post: BlogPost = {
     'can-ai-agents-log-in-to-websites',
     'scrape-data-behind-login',
     'recipe:invoice-collector',
+    'recipe:travel-booking-agent',
   ],
 }

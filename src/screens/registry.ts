@@ -6,6 +6,7 @@ import { AcctwatchScreen } from './acctwatch'
 import { AdcheckScreen } from './adcheck'
 import { AdsScreen } from './ads'
 import { AgencytaskScreen } from './agencytask'
+import { AgentcheckoutScreen } from './agentcheckout'
 import { ApproveScreen } from './approve'
 import { BattlecardScreen } from './battlecard'
 import { BoardScreen } from './board'
@@ -35,6 +36,7 @@ import { InvoicecollectScreen } from './invoicecollect'
 import { InvoicesScreen } from './invoices'
 import { KitScreen } from './kit'
 import { LeadsScreen } from './leads'
+import { LedgerScreen } from './ledger'
 import { ListingsScreen } from './listings'
 import { LoadsScreen } from './loads'
 import { MemberfeedScreen } from './memberfeed'
@@ -53,6 +55,7 @@ import { QaScreen } from './qa'
 import { QuotesScreen } from './quotes'
 import { RemindersScreen } from './reminders'
 import { RenewalScreen } from './renewal'
+import { ReorderScreen } from './reorder'
 import { ReportScreen } from './report'
 import { ResolutionScreen } from './resolution'
 import { ReviewsScreen } from './reviews'
@@ -66,6 +69,7 @@ import { SpendScreen } from './spend'
 import { SuppliersScreen } from './suppliers'
 import { SwitchScreen } from './switch'
 import { TemplatesScreen } from './templates'
+import { TravelbookScreen } from './travelbook'
 import { UpsellsScreen } from './upsells'
 import { VendorScreen } from './vendor'
 import { VendorcheckScreen } from './vendorcheck'
@@ -76,6 +80,7 @@ export const SCREENS: Readonly<Record<string, ComponentType<ScreenProps>>> = {
   adcheck: AdcheckScreen,
   ads: AdsScreen,
   agencytask: AgencytaskScreen,
+  agentcheckout: AgentcheckoutScreen,
   approve: ApproveScreen,
   battlecard: BattlecardScreen,
   board: BoardScreen,
@@ -105,6 +110,7 @@ export const SCREENS: Readonly<Record<string, ComponentType<ScreenProps>>> = {
   invoices: InvoicesScreen,
   kit: KitScreen,
   leads: LeadsScreen,
+  ledger: LedgerScreen,
   listings: ListingsScreen,
   loads: LoadsScreen,
   memberfeed: MemberfeedScreen,
@@ -123,6 +129,7 @@ export const SCREENS: Readonly<Record<string, ComponentType<ScreenProps>>> = {
   quotes: QuotesScreen,
   reminders: RemindersScreen,
   renewal: RenewalScreen,
+  reorder: ReorderScreen,
   report: ReportScreen,
   resolution: ResolutionScreen,
   reviews: ReviewsScreen,
@@ -136,6 +143,7 @@ export const SCREENS: Readonly<Record<string, ComponentType<ScreenProps>>> = {
   suppliers: SuppliersScreen,
   switch: SwitchScreen,
   templates: TemplatesScreen,
+  travelbook: TravelbookScreen,
   upsells: UpsellsScreen,
   vendor: VendorScreen,
   vendorcheck: VendorcheckScreen,
