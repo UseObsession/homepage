@@ -20,19 +20,22 @@ import { page } from '../content/pages/home'
    section: prices live on /pricing and the piece pages.
    The rhythm, after the teams page (Seun, 23 Nov 2026: "feels aligned not scattered ... not too squared ... like the
    teams page"): the hero is centred, every section below starts on one left edge, and the sections alternate grounds
-   (pieces, blueprints, how it works and questions on the alt ground) instead of ruled lines with + marks. */
+   instead of ruled lines with + marks. The first section after the hero opens on the alt ground (Seun: "its its own
+   section ... it should have a break but intentional and clean"), so the hero ends where the band begins: the problem,
+   the persona, the teams and the code sit on the alt ground, with a soft hairline at each band's edge
+   (components/persona/blueprint.css). */
 export function Home() {
   return (
     <>
       {page.personaStart && <PersonaHero hero={page.hero} start={page.personaStart} />}
-      {page.homeProblem && <HomeProblem problem={page.homeProblem} id="act" />}
-      {page.homePieces && <HomePieces pieces={page.homePieces} id="pieces" tone="alt" />}
-      {page.personaAnatomy && <PersonaAnatomy anatomy={page.personaAnatomy} id="personas" />}
-      {page.homeBlueprints && <HomeBlueprints words={page.homeBlueprints} id="blueprints" tone="alt" />}
-      {page.homeTeams && <HomeTeams words={page.homeTeams} id="teams" />}
-      {page.homeHow && <HomeHowItWorks how={page.homeHow} id="how" tone="alt" />}
-      {page.personaBuild && <PersonaBuild build={page.personaBuild} id="build" />}
-      <Faq faq={page.faq} id="questions" tone="alt" />
+      {page.homeProblem && <HomeProblem problem={page.homeProblem} id="act" tone="alt" />}
+      {page.homePieces && <HomePieces pieces={page.homePieces} id="pieces" />}
+      {page.personaAnatomy && <PersonaAnatomy anatomy={page.personaAnatomy} id="personas" tone="alt" />}
+      {page.homeBlueprints && <HomeBlueprints words={page.homeBlueprints} id="blueprints" />}
+      {page.homeTeams && <HomeTeams words={page.homeTeams} id="teams" tone="alt" />}
+      {page.homeHow && <HomeHowItWorks how={page.homeHow} id="how" />}
+      {page.personaBuild && <PersonaBuild build={page.personaBuild} id="build" tone="alt" />}
+      <Faq faq={page.faq} id="questions" />
       <FinalCta final={page.final} id="join" />
     </>
   )

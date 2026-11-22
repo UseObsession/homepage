@@ -5,7 +5,7 @@
   position: relative;
   display: grid;
   min-height: calc(100svh - var(--ob-nav-h, 64px));
-  padding-block: clamp(24px, 4vh, 56px) clamp(16px, 3vh, 32px);
+  padding-block: clamp(24px, 4vh, 56px) clamp(32px, 5vh, 56px);
   overflow-x: clip;
 }
 .s-ph-wrap { display: grid; grid-template-rows: 1fr auto; align-items: center; row-gap: var(--ob-space-24); }
@@ -23,8 +23,9 @@
   pointer-events: none;
 }
 .s-ph { isolation: isolate; }
-/* The first section opens a step below the hero, so the facts strip at the screen's foot keeps its own air. */
-.s-ph + .s-section { padding-top: clamp(56px, 7vw, 96px); }
+/* The first section opens on its own ground (Home.tsx) with the section's full air; the hero keeps its own air below the
+   facts strip, so the band's edge reads as the break between them. */
+.s-ph + .s-section { padding-top: var(--ob-space-section); }
 
 /* 1 track the wrap's width, never wider: the chip's code would otherwise widen it to the code's length on a phone. */
 .s-ph-words {

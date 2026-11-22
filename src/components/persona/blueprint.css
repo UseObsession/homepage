@@ -64,3 +64,19 @@
 .s-bp-link:hover { border-color: var(--ob-text); }
 .s-bp-link:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 4px; border-radius: 2px; }
 @media (prefers-reduced-motion: reduce) { .s-bp-link { transition: none; } }
+
+/* Home's bands (Home.tsx): each section on the alt ground opens and closes on a soft hairline that fades out at both
+   ends, so the break between grounds is drawn on purpose rather than left to a change of shade. */
+:is(.h-pr, .s-pa, .h-tm, .s-pb)[data-tone="alt"] { position: relative; }
+:is(.h-pr, .s-pa, .h-tm, .s-pb)[data-tone="alt"]::before,
+:is(.h-pr, .s-pa, .h-tm, .s-pb)[data-tone="alt"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--ob-border-hair);
+  background: linear-gradient(90deg, transparent, var(--ob-line-strong) 18%, var(--ob-line-strong) 82%, transparent);
+  pointer-events: none;
+}
+:is(.h-pr, .s-pa, .h-tm, .s-pb)[data-tone="alt"]::before { top: 0; }
+:is(.h-pr, .s-pa, .h-tm, .s-pb)[data-tone="alt"]::after { bottom: 0; }

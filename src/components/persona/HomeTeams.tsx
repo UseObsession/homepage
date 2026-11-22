@@ -31,7 +31,7 @@ const tie = (s: string) => s.replace(/(\d) /g, '$1\u00a0')
 
 const d = (n: number) => ({ ['--d' as string]: n }) as CSSProperties
 
-export function HomeTeams({ words, id }: { words: Words; id?: string }) {
+export function HomeTeams({ words, id, tone }: { words: Words; id?: string; tone?: 'alt' }) {
   const hid = useId()
   const [i, setI] = useState(0)
   const { ref, inView } = useInView<HTMLDivElement>(0.15)
@@ -48,7 +48,7 @@ export function HomeTeams({ words, id }: { words: Words; id?: string }) {
   const blanks = t.sentence.filter((p) => typeof p !== 'string').length
 
   return (
-    <section className="s-section h-tm" id={id} aria-labelledby={`${hid}-h`}>
+    <section className="s-section h-tm" id={id} data-tone={tone} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
         <div className="s-bp-head h-tm__head">
           <h2 className="s-bp-h" id={`${hid}-h`}>

@@ -47,7 +47,7 @@ const Lock = () => (
   </svg>
 )
 
-export function HomeProblem({ problem, id }: { problem: Words; id?: string }) {
+export function HomeProblem({ problem, id, tone }: { problem: Words; id?: string; tone?: 'alt' }) {
   const hid = useId()
   const p = problem
   const { ref, inView } = useInView<HTMLDivElement>(0.3)
@@ -76,7 +76,7 @@ export function HomeProblem({ problem, id }: { problem: Words; id?: string }) {
   }
 
   return (
-    <section className="s-section h-pr" id={id} aria-labelledby={`${hid}-h`}>
+    <section className="s-section h-pr" id={id} data-tone={tone} aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
         <div className="s-bp-head h-pr__head">
           <h2 className="s-bp-h" id={`${hid}-h`}>
