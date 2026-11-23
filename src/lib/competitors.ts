@@ -13,6 +13,9 @@ const COMPETITOR_HOSTS = new Set([
   // integration guides cite their docs as sources.
   'lupin.sh', 'agenticmail.io', 'telnyx.com', 'vonage.com', 'signalwire.com', 'plivo.com', 'bandwidth.com', 'sinch.com',
   'bird.com', 'messagebird.com', '360dialog.com', 'wati.io',
+  // Best-of wave (24 Nov 2026, _research/seo/agent-business-24nov/PLAN.md): the tools those guides and comparisons name.
+  'lumbox.co', 'zoho.com', 'mem0.ai', 'mindstudio.ai', 'lindy.ai', 'relevanceai.com', 'bubble.io',
+  'axllent.org', 'jasper.ai', 'canva.com', 'ahrefs.com', 'clay.com', 'apollo.io', 'agencyanalytics.com', 'skyvern.com', 'stagehand.dev', 'perplexity.ai',
   // SEO wave 2 best-of lists (23 Nov 2026): email APIs, cloud browsers and sandboxes for agents. AWS, Vercel, Cloudflare and
   // GitHub stay plain links: the site cites them as sources elsewhere.
   'resend.com', 'postmarkapp.com', 'mailgun.com', 'nylas.com', 'mailslurp.com', 'kernel.sh', 'notte.cc', 'daytona.io',
