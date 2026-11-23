@@ -366,5 +366,5 @@ export const post: BlogPost = {
     },
   ],
 
-  related: ['/blueprints', 'recipe:appointment-reminders', 'recipe:missed-call-text-back', 'ai-voice-agent-for-small-business', '10dlc-registration', 'can-ai-make-phone-calls'],
+  related: ['/use-cases/healthcare-ai-agents', '/use-cases/ai-agent-for-home-services', '/blueprints', 'recipe:appointment-reminders', 'recipe:missed-call-text-back', 'ai-voice-agent-for-small-business', '10dlc-registration', 'can-ai-make-phone-calls'],
 }

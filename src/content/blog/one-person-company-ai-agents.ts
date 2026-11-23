@@ -32,7 +32,6 @@ export const post: BlogPost = {
     'scaling one person business ai',
     'solo founder ai',
     'ai agents for solopreneurs',
-    'ai agents for freelancers',
     'ai agents for entrepreneurs',
   ],
   category: 'Build agent products',
@@ -356,5 +355,5 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'Zapier', url: ZAPIER, date: '2026-11-23' },
   ],
 
-  related: ['/no-code', 'recipe:inbox-agent', 'recipe:missed-call-text-back', 'what-can-ai-agents-do-for-business', 'no-code-ai-agents'],
+  related: ['/use-cases/ai-agents-for-freelancers', '/no-code', 'recipe:inbox-agent', 'recipe:missed-call-text-back', 'what-can-ai-agents-do-for-business', 'no-code-ai-agents'],
 }

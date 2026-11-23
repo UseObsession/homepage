@@ -21,3 +21,7 @@
   .uc-kit__head { grid-template-columns: 44px minmax(0, 1fr); }
   .uc-kit__all { grid-column: 1 / -1; }
 }
+
+/* Any industry, any size (23 Nov 2026): the range pages in two labelled rows above the types of blueprints. */
+.uc-who__group + .uc-who__group { margin-top: var(--ob-space-32); }
+.uc-who__label { margin: 0 0 var(--ob-space-12); font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; color: var(--ob-text-3); }

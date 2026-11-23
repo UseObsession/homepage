@@ -1058,6 +1058,8 @@ export type UseCasesIndexPage = {
   hero: IndexHero
   /* Since 22 Nov: every use case and team page under the kit whose job it does (pages/UseCases.tsx), in kitLinks' order. */
   byKit: { kit: 'talk' | 'test' | 'build' | 'portals' | 'watch' | 'train' | 'buy'; paths: string[] }[]
+  /* Since 23 Nov: the range pages above the types, by industry and by size, from one person to an enterprise. */
+  byWho: { id: string; heading: string; line: string; groups: { label: string; paths: string[] }[] }
   orbit: { label: string; caption: string }
   group: LinkGroup
   /* The two guides that set out every job an AI customer does, each row linking the guide. */

@@ -26,5 +26,16 @@ export const casePathList = [
   '/use-cases/ai-agent-for-freight-brokers',
   '/use-cases/ai-agent-evaluation',
   '/use-cases/agentic-commerce',
+  '/use-cases/ai-agent-for-home-services',
+  '/use-cases/ai-agent-for-hotels',
+  '/use-cases/ai-agent-for-higher-education',
+  '/use-cases/ai-agent-for-contact-centers',
+  '/use-cases/ai-agent-platforms',
+  '/use-cases/ai-agents-for-enterprise',
+  '/use-cases/ai-agents-for-saas',
+  '/use-cases/ai-agents-for-financial-services',
+  '/use-cases/healthcare-ai-agents',
+  '/use-cases/ai-agents-for-freelancers',
+  '/use-cases/ai-agents-for-professional-services',
 ]
 export const teamPathSet = new Set([...teamPathList, ...casePathList])

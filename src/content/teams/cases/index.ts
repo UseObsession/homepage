@@ -11,8 +11,19 @@ import { useCase as priorAuthorizationAiAgent } from './prior-authorization-ai-a
 import { useCase as aiAgentForFreightBrokers } from './ai-agent-for-freight-brokers'
 import { useCase as aiAgentEvaluation } from './ai-agent-evaluation'
 import { useCase as agenticCommerce } from './agentic-commerce'
+import { useCase as aiAgentForHomeServices } from './ai-agent-for-home-services'
+import { useCase as aiAgentForHotels } from './ai-agent-for-hotels'
+import { useCase as aiAgentForHigherEducation } from './ai-agent-for-higher-education'
+import { useCase as aiAgentForContactCenters } from './ai-agent-for-contact-centers'
+import { useCase as aiAgentPlatforms } from './ai-agent-platforms'
+import { useCase as aiAgentsForEnterprise } from './ai-agents-for-enterprise'
+import { useCase as aiAgentsForSaas } from './ai-agents-for-saas'
+import { useCase as aiAgentsForFinancialServices } from './ai-agents-for-financial-services'
+import { useCase as healthcareAiAgents } from './healthcare-ai-agents'
+import { useCase as aiAgentsForFreelancers } from './ai-agents-for-freelancers'
+import { useCase as aiAgentsForProfessionalServices } from './ai-agents-for-professional-services'
 import type { TeamPage } from '../types'
 
 /* The use case pages (22 Nov 2026, _research/seo/revamp-22nov/PLAN_usecases.md): one job in one industry each, drawn by
    pages/Team.tsx like the team pages, in the order the /use-cases hub lists them within their kit. */
-export const cases: TeamPage[] = [aiReceptionist, aiAgentForInsurance, aiAgentForDentalPractices, aiAgentForPropertyManagement, aiRecruiter, aiAgentForCustomerSupport, otpTesting, aiSdr, imessageAiAssistant, priorAuthorizationAiAgent, aiAgentForFreightBrokers, aiAgentEvaluation, agenticCommerce]
+export const cases: TeamPage[] = [aiReceptionist, aiAgentForInsurance, aiAgentForDentalPractices, aiAgentForPropertyManagement, aiRecruiter, aiAgentForCustomerSupport, otpTesting, aiSdr, imessageAiAssistant, priorAuthorizationAiAgent, aiAgentForFreightBrokers, aiAgentEvaluation, agenticCommerce, aiAgentForHomeServices, aiAgentForHotels, aiAgentForHigherEducation, aiAgentForContactCenters, aiAgentPlatforms, aiAgentsForEnterprise, aiAgentsForSaas, aiAgentsForFinancialServices, healthcareAiAgents, aiAgentsForFreelancers, aiAgentsForProfessionalServices]

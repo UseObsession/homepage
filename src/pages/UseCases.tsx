@@ -21,7 +21,7 @@ import './UseCases.css'
 const firstSentence = (s: string) => s.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? s
 const cardOf: Record<string, { name: string; line: string }> = {
   ...Object.fromEntries(catalog.studies.map((s) => [s.path, { name: s.name, line: s.line }])),
-  ...Object.fromEntries([...teams, ...cases].map((t) => [t.meta.path, { name: t.name, line: firstSentence(t.hero.sub) }])),
+  ...Object.fromEntries([...teams, ...cases].map((t) => [t.meta.path, { name: t.name, line: t.card ?? firstSentence(t.hero.sub) }])),
 }
 const kitOf = Object.fromEntries(kitLinks.map((k) => [k.id, k]))
 
@@ -41,6 +41,38 @@ export function UseCases() {
           <div className="k-hub__stage ob-anim-hero-object">
             <KitOrbit label={page.orbit.label} caption={page.orbit.caption} />
           </div>
+        </div>
+      </section>
+
+      <section className="s-section uc-who" id={page.byWho.id} aria-labelledby={`${id}-who`}>
+        <div className="s-wrap">
+          <div className="s-bp-head">
+            <h2 className="s-bp-h" id={`${id}-who`}>
+              {page.byWho.heading}
+            </h2>
+            <p className="s-bp-line">{page.byWho.line}</p>
+          </div>
+          {page.byWho.groups.map((g) => (
+            <div className="uc-who__group" key={g.label}>
+              <h3 className="uc-who__label">{g.label}</h3>
+              <ul className="k-hub__cards">
+                {g.paths
+                  .map((p) => ({ path: p, ...cardOf[p] }))
+                  .filter((r) => r.name)
+                  .map((r) => (
+                    <li key={r.path}>
+                      <Link className="k-hub__card uc-card" to={r.path}>
+                        <span className="k-hub__name">{r.name}</span>
+                        <span className="k-hub__line">{r.line}</span>
+                        <svg className="k-hub__chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                          <path d="M6 3.5 10.5 8 6 12.5" />
+                        </svg>
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
 

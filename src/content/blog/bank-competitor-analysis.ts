@@ -514,7 +514,7 @@ export const post: BlogPost = {
     { title: 'Firecrawl', publisher: 'Firecrawl', url: FIRECRAWL },
   ],
 
-  related: [
+  related: ['/use-cases/ai-agents-for-financial-services', 
     'consumer-duty-fair-value-assessment',
     'member-only-pricing',
     'the-web-behind-the-login',

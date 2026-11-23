@@ -356,5 +356,5 @@ export const post: BlogPost = {
     { title: 'Assort Health', publisher: 'Assort Health', url: ASSORT, date: '2026-11-23' },
   ],
 
-  related: ['/no-code', '10dlc-registration', 'can-ai-agents-log-in-to-websites', 'recipe:prior-authorization-status', 'recipe:appointment-reminders', 'recipe:missed-call-text-back', 'ai-voice-agent-for-small-business', 'can-ai-make-phone-calls'],
+  related: ['/use-cases/healthcare-ai-agents', '/no-code', '10dlc-registration', 'can-ai-agents-log-in-to-websites', 'recipe:prior-authorization-status', 'recipe:appointment-reminders', 'recipe:missed-call-text-back', 'ai-voice-agent-for-small-business', 'can-ai-make-phone-calls'],
 }

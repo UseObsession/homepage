@@ -531,7 +531,7 @@ export const post: BlogPost = {
     { title: 'Project Vend: Can Claude run a small shop?', publisher: 'Anthropic', url: VEND, date: '2025-06-27' },
   ],
 
-  related: [
+  related: ['/use-cases/ai-agents-for-saas', 
     '/no-code',
     '/blueprints',
     'what-can-ai-agents-do-for-business',

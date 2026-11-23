@@ -544,7 +544,7 @@ export const post: BlogPost = {
     { title: 'What is the Model Context Protocol (MCP)?', publisher: 'Model Context Protocol', url: MCP_INTRO },
   ],
 
-  related: ['/use-cases/ai-agent-evaluation', 
+  related: ['/use-cases/ai-agents-for-enterprise', '/use-cases/ai-agent-evaluation', 
     '/developers',
     'recipe:support-bot-check',
     'recipe:drift-watch',

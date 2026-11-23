@@ -575,7 +575,7 @@ export const post: BlogPost = {
     { title: 'Exa: search API for AI agents', publisher: 'Exa', url: EXA },
   ],
 
-  related: [
+  related: ['/use-cases/ai-agent-platforms', 
     '/use-cases/otp-testing',
     '/use-cases/prior-authorization-ai-agent',
     '/use-cases/ai-agent-for-property-management',
