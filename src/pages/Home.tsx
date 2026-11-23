@@ -1,11 +1,9 @@
 import { HomeBlueprints } from '../components/persona/HomeBlueprints'
 import { HomeDoors } from '../components/persona/HomeDoors'
-import { HomeHowItWorks } from '../components/persona/HomeHowItWorks'
 import { HomePieces } from '../components/persona/HomePieces'
 import { HomeProblem } from '../components/persona/HomeProblem'
 import { HomeTeams } from '../components/persona/HomeTeams'
 import { PersonaAnatomy } from '../components/persona/PersonaAnatomy'
-import { PersonaBuild } from '../components/persona/PersonaBuild'
 import { PersonaHero } from '../components/persona/PersonaHero'
 import { FinalCta } from '../components/sections/FinalCta'
 import { page } from '../content/pages/home'
@@ -15,10 +13,10 @@ import { page } from '../content/pages/home'
    a blueprint; the 6 pieces under
    "One API, not five vendors.", each linking to its page (#pieces); the pieces under one identity, the persona
    (#personas); the six types of blueprints, each with its first blueprints (#blueprints); for teams that don't write code,
-   one blueprint's three steps by team and what every blueprint comes with (#teams, 23 Nov); how it works (#how): the loop
-   through your event log, one example for each type of blueprint at real volume; for developers, the code (#build); the two ways in, developers to /developers and teams that don't code to /no-code
-   (#start, 23 Nov 2026); the form, its button "Kit up your agent" (#join). Since 23 Nov 2026 (Seun) Home has no
-   questions section. No pricing
+   one blueprint's three steps by team and what every blueprint comes with (#teams, 23 Nov); the two ways in, right after the teams section, developers to /developers and teams that don't code to /no-code
+   (#start, 23 Nov 2026); the form, its button "Kit up your agent" (#join). Since 23 Nov 2026 (Seun) how it works, the
+   developers' code section and the questions are off Home: the two ways in carry the call for developers, and they are
+   the last section before the sign-up. No pricing
    section: prices live on /pricing and the piece pages.
    The rhythm, after the teams page (Seun, 23 Nov 2026: "feels aligned not scattered ... not too squared ... like the
    teams page"): the hero is centred, every section below starts on one left edge, and the sections alternate grounds
@@ -35,8 +33,6 @@ export function Home() {
       {page.personaAnatomy && <PersonaAnatomy anatomy={page.personaAnatomy} id="personas" tone="alt" />}
       {page.homeBlueprints && <HomeBlueprints words={page.homeBlueprints} id="blueprints" />}
       {page.homeTeams && <HomeTeams words={page.homeTeams} id="teams" tone="alt" />}
-      {page.homeHow && <HomeHowItWorks how={page.homeHow} id="how" />}
-      {page.personaBuild && <PersonaBuild build={page.personaBuild} id="build" tone="alt" />}
       {page.homeDoors && <HomeDoors doors={page.homeDoors} id="start" />}
       <FinalCta final={page.final} id="join" />
     </>

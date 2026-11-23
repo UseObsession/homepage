@@ -595,12 +595,13 @@ export type PersonaRecipes = {
   items: { name: string; line: string; status: string; live?: boolean; reader: ReaderId; link: Cta }[]
 }
 /* For developers (PersonaBuild): the claim, its line and link beside the code. Where events go is HomeHow. */
-/* The two ways in (HomeDoors): developers see one call and the event it brings back; teams that don't code see a job
-   written as a sentence with its blanks filled and the result that lands where they work. `reader` is the card's
-   reader colour (styles/accents.css). */
+/* The two ways in (HomeDoors, 23 Nov 2026): developers pick how they build (`tabs`: the SDK call, the webhook, MCP) and
+   watch their agent's events arrive (`events`, newest on top); teams that don't code see a job from one team at a time
+   (`jobs`), written as a sentence with its blanks filled and the result that lands where that team works. `reader` is
+   the card's reader colour (styles/accents.css). */
 export type HomeDoorDemo =
-  | { kind: 'code'; call: string; at: string; event: string; text: string; ms: string }
-  | { kind: 'job'; sentence: (string | { v: string })[]; where: string; at: string; result: string }
+  | { kind: 'code'; tabsLabel: string; tabs: { label: string; code: string }[]; events: { at: string; event: string; text: string }[]; ms: string }
+  | { kind: 'job'; tabsLabel: string; jobs: { team: string; sentence: (string | { v: string })[]; where: string; at: string; result: string }[] }
 export type HomeDoors = {
   heading: string
   line: string
