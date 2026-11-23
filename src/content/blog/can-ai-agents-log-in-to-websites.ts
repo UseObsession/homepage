@@ -103,7 +103,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Yes, AI agents can log in to websites. ChatGPT’s cloud browser, Claude’s computer use, Browserbase and Browser Use fill in sign-in forms, keep the session cookie the site sets and come back later without signing in again. A one-time code, a bot check or an expired session still sends the run back to a person.',
+      text: 'Yes, AI agents can log in to websites. ChatGPT’s cloud browser, Claude’s computer use, Browserbase and Browser Use fill in sign-in forms, keep the session cookie the site sets and come back later without signing in again. A [one-time code](/glossary/one-time-password), a bot check or an expired session still sends the run back to a person.',
     },
     {
       kind: 'p',
@@ -467,7 +467,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Its [browser keeps its logins](/browser) between runs, and the same agent gets its own [inbox](/email) and [phone number](/phone), so every login code, magic link and confirmation lands where the agent can read it. Nobody lends it a password and no colleague waits up for a code. Under a [persona](/personas), the agent signs in under one name for months and says it’s an AI when it talks to a person ([what an Obsession agent does](/agents)).',
+      text: 'Its [browser keeps its logins](/browser) between runs, and the same agent gets its own [inbox](/email) and [phone number](/phone), so every login code, [magic link](/glossary/magic-link) and confirmation lands where the agent can read it. Nobody lends it a password and no colleague waits up for a code. Under a [persona](/personas), the agent signs in under one name for months and says it’s an AI when it talks to a person ([what an Obsession agent does](/agents)).',
     },
     {
       kind: 'p',

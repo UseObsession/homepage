@@ -266,7 +266,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A persona puts those pieces under one identity: one name, one address, one number and one browser profile. That is the employee’s identity in practice. A sign-in code sent by text reaches the same agent whose browser is waiting at the login page. A customer who emails and then rings reaches the same agent, with the whole history. A persona costs nothing while it waits, apart from its number and inbox, and it answers a new message in about 50 ms without starting a machine.',
+      text: 'A [persona](/glossary/ai-agent-persona) puts those pieces under one identity: one name, one address, one number and one browser profile. That is the employee’s identity in practice. A sign-in code sent by text reaches the same agent whose browser is waiting at the login page. A customer who emails and then rings reaches the same agent, with the whole history. A persona costs nothing while it waits, apart from its number and inbox, and it answers a new message in about 50 ms without starting a machine.',
     },
     {
       kind: 'p',

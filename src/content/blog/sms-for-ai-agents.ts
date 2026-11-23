@@ -204,7 +204,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `Plain SMS APIs are cheaper per text. Obsession’s price buys carrier fees inside the rate and the same number sitting beside an inbox and a browser. Its paid plans, from $20 a month, cover set amounts of usage at list rates, and the Free plan includes a number that receives texts and calls, such as verification codes, with no credit card ([every rate](/pricing/rates)).`,
+      text: `Plain SMS APIs are cheaper per text. Obsession’s price buys carrier fees inside the rate and the same number sitting beside an inbox and a browser. Its paid plans, from $20 a month, cover set amounts of usage at list rates, and the Free plan includes a number that receives texts and calls, such as [verification codes](/glossary/one-time-password), with no credit card ([every rate](/pricing/rates)).`,
     },
 
     { kind: 'h2', id: 'obsession', text: 'Where Obsession fits' },

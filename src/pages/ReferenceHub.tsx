@@ -43,11 +43,13 @@ export function AlternativesHub() {
 export function GlossaryHub() {
   const byLetter = new Map<string, ReturnType<typeof rowsOf>>()
   for (const row of [...rowsOf('term')].sort((a, b) => a.label.localeCompare(b.label))) {
-    const letter = row.label.replace(/^the /i, '').charAt(0).toUpperCase()
+    /* A term that starts with a number (10DLC) sits under 0–9, before A. */
+    const first = row.label.replace(/^the /i, '').charAt(0).toUpperCase()
+    const letter = /\d/.test(first) ? '0–9' : first
     byLetter.set(letter, [...(byLetter.get(letter) ?? []), row])
   }
   const groups: LinkGroupRows[] = [...byLetter.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([letter, rows]) => ({ id: `letter-${letter.toLowerCase()}`, name: letter, rows }))
+    .map(([letter, rows]) => ({ id: `letter-${letter === '0–9' ? 'numbers' : letter.toLowerCase()}`, name: letter, rows }))
   return <Hub hub={glossaryHub} groups={groups} />
 }

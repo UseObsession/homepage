@@ -74,7 +74,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'An AI receptionist answers your business’s phone at any hour, books each caller into your calendar and confirms the booking by text and email. Building one takes five parts: a phone number, a voice agent, the calendar, the confirmation and a call log. The steps suit small businesses and clinics building their own, and the developers and agencies who build receptionists for them. Build them in order, and move on when each step passes its test.',
+      text: 'An AI receptionist answers your business’s phone at any hour, books each caller into your calendar and confirms the booking by text and email. Building one takes five parts: a phone number, a [voice agent](/glossary/voice-agent), the calendar, the confirmation and a call log. The steps suit small businesses and clinics building their own, and the developers and agencies who build receptionists for them. Build them in order, and move on when each step passes its test.',
     },
 
     { kind: 'h2', id: 'decide', text: 'What to decide first' },

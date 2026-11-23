@@ -68,13 +68,13 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: '10DLC registration is the step every US business completes before it texts customers from an ordinary 10-digit phone number, whether a person, a booking system or an AI agent sends the texts. It covers a dental practice’s appointment reminder as much as a retailer’s sale text. Registered texts travel the carriers’ approved route, and a filing done right the first time avoids a second wait in review.',
+      text: '[10DLC](/glossary/10dlc) registration is the step every US business completes before it texts customers from an ordinary 10-digit phone number, whether a person, a booking system or an AI agent sends the texts. It covers a dental practice’s appointment reminder as much as a retailer’s sale text. Registered texts travel the carriers’ approved route, and a filing done right the first time avoids a second wait in review.',
     },
 
     { kind: 'h2', id: 'what-is-10dlc', text: 'What is 10DLC?' },
     {
       kind: 'p',
-      text: `10DLC stands for 10-digit long code: an ordinary US phone number, the kind people text every day, enabled for business texting. The Campaign Registry (TCR) is the registry US carriers use for these numbers. It calls 10DLC [the sanctioned standard for non-consumer texting](${TCR_INTRO}) on a 10-digit number, known as A2P, or application-to-person, messaging. The same number can also make and take calls.`,
+      text: `10DLC stands for 10-digit long code: an ordinary US phone number, the kind people text every day, enabled for business texting. The Campaign Registry (TCR) is the registry US carriers use for these numbers. It calls 10DLC [the sanctioned standard for non-consumer texting](${TCR_INTRO}) on a 10-digit number, known as [A2P](/glossary/a2p-messaging), or application-to-person, messaging. The same number can also make and take calls.`,
     },
     {
       kind: 'p',

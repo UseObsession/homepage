@@ -71,7 +71,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The second is a webhook, a web address in n8n that another service calls the moment something happens. [n8n’s Webhook node](' +
+      text: 'The second is a [webhook](/glossary/webhook), a web address in n8n that another service calls the moment something happens. [n8n’s Webhook node](' +
         N8N_WEBHOOK +
         ') starts a workflow from an incoming request. It gives a test address while you build and a production address once the workflow is published. It supports basic, header and JWT authentication, an IP allowlist, and 4 ways to respond, including after the last node finishes. A webhook reacts when the email lands, with no wait for the next poll.',
     },

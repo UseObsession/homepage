@@ -161,11 +161,11 @@ export const alternativesHub: ReferenceHub = {
 export const glossaryHub: ReferenceHub = {
   meta: {
     path: '/glossary',
-    title: 'Glossary: AI agent, email, texting and cloud browser terms',
+    title: 'AI agent glossary: the terms for agents, texts and email',
     description:
-      'Plain definitions of the words around AI agents, email, texts and browsers: MCP, DKIM, headless browser, login wall, SMS STOP and one-click unsubscribe.',
+      'Plain definitions of the words around AI agents: harness, webhook, OTP, magic link, 10DLC, A2P messaging, voice agent, MCP, DKIM and headless browser.',
     answer:
-      'The glossary defines the words around AI agents and the pieces they use, from MCP and a headless browser to DKIM, SMS STOP and a login wall, each in a sentence or two. Each term links the piece, blueprint and guides that use it.',
+      'The glossary defines the words around AI agents and the pieces they use, from an agent’s harness, webhooks and one-time codes to 10DLC, MCP and DKIM, each in a sentence or two. Each term links the piece, blueprint and guides that use it.',
     ogImage: '/og/glossary.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -175,21 +175,22 @@ export const glossaryHub: ReferenceHub = {
   reader: 'sales',
   hero: {
     headline: 'The words around AI agents, in a sentence or two.',
-    sub: 'The glossary defines the words around AI agents and the pieces they use, from MCP and a headless browser to DKIM, SMS STOP and a login wall, each in a sentence or two. Each term links the piece, blueprint and guides that use it.',
+    sub: 'The glossary defines the words around AI agents and the pieces they use, from an agent’s harness, webhooks and one-time codes to 10DLC, MCP and DKIM, each in a sentence or two. Each term links the piece, blueprint and guides that use it.',
     capture: access('glossary-hero'),
     secondary: { label: 'Browse blueprints', to: '/blueprints' },
   },
   art: {
-    kind: 'flow',
-    title: 'northwind.example · terms',
-    steps: [
-      { label: 'Pricing page', detail: 'Public: search reads it', tone: 'info' },
-      { label: 'Login wall', detail: 'The sign-up form', tone: 'late' },
-      { label: 'Welcome series', detail: 'Day 0: 20% off', tone: 'ok' },
-      { label: 'Member price', detail: '£24, not £29', tone: 'ok' },
-      { label: 'Save offer', detail: '50% off to stay', tone: 'ok' },
+    kind: 'log',
+    title: 'One sign-up, term by term',
+    who: 'Juno, an agent at larkfield.example',
+    rows: [
+      { time: '09:00', text: 'Its harness plans the job', detail: 'AI agent harness: the loop around the model', tone: 'info' },
+      { time: '09:01', text: 'Fills the sign-up form in a cloud browser', detail: 'Headless browser', tone: 'info' },
+      { time: '09:01', text: 'A 6-digit code arrives by text', detail: 'One-time password, on a 10DLC number', tone: 'ok' },
+      { time: '09:02', text: 'A magic link lands in its inbox', detail: 'Magic link, signed with DKIM', tone: 'ok' },
+      { time: '09:02', text: 'The event reaches your code', detail: 'Webhook: sms.received, email.received', tone: 'ok' },
     ],
-    foot: 'Northwind is an invented company. Each step a persona meets on a site is a term in the glossary.',
+    foot: 'Larkfield is an invented company. Each step is a term in the glossary.',
   },
   final: refFinal('glossary-final'),
 }

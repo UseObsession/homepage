@@ -398,6 +398,17 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/glossary/web-scraping` | web scraping, what is web scraping, web scraping meaning, web scraping definition, web scraper, scraping api (scrape data behind login stays with the blog guide). Added 11 Nov 2026 |
 | `/glossary/web-search-api` | web search api, what is a web search api, web search api meaning, search api for ai agents, search api for llm (best web search api stays with the blog guide). Added 11 Nov 2026 |
 | `/glossary/welcome-series` | welcome series, what is a welcome series, welcome email series, welcome series email, welcome flow, welcome email sequence. Added 11 Nov 2026 |
+| `/glossary/ai-agent` | what is an ai agent, ai agent meaning, ai agent definition. Added 24 Nov 2026 (_research/seo/glossary-24nov/PLAN.md) |
+| `/glossary/ai-agent-harness` | ai agent harness, what is an ai agent harness, agent harness. Added 24 Nov 2026 |
+| `/glossary/voice-agent` | voice agent, what is a voice agent, voice ai agent. Added 24 Nov 2026 |
+| `/glossary/webhook` | what is a webhook, webhook vs api, webhook endpoint, webhook event. Added 24 Nov 2026 |
+| `/glossary/one-time-password` | otp, what is an otp, otp code, one-time password, verification code. Added 24 Nov 2026 (otp testing stays with `/use-cases/otp-testing`) |
+| `/glossary/magic-link` | magic link, what is a magic link, magic link login, magic link email, magic link authentication. Added 24 Nov 2026 |
+| `/glossary/10dlc` | 10dlc, what is 10dlc, 10dlc meaning, 10dlc number, 10dlc compliance. Added 24 Nov 2026 (10dlc registration stays with `/blog/10dlc-registration`) |
+| `/glossary/a2p-messaging` | a2p messaging, a2p messaging meaning, a2p sms. Added 24 Nov 2026 |
+| `/glossary/toll-free-verification` | toll free verification, toll-free verification required. Added 24 Nov 2026 |
+| `/glossary/ai-agent-persona` | ai agent persona, ai agent personas. Added 24 Nov 2026 |
+| `/glossary` | ai agent glossary, ai agent terminology, ai agent definitions. Retitled 24 Nov 2026 |
 | Post 1 | is it legal to mystery shop competitors |
 | Post 2 | free audit lead generation for agencies, outside-in audit |
 | Post 3 | AI mystery shopping (tools, software) |

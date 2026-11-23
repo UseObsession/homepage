@@ -232,7 +232,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Built from separate providers, those pieces mean three to five accounts, each with its own keys, webhooks and bill. A webhook is the address in your app where a provider posts each new email or text. The harder part is time. A reply can take days, so the loop has to sleep and wake when an event arrives, without a server held open for it. [Long running AI agents](/blog/long-running-ai-agents) works through the waiting, and [why AI agents need their own inbox, phone number and browser](/blog/why-ai-customers-matter) sets out what each piece is for.',
+      text: 'Built from separate providers, those pieces mean three to five accounts, each with its own keys, [webhooks](/glossary/webhook) and bill. A webhook is the address in your app where a provider posts each new email or text. The harder part is time. A reply can take days, so the loop has to sleep and wake when an event arrives, without a server held open for it. [Long running AI agents](/blog/long-running-ai-agents) works through the waiting, and [why AI agents need their own inbox, phone number and browser](/blog/why-ai-customers-matter) sets out what each piece is for.',
     },
     {
       kind: 'p',
