@@ -164,7 +164,7 @@ export const post: BlogPost = {
         [
           'Plivo: [its US SMS page](' + PLIVO + ')',
           'Flat texts in and out on long codes, toll-free and short codes',
-          '$0.0077 a text plus carrier surcharges of $0.0025 to $0.005; long code number $0.50 a month',
+          '$0.0077 a text plus carrier surcharges of $0.0035 to $0.005 on a sent text; long code number $0.50 a month',
           'Its page lists no 10DLC fees and no date',
           'Teams that want a simple rate card',
         ],
@@ -196,7 +196,7 @@ export const post: BlogPost = {
       cols: ['Provider', 'Small: 1,000 texts', 'Medium: 20,000 texts'],
       rows: [
         ['Telnyx', '$5.00 to $10.00', '$81.00 to $181.00'],
-        ['Plivo', '$10.70 to $13.20', '$204.50 to $254.50'],
+        ['Plivo', '$11.70 to $13.20', '$224.50 to $254.50'],
         ['Twilio', '$12.95 to $14.45', '$237.15 to $267.15'],
         ['Obsession, carrier fees included', '$17.00', '$302.00'],
         ['AgentPhone, from its listed rates', '$23.00', '$403.00'],

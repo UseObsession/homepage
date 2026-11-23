@@ -43,9 +43,11 @@ export const blogTopics: BlogTopic[] = [
     name: 'Build an agent',
     line: 'The stack, the SDKs and the tools an agent calls, with the steps from a model to an agent that acts.',
     reader: 'developers',
-    picks: ['ai-agent-infrastructure-stack', 'how-to-build-an-ai-agent-from-scratch', 'ai-agent-tools-vs-mcp'],
+    picks: ['ai-agent-infrastructure-stack', 'best-tools-for-ai-agents', 'best-mcp-servers'],
     slugs: [
       'ai-agent-infrastructure-stack',
+      'best-tools-for-ai-agents',
+      'best-mcp-servers',
       'how-to-build-an-ai-agent-from-scratch',
       'ai-agent-tools-vs-mcp',
       'openai-agents-sdk-tools',
@@ -68,6 +70,7 @@ export const blogTopics: BlogTopic[] = [
     slugs: [
       'best-email-api-for-ai-agents',
       'whatsapp-ai-agent',
+      'best-sms-api',
       'sms-for-ai-agents',
       'twilio-for-ai-agents',
       'n8n-email-agent',
@@ -87,6 +90,7 @@ export const blogTopics: BlogTopic[] = [
     picks: ['best-browser-for-ai-agents', 'can-ai-agents-log-in-to-websites', 'best-web-search-api-for-ai-agents'],
     slugs: [
       'best-browser-for-ai-agents',
+      'best-ai-browser-agents',
       'can-ai-agents-log-in-to-websites',
       'best-web-search-api-for-ai-agents',
       'browser-automation-tools-for-ai-agents',
@@ -105,6 +109,7 @@ export const blogTopics: BlogTopic[] = [
     picks: ['how-to-test-ai-agents', 'how-to-evaluate-ai-agent-performance', 'ai-voice-agent-testing'],
     slugs: [
       'how-to-test-ai-agents',
+      'best-email-testing-tools',
       'how-to-evaluate-ai-agent-performance',
       'ai-voice-agent-testing',
       'best-ai-chatbot-testing-tools',
@@ -153,9 +158,10 @@ export const blogTopics: BlogTopic[] = [
     name: 'Start an AI business',
     line: 'Ideas, prices and first customers for founders and freelancers building a business on agents.',
     reader: 'founders',
-    picks: ['ai-agent-business-ideas', 'how-to-make-money-with-ai-agents', 'start-an-ai-automation-agency'],
+    picks: ['ai-agent-business-ideas', 'best-ai-agent-builders', 'how-to-make-money-with-ai-agents'],
     slugs: [
       'ai-agent-business-ideas',
+      'best-ai-agent-builders',
       'how-to-make-money-with-ai-agents',
       'start-an-ai-automation-agency',
       'one-person-company-ai-agents',
@@ -264,6 +270,7 @@ export const blogTopics: BlogTopic[] = [
     picks: ['get-clients-as-a-marketing-agency', 'how-to-get-email-marketing-clients', 'ecommerce-agency-client-retention-with-ai-customers'],
     slugs: [
       'get-clients-as-a-marketing-agency',
+      'best-ai-tools-for-marketing-agencies',
       'how-to-get-email-marketing-clients',
       'ecommerce-agency-client-retention-with-ai-customers',
       'how-to-find-ecommerce-clients',
