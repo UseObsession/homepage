@@ -241,7 +241,7 @@ export const post: BlogPost = {
     {
       kind: 'cta',
       text: 'Ready-made jobs for the roles above, each running on its own inbox, number and browser, with every step in your event log.',
-      to: '/blueprints',
+      to: '/blueprints#ai-employees',
       label: 'Browse blueprints',
     },
 

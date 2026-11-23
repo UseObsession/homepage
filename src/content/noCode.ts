@@ -532,7 +532,7 @@ export const noCodePage: NoCodePage = {
     items: [
       {
         q: 'Can I build my own AI agent without coding?',
-        a: 'Yes. Whatever your role or idea, describe the job in your own words: what to check or do, how often, and where results go. Every agent already has its own phone number, inbox and browser, so we spin one up and it runs the job every day, with no code to write. You can change it any time.',
+        a: 'Yes. Whatever your role or idea, describe the job in your own words: what to check or do, how often, and where results go. Every agent already has its own phone number, inbox and browser under one identity, so we spin one up and it runs the job every day, like an AI employee, with no code to write. You can change it any time.',
       },
       {
         q: 'Can an AI agent make phone calls for me?',

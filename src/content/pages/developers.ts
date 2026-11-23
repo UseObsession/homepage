@@ -397,6 +397,11 @@ export const page: Page = {
         link: { label: 'Browse blueprints', to: '/blueprints' },
       },
       {
+        q: 'Can I build AI employees on Obsession?',
+        a: 'Yes. Give each one a persona with its own inbox, number and browser from one API. Then run any job on it: your own code, a blueprint, or both. Every event lands in your event log, and one signed webhook carries it to your app.',
+        link: { label: 'What an AI employee needs', to: '/blueprints#ai-employees' },
+      },
+      {
         q: 'How do events reach my app, and what if my server is down?',
         a: `Every event is saved in your event log, then sent to one signed webhook you subscribe once. ${downLine} You can also read the log by cursor with obsession.events.list, subscribe your agent over MCP, run a handler on our runtime, or forward events to your laptop with npx obsession listen.`,
       },

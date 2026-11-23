@@ -5,3 +5,11 @@
 .a-ck__finding i { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--ob-danger); translate: 0 -1px; }
 .a-ck__see { display: flex; flex-wrap: wrap; gap: var(--ob-space-12) var(--ob-space-24); margin: var(--ob-space-24) 0 0; }
 @media (max-width: 760px) { .a-ck__list { grid-template-columns: minmax(0, 1fr); } }
+
+/* The real finding's fail dot rings twice once the cards come into view: the reminder that never came. The ring is
+   drawn only where motion is welcome; without it, the dot alone carries the finding. */
+.a-ck__finding i { position: relative; }
+@media (prefers-reduced-motion: no-preference) {
+  .a-ck__list.is-in .a-ck__finding i::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid var(--ob-danger); opacity: 0; animation: a-ck-ring 1.4s var(--ob-ease-out) 2 400ms; }
+}
+@keyframes a-ck-ring { 0% { opacity: 0.7; transform: scale(0.6); } 100% { opacity: 0; transform: scale(1.6); } }

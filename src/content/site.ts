@@ -75,6 +75,66 @@ export const recipesPage: RecipesIndexPage = {
     guide: { label: 'Every use case', to: '/use-cases' },
   },
 
+  /* What an AI employee needs (23 Nov 2026, Seun: "build that framing"): Obsession is what AI employees run on, never
+     the AI employee. Six common roles, each with the pieces it needs and the blueprints that already cover it; the
+     roles with a use case page link to it. Companies that build AI employees get one door to the API. */
+  roles: {
+    id: 'ai-employees',
+    heading: 'What an AI employee needs.',
+    line: 'An AI employee is an agent Obsession equips with a phone, an inbox and a browser, working as one persona. Six common roles run on blueprints that already exist, and yours can take any other job on the same pieces.',
+    needs: 'Runs on',
+    covered: 'Covered by',
+    /* The roles are examples, never the limit: any other job is described in a sentence, or built on the API. */
+    own: { line: 'A role that isn’t here? Describe the job in a sentence and we set it up as a blueprint.', label: 'Describe your job', to: '#your-own' },
+    build: {
+      line: 'Building AI employees yourself? Every piece comes through one API and an MCP server.',
+      label: 'See the API and MCP',
+      to: '/developers',
+    },
+    items: [
+      {
+        name: 'AI receptionist',
+        line: 'Answers every call and text, books the time and reminds the customer the day before.',
+        to: '/use-cases/ai-receptionist',
+        pieces: ['phone', 'messaging', 'email'],
+        blueprints: ['missed-call-text-back', 'appointment-reminders'],
+      },
+      {
+        name: 'AI SDR',
+        line: 'Calls back every new lead within a minute and follows up from its own inbox.',
+        to: '/use-cases/ai-sdr',
+        pieces: ['phone', 'email', 'browser'],
+        blueprints: ['speed-to-lead-callback', 'prospect-intelligence'],
+      },
+      {
+        name: 'AI recruiter',
+        line: 'Calls back every applicant, chases each document and books the interview.',
+        to: '/use-cases/ai-recruiter',
+        pieces: ['phone', 'email', 'messaging'],
+        blueprints: ['document-chaser', 'appointment-reminders'],
+      },
+      {
+        name: 'AI support agent',
+        line: 'Answers routine email and messages from its own address, and hands the rest to a person.',
+        to: '/use-cases/ai-agent-for-customer-support',
+        pieces: ['email', 'messaging'],
+        blueprints: ['inbox-agent', 'support-bot-check'],
+      },
+      {
+        name: 'AI operations assistant',
+        line: 'Signs in to the portals you give it, collects every invoice and reorders supplies within your limits.',
+        pieces: ['browser', 'email'],
+        blueprints: ['invoice-collector', 'supplier-reorder-agent'],
+      },
+      {
+        name: 'AI market analyst',
+        line: 'Signs up to competitors as a new customer and keeps every email, price and trial, dated.',
+        pieces: ['browser', 'email', 'phone'],
+        blueprints: ['competitor-tracking', 'price-watch'],
+      },
+    ],
+  },
+
   faq: {
     heading: 'Questions about blueprints, our AI agent templates.',
     items: [
@@ -89,6 +149,11 @@ export const recipesPage: RecipesIndexPage = {
       {
         q: 'Are there ready-made AI agents I can use without building one?',
         a: 'Yes. Every blueprint is a ready-to-use AI agent job: pick one, say where results go, and Obsession runs it on a schedule, with no code. If none fits, describe your own job and we set it up as a blueprint.',
+      },
+      {
+        q: 'Is a blueprint an AI employee?',
+        a: 'No. A blueprint is one ready-made job. An AI employee is an agent Obsession equips with a phone, an inbox and a browser, working as one persona. It can run several blueprints, a job you describe in a sentence, or work you build on the API.',
+        link: { label: 'What an AI employee needs', to: '/blueprints#ai-employees' },
       },
       {
         q: 'Can I change a blueprint?',

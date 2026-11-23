@@ -110,6 +110,11 @@ export const personas: PiecePage = {
         a: 'An identity your agent acts under, with its own inbox, phone number, messaging channels and browser profile, made in one call. It waits for free, wakes in 50 ms when something arrives, and everything it does lands in your event log.',
       },
       {
+        q: 'Is a persona an AI employee?',
+        a: 'It is what an AI employee runs as: one identity with its own number, inbox and browser. Give it a ready-made blueprint, a job you describe in a sentence, or your own code, and it does the work under its own name.',
+        link: { label: 'What an AI employee needs', to: '/blueprints#ai-employees' },
+      },
+      {
         q: 'How can a persona be free while it waits?',
         a: 'Our runtime stores each persona’s state as an actor, and no machine runs while nothing happens, so there is nothing to bill. When an email, text or call arrives, it wakes in 50 ms and your handler runs.',
       },

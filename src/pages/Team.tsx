@@ -1,4 +1,4 @@
-import { useId, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PersonaGlyph } from '../components/persona/icons'
 import { TeamChecksSection } from '../components/sections/AgencyChecks'
@@ -11,6 +11,7 @@ import { pieces } from '../content/pieces'
 import { teamAt, teamUi as ui, type TeamPage } from '../content/teams'
 import { dollars, monthOf } from '../content/teams/sizes'
 import { connectionsFor } from '../lib/connections'
+import { useInView } from '../hooks/useReveal'
 import { BlueprintGrid, KitPrices, SceneHero, WhoSection } from './Kit'
 import './Kit.css'
 import './Team.css'
@@ -61,12 +62,14 @@ function TeamKindsSection({ kinds }: { kinds: NonNullable<TeamPage['kinds']> }) 
             ))}
           </div>
           {kinds.items.map((k, n) => (
-            <div className="t-kinds__panel" id={`${hid}-p${n}`} key={k.name} hidden={n !== at}>
+            <div className="t-kinds__panel ob-lit" id={`${hid}-p${n}`} key={k.name} hidden={n !== at}>
               <h3 className="t-kinds__name">{k.name}</h3>
               <p className="t-kinds__world">{k.world}</p>
               <ul className="t-kinds__jobs">
-                {k.jobs.map((j) => (
-                  <li key={j}>{j}</li>
+                {k.jobs.map((j, m) => (
+                  <li key={j} style={{ ['--i' as string]: m }}>
+                    {j}
+                  </li>
                 ))}
               </ul>
               <p className="t-kinds__kpis">
@@ -109,7 +112,7 @@ function TeamUses({ uses }: { uses: NonNullable<TeamPage['uses']> }) {
             const k = kitOf[u.kit]
             const b = u.blueprint ? blueprintOf[u.blueprint] : undefined
             return (
-              <li className="t-use" key={u.name}>
+              <li className="t-use ob-lit ob-lit--lift" key={u.name}>
                 <Link className="t-use__kit" to={k.path}>
                   <span className="t-use__kit-ic" aria-hidden="true">
                     <PersonaGlyph name={k.icon} />
@@ -150,6 +153,13 @@ function TeamSizes({ sizes }: { sizes: NonNullable<TeamPage['sizes']> }) {
   const hid = useId()
   const months = sizes.items.map((s) => monthOf(s.usage))
   const top = Math.log10(Math.max(...months.map((m) => m.list), 10))
+  /* The bars fill in order once the cards come into view, smallest to largest: the same work, growing. Before the app
+     arrives they are drawn full. */
+  const { ref, inView } = useInView<HTMLOListElement>(0.25)
+  const [armed, setArmed] = useState(false)
+  useEffect(() => {
+    if (!inView) setArmed(true)
+  }, [inView])
   return (
     <section className="s-section t-sizes" id="sizes" aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
@@ -159,12 +169,12 @@ function TeamSizes({ sizes }: { sizes: NonNullable<TeamPage['sizes']> }) {
           </h2>
           <p className="s-bp-line">{sizes.line}</p>
         </div>
-        <ol className="t-sizes__list">
+        <ol className="t-sizes__list" ref={ref} data-armed={armed && !inView ? '' : undefined}>
           {sizes.items.map((s, i) => {
             const m = months[i]
             const fill = Math.max(0.12, Math.log10(Math.max(m.list, 1.5)) / top)
             return (
-              <li className="t-size" key={s.label} style={{ ['--fill' as string]: fill.toFixed(3) }}>
+              <li className="t-size ob-lit ob-lit--lift" key={s.label} style={{ ['--fill' as string]: fill.toFixed(3), ['--i' as string]: i }}>
                 <span className="t-size__bar" aria-hidden="true">
                   <i />
                 </span>
