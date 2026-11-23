@@ -426,5 +426,5 @@ export const post: BlogPost = {
     { title: 'The Privacy and Electronic Communications (EC Directive) Regulations 2003, regulation 19', publisher: 'legislation.gov.uk', url: PECR_19, date: '2016-05-16' },
   ],
 
-  related: ['/use-cases/ai-receptionist', '/use-cases/ai-agent-for-insurance', '/use-cases/ai-agent-for-dental-practices', '/use-cases/ai-agent-for-property-management', '/use-cases/ai-agent-for-freight-brokers', '/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'agent-ready-website', 'how-ai-customers-work', 'recipe:missed-call-text-back', 'recipe:speed-to-lead-callback'],
+  related: ['/use-cases/ai-agent-for-contact-centers', '/use-cases/ai-receptionist', '/use-cases/ai-agent-for-insurance', '/use-cases/ai-agent-for-dental-practices', '/use-cases/ai-agent-for-property-management', '/use-cases/ai-agent-for-freight-brokers', '/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'agent-ready-website', 'how-ai-customers-work', 'recipe:missed-call-text-back', 'recipe:speed-to-lead-callback'],
 }

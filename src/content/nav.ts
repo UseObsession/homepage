@@ -124,8 +124,6 @@ const teams: NavPage[] = [
   { label: 'Support and AI operations', to: '/verify' },
   { label: 'Agencies', to: '/agencies' },
   { label: 'Online stores', to: '/use-cases/leak-checks-for-ecommerce-stores' },
-  { label: 'B2B software', to: '/use-cases/trial-checks-for-software-companies' },
-  { label: 'Banks and fintechs', to: '/use-cases/journey-checks-for-banks-and-fintechs' },
   { label: 'Compliance', to: '/use-cases/opt-out-and-cancel-checks-for-compliance-teams' },
 ]
 
@@ -174,16 +172,19 @@ const menus = {
     kitsAll: { label: 'Every blueprint', to: kitsPath } satisfies NavPage,
     teamsLabel: 'By team',
     teams,
-    /* The use cases people search most (Google suggestions, 22 Nov 2026), by name; the rest are on /use-cases. */
+    /* The range pages (23 Nov 2026, Seun: "better use case ... that capture the generalism ... individuals freelancers
+       founders departments industries", then "where is the saas and software use case financial use case healthcare use
+       case freelancer use case professional services use case"): industries first, then sizes from one freelancer to an
+       enterprise; the single-job pages are on /use-cases. */
     useCasesLabel: 'Use cases',
     useCases: [
-      { label: 'AI receptionist', to: '/use-cases/ai-receptionist' },
-      { label: 'OTP testing', to: '/use-cases/otp-testing' },
-      { label: 'AI SDR', to: '/use-cases/ai-sdr' },
-      { label: 'Prior authorization', to: '/use-cases/prior-authorization-ai-agent' },
-      { label: 'Freight brokers', to: '/use-cases/ai-agent-for-freight-brokers' },
-      { label: 'Agent evaluation', to: '/use-cases/ai-agent-evaluation' },
-      { label: 'Agentic commerce', to: '/use-cases/agentic-commerce' },
+      { label: 'SaaS and software', to: '/use-cases/ai-agents-for-saas' },
+      { label: 'Financial services', to: '/use-cases/ai-agents-for-financial-services' },
+      { label: 'Healthcare', to: '/use-cases/healthcare-ai-agents' },
+      { label: 'Professional services', to: '/use-cases/ai-agents-for-professional-services' },
+      { label: 'Freelancers', to: '/use-cases/ai-agents-for-freelancers' },
+      { label: 'Agent platforms', to: '/use-cases/ai-agent-platforms' },
+      { label: 'Enterprise', to: '/use-cases/ai-agents-for-enterprise' },
     ] satisfies NavPage[],
     useCasesAll: { label: 'Every use case', to: '/use-cases' } satisfies NavPage,
     /* The 2 columns as the footer and the phone sheet list them. */

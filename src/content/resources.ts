@@ -80,6 +80,37 @@ export const useCasesPage: UseCasesIndexPage = {
     headline: 'Use cases, sorted by the job your agent does.',
     sub: 'Obsession use cases show one job in one industry at a time, sorted by the type of blueprint that does it: the pieces it runs on, the blueprint that runs it for you, and what lands in your tools.',
   },
+  /* Above the types (23 Nov 2026, Seun: "appeal to the masses ... any type of industry or 1 person to large enterprise"):
+     the range pages, each showing every job an industry or a size of team runs, across the types of blueprints. */
+  byWho: {
+    id: 'any-size',
+    heading: 'Any industry, any size.',
+    line: 'From one freelancer to a company running 100,000 agents, each agent with its own number, inbox and browser.',
+    groups: [
+      {
+        label: 'By industry',
+        paths: [
+          '/use-cases/ai-agents-for-saas',
+          '/use-cases/ai-agents-for-financial-services',
+          '/use-cases/healthcare-ai-agents',
+          '/use-cases/ai-agents-for-professional-services',
+          '/use-cases/ai-agent-for-home-services',
+          '/use-cases/ai-agent-for-hotels',
+          '/use-cases/ai-agent-for-higher-education',
+          '/use-cases/ai-agent-for-contact-centers',
+        ],
+      },
+      {
+        label: 'By size',
+        paths: [
+          '/use-cases/ai-agents-for-freelancers',
+          '/agencies',
+          '/use-cases/ai-agent-platforms',
+          '/use-cases/ai-agents-for-enterprise',
+        ],
+      },
+    ],
+  },
   byKit: [
     {
       kit: 'talk',

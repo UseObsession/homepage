@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import { Link } from 'react-router-dom'
 import { PersonaGlyph } from '../components/persona/icons'
+import { TeamChecksSection } from '../components/sections/AgencyChecks'
 import { Faq } from '../components/sections/Faq'
 import { LinkGroups } from '../components/sections/LinkGroups'
 import { FinalCta } from '../components/sections/FinalCta'
@@ -8,6 +9,7 @@ import { catalog } from '../content/catalog'
 import { kitLinks } from '../content/kitPaths'
 import { pieces } from '../content/pieces'
 import { teamAt, teamUi as ui, type TeamPage } from '../content/teams'
+import { dollars, monthOf } from '../content/teams/sizes'
 import { connectionsFor } from '../lib/connections'
 import { BlueprintGrid, KitPrices, SceneHero, WhoSection } from './Kit'
 import './Kit.css'
@@ -78,11 +80,57 @@ function TeamUses({ uses }: { uses: TeamPage['uses'] }) {
   )
 }
 
+/* The same work at three sizes (23 Nov 2026): a hairline bar that grows with each size on a log scale, who runs it, how
+   many agents with what identity, the jobs, and the month at list rates with the cheapest plan that carries it. */
+function TeamSizes({ sizes }: { sizes: NonNullable<TeamPage['sizes']> }) {
+  const hid = useId()
+  const months = sizes.items.map((s) => monthOf(s.usage))
+  const top = Math.log10(Math.max(...months.map((m) => m.list), 10))
+  return (
+    <section className="s-section t-sizes" id="sizes" aria-labelledby={`${hid}-h`}>
+      <div className="s-wrap">
+        <div className="s-bp-head">
+          <h2 className="s-bp-h" id={`${hid}-h`}>
+            {sizes.heading}
+          </h2>
+          <p className="s-bp-line">{sizes.line}</p>
+        </div>
+        <ol className="t-sizes__list">
+          {sizes.items.map((s, i) => {
+            const m = months[i]
+            const fill = Math.max(0.12, Math.log10(Math.max(m.list, 1.5)) / top)
+            return (
+              <li className="t-size" key={s.label} style={{ ['--fill' as string]: fill.toFixed(3) }}>
+                <span className="t-size__bar" aria-hidden="true">
+                  <i />
+                </span>
+                <span className="t-size__label">{s.label}</span>
+                <span className="t-size__agents">{s.agents}</span>
+                <ul className="t-size__jobs">
+                  {s.jobs.map((j) => (
+                    <li key={j}>{j}</li>
+                  ))}
+                </ul>
+                <span className="t-size__cost">
+                  <b>{`About ${dollars(m.list)} a month`}</b>
+                  <span>{`in usage at list rates · on ${m.plan.name}, about ${dollars(m.plan.total)} a month, before model tokens`}</span>
+                </span>
+              </li>
+            )
+          })}
+        </ol>
+      </div>
+    </section>
+  )
+}
+
 export function Team({ team }: { team: TeamPage }) {
   return (
     <>
       <SceneHero pill={team.hero.pill} headline={team.hero.headline} sub={team.hero.sub} second={ui.second} scene={team.scene} place={team.name} />
+      {team.checks && <TeamChecksSection checks={team.checks} />}
       <TeamUses uses={team.uses} />
+      {team.sizes && <TeamSizes sizes={team.sizes} />}
       <BlueprintGrid b={team.blueprints} />
       <KitPrices keys={team.prices} id="pricing" />
       <WhoSection who={team.who} examples={team.examples} />

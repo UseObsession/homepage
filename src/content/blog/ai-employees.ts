@@ -345,7 +345,7 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'Relevance AI', url: RELEVANCE },
   ],
 
-  related: [
+  related: ['/use-cases/ai-agents-for-enterprise', 
     '/no-code',
     'recipe:speed-to-lead-callback',
     'recipe:inbox-agent',

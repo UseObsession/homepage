@@ -326,7 +326,7 @@ export const post: BlogPost = {
     { title: 'CAN-SPAM Act: a compliance guide for business', publisher: 'Federal Trade Commission', url: FTC },
   ],
 
-  related: [
+  related: ['/use-cases/ai-agents-for-saas', '/use-cases/ai-agent-platforms', 
     '/developers',
     '/blueprints/build-agent-products',
     '/no-code',

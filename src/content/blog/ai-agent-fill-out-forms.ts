@@ -304,7 +304,7 @@ export const post: BlogPost = {
     { title: 'Plans and pricing', publisher: 'Claude', url: CLAUDE_PRICING },
   ],
 
-  related: [
+  related: ['/use-cases/ai-agent-for-higher-education', 
     '/no-code',
     'recipe:invoice-collector',
     'recipe:prior-authorization-status',

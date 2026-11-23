@@ -362,5 +362,5 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'Intaker', url: INTAKER, date: '2026-11-23' },
   ],
 
-  related: ['/no-code', 'recipe:missed-call-text-back', 'recipe:speed-to-lead-callback', 'recipe:document-chaser', 'ai-voice-agent-for-small-business', 'can-ai-make-phone-calls'],
+  related: ['/use-cases/ai-agents-for-professional-services', '/no-code', 'recipe:missed-call-text-back', 'recipe:speed-to-lead-callback', 'recipe:document-chaser', 'ai-voice-agent-for-small-business', 'can-ai-make-phone-calls'],
 }

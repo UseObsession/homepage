@@ -573,7 +573,7 @@ export const post: BlogPost = {
     { title: 'Declaratory Ruling FCC 24-17: AI technologies and unwanted robocalls', publisher: 'Federal Communications Commission', url: FCC_24_17, date: '2024-02-08' },
   ],
 
-  related: [
+  related: ['/use-cases/ai-agents-for-freelancers', 
     '/no-code',
     'recipe:missed-call-text-back',
     'recipe:appointment-reminders',

@@ -52,8 +52,55 @@ export const team: TeamPage = {
     caption: 'One run across 300 stores an agency wants to win, sorted by what each one never sent. The agency and its run are an invented example.',
   },
 
+  /* The four checks agencies run for clients today (23 Nov 2026), each tagged with its type of blueprint; the mystery
+     shop carries the real run's finding (/sample-output: a £40 basket left at 02:57 on 22 September got no reminder). */
+  checks: {
+    heading: 'Four checks you can run for every client today.',
+    line: 'Each is a blueprint that runs under your brand, and each shows what a new customer actually gets.',
+    items: [
+      {
+        kit: 'test',
+        name: 'Mystery shopping',
+        line: 'A persona signs up, fills a basket and starts checkout at a client’s store, then keeps every email and text that follows.',
+        finding: 'Real run: a £40 basket left at 02:57 got no reminder',
+        links: [{ label: 'Mystery shopping', to: '/blueprints/mystery-shopper' }],
+      },
+      {
+        kit: 'test',
+        name: 'CRO funnel checks',
+        line: 'The pop-up, the welcome email and the code at checkout, met as a new customer, before and after each test you launch.',
+        links: [
+          { label: 'Funnel QA for CRO agencies', to: '/use-cases/funnel-qa-for-cro-agencies' },
+          { label: 'QA on your own flows', to: '/blueprints/website-audit' },
+        ],
+      },
+      {
+        kit: 'test',
+        name: 'Ad checks',
+        line: 'Every morning each live ad’s landing page is checked for the offer, price and stock, and competitors’ ads are followed to theirs.',
+        links: [
+          { label: 'Ad landing check', to: '/blueprints/ad-landing-check' },
+          { label: 'Ad tracking', to: '/blueprints/ad-tracking' },
+        ],
+      },
+      {
+        kit: 'watch',
+        name: 'Competitor tracking',
+        line: 'Every email, text, offer and price a client’s competitors send a new customer, dated, so each pitch opens on proof.',
+        links: [
+          { label: 'Competitor tracking', to: '/blueprints/competitor-tracking' },
+          { label: 'Email and SMS tracking', to: '/blueprints/email-sms-tracking' },
+        ],
+      },
+    ],
+    see: [
+      { label: 'See a real mystery shop, in every format', to: '/sample-output' },
+      { label: 'Look up what any store sends a new customer', to: '/lookup#agencies' },
+    ],
+  },
+
   uses: {
-    heading: 'The checks your clients already pay for, run by blueprints.',
+    heading: 'More you can run for clients.',
     line: 'For CRO, retention and lifecycle agencies, voice AI builders, mystery shopping firms and agent platforms.',
     items: [
       {
@@ -65,34 +112,27 @@ export const team: TeamPage = {
       },
       {
         kit: 'test',
-        name: 'Mystery shopping on client stores',
-        line: 'Personas shop each client’s store as new shoppers and show every email, text and missing reminder.',
-        blueprint: 'mystery-shopper',
-        pieces: ['personas', 'email', 'phone', 'browser'],
-      },
-      {
-        kit: 'test',
-        name: 'QA on clients’ flows',
-        line: 'A persona signs up after every release and finds the step that breaks, before the client does.',
-        blueprint: 'website-audit',
-        pieces: ['personas', 'email', 'browser'],
-      },
-      {
-        kit: 'test',
         name: 'Lead response checks',
         line: 'Time how fast each client answers a new lead on every form, chat and phone line.',
         blueprint: 'lead-leaks',
         pieces: ['personas', 'email', 'phone'],
       },
       {
-        kit: 'watch',
-        name: 'Competitor tracking for clients',
-        line: 'Every email, text, offer and price a client’s competitors send, dated, in the client’s own account.',
-        blueprint: 'competitor-tracking',
+        kit: 'portals',
+        name: 'Price watch for clients',
+        line: 'Every morning, the member prices and subscriber codes a client’s competitors show signed-in customers.',
+        blueprint: 'price-watch',
         pieces: ['personas', 'email', 'browser'],
       },
       {
         kit: 'test',
+        name: 'Delivery checks by country',
+        line: 'A persona in each country a client sells to lives their first 14 days and times every message.',
+        blueprint: 'delivery-monitoring',
+        pieces: ['personas', 'email', 'phone'],
+      },
+      {
+        kit: 'talk',
         name: 'Checks on the agents you build',
         line: 'Call the voice agents and receptionists you launch every morning, and a prospect’s line before the sale.',
         blueprint: 'voice-agent-check',

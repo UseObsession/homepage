@@ -44,6 +44,38 @@ export function UseCases() {
         </div>
       </section>
 
+      <section className="s-section uc-who" id={page.byWho.id} aria-labelledby={`${id}-who`}>
+        <div className="s-wrap">
+          <div className="s-bp-head">
+            <h2 className="s-bp-h" id={`${id}-who`}>
+              {page.byWho.heading}
+            </h2>
+            <p className="s-bp-line">{page.byWho.line}</p>
+          </div>
+          {page.byWho.groups.map((g) => (
+            <div className="uc-who__group" key={g.label}>
+              <h3 className="uc-who__label">{g.label}</h3>
+              <ul className="k-hub__cards">
+                {g.paths
+                  .map((p) => ({ path: p, ...cardOf[p] }))
+                  .filter((r) => r.name)
+                  .map((r) => (
+                    <li key={r.path}>
+                      <Link className="k-hub__card uc-card" to={r.path}>
+                        <span className="k-hub__name">{r.name}</span>
+                        <span className="k-hub__line">{r.line}</span>
+                        <svg className="k-hub__chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                          <path d="M6 3.5 10.5 8 6 12.5" />
+                        </svg>
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {page.byKit.map((group) => {
         const k = kitOf[group.kit]
         const rows = group.paths.map((p) => ({ path: p, ...cardOf[p] })).filter((r) => r.name)

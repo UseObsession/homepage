@@ -17,7 +17,7 @@
   border: var(--ob-border-hair) solid var(--ob-line);
   border-radius: var(--ob-radius-lg);
   background:
-    radial-gradient(120% 70% at 0% 0%, rgba(var(--ob-tint-rgb), 0.05), transparent 60%),
+    radial-gradient(120% 70% at 0% 0%, rgb(var(--ob-tint-rgb) / 0.05), transparent 60%),
     var(--ob-surface);
 }
 .t-use__kit {
@@ -60,8 +60,33 @@
 .t-use :focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) {
   .t-use__kit:hover { border-color: var(--ob-line-strong); color: var(--ob-text); }
-  .t-use__bp:hover { background: rgba(var(--ob-tint-rgb), 0.14); }
+  .t-use__bp:hover { background: rgb(var(--ob-tint-rgb) / 0.14); }
   .t-use__piece:hover { border-color: var(--ob-line-strong); color: var(--ob-text); }
 }
 @media (max-width: 960px) { .t-uses__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .t-uses__list { grid-template-columns: 1fr; } .t-use { padding: var(--ob-space-20); } }
+
+/* The same work at three sizes: cards in a row, each topped by a hairline bar filled on a log scale, the size, its
+   agents in mono, the jobs, and the month at list rates. On a phone the cards stack. */
+.t-sizes__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ob-space-16); }
+.t-size {
+  display: grid;
+  align-content: start;
+  gap: var(--ob-space-12);
+  padding: var(--ob-space-24);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+  background: radial-gradient(120% 70% at 0% 0%, rgb(var(--ob-tint-rgb) / 0.05), transparent 60%), var(--ob-surface);
+}
+.t-size__bar { display: block; height: 4px; border-radius: 2px; background: var(--ob-line); overflow: hidden; }
+.t-size__bar i { display: block; height: 100%; width: calc(var(--fill) * 100%); border-radius: inherit; background: var(--ob-text-2); }
+.t-size:last-child .t-size__bar i { background: var(--ob-success); }
+.t-size__label { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.t-size__agents { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-2); }
+.t-size__jobs { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--ob-space-8); }
+.t-size__jobs li { position: relative; padding-left: var(--ob-space-16); font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.t-size__jobs li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--ob-line-strong); }
+.t-size__cost { display: grid; gap: var(--ob-space-4); margin-top: var(--ob-space-4); padding-top: var(--ob-space-12); border-top: var(--ob-border-hair) solid var(--ob-line); }
+.t-size__cost b { font: var(--ob-type-body); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.t-size__cost span { font: var(--ob-type-caption); color: var(--ob-text-3); }
+@media (max-width: 960px) { .t-sizes__list { grid-template-columns: minmax(0, 1fr); } }

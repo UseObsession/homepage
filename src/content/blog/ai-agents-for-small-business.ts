@@ -389,5 +389,5 @@ export const post: BlogPost = {
     { title: 'The Campaign Registry and 10DLC', publisher: 'The Campaign Registry', url: TCR, date: '2026' },
   ],
 
-  related: ['/no-code', 'recipe:missed-call-text-back', 'recipe:invoice-collector', 'ai-voice-agent-for-small-business', 'can-ai-make-phone-calls'],
+  related: ['/use-cases/ai-agent-for-home-services', '/use-cases/ai-agent-for-hotels', '/no-code', 'recipe:missed-call-text-back', 'recipe:invoice-collector', 'ai-voice-agent-for-small-business', 'can-ai-make-phone-calls'],
 }

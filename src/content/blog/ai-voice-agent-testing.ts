@@ -429,5 +429,5 @@ export const post: BlogPost = {
     { title: 'Testing pricing', publisher: 'Retell AI Docs', url: RETELL_PRICING },
   ],
 
-  related: ['/use-cases/ai-receptionist', '/use-cases/ai-agent-evaluation', '/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'recipe:resolution-check', 'best-ai-chatbot-testing-tools'],
+  related: ['/use-cases/ai-agent-for-contact-centers', '/use-cases/ai-receptionist', '/use-cases/ai-agent-evaluation', '/phone', 'recipe:voice-agent-check', 'recipe:ai-disclosure-check', 'recipe:resolution-check', 'best-ai-chatbot-testing-tools'],
 }

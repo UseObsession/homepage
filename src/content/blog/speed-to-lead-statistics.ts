@@ -523,5 +523,5 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'Checkly', url: CHECKLY },
   ],
 
-  related: ['/use-cases/ai-sdr', 'recipe:lead-leaks', 'recipe:sales-agent-check', 'recipe:outbound-agent-check', 'ai-customers-for-b2b-sales-teams', 'recipe:speed-to-lead-callback'],
+  related: ['/use-cases/ai-agents-for-financial-services', '/use-cases/ai-agent-for-higher-education', '/use-cases/ai-sdr', 'recipe:lead-leaks', 'recipe:sales-agent-check', 'recipe:outbound-agent-check', 'ai-customers-for-b2b-sales-teams', 'recipe:speed-to-lead-callback'],
 }
