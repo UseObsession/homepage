@@ -61,11 +61,13 @@ function TeamUses({ uses }: { uses: TeamPage['uses'] }) {
                       </svg>
                     </Link>
                   )}
-                  {u.pieces.map((p) => (
-                    <Link className="t-use__piece" to={pieceOf[p].path} key={p}>
-                      {pieceOf[p].name}
-                    </Link>
-                  ))}
+                  <span className="t-use__pieces">
+                    {u.pieces.map((p) => (
+                      <Link className="t-use__piece" to={pieceOf[p].path} key={p}>
+                        {pieceOf[p].name}
+                      </Link>
+                    ))}
+                  </span>
                 </span>
               </li>
             )

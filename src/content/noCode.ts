@@ -100,15 +100,19 @@ const sub =
 export const noCodePage: NoCodePage = {
   meta: {
     path: '/no-code',
-    title: 'AI agents without coding: ready-made jobs for every team',
+    /* 23 Nov 2026 (Seun: "it's not just AI agents ... think about how non developers ... search for it"): nobody searches
+       "equipped" agents; they search what the agent does ("ai agent that can make calls", "ai that answers emails for
+       you", "ai agent that can use browser"). The title names those jobs; "equipped" stays in the H1.
+       _research/seo/agent-search-23nov/PLAN.md. */
+    title: 'AI agents that call, email and use websites for you, no code',
     description:
-      'AI agents without coding for any team or founder: pick a ready-made blueprint, describe your own job, or give your AI a phone, inbox and browser.',
+      'AI agents that work for you and your team without coding. Each has its own phone number, inbox and browser, so it makes calls, answers email and signs in.',
     /* The search answer: the page's own claim, then the whole toolkit in the entity's first sentence (content/site.ts), so
        an assistant that quotes it names Obsession whole. */
     answer: `${headline} ${sub} ${ENTITY.split('. ')[0]}.`,
     breadcrumb: [
       { name: 'Home', path: '/' },
-      { name: 'For teams', path: '/no-code' },
+      { name: 'No code', path: '/no-code' },
     ],
   },
 
@@ -529,6 +533,26 @@ export const noCodePage: NoCodePage = {
       {
         q: 'Can I build my own AI agent without coding?',
         a: 'Yes. Whatever your role or idea, describe the job in your own words: what to check or do, how often, and where results go. Every agent already has its own phone number, inbox and browser, so we spin one up and it runs the job every day, with no code to write. You can change it any time.',
+      },
+      {
+        q: 'Can an AI agent make phone calls for me?',
+        a: 'Yes. Each agent has its own phone number, so it can call back a missed caller, confirm a booking or call a supplier, and it says it’s an AI when it speaks. It calls only people who gave your business their number, and every call is kept with its recording.',
+        link: { label: 'Can AI make phone calls for you?', to: '/blog/can-ai-make-phone-calls' },
+      },
+      {
+        q: 'Can an AI agent answer my emails?',
+        a: 'Yes. Give it its own address, such as support@ or bookings@. It answers from your help pages and past replies, hands anything it can’t answer to a person in Slack, and keeps every thread.',
+        link: { label: 'AI that answers emails for you', to: '/blog/ai-that-answers-emails' },
+      },
+      {
+        q: 'Can an AI agent sign in to websites for me?',
+        a: 'Yes. Its browser stays signed in with the logins you give it, and its own inbox and number receive the sign-in codes. It fills forms, downloads files and checks pages, and it stops at any identity check, and before payment unless you give it your card.',
+        link: { label: 'Can AI agents log in to websites?', to: '/blog/can-ai-agents-log-in-to-websites' },
+      },
+      {
+        q: 'Can I build a business on Obsession?',
+        a: 'Yes. Founders and freelancers run services on Obsession’s agents, such as answering missed calls for 200 local businesses or checking every client’s store each week, under their own brand.',
+        link: { label: 'AI agent business ideas', to: '/blog/ai-agent-business-ideas' },
       },
       {
         q: 'Do I need to know how to code?',

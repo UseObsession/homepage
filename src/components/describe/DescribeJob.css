@@ -78,8 +78,9 @@
 .dj__fields dd { margin: 0; font: var(--ob-type-small); color: var(--ob-text); }
 
 /* The agent that runs it: its own pieces, as chips. */
-.dj__agent { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-6); margin: 0; }
-.dj__agent-k { margin-right: var(--ob-space-2, 2px); font: var(--ob-type-caption); color: var(--ob-text-3); }
+.dj__agent { display: flex; align-items: baseline; gap: var(--ob-space-8); margin: 0; }
+.dj__agent-k { flex: none; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.dj__agent-row { display: flex; flex: 1 1 auto; flex-wrap: wrap; gap: var(--ob-space-6); min-width: 0; }
 .dj__piece { display: inline-flex; align-items: center; gap: var(--ob-space-6); min-height: 24px; padding: 0 var(--ob-space-10, 10px); border-radius: var(--ob-radius-pill); background: var(--ob-surface); box-shadow: inset 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--s-accent, var(--ob-line-strong)) 50%, var(--ob-line-strong)); font: var(--ob-type-caption); color: var(--ob-text); }
 .dj__piece::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--ob-success); }
 .dj__ready { display: flex; align-items: center; gap: var(--ob-space-8); margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); }

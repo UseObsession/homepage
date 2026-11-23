@@ -62,8 +62,11 @@
 }
 
 /* The kits that use the piece (22 Nov 2026): a quiet row of chips under the links. */
-.s-pk-tog__kits { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-8); margin-top: var(--ob-space-40); padding-top: var(--ob-space-20); border-top: var(--ob-border-hair) solid var(--ob-line); }
-.s-pk-tog__kits-label { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); text-transform: uppercase; margin-right: var(--ob-space-4); }
+/* The label, then the chips in a row of their own: a second line of chips starts under the first chip, never under the label. */
+.s-pk-tog__kits { display: flex; align-items: baseline; gap: var(--ob-space-8) var(--ob-space-12); margin-top: var(--ob-space-40); padding-top: var(--ob-space-20); border-top: var(--ob-border-hair) solid var(--ob-line); }
+.s-pk-tog__kits-label { flex: none; font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); text-transform: uppercase; }
+.s-pk-tog__kits-row { display: flex; flex: 1 1 auto; flex-wrap: wrap; gap: var(--ob-space-8); min-width: 0; }
+@media (max-width: 720px) { .s-pk-tog__kits { flex-direction: column; align-items: flex-start; } }
 .s-pk-tog__kit { display: inline-flex; align-items: center; min-height: 30px; padding: 0 var(--ob-space-12); border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: var(--ob-radius-pill); font: var(--ob-type-small); color: var(--ob-text); text-decoration: none; transition: border-color var(--ob-dur-fast) var(--ob-ease-out); }
 .s-pk-tog__kit:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) { .s-pk-tog__kit:hover { border-color: var(--ob-text); } }

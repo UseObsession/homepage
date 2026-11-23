@@ -6,8 +6,9 @@
 .s-ek .hx-main { min-height: 560px; grid-template-columns: 240px minmax(0, 1fr); }
 .s-ek .hx-obody { padding: 18px 20px 22px; }
 .s-ek .s-ek-lab { font: 500 11px / 1.2 var(--ob-font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ob-text-3); }
-.s-ek .s-ek-arrives { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--ob-line); }
-.s-ek .s-ek-arrives .s-ek-lab { margin-right: 6px; }
+.s-ek .s-ek-arrives { display: flex; align-items: baseline; gap: 8px 14px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--ob-line); }
+.s-ek .s-ek-arrives .s-ek-lab { flex: none; }
+.s-ek .s-ek-row { display: flex; flex: 1 1 auto; flex-wrap: wrap; gap: 8px; min-width: 0; }
 .s-ek .s-ek-pill { padding: 7px 11px; border: 1px solid var(--ob-line); border-radius: 999px; background: var(--ob-surface); font: 500 12px / 1 var(--ob-font-mono); color: var(--ob-text-2); }
 @media (max-width: 760px) {
   .s-ek .hx-main { min-height: 0; grid-template-columns: minmax(0, 1fr); }

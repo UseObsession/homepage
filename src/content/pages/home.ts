@@ -84,7 +84,7 @@ export const page: Page = {
     path: '/',
     title: 'Obsession: inboxes, phone numbers and browsers for AI agents',
     description:
-      'Tools for AI agents, through one API and one bill: an inbox, a phone number, a browser and a sandbox for every agent. Use one piece or all of them.',
+      'An inbox, a phone number and a browser for every AI agent, on one API and one bill. Build with the API, or pick a blueprint and Obsession runs the job.',
     /* The sentence AI assistants quote. Its first sentence opens the first answer below (scripts/prerender.mjs). */
     /* Its first sentence must be on the page (scripts/prerender.mjs): since Home's questions went (23 Nov 2026), it opens
        with the headline's first line. */
@@ -121,7 +121,7 @@ export const page: Page = {
     doors: {
       dev: { label: 'For developers', cta: { label: 'See the API and MCP', to: '/developers' } },
       noCode: {
-        label: 'For teams',
+        label: 'For anyone who doesn’t code',
         line: 'Choose a ready-made job, set it up in plain language, and get results in the tools you already use.',
         cta: { label: 'Browse blueprints', to: '/blueprints' },
       },
@@ -399,7 +399,7 @@ export const page: Page = {
         label: 'For anyone who doesn’t code',
         title: 'Pick the job. Get the results where you work.',
         line: 'Teams, founders and freelancers pick a blueprint or describe their own job. Obsession spins up an agent to run it every day, across one company or thousands.',
-        cta: { label: 'See how teams use it', to: '/no-code' },
+        cta: { label: 'See how it works', to: '/no-code' },
         /* One job a team or a person would hand over, from a blueprint on the site: competitor tracking, lead response
            checks, the voice agent check, the invoice collector, load tracking and the speed-to-lead callback. */
         demo: {

@@ -39,7 +39,7 @@ export const recipesPage: RecipesIndexPage = {
     path: '/blueprints',
     title: 'Blueprints: ready-made AI agent templates we run for you',
     description:
-      'Ready-made AI agent templates, called blueprints: pick one, say where results go, and Obsession runs it, from mystery shopping to competitor tracking.',
+      'Ready-to-use AI agents and templates, called blueprints: pick one, say where results go, and Obsession runs it, from missed calls to invoices.',
     answer:
       'Blueprints are ready-made AI agent templates that run on Obsession’s pieces. Pick one, say where results go, and each result lands in your event log, Slack, a sheet or your CRM.',
     ogImage: '/og/recipes.png',
@@ -85,6 +85,10 @@ export const recipesPage: RecipesIndexPage = {
       {
         q: 'Can I bring my own job?',
         a: 'Yes. Write the task once and it runs on our runtime next to the pieces, with nothing to host. Its results arrive in your event log like every other event.',
+      },
+      {
+        q: 'Are there ready-made AI agents I can use without building one?',
+        a: 'Yes. Every blueprint is a ready-to-use AI agent job: pick one, say where results go, and Obsession runs it on a schedule, with no code. If none fits, describe your own job and we set it up as a blueprint.',
       },
       {
         q: 'Can I change a blueprint?',

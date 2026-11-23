@@ -175,11 +175,13 @@ export function DescribeJob({ examples = describe.examples, chrome = true, class
           </dl>
           <p className="dj__agent">
             <span className="dj__agent-k">{describe.agent}</span>
-            {ex.pieces.map((pc, k) => (
-              <span className="dj__piece" key={pc} style={{ ['--p' as string]: k } as CSSProperties}>
-                {pc}
-              </span>
-            ))}
+            <span className="dj__agent-row">
+              {ex.pieces.map((pc, k) => (
+                <span className="dj__piece" key={pc} style={{ ['--p' as string]: k } as CSSProperties}>
+                  {pc}
+                </span>
+              ))}
+            </span>
           </p>
           <p className="dj__ready">
             <i />

@@ -259,10 +259,12 @@ export function ProspectIntelligence() {
               </ul>
               <div className="uc-sets">
                 <b>Prospect intelligence gives each company a persona:</b>
-                <span>a customer profile</span>
-                <span>an inbox and a UK number</span>
-                <span>a browser</span>
-                <span>an account kept open</span>
+                <i className="uc-sets__row">
+                  <span>a customer profile</span>
+                  <span>an inbox and a UK number</span>
+                  <span>a browser</span>
+                  <span>an account kept open</span>
+                </i>
               </div>
             </Win>
           </Step>

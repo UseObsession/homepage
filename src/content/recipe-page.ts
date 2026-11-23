@@ -24,7 +24,7 @@ export const recipePage = {
     heading: 'Run it as it is, or build on it.',
     line: 'Teams that don’t code fill in the settings and get results in any format. Developers start it from code or from their own agent, and hook into every event.',
     run: {
-      who: 'For teams',
+      who: 'For anyone who doesn’t code',
       name: 'Run it',
       steps: ['Fill in the settings above, in plain words.', 'Pick where results go.', 'It runs on your schedule until you stop it.'],
       formats: ['Slack', 'Email', 'Your CRM', 'Clay', 'Google Sheets', 'A PDF report', 'Your AI assistant', 'Any tool you use'],

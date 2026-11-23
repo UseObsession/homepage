@@ -174,7 +174,7 @@ export const entries: Entry[] = [
   {
     kind: 'no-code',
     meta: ogFor(noCodePage.meta),
-    name: crumbName(noCodePage.meta, 'For teams'),
+    name: crumbName(noCodePage.meta, 'No code'),
     headline: noCodePage.hero.headline,
     line: firstSentence(noCodePage.hero.sub),
     faq: noCodePage.faq,

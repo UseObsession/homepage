@@ -552,6 +552,14 @@
   font-weight: 500;
 }
 
+/* The pills in a row of their own, so a wrapped line starts under the first pill, never under the sentence. */
+.uc-sets__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-style: normal;
+}
+
 .uc-sets span {
   padding: 3px 9px;
   border-radius: var(--radius-pill);

@@ -54,11 +54,13 @@ export function PieceTogether({
         {kits && kits.links.length > 0 && (
           <div className="s-pk-tog__kits">
             <span className="s-pk-tog__kits-label">{kits.label}</span>
-            {kits.links.map((k) => (
-              <Link className="s-pk-tog__kit" to={k.to} key={k.to}>
-                {k.name}
-              </Link>
-            ))}
+            <span className="s-pk-tog__kits-row">
+              {kits.links.map((k) => (
+                <Link className="s-pk-tog__kit" to={k.to} key={k.to}>
+                  {k.name}
+                </Link>
+              ))}
+            </span>
           </div>
         )}
       </div>

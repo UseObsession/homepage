@@ -34,11 +34,13 @@ export function PieceLog({ log, ui, id }: { log: NonNullable<PiecePage['log']>; 
         <figure className="s-pk-log__card ob-object" aria-label={ui.label}>
           <figcaption className="s-pk-log__who">
             <span className="s-pk-log__name">{log.who.name}</span>
-            {log.who.lines.map((l) => (
-              <span className="s-pk-log__meta" key={l}>
-                {l}
-              </span>
-            ))}
+            <span className="s-pk-log__metas">
+              {log.who.lines.map((l) => (
+                <span className="s-pk-log__meta" key={l}>
+                  {l}
+                </span>
+              ))}
+            </span>
           </figcaption>
           <ol className="s-pk-log__rows">
             {log.rows.map((r, i) => (
