@@ -199,8 +199,8 @@
 /* Touch targets (23 Nov 2026): the small chips and tags people tap on a phone get the breadcrumbs' touch area
    (navigation.css), a hit area that reaches the touch target's height without moving anything on the page. */
 @media (pointer: coarse) {
-  :is(.s-pk-hero__tag, .t-use__kit, .t-use__piece, .t-use__bp) { position: relative; }
-  :is(.s-pk-hero__tag, .t-use__kit, .t-use__piece, .t-use__bp)::after { content: ''; position: absolute; inset: calc((var(--ob-target-touch, 44px) - 100%) / -2) 0; }
+  :is(.s-pk-hero__tag, .t-use__kit, .t-use__piece, .t-use__bp, .s-ri-role__bp) { position: relative; }
+  :is(.s-pk-hero__tag, .t-use__kit, .t-use__piece, .t-use__bp, .s-ri-role__bp)::after { content: ''; position: absolute; inset: calc((var(--ob-target-touch, 44px) - 100%) / -2) 0; }
 }
 
 /* Phones: a long chip in a console's row wraps inside it instead of running past the screen's edge. */

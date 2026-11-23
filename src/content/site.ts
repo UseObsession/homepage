@@ -75,19 +75,63 @@ export const recipesPage: RecipesIndexPage = {
     guide: { label: 'Every use case', to: '/use-cases' },
   },
 
-  /* AI employees by role (23 Nov 2026), inside the describe section: Obsession equips the agent, the persona holds it,
-     and it can take any job; these are the roles people ask for first, each linked to the page that shows it. */
+  /* What an AI employee needs (23 Nov 2026, Seun: "build that framing"): Obsession is what AI employees run on, never
+     the AI employee. Six common roles, each with the pieces it needs and the blueprints that already cover it; the
+     roles with a use case page link to it. Companies that build AI employees get one door to the API. */
   roles: {
     id: 'ai-employees',
-    label: 'AI employees by role',
-    line: 'Every AI employee is an agent Obsession equips with a phone, an inbox and a browser, working as one persona. Start from a role people ask for:',
+    heading: 'What an AI employee needs.',
+    line: 'An AI employee is an agent Obsession equips with a phone, an inbox and a browser, working as one persona. Six common roles run on blueprints that already exist, and yours can take any other job on the same pieces.',
+    needs: 'Runs on',
+    covered: 'Covered by',
+    /* The roles are examples, never the limit: any other job is described in a sentence, or built on the API. */
+    own: { line: 'A role that isn’t here? Describe the job in a sentence and we set it up as a blueprint.', label: 'Describe your job', to: '#your-own' },
+    build: {
+      line: 'Building AI employees yourself? Every piece comes through one API and an MCP server.',
+      label: 'See the API and MCP',
+      to: '/developers',
+    },
     items: [
-      { name: 'AI receptionist', to: '/use-cases/ai-receptionist' },
-      { name: 'AI SDR', to: '/use-cases/ai-sdr' },
-      { name: 'AI recruiter', to: '/use-cases/ai-recruiter' },
-      { name: 'AI support agent', to: '/use-cases/ai-agent-for-customer-support' },
-      { name: 'AI operations assistant', to: '/blueprints/work-behind-logins' },
-      { name: 'AI market analyst', to: '/blueprints/watch-the-market' },
+      {
+        name: 'AI receptionist',
+        line: 'Answers every call and text, books the time and reminds the customer the day before.',
+        to: '/use-cases/ai-receptionist',
+        pieces: ['phone', 'messaging', 'email'],
+        blueprints: ['missed-call-text-back', 'appointment-reminders'],
+      },
+      {
+        name: 'AI SDR',
+        line: 'Calls back every new lead within a minute and follows up from its own inbox.',
+        to: '/use-cases/ai-sdr',
+        pieces: ['phone', 'email', 'browser'],
+        blueprints: ['speed-to-lead-callback', 'prospect-intelligence'],
+      },
+      {
+        name: 'AI recruiter',
+        line: 'Calls back every applicant, chases each document and books the interview.',
+        to: '/use-cases/ai-recruiter',
+        pieces: ['phone', 'email', 'messaging'],
+        blueprints: ['document-chaser', 'appointment-reminders'],
+      },
+      {
+        name: 'AI support agent',
+        line: 'Answers routine email and messages from its own address, and hands the rest to a person.',
+        to: '/use-cases/ai-agent-for-customer-support',
+        pieces: ['email', 'messaging'],
+        blueprints: ['inbox-agent', 'support-bot-check'],
+      },
+      {
+        name: 'AI operations assistant',
+        line: 'Signs in to the portals you give it, collects every invoice and reorders supplies within your limits.',
+        pieces: ['browser', 'email'],
+        blueprints: ['invoice-collector', 'supplier-reorder-agent'],
+      },
+      {
+        name: 'AI market analyst',
+        line: 'Signs up to competitors as a new customer and keeps every email, price and trial, dated.',
+        pieces: ['browser', 'email', 'phone'],
+        blueprints: ['competitor-tracking', 'price-watch'],
+      },
     ],
   },
 
