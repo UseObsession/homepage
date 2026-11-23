@@ -595,6 +595,17 @@ export type PersonaRecipes = {
   items: { name: string; line: string; status: string; live?: boolean; reader: ReaderId; link: Cta }[]
 }
 /* For developers (PersonaBuild): the claim, its line and link beside the code. Where events go is HomeHow. */
+/* The two ways in (HomeDoors): developers see one call and the event it brings back; teams that don't code see a job
+   written as a sentence with its blanks filled and the result that lands where they work. `reader` is the card's
+   reader colour (styles/accents.css). */
+export type HomeDoorDemo =
+  | { kind: 'code'; call: string; at: string; event: string; text: string; ms: string }
+  | { kind: 'job'; sentence: (string | { v: string })[]; where: string; at: string; result: string }
+export type HomeDoors = {
+  heading: string
+  line: string
+  doors: { id: string; reader: string; icon: PersonaIcon; label: string; title: string; line: string; cta: Cta; demo: HomeDoorDemo }[]
+}
 export type PersonaBuild = {
   heading: string
   line: string
@@ -714,6 +725,9 @@ export type Page = {
   personaAnatomy?: PersonaAnatomy
   personaRecipes?: PersonaRecipes
   personaBuild?: PersonaBuild
+  /* Home's last section before the sign-up (components/persona/HomeDoors, 23 Nov 2026): the two ways in, each a card
+     that links its page, with one small moment of it working. */
+  homeDoors?: HomeDoors
   homeHow?: HomeHow
   homeProblem?: HomeProblem
   /* Home's blueprints (components/persona/HomeBlueprints, 22 Nov 2026): the six types of blueprints as cards; each card's

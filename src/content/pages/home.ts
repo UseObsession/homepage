@@ -111,8 +111,10 @@ export const page: Page = {
     description:
       'Tools for AI agents, through one API and one bill: an inbox, a phone number, a browser and a sandbox for every agent. Use one piece or all of them.',
     /* The sentence AI assistants quote. Its first sentence opens the first answer below (scripts/prerender.mjs). */
+    /* Its first sentence must be on the page (scripts/prerender.mjs): since Home's questions went (23 Nov 2026), it opens
+       with the headline's first line. */
     answer:
-      'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
+      'The toolkit for AI agents. Obsession gives every agent an inbox, a phone number and a browser, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
     ogLine: 'An inbox, a phone number and a browser for every agent.',
     ogImage: '/og/home.png',
   },
@@ -528,45 +530,48 @@ export const page: Page = {
     code: BUILD_CODE,
   },
 
-  /* 5 questions for a first-time reader (James, 21 and 22 Nov). The channels and voice agent questions moved to
-     /developers; the browser one was already there, and checkout is the mystery shopping blueprint's "Does it place real
-     orders?". What a persona is, the persona section says; that no code is needed, the blueprint tiles' heading says. */
-  faq: {
-    heading: 'Before your agent sends its first email.',
-    items: [
+  /* The two ways in (#start, 23 Nov 2026), the last section before the sign-up. Seun: funnel developers and teams that
+     don't develop to their own page, and make it clear Obsession works for both; premium, concise, clear to anyone, a
+     picture they can see themselves in. Each card is one link: developers to /developers, teams to /no-code. */
+  homeDoors: {
+    heading: 'Developers build on Obsession. Every other team hands it the job.',
+    line: 'Build every piece into your own agents, or pick a blueprint and receive the results with no code to write.',
+    doors: [
       {
-        q: 'What is Obsession?',
-        a: 'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
+        id: 'dev',
+        reader: 'developers',
+        icon: 'code',
+        label: 'For developers',
+        title: 'Every piece your agent needs, in one call.',
+        line: 'Inboxes, numbers, messaging, browsers and sandboxes through the API, the SDK or MCP. One webhook carries every event, from one agent to a fleet.',
+        cta: { label: 'Start building', to: '/developers' },
+        demo: { kind: 'code', call: 'obsession.personas.create({ inbox: true, phone: "US", browser: true })', at: '09:41:07', event: 'email.received', text: 'Sign-in code 482 913', ms: '50 ms' },
       },
       {
-        q: 'Do I need to write code?',
-        a: 'No. Pick a blueprint, say where results go, and Obsession runs it. Developers use the API, SDKs or MCP.',
-        link: { label: 'Browse blueprints', to: '/blueprints' },
-      },
-      {
-        q: 'Can I use just one piece, like email?',
-        a: 'Yes. Start with inboxes, and add a number, a browser or a sandbox later, on the same key and bill.',
-        link: { label: 'Email for AI agents', to: '/email' },
-      },
-      {
-        q: 'What is the event log?',
-        a: 'One place per account where every event from every piece, persona and blueprint lands, in order and dated, with its proof: the email as it arrived, or a screenshot of the page. Nothing in it is edited after it lands.',
-      },
-      {
-        q: 'How do events reach my app?',
-        a: 'Through one signed webhook you subscribe once. If your server is down, events retry for 27 hours and can be replayed. You can also read the log by cursor, use MCP, run a handler on our runtime, or connect Zapier, Make or n8n.',
-      },
-      {
-        q: 'Does a persona say it’s an AI?',
-        a: 'Yes, whenever it talks to a person. It signs up the way anyone can, signs in only with logins you give it, and you choose where it goes.',
+        id: 'team',
+        reader: 'marketing',
+        icon: 'check',
+        label: 'For teams that don’t code',
+        title: 'Pick the job. Get the results where you work.',
+        line: 'Marketing, sales, support and agency teams set up a blueprint in plain language. Obsession runs it every day, across one company or thousands.',
+        cta: { label: 'See how teams use it', to: '/no-code' },
+        demo: { kind: 'job', sentence: ['Track ', { v: '40 competitors' }, ' every ', { v: 'Monday' }, ' and post to ', { v: '#marketing' }], where: 'Slack · #marketing', at: 'Mon 08:00', result: 'Competitor 12 started 25% off' },
       },
     ],
   },
+
+  /* 5 questions for a first-time reader (James, 21 and 22 Nov). The channels and voice agent questions moved to
+     /developers; the browser one was already there, and checkout is the mystery shopping blueprint's "Does it place real
+     orders?". What a persona is, the persona section says; that no code is needed, the blueprint tiles' heading says. */
+  /* Home shows no questions since 23 Nov 2026 (Seun: cut the bottom two sections). The type needs the field; no items
+     means no FAQPage data either (lib/jsonld.ts). */
+  faq: { heading: '', items: [] },
 
   final: {
     heading: 'Start with the piece your agent needs first.',
     sub: 'Tell us which pieces, or which blueprint, and we’ll set you up on the Free plan.',
     /* James's line (21 Nov), on this closing button only; the hero's main button still says what it does. */
-    capture: { ...access, button: 'Start free', source: 'home-final' },
+    /* Seun, 23 Nov 2026: the closing button says the campaign line. */
+    capture: { ...access, button: 'Kit up your agent', source: 'home-final' },
   },
 }

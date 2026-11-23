@@ -1,0 +1,128 @@
+/* The two ways in (HomeDoors.tsx): two cards on the pieces' card (radius, sheen, inset hairline, a soft shadow), each
+   with its reader colour as a faint glow from the top corner and on its icon (styles/accents.css), side by side from
+   860px, stacked under it. The whole card is the link. Tokens only, so both themes work. */
+
+.h-dr__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ob-space-16);
+}
+.h-dr__card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ob-space-16);
+  min-width: 0;
+  padding: var(--ob-space-32);
+  border-radius: var(--ob-radius-xl);
+  background: var(--ob-sheen), var(--ob-surface);
+  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-1);
+  transition: translate var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.h-dr__card::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -55% 40% 45% -25%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--s-accent-glow, transparent) var(--s-accent-glow-rest, 45%), transparent), transparent);
+  pointer-events: none;
+}
+
+.h-dr__k { display: flex; align-items: center; gap: var(--ob-space-8); margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); }
+.h-dr__ic { display: grid; place-items: center; width: 28px; height: 28px; border-radius: var(--ob-radius-sm); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); color: var(--s-accent, var(--ob-text-2)); }
+.h-dr__ic svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.h-dr__title { margin: 0; max-width: 26ch; font: 500 clamp(21px, 1.9vw, 26px) / 1.2 var(--ob-font-sans); letter-spacing: -0.02em; color: var(--ob-text); text-wrap: balance; }
+/* The title's link covers the whole card; its focus ring is drawn on the card's edge. */
+.h-dr__link { color: inherit; text-decoration: none; outline: none; }
+.h-dr__link::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.h-dr__link:focus-visible::after { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: calc(-1 * var(--ob-focus-width) - 2px); }
+
+/* The moment: a small sunken window with one line of input and the event it brings back. */
+.h-dr__demo {
+  display: grid;
+  gap: var(--ob-space-8);
+  padding: var(--ob-space-16);
+  border-radius: var(--ob-radius-lg);
+  background: var(--ob-bg-sunken);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  min-width: 0;
+}
+.h-dr__call { display: block; font: 400 13px / 1.55 var(--ob-font-mono); color: var(--ob-text); overflow-wrap: anywhere; }
+.h-dr__job { margin: 0; font: var(--ob-type-body); line-height: 1.7; color: var(--ob-text-2); text-wrap: pretty; }
+.h-dr__blank {
+  padding: 1px 6px;
+  border-radius: var(--ob-radius-sm);
+  background: linear-gradient(color-mix(in srgb, var(--s-accent, var(--ob-text-3)) 16%, transparent), color-mix(in srgb, var(--s-accent, var(--ob-text-3)) 16%, transparent)) no-repeat 0 0 / 100% 100%;
+  box-shadow: inset 0 -1.5px 0 var(--s-accent, var(--ob-line-strong));
+  color: var(--ob-text);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.h-dr__evt {
+  display: flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  min-width: 0;
+  margin: 0;
+  padding: var(--ob-space-8) var(--ob-space-12);
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-surface);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+}
+.h-dr__dot { position: relative; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--ob-success); }
+.h-dr__dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: inherit; opacity: 0; }
+.h-dr__at, .h-dr__kind, .h-dr__ms { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.h-dr__at { color: var(--ob-text-3); }
+.h-dr__kind { color: var(--ob-text); }
+/* The event's words sit on their own line under its name and time, so nothing is ever cut. */
+.h-dr__evt { flex-wrap: wrap; row-gap: var(--ob-space-4); }
+.h-dr__text { order: 3; flex-basis: 100%; min-width: 0; font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
+.h-dr__ms { margin-left: auto; padding: 0 var(--ob-space-6); border-radius: var(--ob-radius-pill); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); color: var(--ob-text-3); }
+
+.h-dr__line { margin: 0; max-width: 52ch; font: 400 15px / 1.55 var(--ob-font-sans); color: var(--s-read, var(--ob-text-2)); text-wrap: pretty; }
+
+/* The link's words at the card's foot, with the site's learn-more cue. */
+.h-dr__go { display: inline-flex; align-items: center; gap: var(--ob-space-6); margin-top: auto; padding-top: var(--ob-space-4); font: 500 15px / 1.3 var(--ob-font-sans); color: var(--ob-text); }
+.h-dr__chev { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-base) var(--ob-ease-out); }
+
+@media (hover: hover) and (pointer: fine) {
+  .h-dr__card:hover { translate: 0 -2px; box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset, var(--ob-highlight), var(--ob-shadow-2); }
+  .h-dr__card:hover .h-dr__chev { translate: 3px 0; }
+}
+
+@media (max-width: 860px) {
+  .h-dr__grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .h-dr__card { padding: var(--ob-space-24) var(--ob-space-20); }
+  .h-dr__at { display: none; }
+}
+
+/* Motion, once when the cards are seen: the call, then its event; the blanks fill, then the result. */
+@keyframes h-dr-in {
+  from { opacity: 0; translate: 0 6px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes h-dr-fill {
+  from { opacity: 0.3; background-size: 0% 100%; }
+  to { opacity: 1; background-size: 100% 100%; }
+}
+@keyframes h-dr-ping {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 0; transform: scale(3); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .h-dr__grid[data-armed]:not(.is-in) .h-dr__beat { opacity: 0; }
+  .h-dr__grid.is-in .h-dr__beat { animation: h-dr-in 480ms var(--ob-ease-out) both; animation-delay: calc(250ms + var(--d, 0) * 520ms); }
+  .h-dr__grid.is-in .h-dr__blank { animation-name: h-dr-fill; }
+  .h-dr__grid.is-in .h-dr__dot::after { animation: h-dr-ping 1200ms var(--ob-ease-out) 1 both; animation-delay: 1300ms; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .h-dr__card, .h-dr__chev { transition: none; }
+}

@@ -80,6 +80,20 @@ textarea {
   white-space: nowrap;
 }
 
+/* The captions under product illustrations (23 Nov 2026, Seun: "remove these ... lines from across the website"): hidden
+   on screen, kept for screen readers, so each picture is still described. Home's agent card, the scenes on the piece,
+   blueprint type, team and use case pages, the use cases orbit, and the no-code page's figures. */
+:root :is(.h-pr__cap, .k-scene__cap, .k-orbit__cap, .nc-caption) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

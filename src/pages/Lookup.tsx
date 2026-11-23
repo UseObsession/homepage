@@ -6,7 +6,7 @@ import { StatusMark } from '../components/Logo'
 import { HeroExplorer, type ConsoleGo } from '../components/v5/HeroExplorer'
 import { useInView } from '../components/v5/useInView'
 import { capture } from '../content/capture'
-import { join, offers } from '../content/join'
+import { offers } from '../content/join'
 import { lookupPage as p, type LookupJourney } from '../content/pages/lookup'
 import { track } from '../lib/analytics'
 import { siteFromEmail, type JoinStore } from '../lib/join'
@@ -828,7 +828,7 @@ function AskForm({ domain, kind, button, take, initial = '' }: { domain: string;
                 if (problem) setProblem(null)
               }}
               aria-invalid={problem ? true : undefined}
-              aria-describedby={[problem ? id.error : '', id.help].filter(Boolean).join(' ')}
+              aria-describedby={problem ? id.error : undefined}
             />
           </label>
           <button type="submit" className="ob-btn ob-btn--lg ob-pill-action" aria-busy={busy || undefined}>
@@ -839,20 +839,11 @@ function AskForm({ domain, kind, button, take, initial = '' }: { domain: string;
           </button>
         </div>
         <div className="ob-pill-foot">
-          <p className="ob-field-help" id={id.help}>
-            {offers[offer].micro}
-          </p>
           <p className="ob-field-error ob-anim-message" id={id.error} hidden={!problem}>
             {problem ?? ''}
           </p>
         </div>
       </form>
-      <p className="s-capture__privacy">
-        {join.privacy.text}{' '}
-        <Link className="s-capture__plink" to={join.privacy.to}>
-          {join.privacy.link}
-        </Link>
-      </p>
       {status}
     </div>
   )
