@@ -6,7 +6,7 @@ import { Blocks } from '../components/blog/Blocks'
 import { Byline } from '../components/blog/Byline'
 import { Share } from '../components/blog/Share'
 import { Toc, TocInline } from '../components/blog/Toc'
-import { categoryId, readerOf } from '../components/blog/util'
+import { topicOf } from '../content/blogTopics'
 import { Crumbs } from '../components/Crumbs'
 import { FinalCta } from '../components/sections/FinalCta'
 import { LinkGroups, type LinkGroupRows, type LinkRow } from '../components/sections/LinkGroups'
@@ -157,15 +157,15 @@ export function BlogPost({ post }: { post: Post }) {
 
   return (
     <>
-      <article ref={ref} className="s-art" data-reader={readerOf(post.category)} aria-labelledby={`${id}-h`}>
+      <article ref={ref} className="s-art" data-reader={topicOf(post).reader} aria-labelledby={`${id}-h`}>
         <header className="s-art-head">
           <div className="s-wrap">
             <div className="s-art-head__in ob-anim-hero">
               <Crumbs />
               <p className="s-art-kicker">
-                <Link className="ob-layout-eyebrow s-art-kicker__pill" to={`/blog#${categoryId(post.category)}`}>
+                <Link className="ob-layout-eyebrow s-art-kicker__pill" to={`/blog#${topicOf(post).id}`}>
                   <span className="s-art-kicker__mark" aria-hidden="true" />
-                  {post.category}
+                  {topicOf(post).name}
                 </Link>
               </p>
               <h1 className="s-art-title" id={`${id}-h`}>

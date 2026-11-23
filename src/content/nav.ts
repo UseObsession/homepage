@@ -6,6 +6,7 @@ import { catalog, type CatalogRecipe } from './catalog'
 import type { Cta, ReaderId, RecipeGroup, RecipeId } from './types'
 import { kitLinks, kitsPath, type KitId } from './kitPaths'
 import { ways } from './ways'
+import { blogLeadSlug } from './blogTopics'
 
 export type NavPage = { label: string; to: string; line?: string }
 export type NavReader = NavPage & { id: ReaderId; line: string }
@@ -67,9 +68,9 @@ export const recipeJobs: NavJob[] = JOBS.map((name) => {
 })
 
 /* The post the blog index leads with (content/blog: its featured post, else the newest). */
-/* The menu's lead post (9 Nov): what competitors show anyone beside what only their customers see, the data company's
-   own question. Falls back to the featured post. */
-const MENU_LEAD = 'ecommerce-competitive-intelligence'
+/* The menu's lead post: the guide the blog index leads with (content/blogTopics.ts, 23 Nov 2026), the AI agent
+   infrastructure stack. Falls back to the featured post. */
+const MENU_LEAD = blogLeadSlug
 const blogLead = catalog.blogLive
   ? (catalog.posts.find((p) => p.slug === MENU_LEAD) ?? catalog.posts.find((p) => p.featured) ?? catalog.posts[0])
   : undefined
@@ -291,7 +292,7 @@ export const nav = {
       ? {
           label: 'Blog',
           lead: {
-            kicker: `${blogLead.category} · ${blogLead.readingMinutes} min read`,
+            kicker: `${blogLead.topic} · ${blogLead.readingMinutes} min read`,
             label: blogLead.title,
             to: `/blog/${blogLead.slug}`,
             line: blogLead.dek,

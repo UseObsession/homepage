@@ -335,6 +335,30 @@ await writeFile(
   ].join('\n'),
 )
 
+/* ---- The parts of llms-full.txt (23 Nov 2026): the whole site in one file is too long for most AI tools to read whole
+   (about 5 MB), so the same words are also split by part, each file small enough to read in one go: the product pages,
+   the blueprints and their types, the teams and use cases, the comparisons and glossary, and the guides by their hub.
+   llms.txt lists each under Optional. ---- */
+const hubSlug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+function partOf(e) {
+  const p = e.meta.path
+  if (e.kind === 'post') return [`guides-${hubSlug(e.article?.section ?? 'other')}`, `Guides: ${e.article?.section ?? 'Other'}`]
+  if (p.startsWith('/blueprints')) return ['blueprints', 'Blueprints and their types']
+  if (p.startsWith('/use-cases') || e.kind === 'team') return ['use-cases', 'Teams and use cases']
+  if (p.startsWith('/compare') || p.startsWith('/alternatives') || p.startsWith('/glossary')) return ['compare', 'Comparisons, alternatives and glossary']
+  return ['product', 'The product, pricing and developers']
+}
+function llmsParts() {
+  const m = new Map()
+  for (const e of entries) {
+    const [slug, title] = partOf(e)
+    const cur = m.get(slug) ?? [slug, title, 0]
+    cur[2]++
+    m.set(slug, cur)
+  }
+  return [...m.values()]
+}
+
 /* ---- llms.txt (llmstxt.org): what Obsession is, then every page with the 1 or 2 sentences it answers. A section with
    no pages is left out (the blog's, while every post is archived), so the file never has an empty heading. ---- */
 const link = (e) => `- [${e.name}](${absolute(e.meta.path)}): ${e.meta.answer}`
@@ -360,7 +384,10 @@ const llmsSections = [
     entries.filter((e) => e.kind === 'post' && e.article?.section === hub).map(link),
   ]),
   ['Trust', ofKind('agents', 'privacy', 'security')],
-  ['Optional', [`- [Every page as plain text](${SITE}/llms-full.txt): the words on every page above, in 1 file.`]],
+  ['Optional', [
+    `- [Every page as plain text](${SITE}/llms-full.txt): the words on every page above, in 1 file.`,
+    ...llmsParts().map(([slug, title, n]) => `- [${title}, as plain text](${SITE}/llms/${slug}.txt): the words on its ${n} pages, in a file an assistant can read whole.`),
+  ]],
 ]
 /* The intro names every recipe, so it can't drift from the recipes the site has. */
 for (const e of entries.filter((x) => x.kind === 'recipe'))
@@ -523,6 +550,7 @@ const full = [
    the head gives for them (JSON-LD, llms.txt) is not a line of theirs. */
 const letters = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
 const firstSentence = (s) => s.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? s
+const parts = new Map()
 for (const { e, app } of rendered) {
   const text = textOf(app)
   if (e.kind !== 'privacy' && !isJamesPath(e.meta.path) && !letters(text).includes(letters(firstSentence(e.meta.answer))))
@@ -530,9 +558,15 @@ for (const { e, app } of rendered) {
   const sections = text.split('\n').filter((l) => l.startsWith('## ')).length
   const h2s = visibleH2s(app)
   if (sections < h2s) fail(`${e.meta.path}: llms-full.txt carries ${sections} of the page's ${h2s} sections (textOf in scripts/prerender.mjs).`)
-  full.push('---', '', `Page: ${e.meta.title}`, `URL: ${absolute(e.meta.path)}`, `In short: ${e.meta.answer}`, '', text, '')
+  const page = ['---', '', `Page: ${e.meta.title}`, `URL: ${absolute(e.meta.path)}`, `In short: ${e.meta.answer}`, '', text, '']
+  full.push(...page)
+  const [slug, title] = partOf(e)
+  if (!parts.has(slug)) parts.set(slug, { title, lines: [`# Obsession: ${title.charAt(0).toLowerCase() + title.slice(1)}, as plain text`, '', `> ${llms.summary}`, '', `Part of ${SITE}/llms-full.txt. The short guide is ${SITE}/llms.txt.`, ''] })
+  parts.get(slug).lines.push(...page)
 }
 await writeFile(join(dist, 'llms-full.txt'), full.join('\n'))
+await mkdir(join(dist, 'llms'), { recursive: true })
+for (const [slug, { lines }] of parts) await writeFile(join(dist, 'llms', `${slug}.txt`), lines.join('\n'))
 
 /* ---- Checks ---- */
 const titles = new Map()

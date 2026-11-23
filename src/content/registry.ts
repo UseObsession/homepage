@@ -10,6 +10,7 @@
    The site's own pages (Recipes index, Sample output, Privacy, Agents, 404, Resources, Use cases, Blog) live in
    site.ts, sample.ts and resources.ts; the 2 reference hubs (/alternatives, /glossary) in reference.ts. */
 import { sample } from './sample'
+import { filedSlugs } from './blogTopics'
 import { teamPathSet } from './teamPaths'
 import { agentsPage, notFoundPage, privacyPage, recipesPage } from './site'
 import type { BlogPost } from './blog/types'
@@ -92,6 +93,15 @@ export const posts: BlogPost[] = Object.values(postFiles).sort((a, b) =>
 /* The file each post came from, for the prerender's checks and the sitemap. */
 export const postFileOf: Record<string, string> = Object.fromEntries(Object.entries(postFiles).map(([file, p]) => [p.slug, nameOf(file)]))
 export const postBySlug: Record<string, BlogPost | undefined> = Object.fromEntries(posts.map((p) => [p.slug, p]))
+/* Every post sits under exactly 1 of the blog's topics (content/blogTopics.ts), and every slug filed there is a post:
+   a guide without a topic would vanish from the index, so the build stops instead. */
+{
+  const filed = new Set(filedSlugs())
+  const unfiled = posts.filter((p) => !filed.has(p.slug)).map((p) => p.slug)
+  const stale = [...filed].filter((s) => !postBySlug[s])
+  if (unfiled.length || stale.length)
+    throw new Error(`content/blogTopics.ts: ${unfiled.length ? `file ${unfiled.join(', ')} under a topic` : ''}${unfiled.length && stale.length ? '; ' : ''}${stale.length ? `no post for ${stale.join(', ')}` : ''}`)
+}
 /* The blog shows only while it has a live post (it was archived in content/blog/archive from 3 to 23 Oct 2026). With
    none: no /blog pages, nav or footer link, Resources group, sitemap lines or feed. */
 export const blogLive = posts.length > 0

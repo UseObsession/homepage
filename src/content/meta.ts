@@ -14,6 +14,7 @@ import { pricingPage, ratesPage } from './pricing'
 import { securityPage } from './security'
 import type { Faq, Meta, ShareFindings } from './types'
 import { citedSources } from '../lib/sources'
+import { topicOf } from './blogTopics'
 
 export { SITE, absolute, cleanPath }
 
@@ -356,13 +357,13 @@ export const entries: Entry[] = [
       faq: faq.length ? { heading: p.title, items: faq } : undefined,
       source: `src/content/blog/${postFileOf[p.slug] ?? p.slug}.ts`,
       lastmod: p.updated || p.published,
-      place: `Blog / ${p.category}`,
+      place: `Blog / ${topicOf(p).name}`,
       article: {
         headline: p.title,
         description: p.description,
         published: p.published,
         updated: p.updated || p.published,
-        section: p.category,
+        section: topicOf(p).name,
         keywords: [p.primaryKeyword, ...p.keywords.filter((k) => k !== p.primaryKeyword)],
         authors: p.authors,
         citations: citedSources(p).map((c) => ({ name: c.title, url: c.url, publisher: c.publisher, date: c.date })),
