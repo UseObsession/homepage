@@ -1,4 +1,4 @@
-import { useId } from 'react'
+import { useId, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PersonaGlyph } from '../components/persona/icons'
 import { TeamChecksSection } from '../components/sections/AgencyChecks'
@@ -29,7 +29,71 @@ export function TeamAt({ path }: { path: string }) {
   return team ? <Team team={team} /> : null
 }
 
-function TeamUses({ uses }: { uses: TeamPage['uses'] }) {
+/* The kinds of reader (23 Nov 2026, Seun: "every addition should not feel like a dump"): one at a time, in the Home
+   teams chooser's language. The kinds sit on the left (a row of chips on a phone); the chosen one opens beside them
+   with its world, the jobs agents take off it, the KPIs it watches and the blueprints that run those jobs. Every panel
+   is in the page for search; only the chosen one shows. */
+function TeamKindsSection({ kinds }: { kinds: NonNullable<TeamPage['kinds']> }) {
+  const hid = useId()
+  const [at, setAt] = useState(0)
+  return (
+    <section className="s-section t-kinds" id="kinds" aria-labelledby={`${hid}-h`}>
+      <div className="s-wrap">
+        <div className="s-bp-head">
+          <h2 className="s-bp-h" id={`${hid}-h`}>
+            {kinds.heading}
+          </h2>
+          <p className="s-bp-line">{kinds.line}</p>
+        </div>
+        <div className="t-kinds__grid">
+          <div className="t-kinds__pick" role="group" aria-label={kinds.label}>
+            {kinds.items.map((k, n) => (
+              <button key={k.name} type="button" className="t-kinds__btn" aria-pressed={n === at} aria-controls={`${hid}-p${n}`} onClick={() => setAt(n)}>
+                <i aria-hidden="true" />
+                <span>
+                  <b className="t-kinds__full">{k.name}</b>
+                  <b className="t-kinds__short" aria-hidden="true">
+                    {k.short}
+                  </b>
+                  <small>{k.tag}</small>
+                </span>
+              </button>
+            ))}
+          </div>
+          {kinds.items.map((k, n) => (
+            <div className="t-kinds__panel" id={`${hid}-p${n}`} key={k.name} hidden={n !== at}>
+              <h3 className="t-kinds__name">{k.name}</h3>
+              <p className="t-kinds__world">{k.world}</p>
+              <ul className="t-kinds__jobs">
+                {k.jobs.map((j) => (
+                  <li key={j}>{j}</li>
+                ))}
+              </ul>
+              <p className="t-kinds__kpis">
+                <b>Watch</b>
+                {k.kpis}
+              </p>
+              <p className="t-kinds__bps">
+                {k.blueprints
+                  .filter((sl) => blueprintOf[sl])
+                  .map((sl) => (
+                    <Link className="t-use__bp" to={`/blueprints/${sl}`} key={sl}>
+                      {blueprintOf[sl].name}
+                      <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                        <path d="M3 8h10M9 4l4 4-4 4" />
+                      </svg>
+                    </Link>
+                  ))}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function TeamUses({ uses }: { uses: NonNullable<TeamPage['uses']> }) {
   const hid = useId()
   return (
     <section className="s-section t-uses" id="use-cases" aria-labelledby={`${hid}-h`}>
@@ -129,7 +193,8 @@ export function Team({ team }: { team: TeamPage }) {
     <>
       <SceneHero pill={team.hero.pill} headline={team.hero.headline} sub={team.hero.sub} second={ui.second} scene={team.scene} place={team.name} />
       {team.checks && <TeamChecksSection checks={team.checks} />}
-      <TeamUses uses={team.uses} />
+      {team.kinds && <TeamKindsSection kinds={team.kinds} />}
+      {team.uses && <TeamUses uses={team.uses} />}
       {team.sizes && <TeamSizes sizes={team.sizes} />}
       <BlueprintGrid b={team.blueprints} />
       <KitPrices keys={team.prices} id="pricing" />

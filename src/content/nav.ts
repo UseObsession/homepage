@@ -180,11 +180,11 @@ const menus = {
        enterprise; the single-job pages are on /use-cases. */
     useCasesLabel: 'Use cases',
     useCases: [
+      { label: 'Startups', to: '/use-cases/ai-agents-for-startups' },
       { label: 'SaaS and software', to: '/use-cases/ai-agents-for-saas' },
       { label: 'Financial services', to: '/use-cases/ai-agents-for-financial-services' },
       { label: 'Healthcare', to: '/use-cases/healthcare-ai-agents' },
       { label: 'Professional services', to: '/use-cases/ai-agents-for-professional-services' },
-      { label: 'Home services', to: '/use-cases/ai-agent-for-home-services' },
       { label: 'Agent platforms', to: '/use-cases/ai-agent-platforms' },
       { label: 'Enterprise', to: '/use-cases/ai-agents-for-enterprise' },
     ] satisfies NavPage[],

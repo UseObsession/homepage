@@ -38,5 +38,6 @@ export const casePathList = [
   '/use-cases/healthcare-ai-agents',
   '/use-cases/ai-agents-for-freelancers',
   '/use-cases/ai-agents-for-professional-services',
+  '/use-cases/ai-agents-for-startups',
 ]
 export const teamPathSet = new Set([...teamPathList, ...casePathList])

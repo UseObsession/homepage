@@ -105,6 +105,7 @@ export const useCasesPage: UseCasesIndexPage = {
         paths: [
           '/founders',
           '/use-cases/ai-agents-for-freelancers',
+          '/use-cases/ai-agents-for-startups',
           '/agencies',
           '/use-cases/ai-agent-platforms',
           '/use-cases/ai-agents-for-enterprise',

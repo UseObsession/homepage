@@ -32,6 +32,13 @@ export type TeamSize = {
    lookup since that we can do now"): each check with its type of blueprint, one line, a real finding where there is one,
    and the blueprints that run it; under them, what a reader can open today. */
 export type TeamCheck = { kit: KitId; name: string; line: string; finding?: string; links: { label: string; to: string }[] }
+/* The kinds of reader a page serves, each in their own world (23 Nov 2026, Seun: "generalised ... any type of founder,
+   services, software, AI, ecommerce ... their world and KPIs"): who they are, what decides their month, the jobs agents
+   take off them, the KPIs they watch, and the blueprints that run those jobs. Used instead of use cards when a page is
+   about a person, not one job. */
+export type TeamKind = { name: string; short: string; tag: string; world: string; jobs: string[]; kpis: string; blueprints: string[] }
+export type TeamKinds = { heading: string; line: string; label: string; items: TeamKind[] }
+
 export type TeamChecks = { heading: string; line: string; items: TeamCheck[]; see: { label: string; to: string }[] }
 
 export type TeamPage = {
@@ -47,7 +54,10 @@ export type TeamPage = {
   scene: KitPage['scene']
   /* The checks run today, above the use cases; optional. */
   checks?: TeamChecks
-  uses: { heading: string; line: string; items: TeamUse[] }
+  /* The kinds of reader, above the use cards; optional. */
+  kinds?: TeamKinds
+  /* The use cards; optional on a page that carries kinds instead. */
+  uses?: { heading: string; line: string; items: TeamUse[] }
   /* The same work at three sizes, from one location to an enterprise; optional. */
   sizes?: { heading: string; line: string; items: TeamSize[] }
   blueprints: { heading: string; line: string; slugs: string[] }
