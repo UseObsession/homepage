@@ -5,8 +5,8 @@ import type { BlogPost } from './types'
    autocomplete_23nov_sell.json). Outside facts read on their own pages on 23 Nov 2026: n8n's Creators page (badge and
    directory, no sale terms), Make's templates page (no publishing or sale terms) and partners page (partner track,
    no earnings terms), Zapier's pricing page, n8n's pricing page (no embed or white label terms on it). Obsession's
-   prices come from src/lib/pricing/pricing.json. Selling blueprints is said only in the live words on /blueprints#sell:
-   no share, percentage or payout date. Larkfield Dental and every figure in the picture are invented.
+   prices come from src/lib/pricing/pricing.json. Selling blueprints to other teams was cut on 23 Nov 2026 (Seun: "lets
+   remove the selling part for now, we will add it later when we are ready"), so the guide has three ways, not four. Larkfield Dental and every figure in the picture are invented.
    No income promises: the cost sum is worked from list rates and the reader prices the job. */
 
 const N8N_CREATORS = 'https://n8n.io/creators/'
@@ -18,12 +18,12 @@ const ZAPIER_PRICING = 'https://zapier.com/pricing'
 export const post: BlogPost = {
   slug: 'build-and-sell-ai-automations',
   title: 'How to build and sell AI automations as a business, and what each way pays',
-  dek: 'Four ways to sell AI automations to businesses: one-off builds, a monthly managed service, templates and blueprints other teams run. Each has its own way of being paid, and an automation that can call, text and sign in earns more than one that moves data between apps.',
-  metaTitle: 'How to build and sell AI automations as a business: 4 ways',
+  dek: 'Three ways to sell AI automations to businesses: one-off builds, a monthly managed service and templates. Each has its own way of being paid, and an automation that can call, text and sign in earns more than one that moves data between apps.',
+  metaTitle: 'How to build and sell AI automations as a business: 3 ways',
   description:
-    'How to sell AI automations to businesses in 4 ways: one-off builds, monthly service, templates and blueprints, with what each pays and costs to run.',
+    'How to sell AI automations to businesses in 3 ways: one-off builds, a monthly managed service and templates, with what each pays and costs to run.',
   answer:
-    'You can sell AI automations four ways: a one-off build, a monthly managed service (agents as a service), templates other builders copy, or blueprints other teams run. Builds pay on delivery, managed services every month, and template libraries listed no sale terms on 23 November 2026. An automation whose agent has its own phone number, inbox and browser can do the work itself, so it is worth more to a buyer than a workflow that only moves data.',
+    'You can sell AI automations three ways: a one-off build, a monthly managed service (agents as a service), or templates other builders copy. Builds pay on delivery, managed services every month, and template libraries listed no sale terms on 23 November 2026. An automation whose agent has its own phone number, inbox and browser can do the work itself, so it is worth more to a buyer than a workflow that only moves data.',
   primaryKeyword: 'sell ai automations',
   keywords: [
     'build and sell ai automations',
@@ -60,7 +60,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'You can sell AI automations to businesses in four ways: build one and hand it over, run it for the client every month, sell the template to other builders, or let other teams run it as a blueprint. Each is paid differently and breaks in its own way, and an automation that can act earns the most.',
+      text: 'You can sell AI automations to businesses in three ways: build one and hand it over, run it for the client every month, or sell the template to other builders. Each is paid differently and breaks in its own way, and an automation that can act earns the most.',
     },
 
     { kind: 'h2', id: 'what-you-sell', text: 'What is an AI automation, and what do buyers pay for?' },
@@ -73,7 +73,7 @@ export const post: BlogPost = {
       text: 'Buyers do not pay for the model or the tool. They pay for the outcome that used to need a person, and [what AI agents can do for a business](/blog/what-can-ai-agents-do-for-business) lists the jobs: every missed call answered, every document chased, every enquiry replied to in minutes. A sale rests on three answers: who pays for the job today, what it costs now, and what the result looks like in the buyer’s inbox on Monday morning.',
     },
 
-    { kind: 'h2', id: 'four-ways', text: 'What are the four ways to sell AI automations?' },
+    { kind: 'h2', id: 'three-ways', text: 'What are the three ways to sell AI automations?' },
     { kind: 'h3', id: 'one-off', text: 'One-off builds' },
     {
       kind: 'p',
@@ -94,12 +94,6 @@ export const post: BlogPost = {
         MAKE_TEMPLATES +
         ') showed a large library you can filter by app and category and offered no publishing or sale terms. Neither page said creators can charge for templates or how they would be paid, so check each site’s current terms before you plan income around one. The reach is real and the payment is unclear. Buyers of a template expect it to run on their own accounts with a few edits, and the common break is a template that stops when an app, a site or a login changes and has no one answering questions about it.',
     },
-    { kind: 'h3', id: 'blueprints', text: 'Blueprints other teams run on their own plan' },
-    {
-      kind: 'p',
-      text: 'A blueprint is a ready-made job that runs on its own agents, so the team that picks it needs no setup of its own. On Obsession you can publish a blueprint you built, and other teams run it on their own plan; you’re paid when they do. The buyer expects it to work the day they pick it, with its results landing in Slack, email, a CRM or a sheet. The break to plan for is the same as for any product: a job that depends on a site or a form needs someone to keep it current.',
-    },
-
     { kind: 'h2', id: 'what-breaks', text: 'What breaks in AI automations that you sell?' },
     {
       kind: 'p',
@@ -200,8 +194,8 @@ export const post: BlogPost = {
           'Jobs between apps a client already uses',
         ],
         [
-          'Obsession (ours): [blueprints](/blueprints#sell), [your own brand](/agencies), [describe your job](/no-code)',
-          'Agents with their own number, inbox and browser, every step in an event log; run blueprints for clients under your brand, or publish one for other teams to run',
+          'Obsession (ours): [blueprints](/blueprints), [your own brand](/agencies), [describe your job](/no-code)',
+          'Agents with their own number, inbox and browser, every step in an event log; run blueprints for clients under your brand',
           'Free, then $20, $99 or $499 a month; usage per piece',
           'Stops before payment and at any identity check',
           'Jobs that call, text, email and sign in, for many clients',
@@ -223,7 +217,7 @@ export const post: BlogPost = {
         '**Cost it per client.** A pass: the list-rate sum in the cost section, plus your own hours, sits well under the monthly fee.',
         '**Write the offer as a result.** A pass: “every missed call answered within 5 minutes”, with a weekly report.',
         '**Add the next client before you build anything new.** A pass: the second client runs on the same setup in an afternoon.',
-        '**Decide your route.** Run it for clients under your own brand, or publish it so other teams run it.',
+        '**Decide your route.** Hand it over as a build, or run it every month for clients under your own brand.',
       ],
     },
     {
@@ -281,7 +275,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'Can you sell AI workflows?',
-          a: 'Yes. Builders sell them as one-off builds, as a monthly managed service, as templates and as blueprints other teams run. Builds pay on delivery and managed services pay each month. On 23 November 2026, n8n’s and Make’s pages listed no sale terms for templates, so check each site’s current terms before you plan on template income.',
+          a: 'Yes. Builders sell them as one-off builds, as a monthly managed service and as templates. Builds pay on delivery and managed services pay each month. On 23 November 2026, n8n’s and Make’s pages listed no sale terms for templates, so check each site’s current terms before you plan on template income.',
         },
         {
           q: 'What does agents as a service mean?',
@@ -295,8 +289,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can I sell templates I build?',
-          a: 'You can publish them, but sale terms depend on the platform. On 23 November 2026, n8n’s Creators page described a badge and a directory listing, and Make’s templates page described no way to sell. On Obsession, you can publish a blueprint you built, and other teams run it on their own plan; you’re paid when they do.',
-          link: { label: 'Sell a blueprint', to: '/blueprints#sell' },
+          a: 'You can publish them, but sale terms depend on the platform. On 23 November 2026, n8n’s Creators page described a badge and a directory listing, and Make’s templates page described no way to sell.',
         },
         {
           q: 'What does an AI automation business cost to run per client?',

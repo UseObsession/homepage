@@ -4,7 +4,7 @@ import type { BlogPost } from './types'
    money with ai agents"; secondaries from Google suggestions (US and UK, 23 Nov 2026, autocomplete_23nov_ideas.json):
    how to make money selling ai agents, ai agents that make money, do ai agents make money, how to make money building
    ai agents. Prices of what customers pay today were read on their own pages on 23 November 2026: Goodcall (Starter $79,
-   Growth $129, Scale $299), Ruby (50 minutes $250, 100 minutes $395), Chaser (Compact from £199 a month) and Acuity
+   Growth $129, Scale $299), Ruby (50 minutes $250, 100 minutes $395) (Compact from £199 a month) and Acuity
    Scheduling (Starter $20 a month billed monthly, Standard $34). Obsession's rates are the list rates in
    src/lib/pricing/pricing.json read 23 Nov: inbox $0.50 a month, emails $0.40 per 1,000, a US or UK number $2 a month,
    texts $0.015, calls $0.012 a minute, browser $0.10 an hour, US texting registration $25 once and $17 a month per
@@ -14,18 +14,17 @@ import type { BlogPost } from './types'
 
 const GOODCALL = 'https://www.goodcall.com/pricing'
 const RUBY = 'https://www.ruby.com/pricing/'
-const CHASER = 'https://www.chaserhq.com/pricing'
 const ACUITY = 'https://acuityscheduling.com/pricing'
 
 export const post: BlogPost = {
   slug: 'how-to-make-money-with-ai-agents',
-  title: 'How to make money with AI agents: 4 business models, with the running costs worked out',
-  dek: 'Agents don’t earn money on their own. Businesses earn it by selling jobs that agents do. Four ways to build one, each with a worked example, what customers pay for the job today and what it costs to run at list rates.',
-  metaTitle: 'How to make money with AI agents: 4 business models, costed',
+  title: 'How to make money with AI agents: 3 business models, with the running costs worked out',
+  dek: 'Agents don’t earn money on their own. Businesses earn it by selling jobs that agents do. Three ways to build one, each with a worked example, what customers pay for the job today and what it costs to run at list rates.',
+  metaTitle: 'How to make money with AI agents: 3 business models, costed',
   description:
-    'Do AI agents make money? Not alone. Four ways to make money with AI agents, with what customers pay today, running costs at list rates and the risks.',
+    'Do AI agents make money? Not alone. Three ways to make money with AI agents, with what customers pay today, running costs at list rates and the risks.',
   answer:
-    'AI agents don’t make money on their own; a business makes money when it sells a job that agents do. There are four models: run a service whose work agents do, set up and run agents for businesses under your own brand, build a product where each user gets an agent, or build blueprints other teams run. Each starts from a job people already pay for.',
+    'AI agents don’t make money on their own; a business makes money when it sells a job that agents do. There are three models: run a service whose work agents do, set up and run agents for businesses under your own brand, or build a product where each user gets an agent. Each starts from a job people already pay for.',
   primaryKeyword: 'how to make money with ai agents',
   keywords: [
     'how to make money selling ai agents',
@@ -58,7 +57,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'The fair answer to “do AI agents make money” is no, not by themselves. An agent is a worker. A business makes money when someone pays it for a job the agent does, and the margin is the price of the job less what the agent costs to run. So how to make money with AI agents is a question about which job to sell and to whom. The four models run from doing the job yourself to selling the blueprints you build to other teams. Each has an invented business, what customers pay today for the same job and the running cost at list rates. You do the sum for your own prices.',
+      text: 'The fair answer to “do AI agents make money” is no, not by themselves. An agent is a worker. A business makes money when someone pays it for a job the agent does, and the margin is the price of the job less what the agent costs to run. So how to make money with AI agents is a question about which job to sell and to whom. The three models run from doing the job yourself to building a product your users run. Each has an invented business, what customers pay today for the same job and the running cost at list rates. You do the sum for your own prices.',
     },
 
     { kind: 'h2', id: 'what-agents-do', text: 'What an agent has to do before it can earn anything' },
@@ -68,7 +67,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The four models differ in who the customer is and who sets the agents up. One test applies to all: someone pays for this job today, and an agent can do it for less.',
+      text: 'The three models differ in who the customer is and who sets the agents up. One test applies to all: someone pays for this job today, and an agent can do it for less.',
     },
 
     { kind: 'h2', id: 'model-1', text: 'Model 1: run a service whose work agents do' },
@@ -150,37 +149,22 @@ export const post: BlogPost = {
       text: '**The risks.** Product work is real work: onboarding, support and your own bugs. Per-user costs stay low, but your users’ messages are your responsibility, so honour opt-outs and say the agent is an AI. **What it takes.** A developer, or your own build, and one narrow user. Start from [the developers page](/developers).',
     },
 
-    { kind: 'h2', id: 'model-4', text: 'Model 4: build blueprints and sell them to other teams' },
-    {
-      kind: 'p',
-      text: '**How the money comes in.** You build a blueprint, a ready-made job Obsession runs, and publish it. Other teams run it on their own plan, and you’re paid when they do. **What the agents do.** Whatever the blueprint says: chase late invoices, collect quotes, check a portal each morning. Each run uses the team’s own agents.',
-    },
-    {
-      kind: 'p',
-      text: `Example: Paperchase (paperchase.example) publishes an invoice chaser for bookkeepers. In the example, a bookkeeper with 120 clients sends 3 reminders each a month, so 360 texts at $0.015 ($5.40) and 360 emails at $0.40 per 1,000 ($0.14), plus a number at $2 and an inbox at $0.50: $8.04 a month, before US texting registration. That is the team’s running cost on its own plan; yours is the time to build and test. Teams pay today for chasing software such as [Chaser, listed from £199 a month for its Compact plan](${CHASER}) on 23 November 2026.`,
-    },
-    {
-      kind: 'p',
-      text: '**The risks.** A blueprint is only as good as the job it does, and one that fails in front of a customer’s client costs you your name. **What it takes.** A job you know well, tests on real cases and clear steps. [Publish a blueprint you built](/blueprints#sell) and other teams run it on their own plan.',
-    },
-
-    { kind: 'h2', id: 'compared', text: 'The four models side by side', compare: true },
+    { kind: 'h2', id: 'compared', text: 'The three models side by side', compare: true },
     {
       kind: 'table',
       compare: true,
-      caption: 'The four models, with Obsession’s own list rates; customer prices as listed on 23 November 2026',
+      caption: 'The three models, with Obsession’s own list rates; customer prices as listed on 23 November 2026',
       cols: ['Option', 'What it does well', 'Price', 'Where it stops', 'Best for'],
       rows: [
         ['Run a service', 'The customer buys a result and never handles an agent', 'You set it; Brightside’s practice costs $22.65 a month to run', 'You promise the result', 'Anyone with one trade to serve'],
         ['Run agents under your brand', 'A retainer repeated across clients', 'You set it; $27.65 a month a business in the example', 'You are the vendor', 'Agencies and freelancers'],
         ['Build a product', 'One build serves every user', 'You set it; $4.08 to $21.08 a user in the example', 'Needs developer time', 'Developers and technical founders'],
-        ['Sell blueprints', 'Other teams do the running', 'Teams pay on their own plan', 'Quality is your name', 'Specialists in one job'],
         [
-          'Obsession (ours): numbers, inboxes, browsers and blueprints behind all four',
+          'Obsession (ours): numbers, inboxes, browsers and blueprints behind all three',
           'Each agent has its own phone number, inbox and browser under one identity',
           'Free, then $20, $99 or $499 a month; usage per piece',
           'It runs the work; you choose the job and the customer',
-          'Teams that want all four without code',
+          'Teams that want all three without code',
         ],
       ],
     },
@@ -245,7 +229,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'where-to-start', text: 'Where to start' },
     {
       kind: 'p',
-      text: 'Pick the model by who you are. A freelancer or founder with one trade starts with model 1. An agency or consultant starts with model 2. A developer starts with model 3. A specialist in one job starts with model 4. In each case, find the job, learn what customers pay today, work out the running cost with the list rates and sell to one customer before ten. The same agents scale from one customer to ten thousand, each with its own identity, paid for by what each one uses. Describe the job in your own words and Obsession sets it up and runs it with [no code](/no-code); [no-code AI agents](/blog/no-code-ai-agents) shows how that works. If the job needs calls, [can AI make phone calls](/blog/can-ai-make-phone-calls) sets out the rules.',
+      text: 'Pick the model by who you are. A freelancer or founder with one trade starts with model 1. An agency or consultant starts with model 2. A developer starts with model 3. In each case, find the job, learn what customers pay today, work out the running cost with the list rates and sell to one customer before ten. The same agents scale from one customer to ten thousand, each with its own identity, paid for by what each one uses. Describe the job in your own words and Obsession sets it up and runs it with [no code](/no-code); [no-code AI agents](/blog/no-code-ai-agents) shows how that works. If the job needs calls, [can AI make phone calls](/blog/can-ai-make-phone-calls) sets out the rules.',
     },
     {
       kind: 'cta',
@@ -264,7 +248,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How can I make money with AI agents?',
-          a: 'Four ways: run a service whose work agents do, set up and run agents for businesses under your own brand, build a product where each user gets an agent, or build blueprints other teams run. Each starts from a job people already pay for.',
+          a: 'Three ways: run a service whose work agents do, set up and run agents for businesses under your own brand, or build a product where each user gets an agent. Each starts from a job people already pay for.',
           link: { label: 'Run agents under your own brand', to: '/agencies' },
         },
         {
@@ -291,14 +275,13 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'Prices and examples',
-      text: 'Customer prices are as each provider listed them on 23 November 2026 and change. Brightside, Harbour Desk, Tidy Tutor and Paperchase, and every input in the sums, are invented examples. Nothing here is a promise of income.',
+      text: 'Customer prices are as each provider listed them on 23 November 2026 and change. Brightside, Harbour Desk and Tidy Tutor, and every input in the sums, are invented examples. Nothing here is a promise of income.',
     },
   ],
 
   sources: [
     { title: 'Pricing', publisher: 'Goodcall', url: GOODCALL, date: '2026-11-23' },
     { title: 'Pricing', publisher: 'Ruby', url: RUBY, date: '2026-11-23' },
-    { title: 'Pricing', publisher: 'Chaser', url: CHASER, date: '2026-11-23' },
     { title: 'Pricing', publisher: 'Acuity Scheduling', url: ACUITY, date: '2026-11-23' },
   ],
 

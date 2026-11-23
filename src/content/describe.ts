@@ -30,20 +30,6 @@ export const describe = {
     line: 'Whatever your role or idea, write the job in your own words. Every agent already has its own phone number, inbox and browser, so we spin one up and it runs the job for you, at one location or thousands, with no code to write.',
   },
   cta: { label: 'Describe your job', to: '#join' },
-  /* Sell what you build (23 Nov 2026, Seun: "they can also sell their blueprints to others ... like Shopify did for
-     ecommerce"). The section on /blueprints at #sell, which the guides link to. It names no share and no payout date
-     until James confirms how builders are paid. */
-  sell: {
-    heading: 'Sell the blueprints you build.',
-    line: 'A job that works for you can work for a thousand other teams. Publish it as a blueprint, and every team that runs it uses its own plan, its own agents and its own event log.',
-    steps: [
-      { k: 'Build', t: 'Describe the job in plain words, or build it on the API.' },
-      { k: 'Publish', t: 'Other teams find it beside ours and run it on their own plan.' },
-      { k: 'Get paid', t: 'You’re paid when they run it, and you can run it for your own clients under your brand.' },
-    ],
-    cta: { label: 'Start free', to: '#join' },
-    brand: { label: 'Run blueprints under your brand', to: '/agencies' },
-  },
   crumb: ['Blueprints', 'New blueprint'] as [string, string],
   prompt: 'Describe the job',
   button: 'Make it a blueprint',

@@ -211,16 +211,6 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Clients renew on evidence. Send each client a weekly one-page report in your name with four lines: what the agent did, what came back, what it cost in time saved and what you changed. Keep the underlying log so any figure can be traced to the call, text or email behind it.',
     },
-    {
-      kind: 'p',
-      text: 'Once you have a setup that works in one niche, you can publish it as a blueprint for other teams to run on their own plan, and you are paid when they do.',
-    },
-    {
-      kind: 'cta',
-      text: 'Publish a blueprint you built, and other teams run it on their own plan.',
-      to: '/blueprints#sell',
-      label: 'Browse blueprints',
-    },
     { kind: 'h2', id: 'what-goes-wrong', text: 'What goes wrong, and the fix' },
     {
       kind: 'list',

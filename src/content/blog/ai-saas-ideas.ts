@@ -301,7 +301,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can I sell AI SaaS on top of Obsession?',
-          a: 'Yes. You build on the API, and you can run blueprints for clients under your own brand. You can also publish a blueprint you built, and other teams run it on their own plan.',
+          a: 'Yes. You build on the API, and you can run blueprints for clients under your own brand.',
           link: { label: 'See how agencies use it', to: '/agencies' },
         },
         {

@@ -551,7 +551,7 @@ export const noCodePage: NoCodePage = {
       },
       {
         q: 'Can I build a business on Obsession?',
-        a: 'Yes. Founders and freelancers run services on Obsession’s agents, such as answering missed calls for 200 local businesses or checking every client’s store each week, under their own brand. You can also sell the blueprints you build to other teams.',
+        a: 'Yes. Founders and freelancers run services on Obsession’s agents, such as answering missed calls for 200 local businesses or checking every client’s store each week, under their own brand.',
         link: { label: 'AI agent business ideas', to: '/blog/ai-agent-business-ideas' },
       },
       {

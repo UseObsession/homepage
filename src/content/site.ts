@@ -91,11 +91,6 @@ export const recipesPage: RecipesIndexPage = {
         a: 'Yes. Every blueprint is a ready-to-use AI agent job: pick one, say where results go, and Obsession runs it on a schedule, with no code. If none fits, describe your own job and we set it up as a blueprint.',
       },
       {
-        q: 'Can I sell a blueprint I build?',
-        a: 'Yes. Publish a blueprint you built, and other teams run it on their own plan; you’re paid when they do. You can also run blueprints for your own clients under your brand.',
-        link: { label: 'Run blueprints under your brand', to: '/agencies' },
-      },
-      {
         q: 'Can I change a blueprint?',
         a: 'Yes. You set who the persona is, where it goes, how often it runs, how long it waits for replies and where its results go.',
       },

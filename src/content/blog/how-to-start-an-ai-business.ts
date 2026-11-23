@@ -172,7 +172,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The cost per customer stays close to the sum in step 4 as you grow, because agents are paid for by what each one uses. At the example’s $7 usage, 200 customers is $1,400 of usage a month, 10,000 customers is $70,000, and the same list rates apply at every size. When you have a job that works, you can [publish it as a blueprint](/blueprints#sell) that other teams run on their own plan, and you are paid when they do.',
+      text: 'The cost per customer stays close to the sum in step 4 as you grow, because agents are paid for by what each one uses. At the example’s $7 usage, 200 customers is $1,400 of usage a month, 10,000 customers is $70,000, and the same list rates apply at every size.',
     },
     {
       kind: 'cta',
@@ -279,8 +279,8 @@ export const post: BlogPost = {
         },
         {
           q: 'Can I sell what I build to other businesses?',
-          a: 'Yes. You can run blueprints for clients under your own brand, and you can publish a blueprint you built so other teams run it on their own plan.',
-          link: { label: 'Sell your blueprint', to: '/blueprints#sell' },
+          a: 'Yes. You can run blueprints for clients under your own brand, with each result in a dashboard and a report that carry your name.',
+          link: { label: 'Run blueprints under your brand', to: '/agencies' },
         },
       ],
     },

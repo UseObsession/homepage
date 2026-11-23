@@ -254,7 +254,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'With no code, pick a blueprint, or describe the job in your own words and Obsession sets it up and spins up the agent, for one location or ten thousand, each with its own identity. Developers use the API, the SDKs or MCP, the standard way AI agents call tools, for example obsession.personas.create({ inbox: true, phone: "US", browser: true }). Teams who build blueprints can [publish them for other teams to run](/blueprints#sell).',
+      text: 'With no code, pick a blueprint, or describe the job in your own words and Obsession sets it up and spins up the agent, for one location or ten thousand, each with its own identity. Developers use the API, the SDKs or MCP, the standard way AI agents call tools, for example obsession.personas.create({ inbox: true, phone: "US", browser: true }).',
     },
     {
       kind: 'p',

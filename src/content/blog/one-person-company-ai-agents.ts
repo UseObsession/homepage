@@ -280,9 +280,9 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Found a job clients keep asking for? Publish the blueprint you built, and other teams run it on their own plan.',
-      to: '/blueprints#sell',
-      label: 'Browse blueprints',
+      text: 'Found a job clients keep asking for? Describe it once, and Obsession runs it for every client.',
+      to: '/no-code',
+      label: 'Describe your job',
     },
 
     { kind: 'h2', id: 'goes-wrong', text: 'What goes wrong, and how to start small?' },

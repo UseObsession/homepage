@@ -519,8 +519,8 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Run blueprints for every client under your own brand, or publish the one you built so other teams run it.',
-      to: '/blueprints#sell',
+      text: 'Pick a blueprint for your first idea, or run blueprints for every client under your own brand.',
+      to: '/blueprints',
       label: 'Browse blueprints',
     },
 

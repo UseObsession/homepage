@@ -251,39 +251,3 @@
 .s-ri-own__cta { margin-top: var(--ob-space-8); }
 .s-ri-own__pic { padding: var(--ob-space-20); border-radius: var(--ob-radius-xl); background: var(--ob-sheen), var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2); }
 
-/* Sell what you build (#sell): the words beside three numbered steps, joined by a hairline that runs down the cards. */
-.s-ri-sell__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-block); align-items: center; }
-@media (min-width: 960px) { .s-ri-sell__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); } }
-.s-ri-sell__words { display: grid; gap: var(--ob-space-16); justify-items: start; }
-.s-ri-sell__words h2 { margin: 0; max-width: 18ch; text-wrap: balance; }
-.s-ri-sell__line { margin: 0; max-width: 48ch; font: var(--ob-type-body-lg); color: var(--ob-text-2); text-wrap: pretty; }
-.s-ri-sell__ctas { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-12) var(--ob-space-20); margin-top: var(--ob-space-8); }
-.s-ri-sell__steps { position: relative; display: grid; gap: var(--ob-space-12); margin: 0; padding: 0; list-style: none; }
-.s-ri-sell__steps::before { content: ''; position: absolute; left: 33px; top: 28px; bottom: 28px; width: var(--ob-border-hair); background: var(--ob-line); }
-.s-ri-sell__step {
-  position: relative;
-  display: grid;
-  grid-template-columns: 40px minmax(0, 1fr);
-  column-gap: var(--ob-space-16);
-  row-gap: var(--ob-space-4);
-  padding: var(--ob-space-16) var(--ob-space-20) var(--ob-space-16) var(--ob-space-14, 14px);
-  border-radius: var(--ob-radius-lg);
-  background: var(--ob-sheen), var(--ob-surface);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight);
-}
-.s-ri-sell__n {
-  grid-row: span 2;
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--ob-bg);
-  box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset;
-  font: var(--ob-type-label-mono);
-  letter-spacing: var(--ob-type-label-mono-tracking);
-  color: var(--ob-text-2);
-}
-.s-ri-sell__step b { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
-.s-ri-sell__step > span:last-child { font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; }
-.s-ri-sell__step:last-child .s-ri-sell__n { color: var(--ob-text); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-success) inset; }
