@@ -51,7 +51,6 @@
 # AI checkout test, retired on 22 Oct 2026 (James: too narrow).
 /recipes/ai-checkout-test            /blueprints                        301
 /recipes/ai-checkout-test/           /blueprints                        301
-/founders                     /                               301
 /sample-report                /sample-output                  301
 /sample-report/               /sample-output                  301
 /templates                    /blueprints                        301
@@ -64,7 +63,7 @@
 # The old site's indexed addresses ended in a slash: every page's slashed address is sent for good to the canonical
 # address without it (a new page adds its line here).
 /agencies/                    /agencies                       301
-/founders/                    /                               301
+/founders/                    /founders                       301
 /sales/                       /sales                          301
 /marketing/                   /marketing                      301
 /developers/                  /developers                     301

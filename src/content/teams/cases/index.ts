@@ -22,8 +22,9 @@ import { useCase as aiAgentsForFinancialServices } from './ai-agents-for-financi
 import { useCase as healthcareAiAgents } from './healthcare-ai-agents'
 import { useCase as aiAgentsForFreelancers } from './ai-agents-for-freelancers'
 import { useCase as aiAgentsForProfessionalServices } from './ai-agents-for-professional-services'
+import { useCase as aiAgentsForStartups } from './ai-agents-for-startups'
 import type { TeamPage } from '../types'
 
 /* The use case pages (22 Nov 2026, _research/seo/revamp-22nov/PLAN_usecases.md): one job in one industry each, drawn by
    pages/Team.tsx like the team pages, in the order the /use-cases hub lists them within their kit. */
-export const cases: TeamPage[] = [aiReceptionist, aiAgentForInsurance, aiAgentForDentalPractices, aiAgentForPropertyManagement, aiRecruiter, aiAgentForCustomerSupport, otpTesting, aiSdr, imessageAiAssistant, priorAuthorizationAiAgent, aiAgentForFreightBrokers, aiAgentEvaluation, agenticCommerce, aiAgentForHomeServices, aiAgentForHotels, aiAgentForHigherEducation, aiAgentForContactCenters, aiAgentPlatforms, aiAgentsForEnterprise, aiAgentsForSaas, aiAgentsForFinancialServices, healthcareAiAgents, aiAgentsForFreelancers, aiAgentsForProfessionalServices]
+export const cases: TeamPage[] = [aiReceptionist, aiAgentForInsurance, aiAgentForDentalPractices, aiAgentForPropertyManagement, aiRecruiter, aiAgentForCustomerSupport, otpTesting, aiSdr, imessageAiAssistant, priorAuthorizationAiAgent, aiAgentForFreightBrokers, aiAgentEvaluation, agenticCommerce, aiAgentForHomeServices, aiAgentForHotels, aiAgentForHigherEducation, aiAgentForContactCenters, aiAgentPlatforms, aiAgentsForEnterprise, aiAgentsForSaas, aiAgentsForFinancialServices, healthcareAiAgents, aiAgentsForFreelancers, aiAgentsForProfessionalServices, aiAgentsForStartups]

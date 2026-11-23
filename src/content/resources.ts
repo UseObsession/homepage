@@ -101,9 +101,11 @@ export const useCasesPage: UseCasesIndexPage = {
         ],
       },
       {
-        label: 'By size',
+        label: 'By team and size',
         paths: [
+          '/founders',
           '/use-cases/ai-agents-for-freelancers',
+          '/use-cases/ai-agents-for-startups',
           '/agencies',
           '/use-cases/ai-agent-platforms',
           '/use-cases/ai-agents-for-enterprise',

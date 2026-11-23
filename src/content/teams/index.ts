@@ -1,6 +1,7 @@
 import { team as agencies } from './agencies'
 import { team as banks } from './banks'
 import { team as compliance } from './compliance'
+import { team as founders } from './founders'
 import { team as marketing } from './marketing'
 import { team as sales } from './sales'
 import { team as software } from './software'
@@ -13,7 +14,7 @@ import type { TeamPage } from './types'
    draws them; App.tsx routes each `meta.path` to it, and meta.ts, the sitemap and llms.txt read `teams`. */
 export type { TeamPage } from './types'
 
-export const teams: TeamPage[] = [sales, marketing, support, agencies, stores, software, banks, compliance]
+export const teams: TeamPage[] = [founders, sales, marketing, support, agencies, stores, software, banks, compliance]
 
 export { cases }
 

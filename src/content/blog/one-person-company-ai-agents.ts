@@ -355,5 +355,5 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'Zapier', url: ZAPIER, date: '2026-11-23' },
   ],
 
-  related: ['/use-cases/ai-agents-for-freelancers', '/no-code', 'recipe:inbox-agent', 'recipe:missed-call-text-back', 'what-can-ai-agents-do-for-business', 'no-code-ai-agents'],
+  related: ['/founders', '/use-cases/ai-agents-for-freelancers', '/no-code', 'recipe:inbox-agent', 'recipe:missed-call-text-back', 'what-can-ai-agents-do-for-business', 'no-code-ai-agents'],
 }
