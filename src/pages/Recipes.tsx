@@ -156,6 +156,40 @@ export function Recipes() {
         </div>
       </section>
 
+      {/* Sell what you build (#sell): the step from running a job to selling it, as Shopify's builders sell to other
+          merchants. Three steps, each a numbered card; the guides link here. */}
+      <section className="s-section s-ri-sell" id="sell" aria-labelledby={`${id}-sell`}>
+        <div className="s-wrap s-ri-sell__grid">
+          <div className="s-ri-sell__words">
+            <h2 className="ob-type-h2" id={`${id}-sell`}>
+              {describe.sell.heading}
+            </h2>
+            <p className="s-ri-sell__line">{describe.sell.line}</p>
+            <div className="s-ri-sell__ctas">
+              <a className="ob-btn" href={describe.sell.cta.to}>
+                <span className="ob-btn-label">{describe.sell.cta.label}</span>
+                <Arrow className="ob-btn-glyph ob-btn-arrow" />
+              </a>
+              <Link className="ob-btn ob-btn--link" to={describe.sell.brand.to}>
+                <span className="ob-btn-label">{describe.sell.brand.label}</span>
+                <Arrow className="ob-btn-glyph ob-btn-arrow" />
+              </Link>
+            </div>
+          </div>
+          <ol className="s-ri-sell__steps">
+            {describe.sell.steps.map((st, k) => (
+              <li className="s-ri-sell__step" key={st.k}>
+                <span className="s-ri-sell__n" aria-hidden="true">
+                  {String(k + 1).padStart(2, '0')}
+                </span>
+                <b>{st.k}</b>
+                <span>{st.t}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       {/* The hub is the page's ink chapter (styles/tones.css, F1): full bleed ink on paper, lit ink on ink. */}
       <section className="s-section s-ri-hub ob-theme-dark" data-tone="ink" aria-labelledby={`${id}-hub`}>
         <div className="s-wrap">

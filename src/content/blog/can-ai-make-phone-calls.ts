@@ -42,9 +42,9 @@ const PECR_19 = 'https://www.legislation.gov.uk/uksi/2003/2426/regulation/19'
 
 export const post: BlogPost = {
   slug: 'can-ai-make-phone-calls',
-  title: 'Can AI make phone calls? What AI agents do, and the rules for businesses',
+  title: 'Can AI make phone calls for you? What AI agents do, and the rules for businesses',
   dek: 'Google’s AI calls businesses for people who use Search, Gemini phones them from a Pixel 11 owner’s own number, and Meta is rolling out calls from its Muse agent. In the US the law treats an AI voice as an artificial voice, which brings rules on consent and on saying who is calling.',
-  metaTitle: 'Can AI make phone calls? AI agents and rules for businesses',
+  metaTitle: 'Can AI make phone calls for you? AI agents and the rules',
   description:
     'Yes, AI can make phone calls: Google and Gemini call businesses for people, and Meta is rolling out Muse calls. What US, EU and UK rules ask of AI calls.',
   answer:
@@ -56,10 +56,13 @@ export const post: BlogPost = {
     'can ai take phone calls',
     'can google ai make phone calls',
     'can muse ai make phone calls',
+    'ai that makes phone calls for you',
+    'ai agent that can make calls',
+    'ai assistant that can make phone calls',
   ],
   category: 'Test sign-up and agents',
   published: '2026-11-01',
-  updated: '2026-11-22',
+  updated: '2026-11-23',
   readingMinutes: 13,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },

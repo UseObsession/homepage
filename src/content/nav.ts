@@ -216,9 +216,11 @@ const menus = {
     },
   },
   developers: { label: 'Developers', to: '/developers' } satisfies NavPage,
-  /* Beside Developers since 23 Nov 2026: the front door for teams that don't write code, as the hero's two doors. Named for
-     who the reader is, not the skill they lack (Seun, 23 Nov: "For teams"); the address keeps the searched words. */
-  noCode: { label: 'For teams', to: '/no-code' } satisfies NavPage,
+  /* Beside Developers since 23 Nov 2026: the front door for everyone who doesn't write code. Named "For teams" that
+     morning, then "No code" the same evening (Seun: "should we use team for the no code page and does it capture that
+     individual angle"): the page serves a freelancer or founder as much as a team, "No code" and "Developers" read as
+     the two ways in, and the label matches the address and the searched words. */
+  noCode: { label: 'No code', to: '/no-code' } satisfies NavPage,
   pricing: { label: 'Pricing', to: '/pricing' } satisfies NavPage,
 }
 
