@@ -256,9 +256,11 @@
    card holds the role (linked to its use case where there is one), one line, the pieces it runs on as the type
    sections' chips, and the blueprints that cover it as quiet links. The door for builders sits under the grid. */
 .s-ri-roles { scroll-margin-top: var(--ob-space-64); }
+/* It follows straight on from the seven types (their list keeps its own bottom space), so one gap, not two. */
+.s-ri-types + .s-ri-roles { padding-top: 0; }
 .s-ri-roles:focus { outline: none; }
 .s-ri-roles__head { display: grid; gap: var(--ob-space-12); margin-bottom: var(--ob-space-32); }
-.s-ri-roles__head h2 { margin: 0; max-width: 20ch; text-wrap: balance; }
+.s-ri-roles__head h2 { margin: 0; max-width: 22ch; text-wrap: balance; }
 .s-ri-roles__line { margin: 0; max-width: 56ch; font: var(--ob-type-body-lg); color: var(--ob-text-2); text-wrap: pretty; }
 .s-ri-roles__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ob-space-12); margin: 0; padding: 0; list-style: none; }
 /* Each card shares its row's 4 tracks (name, line, runs on, covered by), so the labels line up across a row. */

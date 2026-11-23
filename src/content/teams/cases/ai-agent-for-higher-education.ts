@@ -4,7 +4,7 @@ import type { TeamPage } from '../types'
 /* AI agent for higher education (/use-cases/ai-agent-for-higher-education, 23 Nov 2026): range, from one admissions
    office to a system of campuses. Modelled on the admissions and enquiry jobs in the Product Marketing book (voice and
    text follow-up, document chasing, booking, portals, competitor watching) and the Top 3 Buyers ranking. No competitor
-   or competitor customer is named and no figure is borrowed. Larkfield University is invented, at a .example address. */
+   or competitor customer is named and no figure is borrowed. Northvale University is invented, at a .example address. */
 
 const path = '/use-cases/ai-agent-for-higher-education'
 const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
@@ -40,16 +40,16 @@ export const useCase: TeamPage = {
       { icon: 'check', label: 'The upload arrives' },
       { icon: 'record', label: 'Admissions sees it complete' },
     ],
-    who: 'Wren, the admissions agent at Larkfield University',
+    who: 'Ellis, the admissions agent at Northvale University',
     note: 'Transcript chased, file complete by Friday',
-    fleet: '8 faculties · one number each',
+    fleet: '8 faculties · 24,000 applicants this cycle',
     rows: [
       { at: 'Mon 09:12', kind: 'email.received', text: 'Applicant: “Which documents do you still need from me?”' },
       { at: 'Mon 09:12', kind: 'email.sent', text: 'Checklist sent from the admissions inbox · transcript and reference still due' },
       { at: 'Wed 16:30', kind: 'sms.sent', text: 'Reminder by text: transcript due Friday · link to upload' },
       { at: 'Thu 11:05', kind: 'blueprint.result', text: 'Transcript received · file marked complete', tone: 'ok' },
     ],
-    caption: 'An applicant’s missing transcript chased by email and text until it arrived. Larkfield University is an invented example.',
+    caption: 'An applicant’s missing transcript chased by email and text until it arrived. Northvale University is an invented example.',
   },
 
   uses: {

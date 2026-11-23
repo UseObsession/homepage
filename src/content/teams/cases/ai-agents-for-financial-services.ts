@@ -4,7 +4,7 @@ import type { TeamPage } from '../types'
 /* AI agents for financial services (/use-cases/ai-agents-for-financial-services, 23 Nov 2026): the range of jobs an
    agent does for banks, credit unions, fintechs, lenders, brokers, insurers and wealth managers. The banks page covers
    account-opening tests; this page shows the whole range. No competitor or competitor customer is named and no figure
-   is borrowed. Larkfield Credit Union is invented, at a .example address. */
+   is borrowed. Harbour Mutual Credit Union is invented, at a .example address. */
 
 const path = '/use-cases/ai-agents-for-financial-services'
 const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
@@ -44,16 +44,16 @@ export const useCase: TeamPage = {
       { icon: 'chat', label: 'It texts the document list' },
       { icon: 'record', label: 'Your loan system updates itself' },
     ],
-    who: 'Wren, the lending agent at Larkfield Credit Union',
+    who: 'Ada, the lending agent at Harbour Mutual Credit Union',
     note: 'Called back in 48 seconds, file started',
-    fleet: '40 branches · one number each',
+    fleet: '40 branches · 120 agents · 9,400 enquiries a month',
     rows: [
       { at: 'Tue 10:14', kind: 'webhook', text: 'Loan enquiry from the website · £12,000 · member since 2019' },
       { at: 'Tue 10:15', kind: 'call.ended', text: 'Called back in 48 seconds · 3 minutes · transcript saved' },
       { at: 'Tue 10:19', kind: 'email.received', text: 'Two payslips and a bank statement, replied to the same thread' },
       { at: 'Tue 10:20', kind: 'blueprint.result', text: 'File complete · passed to a loan officer', tone: 'ok' },
     ],
-    caption: 'An enquiry called back in under a minute, with its documents in by lunch. Larkfield Credit Union is an invented example.',
+    caption: 'An enquiry called back in under a minute, with its documents in by lunch. Harbour Mutual Credit Union is an invented example.',
   },
 
   uses: {

@@ -5,7 +5,7 @@ import type { TeamPage } from '../types'
    centre's AI agents do and are tested on, from voice agents at volume to a BPO running agents for many clients. It
    owns ai agent for call center, ai agent for contact center, best ai agent for call center and ai voice agent for call
    center; /use-cases/ai-agent-for-customer-support keeps the support phrases and is linked, not competed with. No
-   competitor or competitor customer is named and no figure is borrowed. Larkfield Care is invented, at a .example
+   competitor or competitor customer is named and no figure is borrowed. Brookline Energy is invented, at a .example
    address. */
 
 const path = '/use-cases/ai-agent-for-contact-centers'
@@ -42,7 +42,7 @@ export const useCase: TeamPage = {
       { icon: 'check', label: 'The answer is checked against your policy' },
       { icon: 'record', label: 'The result lands in Slack by morning' },
     ],
-    who: 'Quill, a test persona calling the voice agent at Larkfield Care',
+    who: 'Quill, a test persona calling the voice agent at Brookline Energy',
     note: 'Callback promised, never sent',
     fleet: '10,000 agent sessions a day · one identity each',
     rows: [
@@ -51,7 +51,7 @@ export const useCase: TeamPage = {
       { at: '08:00', kind: 'email.received', text: 'The promised written confirmation has not arrived · 6 hours' },
       { at: '08:01', kind: 'blueprint.result', text: 'Callback and email promised, one missing · sent to #contact-ops', tone: 'fail' },
     ],
-    caption: 'A voice agent promised a confirmation email that never came, found overnight. Larkfield Care is an invented example.',
+    caption: 'A voice agent promised a confirmation email that never came, found overnight. Brookline Energy is an invented example.',
   },
 
   uses: {

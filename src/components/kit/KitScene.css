@@ -68,7 +68,7 @@
 .k-win__step-text { display: grid; gap: 2px; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); text-wrap: balance; }
 .k-win__num { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); }
 
-.k-win__main { display: grid; grid-template-rows: auto auto auto 1fr auto; min-width: 0; padding: var(--ob-space-16) var(--ob-space-20); gap: var(--ob-space-8); }
+.k-win__main { overflow: hidden; display: grid; grid-template-rows: auto auto auto 1fr auto; min-width: 0; padding: var(--ob-space-16) var(--ob-space-20); gap: var(--ob-space-8); }
 .k-win__head { display: flex; align-items: center; flex-wrap: wrap; gap: var(--ob-space-8) var(--ob-space-12); }
 .k-win__who { display: inline-flex; align-items: center; gap: var(--ob-space-8); font: var(--ob-type-small); color: var(--ob-text); }
 .k-win__live { width: 8px; height: 8px; border-radius: 50%; background: var(--ob-success); box-shadow: 0 0 0 3px var(--ob-success-bg); }
@@ -122,7 +122,15 @@
 /* Beat 2: the finding lit in its tone, the other rows set back, the note drawn under the log. */
 .k-scene { --k-tone: var(--ob-success); --k-tone-bg: var(--ob-success-bg); }
 .k-scene[data-tone='fail'] { --k-tone: var(--ob-danger); --k-tone-bg: var(--ob-danger-bg); }
-.k-win__rows { transform-origin: 50% calc((var(--f) + 0.5) / var(--n) * 100%); transition: transform 900ms var(--ob-ease-out); }
+.k-win__rows { transform-origin: 50% calc((var(--b) + 0.5) / var(--n) * 100%); transition: transform 800ms var(--ob-ease-out), transform-origin 800ms var(--ob-ease-out); }
+/* The camera on each beat (23 Nov 2026): the row that just landed is lit, the rows before it step back, and the step that
+   made it lights in the side panel. */
+.k-win__step { transition: background-color var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out); }
+.k-win__step .k-win__ic { transition: color var(--ob-dur-base) var(--ob-ease-out), border-color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out); }
+.k-win__step.is-on { background: rgb(var(--ob-tint-rgb) / 0.08); color: var(--ob-text); }
+.k-win__step.is-on .k-win__ic { color: var(--ob-text); border-color: var(--ob-line-strong); background: var(--ob-surface); }
+.k-scene[data-beat] .k-win__row:not(.is-beat) { opacity: 0.5; }
+.k-win__row.is-beat { background: rgb(var(--ob-tint-rgb) / 0.06); box-shadow: inset 2px 0 0 var(--ob-text-2); }
 .k-win__row { transition: opacity var(--ob-dur-slow, 0.5s) var(--ob-ease-out), background-color var(--ob-dur-slow, 0.5s) var(--ob-ease-out), box-shadow var(--ob-dur-slow, 0.5s) var(--ob-ease-out); }
 .k-scene.is-found .k-win__row:not(.is-found) { opacity: 0.55; }
 .k-scene.is-found .k-win__row.is-found { background: color-mix(in srgb, var(--k-tone-bg) 70%, transparent); box-shadow: inset 2px 0 0 var(--k-tone); }
@@ -153,11 +161,6 @@
   from { opacity: 0; translate: 0 var(--ob-shift-sm, 6px); }
   to { opacity: 1; translate: 0 0; }
 }
-@keyframes k-step-pass {
-  0% { background-color: transparent; color: var(--ob-text-2); }
-  15%, 75% { background-color: rgba(var(--ob-tint-rgb), 0.08); color: var(--ob-text); }
-  100% { background-color: transparent; color: var(--ob-text-2); }
-}
 @keyframes k-pip {
   from { opacity: 0.18; }
   to { opacity: 1; }
@@ -170,18 +173,16 @@
   .k-scene[data-armed] .k-win__row,
   .k-scene[data-armed] .k-win__note { opacity: 0; }
   .k-scene[data-armed] .k-win__pips i { opacity: 0.18; }
-  .k-scene.is-in .k-win__step {
-    animation:
-      k-rise var(--ob-dur-slow, 0.5s) var(--ob-ease-out) backwards calc(var(--i) * 120ms),
-      k-step-pass calc(var(--n) * 80ms + 400ms) var(--ob-ease-out) both calc(600ms + var(--i) * var(--n) * 80ms);
-  }
-  .k-scene.is-in .k-win__row { animation: k-rise var(--ob-dur-slow, 0.5s) var(--ob-ease-out) backwards calc(600ms + var(--i) * 320ms); }
-  .k-scene.is-in .k-win__pips i { animation: k-pip 0.3s var(--ob-ease-out) backwards calc(700ms + var(--i) * 320ms); }
+  .k-scene.is-in .k-win__step { animation: k-rise var(--ob-dur-slow, 0.5s) var(--ob-ease-out) backwards calc(var(--i) * 120ms); }
+  .k-scene.is-in .k-win__row { animation: k-rise var(--ob-dur-slow, 0.5s) var(--ob-ease-out) backwards calc(var(--start, 500ms) + var(--i) * var(--step, 900ms)); }
+  .k-scene.is-in .k-win__pips i { animation: k-pip 0.3s var(--ob-ease-out) backwards calc(var(--start, 500ms) + 100ms + var(--i) * var(--step, 900ms)); }
+  .k-scene.is-in[data-beat] .k-win__rows { transform: scale(1.035); }
   .k-scene.is-in:not(.is-found) .k-win__state { animation: k-turn 2.8s linear infinite; }
-  .k-scene.is-in.is-found .k-win__rows { transform: scale(1.03); }
+  .k-scene.is-in.is-found .k-win__rows { transform: scale(1.05); }
   .k-win__prog { animation: k-prog var(--run, 2.5s) linear both; }
   .k-ring { animation: k-ring 600ms var(--ob-ease-out) both; }
 }
 @media (prefers-reduced-motion: no-preference) and (max-width: 560px) {
-  .k-scene.is-in.is-found .k-win__rows { transform: none; }
+  .k-scene.is-in.is-found .k-win__rows,
+  .k-scene.is-in[data-beat] .k-win__rows { transform: none; }
 }
