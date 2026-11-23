@@ -966,3 +966,17 @@
   .s-art-text .s-art-main > * + .s-art-h2 { margin-top: var(--ob-space-64); }
   .s-art-text .s-art-stat { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Phones (23 Nov 2026, Seun: "digestible in phone format"): every article as a compact row, its hub in its reader's
+   colour, the title and when it was written, so 135 guides read as a list to scan rather than 80 screens of cards. The
+   picture and the dek stay on wider screens; the filter above still narrows by hub. */
+@media (max-width: 599.98px) {
+  .s-blog-grid { grid-template-columns: minmax(0, 1fr); gap: 0; border-top: var(--ob-border-hair) solid var(--ob-line-subtle); }
+  .s-blog-grid > li { border-bottom: var(--ob-border-hair) solid var(--ob-line-subtle); }
+  .s-blog-grid .s-blog-card { border: 0; border-radius: 0; background: none; box-shadow: none; }
+  .s-blog-grid .s-blog-card__visual,
+  .s-blog-grid .s-blog-card__dek { display: none; }
+  .s-blog-grid .s-blog-card__copy { grid-template-rows: auto auto auto; gap: var(--ob-space-6); padding: var(--ob-space-16) 0; }
+  .s-blog-grid .s-blog-card__title { font: var(--ob-type-body); font-weight: var(--ob-weight-medium, 500); text-wrap: pretty; }
+  .s-blog-grid .s-blog-card__foot { margin: 0; }
+}

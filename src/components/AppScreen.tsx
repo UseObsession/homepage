@@ -73,6 +73,44 @@ function bootPlayed(el: Element | null | undefined) {
   return true
 }
 
+/* The full-size view on a phone (23 Nov 2026, Seun: "digestible in phone format ... illustrations easy to capture"): a
+   720 x 450 window drawn at a phone's width sets its 12px type at about 7px. One tap opens it in a sheet at its real
+   size, to swipe across or read with the phone turned, and its story plays again. The sheet copies the window as drawn,
+   so nothing in the page moves; it closes on its button, Escape or a tap outside, and focus returns to the button. */
+const ZOOM = { open: 'Zoom in', close: 'Close', label: 'The screen at full size', hint: 'Swipe across, or turn your phone to see it whole.' }
+
+function zoom(src: HTMLElement | null, from: HTMLButtonElement) {
+  if (!src || typeof document === 'undefined') return
+  const d = document.createElement('dialog')
+  d.className = 's-zoom'
+  d.setAttribute('aria-label', ZOOM.label)
+  d.innerHTML = `<div class="s-zoom__bar"><p class="s-zoom__hint">${ZOOM.hint}</p><button type="button" class="s-zoom__close">${ZOOM.close}</button></div><div class="s-zoom__scroll"><div class="ilwrap ob-object s-zoom__screen" data-screen="${src.dataset.screen ?? ''}">${src.innerHTML}</div></div>`
+  const fit = d.querySelector<HTMLElement>('.appx-fit')
+  if (fit) {
+    fit.style.setProperty('--fit', '1')
+    fit.style.setProperty('--fitc', '1')
+    fit.dataset.fit = ''
+    fit.dataset.full = ''
+  }
+  const close = () => d.close()
+  d.querySelector('.s-zoom__close')?.addEventListener('click', close)
+  d.addEventListener('click', (e) => {
+    if (e.target === d) close()
+  })
+  d.addEventListener('close', () => {
+    d.remove()
+    from.focus()
+  })
+  document.body.append(d)
+  d.showModal()
+  const il = d.querySelector('.il')
+  if (il && !matchMedia(RM).matches) {
+    il.classList.remove('play')
+    void (il as HTMLElement).offsetWidth
+    il.classList.add('play')
+  }
+}
+
 type Props = {
   name: ScreenName
   /* Change it to play the story again, e.g. when the tab that holds the screen is selected. */
@@ -150,6 +188,23 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
     else replay(il, shoot)
   }, [playKey, shoot])
 
+  /* The window's scale, measured (23 Nov 2026): CSS scales each 720 x 450 window to its frame on its own (screens/kit.css),
+     and this sets the same scale from the frame's real width, so every browser draws the window whole, whatever CSS it
+     reads. On a phone the frame crops to the main panel (styles/site.css), at its own scale. */
+  useEffect(() => {
+    const fit = ref.current?.querySelector<HTMLElement>('.appx-fit')
+    if (!fit || !('ResizeObserver' in window)) return
+    const ro = new ResizeObserver(([e]) => {
+      const w = e.contentRect.width
+      if (!w) return
+      fit.style.setProperty('--fit', String(w / 720))
+      fit.style.setProperty('--fitc', String(w / 556))
+      fit.dataset.fit = ''
+    })
+    ro.observe(fit)
+    return () => ro.disconnect()
+  }, [name, shown])
+
   return (
     <>
       <div
@@ -164,6 +219,13 @@ export function AppScreen({ name, playKey, className, workspace = 'agency', note
         suppressHydrationWarning
       />
       {note && <p className="s-screen-note">{note}</p>}
+      {/* Phones: the window at full size, one tap away (styles/site.css shows the button under 520px). */}
+      <button type="button" className="s-screen-zoom" onClick={(e) => zoom(ref.current, e.currentTarget)}>
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" />
+        </svg>
+        {ZOOM.open}
+      </button>
     </>
   )
 }
