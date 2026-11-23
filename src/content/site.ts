@@ -81,9 +81,11 @@ export const recipesPage: RecipesIndexPage = {
   roles: {
     id: 'ai-employees',
     heading: 'What an AI employee needs.',
-    line: 'Every AI employee needs a phone, an inbox and a browser of its own, under one identity. Here is what six common roles run on, and the blueprints that already cover them.',
+    line: 'An AI employee is an agent Obsession equips with a phone, an inbox and a browser, working as one persona. Six common roles run on blueprints that already exist, and yours can take any other job on the same pieces.',
     needs: 'Runs on',
     covered: 'Covered by',
+    /* The roles are examples, never the limit: any other job is described in a sentence, or built on the API. */
+    own: { line: 'A role that isn’t here? Describe the job in a sentence and we set it up as a blueprint.', label: 'Describe your job', to: '#your-own' },
     build: {
       line: 'Building AI employees yourself? Every piece comes through one API and an MCP server.',
       label: 'See the API and MCP',
@@ -150,7 +152,7 @@ export const recipesPage: RecipesIndexPage = {
       },
       {
         q: 'Is a blueprint an AI employee?',
-        a: 'No. A blueprint is one ready-made job, and an AI employee is a persona that runs one or more of them under one identity, with its own number, inbox and browser. Companies that build AI employees use the same pieces through the API.',
+        a: 'No. A blueprint is one ready-made job. An AI employee is an agent Obsession equips with a phone, an inbox and a browser, working as one persona. It can run several blueprints, a job you describe in a sentence, or work you build on the API.',
         link: { label: 'What an AI employee needs', to: '/blueprints#ai-employees' },
       },
       {

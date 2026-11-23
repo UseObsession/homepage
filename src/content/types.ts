@@ -909,6 +909,7 @@ export type RecipesIndexPage = {
     line: string
     needs: string
     covered: string
+    own: { label: string; to: string; line: string }
     build: { label: string; to: string; line: string }
     items: { name: string; line: string; to?: string; pieces: PieceIdLite[]; blueprints: string[] }[]
   }

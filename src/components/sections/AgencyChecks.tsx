@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { useInView } from '../../hooks/useReveal'
 import { Link } from 'react-router-dom'
 import { PersonaGlyph } from '../persona/icons'
 import { kitLinks } from '../../content/kitPaths'
@@ -12,6 +13,7 @@ const kitOf = Object.fromEntries(kitLinks.map((k) => [k.id, k]))
 
 export function TeamChecksSection({ checks }: { checks: TeamChecks }) {
   const hid = useId()
+  const { ref, inView } = useInView<HTMLUListElement>(0.3)
   return (
     <section className="s-section a-ck" id="checks" aria-labelledby={`${hid}-h`}>
       <div className="s-wrap">
@@ -21,11 +23,11 @@ export function TeamChecksSection({ checks }: { checks: TeamChecks }) {
           </h2>
           <p className="s-bp-line">{checks.line}</p>
         </div>
-        <ul className="a-ck__list">
+        <ul className={'a-ck__list' + (inView ? ' is-in' : '')} ref={ref}>
           {checks.items.map((c) => {
             const k = kitOf[c.kit]
             return (
-              <li className="t-use a-ck__card" key={c.name}>
+              <li className="t-use a-ck__card ob-lit ob-lit--lift" key={c.name}>
                 <Link className="t-use__kit" to={k.path}>
                   <span className="t-use__kit-ic" aria-hidden="true">
                     <PersonaGlyph name={k.icon} />

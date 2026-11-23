@@ -291,3 +291,11 @@
 }
 @media (max-width: 1000px) { .s-ri-roles__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .s-ri-roles__list { grid-template-columns: minmax(0, 1fr); } .s-ri-role { padding: var(--ob-space-20); } }
+
+/* The role cards answer the pointer: the pieces it runs on brighten, as if switched on. */
+.s-ri-role .s-ri-chip { transition: border-color var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .s-ri-role:hover .s-ri-chip { border-color: var(--ob-line-strong); color: var(--ob-text); background: rgb(var(--ob-tint-rgb) / 0.05); }
+}
+.s-ri-roles__doors { display: grid; gap: var(--ob-space-8); margin-top: var(--ob-space-24); }
+.s-ri-roles__doors .s-ri-roles__build { margin: 0; }

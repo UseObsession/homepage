@@ -151,7 +151,7 @@ export function Recipes() {
           </header>
           <ul className="s-ri-roles__list">
             {page.roles.items.map((r) => (
-              <li className="s-ri-role" key={r.name}>
+              <li className="s-ri-role ob-lit ob-lit--lift" key={r.name}>
                 <h3 className="s-ri-role__name">
                   {r.to ? (
                     <Link to={r.to}>
@@ -192,19 +192,28 @@ export function Recipes() {
               </li>
             ))}
           </ul>
-          <p className="s-ri-roles__build">
-            <span>{page.roles.build.line}</span>
-            <Link className="ob-btn ob-btn--link" to={page.roles.build.to}>
-              <span className="ob-btn-label">{page.roles.build.label}</span>
-              <Arrow className="ob-btn-glyph ob-btn-arrow" />
-            </Link>
-          </p>
+          <div className="s-ri-roles__doors">
+            <p className="s-ri-roles__build">
+              <span>{page.roles.own.line}</span>
+              <a className="ob-btn ob-btn--link" href={page.roles.own.to}>
+                <span className="ob-btn-label">{page.roles.own.label}</span>
+                <Arrow className="ob-btn-glyph ob-btn-arrow" />
+              </a>
+            </p>
+            <p className="s-ri-roles__build">
+              <span>{page.roles.build.line}</span>
+              <Link className="ob-btn ob-btn--link" to={page.roles.build.to}>
+                <span className="ob-btn-label">{page.roles.build.label}</span>
+                <Arrow className="ob-btn-glyph ob-btn-arrow" />
+              </Link>
+            </p>
+          </div>
         </div>
       </section>
 
       {/* No blueprint for the job (23 Nov 2026): describe it in your own words, and we set it up as a blueprint. The
           picture types a sentence and turns it into a blueprint (components/describe/DescribeJob). */}
-      <section className="s-section s-ri-own" aria-labelledby={`${id}-own`}>
+      <section className="s-section s-ri-own" id="your-own" aria-labelledby={`${id}-own`} tabIndex={-1}>
         <div className="s-wrap s-ri-own__grid">
           <div className="s-ri-own__words">
             <h2 className="ob-type-h2" id={`${id}-own`}>

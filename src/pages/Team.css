@@ -149,3 +149,15 @@
   .t-kinds__full { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .t-kinds__panel { padding: var(--ob-space-20); }
 }
+
+/* Motion that explains (23 Nov 2026): the size bars fill in order, smallest to largest, once in view; the chosen
+   founder's jobs come in one after another. Nothing moves under reduced motion. */
+.t-size__bar i { transition: width 900ms var(--ob-ease-out) calc(var(--i, 0) * 160ms + 120ms); }
+.t-sizes__list[data-armed] .t-size__bar i { width: 0; }
+.t-kinds__jobs li { animation: t-kinds-job var(--ob-dur-slow, 420ms) var(--ob-ease-out) both; animation-delay: calc(var(--i, 0) * 80ms + 80ms); }
+@keyframes t-kinds-job { from { opacity: 0; translate: -4px 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .t-size__bar i { transition: none; }
+  .t-sizes__list[data-armed] .t-size__bar i { width: calc(var(--fill) * 100%); }
+  .t-kinds__jobs li { animation: none; }
+}

@@ -110,3 +110,23 @@
   .ob-utabs.is-scrollable:not(.is-scroll-end) { --ob-fade-e: 56px; }
   .ob-utabs.is-scrollable:not(.is-scroll-start) { --ob-fade-s: 40px; }
 }
+
+/* Lit cards (23 Nov 2026, Seun: "premium ... hover and texture ... coherent with the rest of the website"): the /no-code
+   cards' recipe made shared. A faint dot texture fades from the top-left corner behind the card's words; `--lift` adds
+   the hover the site's cards share: a 2px rise, the strong edge and the highlight. Still under reduced motion. */
+.ob-lit { position: relative; isolation: isolate; overflow: hidden; }
+.ob-lit::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(circle, rgb(var(--ob-tint-rgb) / 0.07) 1px, transparent 1.3px) 0 0 / 14px 14px;
+  -webkit-mask-image: radial-gradient(120% 90% at 0% 0%, currentColor 0%, transparent 70%);
+  mask-image: radial-gradient(120% 90% at 0% 0%, currentColor 0%, transparent 70%);
+  pointer-events: none;
+}
+.ob-lit--lift { transition: translate var(--ob-dur-base) var(--ob-ease-out), border-color var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .ob-lit--lift:hover { translate: 0 -2px; border-color: var(--ob-line-strong); box-shadow: var(--ob-highlight, none), var(--ob-shadow-2, none); }
+}
+@media (prefers-reduced-motion: reduce) { .ob-lit--lift:hover { translate: none; } }
