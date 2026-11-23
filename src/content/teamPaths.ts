@@ -1,6 +1,7 @@
 /* The team pages' addresses (22 Nov 2026), with nothing else imported, so the router can send each to pages/Team.tsx
    without carrying the teams' words. The words are content/teams/; the order is the nav's Teams column. */
 export const teamPathList = [
+  '/founders',
   '/sales',
   '/marketing',
   '/verify',

@@ -119,6 +119,8 @@ const KIT_ICONS: Record<KitId, NavIcon> = { talk: 'chat', test: 'check', build: 
    by name only. The integrations left the menu for /developers and the footer. */
 const kitTools: NavTool[] = kitLinks.map((k) => ({ label: k.name, line: k.line, to: k.path, icon: KIT_ICONS[k.id] }))
 const teams: NavPage[] = [
+  { label: 'Founders', to: '/founders' },
+  { label: 'Freelancers', to: '/use-cases/ai-agents-for-freelancers' },
   { label: 'Sales and RevOps', to: '/sales' },
   { label: 'Marketing', to: '/marketing' },
   { label: 'Support and AI operations', to: '/verify' },
@@ -182,7 +184,7 @@ const menus = {
       { label: 'Financial services', to: '/use-cases/ai-agents-for-financial-services' },
       { label: 'Healthcare', to: '/use-cases/healthcare-ai-agents' },
       { label: 'Professional services', to: '/use-cases/ai-agents-for-professional-services' },
-      { label: 'Freelancers', to: '/use-cases/ai-agents-for-freelancers' },
+      { label: 'Home services', to: '/use-cases/ai-agent-for-home-services' },
       { label: 'Agent platforms', to: '/use-cases/ai-agent-platforms' },
       { label: 'Enterprise', to: '/use-cases/ai-agents-for-enterprise' },
     ] satisfies NavPage[],

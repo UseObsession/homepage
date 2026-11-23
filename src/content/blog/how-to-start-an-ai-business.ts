@@ -307,5 +307,5 @@ export const post: BlogPost = {
     { title: 'TCR Fees and Pricing: General Guide', publisher: 'The Campaign Registry', url: TCR_FEES, date: '2026-08-13' },
   ],
 
-  related: ['/no-code', '/blueprints', 'recipe:missed-call-text-back', 'recipe:appointment-reminders', 'ai-agent-use-cases-for-business', 'no-code-ai-agents'],
+  related: ['/founders', '/no-code', '/blueprints', 'recipe:missed-call-text-back', 'recipe:appointment-reminders', 'ai-agent-use-cases-for-business', 'no-code-ai-agents'],
 }
