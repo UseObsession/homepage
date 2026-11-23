@@ -21,7 +21,7 @@ import './UseCases.css'
 const firstSentence = (s: string) => s.match(/^.+?[.!?](?=\s|$)/)?.[0] ?? s
 const cardOf: Record<string, { name: string; line: string }> = {
   ...Object.fromEntries(catalog.studies.map((s) => [s.path, { name: s.name, line: s.line }])),
-  ...Object.fromEntries([...teams, ...cases].map((t) => [t.meta.path, { name: t.name, line: firstSentence(t.hero.sub) }])),
+  ...Object.fromEntries([...teams, ...cases].map((t) => [t.meta.path, { name: t.name, line: t.card ?? firstSentence(t.hero.sub) }])),
 }
 const kitOf = Object.fromEntries(kitLinks.map((k) => [k.id, k]))
 

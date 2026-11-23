@@ -40,6 +40,8 @@ export type TeamPage = {
   kind?: 'case'
   /* The team as the nav names it. */
   name: string
+  /* Its card line on /use-cases, when the hero's first sentence would read like every other card's (23 Nov 2026). */
+  card?: string
   meta: Meta
   hero: { pill: string; headline: string; sub: string }
   scene: KitPage['scene']

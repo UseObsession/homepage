@@ -19,6 +19,7 @@ export const useCase: TeamPage = {
   id: 'ai-agent-for-contact-centers',
   kind: 'case',
   name: 'AI agent for contact centers',
+  card: 'Calls at volume, missed callers texted and every agent tested nightly.',
   meta: {
     path,
     title: 'AI agent for contact centers: calls, texts and testing',

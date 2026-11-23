@@ -17,6 +17,7 @@ export const useCase: TeamPage = {
   id: 'ai-agents-for-freelancers',
   kind: 'case',
   name: 'AI agents for freelancers',
+  card: 'Enquiries answered and routine email handled while you work.',
   meta: {
     path,
     title: 'AI agents for freelancers: a number, inbox and browser',

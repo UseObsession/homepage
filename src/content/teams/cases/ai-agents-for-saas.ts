@@ -16,6 +16,7 @@ export const useCase: TeamPage = {
   id: 'ai-agents-for-saas',
   kind: 'case',
   name: 'AI agents for SaaS',
+  card: 'Sign-up tests, demo callbacks and an inbox for every user’s agent.',
   meta: {
     path,
     title: 'AI agents for SaaS: an inbox, number and browser per agent',

@@ -17,6 +17,7 @@ export const useCase: TeamPage = {
   id: 'ai-agent-for-higher-education',
   kind: 'case',
   name: 'AI agent for higher education',
+  card: 'Every enquiry answered, documents chased and applicants followed up.',
   meta: {
     path,
     title: 'AI agent for higher education: admissions on every channel',

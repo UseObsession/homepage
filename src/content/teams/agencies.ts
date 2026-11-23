@@ -19,6 +19,7 @@ const sub =
 export const team: TeamPage = {
   id: 'agencies',
   name: 'Agencies',
+  card: 'Mystery shops, CRO and ad checks, run for every client under your brand.',
   meta: {
     path: '/agencies',
     title: 'White label mystery shopping and AI agent checks · Obsession',

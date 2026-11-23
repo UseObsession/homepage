@@ -18,6 +18,7 @@ export const useCase: TeamPage = {
   id: 'ai-agent-for-hotels',
   kind: 'case',
   name: 'AI agent for hotels',
+  card: 'Booking calls answered, guests texted and rates read before breakfast.',
   meta: {
     path,
     title: 'AI agent for hotels: bookings, guests and rate checks',

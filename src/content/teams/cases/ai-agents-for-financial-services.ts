@@ -17,6 +17,7 @@ export const useCase: TeamPage = {
   id: 'ai-agents-for-financial-services',
   kind: 'case',
   name: 'AI agents for financial services',
+  card: 'Applications called back, documents chased and competitors’ rates read.',
   meta: {
     path,
     title: 'AI agents for financial services: calls, documents, checks',

@@ -20,6 +20,7 @@ export const useCase: TeamPage = {
   id: 'healthcare-ai-agents',
   kind: 'case',
   name: 'Healthcare AI agents',
+  card: 'Missed calls returned, reminders sent and payer portals checked.',
   meta: {
     path,
     title: 'Healthcare AI agents: calls, reminders and portal work',
