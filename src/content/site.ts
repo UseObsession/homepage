@@ -80,12 +80,14 @@ export const recipesPage: RecipesIndexPage = {
      roles with a use case page link to it. Companies that build AI employees get one door to the API. */
   roles: {
     id: 'ai-employees',
-    heading: 'What an AI employee needs.',
-    line: 'An AI employee is an agent Obsession equips with a phone, an inbox and a browser, working as one persona. Six common roles run on blueprints that already exist, and yours can take any other job on the same pieces.',
+    /* It picks up from the seven types above (each blueprint is one job) and hands over to the describe section below,
+       so the roles read as the next step of the page, never a block dropped in (Seun, 23 Nov 2026). */
+    heading: 'Several blueprints on one agent make an AI employee.',
+    line: 'Each blueprint above is one job. Obsession equips one agent with a phone, an inbox and a browser, working as one persona. That agent runs the jobs a role needs, or any other job you give it. These six roles are the ones people ask for first.',
     needs: 'Runs on',
     covered: 'Covered by',
     /* The roles are examples, never the limit: any other job is described in a sentence, or built on the API. */
-    own: { line: 'A role that isn’t here? Describe the job in a sentence and we set it up as a blueprint.', label: 'Describe your job', to: '#your-own' },
+    own: { line: 'Not on the list? Describe the job in a sentence, just below, and we set it up as a blueprint.', label: 'Describe your job', to: '#your-own' },
     build: {
       line: 'Building AI employees yourself? Every piece comes through one API and an MCP server.',
       label: 'See the API and MCP',
