@@ -5,7 +5,7 @@ import type { BlogPost } from './types'
    person business ai, solo founder ai, ai agents for solopreneurs, ai agents for freelancers, ai agents for
    entrepreneurs. marlowe-books.example, its clients and every run in the picture are invented. The sums at the bottom
    are worked from pricing.json list rates (read 23 Nov 2026): inbox $0.50 a month, emails $0.40 per 1,000, a number
-   $2 a month, texts $0.015, calls $0.012 a minute, browser $0.10 an hour; per client a month 10 emails, 4 texts,
+   $2 a month, texts $0.015, calls $0.012 a minute (plus $0.0676 spoken), browser $0.10 an hour; per client a month 10 emails, 4 texts,
    0.5 call minutes, 0.1 browser hours (assumptions, said on the page). US texting registration $25 once and $17 a
    month. Model tokens are extra and not priced here. Hiring comparison: BLS Occupational Outlook Handbook, median pay
    for secretaries and administrative assistants, $48,310 in May 2025 (page modified 27 Aug 2026). Other options read
@@ -137,7 +137,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'cost', text: 'What does it cost a month, against hiring someone?' },
     {
       kind: 'p',
-      text: 'Agents are billed by what each one uses (see also [AI voice agents for small business](/blog/ai-voice-agent-for-small-business)), so the cost follows the number of clients. These sums use Obsession’s list rates as published on 23 November 2026 and four assumptions for each client in a month: 10 emails, 4 texts, half a minute of calls and 6 minutes of browser time.',
+      text: 'Agents are billed by what each one uses (see also [AI voice agents for small business](/blog/ai-voice-agent-for-small-business)), so the cost follows the number of clients. These sums use Obsession’s list rates as published on 23 November 2026 and four assumptions for each client in a month: 10 emails, 4 texts, half a minute of calls, all spoken by the agent in its own voice, and 6 minutes of browser time.',
     },
     {
       kind: 'p',
@@ -152,18 +152,18 @@ export const post: BlogPost = {
         ['Phone number ($2 a month)', '1 = $2.00', '1 = $2.00', '1 = $2.00'],
         ['Emails ($0.40 per 1,000)', '200 = $0.08', '2,000 = $0.80', '20,000 = $8.00'],
         ['Texts ($0.015 each)', '80 = $1.20', '800 = $12.00', '8,000 = $120.00'],
-        ['Calls ($0.012 a minute)', '10 min = $0.12', '100 min = $1.20', '1,000 min = $12.00'],
+        ['Calls ($0.012 a minute, plus $0.0676 a minute when the agent speaks, $0.0796 in all)', '10 min = $0.80', '100 min = $7.96', '1,000 min = $79.60'],
         ['Browser ($0.10 an hour)', '2 hours = $0.20', '20 hours = $2.00', '200 hours = $20.00'],
-        ['Total', '$4.10', '$19.50', '$163.50'],
+        ['Total', '$4.78', '$26.26', '$231.10'],
       ],
     },
     {
       kind: 'p',
-      text: 'Texting US numbers also needs a registration: $25 once and $17 a month, fixed. At 200 clients the month is $19.50 plus $17, which is $36.50 before model tokens. The Free plan has 3 inboxes and a number that receives up to 50 texts and 30 call minutes a month but sends none, so an inbox agent costs nothing to start; texting back needs a paid plan.',
+      text: 'Texting US numbers also needs a registration: $25 once and $17 a month, fixed. At 200 clients the month is $26.26 plus $17, which is $43.26 before model tokens. The Free plan has 3 inboxes and a number that receives up to 50 texts and 30 call minutes a month but sends none, so an inbox agent costs nothing to start; texting back needs a paid plan.',
     },
     {
       kind: 'p',
-      text: 'Texts are the bill. At 200 clients they are $12.00 of the $19.50, 62%, and at 2,000 clients $120.00 of $163.50, 73%. Cost per client works out at $0.21 at 20 clients, $0.10 at 200 and $0.08 at 2,000. The cheapest way to grow is to send each reminder by email first and text only the clients who have not replied.',
+      text: 'Texts are the biggest part of the bill. At 200 clients they are $12.00 of the $26.26, 46%, and at 2,000 clients $120.00 of $231.10, 52%. Cost per client works out at $0.24 at 20 clients, $0.13 at 200 and $0.12 at 2,000. The cheapest way to grow is to send each reminder by email first and text only the clients who have not replied.',
     },
     {
       kind: 'stat',
@@ -174,7 +174,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A person is paid for the hours they work, which is a fixed amount a month whether there are 20 enquiries or 200. An agent is paid for what it does. Ten administrative assistants at that median cost $483,100 a year in wages, while 2,000 clients’ worth of agent pieces came to $163.50 a month, $1,962 a year, before model tokens. The two are not the same job: a person can use judgement and a relationship, while an agent runs the repeat steps at any hour. For a business of one the useful sum is how many of your own hours the repeat jobs take now, and what those hours earn at your client rate.',
+      text: 'A person is paid for the hours they work, which is a fixed amount a month whether there are 20 enquiries or 200. An agent is paid for what it does. Ten administrative assistants at that median cost $483,100 a year in wages, while 2,000 clients’ worth of agent pieces came to $231.10 a month, $2,773 a year, before model tokens. The two are not the same job: a person can use judgement and a relationship, while an agent runs the repeat steps at any hour. For a business of one the useful sum is how many of your own hours the repeat jobs take now, and what those hours earn at your client rate.',
     },
 
     { kind: 'h2', id: 'scale', text: 'How does a one person business grow from 20 clients to 2,000?' },
@@ -323,7 +323,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How much does it cost to run a one person business with AI agents?',
-          a: 'At Obsession’s list rates on 23 November 2026, the pieces for 200 clients came to $19.50 a month before model costs, with US texting registration at $17 a month on top. Worked out with 10 emails, 4 texts, half a minute of calls and 6 minutes of browser time per client. The Free plan costs $0 to start.',
+          a: 'At Obsession’s list rates on 23 November 2026, the pieces for 200 clients came to $26.26 a month before model costs, with US texting registration at $17 a month on top. Worked out with 10 emails, 4 texts, half a minute of spoken calls (calls $0.012 a minute, plus $0.0676 a minute when the agent speaks in its own voice) and 6 minutes of browser time per client. The Free plan costs $0 to start.',
         },
         {
           q: 'Which AI agents work for entrepreneurs who want to start a service business?',

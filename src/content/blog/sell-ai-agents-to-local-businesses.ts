@@ -125,7 +125,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'cost', text: 'What each offer costs you to run per business' },
     {
       kind: 'p',
-      text: 'Obsession bills each piece at list rates: a US or UK number is $2 a month, texts $0.015 each and call minutes $0.012. US texting registration is $25 once and $17 a month for each campaign, and sits outside the plans. Model tokens are billed on top at the model’s rate and aren’t in the sums here, so read a week of real runs for your own figure. The inputs are examples; swap in your client’s.',
+      text: 'Obsession bills each piece at list rates: a US or UK number is $2 a month, texts $0.015 each, calls $0.012 a minute, plus $0.0676 a minute when the agent speaks in its own voice. The calls in these sums are forwarded, so they carry only the $0.012. US texting registration is $25 once and $17 a month for each campaign, and sits outside the plans. Model tokens are billed on top at the model’s rate and aren’t in the sums here, so read a week of real runs for your own figure. The inputs are examples; swap in your client’s.',
     },
     {
       kind: 'table',
@@ -134,7 +134,7 @@ export const post: BlogPost = {
       rows: [
         ['Number for the assistant', '1 × $2', '$2.00'],
         ['Missed call text back: texts', '40 × 6 × $0.015', '$3.60'],
-        ['Missed call text back: forwarded call minutes', '40 × 0.5 min × $0.012', '$0.24'],
+        ['Missed call text back: forwarded call minutes (forwarded, so no voice charge)', '40 × 0.5 min × $0.012', '$0.24'],
         ['Appointment reminders: texts', '120 × 2 × $0.015', '$3.60'],
         ['Usage for one business, both offers', '', '$9.44'],
         ['US texting registration, 1 campaign, fixed', '$17 a month and $25 once', '$17.00'],

@@ -146,16 +146,17 @@ export const post: BlogPost = {
     },
     {
       kind: 'table',
-      caption: 'A front desk agent at one clinic for a month, at list rates; 400 texts and 100 minutes of calls are example volumes',
+      caption: 'A front desk agent at one clinic for a month, at list rates; 400 texts and 100 minutes of calls the agent speaks on are example volumes',
       cols: ['Item', 'List rate', 'Amount', 'Cost'],
       rows: [
         ['US or UK phone number', '$2 a month', '1 number', '$2.00'],
         ['Inbox', '$0.50 a month', '1 inbox', '$0.50'],
         ['Texts', '$0.015 each', '400 texts', '$6.00'],
         ['Calls', '$0.012 a minute', '100 minutes', '$1.20'],
-        ['One clinic, one month', '', '', '$9.70'],
-        ['240 clinics', '', '240 agents', '$2,328'],
-        ['20,000 locations', '', '20,000 agents', '$194,000'],
+        ['Agent’s own voice on those calls', '$0.0676 a minute', '100 minutes', '$6.76'],
+        ['One clinic, one month', '', '', '$16.46'],
+        ['240 clinics', '', '240 agents', '$3,950'],
+        ['20,000 locations', '', '20,000 agents', '$329,200'],
       ],
     },
     {
@@ -335,7 +336,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How much does an AI agent that does tasks cost?',
-          a: 'At Obsession’s list rates, an inbox is $0.50 a month, a US or UK phone number is $2 a month, a text is $0.015 and a call is $0.012 a minute. A waiting agent costs only its number and inbox. Plans are Free, then $20, $99 or $499 a month, and a paid plan’s fee covers that much usage at list rates.',
+          a: 'At Obsession’s list rates, an inbox is $0.50 a month, a US or UK phone number is $2 a month, a text is $0.015 and a call is $0.012 a minute, plus $0.0676 a minute when the agent speaks in its own voice. A waiting agent costs only its number and inbox. Plans are Free, then $20, $99 or $499 a month, and a paid plan’s fee covers that much usage at list rates.',
           link: { label: 'See the plans', to: '/pricing' },
         },
         {

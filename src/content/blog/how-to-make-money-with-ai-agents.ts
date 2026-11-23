@@ -7,7 +7,7 @@ import type { BlogPost } from './types'
    Growth $129, Scale $299), Ruby (50 minutes $250, 100 minutes $395) (Compact from £199 a month) and Acuity
    Scheduling (Starter $20 a month billed monthly, Standard $34). Obsession's rates are the list rates in
    src/lib/pricing/pricing.json read 23 Nov: inbox $0.50 a month, emails $0.40 per 1,000, a US or UK number $2 a month,
-   texts $0.015, calls $0.012 a minute, browser $0.10 an hour, US texting registration $25 once and $17 a month per
+   texts $0.015, calls $0.012 a minute (plus $0.0676 when the agent speaks), browser $0.10 an hour, US texting registration $25 once and $17 a month per
    campaign. Every example business is invented at a .example address and every input is labelled an example. The sums
    leave out model tokens, which depend on the model chosen (from $0.975 per million input tokens). No income promise,
    no share or payout for blueprint builders. British English, no dashes. */
@@ -98,7 +98,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Example: Harbour Desk (harbourdesk.example) runs a front-desk agent for local trades under its own name. In the example, a business receives 150 calls a month of about 3 minutes, so 450 call minutes at $0.012 is $5.40. Add a number at $2, 150 texts at $0.015 ($2.25), an inbox at $0.50, 5 browser hours at $0.10 ($0.50) and the $17 texting registration. The total is $27.65 a business, or $414.75 for 15 businesses, plus whichever voice and language model you choose. Customers compare you with:',
+      text: 'Example: Harbour Desk (harbourdesk.example) runs a front-desk agent for local trades under its own name. In the example, a business receives 150 calls a month of about 3 minutes, so 450 call minutes at $0.012 is $5.40. The agent speaks on those calls, so add the voice charge of $0.0676 a minute, which is $30.42, and the calls come to $35.82. Add a number at $2, 150 texts at $0.015 ($2.25), an inbox at $0.50, 5 browser hours at $0.10 ($0.50) and the $17 texting registration. The total is $58.07 a business, or $871.05 for 15 businesses, plus the language model you choose. Customers compare you with:',
     },
     {
       kind: 'list',
@@ -157,7 +157,7 @@ export const post: BlogPost = {
       cols: ['Option', 'What it does well', 'Price', 'Where it stops', 'Best for'],
       rows: [
         ['Run a service', 'The customer buys a result and never handles an agent', 'You set it; Brightside’s practice costs $22.65 a month to run', 'You promise the result', 'Anyone with one trade to serve'],
-        ['Run agents under your brand', 'A retainer repeated across clients', 'You set it; $27.65 a month a business in the example', 'You are the vendor', 'Agencies and freelancers'],
+        ['Run agents under your brand', 'A retainer repeated across clients', 'You set it; $58.07 a month a business in the example', 'You are the vendor', 'Agencies and freelancers'],
         ['Build a product', 'One build serves every user', 'You set it; $4.08 to $21.08 a user in the example', 'Needs developer time', 'Developers and technical founders'],
         [
           'Obsession (ours): numbers, inboxes, browsers and blueprints behind all three',
@@ -263,7 +263,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How much does it cost to run an AI agent?',
-          a: 'At Obsession’s list rates, a number is $2 a month, an inbox $0.50, texts $0.015 each, calls $0.012 a minute and a browser $0.10 an hour. A persona costs nothing while it waits, but its number and inbox bill monthly. Model tokens are extra and depend on the model.',
+          a: 'At Obsession’s list rates, a number is $2 a month, an inbox $0.50, texts $0.015 each, calls $0.012 a minute, plus $0.0676 a minute when the agent speaks in its own voice, and a browser $0.10 an hour. A persona costs nothing while it waits, but its number and inbox bill monthly. Model tokens are extra and depend on the model.',
           link: { label: 'Start free', to: '/pricing' },
         },
         {
