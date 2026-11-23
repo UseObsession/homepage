@@ -182,11 +182,13 @@ export function HomeTeams({ words, id, tone }: { words: Words; id?: string; tone
                   </div>
                   <p className="h-tm__formats h-tm__anim" style={d(5 + blanks)}>
                     <span className="h-tm__formats-label">{words.formats.label}</span>
-                    {words.formats.items.map((f) => (
-                      <span key={f} className="h-tm__format">
-                        {f}
-                      </span>
-                    ))}
+                    <span className="h-tm__row">
+                      {words.formats.items.map((f) => (
+                        <span key={f} className="h-tm__format">
+                          {f}
+                        </span>
+                      ))}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -196,11 +198,13 @@ export function HomeTeams({ words, id, tone }: { words: Words; id?: string; tone
             {!own && (
             <p className="h-tm__kpis" data-reader={t.reader}>
               <span className="h-tm__kpis-label">{words.kpisLabel}</span>
-              {t.kpis.map((k) => (
-                <span key={k} className="h-tm__kpi">
-                  {k}
-                </span>
-              ))}
+              <span className="h-tm__row">
+                {t.kpis.map((k) => (
+                  <span key={k} className="h-tm__kpi">
+                    {k}
+                  </span>
+                ))}
+              </span>
             </p>
             )}
           </div>

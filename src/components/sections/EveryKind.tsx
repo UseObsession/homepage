@@ -18,11 +18,13 @@ export function EveryKind({ kinds, ex, id }: { kinds: SampleKinds; ex: Explorer;
         </div>
         <div className="s-ek-arrives">
           <span className="s-ek-lab">{kinds.arrivesLabel}</span>
-          {kinds.arrives.map((a) => (
-            <span className="s-ek-pill" key={a}>
-              {a}
-            </span>
-          ))}
+          <span className="s-ek-row">
+            {kinds.arrives.map((a) => (
+              <span className="s-ek-pill" key={a}>
+                {a}
+              </span>
+            ))}
+          </span>
         </div>
       </div>
     </section>

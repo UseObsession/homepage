@@ -142,14 +142,17 @@
 .h-tm__lines [data-tone='info'] i { background: var(--s-accent, var(--ob-text-3)); }
 
 /* The same results in any other format: a quiet row of the tools a team already uses, the last one open-ended. */
-.h-tm__formats { display: flex; align-items: center; flex-wrap: wrap; gap: var(--ob-space-6); margin: 0; }
-.h-tm__formats-label { margin-right: var(--ob-space-2, 2px); font: var(--ob-type-caption); color: var(--ob-text-3); }
+.h-tm__formats { display: flex; align-items: baseline; gap: var(--ob-space-8); margin: 0; }
+.h-tm__formats-label { flex: none; font: var(--ob-type-caption); color: var(--ob-text-3); }
+/* Chips in a row of their own after a label, so a wrapped line starts under the first chip. */
+.h-tm__row { display: flex; flex: 1 1 auto; flex-wrap: wrap; gap: var(--ob-space-6); min-width: 0; }
+.h-tm__kpis .h-tm__row { gap: var(--ob-space-8); }
 .h-tm__format { padding: 2px var(--ob-space-8); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-pill); font: var(--ob-type-caption); color: var(--ob-text-2); background: var(--ob-bg); }
 .h-tm__format:last-child { border-style: dashed; color: var(--ob-text); }
 
 /* The KPIs the job moves, under the window. */
-.h-tm__kpis { display: flex; align-items: center; flex-wrap: wrap; gap: var(--ob-space-8); margin: 0; padding: 0 var(--ob-space-4); }
-.h-tm__kpis-label { font: var(--ob-type-caption); color: var(--ob-text-3); }
+.h-tm__kpis { display: flex; align-items: baseline; gap: var(--ob-space-8); margin: 0; padding: 0 var(--ob-space-4); }
+.h-tm__kpis-label { flex: none; font: var(--ob-type-caption); color: var(--ob-text-3); }
 .h-tm__kpi { padding: 2px var(--ob-space-10, var(--ob-space-12)); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-pill); font: var(--ob-type-caption); color: var(--ob-text); background: var(--ob-surface); }
 .h-tm__kpi::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: var(--ob-space-6); border-radius: 2px; background: var(--s-accent, var(--ob-text-3)); translate: 0 -1px; }
 

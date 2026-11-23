@@ -38,7 +38,10 @@
 .t-use__kit-ic svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .t-use__name { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
 .t-use__line { font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
-.t-use__runs { display: flex; flex-wrap: wrap; gap: var(--ob-space-6); margin-top: var(--ob-space-4); padding-top: var(--ob-space-12); border-top: var(--ob-border-hair) solid var(--ob-line-subtle, var(--ob-line)); }
+.t-use__runs { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--ob-space-6); margin-top: var(--ob-space-4); padding-top: var(--ob-space-12); border-top: var(--ob-border-hair) solid var(--ob-line-subtle, var(--ob-line)); }
+/* The pieces sit in a row of their own beside the blueprint: a wrapped piece starts under the first piece, and on a
+   narrow card the whole row drops under the blueprint, starting at the same edge. */
+.t-use__pieces { display: flex; flex: 1 1 12rem; flex-wrap: wrap; gap: var(--ob-space-6); min-width: 0; }
 .t-use__bp,
 .t-use__piece {
   display: inline-flex;
