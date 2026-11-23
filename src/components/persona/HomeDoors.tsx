@@ -55,12 +55,14 @@ function Tabs({ label, items, pick, chosen, touring, id }: { label: string; item
       <span className="h-dr__tabs-k" aria-hidden="true">
         {label}
       </span>
-      {items.map((t, i) => (
-        <button key={t} type="button" className="h-dr__tab" aria-pressed={i === chosen} aria-controls={id} onClick={() => pick(i)}>
-          {t}
-          {touring && i === chosen && <i className="h-dr__tab-prog" key={`${i}-${chosen}`} aria-hidden="true" style={{ ['--tour' as string]: `${TOUR}ms` } as CSSProperties} />}
-        </button>
-      ))}
+      <span className="h-dr__tabs-row">
+        {items.map((t, i) => (
+          <button key={t} type="button" className="h-dr__tab" aria-pressed={i === chosen} aria-controls={id} onClick={() => pick(i)}>
+            {t}
+            {touring && i === chosen && <i className="h-dr__tab-prog" key={`${i}-${chosen}`} aria-hidden="true" style={{ ['--tour' as string]: `${TOUR}ms` } as CSSProperties} />}
+          </button>
+        ))}
+      </span>
     </div>
   )
 }
@@ -149,6 +151,69 @@ const follow = (e: PointerEvent<HTMLLIElement>) => {
   e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
 }
 
+/* One agent or ten million: six steps on a log scale, each a bar that grows, the chosen one lit with who runs that many.
+   It climbs once from 1 to 10 million while on screen, a hairline filling under the chosen step, and stops on the
+   top step; picking a step stops it. Under reduced motion it rests on the top step and the steps still work. */
+const CLIMB = 2300
+function Scale({ scale }: { scale: NonNullable<Words['scale']> }) {
+  const { ref, live } = useLive<HTMLDivElement>()
+  const last = scale.steps.length - 1
+  const [i, setI] = useState(last)
+  const [climbing, setClimbing] = useState(false)
+  const started = useRef(false)
+  useEffect(() => {
+    if (!live || started.current) return
+    started.current = true
+    setI(0)
+    setClimbing(true)
+  }, [live])
+  useEffect(() => {
+    if (!climbing || !live) return
+    if (i >= last) {
+      setClimbing(false)
+      return
+    }
+    const t = window.setTimeout(() => setI((x) => x + 1), CLIMB)
+    return () => window.clearTimeout(t)
+  }, [climbing, live, i, last])
+  const pick = (k: number) => {
+    started.current = true
+    setClimbing(false)
+    setI(k)
+  }
+  const top = Math.log10(scale.steps[last].n) || 1
+  const st = scale.steps[i]
+  return (
+    <div ref={ref} className="h-dr__scale">
+      <div className="h-dr__scale-head">
+        <p className="h-dr__scale-h">{scale.heading}</p>
+        <p className="h-dr__scale-line">{scale.line}</p>
+      </div>
+      <div className="h-dr__ladder" role="group" aria-label={scale.label}>
+        {scale.steps.map((x, k) => (
+          <button
+            key={x.n}
+            type="button"
+            className="h-dr__rung"
+            aria-pressed={k === i}
+            aria-label={`${x.n.toLocaleString('en-US')} ${x.n === 1 ? 'agent' : 'agents'}`}
+            onClick={() => pick(k)}
+            style={{ ['--h' as string]: 0.14 + (0.86 * Math.log10(x.n)) / top } as CSSProperties}
+          >
+            <span className="h-dr__bar" aria-hidden="true" />
+            <span className="h-dr__rung-n">{x.short}</span>
+            {climbing && k === i && <i className="h-dr__rung-prog" key={k} aria-hidden="true" style={{ ['--climb' as string]: `${CLIMB}ms` } as CSSProperties} />}
+          </button>
+        ))}
+      </div>
+      <p className="h-dr__case" key={i} aria-live="polite">
+        <b>{`${st.n.toLocaleString('en-US')} ${st.n === 1 ? 'agent' : 'agents'}`}</b>
+        <span>{st.case}</span>
+      </p>
+    </div>
+  )
+}
+
 export function HomeDoors({ doors, id, tone }: { doors: Words; id?: string; tone?: 'alt' }) {
   const hid = useId()
   return (
@@ -184,6 +249,7 @@ export function HomeDoors({ doors, id, tone }: { doors: Words; id?: string; tone
             </li>
           ))}
         </ul>
+        {doors.scale && <Scale scale={doors.scale} />}
       </div>
     </section>
   )

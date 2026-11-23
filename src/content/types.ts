@@ -605,6 +605,9 @@ export type HomeDoorDemo =
 export type HomeDoors = {
   heading: string
   line: string
+  /* The scale under the cards (23 Nov 2026): from 1 agent to 10 million, each step a bar and one line of who runs that
+     many, so one person and a large company both see where they fit. */
+  scale?: { heading: string; line: string; label: string; steps: { n: number; short: string; case: string }[] }
   doors: { id: string; reader: string; icon: PersonaIcon; label: string; title: string; line: string; cta: Cta; demo: HomeDoorDemo }[]
 }
 export type PersonaBuild = {
@@ -1278,6 +1281,9 @@ export type PieceIdLite = 'email' | 'phone' | 'messaging' | 'browser' | 'sandbox
    moves; then what every blueprint comes with. The blueprint's name and line come from its own file, by slug. */
 export type HomeTeamsTone = 'ok' | 'warn' | 'fail' | 'info'
 export type HomeTeams = {
+  /* The last entry in the team list (23 Nov 2026): the reader's own job, described in their words; its window plays
+     components/describe/DescribeJob. */
+  own?: { name: string; sub: string; crumb: string }
   heading: string
   line: string
   teamsLabel: string

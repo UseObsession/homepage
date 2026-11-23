@@ -70,6 +70,7 @@ export type NoCodePage = {
       button: string
       note: string
       tabsLabel: string
+      own: string
       examples: { tab: string; name: string; fields: [string, string][]; running: string; pips: number; result: string }[]
     }
     chat: {
@@ -101,7 +102,7 @@ export const noCodePage: NoCodePage = {
     path: '/no-code',
     title: 'AI agents without coding: ready-made jobs for every team',
     description:
-      'AI agents without coding for front desk, sales, finance and operations teams: ready-made jobs Obsession runs, or your own AI with a phone and inbox.',
+      'AI agents without coding for any team or founder: pick a ready-made blueprint, describe your own job, or give your AI a phone, inbox and browser.',
     /* The search answer: the page's own claim, then the whole toolkit in the entity's first sentence (content/site.ts), so
        an assistant that quotes it names Obsession whole. */
     answer: `${headline} ${sub} ${ENTITY.split('. ')[0]}.`,
@@ -368,7 +369,7 @@ export const noCodePage: NoCodePage = {
     line: 'Hand Obsession a finished job, or give the AI your team already uses the phone, inbox and browser it was missing. Neither needs code, and many teams do both.',
     job: {
       kicker: 'Ready-made jobs',
-      title: 'Pick a blueprint, and Obsession runs the job every day.',
+      title: 'Pick a blueprint, or describe your own, and Obsession runs it every day.',
       line: 'Say what counts and where results go, in plain words. Obsession runs it every day, for one location or thousands, until you change it.',
       cta: { label: 'Browse blueprints', to: '/blueprints' },
     },
@@ -383,6 +384,8 @@ export const noCodePage: NoCodePage = {
       button: 'Approve and run',
       note: 'Set up in plain words, running today',
       tabsLabel: 'See it for',
+      /* The last tab: the job described in the reader's own words, and the agent spun up to run it (DescribeJob). */
+      own: 'Your own',
       examples: [
         {
           tab: 'Front desk',
@@ -442,12 +445,12 @@ export const noCodePage: NoCodePage = {
           fields: [
             ['When', 'Every week'],
             ['Do', 'Shop each client’s store as a new customer'],
-            ['Where', '8 client stores'],
+            ['Where', '20 client stores'],
             ['Results to', 'A report per client'],
           ],
-          running: 'Shopping 8 client stores',
-          pips: 8,
-          result: 'This week: 2 missing reminders, each with its screenshot',
+          running: 'Shopping 20 client stores',
+          pips: 20,
+          result: 'This week: 3 missing reminders, each with its screenshot',
         },
       ],
     },
@@ -523,6 +526,10 @@ export const noCodePage: NoCodePage = {
   faq: {
     heading: 'Questions teams ask first.',
     items: [
+      {
+        q: 'Can I build my own AI agent without coding?',
+        a: 'Yes. Whatever your role or idea, describe the job in your own words: what to check or do, how often, and where results go. Every agent already has its own phone number, inbox and browser, so we spin one up and it runs the job every day, with no code to write. You can change it any time.',
+      },
       {
         q: 'Do I need to know how to code?',
         a: 'No. Pick a blueprint and say where results go, or connect Obsession to Claude, ChatGPT, Zapier, Make or n8n and ask in plain words.',

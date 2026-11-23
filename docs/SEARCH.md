@@ -75,6 +75,7 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | how to build an ai agent from scratch | `/blog/how-to-build-an-ai-agent-from-scratch` | Title, H1, answer (22 Nov) |
 | no code ai agents | `/blog/no-code-ai-agents` | Title, H1, answer (22 Nov) |
 | ai agents without coding, building ai agents without coding, ai agents for non technical people, ai agents that can interact with websites | `/no-code` | Title, H1, description (23 Nov; no code ai agents stays with `/blog/no-code-ai-agents`, can ai agents make phone calls with `/blog/can-ai-make-phone-calls`) |
+| ai agent builder no code, custom ai agents for business, can i build an ai agent without coding | `/no-code` | Description and a question (23 Nov: describe your own job, and an agent is spun up to run it; Google suggestions in `_research/home/own-blueprint-23nov/autocomplete_23nov.json`) |
 | browser automation tools for ai agents | `/blog/browser-automation-tools-for-ai-agents` | Title, H1, answer (22 Nov) |
 | rpa vs ai agents | `/blog/rpa-vs-ai-agents` | Title, H1, answer (22 Nov) |
 | rl environments for llms | `/blog/rl-environments-for-llms` | Title, H1, answer (22 Nov; rl environments for ai agents stays with the train kit) |

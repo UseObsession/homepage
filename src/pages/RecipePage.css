@@ -310,3 +310,6 @@
   }
 }
 
+
+/* Bring your own job: the button under the settings. */
+.s-rp-change__own { justify-self: start; margin-top: var(--ob-space-16); }

@@ -5,6 +5,8 @@ import { FormatIcon } from '../components/nocode/formats'
 import { PersonaGlyph } from '../components/persona/icons'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
+import { DescribeJob } from '../components/describe/DescribeJob'
+import { describe } from '../content/describe'
 import { catalog } from '../content/catalog'
 import { noCodePage as p } from '../content/noCode'
 import { plans } from '../content/prices'
@@ -480,7 +482,7 @@ function Scale() {
    tab stops the tour for good. Under reduced motion nothing moves or advances, the first example shows whole, and the
    tabs still work. A soft light follows the pointer across each card (NoCodeWays.css). */
 
-const TOUR_SHEET = 7200
+const TOUR_SHEET = 8400
 const TOUR_CHAT = 6600
 
 /* On screen right now (not only once), so a tour pauses when the reader scrolls away. */
@@ -519,12 +521,14 @@ function WayTabs({ label, items, i, pick, touring, ms, controls }: { label: stri
       <span className="nc-wtabs__k" aria-hidden="true">
         {label}
       </span>
-      {items.map((t, k) => (
-        <button key={t} type="button" className="nc-wtab" aria-pressed={k === i} aria-controls={controls} onClick={() => pick(k)}>
-          {t}
-          {touring && k === i && <i className="nc-wtab__prog" key={`${k}-${i}`} aria-hidden="true" style={vars({ '--tour': `${ms}ms` })} />}
-        </button>
-      ))}
+      <span className="nc-wtabs__row">
+        {items.map((t, k) => (
+          <button key={t} type="button" className="nc-wtab" aria-pressed={k === i} aria-controls={controls} onClick={() => pick(k)}>
+            {t}
+            {touring && k === i && <i className="nc-wtab__prog" key={`${k}-${i}`} aria-hidden="true" style={vars({ '--tour': `${ms}ms` })} />}
+          </button>
+        ))}
+      </span>
     </div>
   )
 }
@@ -533,12 +537,20 @@ function Sheet() {
   const w = p.ways.sheet
   const e = useEntrance<HTMLDivElement>(0.35)
   const live = useOnScreen<HTMLDivElement>()
-  const tour = useTour(w.examples.length, TOUR_SHEET, e.motion && live.on)
-  const ex = w.examples[tour.i]
+  /* The examples, then the reader's own job as the last tab (DescribeJob), which tours a little longer. */
+  const n = w.examples.length
+  const tour = useTour(n + 1, TOUR_SHEET, e.motion && live.on)
+  const own = tour.i === n
+  const ex = w.examples[Math.min(tour.i, n - 1)]
   const id = useId()
   return (
     <div ref={live.ref} className="nc-way__pic">
-      <WayTabs label={w.tabsLabel} items={w.examples.map((x) => x.tab)} i={tour.i} pick={tour.pick} touring={tour.touring} ms={TOUR_SHEET} controls={id} />
+      <WayTabs label={w.tabsLabel} items={[...w.examples.map((x) => x.tab), w.own]} i={tour.i} pick={tour.pick} touring={tour.touring} ms={TOUR_SHEET} controls={id} />
+      {own ? (
+        <div id={id}>
+          <DescribeJob examples={[describe.examples[0]]} />
+        </div>
+      ) : (
       <div ref={e.ref} id={id} className={'nc-win nc-sheet' + e.cls} data-armed={e.armed ? '' : undefined}>
         <Bar crumb={[w.crumb, ex.name]} />
         <div className="nc-sheet__rig" key={tour.i}>
@@ -576,6 +588,7 @@ function Sheet() {
           </p>
         </div>
       </div>
+      )}
     </div>
   )
 }
@@ -761,7 +774,8 @@ export function NoCode() {
 
       <section className="s-section nc-sec" data-tone="alt" id="rules" aria-labelledby={`${hid}-r`}>
         <div className="s-wrap nc-base">
-          <div className="nc-card nc-rules">
+          <div className="nc-card nc-card--lit nc-rules" data-reader="founders" onPointerMove={follow}>
+            <i className="nc-way__spot" aria-hidden="true" />
             <h2 className="nc-card__h" id={`${hid}-r`}>
               {p.rules.heading}
             </h2>
@@ -774,7 +788,8 @@ export function NoCode() {
               ))}
             </ul>
           </div>
-          <div className="nc-card nc-cost">
+          <div className="nc-card nc-card--lit nc-cost" data-reader="developers" onPointerMove={follow}>
+            <i className="nc-way__spot" aria-hidden="true" />
             <h2 className="nc-card__h">{p.cost.heading}</h2>
             <p className="nc-card__line">{p.cost.line}</p>
             <ul className="nc-plans">

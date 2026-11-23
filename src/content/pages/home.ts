@@ -160,7 +160,8 @@ export const page: Page = {
      and the KPIs it moves. Every company, number and message is an example. */
   homeTeams: {
     heading: 'Your team defines the job. Obsession runs it, every day.',
-    line: 'Each blueprint is a finished job you configure in plain language: what to watch or answer, how often, and where results go. Obsession runs it on an agent with its own phone number, inbox and browser, across one company or thousands.',
+    line: 'Each blueprint is a finished job you configure in plain language: what to watch or answer, how often, and where results go. Obsession runs it on an agent with its own phone number, inbox and browser, across one company or thousands. Or describe a job of your own, and we spin up an agent to run it.',
+    own: { name: 'Your own job', sub: 'Described in your words', crumb: 'New blueprint' },
     teamsLabel: 'Your team',
     steps: { pick: 'Choose a blueprint', fill: 'Set it up in plain language', get: 'Receive results where you work' },
     open: 'See the blueprint',
@@ -350,6 +351,19 @@ export const page: Page = {
      picture they can see themselves in. Each card is one link: developers to /developers, teams to /no-code. */
   homeDoors: {
     heading: 'Developers build on Obsession. Everyone else hands it the job.',
+    scale: {
+      heading: 'One agent or ten million, each with its own number, inbox and browser.',
+      line: 'Add agents as the work grows. Each one gets its own identity, and you pay for what each one uses.',
+      label: 'Agents',
+      steps: [
+        { n: 1, short: '1', case: 'A freelancer’s agent answers every new enquiry within a minute.' },
+        { n: 10, short: '10', case: 'A founder runs an agent for each product line, each with its own number.' },
+        { n: 1000, short: '1,000', case: 'A clinic group gives every front desk an agent that texts back each missed call.' },
+        { n: 10000, short: '10,000', case: 'An agency shops 10,000 client and prospect stores every week.' },
+        { n: 100000, short: '100,000', case: 'An enterprise runs an agent for each supplier account across 4,000 sites.' },
+        { n: 10000000, short: '10M', case: 'A platform gives every user’s assistant its own number and inbox.' },
+      ],
+    },
     line: 'Build every piece into your own agents, or pick a blueprint and receive the results with no code to write.',
     doors: [
       {
@@ -384,7 +398,7 @@ export const page: Page = {
         icon: 'check',
         label: 'For anyone who doesn’t code',
         title: 'Pick the job. Get the results where you work.',
-        line: 'Teams, founders and freelancers set up a blueprint in plain language. Obsession runs it every day, across one company or thousands.',
+        line: 'Teams, founders and freelancers pick a blueprint or describe their own job. Obsession spins up an agent to run it every day, across one company or thousands.',
         cta: { label: 'See how teams use it', to: '/no-code' },
         /* One job a team or a person would hand over, from a blueprint on the site: competitor tracking, lead response
            checks, the voice agent check, the invoice collector, load tracking and the speed-to-lead callback. */

@@ -241,3 +241,12 @@
   .s-ri-cards { grid-template-columns: minmax(0, 1fr); }
   .s-ri-type { padding-block: var(--ob-space-40); }
 }
+
+/* Describe your own job (23 Nov 2026): the words beside the picture, stacked under 960px. */
+.s-ri-own__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-block); align-items: center; }
+@media (min-width: 960px) { .s-ri-own__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); } }
+.s-ri-own__words { display: grid; gap: var(--ob-space-16); justify-items: start; }
+.s-ri-own__words h2 { margin: 0; max-width: 18ch; text-wrap: balance; }
+.s-ri-own__line { margin: 0; max-width: 48ch; font: var(--ob-type-body-lg); color: var(--ob-text-2); text-wrap: pretty; }
+.s-ri-own__cta { margin-top: var(--ob-space-8); }
+.s-ri-own__pic { padding: var(--ob-space-20); border-radius: var(--ob-radius-xl); background: var(--ob-sheen), var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2); }

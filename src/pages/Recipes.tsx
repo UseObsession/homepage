@@ -2,6 +2,7 @@ import { useId } from 'react'
 import { Link } from 'react-router-dom'
 import { AppScreen } from '../components/AppScreen'
 import { Crumbs } from '../components/Crumbs'
+import { DescribeJob } from '../components/describe/DescribeJob'
 import { Mark } from '../components/Logo'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
@@ -9,6 +10,7 @@ import { blueprintPieces, pieceChips } from '../content/blueprint-ui'
 import { catalog } from '../content/catalog'
 import { kitLinks } from '../content/kitPaths'
 import { kits } from '../content/kits'
+import { describe } from '../content/describe'
 import { recipePage } from '../content/recipe-page'
 import { PersonaGlyph } from '../components/persona/icons'
 import { recipesPage as page } from '../content/site'
@@ -135,6 +137,24 @@ export function Recipes() {
           </section>
         ))}
       </div>
+
+      {/* No blueprint for the job (23 Nov 2026): describe it in your own words, and we set it up as a blueprint. The
+          picture types a sentence and turns it into a blueprint (components/describe/DescribeJob). */}
+      <section className="s-section s-ri-own" aria-labelledby={`${id}-own`}>
+        <div className="s-wrap s-ri-own__grid">
+          <div className="s-ri-own__words">
+            <h2 className="ob-type-h2" id={`${id}-own`}>
+              {describe.hub.heading}
+            </h2>
+            <p className="s-ri-own__line">{describe.hub.line}</p>
+            <a className="ob-btn s-ri-own__cta" href={describe.cta.to}>
+              <span className="ob-btn-label">{describe.cta.label}</span>
+              <Arrow className="ob-btn-glyph ob-btn-arrow" />
+            </a>
+          </div>
+          <DescribeJob className="s-ri-own__pic" />
+        </div>
+      </section>
 
       {/* The hub is the page's ink chapter (styles/tones.css, F1): full bleed ink on paper, lit ink on ink. */}
       <section className="s-section s-ri-hub ob-theme-dark" data-tone="ink" aria-labelledby={`${id}-hub`}>
