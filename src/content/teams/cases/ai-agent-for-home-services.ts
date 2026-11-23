@@ -3,7 +3,7 @@ import type { TeamPage } from '../types'
 
 /* AI agent for home services (/use-cases/ai-agent-for-home-services, 23 Nov 2026): the range of one trade business's day,
    from the van's missed call to a franchise's 600 locations. Chosen from the Product Marketing book's talk, portals,
-   watch, test and build jobs. No competitor or competitor customer is named and no figure is borrowed. Larkfield Heating
+   watch, test and build jobs. No competitor or competitor customer is named and no figure is borrowed. Ashby Heating
    and Plumbing is invented, at a .example address. */
 
 const path = '/use-cases/ai-agent-for-home-services'
@@ -44,16 +44,16 @@ export const useCase: TeamPage = {
       { icon: 'check', label: 'It takes the job and address' },
       { icon: 'record', label: 'The job reaches your board' },
     ],
-    who: 'Wren, the dispatch agent at Larkfield Heating and Plumbing',
+    who: 'Sol, the dispatch agent at Ashby Heating and Plumbing',
     note: 'Burst pipe booked in four minutes',
-    fleet: '60 vans · one number each',
+    fleet: '60 vans · 1,900 calls a month · one number each',
     rows: [
       { at: 'Sat 06:48', kind: 'call.ended', text: 'Burst pipe, Hillcrest Road · emergency, transcript kept' },
       { at: 'Sat 06:49', kind: 'sms.received', text: '“Please send someone, water is coming through the ceiling.”' },
       { at: 'Sat 06:52', kind: 'blueprint.result', text: 'Booked for 07:30 with Dan · arrival text sent', tone: 'ok' },
       { at: 'Sat 06:52', kind: 'webhook', text: 'Your job board has the job, address and photos' },
     ],
-    caption: 'An emergency call booked before the office opened. Larkfield Heating and Plumbing is an invented example.',
+    caption: 'An emergency call booked before the office opened. Ashby Heating and Plumbing is an invented example.',
   },
 
   uses: {

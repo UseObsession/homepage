@@ -5,7 +5,7 @@ import type { TeamPage } from '../types'
    booking call at 2am to the rate check at 7am. Modelled on the hospitality stories in the competitor sweep (voice
    agents answering reservation calls, rate intelligence collected several times a day, agents working booking flows)
    and the job chapters of the Product Marketing book. No competitor or competitor customer is named and no figure is
-   borrowed. Larkfield Hotels is invented, at a .example address. */
+   borrowed. Halcyon Hotels is invented, at a .example address. */
 
 const path = '/use-cases/ai-agent-for-hotels'
 const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
@@ -41,16 +41,16 @@ export const useCase: TeamPage = {
       { icon: 'browser', label: 'At 7am it checks competitors’ rates' },
       { icon: 'record', label: 'Your team starts with both in Slack' },
     ],
-    who: 'Wren, the front desk agent at Larkfield Hotels',
+    who: 'Mara, the front desk agent at Halcyon Hotels',
     note: 'Booked overnight, rates checked by seven',
-    fleet: '40 hotels · one number each',
+    fleet: '40 hotels · 40 numbers · 12,000 guests a month',
     rows: [
       { at: 'Tue 02:07', kind: 'call.ended', text: 'Double room, Fri to Sun · booked on the call · 3 min 10 s' },
       { at: 'Tue 02:08', kind: 'sms.received', text: '“Can we check in early on Friday?”' },
       { at: 'Tue 07:00', kind: 'browser.page', text: '3 competitors’ weekend rates read, 1 member price below yours' },
       { at: 'Tue 07:02', kind: 'blueprint.result', text: 'Early check-in noted · rate gap sent to #revenue', tone: 'ok' },
     ],
-    caption: 'A booking taken at 2am and the weekend rates checked by seven. Larkfield Hotels is an invented example.',
+    caption: 'A booking taken at 2am and the weekend rates checked by seven. Halcyon Hotels is an invented example.',
   },
 
   uses: {

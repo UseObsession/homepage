@@ -45,9 +45,9 @@ export const useCase: TeamPage = {
       { icon: 'mail', label: 'It emails the list of papers' },
       { icon: 'record', label: 'Your case system updates itself' },
     ],
-    who: 'Wren, the intake agent at Harlow & Pike',
+    who: 'Theo, the intake agent at Harlow & Pike',
     note: 'Called back at 6:12pm, booked for Tuesday',
-    fleet: '250 people · 6 offices · one event log',
+    fleet: '6 offices · 18 agents · one event log',
     rows: [
       { at: 'Thu 18:04', kind: 'email.received', text: 'Website enquiry: “Our landlord has ended the lease early.”' },
       { at: 'Thu 18:06', kind: 'call.ended', text: 'Called back in 2 minutes · first meeting booked, Tue 10:00' },

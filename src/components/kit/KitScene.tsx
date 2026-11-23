@@ -13,11 +13,19 @@ import './KitScene.css'
    Beside the log's title, the fleet line puts the one agent in the deployment around it (60 agents · 2,400 leads this week), so the
    reader sees the moment up close and the scale behind it (_research/illus/AUDIT_23nov.md).
    Replay runs it again. Under prefers-reduced-motion, and in the prerendered HTML, it is the finished second beat: every
-   row shown, the finding lit, the note drawn. Rows hide for their entrance only after the page's script arms it. */
+   row shown, the finding lit, the note drawn. Rows hide for their entrance only after the page's script arms it.
+   23 Nov 2026 (Seun: "more like the blueprint one with the motion and zoom ... auto restart after they finish"): the camera
+   now follows each beat as the blueprint consoles' does. As a row lands the log leans in on it, the step that made it
+   lights beside it and the rows before it step back; then the strongest lean-in holds on the finding with its note,
+   pulls back, and the story plays again from the start, for as long as the window is on screen. */
 
 type Ui = { log: string; example: string; real: string; company: string; search: string; events: string; delivered: string; miss: string; replay: string }
 
 const REDUCE = '(prefers-reduced-motion: reduce)'
+/* The timeline: the first row lands after START, one every STEP; the finding holds for HOLD, then the story plays again. */
+const START = 500
+const STEP = 900
+const HOLD = 4200
 const familyOf = (kind: string) => kind.split('.')[0]
 
 /* Motion allowed (false on the server and under reduced motion). */
@@ -34,24 +42,51 @@ export function KitScene({ scene, ui, kit }: { scene: KitPage['scene']; ui: Ui; 
   const [run, setRun] = useState(0)
   const [ring, setRing] = useState(0)
   const [found, setFound] = useState(true)
+  /* The row the camera is on while the log fills; null at rest and on the finding. */
+  const [beat, setBeat] = useState<number | null>(null)
+  /* On screen now (the story loops only while it is): its own observer, since useInView stops at the first sighting. */
+  const [onScreen, setOnScreen] = useState(false)
   useEffect(() => {
     if (inView) setSeen(true)
   }, [inView])
+  useEffect(() => {
+    const el = ref.current
+    if (!el || !('IntersectionObserver' in window)) return
+    const io = new IntersectionObserver(([e]) => setOnScreen(e.isIntersecting), { threshold: 0.2 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [ref])
 
   const n = scene.rows.length
   const toned = scene.rows.map((r, i) => (r.tone ? i : -1)).filter((i) => i >= 0)
   const at = toned.length ? toned[toned.length - 1] : n - 1
   const tone = scene.rows[at]?.tone ?? 'ok'
   const missed = scene.rows.some((r) => r.tone === 'fail')
-  const rowsMs = 600 + n * 320 + 450
+  const rowsMs = START + n * STEP
+  /* The step that made row i, when there are more or fewer steps than rows. */
+  const stepOf = (i: number) => Math.min(scene.steps.length - 1, Math.floor((i * scene.steps.length) / n))
 
-  /* Beat 1, then beat 2: the rows land, then the camera finds the row the scene is about. */
+  /* Beat 1, then beat 2, then again: each row lands with the camera on it, the camera finds the row the scene is about
+     and holds, then the story starts over. Off screen it rests on the finished picture and starts over when it returns. */
   useEffect(() => {
-    if (!motion || !seen) return
+    if (!motion || !seen || !onScreen) return
+    const ts: number[] = []
     setFound(false)
-    const t = window.setTimeout(() => setFound(true), rowsMs)
-    return () => window.clearTimeout(t)
-  }, [motion, seen, run, rowsMs])
+    setBeat(null)
+    for (let i = 0; i < n; i++) ts.push(window.setTimeout(() => setBeat(i), START + i * STEP + 120))
+    ts.push(
+      window.setTimeout(() => {
+        setBeat(null)
+        setFound(true)
+      }, rowsMs),
+    )
+    ts.push(window.setTimeout(() => setRun((r) => r + 1), rowsMs + HOLD))
+    return () => {
+      ts.forEach((t) => window.clearTimeout(t))
+      setBeat(null)
+      setFound(true)
+    }
+  }, [motion, seen, onScreen, run, rowsMs, n])
 
   const playing = motion && seen
   const replay = () => {
@@ -64,8 +99,9 @@ export function KitScene({ scene, ui, kit }: { scene: KitPage['scene']; ui: Ui; 
       ref={ref}
       className={'k-scene' + (playing ? ' is-in' : '') + (found ? ' is-found' : '')}
       data-armed={motion && !seen ? '' : undefined}
+      data-beat={beat === null ? undefined : beat}
       data-tone={tone}
-      style={{ ['--n' as string]: n, ['--f' as string]: at }}
+      style={{ ['--n' as string]: n, ['--f' as string]: at, ['--b' as string]: beat ?? at, ['--step' as string]: `${STEP}ms`, ['--start' as string]: `${START}ms` }}
     >
       <div className="k-win">
         <div className="k-win__bar" aria-hidden="true">
@@ -92,7 +128,7 @@ export function KitScene({ scene, ui, kit }: { scene: KitPage['scene']; ui: Ui; 
         <div className="k-win__body">
           <ol className="k-win__side" key={`s-${run}`}>
             {scene.steps.map((s, i) => (
-              <li className="k-win__step" key={s.label} style={{ ['--i' as string]: i }}>
+              <li className={'k-win__step' + (beat !== null && stepOf(beat) === i ? ' is-on' : '')} key={s.label} style={{ ['--i' as string]: i }}>
                 <span className="k-win__ic">
                   <PersonaGlyph name={s.icon} />
                 </span>
@@ -127,7 +163,7 @@ export function KitScene({ scene, ui, kit }: { scene: KitPage['scene']; ui: Ui; 
             <ol className="k-win__rows" key={`r-${run}`}>
               {scene.rows.map((r, i) => (
                 <li
-                  className={'k-win__row' + (r.tone ? ` k-win__row--${r.tone}` : '') + (i === at ? ' is-found' : '')}
+                  className={'k-win__row' + (r.tone ? ` k-win__row--${r.tone}` : '') + (i === at ? ' is-found' : '') + (i === beat ? ' is-beat' : '')}
                   key={`${r.at}-${r.kind}-${i}`}
                   style={{ ['--i' as string]: i }}
                 >

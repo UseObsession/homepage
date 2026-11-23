@@ -6,7 +6,7 @@ import type { TeamPage } from '../types'
    ai agents", "ai agents in healthcare use cases", "ai agents for clinics", "ai agents for hospitals", "ai voice agents
    for clinics" and "healthcare ai agent companies" (Google suggestions, 23 Nov 2026); /blog/ai-agent-for-healthcare keeps
    "ai agent for healthcare". No competitor or customer is named and no figure is borrowed. No HIPAA or certification
-   claim, no medical advice: a run on patient details starts after a business associate agreement is signed. Larkview
+   claim, no medical advice: a run on patient details starts after a business associate agreement is signed. Meadowvale
    Clinics is invented, at a .example address. */
 
 const path = '/use-cases/healthcare-ai-agents'
@@ -47,16 +47,16 @@ export const useCase: TeamPage = {
       { icon: 'check', label: 'The patient picks a time' },
       { icon: 'record', label: 'The booking reaches your system' },
     ],
-    who: 'Robin, the front desk agent at Larkview Clinics',
+    who: 'Robin, the front desk agent at Meadowvale Clinics',
     note: 'A missed call became a booking',
-    fleet: '30 clinics · one number each',
+    fleet: '30 clinics · 30 numbers · 4,800 calls a month',
     rows: [
       { at: 'Tue 12:14', kind: 'call.ended', text: 'Missed call from a new patient · no voicemail' },
       { at: 'Tue 12:14', kind: 'sms.sent', text: 'Text sent: “Sorry we missed you. Want to book a visit?”' },
       { at: 'Tue 12:16', kind: 'sms.received', text: '“Thursday morning please.”' },
       { at: 'Tue 12:17', kind: 'blueprint.result', text: 'Booked Thu 09:30 · confirmation texted', tone: 'ok' },
     ],
-    caption: 'A missed call turned into a booking in three minutes. Larkview Clinics is an invented example.',
+    caption: 'A missed call turned into a booking in three minutes. Meadowvale Clinics is an invented example.',
   },
 
   uses: {

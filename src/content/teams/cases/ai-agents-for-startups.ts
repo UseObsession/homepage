@@ -36,21 +36,21 @@ export const useCase: TeamPage = {
 
   scene: {
     steps: [
-      { icon: 'code', label: 'Release 3.8 ships at 14:00' },
-      { icon: 'persona', label: 'A persona signs up as a new user' },
-      { icon: 'mail', label: 'It waits for the code and the welcome email' },
-      { icon: 'record', label: 'The gap lands in #eng' },
+      { icon: 'phone', label: 'Sales: a demo request is called back' },
+      { icon: 'mail', label: 'Support: a refund question is answered' },
+      { icon: 'browser', label: 'Growth: a competitor’s trial is read' },
+      { icon: 'code', label: 'Product: the release is tested as a new user' },
     ],
-    who: 'The release agent at Tallow',
-    note: 'Welcome email broken by the 14:00 release',
-    fleet: '15 people · 9 agents · one bill',
+    who: 'Nine agents at Tallow, four teams',
+    note: 'Four teams covered before the first hire',
+    fleet: '15 people · 9 agents · 4 teams · one bill',
     rows: [
-      { at: '14:00', kind: 'webhook', text: 'Release 3.8 shipped · the sign-up check starts' },
-      { at: '14:02', kind: 'browser.page', text: 'New user signed up on a phone · screenshots saved' },
-      { at: '14:03', kind: 'email.received', text: 'Verification code arrived in 6 s' },
-      { at: '14:09', kind: 'blueprint.result', text: 'No welcome email since the release · sent to #eng', tone: 'fail' },
+      { at: '09:12', kind: 'call.ended', text: 'Sales · demo request called back in 44 s · meeting booked Thursday' },
+      { at: '10:30', kind: 'email.sent', text: 'Support · refund question answered from your policy · ticket closed' },
+      { at: '11:05', kind: 'browser.page', text: 'Growth · a competitor’s new Team plan read on day 1 of its trial' },
+      { at: '14:09', kind: 'blueprint.result', text: 'Product · release 3.8 stopped the welcome email · sent to #eng', tone: 'fail' },
     ],
-    caption: 'A release that stopped the welcome email, caught nine minutes later. Tallow is an invented example.',
+    caption: 'One day at a 15-person startup: four teams’ first jobs, each run by an agent of its own. Tallow is an invented example.',
   },
 
   uses: {

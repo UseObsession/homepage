@@ -5,7 +5,7 @@ import type { TeamPage } from '../types'
    one team's pilot to a company with 100,000 agents. Built from the jobs in the Product Marketing book (talk to customers,
    work behind logins, watch the market, test your own sign-up and agents, train and test agents, buy and book) and the
    Enterprise plan's stated features (an account per team, white label, a spend cap). No competitor or competitor customer
-   is named and no figure is borrowed; no certification or compliance is claimed. Larkfield Group is invented, at a
+   is named and no figure is borrowed; no certification or compliance is claimed. Kestrel Group is invented, at a
    .example address. */
 
 const path = '/use-cases/ai-agents-for-enterprise'
@@ -42,16 +42,16 @@ export const useCase: TeamPage = {
       { icon: 'mail', label: 'It emails the credit note' },
       { icon: 'record', label: 'Finance gets the event log' },
     ],
-    who: 'Nova, an accounts agent at Larkfield Group',
+    who: 'Otto, an accounts agent at Kestrel Group',
     note: 'Every step logged, one agent, one name',
     fleet: '1,200 agents · 14 teams · one bill',
     rows: [
       { at: 'Tue 09:02', kind: 'call.ended', text: 'Supplier called about invoice 4417 · 3 min 10 s · transcript kept' },
-      { at: 'Tue 09:05', kind: 'email.received', text: 'Credit note sent by the supplier to nova@larkfield.example' },
+      { at: 'Tue 09:05', kind: 'email.received', text: 'Credit note sent by the supplier to otto@kestrel.example' },
       { at: 'Tue 09:06', kind: 'browser.page', text: 'Signed in with the login it was given · invoice 4417 marked disputed' },
       { at: 'Tue 09:07', kind: 'blueprint.result', text: 'Dispute logged with the credit note attached', tone: 'ok' },
     ],
-    caption: 'One agent took a supplier’s call, caught the credit note and updated the portal, and every step is on the record. Larkfield Group is an invented example.',
+    caption: 'One agent took a supplier’s call, caught the credit note and updated the portal, and every step is on the record. Kestrel Group is an invented example.',
   },
 
   uses: {

@@ -3,7 +3,7 @@ import type { TeamPage } from '../types'
 
 /* AI agents for SaaS and software companies (/use-cases/ai-agents-for-saas, 23 Nov 2026): the whole range inside a
    software company, one card per job. No competitor or competitor customer is named and no figure is borrowed.
-   Larkfield Cloud is invented, at a .example address. */
+   Cobalt Desk is invented, at a .example address. */
 
 const path = '/use-cases/ai-agents-for-saas'
 const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
@@ -39,16 +39,16 @@ export const useCase: TeamPage = {
       { icon: 'check', label: 'The code is tried in the browser' },
       { icon: 'chat', label: 'The finding reaches your team' },
     ],
-    who: 'Nova, the sign-up tester at Larkfield Cloud',
+    who: 'Iris, the sign-up tester at Cobalt Desk',
     note: 'Verification email arrived after the code expired',
-    fleet: '14 journeys · every night · one inbox each',
+    fleet: '14 journeys a night · 3 regions · one inbox each',
     rows: [
-      { at: '02:00', kind: 'browser.page', text: 'Signed up on larkfield.example · 14-day trial started' },
+      { at: '02:00', kind: 'browser.page', text: 'Signed up on cobaltdesk.example · 14-day trial started' },
       { at: '02:00', kind: 'email.received', text: 'Verify your email · sent 02:00, arrived 02:11' },
       { at: '02:11', kind: 'browser.page', text: 'Code entered · “This code has expired”', tone: 'fail' },
       { at: '02:12', kind: 'blueprint.result', text: 'Sign-up blocked for new users · reported to #growth', tone: 'fail' },
     ],
-    caption: 'A sign-up that failed at 02:00, found before the morning’s new users hit it. Larkfield Cloud is an invented example.',
+    caption: 'A sign-up that failed at 02:00, found before the morning’s new users hit it. Cobalt Desk is an invented example.',
   },
 
   uses: {
