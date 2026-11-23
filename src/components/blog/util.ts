@@ -10,22 +10,4 @@ export const hostOf = (href: string) => {
 /* A numeral never ends a line apart from its word. */
 export const tie = (s: string) => s.replace(/(\d) (?=\S)/g, '$1\u00a0')
 
-/* A blog hub's anchor on /blog: "Mystery shopping" > mystery-shopping. */
-export const categoryId = (c: string) => c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-
-/* Each hub reads in the colour of the reader it serves (styles/accents.css), and since 22 Nov 2026 the hubs are the kits
-   (content/kitPaths.ts), so the blog tells the same story as the site: talking to customers in sales' hue, testing your
-   own sign-up and agents in founders' indigo, building agent products and working behind logins in developers' cobalt,
-   watching the market in marketing's violet, agencies in orchid, training agents in tide, and buying, booking and ordering in founders' indigo. Colour marks the reader,
-   never status. */
-const HUB_READER: Record<string, string> = {
-  'Talk to customers': 'sales',
-  'Test sign-up and agents': 'founders',
-  'Build agent products': 'developers',
-  'Work behind logins': 'developers',
-  'Watch the market': 'marketing',
-  'For agencies': 'agencies',
-  'Train and test agents': 'sales',
-  'Buy, book and order': 'founders',
-}
-export const readerOf = (category: string) => HUB_READER[category] ?? 'founders'
+/* A guide's topic, its colour and its anchor on /blog live in content/blogTopics.ts (23 Nov 2026). */

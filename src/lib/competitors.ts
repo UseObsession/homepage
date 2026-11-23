@@ -8,6 +8,11 @@ const COMPETITOR_HOSTS = new Set([
   'agentmail.to', 'agentphone.ai', 'twilio.com', 'browserbase.com', 'e2b.dev', 'goodcall.com', 'smith.ai', 'ruby.com',
   // The agent-native cloud (James found it, 23 Nov 2026; _research/positioning/corespeed-23nov.md)
   'corespeed.io',
+  // AI visibility wave (23 Nov 2026): the all-in-one names ChatGPT puts beside us, and the phone and messaging providers
+  // the Twilio and Telnyx alternatives, SMS and WhatsApp guides compare. n8n, OpenAI and Vercel stay plain links: the
+  // integration guides cite their docs as sources.
+  'lupin.sh', 'agenticmail.io', 'telnyx.com', 'vonage.com', 'signalwire.com', 'plivo.com', 'bandwidth.com', 'sinch.com',
+  'bird.com', 'messagebird.com', '360dialog.com', 'wati.io',
   // SEO wave 2 best-of lists (23 Nov 2026): email APIs, cloud browsers and sandboxes for agents. AWS, Vercel, Cloudflare and
   // GitHub stay plain links: the site cites them as sources elsewhere.
   'resend.com', 'postmarkapp.com', 'mailgun.com', 'nylas.com', 'mailslurp.com', 'kernel.sh', 'notte.cc', 'daytona.io',

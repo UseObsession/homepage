@@ -71,7 +71,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'An AI voice agent for small business answers your phone line in a natural voice and does what a front desk does on a call. It books the job, quotes from your price list, answers questions about hours and service areas, takes a message or puts the call through to you. Plumbers, salons, dental and vet practices, law firms, garages and property managers use them. They run from an owner with one van to a group with a dozen locations. Most start with the calls that go to voicemail today: after hours, weekends and the times the line is busy.',
+      text: 'An AI [voice agent](/glossary/voice-agent) for small business answers your phone line in a natural voice and does what a front desk does on a call. It books the job, quotes from your price list, answers questions about hours and service areas, takes a message or puts the call through to you. Plumbers, salons, dental and vet practices, law firms, garages and property managers use them. They run from an owner with one van to a group with a dozen locations. Most start with the calls that go to voicemail today: after hours, weekends and the times the line is busy.',
     },
 
     { kind: 'h2', id: 'what-it-does', text: 'What an AI voice agent does on a call' },

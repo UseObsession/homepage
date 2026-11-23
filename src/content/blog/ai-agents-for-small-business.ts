@@ -67,7 +67,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'An AI agent for small business is software that does a job for you, start to finish, in the places the job happens: your phone line, your inbox, a customer’s text thread or a supplier’s website. An AI chat assistant such as ChatGPT drafts the reply. An agent sends it from your business’s own address, waits for the answer and follows up. For an owner, that difference is the one that matters: the work leaves your plate instead of landing on it as a draft.',
+      text: 'An [AI agent](/glossary/ai-agent) for small business is software that does a job for you, start to finish, in the places the job happens: your phone line, your inbox, a customer’s text thread or a supplier’s website. An AI chat assistant such as ChatGPT drafts the reply. An agent sends it from your business’s own address, waits for the answer and follows up. For an owner, that difference is the one that matters: the work leaves your plate instead of landing on it as a draft.',
     },
     {
       kind: 'p',

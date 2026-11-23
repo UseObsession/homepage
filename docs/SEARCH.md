@@ -124,6 +124,15 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | best browser for ai agents, best headless browser for ai agents | `/blog/best-browser-for-ai-agents` | Title, H1, description, answer, 2 questions (SEO wave 2, 23 Nov; best browser automation ai agent stays with `/blog/browser-automation-tools-for-ai-agents`, headless browser for ai agents with `/compare/obsession-vs-browserbase`) |
 | best sandbox for ai agents, ai agent sandboxes compared | `/blog/best-sandbox-for-ai-agents` | Title, H1, description, answer, the comparison H2, a question (SEO wave 2, 23 Nov; sandbox for ai agents stays with `/sandbox`) |
 | twilio for ai agents, twilio voice ai agents, twilio ai agent phone number, twilio ai agent pricing, twilio sms ai agent | `/blog/twilio-for-ai-agents` | Title, H1, first sentence, an H2, a question (SEO wave 2, 23 Nov; twilio alternatives not targeted; phone number for ai agent stays with `/phone`) |
+| obsession vs lupin, lupin vs obsession, lupin.sh alternative | `/compare/obsession-vs-lupin` | Title, H1, answer (23 Nov, AI visibility wave: `_research/seo/ai-visibility-23nov/PLAN.md`) |
+| obsession vs agenticmail, agenticmail, agenticmail alternative | `/compare/obsession-vs-agenticmail` | Title, H1, answer (23 Nov, AI visibility wave: `_research/seo/ai-visibility-23nov/PLAN.md`) |
+| twilio alternatives, twilio alternatives for sms, twilio alternatives for calls, twilio alternatives for whatsapp | `/alternatives/twilio` | Title, H1, answer (23 Nov, AI visibility wave: `_research/seo/ai-visibility-23nov/PLAN.md`) |
+| telnyx alternatives | `/alternatives/telnyx` | Title, H1, answer (23 Nov, AI visibility wave: `_research/seo/ai-visibility-23nov/PLAN.md`) |
+| whatsapp ai agent, whatsapp ai agent for business, whatsapp ai agent price, whatsapp ai agent free | `/blog/whatsapp-ai-agent` | Title, H1, answer (23 Nov, AI visibility wave: `_research/seo/ai-visibility-23nov/PLAN.md`) |
+| sms for ai agents, sms api for ai agents | `/blog/sms-for-ai-agents` | Title, H1, answer (23 Nov, AI visibility wave: `_research/seo/ai-visibility-23nov/PLAN.md`) |
+| n8n email agent, n8n email agent template, n8n email triage agent, n8n email reply agent | `/blog/n8n-email-agent` | Title, H1, answer (23 Nov, AI visibility wave: `_research/seo/ai-visibility-23nov/PLAN.md`) |
+| openai agents sdk tools, openai agents sdk tool calling | `/blog/openai-agents-sdk-tools` | Title, H1, answer (23 Nov, AI visibility wave: `_research/seo/ai-visibility-23nov/PLAN.md`) |
+| vercel ai sdk tools, vercel ai sdk tool calling, vercel ai sdk agents | `/blog/vercel-ai-sdk-tools` | Title, H1, answer (23 Nov, AI visibility wave: `_research/seo/ai-visibility-23nov/PLAN.md`) |
 | obsession vs e2b, e2b vs obsession, e2b vs, e2b pricing, e2b sandbox pricing | `/compare/obsession-vs-e2b` | Title, H1, description (SEO wave 2, 23 Nov; e2b pricing moved here from the bundle page) |
 | obsession vs mailosaur, mailosaur vs obsession, mailosaur vs, mailosaur pricing | `/compare/obsession-vs-mailosaur` | Title, H1, description (SEO wave 2, 23 Nov) |
 | agentmail alternatives, agentmail alternative, agentmail open source alternative, agentmail competitors | `/alternatives/agentmail` | Title, H1, description (SEO wave 2, 23 Nov; agentmail vs stays with `/compare/obsession-vs-agentmail`) |
@@ -389,6 +398,17 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/glossary/web-scraping` | web scraping, what is web scraping, web scraping meaning, web scraping definition, web scraper, scraping api (scrape data behind login stays with the blog guide). Added 11 Nov 2026 |
 | `/glossary/web-search-api` | web search api, what is a web search api, web search api meaning, search api for ai agents, search api for llm (best web search api stays with the blog guide). Added 11 Nov 2026 |
 | `/glossary/welcome-series` | welcome series, what is a welcome series, welcome email series, welcome series email, welcome flow, welcome email sequence. Added 11 Nov 2026 |
+| `/glossary/ai-agent` | what is an ai agent, ai agent meaning, ai agent definition. Added 24 Nov 2026 (_research/seo/glossary-24nov/PLAN.md) |
+| `/glossary/ai-agent-harness` | ai agent harness, what is an ai agent harness, agent harness. Added 24 Nov 2026 |
+| `/glossary/voice-agent` | voice agent, what is a voice agent, voice ai agent. Added 24 Nov 2026 |
+| `/glossary/webhook` | what is a webhook, webhook vs api, webhook endpoint, webhook event. Added 24 Nov 2026 |
+| `/glossary/one-time-password` | otp, what is an otp, otp code, one-time password, verification code. Added 24 Nov 2026 (otp testing stays with `/use-cases/otp-testing`) |
+| `/glossary/magic-link` | magic link, what is a magic link, magic link login, magic link email, magic link authentication. Added 24 Nov 2026 |
+| `/glossary/10dlc` | 10dlc, what is 10dlc, 10dlc meaning, 10dlc number, 10dlc compliance. Added 24 Nov 2026 (10dlc registration stays with `/blog/10dlc-registration`) |
+| `/glossary/a2p-messaging` | a2p messaging, a2p messaging meaning, a2p sms. Added 24 Nov 2026 |
+| `/glossary/toll-free-verification` | toll free verification, toll-free verification required. Added 24 Nov 2026 |
+| `/glossary/ai-agent-persona` | ai agent persona, ai agent personas. Added 24 Nov 2026 |
+| `/glossary` | ai agent glossary, ai agent terminology, ai agent definitions. Retitled 24 Nov 2026 |
 | Post 1 | is it legal to mystery shop competitors |
 | Post 2 | free audit lead generation for agencies, outside-in audit |
 | Post 3 | AI mystery shopping (tools, software) |

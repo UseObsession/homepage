@@ -72,7 +72,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'AI voice agent testing checks a voice agent before customers meet it and after every change. A voice agent is software that answers or makes phone calls with AI. It turns the caller’s speech into text, writes a reply with a large language model (LLM) and speaks it. Along the way it may book a slot, quote a price or transfer the call.',
+      text: 'AI [voice agent](/glossary/voice-agent) testing checks a voice agent before customers meet it and after every change. A voice agent is software that answers or makes phone calls with AI. It turns the caller’s speech into text, writes a reply with a large language model (LLM) and speaks it. Along the way it may book a slot, quote a price or transfer the call.',
     },
     {
       kind: 'p',

@@ -5,6 +5,7 @@
 import { checkBlueprints, pricedTiers, pricedVariants } from './blueprint-tiers'
 import { agentsPage, blogLive, posts, recipeFileOf, recipes, refFileOf, references, studies, studyFileOf } from './registry'
 import { CONTACT_EMAIL } from './site'
+import { topicOf } from './blogTopics'
 
 checkBlueprints(recipes)
 
@@ -33,6 +34,7 @@ export const catalog = {
     title,
     dek,
     category,
+    topic: topicOf({ slug }).name,
     published,
     readingMinutes,
     featured: !!featured,

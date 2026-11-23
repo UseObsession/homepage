@@ -170,7 +170,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'as-a-tool', text: 'As a tool in your own code' },
     {
       kind: 'p',
-      text: 'You write a function such as create_inbox that calls an email provider’s API, and describe it to the model with a name, a description and a schema. Sending is the easy half. When a reply or a login code arrives, the provider sends it to a webhook, an address in your code that receives each event. Your code then wakes the agent and passes the email in as a new message. Texts and calls on a number work the same way, and a browser session has to stay signed in between turns. [Give an AI agent an inbox that signs up and waits](/blog/ai-customers-for-developers) covers the parts in detail, and [long running AI agents](/blog/long-running-ai-agents) covers agents that wait weeks for a reply.',
+      text: 'You write a function such as create_inbox that calls an email provider’s API, and describe it to the model with a name, a description and a schema. Sending is the easy half. When a reply or a login code arrives, the provider sends it to a [webhook](/glossary/webhook), an address in your code that receives each event. Your code then wakes the agent and passes the email in as a new message. Texts and calls on a number work the same way, and a browser session has to stay signed in between turns. [Give an AI agent an inbox that signs up and waits](/blog/ai-customers-for-developers) covers the parts in detail, and [long running AI agents](/blog/long-running-ai-agents) covers agents that wait weeks for a reply.',
     },
     { kind: 'h3', id: 'as-mcp', text: 'As an MCP server' },
     {
