@@ -1,16 +1,19 @@
-import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
+import { useEffect, useId, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { Crumbs } from '../components/Crumbs'
 import { FormatIcon } from '../components/nocode/formats'
 import { PersonaGlyph } from '../components/persona/icons'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
+import { DescribeJob } from '../components/describe/DescribeJob'
+import { describe } from '../content/describe'
 import { catalog } from '../content/catalog'
 import { noCodePage as p } from '../content/noCode'
 import { plans } from '../content/prices'
 import type { PersonaIcon } from '../content/types'
 import { useInView } from '../hooks/useReveal'
 import './NoCode.css'
+import './NoCodeWays.css'
 
 /* /no-code: the page for teams that don't write code. The story: the hero's console (one example company's teams, each
    with its blueprint running; it moves team by team until the reader picks one), what an agent can do once it's
@@ -471,44 +474,121 @@ function Scale() {
   )
 }
 
-/* ---- The two ways in: a blueprint approved in plain words, and a team's own AI making a call ---- */
+/* ---- The two ways in: a blueprint approved in plain words, and a team's own AI making a call ----
+   23 Nov 2026 (Seun: "more interactive and motion ... subtle cue for interactive, bring it to life"). Each picture tours
+   its examples while it is on screen: the blueprint card one team's job at a time (the fields fill, the pointer approves
+   it, it runs across its locations and the day's result lands), the AI card one tool at a time (the request, a short
+   working beat, each step with its light, the answer). A hairline under the chosen tab fills before the next; picking a
+   tab stops the tour for good. Under reduced motion nothing moves or advances, the first example shows whole, and the
+   tabs still work. A soft light follows the pointer across each card (NoCodeWays.css). */
+
+const TOUR_SHEET = 8400
+const TOUR_CHAT = 6600
+
+/* On screen right now (not only once), so a tour pauses when the reader scrolls away. */
+function useOnScreen<T extends Element>(threshold = 0.35) {
+  const ref = useRef<T>(null)
+  const [on, setOn] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el || !('IntersectionObserver' in window)) return
+    const io = new IntersectionObserver(([e]) => setOn(e.isIntersecting), { threshold })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [threshold])
+  return { ref, on }
+}
+
+/* A tour of n examples: moves on every `ms` while live, stops for good when the reader picks one. */
+function useTour(n: number, ms: number, live: boolean) {
+  const [i, setI] = useState(0)
+  const [touring, setTouring] = useState(true)
+  useEffect(() => {
+    if (!live || !touring || n < 2) return
+    const t = window.setTimeout(() => setI((x) => (x + 1) % n), ms)
+    return () => window.clearTimeout(t)
+  }, [live, touring, i, n, ms])
+  const pick = (k: number) => {
+    setTouring(false)
+    setI(k)
+  }
+  return { i, pick, touring: live && touring }
+}
+
+function WayTabs({ label, items, i, pick, touring, ms, controls }: { label: string; items: string[]; i: number; pick: (k: number) => void; touring: boolean; ms: number; controls: string }) {
+  return (
+    <div className="nc-wtabs" role="group" aria-label={label}>
+      <span className="nc-wtabs__k" aria-hidden="true">
+        {label}
+      </span>
+      <span className="nc-wtabs__row">
+        {items.map((t, k) => (
+          <button key={t} type="button" className="nc-wtab" aria-pressed={k === i} aria-controls={controls} onClick={() => pick(k)}>
+            {t}
+            {touring && k === i && <i className="nc-wtab__prog" key={`${k}-${i}`} aria-hidden="true" style={vars({ '--tour': `${ms}ms` })} />}
+          </button>
+        ))}
+      </span>
+    </div>
+  )
+}
 
 function Sheet() {
   const w = p.ways.sheet
   const e = useEntrance<HTMLDivElement>(0.35)
+  const live = useOnScreen<HTMLDivElement>()
+  /* The examples, then the reader's own job as the last tab (DescribeJob), which tours a little longer. */
+  const n = w.examples.length
+  const tour = useTour(n + 1, TOUR_SHEET, e.motion && live.on)
+  const own = tour.i === n
+  const ex = w.examples[Math.min(tour.i, n - 1)]
+  const id = useId()
   return (
-    <div ref={e.ref} className={'nc-win nc-sheet' + e.cls} data-armed={e.armed ? '' : undefined} aria-hidden="true">
-      <Bar crumb={[w.crumb, w.name]} />
-      <div className="nc-sheet__rig">
-        <p className="nc-sheet__name">
-          <Glyph name="check" className="nc-ic nc-ic--sm" />
-          {w.name}
-        </p>
-        <dl className="nc-sheet__fields">
-          {w.fields.map(([k, v], i) => (
-            <div key={k} style={vars({ '--i': i })}>
-              <dt>{k}</dt>
-              <dd>{v}</dd>
-            </div>
-          ))}
-        </dl>
-        <div className="nc-sheet__foot">
-          <span className="nc-sheet__go">{w.button}</span>
-          <span className="nc-sheet__run">
-            <span className="nc-con__live" />
-            <b>{w.running}</b>
-            <span className="nc-sheet__pips">
-              {Array.from({ length: 12 }, (_, k) => (
-                <i key={k} style={vars({ '--k': k })} />
-              ))}
+    <div ref={live.ref} className="nc-way__pic">
+      <WayTabs label={w.tabsLabel} items={[...w.examples.map((x) => x.tab), w.own]} i={tour.i} pick={tour.pick} touring={tour.touring} ms={TOUR_SHEET} controls={id} />
+      {own ? (
+        <div id={id}>
+          <DescribeJob examples={[describe.examples[0]]} />
+        </div>
+      ) : (
+      <div ref={e.ref} id={id} className={'nc-win nc-sheet' + e.cls} data-armed={e.armed ? '' : undefined}>
+        <Bar crumb={[w.crumb, ex.name]} />
+        <div className="nc-sheet__rig" key={tour.i}>
+          <p className="nc-sheet__name">
+            <Glyph name="check" className="nc-ic nc-ic--sm" />
+            {ex.name}
+          </p>
+          <dl className="nc-sheet__fields">
+            {ex.fields.map(([k, v], n) => (
+              <div key={k} style={vars({ '--i': n })}>
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="nc-sheet__foot" aria-hidden="true">
+            <span className="nc-sheet__go">{w.button}</span>
+            <span className="nc-sheet__run">
+              <span className="nc-con__live" />
+              <b>{ex.running}</b>
+              <span className="nc-sheet__pips">
+                {Array.from({ length: ex.pips }, (_, k) => (
+                  <i key={k} style={vars({ '--k': k })} />
+                ))}
+              </span>
             </span>
-          </span>
-          <svg className="nc-ptr" viewBox="0 0 16 16">
-            <path d="M3 1.5v12.2l3.1-3 2.05 4.6 2.15-.95-2-4.5h4.3Z" />
-          </svg>
-          <i className="nc-sheet__ring" />
+            <svg className="nc-ptr" viewBox="0 0 16 16">
+              <path d="M3 1.5v12.2l3.1-3 2.05 4.6 2.15-.95-2-4.5h4.3Z" />
+            </svg>
+            <i className="nc-sheet__ring" />
+          </div>
+          <p className="nc-sheet__result">
+            <i aria-hidden="true" />
+            {ex.result}
+          </p>
         </div>
       </div>
+      )}
     </div>
   )
 }
@@ -516,31 +596,51 @@ function Sheet() {
 function Chat() {
   const c = p.ways.chat
   const e = useEntrance<HTMLDivElement>(0.35)
+  const live = useOnScreen<HTMLDivElement>()
+  const tour = useTour(c.examples.length, TOUR_CHAT, e.motion && live.on)
+  const ex = c.examples[tour.i]
+  const id = useId()
   return (
-    <div ref={e.ref} className={'nc-win nc-chatwin' + e.cls} data-armed={e.armed ? '' : undefined} aria-hidden="true">
-      <Bar crumb={[c.app, 'New chat']} />
-      <div className="nc-chat">
-        <p className="nc-chat__ask nc-anim" style={vars({ '--i': 0 })}>
-          {c.ask}
-        </p>
-        <p className="nc-chat__tool nc-anim" style={vars({ '--i': 1 })}>
-          <Glyph name="persona" className="nc-ic nc-ic--xs" />
-          {c.tool}
-        </p>
-        <ol className="nc-chat__steps">
-          {c.steps.map((s, i) => (
-            <li key={s.text} className="nc-anim" style={vars({ '--i': i + 2 })}>
-              <time>{s.at}</time>
-              <span>{s.text}</span>
-            </li>
-          ))}
-        </ol>
-        <p className="nc-chat__answer nc-anim" style={vars({ '--i': c.steps.length + 2 })}>
-          {c.answer}
-        </p>
+    <div ref={live.ref} className="nc-way__pic">
+      <WayTabs label={c.tabsLabel} items={c.examples.map((x) => x.app)} i={tour.i} pick={tour.pick} touring={tour.touring} ms={TOUR_CHAT} controls={id} />
+      <div ref={e.ref} id={id} className={'nc-win nc-chatwin' + e.cls} data-armed={e.armed ? '' : undefined}>
+        <Bar crumb={[ex.app, c.chat]} />
+        <div className="nc-chat" key={tour.i}>
+          <p className="nc-chat__ask nc-anim" style={vars({ '--i': 0 })}>
+            {ex.ask}
+          </p>
+          <p className="nc-chat__typing" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </p>
+          <p className="nc-chat__tool nc-anim" style={vars({ '--i': 4 })}>
+            <Glyph name="persona" className="nc-ic nc-ic--xs" />
+            {ex.tool}
+          </p>
+          <ol className="nc-chat__steps">
+            {ex.steps.map((st, n) => (
+              <li key={st.text} className="nc-anim" style={vars({ '--i': 5 + n * 1.4 })}>
+                <time>{st.at}</time>
+                <span>{st.text}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="nc-chat__answer nc-anim" style={vars({ '--i': 5 + ex.steps.length * 1.4 + 0.6 })}>
+            {ex.answer}
+          </p>
+        </div>
       </div>
     </div>
   )
+}
+
+/* The soft light that follows the pointer across a card. */
+const follow = (ev: ReactPointerEvent<HTMLElement>) => {
+  if (ev.pointerType !== 'mouse') return
+  const r = ev.currentTarget.getBoundingClientRect()
+  ev.currentTarget.style.setProperty('--mx', `${ev.clientX - r.left}px`)
+  ev.currentTarget.style.setProperty('--my', `${ev.clientY - r.top}px`)
 }
 
 function Ways({ hid }: { hid: string }) {
@@ -548,7 +648,8 @@ function Ways({ hid }: { hid: string }) {
   return (
     <figure className="nc-ways-fig">
       <div className="nc-ways">
-        <article className="nc-way" data-reader="founders" aria-labelledby={`${hid}-w1`}>
+        <article className="nc-way" data-reader="founders" aria-labelledby={`${hid}-w1`} onPointerMove={follow}>
+          <i className="nc-way__spot" aria-hidden="true" />
           <div className="nc-way__words">
             <p className="nc-kicker">{w.job.kicker}</p>
             <h3 className="nc-way__title" id={`${hid}-w1`}>
@@ -560,9 +661,11 @@ function Ways({ hid }: { hid: string }) {
           <Note text={w.sheet.note} />
           <Link className="ob-btn ob-btn--secondary nc-way__cta" to={w.job.cta.to}>
             <span className="ob-btn-label">{w.job.cta.label}</span>
+            <Chev />
           </Link>
         </article>
-        <article className="nc-way" data-reader="developers" id="connect" aria-labelledby={`${hid}-w2`}>
+        <article className="nc-way" data-reader="developers" id="connect" aria-labelledby={`${hid}-w2`} onPointerMove={follow}>
+          <i className="nc-way__spot" aria-hidden="true" />
           <div className="nc-way__words">
             <p className="nc-kicker">{w.ai.kicker}</p>
             <h3 className="nc-way__title" id={`${hid}-w2`}>
@@ -579,6 +682,7 @@ function Ways({ hid }: { hid: string }) {
           </ul>
           <a className="ob-btn ob-btn--secondary nc-way__cta" href={w.ai.cta.to}>
             <span className="ob-btn-label">{w.ai.cta.label}</span>
+            <Chev />
           </a>
         </article>
       </div>
@@ -670,7 +774,8 @@ export function NoCode() {
 
       <section className="s-section nc-sec" data-tone="alt" id="rules" aria-labelledby={`${hid}-r`}>
         <div className="s-wrap nc-base">
-          <div className="nc-card nc-rules">
+          <div className="nc-card nc-card--lit nc-rules" data-reader="founders" onPointerMove={follow}>
+            <i className="nc-way__spot" aria-hidden="true" />
             <h2 className="nc-card__h" id={`${hid}-r`}>
               {p.rules.heading}
             </h2>
@@ -683,7 +788,8 @@ export function NoCode() {
               ))}
             </ul>
           </div>
-          <div className="nc-card nc-cost">
+          <div className="nc-card nc-card--lit nc-cost" data-reader="developers" onPointerMove={follow}>
+            <i className="nc-way__spot" aria-hidden="true" />
             <h2 className="nc-card__h">{p.cost.heading}</h2>
             <p className="nc-card__line">{p.cost.line}</p>
             <ul className="nc-plans">

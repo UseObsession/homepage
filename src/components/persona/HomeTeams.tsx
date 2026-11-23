@@ -2,7 +2,9 @@ import { useEffect, useId, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { catalog } from '../../content/catalog'
 import type { HomeTeams as Words } from '../../content/types'
+import { describe } from '../../content/describe'
 import { useInView } from '../../hooks/useReveal'
+import { DescribeJob } from '../describe/DescribeJob'
 import { PersonaGlyph } from './icons'
 import './HomeTeams.css'
 
@@ -42,7 +44,9 @@ export function HomeTeams({ words, id, tone }: { words: Words; id?: string; tone
     else if (!seen) setArmed(true)
   }, [inView, seen])
 
-  const t = words.teams[i]
+  /* The reader's own job is the entry after the teams (words.own); its window plays the describe picture. */
+  const own = !!words.own && i >= words.teams.length
+  const t = words.teams[Math.min(i, words.teams.length - 1)]
   const bp = bySlug[t.slug]
   let blank = 0
   const blanks = t.sentence.filter((p) => typeof p !== 'string').length
@@ -71,6 +75,15 @@ export function HomeTeams({ words, id, tone }: { words: Words; id?: string; tone
                 </span>
               </button>
             ))}
+            {words.own && (
+              <button type="button" className="h-tm__team h-tm__team--own" aria-pressed={own} onClick={() => setI(words.teams.length)} data-reader="founders">
+                <i className="h-tm__team-mark" aria-hidden="true" />
+                <span className="h-tm__team-words">
+                  <b>{words.own.name}</b>
+                  <span>{words.own.sub}</span>
+                </span>
+              </button>
+            )}
           </div>
 
           <div className="h-tm__main">
@@ -78,9 +91,9 @@ export function HomeTeams({ words, id, tone }: { words: Words; id?: string; tone
               ref={ref}
               className={'h-tm__win' + (seen ? ' is-in' : '')}
               data-armed={armed ? '' : undefined}
-              data-reader={t.reader}
+              data-reader={own ? 'founders' : t.reader}
               role="group"
-              aria-label={`${t.name}: ${bp?.name ?? ''}`}
+              aria-label={own && words.own ? words.own.name : `${t.name}: ${bp?.name ?? ''}`}
             >
               <div className="h-tm__bar">
                 <span className="h-tm__dots" aria-hidden="true">
@@ -90,11 +103,18 @@ export function HomeTeams({ words, id, tone }: { words: Words; id?: string; tone
                 </span>
                 <span className="h-tm__crumb">
                   Blueprints<span aria-hidden="true">/</span>
-                  <b>{bp?.name}</b>
+                  <b>{own && words.own ? words.own.crumb : bp?.name}</b>
                 </span>
                 <span className="h-tm__tag">{words.exampleTag}</span>
               </div>
 
+              {own ? (
+                <div className="h-tm__body h-tm__body--own" key="own">
+                  <div className="h-tm__step">
+                    <DescribeJob examples={[describe.examples[0]]} chrome={false} />
+                  </div>
+                </div>
+              ) : (
               <div className="h-tm__body" key={t.id}>
                 <div className="h-tm__step">
                   <p className="h-tm__label h-tm__anim" style={d(0)}>
@@ -170,8 +190,10 @@ export function HomeTeams({ words, id, tone }: { words: Words; id?: string; tone
                   </p>
                 </div>
               </div>
+              )}
             </div>
 
+            {!own && (
             <p className="h-tm__kpis" data-reader={t.reader}>
               <span className="h-tm__kpis-label">{words.kpisLabel}</span>
               {t.kpis.map((k) => (
@@ -180,6 +202,7 @@ export function HomeTeams({ words, id, tone }: { words: Words; id?: string; tone
                 </span>
               ))}
             </p>
+            )}
           </div>
         </div>
 

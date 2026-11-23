@@ -595,6 +595,21 @@ export type PersonaRecipes = {
   items: { name: string; line: string; status: string; live?: boolean; reader: ReaderId; link: Cta }[]
 }
 /* For developers (PersonaBuild): the claim, its line and link beside the code. Where events go is HomeHow. */
+/* The two ways in (HomeDoors, 23 Nov 2026): developers pick how they build (`tabs`: the SDK call, the webhook, MCP) and
+   watch their agent's events arrive (`events`, newest on top); teams that don't code see a job from one team at a time
+   (`jobs`), written as a sentence with its blanks filled and the result that lands where that team works. `reader` is
+   the card's reader colour (styles/accents.css). */
+export type HomeDoorDemo =
+  | { kind: 'code'; tabsLabel: string; tabs: { label: string; code: string }[]; events: { at: string; event: string; text: string }[]; ms: string }
+  | { kind: 'job'; tabsLabel: string; jobs: { team: string; sentence: (string | { v: string })[]; where: string; at: string; result: string }[] }
+export type HomeDoors = {
+  heading: string
+  line: string
+  /* The scale under the cards (23 Nov 2026): from 1 agent to 10 million, each step a bar and one line of who runs that
+     many, so one person and a large company both see where they fit. */
+  scale?: { heading: string; line: string; label: string; steps: { n: number; short: string; case: string }[] }
+  doors: { id: string; reader: string; icon: PersonaIcon; label: string; title: string; line: string; cta: Cta; demo: HomeDoorDemo }[]
+}
 export type PersonaBuild = {
   heading: string
   line: string
@@ -714,6 +729,9 @@ export type Page = {
   personaAnatomy?: PersonaAnatomy
   personaRecipes?: PersonaRecipes
   personaBuild?: PersonaBuild
+  /* Home's last section before the sign-up (components/persona/HomeDoors, 23 Nov 2026): the two ways in, each a card
+     that links its page, with one small moment of it working. */
+  homeDoors?: HomeDoors
   homeHow?: HomeHow
   homeProblem?: HomeProblem
   /* Home's blueprints (components/persona/HomeBlueprints, 22 Nov 2026): the six types of blueprints as cards; each card's
@@ -1263,6 +1281,9 @@ export type PieceIdLite = 'email' | 'phone' | 'messaging' | 'browser' | 'sandbox
    moves; then what every blueprint comes with. The blueprint's name and line come from its own file, by slug. */
 export type HomeTeamsTone = 'ok' | 'warn' | 'fail' | 'info'
 export type HomeTeams = {
+  /* The last entry in the team list (23 Nov 2026): the reader's own job, described in their words; its window plays
+     components/describe/DescribeJob. */
+  own?: { name: string; sub: string; crumb: string }
   heading: string
   line: string
   teamsLabel: string

@@ -207,7 +207,7 @@ export function SetupCard({ owner }: { owner: boolean }) {
     const picks = picksOf(s)
     const submit = (e: FormEvent) => {
       e.preventDefault()
-      if (!picks.length) {
+      if (!picks.length && !(s.door === 'blueprint' && s.use.trim())) {
         setErrors({ need: s.door === 'build' ? copy.build.error : s.door === 'blueprint' ? copy.blueprint.error : copy.connect.error })
         return void title.current?.focus()
       }
@@ -253,6 +253,7 @@ export function SetupCard({ owner }: { owner: boolean }) {
             )
           })}
           {err('need')}
+          {use(copy.blueprint.use.label, copy.blueprint.use.placeholder)}
           <fieldset className="s-join__set s-join__size">
             <legend className="s-join__sub">
               {copy.blueprint.dest} <span className="ob-field-optional">{copy.optional}</span>
@@ -386,7 +387,7 @@ export function SetupCard({ owner }: { owner: boolean }) {
           </h3>
         </div>
       </header>
-      <p className="s-join__line">{fill(copy.done.line[door], { email: s.email, list: listOf(picks), dest })}</p>
+      <p className="s-join__line">{fill(door === 'blueprint' && !picks.length && s.use.trim() ? copy.done.line.own : copy.done.line[door], { email: s.email, list: listOf(picks), dest })}</p>
       <dl className="s-join__sum">
         <div>
           <dt>{copy.sum.you}</dt>

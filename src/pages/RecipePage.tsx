@@ -10,6 +10,7 @@ import { Mark } from '../components/Logo'
 import { Console } from '../components/sections/Console'
 import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
+import { describe } from '../content/describe'
 import { RecipeKit } from '../components/sections/RecipeKit'
 import { KitBadge, KitCards, KitLinkAction, kitOfBlueprint, type BlueprintKitOf } from '../components/blueprint/BlueprintKit'
 import { RunsOn } from '../components/blueprint/RunsOn'
@@ -188,6 +189,10 @@ function Settings({ settings }: { settings: NonNullable<Recipe['settings']> }) {
           </div>
         ))}
       </dl>
+      {/* Bring your own job (23 Nov 2026): the reader whose job is close but not this one describes it, at the form. */}
+      <a className="ob-btn ob-btn--secondary s-rp-change__own" href={describe.cta.to}>
+        <span className="ob-btn-label">{describe.cta.label}</span>
+      </a>
     </div>
   )
 }

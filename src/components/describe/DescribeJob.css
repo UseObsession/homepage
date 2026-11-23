@@ -1,0 +1,131 @@
+/* Describe your own job (DescribeJob.tsx): the tabs, then a product window: the box with the sentence, the button, the
+   blueprint's four fields, "ready to run" and its first result. Every phase but "ready" exists only while motion plays
+   it, so the prerender, screenshots and reduced motion get the finished blueprint. Tokens only. */
+
+.dj { display: grid; gap: 10px; min-width: 0; }
+
+.dj__tabs { display: flex; align-items: flex-start; gap: 2px; margin: 0 -6px; }
+.dj__tabs-k { flex: none; padding: 0 6px; font: var(--ob-type-caption); line-height: 30px; color: var(--ob-text-3); }
+.dj__tabs-row { display: flex; flex: 1 1 auto; flex-wrap: wrap; gap: 2px; min-width: 0; }
+.dj__tab {
+  position: relative;
+  overflow: hidden;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background: transparent;
+  color: var(--ob-text-3);
+  font: var(--ob-type-caption);
+  cursor: pointer;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.dj__tab[aria-pressed='true'] { background: var(--ob-surface-raised, var(--ob-surface)); color: var(--ob-text); box-shadow: inset 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--s-accent, var(--ob-line-strong)) 55%, var(--ob-line-strong)); }
+.dj__tab:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 1px; }
+.dj__tab-prog { position: absolute; left: 10px; right: 10px; bottom: 4px; height: 1.5px; border-radius: 1px; background: var(--s-accent, var(--ob-text-2)); transform: scaleX(0); transform-origin: left; }
+@media (hover: hover) and (pointer: fine) {
+  .dj__tab[aria-pressed='false']:hover { color: var(--ob-text); background: rgb(var(--ob-tint-rgb) / 0.06); }
+}
+
+/* The window */
+.dj__win { min-width: 0; overflow: hidden; border-radius: var(--ob-radius-lg); background: var(--ob-bg-sunken); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); }
+.dj__win--bare { border-radius: 0; background: transparent; box-shadow: none; }
+.dj__bar { display: flex; align-items: center; gap: var(--ob-space-12); padding: var(--ob-space-12) var(--ob-space-16); border-bottom: var(--ob-border-hair) solid var(--ob-line); }
+.dj__dots { display: inline-flex; gap: 5px; }
+.dj__dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--ob-line-strong); }
+.dj__crumb { display: inline-flex; align-items: center; gap: var(--ob-space-6); min-width: 0; font: var(--ob-type-caption); color: var(--ob-text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dj__crumb b { font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+
+.dj__body { display: grid; gap: var(--ob-space-12); padding: var(--ob-space-16); }
+.dj__win--bare .dj__body { padding: 0; }
+.dj__k { margin: 0; font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; color: var(--ob-text-3); }
+
+/* The box: the sentence as the reader would type it; each field's phrase underlined in the card's colour. */
+.dj__box {
+  min-height: 3.4em;
+  margin: 0;
+  padding: var(--ob-space-12) var(--ob-space-16);
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-surface);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong);
+  font: var(--ob-type-body);
+  line-height: 1.6;
+  color: var(--ob-text);
+  text-wrap: pretty;
+}
+.dj__phrase {
+  padding: 0 2px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--s-accent, var(--ob-text-3)) 14%, transparent);
+  box-shadow: inset 0 -1.5px 0 var(--s-accent, var(--ob-line-strong));
+  color: inherit;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.dj__caret { display: inline-block; width: 1.5px; height: 1.1em; margin-left: 1px; vertical-align: -0.18em; background: var(--ob-text); }
+
+/* The button the pointer presses */
+.dj__act { position: relative; display: flex; justify-content: flex-end; }
+.dj__btn { display: inline-flex; align-items: center; min-height: 34px; padding: 0 var(--ob-space-14, 14px); border-radius: var(--ob-radius-md); background: var(--ob-solid); color: var(--ob-text-inverse); font: var(--ob-type-small); font-weight: var(--ob-weight-medium, 500); }
+.dj__ptr { position: absolute; right: 28px; bottom: -6px; width: 16px; height: 16px; fill: var(--ob-text); stroke: var(--ob-bg); stroke-width: 1; pointer-events: none; display: none; }
+.dj__ring { position: absolute; right: 22px; bottom: -10px; width: 30px; height: 30px; border-radius: 50%; box-shadow: 0 0 0 1.5px var(--ob-text) inset; pointer-events: none; display: none; }
+
+/* The blueprint's fields */
+.dj__fields { display: grid; margin: 0; overflow: hidden; border-radius: var(--ob-radius-md); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); }
+.dj__fields > div { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: var(--ob-space-12); padding: var(--ob-space-8) var(--ob-space-12); }
+.dj__fields > div + div { border-top: var(--ob-border-hair) solid var(--ob-line-subtle, var(--ob-line)); }
+.dj__fields dt { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); }
+.dj__fields dd { margin: 0; font: var(--ob-type-small); color: var(--ob-text); }
+
+/* The agent that runs it: its own pieces, as chips. */
+.dj__agent { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-6); margin: 0; }
+.dj__agent-k { margin-right: var(--ob-space-2, 2px); font: var(--ob-type-caption); color: var(--ob-text-3); }
+.dj__piece { display: inline-flex; align-items: center; gap: var(--ob-space-6); min-height: 24px; padding: 0 var(--ob-space-10, 10px); border-radius: var(--ob-radius-pill); background: var(--ob-surface); box-shadow: inset 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--s-accent, var(--ob-line-strong)) 50%, var(--ob-line-strong)); font: var(--ob-type-caption); color: var(--ob-text); }
+.dj__piece::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--ob-success); }
+.dj__ready { display: flex; align-items: center; gap: var(--ob-space-8); margin: 0; font: var(--ob-type-small); color: var(--ob-text-2); }
+.dj__ready i { width: 7px; height: 7px; border-radius: 50%; background: var(--ob-success); }
+.dj__ready b { font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.dj__result { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-4) var(--ob-space-8); margin: 0; padding: var(--ob-space-8) var(--ob-space-12); border-radius: var(--ob-radius-md); background: var(--ob-surface); box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line); }
+.dj__where, .dj__at { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-2); white-space: nowrap; }
+.dj__at { margin-left: auto; color: var(--ob-text-3); }
+.dj__text { order: 3; flex-basis: 100%; font: var(--ob-type-small); color: var(--ob-text); }
+
+@media (max-width: 560px) {
+  .dj__fields > div { grid-template-columns: 78px minmax(0, 1fr); gap: var(--ob-space-8); }
+  .dj__box { font: var(--ob-type-small); line-height: 1.65; }
+}
+
+/* ---- Motion: type, press, build, ready. Only here does anything hide or move. ---- */
+@keyframes dj-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes dj-rise { from { opacity: 0; translate: 0 6px; } to { opacity: 1; translate: 0 0; } }
+@keyframes dj-lit { from { background-size: 0 0; box-shadow: inset 0 0 0 transparent; } to { background-size: 100% 100%; } }
+@keyframes dj-ptr { 0% { opacity: 0; transform: translate(60px, 40px); } 20% { opacity: 1; } 62% { opacity: 1; transform: translate(0, 0); } 72% { transform: translate(0, 0) scale(0.85); } 82% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { opacity: 0; transform: translate(6px, 8px); } }
+@keyframes dj-press { 0%, 64% { transform: none; } 74% { transform: scale(0.95); } 86%, 100% { transform: none; } }
+@keyframes dj-click { from { opacity: 0.8; transform: scale(0.6); } to { opacity: 0; transform: scale(1.6); } }
+@keyframes dj-tour { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: no-preference) {
+  .dj__caret { animation: dj-blink 900ms steps(1) infinite; }
+  .dj__tab-prog { animation: dj-tour var(--tour, 8000ms) linear both; }
+  /* Before the build: no fields, no ready line, no result, phrases plain. */
+  .dj:is([data-phase='type'], [data-phase='press']) :is(.dj__fields, .dj__agent, .dj__ready, .dj__result) { opacity: 0; }
+  .dj:is([data-phase='type'], [data-phase='press']) .dj__phrase { padding: 0; background: transparent; box-shadow: none; }
+  /* The press: the pointer comes in and clicks. */
+  .dj[data-phase='press'] .dj__ptr { display: block; animation: dj-ptr 950ms var(--ob-ease-out) both; }
+  .dj[data-phase='press'] .dj__btn { animation: dj-press 950ms linear both; }
+  .dj[data-phase='press'] .dj__ring { display: block; animation: dj-click 500ms var(--ob-ease-out) 620ms both; }
+  /* The build: each field rises in turn while its phrase lights in the sentence. */
+  .dj[data-phase='build'] :is(.dj__agent, .dj__ready, .dj__result) { opacity: 0; }
+  /* The spin-up: the agent appears and its pieces light in turn. */
+  .dj[data-phase='spin'] :is(.dj__ready, .dj__result) { opacity: 0; }
+  .dj[data-phase='spin'] .dj__agent-k { animation: dj-rise 360ms var(--ob-ease-out) both; }
+  .dj[data-phase='spin'] .dj__piece { animation: dj-rise 380ms var(--ob-ease-out) both; animation-delay: calc(180ms + var(--p) * 260ms); }
+  .dj[data-phase='build'] .dj__fields > div { animation: dj-rise 420ms var(--ob-ease-out) both; animation-delay: calc(var(--f) * 240ms); }
+  .dj[data-phase='build'] .dj__phrase { animation: dj-lit 360ms var(--ob-ease-out) both; animation-delay: calc(var(--f) * 240ms); background-repeat: no-repeat; }
+  /* Ready: the blueprint is named and its first result lands. */
+  .dj[data-phase='ready'] .dj__ready { animation: dj-rise 420ms var(--ob-ease-out) both; }
+  .dj[data-phase='ready'] .dj__result { animation: dj-rise 460ms var(--ob-ease-out) 380ms both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dj__tab { transition: none; }
+  .dj__tab-prog, .dj__caret { display: none; }
+}

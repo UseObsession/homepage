@@ -1,7 +1,6 @@
 import { createElement, useEffect, useId, useRef, useState, useSyncExternalStore, type ComponentType, type FormEvent } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { capture as copy } from '../content/capture'
-import { join } from '../content/join'
 import { setup } from '../content/setup'
 import type { Capture } from '../content/types'
 import { track } from '../lib/analytics'
@@ -70,9 +69,9 @@ let ownerId = ''
 export function CaptureForm({ capture, className = '' }: { capture: Capture; className?: string }) {
   const uid = useId()
   const { pathname } = useLocation()
-  /* The page's starting answer for the card (build, blueprint, connect, or none), and the line under the box for it. */
+  /* The page's starting answer for the card (build, blueprint, connect, or none). Since 23 Nov 2026 (Seun) no line sits
+     under the box, and no privacy line under the form: the footer links the privacy notice on every page. */
   const door = doorOf(pathname, capture.interest)
-  const micro = setup.micro[door || 'none']
 
   const hydrated = useHydrated()
   const signup = useSetup()
@@ -181,14 +180,6 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
     })
   }
 
-  const privacy = (
-    <p className="s-capture__privacy">
-      {join.privacy.text}{' '}
-      <Link className="s-capture__plink" to={join.privacy.to}>
-        {join.privacy.link}
-      </Link>
-    </p>
-  )
   const status = (
     <p className="ob-sr" role="status" aria-live="polite">
       {live}
@@ -254,7 +245,7 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
                 if (problem) setProblem(null)
               }}
               aria-invalid={problem?.field === 'email' || undefined}
-              aria-describedby={[problem?.field === 'email' ? id.error : '', id.help].filter(Boolean).join(' ')}
+              aria-describedby={problem?.field === 'email' ? id.error : undefined}
             />
           </label>
           <button type="submit" className="ob-btn ob-btn--lg ob-pill-action" aria-busy={busy || undefined}>
@@ -266,9 +257,6 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
         </div>
 
         <div className="ob-pill-foot">
-          <p className="ob-field-help" id={id.help}>
-            {micro}
-          </p>
           <p className="ob-field-error ob-anim-message" id={id.error} hidden={problem?.field !== 'email'}>
             {problem?.field === 'email' ? problem.text : ''}
           </p>
@@ -288,7 +276,6 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
         <input type="hidden" name="page" value={pathname} />
         {capture.interest && <input type="hidden" name="interest" value={capture.interest} />}
       </form>
-      {privacy}
       {status}
     </div>
   )

@@ -46,9 +46,11 @@ export const setup = {
   },
   blueprint: {
     title: 'Which job should Obsession run first?',
-    help: 'Pick any.',
-    helpPicked: 'Pick any. We ticked the one you were reading.',
-    error: 'Pick at least 1.',
+    help: 'Pick any, or describe your own.',
+    helpPicked: 'Pick any, or describe your own. We ticked the one you were reading.',
+    error: 'Pick a blueprint or describe your job.',
+    /* 23 Nov 2026: a job of the reader's own, in their words; we set it up as a blueprint (content/describe.ts). */
+    use: { label: 'Or describe your own job', placeholder: 'For example: every morning, check our booking pages still load the calendar, and text me if one breaks' },
     dest: 'Where should results go?',
   },
   connect: {
@@ -72,8 +74,10 @@ export const setup = {
     line: {
       build: 'We’ll email {email} to set up your API key and MCP, starting with {list}.',
       blueprint: 'We’ll email {email} to set up {list}{dest}.',
+      /* A job they described and no blueprint picked. */
+      own: 'We’ll email {email} to set up your job as a blueprint{dest}.',
       connect: 'We’ll email {email} to connect Obsession to {list}.',
-    } as Record<DoorId, string>,
+    } as Record<DoorId | 'own', string>,
     /* Joined into the blueprint line when they named a destination. */
     dest: (d: string) => `, with results sent to ${d}`,
     next: {

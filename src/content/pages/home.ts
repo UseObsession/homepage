@@ -26,31 +26,6 @@ import type { HomePieces, Page, PersonaIcon } from '../types'
    addresses, with US numbers in the 555-01XX range kept for fiction, and carry no "Example" tag. Never name a
    competitor, never "AI customers"; a persona is never defined as a customer. */
 
-/* The developer section's code, in the API's own names (the shared brief, 21 Nov). */
-const BUILD_CODE = `import { Obsession } from "obsession"
-
-const obsession = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
-
-// One piece: an inbox your agent sends and receives from
-const inbox = await obsession.inboxes.create()
-await inbox.send({ to: "maya@larkfield.example", subject: "Your booking", text: "See you at 7." })
-
-// Or every piece under one identity
-const persona = await obsession.personas.create({ inbox: true, phone: "US", browser: true })
-
-persona.on("email.received", async (email) => {
-  // runs on our runtime, about 50 ms after it lands
-})
-
-// Every event lands in your event log. Subscribe once to get all of it
-await obsession.events.subscribe({
-  url: "https://api.larkfield.example/hooks/obsession",
-  events: ["*"],
-})
-
-// Or read a persona's events: every page, email, text and call, dated
-const { events } = await obsession.events.list({ persona: persona.id })`
-
 /* The 6 pieces, in the nav's order (pieceOrder); each cell links to its page (piecePaths). */
 const PIECES: Record<PieceId, { icon: PersonaIcon; name: string; line: string; call: string }> = {
   email: {
@@ -111,8 +86,10 @@ export const page: Page = {
     description:
       'Tools for AI agents, through one API and one bill: an inbox, a phone number, a browser and a sandbox for every agent. Use one piece or all of them.',
     /* The sentence AI assistants quote. Its first sentence opens the first answer below (scripts/prerender.mjs). */
+    /* Its first sentence must be on the page (scripts/prerender.mjs): since Home's questions went (23 Nov 2026), it opens
+       with the headline's first line. */
     answer:
-      'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
+      'The toolkit for AI agents. Obsession gives every agent an inbox, a phone number and a browser, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
     ogLine: 'An inbox, a phone number and a browser for every agent.',
     ogImage: '/og/home.png',
   },
@@ -183,7 +160,8 @@ export const page: Page = {
      and the KPIs it moves. Every company, number and message is an example. */
   homeTeams: {
     heading: 'Your team defines the job. Obsession runs it, every day.',
-    line: 'Each blueprint is a finished job you configure in plain language: what to watch or answer, how often, and where results go. Obsession runs it on an agent with its own phone number, inbox and browser, across one company or thousands.',
+    line: 'Each blueprint is a finished job you configure in plain language: what to watch or answer, how often, and where results go. Obsession runs it on an agent with its own phone number, inbox and browser, across one company or thousands. Or describe a job of your own, and we spin up an agent to run it.',
+    own: { name: 'Your own job', sub: 'Described in your words', crumb: 'New blueprint' },
     teamsLabel: 'Your team',
     steps: { pick: 'Choose a blueprint', fill: 'Set it up in plain language', get: 'Receive results where you work' },
     open: 'See the blueprint',
@@ -360,159 +338,6 @@ export const page: Page = {
     ],
   },
 
-  /* How it works (James, 21 Nov: variation B's loop with variation A's words, in place of the fleet timeline and the
-     delivery plates; components/persona/HomeHowItWorks). Set up once, then a loop either side can start: a message, a
-     webhook from another tool or a new spreadsheet or CSV row comes in (James, 22 Nov: never only "a message"), or the
-     agent acts, it's saved in the event log, then reaches the agent, on our runtime or the developer's
-     own servers, or a person. What the agent does next is a new event. Live call audio doesn't take the loop: it streams
-     straight to the voice agent, and the log keeps the call's events. `loop` is the picture's words; `label` says the
-     whole picture for screen readers and llms-full.txt. Under it, the link to every channel's code on /developers. */
-  homeHow: {
-    heading: 'Every call, email and page change reaches your agent or your team, at any volume.',
-    line: 'Each one is recorded in your event log with the original recording, email or screenshot, then routed to your agent, your servers or your team. Whatever the agent does next is recorded as well.',
-    loop: {
-      label:
-        'Set up once: pick pieces, a persona or a blueprint, and say where results go. Then a loop of three stops. Something happens: a call, an email, a text or a page change comes in, or your agent acts. It is saved in your event log, in order, with the email, screenshot or recording behind it. Then it reaches your agent on our runtime in about 50 ms, your agent on your servers, or a person in Slack. What your agent does next is a new event. Seven examples play through it, one for each type of blueprint, each at the volume a real team runs. A dental group answers 1,200 calls a day across 40 clinics. A delivery app tests 24 sign-ups every night. An AI sales startup runs 500 inboxes. A freight broker checks 60 carrier portals. A retailer reads 12,000 competitor prices every morning. An AI lab runs 2,000 training tasks a night. A restaurant group places 900 reorders a month. Live call audio streams straight to your voice agent, and the log keeps each call’s start, end and transcript.',
-      setup: { name: 'Set up once', line: 'Pick pieces, a persona or a blueprint, and say where results go.' },
-      happens: { name: 'Something happens', line: 'A call, email, text or page change, around the clock.' },
-      log: { name: 'Your event log', line: 'Every event in order, with its email, screenshot or recording.' },
-      reach: { name: 'Reaches your agent, or your team', line: 'Wherever you route it.' },
-      saved: 'saved',
-      sent: 'sent on',
-      places: [
-        { id: 'runtime', name: 'Your agent, on our runtime', line: 'Its handler runs in about 50 ms' },
-        { id: 'servers', name: 'Your agent, on your servers', line: 'A webhook, the API or MCP' },
-        { id: 'person', name: 'A person on your team', line: 'Slack, Zapier, Make or n8n' },
-      ],
-      next: 'What it does next is a new event',
-      audio: 'Live call audio streams straight to your voice agent; the log keeps each call’s start, end and transcript.',
-      examplesLabel: 'See it for',
-      exampleTag: 'Example',
-      pause: 'Pause',
-      play: 'Play',
-      examples: [
-        {
-          who: 'Front desks',
-          kit: 'talk',
-          reader: 'sales',
-          org: 'A dental group with 40 clinics',
-          scale: '1,200 calls a day',
-          from: 'A new patient calls after hours',
-          before: [
-            { at: '21:13:41', kind: 'call.ended', text: 'Clinic 4 · booked Thursday at 9:00' },
-            { at: '21:13:56', kind: 'call.received', text: 'Clinic 22 · asking about opening hours' },
-          ],
-          in: { at: '21:14:03', kind: 'call.received', text: 'Clinic 17 · new patient asking for a cleaning' },
-          place: 'runtime',
-          does: 'Your voice agent answers, books Tuesday at 8:30 and texts the confirmation',
-          out: { at: '21:16:20', kind: 'call.ended', text: '2 min 17 s · booked, transcript saved' },
-          tally: 'This week: 8,400 calls answered across 40 clinics, evenings and weekends included',
-        },
-        {
-          who: 'Product and QA',
-          kit: 'test',
-          reader: 'agencies',
-          org: 'A delivery app, tested every night',
-          scale: '24 test sign-ups a night',
-          from: 'Your app texts a test user',
-          before: [
-            { at: '02:00:18', kind: 'email.received', text: 'Test user 3 · welcome email, 2 s' },
-            { at: '02:00:33', kind: 'page.visited', text: 'Test user 5 · Android sign-up, screenshot saved' },
-          ],
-          in: { at: '02:00:41', kind: 'sms.received', text: 'Sign-in code 482 913, 4 s after the request' },
-          place: 'servers',
-          does: 'Your test enters the code and checks every screen after it',
-          out: { at: '02:00:44', kind: 'page.visited', text: 'Signed in, screenshot saved' },
-          tally: 'Last night: 24 sign-ups by email and phone. 1 code took 41 s on Android, flagged before the morning stand-up',
-        },
-        {
-          who: 'AI startups',
-          kit: 'build',
-          reader: 'developers',
-          org: 'An AI sales startup',
-          scale: '500 inboxes, one per customer',
-          from: 'A prospect replies to your agent',
-          before: [
-            { at: '10:02:03', kind: 'email.sent', text: 'Inbox 212 · follow-up sent' },
-            { at: '10:02:09', kind: 'email.received', text: 'Inbox 87 · out of office until Monday' },
-          ],
-          in: { at: '10:02:15', kind: 'email.received', text: '“Thursday works. Can you send the deck?”' },
-          place: 'servers',
-          does: 'Your agent books Thursday and replies with the deck',
-          out: { at: '10:02:19', kind: 'email.sent', text: 'Invite and deck sent' },
-          tally: 'Today: 12,000 emails across 500 inboxes, on one API key',
-        },
-        {
-          who: 'Operations',
-          kit: 'portals',
-          reader: 'founders',
-          org: 'A freight broker moving 300 loads a day',
-          scale: '60 carrier portals, every hour',
-          from: 'A carrier portal updates a load',
-          before: [
-            { at: '14:00:09', kind: 'page.visited', text: 'Load 4468 · delivered, proof of delivery saved' },
-            { at: '14:00:15', kind: 'email.received', text: 'Carrier portal sign-in code, entered' },
-          ],
-          in: { at: '14:00:22', kind: 'page.visited', text: 'Load 4471 · delayed, new arrival Friday 06:00' },
-          place: 'person',
-          does: 'Posted to #dispatch in Slack, and the new arrival time added to your sheet',
-          tally: 'Today: 1,800 portal checks with your own logins, none of them by hand',
-        },
-        {
-          who: 'Pricing teams',
-          kit: 'watch',
-          reader: 'marketing',
-          org: 'A retailer watching 30 competitors',
-          scale: '12,000 prices every morning',
-          from: 'A competitor cuts a member price',
-          before: [
-            { at: '07:00:12', kind: 'page.visited', text: 'Competitor 4 · no change since yesterday' },
-            { at: '07:00:20', kind: 'email.received', text: 'Competitor 22 · new subscriber code' },
-          ],
-          in: { at: '07:00:31', kind: 'page.visited', text: 'Competitor 9 · member price down 15% on 140 items' },
-          place: 'person',
-          does: 'Posted to #pricing in Slack, with every changed price in your sheet',
-          tally: 'This morning: 12,000 prices read at 30 competitors, 140 changes worth a look',
-        },
-        {
-          who: 'AI labs',
-          kit: 'train',
-          reader: 'developers',
-          org: 'An AI lab training a browsing agent',
-          scale: '2,000 tasks a night',
-          from: 'A training task finishes',
-          before: [
-            { at: '03:12:40', kind: 'email.received', text: 'Task 1,206 · confirmation link arrived' },
-            { at: '03:12:42', kind: 'sandbox.finished', text: 'Task 1,204 · stuck at step 3, transcript saved' },
-          ],
-          in: { at: '03:12:44', kind: 'sandbox.finished', text: 'Task 1,207 · signed up and confirmed the email in 38 s' },
-          place: 'servers',
-          does: 'Your grader scores the run and starts the next task',
-          out: { at: '03:12:46', kind: 'page.visited', text: 'Task 1,208 · sign-up page opened' },
-          tally: 'Last night: 2,000 runs, each with its own inbox, phone number and browser',
-        },
-        {
-          who: 'Procurement',
-          kit: 'buy',
-          reader: 'founders',
-          org: 'A restaurant group with 18 sites',
-          scale: '900 reorders a month, 40 suppliers',
-          from: 'A supplier confirms an order',
-          before: [
-            { at: '09:12:41', kind: 'page.visited', text: 'Supplier 12 · 6 cases in the basket, paid with your card' },
-            { at: '09:12:58', kind: 'sms.received', text: 'Supplier 3 · delivery arriving Wednesday' },
-          ],
-          in: { at: '09:13:20', kind: 'email.received', text: 'Order SX-20931 confirmed · £318.40' },
-          place: 'runtime',
-          does: 'Your agent matches it to the order and adds the delivery date',
-          out: { at: '09:13:21', kind: 'blueprint.result', text: 'Order, amount and delivery date in your sheet' },
-          tally: 'This month: 900 reorders across 40 suppliers, every receipt matched to its order',
-        },
-      ],
-    },
-    link: { label: 'See the code for each channel', to: '/developers#delivery' },
-  },
-
   /* A blueprint is a job that runs on Obsession beside the pieces and writes its results to the event log: one of ours,
      ready to run, or your own. Mystery shopping is the big tile and 4 sit beside it, so the 3 column grid closes
      (James, 22 Nov: 5 tiles, not 8); every tile links to its blueprint page (content/recipes), except the web behind the login, which links to its use
@@ -520,53 +345,91 @@ export const page: Page = {
      that reader (styles/accents.css). The heading is James's (21 Nov), its comma included: it speaks to the reader. */
 
 
-  personaBuild: {
-    heading: 'One key, from the first inbox to a fleet of personas.',
-    line: 'Create an inbox, a number or a whole persona from code, or let your agent do it over MCP. Subscribe once to hear from all of them.',
-    cta: { label: 'See the API and MCP', to: '/developers' },
-    codeLabel: 'agent.ts',
-    code: BUILD_CODE,
+
+  /* The two ways in (#start, 23 Nov 2026), the last section before the sign-up. Seun: funnel developers and teams that
+     don't develop to their own page, and make it clear Obsession works for both; premium, concise, clear to anyone, a
+     picture they can see themselves in. Each card is one link: developers to /developers, teams to /no-code. */
+  homeDoors: {
+    heading: 'Developers build on Obsession. Everyone else hands it the job.',
+    scale: {
+      heading: 'One agent or ten million, each with its own number, inbox and browser.',
+      line: 'Add agents as the work grows. Each one gets its own identity, and you pay for what each one uses.',
+      label: 'Agents',
+      steps: [
+        { n: 1, short: '1', case: 'A freelancer’s agent answers every new enquiry within a minute.' },
+        { n: 10, short: '10', case: 'A founder runs an agent for each product line, each with its own number.' },
+        { n: 1000, short: '1,000', case: 'A clinic group gives every front desk an agent that texts back each missed call.' },
+        { n: 10000, short: '10,000', case: 'An agency shops 10,000 client and prospect stores every week.' },
+        { n: 100000, short: '100,000', case: 'An enterprise runs an agent for each supplier account across 4,000 sites.' },
+        { n: 10000000, short: '10M', case: 'A platform gives every user’s assistant its own number and inbox.' },
+      ],
+    },
+    line: 'Build every piece into your own agents, or pick a blueprint and receive the results with no code to write.',
+    doors: [
+      {
+        id: 'dev',
+        reader: 'developers',
+        icon: 'code',
+        label: 'For developers',
+        title: 'Every piece your agent needs, in one call.',
+        line: 'Inboxes, numbers, messaging, browsers and sandboxes through the API, the SDK or MCP. One webhook carries every event, from one agent to a fleet.',
+        cta: { label: 'Start building', to: '/developers' },
+        demo: {
+          kind: 'code',
+          tabsLabel: 'Build with',
+          tabs: [
+            { label: 'SDK', code: 'await obsession.personas.create({ inbox: true, phone: "US", browser: true })' },
+            { label: 'Webhook', code: 'await obsession.events.subscribe({ url: "https://api.larkfield.example/hooks", events: ["*"] })' },
+            { label: 'MCP', code: 'claude mcp add obsession' },
+          ],
+          events: [
+            { at: '09:41:07', event: 'email.received', text: 'Sign-in code 482 913' },
+            { at: '09:41:12', event: 'page.visited', text: 'Supplier portal, signed in' },
+            { at: '09:42:30', event: 'sms.received', text: '“Running 10 minutes late”' },
+            { at: '09:44:05', event: 'call.ended', text: '2 min 17 s, transcript saved' },
+            { at: '09:45:51', event: 'sandbox.finished', text: 'report.py done in 2.4 s' },
+          ],
+          ms: '50 ms',
+        },
+      },
+      {
+        id: 'team',
+        reader: 'marketing',
+        icon: 'check',
+        label: 'For anyone who doesn’t code',
+        title: 'Pick the job. Get the results where you work.',
+        line: 'Teams, founders and freelancers pick a blueprint or describe their own job. Obsession spins up an agent to run it every day, across one company or thousands.',
+        cta: { label: 'See how teams use it', to: '/no-code' },
+        /* One job a team or a person would hand over, from a blueprint on the site: competitor tracking, lead response
+           checks, the voice agent check, the invoice collector, load tracking and the speed-to-lead callback. */
+        demo: {
+          kind: 'job',
+          tabsLabel: 'See a job for',
+          jobs: [
+            { team: 'Marketing', sentence: ['Track ', { v: '40 competitors' }, ' every ', { v: 'Monday' }, ' and post to ', { v: '#marketing' }], where: 'Slack · #marketing', at: 'Mon 08:00', result: 'Competitor 12 started 25% off' },
+            { team: 'Sales', sentence: ['Test ', { v: 'our 3 demo forms' }, ' every ', { v: 'morning' }, ' and flag ', { v: 'any reply over 5 minutes' }], where: 'Slack · #sales', at: 'Tue 09:30', result: 'UK form: no call after 2 hours' },
+            { team: 'Support', sentence: ['Call ', { v: 'our AI receptionist' }, ' as ', { v: '3 new patients' }, ' every ', { v: 'morning' }], where: 'Slack · #support', at: 'Wed 09:00', result: 'Call 2 quoted the wrong price' },
+            { team: 'Finance', sentence: ['Download ', { v: 'every invoice' }, ' from ', { v: '12 vendor portals' }, ' every ', { v: 'Friday' }], where: 'Google Sheets · Invoices', at: 'Fri 17:00', result: '12 invoices filed, none missed' },
+            { team: 'Operations', sentence: ['Read ', { v: 'every load' }, ' in ', { v: 'our carrier portals' }, ' ', { v: '4 times a day' }], where: 'Google Sheets · Loads', at: 'Thu 14:00', result: 'Load 4471 delayed, now Friday 06:00' },
+            { team: 'Founders', sentence: ['Call ', { v: 'every new lead' }, ' within ', { v: 'a minute' }, ', ', { v: 'day and night' }], where: 'Your CRM', at: 'Sat 23:40', result: 'New lead called in 38 s, demo booked' },
+          ],
+        },
+      },
+    ],
   },
 
   /* 5 questions for a first-time reader (James, 21 and 22 Nov). The channels and voice agent questions moved to
      /developers; the browser one was already there, and checkout is the mystery shopping blueprint's "Does it place real
      orders?". What a persona is, the persona section says; that no code is needed, the blueprint tiles' heading says. */
-  faq: {
-    heading: 'Before your agent sends its first email.',
-    items: [
-      {
-        q: 'What is Obsession?',
-        a: 'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
-      },
-      {
-        q: 'Do I need to write code?',
-        a: 'No. Pick a blueprint, say where results go, and Obsession runs it. Developers use the API, SDKs or MCP.',
-        link: { label: 'Browse blueprints', to: '/blueprints' },
-      },
-      {
-        q: 'Can I use just one piece, like email?',
-        a: 'Yes. Start with inboxes, and add a number, a browser or a sandbox later, on the same key and bill.',
-        link: { label: 'Email for AI agents', to: '/email' },
-      },
-      {
-        q: 'What is the event log?',
-        a: 'One place per account where every event from every piece, persona and blueprint lands, in order and dated, with its proof: the email as it arrived, or a screenshot of the page. Nothing in it is edited after it lands.',
-      },
-      {
-        q: 'How do events reach my app?',
-        a: 'Through one signed webhook you subscribe once. If your server is down, events retry for 27 hours and can be replayed. You can also read the log by cursor, use MCP, run a handler on our runtime, or connect Zapier, Make or n8n.',
-      },
-      {
-        q: 'Does a persona say it’s an AI?',
-        a: 'Yes, whenever it talks to a person. It signs up the way anyone can, signs in only with logins you give it, and you choose where it goes.',
-      },
-    ],
-  },
+  /* Home shows no questions since 23 Nov 2026 (Seun). The type needs the field; no items means no FAQPage data either
+     (lib/jsonld.ts). */
+  faq: { heading: '', items: [] },
 
   final: {
     heading: 'Start with the piece your agent needs first.',
     sub: 'Tell us which pieces, or which blueprint, and we’ll set you up on the Free plan.',
     /* James's line (21 Nov), on this closing button only; the hero's main button still says what it does. */
-    capture: { ...access, button: 'Start free', source: 'home-final' },
+    /* Seun, 23 Nov 2026: the closing button says the campaign line. */
+    capture: { ...access, button: 'Kit up your agent', source: 'home-final' },
   },
 }
