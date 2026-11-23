@@ -62,8 +62,22 @@ export type NoCodePage = {
     line: string
     job: { kicker: string; title: string; line: string; cta: Cta }
     ai: { kicker: string; title: string; line: string; cta: Cta }
-    sheet: { crumb: string; name: string; fields: [string, string][]; button: string; running: string; note: string }
-    chat: { app: string; ask: string; tool: string; steps: { at: string; text: string }[]; answer: string; note: string }
+    /* Each picture tours its `examples` (23 Nov 2026, Seun: "more interactive and motion ... subtle cue for interactive,
+       bring it to life"): a team's blueprint filled in, approved and running, with the day's result; a team's own AI
+       asked in plain words, each step it takes and the answer. Every example is a blueprint or a job on the site. */
+    sheet: {
+      crumb: string
+      button: string
+      note: string
+      tabsLabel: string
+      examples: { tab: string; name: string; fields: [string, string][]; running: string; pips: number; result: string }[]
+    }
+    chat: {
+      note: string
+      tabsLabel: string
+      chat: string
+      examples: { app: string; ask: string; tool: string; steps: { at: string; text: string }[]; answer: string }[]
+    }
     tools: string[]
     toolsNote: string
     caption: string
@@ -75,9 +89,12 @@ export type NoCodePage = {
   final: Final
 }
 
-const headline = 'AI agents without coding, for the work your team does every day.'
+/* Seun, 23 Nov 2026: not just AI agents, AI agents equipped to act ("kitted up ... empower ... equip"), for one person
+   as well as a team ("a freelancer ... or a founder"). The headline says it and keeps the page's searched words ("ai
+   agents ... without coding"); the sub makes "equipped" concrete at once and shows the scale. */
+const headline = 'AI agents equipped to work for you and your team every day, without coding.'
 const sub =
-  'Front desks return every missed call. Sales teams call every new lead within a minute. Finance teams pull invoices from vendor portals. Pick a ready-made blueprint and Obsession runs the job, or give ChatGPT, Claude or Zapier a phone, an inbox and a browser.'
+  'Each one has its own phone number, inbox and browser, so it can call, text, email and sign in. The same job runs at one location or 20,000. Front desks return every missed call, finance teams pull every invoice from their vendor portals, and a founder or freelancer answers every new enquiry within a minute.'
 
 export const noCodePage: NoCodePage = {
   meta: {
@@ -95,7 +112,7 @@ export const noCodePage: NoCodePage = {
   },
 
   hero: {
-    pill: 'For business teams',
+    pill: 'For anyone who doesn’t code',
     headline,
     sub,
     primary: { label: 'Browse blueprints', to: '/blueprints' },
@@ -352,39 +369,127 @@ export const noCodePage: NoCodePage = {
     job: {
       kicker: 'Ready-made jobs',
       title: 'Pick a blueprint, and Obsession runs the job every day.',
-      line: 'Say what counts and where results go, in plain words. It keeps running until you change it.',
+      line: 'Say what counts and where results go, in plain words. Obsession runs it every day, for one location or thousands, until you change it.',
       cta: { label: 'Browse blueprints', to: '/blueprints' },
     },
     ai: {
       kicker: 'Your own AI tools',
       title: 'Give ChatGPT, Claude or Zapier a phone, an inbox and a browser.',
-      line: 'Connect Obsession once, then ask in plain words. Your AI makes the call, receives the code or signs in, and every step lands in your event log.',
+      line: 'Connect Obsession once, then ask in plain words. Your AI makes the call, receives the code or signs in, and every step is saved in your event log with the recording or screenshot behind it.',
       cta: { label: 'Start free', to: '#join' },
     },
     sheet: {
       crumb: 'Blueprints',
-      name: 'Missed call text back',
-      fields: [
-        ['When', 'A call goes unanswered'],
-        ['Do', 'Text back within a minute, offer the next free slot'],
-        ['Where', '12 clinics'],
-        ['Results to', '#front-desk in Slack'],
-      ],
       button: 'Approve and run',
-      running: 'Running at 12 clinics',
       note: 'Set up in plain words, running today',
+      tabsLabel: 'See it for',
+      examples: [
+        {
+          tab: 'Front desk',
+          name: 'Missed call text back',
+          fields: [
+            ['When', 'A call goes unanswered'],
+            ['Do', 'Text back within a minute, offer the next free slot'],
+            ['Where', '240 clinics'],
+            ['Results to', '#front-desk in Slack'],
+          ],
+          running: 'Running at 240 clinics',
+          pips: 24,
+          result: 'Today: 812 missed calls texted back, 356 rebooked',
+        },
+        {
+          tab: 'Finance',
+          name: 'Invoice collector',
+          fields: [
+            ['When', 'Every Friday'],
+            ['Do', 'Download every new invoice and receipt'],
+            ['Where', '120 vendor portals'],
+            ['Results to', 'A Google Sheet, filed by vendor'],
+          ],
+          running: 'Running across 120 portals',
+          pips: 24,
+          result: 'This week: 1,460 invoices filed, none missed',
+        },
+        {
+          tab: 'Marketing',
+          name: 'Competitor tracking',
+          fields: [
+            ['When', 'Every Monday'],
+            ['Do', 'Keep every email, text and price each competitor sends'],
+            ['Where', '120 competitors'],
+            ['Results to', '#marketing in Slack'],
+          ],
+          running: 'Watching 120 competitors',
+          pips: 24,
+          result: 'This week: 2,880 emails and 96 price changes',
+        },
+        {
+          tab: 'Operations',
+          name: 'Load tracking',
+          fields: [
+            ['When', '4 times a day'],
+            ['Do', 'Read every load’s status, ETA and proof of delivery'],
+            ['Where', '60 carrier portals'],
+            ['Results to', 'One Google Sheet'],
+          ],
+          running: 'Reading 60 carrier portals',
+          pips: 24,
+          result: 'Today: 1,800 checks, 3 loads delayed',
+        },
+        {
+          tab: 'Freelancer',
+          name: 'Mystery shopping',
+          fields: [
+            ['When', 'Every week'],
+            ['Do', 'Shop each client’s store as a new customer'],
+            ['Where', '8 client stores'],
+            ['Results to', 'A report per client'],
+          ],
+          running: 'Shopping 8 client stores',
+          pips: 8,
+          result: 'This week: 2 missing reminders, each with its screenshot',
+        },
+      ],
     },
     chat: {
-      app: 'Claude',
-      ask: 'Call Harlow Freight and confirm Friday’s delivery window. Email me the answer.',
-      tool: 'Obsession · phone and email',
-      steps: [
-        { at: '10:12', text: 'Called Harlow Freight from the ops number' },
-        { at: '10:14', text: 'Confirmed Friday, 08:00 to 10:00' },
-        { at: '10:14', text: 'Emailed ops@northgate.example' },
-      ],
-      answer: 'Done. Harlow confirmed Friday between 08:00 and 10:00, and the call is in your event log.',
       note: 'Your own AI, now able to call',
+      tabsLabel: 'Ask from',
+      chat: 'New chat',
+      examples: [
+        {
+          app: 'Claude',
+          ask: 'Call Harlow Freight and confirm Friday’s delivery window. Email me the answer.',
+          tool: 'Obsession · phone and email',
+          steps: [
+            { at: '10:12', text: 'Called Harlow Freight from the ops number' },
+            { at: '10:14', text: 'Confirmed Friday, 08:00 to 10:00' },
+            { at: '10:14', text: 'Emailed ops@northgate.example' },
+          ],
+          answer: 'Done. Harlow confirmed Friday between 08:00 and 10:00, and the call is in your event log.',
+        },
+        {
+          app: 'ChatGPT',
+          ask: 'Sign in to the Corbel Supply portal and download October’s invoice.',
+          tool: 'Obsession · browser and inbox',
+          steps: [
+            { at: '10:31', text: 'Signed in to the Corbel Supply portal' },
+            { at: '10:31', text: 'Entered the sign-in code from the ops inbox' },
+            { at: '10:32', text: 'Downloaded invoice INV-20931' },
+          ],
+          answer: 'Done. October’s invoice is saved, and every page it opened is in your event log.',
+        },
+        {
+          app: 'Zapier',
+          ask: 'When a lead fills in our pricing form, text them within a minute and offer a call.',
+          tool: 'Obsession · phone',
+          steps: [
+            { at: '09:02', text: 'New form entry from the pricing page' },
+            { at: '09:02', text: 'Texted the lead from the sales number' },
+            { at: '09:05', text: 'The lead booked Thursday at 14:00' },
+          ],
+          answer: 'Booked. The text, the reply and the booking are in your event log.',
+        },
+      ],
     },
     tools: ['Claude', 'ChatGPT', 'Zapier', 'Make', 'n8n', 'Clay'],
     toolsNote: 'Using a tool that isn’t here? We build the integration.',

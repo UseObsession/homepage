@@ -1,0 +1,91 @@
+/* /no-code's two ways in, brought to life (NoCode.tsx, 23 Nov 2026): the tabs over each picture with the tour's
+   hairline, the light that follows the pointer across a card, the blueprint's result once it runs, the AI's working beat
+   and a light on each step it takes. Loaded after NoCode.css, so its rules for the same parts win. Tokens only. */
+
+.nc-way__pic { display: grid; gap: 10px; align-self: stretch; align-content: start; min-width: 0; }
+.nc-way__pic > * { min-width: 0; }
+/* On a phone the running bar keeps to the card: its words wrap and it shows a dozen pips. */
+@media (max-width: 560px) {
+  .nc-sheet__run { flex-wrap: wrap; row-gap: 6px; padding-block: 8px; }
+  .nc-sheet__pips { flex-wrap: wrap; }
+  .nc-sheet__pips i:nth-child(n + 13) { display: none; }
+}
+
+/* The light that follows the pointer: invisible until the card is pointed at. */
+.nc-way__spot {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(460px circle at var(--mx, 50%) var(--my, 0%), rgb(var(--ob-tint-rgb) / 0.065), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--ob-dur-base) var(--ob-ease-out);
+  pointer-events: none;
+}
+
+/* The tabs: a quiet row, the chosen one raised in the card's colour, a hairline filling under it while the tour runs. */
+.nc-wtabs { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; margin: 0 -6px; }
+.nc-wtabs__k { padding: 0 6px; font: var(--ob-type-caption); color: var(--ob-text-3); }
+.nc-wtab {
+  position: relative;
+  overflow: hidden;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--ob-radius-pill);
+  background: transparent;
+  color: var(--ob-text-3);
+  font: var(--ob-type-caption);
+  cursor: pointer;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out);
+}
+.nc-wtab[aria-pressed='true'] { background: var(--ob-surface-raised, var(--ob-surface)); color: var(--ob-text); box-shadow: inset 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--s-accent, var(--ob-line-strong)) 55%, var(--ob-line-strong)); }
+.nc-wtab:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 1px; }
+.nc-wtab__prog { position: absolute; left: 10px; right: 10px; bottom: 4px; height: 1.5px; border-radius: 1px; background: var(--s-accent, var(--ob-text-2)); transform: scaleX(0); transform-origin: left; }
+
+/* What the blueprint delivered once it runs, under the running bar. */
+.nc-sheet__result { display: flex; align-items: center; gap: var(--ob-space-8); margin: 0; font: var(--ob-type-small); color: var(--ob-text); }
+.nc-sheet__result i { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--ob-success); }
+
+/* The AI's working beat: three dots, shown only while motion plays it. */
+.nc-chat__typing { display: none; }
+
+/* Each step the AI takes gets a dot on the timeline, lit as the step lands. */
+.nc-chat__steps li { position: relative; }
+.nc-chat__steps li::before { content: ''; position: absolute; left: calc(-1 * var(--ob-space-12) - 4px); top: 0.75em; width: 7px; height: 7px; border-radius: 50%; background: var(--ob-success); box-shadow: 0 0 0 2px var(--ob-surface); }
+
+.nc-way__cta { gap: var(--ob-space-6); }
+.nc-way__cta .nc-chev { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: translate var(--ob-dur-base) var(--ob-ease-out); }
+
+@media (hover: hover) and (pointer: fine) {
+  .nc-way:hover .nc-way__spot { opacity: 1; }
+  .nc-way:hover .nc-win { box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line-strong) inset; }
+  .nc-wtab[aria-pressed='false']:hover { color: var(--ob-text); background: rgb(var(--ob-tint-rgb) / 0.06); }
+  .nc-way__cta:hover .nc-chev { translate: 3px 0; }
+}
+
+/* ---- Motion: the tour's hairline; the result lands after the run; the AI works, then each step lights in turn; a
+   quiet wave passes along the running pips, so the job reads as still running. Replayed on every tab, because each
+   example's picture is drawn new. ---- */
+@keyframes nc-tour { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes nc-wave { 0%, 14%, 100% { opacity: 1; } 7% { opacity: 0.3; } }
+@keyframes nc-type { 0% { opacity: 0; max-height: 0; padding-block: 0; margin-bottom: -10px; } 15%, 78% { opacity: 1; max-height: 40px; padding-block: 9px; margin-bottom: 0; } 100% { opacity: 0; max-height: 0; padding-block: 0; margin-bottom: -10px; } }
+@keyframes nc-dot-up { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-3px); opacity: 1; } }
+@keyframes nc-lit { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  .nc-wtab__prog { animation: nc-tour var(--tour, 7000ms) linear both; }
+  .nc-sheet[data-armed] .nc-sheet__result { opacity: 0; }
+  .nc-sheet.is-in .nc-sheet__result { animation: nc-rise 460ms var(--ob-ease-out) 3200ms both; }
+  .nc-sheet.is-in .nc-sheet__pips i { animation: nc-fade 260ms var(--ob-ease-out) calc(2700ms + var(--k) * 60ms) both, nc-wave 3s linear calc(4300ms + var(--k) * 70ms) infinite; }
+  /* The working beat folds open, shows three dots, then folds away, taking no space before or after. */
+  .nc-chatwin .nc-chat__typing { display: inline-flex; gap: 4px; justify-self: start; margin: 0 0 -10px; padding: 0 12px; max-height: 0; overflow: hidden; border-radius: 14px; background: var(--ob-surface-raised, var(--ob-surface)); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset; opacity: 0; }
+  .nc-chatwin.is-in .nc-chat__typing { animation: nc-type 900ms var(--ob-ease-out) 260ms both; }
+  .nc-chat__typing i { width: 5px; height: 5px; border-radius: 50%; background: var(--ob-text-3); }
+  .nc-chatwin.is-in .nc-chat__typing i { animation: nc-dot-up 600ms var(--ob-ease-out) 2; }
+  .nc-chatwin.is-in .nc-chat__typing i:nth-child(2) { animation-delay: 120ms; }
+  .nc-chatwin.is-in .nc-chat__typing i:nth-child(3) { animation-delay: 240ms; }
+  .nc-chatwin.is-in .nc-chat__steps li::before { animation: nc-lit 360ms var(--ob-ease-out) both; animation-delay: calc(var(--i) * 260ms + 260ms); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nc-way__spot, .nc-wtab, .nc-way__cta .nc-chev { transition: none; }
+  .nc-wtab__prog { display: none; }
+}

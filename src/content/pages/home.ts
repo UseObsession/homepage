@@ -349,7 +349,7 @@ export const page: Page = {
      don't develop to their own page, and make it clear Obsession works for both; premium, concise, clear to anyone, a
      picture they can see themselves in. Each card is one link: developers to /developers, teams to /no-code. */
   homeDoors: {
-    heading: 'Developers build on Obsession. Every other team hands it the job.',
+    heading: 'Developers build on Obsession. Everyone else hands it the job.',
     line: 'Build every piece into your own agents, or pick a blueprint and receive the results with no code to write.',
     doors: [
       {
@@ -382,12 +382,12 @@ export const page: Page = {
         id: 'team',
         reader: 'marketing',
         icon: 'check',
-        label: 'For teams that don’t code',
+        label: 'For anyone who doesn’t code',
         title: 'Pick the job. Get the results where you work.',
-        line: 'Any team without engineers sets up a blueprint in plain language. Obsession runs it every day, across one company or thousands.',
+        line: 'Teams, founders and freelancers set up a blueprint in plain language. Obsession runs it every day, across one company or thousands.',
         cta: { label: 'See how teams use it', to: '/no-code' },
-        /* One job a team would hand over, from a blueprint on the site: competitor tracking, lead response checks, the
-           voice agent check, the invoice collector and load tracking. */
+        /* One job a team or a person would hand over, from a blueprint on the site: competitor tracking, lead response
+           checks, the voice agent check, the invoice collector, load tracking and the speed-to-lead callback. */
         demo: {
           kind: 'job',
           tabsLabel: 'See a job for',
@@ -397,6 +397,7 @@ export const page: Page = {
             { team: 'Support', sentence: ['Call ', { v: 'our AI receptionist' }, ' as ', { v: '3 new patients' }, ' every ', { v: 'morning' }], where: 'Slack · #support', at: 'Wed 09:00', result: 'Call 2 quoted the wrong price' },
             { team: 'Finance', sentence: ['Download ', { v: 'every invoice' }, ' from ', { v: '12 vendor portals' }, ' every ', { v: 'Friday' }], where: 'Google Sheets · Invoices', at: 'Fri 17:00', result: '12 invoices filed, none missed' },
             { team: 'Operations', sentence: ['Read ', { v: 'every load' }, ' in ', { v: 'our carrier portals' }, ' ', { v: '4 times a day' }], where: 'Google Sheets · Loads', at: 'Thu 14:00', result: 'Load 4471 delayed, now Friday 06:00' },
+            { team: 'Founders', sentence: ['Call ', { v: 'every new lead' }, ' within ', { v: 'a minute' }, ', ', { v: 'day and night' }], where: 'Your CRM', at: 'Sat 23:40', result: 'New lead called in 38 s, demo booked' },
           ],
         },
       },
