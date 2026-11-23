@@ -8,7 +8,7 @@ import type { BlogPost } from './types'
    Ruling FCC 24-17 (as quoted in /blog/can-ai-make-phone-calls). Obsession's rates are from src/content/prices.ts as read
    23 Nov 2026 (inbox $0.50 a month, emails $0.40 per 1,000, US number $2 a month, texts $0.015, calls $0.012 a minute,
    browser $0.10 an hour; US texting registration $25 once and $17 a month per campaign). The worked month for one AI
-   employee: 0.50 + 2.00 + 0.40 + 3.00 + 1.20 + 2.00 = $9.10 before model tokens; 240 of them $2,184. Product lines as
+   employee: 0.50 + 2.00 + 0.40 + 3.00 + 1.20 + 6.76 voice + 2.00 = $15.86 before model tokens; 240 of them $3,806. Product lines as
    /agents states them. Larkfield Dental and Juno are invented. British English, no dashes. */
 
 const BLS = 'https://www.bls.gov/ooh/office-and-administrative-support/customer-service-representatives.htm'
@@ -189,7 +189,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An AI employee’s cost is what it uses. Obsession’s list rates are $0.50 a month for an inbox and $2 for a US or UK number. Emails are $0.40 per 1,000, texts $0.015 each, calls $0.012 a minute and the browser $0.10 an hour. Take one agent that handles 1,000 emails, 200 texts and 100 call minutes a month, with 20 hours of browsing.',
+      text: 'An AI employee’s cost is what it uses. Obsession’s list rates are $0.50 a month for an inbox and $2 for a US or UK number. Emails are $0.40 per 1,000, texts $0.015 each, calls $0.012 a minute, plus $0.0676 a minute when the agent speaks in its own voice (about $0.08 a spoken minute in all), and the browser $0.10 an hour. Take one agent that handles 1,000 emails, 200 texts and 100 call minutes a month that it speaks on, with 20 hours of browsing. A call it only forwards to a person would carry just the $0.012.',
     },
     {
       kind: 'table',
@@ -200,14 +200,15 @@ export const post: BlogPost = {
         ['US number', '1', '$2.00'],
         ['Emails', '1,000', '$0.40'],
         ['Texts', '200', '$3.00'],
-        ['Call minutes', '100', '$1.20'],
+        ['Call minutes, $0.012 a minute', '100', '$1.20'],
+        ['Agent’s own voice, $0.0676 a minute', '100', '$6.76'],
         ['Browser hours', '20', '$2.00'],
-        ['Total', 'One agent', '$9.10'],
+        ['Total', 'One agent', '$15.86'],
       ],
     },
     {
       kind: 'p',
-      text: 'The same month across 240 clinics, each with its own agent and identity, is $2,184 at list rates. Staffing 240 front desks at that median wage would be about $10.7 million a year. A paid plan’s fee covers that much usage at list rates, and model tokens are billed per million on top, or not at all if you bring your own model key. US texting has a registration fee of $25 once and $17 a month per campaign, outside plans. These are example inputs for the sum, so replace them with your own volumes.',
+      text: 'The same month across 240 clinics, each with its own agent and identity, is $3,806 at list rates. Staffing 240 front desks at that median wage would be about $10.7 million a year. A paid plan’s fee covers that much usage at list rates, and model tokens are billed per million on top, or not at all if you bring your own model key. US texting has a registration fee of $25 once and $17 a month per campaign, outside plans. These are example inputs for the sum, so replace them with your own volumes.',
     },
 
     { kind: 'h2', id: 'compare', text: 'AI employee products compared', compare: true },
@@ -313,7 +314,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How much does an AI employee cost a month?',
-          a: 'It depends on use. At Obsession list rates, one agent handling 1,000 emails, 200 texts, 100 call minutes and 20 browser hours costs about $9.10 a month before model tokens. A median customer service hire in the US is paid $44,770 a year in wages, according to the Bureau of Labor Statistics.',
+          a: 'It depends on use. At Obsession list rates, one agent handling 1,000 emails, 200 texts, 100 spoken call minutes and 20 browser hours costs about $15.86 a month before model tokens. A median customer service hire in the US is paid $44,770 a year in wages, according to the Bureau of Labor Statistics.',
           link: { label: 'See pricing', to: '/pricing' },
         },
         {

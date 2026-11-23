@@ -9,7 +9,7 @@ import type { BlogPost } from './types'
    assistants (May 2025 pay), the ICO's marketing email and text guidance and GOV.UK's late payment interest page. The
    FCC ruling, CTIA principles and The Campaign Registry are the ones the voice guide already reads. Obsession prices
    are from src/lib/pricing/pricing.json (read 23 Nov): inbox $0.50 a month, emails $0.40 per 1,000, number $2 a month,
-   texts $0.015, calls $0.012 a minute, browser $0.10 an hour, US texting registration $25 once and $17 a month. Every
+   texts $0.015, calls $0.012 a minute (plus $0.0676 when the agent speaks), browser $0.10 an hour, US texting registration $25 once and $17 a month. Every
    input in the tables is a labelled example. Brightwell Physio at brightwell.example is invented. British English. */
 
 const ICO = 'https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guide-to-pecr/electronic-and-telephone-marketing/electronic-mail-marketing/'
@@ -105,7 +105,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**2. Answer the phone.** A voice agent picks up after hours and at busy moments, books and passes emergencies to you. It is its own topic with its own costs, in our guide to the [AI voice agent for small business](/blog/ai-voice-agent-for-small-business). Calls the agent’s number handles cost $0.012 a minute, so 100 calls of 3 minutes is $3.60 in call time, before the voice service.',
+      text: '**2. Answer the phone.** A voice agent picks up after hours and at busy moments, books and passes emergencies to you. It is its own topic with its own costs, in our guide to the [AI voice agent for small business](/blog/ai-voice-agent-for-small-business). Calls cost $0.012 a minute, plus $0.0676 a minute when the agent speaks in its own voice. The agent answers here, so 100 calls of 3 minutes is 300 minutes: $3.60 in call time and $20.28 for the voice, $23.88 in all. A call it only forwards to you carries just the $0.012.',
     },
     {
       kind: 'p',
@@ -123,7 +123,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'sales', text: 'Sales: enquiries and quotes' },
     {
       kind: 'p',
-      text: '**6. Call back new enquiries in minutes.** A web form or listing enquiry gets a call or text before the customer asks the next business. Your sum: enquiries a month, times the share you lose to slow replies, times a job’s value. At 50 enquiries, 1 in 10 lost to the wait and $400 a job, that is $2,000. Across a group of 240 clinics the same sum is $480,000 a month. Cost: a call of 3 minutes is $0.036 and a text $0.015. The [Speed to lead callback](/blueprints/speed-to-lead-callback) blueprint runs it.',
+      text: '**6. Call back new enquiries in minutes.** A web form or listing enquiry gets a call or text before the customer asks the next business. Your sum: enquiries a month, times the share you lose to slow replies, times a job’s value. At 50 enquiries, 1 in 10 lost to the wait and $400 a job, that is $2,000. Across a group of 240 clinics the same sum is $480,000 a month. Cost: a call of 3 minutes, spoken by the agent, is $0.24 (3 × $0.0796) and a text $0.015. The [Speed to lead callback](/blueprints/speed-to-lead-callback) blueprint runs it.',
     },
     {
       kind: 'p',
@@ -174,7 +174,7 @@ export const post: BlogPost = {
         ['1. Missed call text back', '40 missed calls, 1 in 5 books, $120 a job', '$960', 'About $3'],
         ['3. Customer emails', '60 emails a week, 4 minutes each', '4 hours a week', 'About $1.30'],
         ['4. Appointment reminders', '300 bookings, 8 no-shows, $75 a slot', '$600', '$9'],
-        ['6. Enquiry callback', '50 enquiries, 1 in 10 lost, $400 a job', '$2,000', 'About $4.50'],
+        ['6. Enquiry callback', '50 enquiries, 1 in 10 lost, $400 a job', '$2,000', 'About $14.70'],
         ['9. Invoice reminders', '40 reminders, paid days sooner', 'Cash earlier', '$0.02'],
         ['10. Supplier invoices', '20 portals, 5 minutes each', '1.7 hours', 'About $0.43'],
       ],

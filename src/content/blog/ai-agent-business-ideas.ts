@@ -11,7 +11,7 @@ import type { BlogPost } from './types'
    each over); Tenderbase pricing (GBP 25 to 55 a month, daily tender alerts); AirHelp's fees page (updated 9 Nov 2026:
    Service Fee 35% of the flight compensation, including VAT); FCC 24-17 (8 Feb 2024). Obsession's list rates are from
    src/lib/pricing/pricing.json, read 23 Nov: inbox $0.50 a month, emails $0.40 per 1,000, a US or UK number $2 a month,
-   texts $0.015, calls $0.012 a minute, browser $0.10 an hour, sandbox $0.12 an active vCPU hour, events $5 per million,
+   texts $0.015, calls $0.012 a minute (plus $0.0676 when the agent speaks), browser $0.10 an hour, sandbox $0.12 an active vCPU hour, events $5 per million,
    US texting registration $25 once and $17 a month per campaign (counts toward a plan’s covered usage; one campaign per business that texts), waiting persona free but its number and inbox bill. Every sum was worked
    in a script from the monthly volumes written in each row's cost cell; the event log (under a cent at these volumes)
    and model tokens are left out. The monthly volumes are example inputs, not measured runs. Every business named in the
@@ -96,7 +96,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'cost', text: 'How the run cost is worked' },
     {
       kind: 'p',
-      text: 'Each idea’s run cost is the usage one customer causes in a month, at Obsession’s list rates on 23 November 2026. An inbox is $0.50 a month and a US or UK phone number $2 a month. Emails cost $0.40 per 1,000, texts $0.015 each, calls $0.012 a minute and browser time $0.10 an hour. A sandbox, where an agent runs code, is $0.12 per active vCPU hour. A persona that is waiting costs nothing, though its number and inbox still bill monthly.',
+      text: 'Each idea’s run cost is the usage one customer causes in a month, at Obsession’s list rates on 23 November 2026. An inbox is $0.50 a month and a US or UK phone number $2 a month. Emails cost $0.40 per 1,000, texts $0.015 each, calls $0.012 a minute, plus $0.0676 a minute when the agent speaks in its own voice (about $0.08 a spoken minute in all), and browser time $0.10 an hour. A call the agent only forwards to a person carries just the $0.012. A sandbox, where an agent runs code, is $0.12 per active vCPU hour. A persona that is waiting costs nothing, though its number and inbox still bill monthly.',
     },
     {
       kind: 'art',
@@ -144,14 +144,14 @@ export const post: BlogPost = {
           '2. Reminder and no-show desk for clinics and salons',
           `[AppointmentReminders.com](${APPT}) $69.95 a month, 7.7 cents a reminder over the plan`,
           'Texts a reminder, calls people who agreed to calls, offers a new time to every no-show',
-          '$9.66\nnumber $2, 400 texts $6, 90 call minutes $1.08, inbox $0.50, 200 emails $0.08',
-          '$97 / $96,600',
+          '$15.74\nnumber $2, 400 texts $6, 90 spoken call minutes $7.16, inbox $0.50, 200 emails $0.08',
+          '$157 / $157,440',
         ],
         [
           '3. Rental enquiry desk for landlords',
           'A person on the leasing desk answers each enquiry by hand',
           'Answers every listing enquiry by text and email, books viewings and keeps the thread',
-          '$7.78\nnumber $2, 300 texts $4.50, 20 calls of 3 minutes $0.72, inbox $0.50, 150 emails $0.06',
+          '$7.78\nnumber $2, 300 texts $4.50, 20 forwarded calls of 3 minutes $0.72 (forwarded, so no voice charge), inbox $0.50, 150 emails $0.06',
           '$78 / $77,800',
         ],
         [
@@ -165,15 +165,15 @@ export const post: BlogPost = {
           '5. Recall desk for vets and dentists',
           `Front-desk staff, or reminder plans from [$34.95 a month](${APPT})`,
           'Texts everyone due a check-up, calls people who agreed to calls and books the slot',
-          '$8.08\nnumber $2, 300 texts $4.50, 80 call minutes $0.96, inbox $0.50, 300 emails $0.12',
-          '$81 / $80,800',
+          '$13.49\nnumber $2, 300 texts $4.50, 80 spoken call minutes $6.37, inbox $0.50, 300 emails $0.12',
+          '$135 / $134,880',
         ],
         [
           '6. Phone orders and bookings for takeaways',
           'Staff on the phone at the busiest hour of the night',
           'Answers calls the kitchen can’t take, confirms the order or table by text',
-          '$14.20\nnumber $2, 600 call minutes $7.20, 300 texts $4.50, inbox $0.50',
-          '$142 / $142,000',
+          '$54.76\nnumber $2, 600 spoken call minutes $47.76, 300 texts $4.50, inbox $0.50',
+          '$548 / $547,600',
         ],
       ],
     },
@@ -210,14 +210,14 @@ export const post: BlogPost = {
           '9. Supplier backorder chaser',
           'The buyer chases each late order by email and phone',
           'Emails and calls suppliers for delivery dates, says it’s an AI and updates the store’s sheet',
-          '$3.54\nnumber $2, 80 call minutes $0.96, 200 emails $0.08, inbox $0.50',
-          '$35 / $35,400',
+          '$8.95\nnumber $2, 80 spoken call minutes $6.37, 200 emails $0.08, inbox $0.50',
+          '$89 / $89,480',
         ],
         [
           '10. Wholesale enquiry desk',
           'A sales person answers each trade enquiry',
           'Replies to every wholesale enquiry with the line sheet and terms, then books a call',
-          '$3.52\nnumber $2, 75 call minutes $0.90, 300 emails $0.12, inbox $0.50',
+          '$3.52\nnumber $2, 75 forwarded call minutes $0.90 (no voice charge), 300 emails $0.12, inbox $0.50',
           '$35 / $35,200',
         ],
         [
@@ -270,8 +270,8 @@ export const post: BlogPost = {
           '15. Prior authorization status for clinics',
           'Clinic staff check payer portals and wait on hold',
           'Checks each request’s status in the payer’s portal and calls the payer when a status is stuck',
-          '$9.38\n40 browser hours $4, 240 call minutes $2.88, number $2, inbox $0.50',
-          '$94 / $93,800',
+          '$25.60\n40 browser hours $4, 240 spoken call minutes $19.10, number $2, inbox $0.50',
+          '$256 / $256,040',
         ],
         [
           '16. Tender and grant watch',
@@ -330,8 +330,8 @@ export const post: BlogPost = {
           '21. Move-house admin',
           'The family, over several weekends',
           'Changes the address with each utility, bank and council, by website or call, and keeps a checklist',
-          '$2.04 a move\n8 browser hours $0.80, 60 call minutes $0.72, 40 emails $0.02, inbox $0.50',
-          '$20 / $20,360',
+          '$6.10 a move\n8 browser hours $0.80, 60 spoken call minutes $4.78, 40 emails $0.02, inbox $0.50',
+          '$61 / $60,960',
         ],
         [
           '22. Receipt and warranty vault',
@@ -351,8 +351,8 @@ export const post: BlogPost = {
           '24. Trip admin',
           'A travel agent’s planning time, or hours of searching',
           'Searches flights and hotels inside a budget, calls to confirm special requests and emails the options',
-          '$1.35 a trip\n6 browser hours $0.60, 20 call minutes $0.24, 30 emails $0.01, inbox $0.50',
-          '$14 / $13,520',
+          '$2.70 a trip\n6 browser hours $0.60, 20 spoken call minutes $1.59, 30 emails $0.01, inbox $0.50',
+          '$27 / $27,020',
         ],
       ],
     },
@@ -424,7 +424,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'grow', text: 'From 10 customers to 10,000' },
     {
       kind: 'p',
-      text: 'Costs grow in three ways, and the last column of each table shows which. For ideas 1 to 15, 17 to 24 and 27 to 29, usage rises in step with customers: ten times the customers, ten times the cost. Ten of these cost $5 to $142 a month at list rates, and 10,000 cost $5,200 to $142,000.',
+      text: 'Costs grow in three ways, and the last column of each table shows which. For ideas 1 to 15, 17 to 24 and 27 to 29, usage rises in step with customers: ten times the customers, ten times the cost. Ten of these cost $5 to $548 a month at list rates, and 10,000 cost $5,200 to $547,600.',
     },
     {
       kind: 'p',
@@ -543,7 +543,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How much does it cost to run an AI agent for a customer?',
-          a: 'Across the 30 ideas here, usage ran from about $0.50 to $14.20 per customer a month at Obsession’s list rates on 23 November 2026, before model tokens. US texting adds a $17 a month registration for each business that texts, which counts toward a plan’s covered usage.',
+          a: 'Across the 30 ideas here, usage ran from about $0.50 to $54.76 per customer a month at Obsession’s list rates on 23 November 2026, before model tokens. US texting adds a $17 a month registration for each business that texts, which counts toward a plan’s covered usage.',
           link: { label: 'See every rate', to: '/pricing' },
         },
         {

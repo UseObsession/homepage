@@ -122,7 +122,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'US business texting also needs registration, which costs $25 once and $17 a month per campaign, which counts toward a plan’s covered usage; [The Campaign Registry’s fee guide](' +
         TCR_FEES +
-        ') lists the carriers’ fees. Calls cost $0.012 a minute, a browser $0.10 an hour, and an idle agent costs nothing. A paid plan’s fee covers that much usage at list rates: Developer is $20 a month, Startup $99, Scale $499, and Enterprise starts at $1,500.',
+        ') lists the carriers’ fees. Calls cost $0.012 a minute, plus $0.0676 a minute when the agent speaks in its own voice; the clinic’s texts-only sum above has no calls. A browser $0.10 an hour, and an idle agent costs nothing. A paid plan’s fee covers that much usage at list rates: Developer is $20 a month, Startup $99, Scale $499, and Enterprise starts at $1,500.',
     },
     {
       kind: 'p',
@@ -274,7 +274,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How much does it cost to run an AI agent business?',
-          a: 'It depends on usage. At list rates a US number is $2 a month, an inbox $0.50, texts $0.015 each and calls $0.012 a minute, and an idle agent costs nothing. The sum for one example clinic is $7 a month, plus the fixed US texting registration.',
+          a: 'It depends on usage. At list rates a US number is $2 a month, an inbox $0.50, texts $0.015 each, and calls $0.012 a minute, plus $0.0676 a minute when the agent speaks in its own voice. An idle agent costs nothing. The sum for one example clinic, which only texts, is $7 a month, plus the fixed US texting registration.',
           link: { label: 'Rates', to: '/pricing' },
         },
         {
