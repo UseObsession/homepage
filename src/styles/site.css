@@ -81,13 +81,78 @@
    (tan(atan2())) keep the whole window. */
 @media (max-width: 519.98px) {
   @supports (transform: scale(tan(atan2(1px, 1px)))) {
-    .appx-fit:has(.ax-side) { aspect-ratio: 556 / 450; overflow: hidden; border-radius: var(--ob-radius-sm); }
-    .appx-fit:has(.ax-side) .appx { transform: scale(tan(atan2(100cqw, 556px))) translateX(-164px); }
-    .appx-fit .ax-bar:has(+ .ax-body > .ax-side) { padding-left: 176px; }
-    .appx-fit .ax-bar:has(+ .ax-body > .ax-side) .ax-search { display: none; }
-    .appx-fit .ax-bar:has(+ .ax-body > .ax-side) .ax-team { margin-left: auto; }
+    .appx-fit:not([data-full]):has(.ax-side) { aspect-ratio: 556 / 450; overflow: hidden; border-radius: var(--ob-radius-sm); }
+    .appx-fit:not([data-full]):has(.ax-side) .appx { transform: scale(tan(atan2(100cqw, 556px))) translateX(-164px); }
+    .appx-fit:not([data-full]) .ax-bar:has(+ .ax-body > .ax-side) { padding-left: 176px; }
+    .appx-fit:not([data-full]) .ax-bar:has(+ .ax-body > .ax-side) .ax-search { display: none; }
+    .appx-fit:not([data-full]) .ax-bar:has(+ .ax-body > .ax-side) .ax-team { margin-left: auto; }
   }
 }
+
+/* The measured scale (23 Nov 2026, components/AppScreen): once the app is running, each window takes its scale from its
+   frame's real width, so it is drawn whole in every browser, whatever CSS it reads; on a phone the same crop as above. */
+.appx-fit[data-fit] .appx { transform: scale(var(--fit)); }
+@media (max-width: 519.98px) {
+  .appx-fit[data-fit]:not([data-full]):has(.ax-side) { aspect-ratio: 556 / 450; overflow: hidden; border-radius: var(--ob-radius-sm); }
+  .appx-fit[data-fit]:not([data-full]):has(.ax-side) .appx { transform: scale(var(--fitc)) translateX(-164px); }
+  .appx-fit[data-fit]:not([data-full]) .ax-bar:has(+ .ax-body > .ax-side) { padding-left: 176px; }
+  .appx-fit[data-fit]:not([data-full]) .ax-bar:has(+ .ax-body > .ax-side) .ax-search { display: none; }
+  .appx-fit[data-fit]:not([data-full]) .ax-bar:has(+ .ax-body > .ax-side) .ax-team { margin-left: auto; }
+}
+
+/* Zoom in (phones, components/AppScreen): a quiet pill under each window opens it at its real size in a sheet, to swipe
+   across or read with the phone turned. Wider screens never show it. */
+.s-screen-zoom { display: none; }
+@media (max-width: 519.98px) {
+  .s-screen-zoom {
+    display: flex;
+    align-items: center;
+    gap: var(--ob-space-6);
+    width: max-content;
+    min-height: 36px;
+    margin: var(--ob-space-10, 10px) auto 0;
+    padding: 0 var(--ob-space-14, 14px);
+    border: var(--ob-border-hair) solid var(--ob-line);
+    border-radius: var(--ob-radius-pill);
+    background: var(--ob-surface);
+    color: var(--ob-text-2);
+    font: var(--ob-type-caption);
+    letter-spacing: var(--ob-type-caption-tracking);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out);
+  }
+  .s-screen-zoom svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .s-screen-zoom:active { border-color: var(--ob-line-strong); color: var(--ob-text); }
+  .s-screen-zoom:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+}
+.s-zoom[open] {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--ob-bg);
+  color: var(--ob-text);
+  animation: s-zoom-in var(--ob-dur-base) var(--ob-ease-out);
+}
+.s-zoom::backdrop { background: rgb(0 0 0 / 0.6); }
+.s-zoom__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--ob-space-12); padding: var(--ob-space-12) var(--ob-space-16); border-bottom: var(--ob-border-hair) solid var(--ob-line); }
+.s-zoom__hint { margin: 0; font: var(--ob-type-caption); letter-spacing: var(--ob-type-caption-tracking); color: var(--ob-text-3); text-wrap: pretty; }
+.s-zoom__close { flex: none; min-height: 40px; padding: 0 var(--ob-space-16); border: var(--ob-border-hair) solid var(--ob-line-strong); border-radius: var(--ob-radius-pill); background: var(--ob-surface); color: var(--ob-text); font: var(--ob-type-small); cursor: pointer; }
+.s-zoom__close:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+.s-zoom__scroll { overflow: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: var(--ob-space-24) var(--ob-space-16); }
+.s-zoom__screen { width: 720px; margin-inline: auto; }
+.s-zoom .appx-fit[data-full] { width: 720px; }
+@keyframes s-zoom-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .s-zoom[open] { animation: none; } }
+
 
 /* Phones (Seun, 25 Oct 2026: the site must work and feel premium on a phone).
    Pill tabs wrap into a row of chips, so every choice shows and none is cut at the screen's edge. They lose the track
@@ -130,3 +195,15 @@
   .ob-lit--lift:hover { translate: 0 -2px; border-color: var(--ob-line-strong); box-shadow: var(--ob-highlight, none), var(--ob-shadow-2, none); }
 }
 @media (prefers-reduced-motion: reduce) { .ob-lit--lift:hover { translate: none; } }
+
+/* Touch targets (23 Nov 2026): the small chips and tags people tap on a phone get the breadcrumbs' touch area
+   (navigation.css), a hit area that reaches the touch target's height without moving anything on the page. */
+@media (pointer: coarse) {
+  :is(.s-pk-hero__tag, .t-use__kit, .t-use__piece, .t-use__bp, .s-ri-role__bp) { position: relative; }
+  :is(.s-pk-hero__tag, .t-use__kit, .t-use__piece, .t-use__bp, .s-ri-role__bp)::after { content: ''; position: absolute; inset: calc((var(--ob-target-touch, 44px) - 100%) / -2) 0; }
+}
+
+/* Phones: a long chip in a console's row wraps inside it instead of running past the screen's edge. */
+@media (max-width: 519.98px) {
+  .s-console .ob-kit__chip { max-width: 100%; min-width: 0; height: auto; min-height: var(--ob-control-chip); padding-block: var(--ob-space-4); white-space: normal; overflow-wrap: anywhere; text-align: left; }
+}
