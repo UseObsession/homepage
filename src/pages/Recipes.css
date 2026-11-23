@@ -251,3 +251,43 @@
 .s-ri-own__cta { margin-top: var(--ob-space-8); }
 .s-ri-own__pic { padding: var(--ob-space-20); border-radius: var(--ob-radius-xl); background: var(--ob-sheen), var(--ob-surface); box-shadow: 0 0 0 var(--ob-border-hair) var(--ob-line) inset, var(--ob-highlight), var(--ob-shadow-2); }
 
+
+/* What an AI employee needs (23 Nov 2026): six roles, three across on a laptop, two on a tablet, one on a phone. Each
+   card holds the role (linked to its use case where there is one), one line, the pieces it runs on as the type
+   sections' chips, and the blueprints that cover it as quiet links. The door for builders sits under the grid. */
+.s-ri-roles { scroll-margin-top: var(--ob-space-64); }
+.s-ri-roles:focus { outline: none; }
+.s-ri-roles__head { display: grid; gap: var(--ob-space-12); margin-bottom: var(--ob-space-32); }
+.s-ri-roles__head h2 { margin: 0; max-width: 20ch; text-wrap: balance; }
+.s-ri-roles__line { margin: 0; max-width: 56ch; font: var(--ob-type-body-lg); color: var(--ob-text-2); text-wrap: pretty; }
+.s-ri-roles__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ob-space-12); margin: 0; padding: 0; list-style: none; }
+/* Each card shares its row's 4 tracks (name, line, runs on, covered by), so the labels line up across a row. */
+.s-ri-role {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: var(--ob-space-12);
+  padding: var(--ob-space-24);
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-lg);
+  background: radial-gradient(120% 90% at 0% 0%, rgb(var(--ob-tint-rgb) / 0.05), transparent 60%), var(--ob-surface);
+}
+.s-ri-role__name { margin: 0; font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
+.s-ri-role__name a { display: inline-flex; align-items: center; gap: var(--ob-space-6); color: inherit; text-decoration: none; }
+.s-ri-role__name .s-ri-chev { color: var(--ob-text-3); }
+.s-ri-role__line { margin: 0; font: var(--ob-type-small); letter-spacing: var(--ob-type-small-tracking); color: var(--ob-text-2); text-wrap: pretty; }
+.s-ri-role__row { display: grid; gap: var(--ob-space-8); padding-top: var(--ob-space-12); border-top: var(--ob-border-hair) solid var(--ob-line-subtle, var(--ob-line)); }
+.s-ri-role__label { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; color: var(--ob-text-3); }
+.s-ri-role__pieces { display: flex; flex-wrap: wrap; gap: var(--ob-space-6); margin: 0; padding: 0; list-style: none; }
+.s-ri-role__bps { display: grid; gap: var(--ob-space-4); margin: 0; padding: 0; list-style: none; }
+.s-ri-role__bp { display: inline-flex; align-items: center; gap: var(--ob-space-6); font: var(--ob-type-small); color: var(--ob-text); text-decoration: none; }
+.s-ri-role__arrow { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; color: var(--ob-text-3); transition: translate var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out); }
+.s-ri-roles__build { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ob-space-8) var(--ob-space-16); margin: var(--ob-space-24) 0 0; font: var(--ob-type-small); color: var(--ob-text-2); }
+.s-ri-role__name a:focus-visible,
+.s-ri-role__bp:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: var(--ob-focus-offset); border-radius: var(--ob-radius-sm); }
+@media (hover: hover) and (pointer: fine) {
+  .s-ri-role__name a:hover .s-ri-chev,
+  .s-ri-role__bp:hover .s-ri-role__arrow { translate: 3px 0; color: var(--ob-text); }
+}
+@media (max-width: 1000px) { .s-ri-roles__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .s-ri-roles__list { grid-template-columns: minmax(0, 1fr); } .s-ri-role { padding: var(--ob-space-20); } }

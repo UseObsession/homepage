@@ -138,6 +138,70 @@ export function Recipes() {
         ))}
       </div>
 
+      {/* What an AI employee needs (23 Nov 2026): the roles people hire AI employees for, each with the pieces it runs on
+          and the blueprints that already cover it. Obsession is what they run on; the roles borrow blueprints and own
+          none. Building them yourself is one door to the API. */}
+      <section className="s-section s-ri-roles" id={page.roles.id} aria-labelledby={`${id}-roles`} tabIndex={-1}>
+        <div className="s-wrap">
+          <header className="s-ri-roles__head">
+            <h2 className="ob-type-h2" id={`${id}-roles`}>
+              {page.roles.heading}
+            </h2>
+            <p className="s-ri-roles__line">{tie(page.roles.line)}</p>
+          </header>
+          <ul className="s-ri-roles__list">
+            {page.roles.items.map((r) => (
+              <li className="s-ri-role" key={r.name}>
+                <h3 className="s-ri-role__name">
+                  {r.to ? (
+                    <Link to={r.to}>
+                      {r.name}
+                      <Chev className="s-ri-chev" />
+                    </Link>
+                  ) : (
+                    r.name
+                  )}
+                </h3>
+                <p className="s-ri-role__line">{tie(r.line)}</p>
+                <div className="s-ri-role__row">
+                  <span className="s-ri-role__label">{page.roles.needs}</span>
+                  <ul className="s-ri-role__pieces">
+                    {r.pieces.map((p) => (
+                      <li key={p} className="s-ri-chip">
+                        <PersonaGlyph name={pieceChips[p].icon} />
+                        {pieceChips[p].name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="s-ri-role__row">
+                  <span className="s-ri-role__label">{page.roles.covered}</span>
+                  <ul className="s-ri-role__bps">
+                    {r.blueprints
+                      .filter((sl) => bySlug[sl])
+                      .map((sl) => (
+                        <li key={sl}>
+                          <Link className="s-ri-role__bp" to={`/blueprints/${sl}`}>
+                            {bySlug[sl].name}
+                            <Arrow className="s-ri-role__arrow" />
+                          </Link>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="s-ri-roles__build">
+            <span>{page.roles.build.line}</span>
+            <Link className="ob-btn ob-btn--link" to={page.roles.build.to}>
+              <span className="ob-btn-label">{page.roles.build.label}</span>
+              <Arrow className="ob-btn-glyph ob-btn-arrow" />
+            </Link>
+          </p>
+        </div>
+      </section>
+
       {/* No blueprint for the job (23 Nov 2026): describe it in your own words, and we set it up as a blueprint. The
           picture types a sentence and turns it into a blueprint (components/describe/DescribeJob). */}
       <section className="s-section s-ri-own" aria-labelledby={`${id}-own`}>

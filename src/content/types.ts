@@ -901,6 +901,17 @@ export type RecipesIndexPage = {
      content/kitPaths and content/kits. These are the words around them. */
   types: { label: string; more: string; runsOn: string }
   hub: { heading: string; line: string; inputs: string[]; outputs: string[]; guide: { label: string; to: string } }
+  /* What an AI employee needs (23 Nov 2026): common roles, each with the pieces it runs on and the blueprints that
+     already cover it. Infrastructure, never the AI employee itself: the roles borrow blueprints, they own none. */
+  roles: {
+    id: string
+    heading: string
+    line: string
+    needs: string
+    covered: string
+    build: { label: string; to: string; line: string }
+    items: { name: string; line: string; to?: string; pieces: PieceIdLite[]; blueprints: string[] }[]
+  }
   faq: Faq
   final: Final
 }
