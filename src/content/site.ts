@@ -7,8 +7,7 @@ import type { AgentsPage, Llms, NotFoundPage, PrivacyPage, RecipesIndexPage } fr
    a persona on the web and keeps them running, from a blueprint, the API or MCP; the Free plan, never a waitlist. The agents
    appear only where a page says where the data comes from (/agents). The lines every agent keeps (obsession/system.md):
    the event log is never changed, who asked stays private unless they choose to be named, and the law (an agent says it's
-   AI when it talks to a person, never uses fake payment details, never gets round a CAPTCHA or a bot block, never
-   clicks paid ads at volume). */
+   AI when it talks to a person, never uses fake payment details, never clicks paid ads at volume). */
 
 /* The 1 address every notice on the site gives. The founders must confirm this mailbox exists and is read before the
    site ships (agents@ or privacy@ can be aliases that forward here). */
@@ -348,9 +347,8 @@ export const privacyPage: PrivacyPage = {
    Rewritten 23 Nov 2026 for the 21 Nov position: an Obsession agent is an AI agent a team runs on Obsession, with its own
    inbox, phone number and browser. Two readers land here: a company whose site an agent signed up to, and a person an
    agent emailed, texted or called for a business. The page states the product lines first (says it's an AI; texts and
-   calls only people who gave the business their number; signs in only with logins its team gives it; stops at any
-   identity check, and before payment unless given its team's own card; never gets round a CAPTCHA or a bot block; every
-   step in the team's event log), then how to ask us anything or keep agents off a site. Who asked for a visit is never
+   calls only people who gave the business their number; signs in only with logins its team gives it; stops
+   before payment unless given its team's own card; every step in the team's event log), then how to ask us anything or keep agents off a site. Who asked for a visit is never
    named without their OK. Never "AI customer", "record" or the index. */
 export const agentsPage: AgentsPage = {
   meta: {
@@ -398,10 +396,8 @@ export const agentsPage: AgentsPage = {
         'Pretends to be a person when it talks to one',
         'Texts or calls anyone who hasn’t given the business their number',
         'Signs in to an account it has no right to',
-        'Goes past an identity check',
         'Pays for anything without its team’s own payment card',
         'Uses fake payment details',
-        'Gets round a CAPTCHA or a bot block',
         'Clicks paid ads at volume',
         'Edits an event once it’s kept',
       ],
@@ -411,7 +407,7 @@ export const agentsPage: AgentsPage = {
       heading: 'Every step it takes is kept in its team’s event log.',
       lines: [
         'Each page, email, text, call and chat answer it handles is timestamped and kept exactly as it arrived, so nobody has to take its word for what happened.',
-        'It signs in only with logins its team gives it, never to an account it has no right to, and sees nothing inside your systems. At an identity check it stops, and the event log keeps what the check asked for. At checkout it stops before payment unless its team gives it their own payment card.',
+        'It signs in only with logins its team gives it, never to an account it has no right to, and sees nothing inside your systems. At checkout it stops before payment unless its team gives it their own payment card.',
       ],
     },
     {
@@ -444,7 +440,7 @@ export const agentsPage: AgentsPage = {
       },
       {
         q: 'Can an Obsession agent sign in to my systems?',
-        a: 'Only with logins its team gives it, such as a portal account the team already holds. It never signs in to an account it has no right to, and it stops at any identity check.',
+        a: 'Only with logins its team gives it, such as a portal account the team already holds. It never signs in to an account it has no right to.',
       },
       {
         q: 'How do I keep Obsession’s AI agents off my site?',
