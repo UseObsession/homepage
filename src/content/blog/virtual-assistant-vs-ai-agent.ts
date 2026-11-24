@@ -143,7 +143,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Phone](/phone), [Email](/email), [Browser](/browser), [blueprints](/blueprints)',
           'An agent with its own number, inbox and browser under one identity, running repeatable jobs at any hour, with every email, text, call and page in one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Needs your logins and consent, stops at any identity check, says it is an AI, and passes judgement calls to a person',
+          'Needs your logins and consent, says it is an AI, and passes judgement calls to a person',
           'Repeatable calls, texts, emails and portal checks, done every day',
         ],
       ],

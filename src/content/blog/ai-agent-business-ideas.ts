@@ -90,7 +90,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every idea here keeps to the [rules every Obsession agent follows](/agents). The agent says it’s an AI to anyone it speaks to. It texts and calls only people who gave the business their number. It signs in only with logins the customer provides, and it stops at any identity check and before payment unless it’s given the customer’s card. Ideas that need an agent to apply for jobs in bulk, grab appointment slots, resell tickets or write reviews break those rules, so none appear.',
+      text: 'Every idea here keeps to the [rules every Obsession agent follows](/agents). The agent says it’s an AI to anyone it speaks to. It texts and calls only people who gave the business their number. It signs in only with logins the customer provides, and it stops before payment unless it’s given the customer’s card. Ideas that need an agent to apply for jobs in bulk, grab appointment slots, resell tickets or write reviews break those rules, so none appear.',
     },
 
     { kind: 'h2', id: 'cost', text: 'How the run cost is worked' },
@@ -283,7 +283,7 @@ export const post: BlogPost = {
         [
           '17. Quote collection for small firms',
           'An owner fills in the same form on each comparison site',
-          'Fills the same request on 20 sites up to any identity check and returns one table of quotes',
+          'Fills the same request on 20 sites and returns one table of quotes',
           '$0.68 a request\n100 minutes in a browser $0.17, 40 emails $0.02, inbox $0.50',
           '$7 / $6,827',
         ],
@@ -445,7 +445,7 @@ export const post: BlogPost = {
       items: [
         '**Texting without consent.** The FCC’s [February 2024 ruling](' + FCC_24_17 + ') puts AI-generated voices under the US Telephone Consumer Protection Act, so each call needs the person’s prior express consent. Text and call only customers who gave the business their number.',
         '**A website changes.** A carrier or supplier portal can change its layout or ask for a new code. Give the agent its own inbox and number, so sign-in codes reach it, and read the event log each morning for the first month.',
-        '**An identity check or a bot block.** The agent stops there and hands over. Choose ideas where that’s rare, and never promise a customer it will get through.',
+        '**A step that needs a person.** The agent hands it over with the page and its screenshot. Choose ideas where that’s rare, and name the person who takes it.',
         '**A customer’s login terms.** Some websites limit automated sign-in. Read the terms of each portal before selling a job that uses it, and sell only jobs the customer is allowed to do on their own account.',
         '**Health and money.** Ideas 5, 15 and 17 touch patient information or quotes. Check the privacy and licensing rules for your country with an adviser before you start.',
       ],
@@ -548,7 +548,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Which AI agent business ideas should I avoid?',
-          a: 'Avoid any idea that needs the agent to beat a bot check or an identity check, apply for jobs in bulk, take appointment slots, resell tickets or post reviews. Obsession’s agents stop at those, and so does this list.',
+          a: 'Avoid any idea that needs the agent to apply for jobs in bulk, take appointment slots, resell tickets or post reviews. Obsession’s agents don’t do those jobs, so this list leaves them out.',
           link: { label: 'What every agent keeps to', to: '/agents' },
         },
         {

@@ -220,7 +220,7 @@ export const post: BlogPost = {
         `**It tells callers the call is recorded.** US federal law lets one party to a call consent to recording it ([18 U.S.C. § 2511](${USC_2511})), but some states need every party’s consent. California’s Penal Code [section 632](${CA_632}) covers recording a confidential call without “the consent of all parties”. Saying it at the start of every call means every caller hears it, wherever they are calling from.`,
         `**It calls out only with consent.** Reminder calls and callbacks use an AI voice, which the FCC’s [February 2024 ruling](${FCC_24_17}) puts under the Telephone Consumer Protection Act (TCPA), so each needs the called person’s prior express consent, unless an emergency or an exemption applies. [Can AI make phone calls](/blog/can-ai-make-phone-calls) covers the calling rules.`,
         '**It texts only people who gave the business their number,** and stops when someone replies STOP.',
-        '**It stops at payment and identity checks.** It stops before payment unless it’s given the customer’s own payment card, and it stops at any identity check.',
+        '**It stops at payment.** It stops before payment unless it’s given the customer’s own payment card.',
       ],
     },
 

@@ -181,7 +181,7 @@ export const page: Page = {
       },
       {
         q: 'Will an account know who asked?',
-        a: 'No. Each persona has its own name, inbox and number, and who asked is never shown. When it talks to a person, it says it’s an AI. It stops before payment and at any identity check.',
+        a: 'No. Each persona has its own name, inbox and number, and who asked is never shown. When it talks to a person, it says it’s an AI. It stops before payment.',
       },
       {
         q: 'What does it cost?',

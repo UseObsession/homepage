@@ -181,7 +181,7 @@ export const post: BlogPost = {
           'Obsession (ours): Phone, Email, Messaging, Browser, Sandbox, Personas',
           'A number, an inbox and a browser under one identity, with one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at any identity check, and before payment unless given the customer’s own payment card',
+          'Stops before payment unless given the customer’s own payment card',
           'Agents that talk to customers and work on the web',
         ],
       ],

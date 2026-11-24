@@ -261,7 +261,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The persona says it’s an AI when it talks to a person. It stops before payment unless given your own card, never uses fake payment details, never gets round a CAPTCHA or a bot block, and stops at any identity check, as [its own page](/agents) sets out. Every answer lands in one event log, dated, with the transcript or recording.',
+      text: 'The persona says it’s an AI when it talks to a person. It stops before payment unless given your own card, and never uses fake payment details, as [its own page](/agents) sets out. Every answer lands in one event log, dated, with the transcript or recording.',
     },
     {
       kind: 'p',

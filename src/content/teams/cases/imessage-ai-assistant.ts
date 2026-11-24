@@ -133,7 +133,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Will users know they’re texting an AI?',
-        a: 'Yes. Your assistant says it’s an AI when it talks to a person. It also stops before payment unless given the user’s own card, and never gets round a CAPTCHA or a bot block.',
+        a: 'Yes. Your assistant says it’s an AI when it talks to a person. It also stops before payment unless given the user’s own card.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

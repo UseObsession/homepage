@@ -563,7 +563,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Milled’s pages blocked automated reads on 23 October 2026, so its price is not shown. The pages of Meta, PwC and Gartner and the Bisbee study opened only through a text reader, and the Argyle study was taken from its arXiv copy. Semrush showed prices in pounds, Price2Spy showed no figure for Starter or Basic, and Klue’s pricing link now opens its home page, which shows no price. The Reddit thread was opened on 3 October 2026 and could not be reopened. Bain’s, PwC’s and Aaru’s figures are their own, and we tested none of the tools. The store in the illustration and the cost example are invented.',
+      text: 'Milled’s pages would not load on 23 October 2026, so its price is not shown. The pages of Meta, PwC and Gartner and the Bisbee study opened only through a text reader, and the Argyle study was taken from its arXiv copy. Semrush showed prices in pounds, Price2Spy showed no figure for Starter or Basic, and Klue’s pricing link now opens its home page, which shows no price. The Reddit thread was opened on 3 October 2026 and could not be reopened. Bain’s, PwC’s and Aaru’s figures are their own, and we tested none of the tools. The store in the illustration and the cost example are invented.',
     },
   ],
 

@@ -233,7 +233,7 @@ export const post: BlogPost = {
       rows: [
         ['Email and SMS platform', 'larkpost.example: 30% off yearly on trial day 12', 'Expect the discount near day 12'],
         ['Help desk and AI support', 'quillhelp.example: AI answers locked on the trial after 50 replies', 'Show our AI answers on the trial'],
-        ['Checkout and payments', 'tillpoint.example: 4 setup emails before the identity check', 'Lead with how fast a merchant starts'],
+        ['Checkout and payments', 'tillpoint.example: 4 setup emails before the first payment', 'Lead with how fast a merchant starts'],
         ['Identity and onboarding', 'verabase.example: upgrade prompt after 100 free checks', 'Price against the real starting volume'],
         ['Loyalty and reviews', 'starloop.example: 2 months at half price in the cancel flow', 'Their customers are offered a reason to stay'],
         ['Messaging API', 'pingwell.example: credit-low email on day 4', 'Compare the price after the free credit'],
@@ -401,7 +401,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Trial teardown](/blueprints/trial-teardown), [Email and SMS tracking](/blueprints/email-sms-tracking)',
           'Trial limits, prompts, onboarding emails and save offers, each dated',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at any identity check and before payment',
+          'Stops before payment unless given your card',
           'What competitors show the people who sign up',
         ],
       ],

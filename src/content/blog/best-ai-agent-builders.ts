@@ -333,7 +333,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'An inbox is $0.50 a month, a US or UK number $2, a browser hour $0.10 with the home connection included, and an event log is $5 per million events. The Free plan includes 3 inboxes, a number and 10 browser hours, and Developer is $20 a month ([every rate](/pricing/rates)). The browser signs in only with logins its team provides and never gets round a CAPTCHA or a bot block.',
+      text: 'An inbox is $0.50 a month, a US or UK number $2, a browser hour $0.10 with the home connection included, and an event log is $5 per million events. The Free plan includes 3 inboxes, a number and 10 browser hours, and Developer is $20 a month ([every rate](/pricing/rates)). The browser signs in only with logins its team provides, and every key has a monthly spend limit you set.',
     },
     {
       kind: 'cta',

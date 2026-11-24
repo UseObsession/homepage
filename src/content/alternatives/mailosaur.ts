@@ -153,7 +153,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): Personas, Email, Phone, Browser',
           'Test users with their own inbox and number that sign up and wait for every code and the day-7 email',
           `Free: ${freeInboxes} inboxes and ${freeNumbers} number\nInbox ${prices.inbox.amount}, number ${prices.number.amount} a month\nPlans ${PAID}`,
-          'Never gets round a CAPTCHA; stops at any identity check',
+          'Stops before payment unless given your card',
           'Sign-up and login tests that run for days',
         ],
       ],

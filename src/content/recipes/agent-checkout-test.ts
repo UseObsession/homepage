@@ -3,16 +3,15 @@ import type { Recipe } from '../types'
 /* Agent checkout test (/blueprints/agent-checkout-test, 23 Nov 2026, _research/seo/agentic-commerce-23nov/PLAN.md §3).
    Buy, book and order, the store side: ecommerce and travel teams see their checkout the way shoppers' AI agents meet
    it. Each morning personas, each with its own inbox, number and cloud browser, shop the store from product page to
-   payment and name the step where each got stuck (a bot check or CAPTCHA, a pop-up over the button, a size picker with
+   payment and name the step where each got stuck (a pop-up over the button, a size picker with
    no labels, a code, a forced account), then wait for the abandoned checkout email and texts. It stops at payment unless
-   the team gives it its own card (then the order is real, and the team cancels and refunds it). A CAPTCHA or bot block
-   ends the run and is the finding; it never gets round one. Owns "ai agent checkout test", "agentic checkout testing"
+   the team gives it its own card (then the order is real, and the team cancels and refunds it). Owns "ai agent checkout test", "agentic checkout testing"
    and "agentic commerce test" (Google suggestions, 23 Nov: "ai agent checkout", "agentic commerce test"); "agentic
    checkout" and the readiness check stay with /blog/agentic-commerce-for-merchants, "ai shopping agent verification"
    and blocking with /blog/agent-ready-website, both linked. Protocols (ACP, UCP) appear only in one FAQ answer, to say
    what they cover. No competitor named. Screen: agentcheckout. Haldane is invented, at haldane.example. The run:
-   3 shoppers at 07:00; 2 reach payment (07:03:04, 07:03:21); the US desktop shopper meets a CAPTCHA at checkout at
-   07:03:10; abandoned checkout emails at 07:44 and 07:46; 14 screenshots (5 + 5 + 4). Example. */
+   3 shoppers at 07:00; 2 reach payment (07:03:04, 07:03:21); a sign-up pop-up covers the Continue button at the US desktop
+   shopper's checkout at 07:03:10; abandoned checkout emails at 07:44 and 07:46; 14 screenshots (5 + 5 + 4). Example. */
 
 export const recipe: Recipe = {
   id: 'agent-checkout',
@@ -42,7 +41,7 @@ obsession.on('blueprint.result', async (e) => {
 })`,
     events: [
       { kind: 'page.visited', text: 'Each step from product page to payment, with its screenshot and what the page said.' },
-      { kind: 'blueprint.result', text: 'Reached payment, or the step that stopped it and why, such as a CAPTCHA at checkout.' },
+      { kind: 'blueprint.result', text: 'Reached payment, or the step that stopped it and why, such as a pop-up over the Continue button.' },
       { kind: 'email.received', text: 'The abandoned checkout email, or the order confirmation when it paid with your card.' },
       { kind: 'sms.received', text: 'A reminder or shipping text on the persona’s own number.' },
     ],
@@ -99,12 +98,12 @@ obsession.on('blueprint.result', async (e) => {
       { time: '07:00', text: '3 personas open the merino crew page on haldane.example: a UK desktop, a UK phone and a US desktop.' },
       { time: '07:01', text: 'Each picks navy in size M from labelled buttons and adds it to the basket. The code WELCOME10 takes 10% off.' },
       { time: '07:03', text: 'Both UK shoppers check out as guests and reach payment. Delivery first shows on the checkout page.' },
-      { time: '07:03', text: 'The US shopper opens checkout and meets a CAPTCHA. The run stops there, and the page is kept with its screenshot.' },
-      { time: '07:05', text: 'In Slack #ecommerce: a CAPTCHA stopped an AI shopping agent at checkout on the US site.' },
+      { time: '07:03', text: 'The US shopper opens checkout, and a sign-up pop-up covers the Continue button. The page is kept with its screenshot.' },
+      { time: '07:05', text: 'In Slack #ecommerce: a pop-up covers the Continue button at checkout on the US site.' },
       { time: '07:44', text: 'The first UK shopper’s abandoned checkout email arrives, 41 minutes after it reached payment. The second arrives at 07:46.' },
     ],
-    finding: 'The US shopper was stopped at checkout by a CAPTCHA. Both UK shoppers reached payment in just over 3 minutes, and both abandoned checkout emails came within 45 minutes.',
-    fix: 'The CAPTCHA’s screenshot and step reached #ecommerce at 07:05, so the team could review its bot rules for checkout before the day’s shoppers arrived.',
+    finding: 'A sign-up pop-up covered the Continue button at the US checkout. Both UK shoppers reached payment in just over 3 minutes, and both abandoned checkout emails came within 45 minutes.',
+    fix: 'The screenshot and the step reached #ecommerce at 07:05, so the team could switch the pop-up off at checkout before the day’s shoppers arrived.',
     ledger: '3 test shops, 14 screenshots and 2 emails, each dated.',
   },
 
@@ -131,7 +130,7 @@ obsession.on('blueprint.result', async (e) => {
     {
       group: 'Where an AI agent gets stuck',
       items: [
-        { title: 'Bot checks and CAPTCHAs', line: 'The step where a bot check or a CAPTCHA stopped it. The run ends there, and the page is kept as the finding.' },
+        { title: 'Delivery choices', line: 'Whether each delivery option has a name, a price and a date an agent can read.' },
         { title: 'Pop-ups and banners', line: 'A sign-up pop-up or cookie banner that covers Add to basket or the checkout button.' },
         { title: 'Sizes and colours', line: 'Whether each option has a name an agent can read, or only a swatch with no label.' },
         { title: 'Codes', line: 'Whether the code is accepted, what it takes off, and the message when it isn’t.' },
@@ -152,7 +151,7 @@ obsession.on('blueprint.result', async (e) => {
       group: 'Where it stops',
       items: [
         { title: 'Payment', line: 'It stops at payment unless you give it your own payment card. Orders it places with your card are real, so you cancel and refund them in your store admin.' },
-        { title: 'Walls', line: 'It never gets round a CAPTCHA or a bot block, and it stops at any identity check.' },
+        { title: 'Spend', line: 'It works within a monthly spend limit you set on its key.' },
         { title: 'Says it’s an AI', line: 'If your chat or a person answers, it says it’s an AI testing for your team.' },
         { title: 'How many shops', line: '3 a morning by default, or as many as you set.' },
       ],
@@ -187,9 +186,9 @@ obsession.on('blueprint.result', async (e) => {
     heading: 'Your team tests checkout from the office. Shoppers’ AI agents arrive from cloud browsers.',
     cols: ['A test order by hand', 'With Agent checkout test'],
     rows: [
-      { label: 'A CAPTCHA at checkout', values: ['Never shown to the office', 'Found the morning it appears, with its screenshot'] },
+      { label: 'A pop-up on one country’s site', values: ['Never shown to the office', 'Found the morning it appears, with its screenshot'] },
       { label: 'A size picker with no labels', values: ['Fine to a person’s eye', 'Flagged when an agent can’t read it'] },
-      { label: 'A pop-up over the basket button', values: ['Closed without a thought', 'Logged as the step that blocked it'] },
+      { label: 'A delivery option with no price', values: ['Passed over without a thought', 'Logged as the step that stopped it'] },
       { label: 'The code at checkout', values: ['Tried before a launch', 'Tried every morning'] },
       { label: 'The abandoned checkout email', values: ['Assumed to send', 'Timed on the persona’s own inbox'] },
       { label: 'After a release', values: ['A test order, if someone has time', 'Shopped again the same day'] },
@@ -205,9 +204,9 @@ obsession.on('blueprint.result', async (e) => {
         link: { label: 'Agentic commerce for merchants', to: '/blog/agentic-commerce-for-merchants' },
       },
       {
-        q: 'What happens when it meets a CAPTCHA or a bot check?',
-        a: 'It stops. It never gets round a CAPTCHA or a bot block, so the run ends there and the step is reported with a screenshot of what it saw. Whether to let shoppers’ agents through is your call, and the next morning’s run shows the result.',
-        link: { label: 'Should you block AI agents?', to: '/blog/agent-ready-website' },
+        q: 'What do we get when a step stops an agent?',
+        a: 'The step’s name, a screenshot of what the agent saw and the time, in Slack by 07:15. Change the page, and the next morning’s run shows whether shoppers’ agents now reach payment.',
+        link: { label: '10 checks for an agent ready website', to: '/blog/agent-ready-website' },
       },
       {
         q: 'Does Agent checkout test place real orders?',
@@ -220,7 +219,7 @@ obsession.on('blueprint.result', async (e) => {
       },
       {
         q: 'Can it test a hotel or flight booking site?',
-        a: 'Yes. It searches dates, picks a room or a fare and fills in the traveller details from a profile you give it, then stops at payment or at any identity check. It never invents identity details.',
+        a: 'Yes. It searches dates, picks a room or a fare and fills in the traveller details from a profile you give it, then stops at payment. It never invents a traveller’s details.',
       },
       {
         q: 'Which products and codes does it try?',

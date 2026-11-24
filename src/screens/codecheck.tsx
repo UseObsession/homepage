@@ -107,7 +107,7 @@ export function CodecheckScreen() {
             </div>
           </section>
 
-          <p className="cd-note ax-fade" style={{ '--d': '.18s' }}><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="3.25" y="7" width="9.5" height="6.5" rx="1.5" /><path d="M5.5 7V5.25a2.5 2.5 0 0 1 5 0V7" /></svg><span>Fernpay’s test accounts</span><span>Stops at any identity check</span></p>
+          <p className="cd-note ax-fade" style={{ '--d': '.18s' }}><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="3.25" y="7" width="9.5" height="6.5" rx="1.5" /><path d="M5.5 7V5.25a2.5 2.5 0 0 1 5 0V7" /></svg><span>Fernpay’s test accounts</span><span>Works within your spend limit</span></p>
           <div className="ax-toast cd-toast"><Sig cls="st-needs" /><p><b>1 late code</b><span>UK texts · #auth-alerts 02:06</span></p><span className="ax-btn">Review</span></div>
         </div>
       </div>

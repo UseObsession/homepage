@@ -8,7 +8,7 @@ import type { BlogPost } from './types'
    doubts in _research/seo/agentic-commerce-23nov/notes_agentic-commerce-companies.md). Meta's checkout is described from
    Shopify's help page, Adyen's from its own knowledge hub article of 16 Jun 2026. Obsession sits in the identity layer,
    last, in the live site's product lines (site.ts): it pays with the card you give it, stops before payment without
-   one, never issues cards or holds money, stops at any identity check, and a store that blocks agents is a finding.
+   one, and never issues cards or holds money.
    Plan prices from prices.ts (Free, $20, $99, $499) and piece prices from src/lib/pricing/pricing.json, 23 Nov.
    Inkbox and TinyFish are never named. harrow.example and its supplier are invented. British English, no dashes. */
 
@@ -372,7 +372,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Personas](/personas), [Email](/email), [Phone](/phone), [Browser](/browser), [Buy, book and order blueprints](/blueprints/buy-book-and-order)',
           'An inbox, a number and a browser under one identity, with every confirmation, receipt and delivery text in one event log',
           'Free, then $20, $99 or $499 a month; usage per piece\nInbox $0.50 and US number $2 a month\nBrowser $0.10 an hour',
-          'Pays with the card you give it\nStops at any identity check',
+          'Pays with the card you give it, and stops before payment without one',
           'Buying agents that need an inbox, a number and a browser under one name',
         ],
       ],
@@ -397,7 +397,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, plus messaging and a sandbox, under one identity on one API and one bill. In the [Buy, book and order blueprints](/blueprints/buy-book-and-order), a buying agent checks out in its own signed-in browser, and every confirmation, receipt and delivery text lands in one event log, a dated list matched to each order. It pays with the card you give it and stops before payment without one, stops at any identity check, and reports a store that blocks agents as a finding.',
+      text: 'Obsession is the toolkit for AI agents: an inbox, a phone number and a browser for every agent, plus messaging and a sandbox, under one identity on one API and one bill. In the [Buy, book and order blueprints](/blueprints/buy-book-and-order), a buying agent checks out in its own signed-in browser, and every confirmation, receipt and delivery text lands in one event log, a dated list matched to each order. It pays with the card you give it, stops before payment without one, and works within a monthly spend limit you set on its key.',
     },
     {
       kind: 'cta',

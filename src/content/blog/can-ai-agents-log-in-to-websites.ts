@@ -8,7 +8,7 @@ import type { BlogPost } from './types'
    Every source read on its own page on 11 Nov 2026: OpenAI Help Center (cloud browser in ChatGPT Work, and its Web Bot
    Auth allowlisting page); Claude Platform Docs (computer use tool, pricing, vision); 1Password's 16 Jul 2026 release;
    Browserbase docs (Contexts) and pricing; Browser Use docs (Profiles, 2FA) and pricing; Firecrawl docs (Interact);
-   RFC 6265, 6749, 6238 and 9421 (rfc-editor.org); NIST SP 800-63B-4; the W3C note on CAPTCHA (16 Dec 2021); Cloudflare's
+   RFC 6265, 6749, 6238 and 9421 (rfc-editor.org); NIST SP 800-63B-4; Cloudflare's
    Web Bot Auth docs (8 Oct 2026); the IETF webbotauth charter; 18 U.S.C. 1030 (Cornell LII); Van Buren (supremecourt.gov);
    hiQ v. LinkedIn (9th Cir., 18 Apr 2022) and Amazon.com Services v. Perplexity AI (9th Cir., 4 Aug 2026), both from
    cdn.ca9.uscourts.gov; Computer Misuse Act 1990 ss.1 and 17 (legislation.gov.uk); exa.ai.
@@ -28,9 +28,7 @@ const RFC6265 = 'https://www.rfc-editor.org/rfc/rfc6265'
 const RFC6749 = 'https://www.rfc-editor.org/rfc/rfc6749'
 const RFC6238 = 'https://www.rfc-editor.org/rfc/rfc6238'
 const NIST = 'https://pages.nist.gov/800-63-4/sp800-63b.html'
-const W3C_CAPTCHA = 'https://www.w3.org/TR/turingtest/'
 const BB_PRICING = 'https://www.browserbase.com/pricing'
-const BU_PRICING = 'https://browser-use.com/pricing'
 const RFC9421 = 'https://www.rfc-editor.org/rfc/rfc9421'
 const CF_WBA = 'https://developers.cloudflare.com/bots/reference/bot-verification/web-bot-auth/'
 const OPENAI_ALLOW = 'https://help.openai.com/en/articles/11845367-chatgpt-works-cloud-browser-allowlisting'
@@ -48,12 +46,12 @@ const EXA = 'https://exa.ai/'
 export const post: BlogPost = {
   slug: 'can-ai-agents-log-in-to-websites',
   title: 'Can AI agents log in to websites? What works, what’s allowed and what it costs',
-  dek: 'An agent signs in the way your browser does, by filling in the form, passing any code and keeping the session cookie. One-time codes, bot checks and expiring sessions decide how far it gets, and the site’s terms and the law decide whether it should.',
+  dek: 'An agent signs in the way your browser does, by filling in the form, passing any code and keeping the session cookie. One-time codes and expiring sessions decide how far it gets, and the site’s terms and the law decide whether it should.',
   metaTitle: 'Can AI agents log in to websites? Rules and costs for teams',
   description:
-    'Yes, AI agents can log in to websites and keep the session. How cookies, MFA and bot checks work, what US and UK law says, and what each run costs.',
+    'Yes, AI agents can log in to websites and keep the session. How cookies, MFA and login codes work, what US and UK law says, and what each run costs.',
   answer:
-    'Yes, AI agents can log in to websites: ChatGPT’s cloud browser, Claude’s computer use, Browserbase and Browser Use fill in sign-in forms and keep the session cookie, though one-time codes and bot checks still need a person. Whether an agent may log in turns on the site’s terms and on computer misuse law, which US courts still apply to agents case by case. Obsession gives an agent a cloud browser that keeps its logins, with an inbox and a phone number of its own to receive each login code, and it stops at any CAPTCHA or identity check.',
+    'Yes, AI agents can log in to websites: ChatGPT’s cloud browser, Claude’s computer use, Browserbase and Browser Use fill in sign-in forms and keep the session cookie, though a one-time code often needs a person. Whether an agent may log in turns on the site’s terms and on computer misuse law, which US courts still apply to agents case by case. Obsession gives an agent a cloud browser that keeps its logins, with an inbox and a phone number of its own to receive each login code, so it signs in once and stays signed in for weeks.',
   primaryKeyword: 'can ai agents log in to websites',
   keywords: [
     'ai agent login to website',
@@ -103,7 +101,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Yes, AI agents can log in to websites. ChatGPT’s cloud browser, Claude’s computer use, Browserbase and Browser Use fill in sign-in forms, keep the session cookie the site sets and come back later without signing in again. A [one-time code](/glossary/one-time-password), a bot check or an expired session still sends the run back to a person.',
+      text: 'Yes, AI agents can log in to websites. ChatGPT’s cloud browser, Claude’s computer use, Browserbase and Browser Use fill in sign-in forms, keep the session cookie the site sets and come back later without signing in again. A [one-time code](/glossary/one-time-password) or an expired session can still send the run back to a person.',
     },
     {
       kind: 'p',
@@ -217,7 +215,6 @@ export const post: BlogPost = {
         ['Authenticator code', 'The shared secret, or a person reads the code', '30 seconds each', 'No secret and nobody on hand'],
         ['Text message code', 'A number that receives texts', 'Set by the site', 'No phone and nobody on hand'],
         ['Passkey', 'Nothing; the person’s device approves', 'Until removed', 'Every sign-in needs the person'],
-        ['Bot check or CAPTCHA', 'Nothing it can hold', 'Each visit', 'The step itself'],
       ],
     },
     {
@@ -233,35 +230,21 @@ export const post: BlogPost = {
           { time: 'Day 4, 07:00', text: 'Agent opens the account page', detail: 'Cookie sent, no sign-in needed', tone: 'ok' },
           { time: 'Day 9, 07:00', text: 'New device check asks for a code', detail: 'The run waits for a person', tone: 'late' },
           { time: 'Day 31, 07:00', text: 'Session expired', detail: 'Back to the sign-in form', tone: 'fail' },
-          { time: 'Day 31, 07:01', text: 'Bot check on the sign-in page', detail: 'The run stops at that step', tone: 'fail' },
+          { time: 'Day 31, 07:01', text: 'Site texts a new 6-digit code', detail: 'The run waits for a person', tone: 'late' },
         ],
         foot: 'Every pause waits for a person. Larkfield is an invented company.',
       },
       caption: 'An agent’s saved login at an invented site: the cookie carries it for weeks, and each code, device check and expiry hands the run back to a person.',
     },
 
-    { kind: 'h2', id: 'bot-checks', text: 'Why bot checks and CAPTCHAs stop agents' },
+    { kind: 'h2', id: 'web-bot-auth', text: 'How a site knows which agent is visiting' },
     {
       kind: 'p',
-      text: 'A CAPTCHA, a “Completely Automated Public Turing Test, to Tell Computers and Humans Apart”, exists to tell software from people ([W3C](' +
-        W3C_CAPTCHA +
-        ')). An agent is exactly what it is built to catch. The same W3C note says sites keep these checks even for signed-in users, because “even authenticated login provides inadequate protection from malicious actors”.',
+      text: 'Each site sets its own rules for agents. OpenAI’s help page says “each website ultimately decides whether to allow cloud browser traffic”.',
     },
     {
       kind: 'p',
-      text: 'Many checks now run without a puzzle. The note describes Google’s reCAPTCHA v3, released in 2018, which returns a score for how likely a visitor is to be human, without “the need to interrupt users with challenges at all”. Where the score is unclear, the note quotes Google advising sites to add a second challenge, such as two-factor authentication.',
-    },
-    {
-      kind: 'p',
-      text: 'OpenAI’s help page says some websites restrict automated browser agents, and that “each website ultimately decides whether to allow cloud browser traffic”. Some browser providers list ways past these checks. Browserbase’s paid plans list automatic CAPTCHA solving and stealth modes ([Browserbase pricing](' +
-        BB_PRICING +
-        ')). Browser Use lists CAPTCHA solving as included, and routes traffic through home IP addresses rather than data centres ([Browser Use pricing](' +
-        BU_PRICING +
-        ')). Whether getting past a site’s check is allowed depends on that site’s terms and on the law where each side is.',
-    },
-    {
-      kind: 'p',
-      text: 'The cooperative route is for the agent to say who runs it. Web Bot Auth, a signature that tells a website which company’s agent is visiting, does that. Each request is signed with a private key under the HTTP Message Signatures standard ([RFC 9421](' +
+      text: 'An agent can say who runs it. Web Bot Auth, a signature that tells a website which company’s agent is visiting, does that. Each request is signed with a private key under the HTTP Message Signatures standard ([RFC 9421](' +
         RFC9421 +
         ')). The site checks the signature against a public key the agent’s operator publishes ([Cloudflare docs](' +
         CF_WBA +
@@ -357,7 +340,6 @@ export const post: BlogPost = {
       items: [
         '**Someone else’s account.** A client’s or a colleague’s login, even with their permission, where the site’s terms limit who may use it.',
         '**A site that has said no.** A cease-and-desist letter, a block or a changed setting, after which continued access looks like Power Ventures.',
-        '**Getting past a bot check.** Solving or avoiding a CAPTCHA or another check the site put in front of a step.',
         '**Changing how the agent identifies itself.** Altering its user-agent string, or anything else that tells a site what it is, after a site has blocked it.',
         '**Other people’s data.** Accounts that hold customers’ or employees’ details, where data protection law adds duties of its own.',
         '**More than one country.** An agent run from one country on a site in another, where both sets of rules can apply.',
@@ -375,7 +357,9 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Take a run that opens a saved session, checks 3 pages and reads an offer in 25 steps. Say each step sends about 12,500 tokens and returns 250. The tokens sent cover the tools, the 3 latest screenshots and the instructions and history so far. On Claude Sonnet 5.5, at $2 per million input tokens and $10 per million output ([Anthropic pricing](' +
         CLAUDE_PRICING +
-        ')), that is about $0.69 of model time. Five minutes of Browserbase at its $0.12 hourly rate adds about a cent. On Claude Haiku 5.5, at $0.10 and $0.50 per million, the same run costs about 3 cents, if it completes the task as reliably.',
+        ')), that is about $0.69 of model time. Five minutes of Browserbase at its $0.12 hourly rate ([Browserbase pricing](' +
+        BB_PRICING +
+        ')) adds about a cent. On Claude Haiku 5.5, at $0.10 and $0.50 per million, the same run costs about 3 cents, if it completes the task as reliably.',
     },
     {
       kind: 'art',
@@ -422,7 +406,7 @@ export const post: BlogPost = {
           'ChatGPT’s cloud browser: in ChatGPT Work',
           'Secure sign-in form, session kept between tasks',
           'Paid ChatGPT plans, excluding Free and Go',
-          'Sites that block automated browsers',
+          'Pauses for the person at each sign-in',
           'A person’s own accounts',
         ],
         [
@@ -450,7 +434,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Trial teardown](/blueprints/trial-teardown)',
           'A browser that keeps its logins, with its own inbox and number for every code',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Never gets round a CAPTCHA or a bot block; stops at any identity check',
+          'Stops before payment unless given your card',
           'Agents that stay signed in for weeks, codes and all',
         ],
       ],
@@ -492,11 +476,11 @@ export const post: BlogPost = {
       items: [
         {
           q: 'Can AI agents log in to websites?',
-          a: 'Yes. ChatGPT’s cloud browser, Claude’s computer use, Browserbase and Browser Use can fill in a sign-in form and keep the session cookie, so later visits skip the form. One-time codes, bot checks and expired sessions still hand the run back to a person.',
+          a: 'Yes. ChatGPT’s cloud browser, Claude’s computer use, Browserbase and Browser Use can fill in a sign-in form and keep the session cookie, so later visits skip the form. One-time codes and expired sessions can still hand the run back to a person.',
         },
         {
           q: 'Can an AI agent sign up for a website?',
-          a: 'Yes, where the sign-up asks only for what the agent can receive, such as an email address for the confirmation link or a phone number for a text. Anthropic says Claude’s ability to create accounts on social media platforms is limited. An identity check or a bot check in front of the step can end the sign-up there.',
+          a: 'Yes, where the sign-up asks only for what the agent can receive, such as an email address for the confirmation link or a phone number for a text. Anthropic says Claude’s ability to create accounts on social media platforms is limited. With an inbox and a number of its own, an agent receives both.',
           link: { label: 'What an Obsession agent does', to: '/agents' },
         },
         {
@@ -510,7 +494,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can an AI agent receive its own login codes?',
-          a: 'Yes, when it has an inbox and a phone number of its own. On Obsession a code sent by text arrives as an sms.received event and one sent by email as email.received, and the agent enters it in the same browser session. It never gets round a CAPTCHA and stops at any identity check.',
+          a: 'Yes, when it has an inbox and a phone number of its own. On Obsession a code sent by text arrives as an sms.received event and one sent by email as email.received, and the agent enters it in the same browser session.',
           link: { label: 'Phone numbers for AI agents', to: '/phone' },
         },
         {
@@ -523,7 +507,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How do websites know a visitor is an AI agent?',
-          a: 'From what it says about itself, and from how it behaves. A user-agent string names the browser or agent, and Web Bot Auth adds a cryptographic signature the site checks against keys the operator publishes. OpenAI’s cloud browser signs its requests this way. Sites also score each visit and show a CAPTCHA to visitors they can’t place.',
+          a: 'From what it says about itself, and from how it behaves. A user-agent string names the browser or agent, and Web Bot Auth adds a cryptographic signature the site checks against keys the operator publishes. OpenAI’s cloud browser signs its requests this way.',
           link: { label: 'Agent ready website', to: '/blog/agent-ready-website' },
         },
       ],
@@ -552,9 +536,7 @@ export const post: BlogPost = {
     { title: 'RFC 6749: The OAuth 2.0 Authorization Framework', publisher: 'IETF, RFC Editor', url: RFC6749, date: '2012-10' },
     { title: 'RFC 6238: TOTP, Time-Based One-Time Password Algorithm', publisher: 'IETF, RFC Editor', url: RFC6238, date: '2011-05' },
     { title: 'SP 800-63B-4: Digital Identity Guidelines, Authentication and Authenticator Management', publisher: 'NIST', url: NIST, date: '2025-08' },
-    { title: 'Inaccessibility of CAPTCHA: alternatives to visual Turing tests on the web', publisher: 'W3C', url: W3C_CAPTCHA, date: '2021-12-16' },
     { title: 'Pricing', publisher: 'Browserbase', url: BB_PRICING },
-    { title: 'Pricing', publisher: 'Browser Use', url: BU_PRICING },
     { title: 'RFC 9421: HTTP Message Signatures', publisher: 'IETF, RFC Editor', url: RFC9421, date: '2024-02' },
     { title: 'Web Bot Auth', publisher: 'Cloudflare docs', url: CF_WBA, date: '2026-10-08' },
     { title: 'ChatGPT Work’s cloud browser allowlisting', publisher: 'OpenAI Help Center', url: OPENAI_ALLOW, date: '2026-11-10' },

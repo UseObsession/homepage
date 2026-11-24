@@ -7,7 +7,7 @@ import type { Recipe } from '../types'
    Rules kept on the page: every email and text says it's the business's AI assistant and how to reach a person; texts go
    only to applicants who gave their number and agreed to texts, STOP ends them; quiet hours 08:00 to 21:00 in the
    applicant's time zone; texting runs on paid plans with US texting registration (prices.ts registration), so the
-   free run chases by email. It never asks for or checks an identity document (identity checks stay with the business).
+   free run chases by email. It never asks for or checks an identity document (verifying people stays with the business).
    The run is an example (screen: docchase): Fernhill Lending, invented, at fernhill-lending.example. Priya's personal
    loan application arrives Mon 09:00; payslips Tue 08:12; a text Tue 18:30; her question Wed 12:40; 3 statements Wed
    13:05, October cut short at the 14th and asked for again; the full statement and a utility bill Thu 10:22, file

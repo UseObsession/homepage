@@ -546,7 +546,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Upwork’s page refused our automated reader on 23 October, so we read its fees in a browser. Apollo’s prices come from its pricing guide of 17 September 2026, because its pricing page loads them in the browser. Clay’s plan table opens on yearly billing ($167 and $446 a month), and its monthly prices are the $185 and $495 in its FAQ. Netalico marked its $1,000 audit as sold out. Meta’s Ad Library help page did not open, and EUR-Lex showed a bot check, so the Directive is quoted from legislation.gov.uk. We did not use the tools in the table. The 1 in 2 and 1 in 3 rates, the $800 Klaviyo bill and every brand in the 2 illustrations are invented.',
+      text: 'Upwork’s fees were read in a browser on 23 October. Apollo’s prices come from its pricing guide of 17 September 2026, because its pricing page loads them in the browser. Clay’s plan table opens on yearly billing ($167 and $446 a month), and its monthly prices are the $185 and $495 in its FAQ. Netalico marked its $1,000 audit as sold out. Meta’s Ad Library help page did not open, and EUR-Lex’s page would not load, so the Directive is quoted from legislation.gov.uk. We did not use the tools in the table. The 1 in 2 and 1 in 3 rates, the $800 Klaviyo bill and every brand in the 2 illustrations are invented.',
     },
   ],
 

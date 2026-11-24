@@ -133,7 +133,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Does it tell customers it’s an AI?',
-        a: 'Yes, whenever it talks to a person. It uses WhatsApp only for support, sales, bookings and notifications, stops before payment unless given the customer’s own card, and stops at any identity check.',
+        a: 'Yes, whenever it talks to a person. It uses WhatsApp only for support, sales, bookings and notifications, and stops before payment unless given the customer’s own card.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

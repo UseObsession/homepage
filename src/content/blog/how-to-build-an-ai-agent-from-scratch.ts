@@ -281,7 +281,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**It can be wrong with confidence.** Every tool result that matters needs a check in code or a person.',
-        '**It should keep to checks built for people.** A well-built agent says it’s an AI when it talks to a person, stops at an identity check and treats a CAPTCHA or a bot block as a hard stop.',
+        '**It should keep to its limits.** A well-built agent says it’s an AI when it talks to a person, signs in only with the logins it is given and works within a spend limit.',
         '**It stops before payment.** It stops before payment unless it is given the customer’s own card, and never uses made-up payment details.',
         '**Long tasks drift.** As the window fills, accuracy falls, so split long tasks, save notes and compact.',
         '**Fixed steps suit a workflow better.** If the steps never change, a workflow costs less and is easier to test.',

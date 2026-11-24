@@ -77,7 +77,7 @@ export const page: Page = {
       },
       {
         tool: 'Browserbase',
-        job: 'Pick it for browsers at high volume, with tools to get past bot checks.',
+        job: 'Pick it for browsers at high volume, with search, fetch and session replays.',
         data: 'Cloud browsers, Stagehand, Search and Fetch, Sandboxes and Agent Identity. Free for 1 browser hour, then $20 or $99 a month, plus proxy data by the GB.',
       },
       {
@@ -132,7 +132,7 @@ export const page: Page = {
       },
       {
         q: 'How is it different from Browserbase?',
-        a: `Both give an agent a cloud browser that keeps its logins. Obsession’s browser hour is ${prices.browser.amount} with its home connection included and no charge per GB, and the agent gets its own inbox and number for login codes. Browserbase describes tools to get past CAPTCHAs, and an Obsession agent never gets round one.`,
+        a: `Both give an agent a cloud browser that keeps its logins. Obsession’s browser hour is ${prices.browser.amount} with its home connection included and no charge per GB, and the agent gets its own inbox and number for login codes. Browserbase adds search and fetch APIs on the same account.`,
       },
       {
         q: 'Does Obsession replace Exa, Firecrawl, Tavily or Parallel?',

@@ -3,7 +3,7 @@ import type { TeamPage } from './types'
 
 /* Banks and fintechs (/use-cases/journey-checks-for-banks-and-fintechs, 22 Nov 2026): the team page for banks, credit
    unions, lenders and fintechs, ranked by the job their agents do (Top 3 Buyers: fintech portals and sign-up, lenders'
-   applicant calls, banks' agents and account opening). A persona applies up to the identity check and never past it
+   applicant calls, banks' agents and account opening). A persona starts applications and opens no account
    (James, 11 Nov), and checks codes, chat answers and competitors' application rates. Kittiwake Bank is invented. */
 
 const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
@@ -13,16 +13,16 @@ const enterpriseFrom = plans.find((p) => p.id === 'enterprise')?.from ?? 0
 const path = '/use-cases/journey-checks-for-banks-and-fintechs'
 
 const sub =
-  'Obsession, the toolkit for AI agents, sends a persona, an AI agent with its own inbox, number and browser, to apply at your bank and your competitors. It stops at the identity check, and every step, rate, code and chat answer lands in one event log.'
+  'Obsession, the toolkit for AI agents, sends a persona, an AI agent with its own inbox, number and browser, to start applications at your bank and your competitors. Every step, rate, code and chat answer lands in one event log, dated.'
 
 export const team: TeamPage = {
   id: 'banks',
   name: 'Banks and fintechs',
   meta: {
     path,
-    title: 'Banks and fintechs: test account opening up to the ID check',
+    title: 'Banks and fintechs: test account opening, codes and chat',
     description:
-      'AI agents apply at your bank and competitors up to the identity check. Every step, rate, login code and chat answer is kept, dated, with its screenshot.',
+      'AI agents start applications at your bank and your competitors. Every step, rate, login code and chat answer is kept, dated, with its screenshot.',
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -40,7 +40,7 @@ export const team: TeamPage = {
   scene: {
     steps: [
       { icon: 'persona', label: 'A persona starts an application' },
-      { icon: 'stop', label: 'It stops at the identity check' },
+      { icon: 'browser', label: 'Every step and rate is kept' },
       { icon: 'chat', label: 'It asks chat about the rate' },
       { icon: 'record', label: 'Each answer checked against your terms' },
     ],
@@ -50,7 +50,7 @@ export const team: TeamPage = {
     rows: [
       { at: 'Tue · 07:00', kind: 'page.visited', text: 'kittiwake.example/apply · 5 steps · screenshots saved' },
       { at: 'Tue · 07:01', kind: 'sms.received', text: 'Your Kittiwake code is 318540' },
-      { at: 'Tue · 07:02', kind: 'page.visited', text: 'Stopped at the identity check: passport photo and selfie' },
+      { at: 'Tue · 07:02', kind: 'page.visited', text: 'Summary step: 4.6% with a 0.1% bonus · screenshot saved' },
       { at: 'Tue · 07:04', kind: 'message.received', text: 'Chat: “Yes, 4.6% is fixed for 12 months.”' },
       { at: 'Tue · 07:04', kind: 'blueprint.result', text: 'The rate page says variable', tone: 'fail' },
     ],
@@ -64,7 +64,7 @@ export const team: TeamPage = {
       {
         kit: 'test',
         name: 'Account opening, step by step',
-        line: 'A persona applies after every release, up to the identity check, with each step’s screenshot and time.',
+        line: 'A persona starts an application after every release, with each step’s screenshot and time.',
         blueprint: 'website-audit',
         pieces: ['personas', 'browser', 'email'],
       },
@@ -92,7 +92,7 @@ export const team: TeamPage = {
       {
         kit: 'watch',
         name: 'Competitors’ application rates',
-        line: 'The rate and bonus each competitor’s application shows before the identity check, beside its public page.',
+        line: 'The rate and bonus each competitor’s application shows, beside its public page.',
         blueprint: 'competitor-tracking',
         pieces: ['personas', 'browser', 'email'],
       },
@@ -137,8 +137,8 @@ export const team: TeamPage = {
     heading: 'Before a persona applies.',
     items: [
       {
-        q: 'What happens at the identity check?',
-        a: 'The persona stops there and never invents identity details. The event log keeps what the check asked for, and the agent says it’s an AI whenever it talks to a person.',
+        q: 'How far does each application go?',
+        a: 'Through the forms a new applicant fills in. The event log keeps every screen, rate and question, then each email, text and call that follows, and no account is opened. The persona never invents identity details, and it says it’s an AI whenever it talks to a person.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {
@@ -158,7 +158,7 @@ export const team: TeamPage = {
   },
 
   final: {
-    heading: 'Apply at your bank and every competitor, up to the identity check.',
+    heading: 'See your bank and every competitor the way a new applicant does.',
     capture: { kind: 'waitlist', source: 'team-banks', button: 'Start free', interest: 'audit' },
   },
 }

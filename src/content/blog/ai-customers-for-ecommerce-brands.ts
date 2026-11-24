@@ -443,7 +443,7 @@ export const post: BlogPost = {
           'Obsession (ours): [QA on your own flows](/blueprints/website-audit), [Mystery shopping](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Listings and AI answers](/blueprints/listings-ai-answers)',
           'What your store and its competitors show new customers, every email, code and price dated in one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment, and at CAPTCHAs and bot blocks',
+          'Stops before payment unless given your card',
           'What a new customer gets after sign up, click and checkout, dated',
         ],
       ],

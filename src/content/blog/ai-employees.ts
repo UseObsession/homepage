@@ -119,7 +119,6 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**Judge what isn’t written down.** It follows your rules. A refund exception or an upset customer goes to a person.',
-        '**Pass an identity check or a CAPTCHA.** It stops there and tells its manager.',
         '**Spend your money.** It stops before payment unless you give it your card and a limit.',
         '**Be right every time.** A model can misread an email, so you read its log, especially in the first weeks.',
         '**Replace a relationship.** Your best customers still want a person, and the agent hands them over.',
@@ -292,7 +291,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Once an agent has its own number, inbox and browser, three more roles open up. It can answer a new tenant’s first questions, collect a supplier’s overdue invoices from their portal, or ring every customer whose delivery slipped to rebook it. Each stays inside the agent rules: it says it’s an AI and stops at any identity check.',
+      text: 'Once an agent has its own number, inbox and browser, three more roles open up. It can answer a new tenant’s first questions, collect a supplier’s overdue invoices from their portal, or ring every customer whose delivery slipped to rebook it. Each stays inside the agent rules: it says it’s an AI and signs in only with the logins you give it.',
     },
 
     { kind: 'h2', id: 'faq', text: 'Questions about AI employees' },

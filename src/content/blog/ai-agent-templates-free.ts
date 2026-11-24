@@ -258,7 +258,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Lead response checks](/blueprints/lead-leaks), [Competitor tracking](/blueprints/competitor-tracking), [Mystery shopping](/blueprints/mystery-shopper)',
           'Jobs it runs with each agent’s own inbox, number and browser, results in Slack, a sheet or your CRM',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Jobs that sign up, wait days, call or stay signed in',
         ],
       ],

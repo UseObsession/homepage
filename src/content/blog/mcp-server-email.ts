@@ -185,7 +185,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Email](/email), [Phone](/phone), [Browser](/browser) and [Personas](/personas) over MCP',
           'An inbox of its own in one call, plus a number, a browser and a sandbox\nEvery email in one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Agents that need their own address and number',
         ],
       ],

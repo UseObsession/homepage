@@ -159,7 +159,7 @@ export const page: Page = {
       },
       {
         q: 'Is collecting it allowed?',
-        a: 'A persona does only what any person can, on the pages and forms open to everyone. It says it’s an AI when it talks to a person, stops at any identity check and never gets round a CAPTCHA or a bot block. It never signs in to an account that isn’t its own.',
+        a: 'A persona does only what any person can, on the pages and forms open to everyone. It says it’s an AI when it talks to a person, and stops before payment unless given your own card. It never signs in to an account that isn’t its own.',
         link: { label: 'The lines every agent keeps', to: '/agents' },
       },
       {

@@ -103,8 +103,8 @@ export const portals: KitPage = {
       { q: 'What happens at a login code?', a: 'It arrives at the persona’s own inbox or number and reaches your code as email.received or sms.received.' },
       { q: 'Is there a charge per GB?', a: 'No. The home connection is included in the browser hour.', link: { label: 'Every rate', to: '/pricing/rates' } },
       {
-        q: 'Does it get past CAPTCHAs or identity checks?',
-        a: 'No. It never gets round a CAPTCHA or a bot block, and it stops at any identity check.',
+        q: 'What happens at a step that needs a person?',
+        a: 'The event log keeps the page and what it asked for, with a screenshot, so someone on your team can take that step while every other visit carries on.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
     ],

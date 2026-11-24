@@ -224,7 +224,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The test buyer is a persona, an AI agent with its own inbox and phone number under one name. It says it’s an AI when it talks to a person, never uses fake payment details and never gets round a CAPTCHA or a bot block, as [what every agent keeps to](/agents) sets out. Whether it also says it’s a test from your company is your company’s setting. Where a form puts a CAPTCHA or a bot check in front of a step, the event log names the step it couldn’t reach.',
+      text: 'The test buyer is a persona, an AI agent with its own inbox and phone number under one name. It says it’s an AI when it talks to a person and never uses fake payment details, as [what every agent keeps to](/agents) sets out. Whether it also says it’s a test from your company is your company’s setting. Every page, reply and call is kept with its time.',
     },
     {
       kind: 'p',
@@ -292,7 +292,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Lead response checks](/blueprints/lead-leaks), [Mystery shopping](/blueprints/mystery-shopper), [Sales agent check](/blueprints/sales-agent-check), [Outbound agent check](/blueprints/outbound-agent-check)',
           'Every reply a buyer gets from a demo form, chat and sales line, kept with its time and its email, screenshot or call',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at a CAPTCHA or bot block\nReal leads and their deals stay in the team’s CRM',
+          'Real leads and their deals stay in the team’s CRM',
           'What a buyer meets on every way in, every day',
         ],
       ],

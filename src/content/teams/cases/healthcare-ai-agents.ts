@@ -179,7 +179,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Does the agent tell patients it’s an AI?',
-        a: 'Yes, whenever it talks to a person, by phone, text or email. It texts and calls only people who gave you their number, uses only the logins it’s given, stops at any identity check and never gets round a CAPTCHA. It gives no medical advice.',
+        a: 'Yes, whenever it talks to a person, by phone, text or email. It texts and calls only people who gave you their number, uses only the logins it’s given and works within a monthly spend limit you set on its key. It gives no medical advice.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

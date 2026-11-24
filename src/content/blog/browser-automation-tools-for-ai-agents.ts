@@ -66,7 +66,7 @@ export const post: BlogPost = {
         { time: 'Mon 07:00', text: 'Login code reaches its own inbox', detail: 'email.received, 9 seconds after sign-in', tone: 'ok' },
         { time: 'Mon 07:02', text: '214 open orders read', detail: 'page.visited, a screenshot of each page', tone: 'ok' },
         { time: 'Wed 07:00', text: 'Same browser, still signed in, no code asked', tone: 'ok' },
-        { time: 'Fri 07:00', text: 'The portal shows a CAPTCHA', detail: 'Stopped, with the page kept in the log', tone: 'fail' },
+        { time: 'Fri 07:00', text: '2 order prices changed overnight', detail: 'Flagged to the buyer, with both pages kept', tone: 'late' },
       ],
       foot: 'Example: Harrow, its supplier portal and the orders are invented.',
     },
@@ -146,11 +146,11 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'stops', text: 'Where should a browser agent stop?' },
     {
       kind: 'p',
-      text: 'Some steps exist to check that a person is present or to make a commitment, and a browser agent should hand them back. Claude’s computer use documentation advises a dedicated virtual machine or container, with account login details kept away from the model. It also advises asking a person to confirm steps with real-world consequences, “such as accepting cookies, completing financial transactions, or agreeing to terms of service”. And it warns that instructions on a web page can override yours, a risk known as prompt injection.',
+      text: 'Some steps make a commitment, and a browser agent should hand them back. Claude’s computer use documentation advises a dedicated virtual machine or container, with account login details kept away from the model. It also advises asking a person to confirm steps with real-world consequences, “such as accepting cookies, completing financial transactions, or agreeing to terms of service”. And it warns that instructions on a web page can override yours, a risk known as prompt injection.',
     },
     {
       kind: 'p',
-      text: 'CAPTCHAs, bot blocks and identity checks are a site asking for a person. Some cloud browsers list CAPTCHA solving: on 22 November 2026, Browserbase listed it from its Developer plan, Browser Use listed it as included and Steel priced it per 1,000 solves. Whether an agent may get round one turns on the site’s terms and, in some places, on computer misuse law. [Can AI agents log in to websites?](/blog/can-ai-agents-log-in-to-websites) sets out that law for the US and the UK. Payment needs the customer’s own payment method and their say-so. Nothing here is legal advice.',
+      text: 'What an agent may do on another company’s site turns on that site’s terms and, in some places, on computer misuse law. [Can AI agents log in to websites?](/blog/can-ai-agents-log-in-to-websites) sets out that law for the US and the UK. Payment needs the customer’s own payment method and their say-so. Nothing here is legal advice.',
     },
 
     { kind: 'h2', id: 'libraries', text: 'Libraries that drive the browser' },
@@ -210,7 +210,7 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Browser Use](' +
           BU_PRICING +
-          ') runs agents that complete tasks in a browser, with an open source harness under the MIT licence and cloud browsers billed by the hour. Its pricing page lists up to 1,000 browsers at once on pay as you go, with CAPTCHA solving included.',
+          ') runs agents that complete tasks in a browser, with an open source harness under the MIT licence and cloud browsers billed by the hour. Its pricing page lists up to 1,000 browsers at once on pay as you go.',
         '**Price as listed:** $0 a month, pay as you go, with credits from $5. Browsers $0.06 an hour, home IP proxy traffic $5 a GB, and its bu-ultrafast agent about $0.006 for a median task.',
         '**Where it stops:** its pricing page doesn’t describe keeping logins between sessions or handling login codes, and proxy traffic is billed per GB.',
         '**Best for:** many short browser tasks at a low hourly rate.',
@@ -268,7 +268,7 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** [Browserbase](' +
           BB_PRICING +
-          ') hosts browsers for agents, with automatic CAPTCHA solving and basic stealth from its Developer plan, 25 browsers at once on Developer and 100 on Startup. [Obsession vs Browserbase](/compare/obsession-vs-browserbase) sets the two side by side.',
+          ') hosts browsers for agents, with basic stealth from its Developer plan, 25 browsers at once on Developer and 100 on Startup. [Obsession vs Browserbase](/compare/obsession-vs-browserbase) sets the two side by side.',
         '**Price as listed:** Free with 1 browser hour. Developer $20 a month with 100 hours, then $0.12 an hour and $12 a GB past 1 GB of proxies. Startup $99 with 500 hours, then $0.10 an hour and $10 a GB past 5 GB. Scale is custom.',
         '**Where it stops:** Free sessions last 15 minutes with 7 days of data kept, and proxy traffic is billed per GB past each plan’s allowance.',
         '**Best for:** teams running many sessions in parallel with Stagehand or Playwright.',
@@ -282,7 +282,7 @@ export const post: BlogPost = {
         '**What it does well:** [Steel](' +
           STEEL_PRICING +
           ') hosts browser sessions at $0.10 an hour on Launch and $0.08 on Scale. Its Enterprise plan runs 1,000 or more sessions at once, each up to 24 hours.',
-        '**Price as listed:** Launch $0 plus usage, with $30 of credits once. Scale $250 a month plus usage, with $100 of credits a month. Enterprise is custom. Proxies $10 or $6 a GB, and CAPTCHA solves $3 or $1 per 1,000.',
+        '**Price as listed:** Launch $0 plus usage, with $30 of credits once. Scale $250 a month plus usage, with $100 of credits a month. Enterprise is custom. Proxies $10 or $6 a GB.',
         '**Where it stops:** sessions end at 15 minutes on Launch and 1 hour on Scale, and its pricing page doesn’t mention saved logins.',
         '**Best for:** long sessions at volume on a plan priced by the hour.',
       ],
@@ -316,7 +316,7 @@ export const post: BlogPost = {
         '**Tree or screenshots?** The accessibility tree suits standard web pages at a lower token cost. Screenshots suit canvas pages and desktop apps.',
         '**How many browsers at once, and the bill?** Multiply browser hours by the hourly rate, then add proxy traffic per GB where the plan charges for it. At $0.10 an hour, an agent working 2 hours a day uses about $6 of browser time a month, so 10 agents cost about $60 and 10,000 about $60,000. Watch cost per task beside task success rate, since a cheap browser that loses its login every night pays for it in failed runs.',
         '**Can your team check what the agent saw?** A screenshot or saved page for each step shows what was on screen, and when.',
-        '**Where does it stop?** Decide before launch which steps hand back to a person: CAPTCHAs, identity checks, payments and anything that accepts terms.',
+        '**Where does it stop?** Decide before launch which steps hand back to a person: payments, approvals and anything that accepts terms.',
       ],
     },
 
@@ -331,7 +331,7 @@ export const post: BlogPost = {
       caption: 'Browser automation tools for AI agents, from each provider’s own pages, as listed on 22 November 2026. Prices in US dollars',
       cols: ['Option', 'What it does well', 'Price', 'Where it stops', 'Best for'],
       rows: [
-        ['By hand: a person in the portal', 'Reads any screen, passes any check', 'Staff hours', 'Hours grow with every portal and login', '1 or 2 portals, checked weekly'],
+        ['By hand: a person in the portal', 'Reads any screen and makes any decision', 'Staff hours', 'Hours grow with every portal and login', '1 or 2 portals, checked weekly'],
         ['Playwright', 'Isolated contexts, saved sign-in state', 'Free', 'Hosting, codes and renewals are yours', 'Your own agent or test suite'],
         ['Puppeteer', 'Chrome or Firefox over the DevTools Protocol', 'Free', 'No planning layer', 'Node.js teams on Chrome'],
         ['Selenium', 'W3C WebDriver in six languages', 'Free', 'Built for testing, no agent layer', 'Teams with Selenium suites'],
@@ -339,14 +339,14 @@ export const post: BlogPost = {
         ['Stagehand', 'Act, observe and extract in plain language', 'Not listed', 'Hosting comes from its browser', 'Plain-language steps beside code'],
         ['Playwright MCP', 'Accessibility tree, persistent profile', 'Free', 'One browser per profile', 'MCP clients that need a browser'],
         ['Claude’s computer use', 'Desktop control by screenshot', 'Token rates\n1,000 to 1,800 tokens a screenshot', 'Your sandbox, a person on key steps', 'Desktop apps and canvas pages'],
-        ['Browserbase', 'Hosted sessions, CAPTCHA solving from Developer', 'Free, 1 hour\n$20 or $99 a month\nCustom', '15 minute sessions on Free', 'Many parallel sessions'],
+        ['Browserbase', 'Hosted sessions, basic stealth from Developer', 'Free, 1 hour\n$20 or $99 a month\nCustom', '15 minute sessions on Free', 'Many parallel sessions'],
         ['Steel', 'Hosted sessions up to 24 hours on Enterprise', '$0 or $250 a month plus usage\n$0.08 to $0.10 an hour', '15 minutes on Launch, 1 hour on Scale', 'Long sessions at volume'],
         ['Cloudflare Browser Rendering', 'Browsers on Cloudflare’s network', 'Free, 10 minutes a day\n$0.09 an hour past 10', 'Saved logins not on its pricing page', 'Teams on Cloudflare Workers'],
         [
           'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Personas](/personas)',
           'A browser that keeps its logins for weeks, with the agent’s own inbox and number for every code',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at CAPTCHAs, bot blocks and identity checks; pays only with the customer’s own card',
+          'Pays only with the customer’s own card',
           'Agents that work in portals for weeks',
         ],
       ],
@@ -404,7 +404,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can a browser agent solve CAPTCHAs?',
-          a: 'Some cloud browsers list CAPTCHA solving: on 22 November 2026, Browserbase from its Developer plan, Browser Use as included and Steel per 1,000 solves. A CAPTCHA is a site asking for a person, so read its terms first. Obsession’s browser stops at every CAPTCHA, bot block and identity check, and keeps the page in the event log.',
+          a: 'Some cloud browsers list it: on 22 November 2026, Browserbase from its Developer plan, Browser Use as included and Steel per 1,000 solves. Read the site’s terms first. Obsession’s browser signs in with the logins you give it and stays signed in for weeks, and each login code reaches the agent’s own inbox or number.',
           link: { label: 'What every agent keeps to', to: '/agents' },
         },
         {

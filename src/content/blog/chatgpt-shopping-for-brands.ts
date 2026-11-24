@@ -329,7 +329,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every persona says it’s an AI when it talks to a person, and none gets round a CAPTCHA or a bot block, as the [agents page](/agents) sets out. The wider case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
+      text: 'Every persona says it’s an AI when it talks to a person and never uses fake payment details, as the [agents page](/agents) sets out. The wider case for a brand is in [AI agents for ecommerce](/blog/ai-customers-for-ecommerce-brands).',
     },
     {
       kind: 'cta',

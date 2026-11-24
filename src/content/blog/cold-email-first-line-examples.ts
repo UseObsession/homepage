@@ -416,7 +416,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking), [Trial teardown](/blueprints/trial-teardown)',
           'Keeps what each account sends a new customer: emails, texts, chat answers, trial emails, the platform that sent each email',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'History starts the day a persona signs up\nStops before payment and at any identity check',
+          'History starts the day a persona signs up\nStops before payment unless given your card',
           'First lines about the prospect’s own customers, for every account on the list',
         ],
       ],
@@ -473,7 +473,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is it legal to sign up to a prospect’s store to write a first line?',
-          a: 'Signing up as any customer can, in your own name, is how most teams test a public sign-up, though each site’s terms and the law where you are decide what is allowed. Never enter details that aren’t true, and never go past an identity check. This is general information, not legal advice.',
+          a: 'Signing up as any customer can, in your own name, is how most teams test a public sign-up, though each site’s terms and the law where you are decide what is allowed. Never enter details that aren’t true. This is general information, not legal advice.',
           link: { label: 'Is it legal to mystery shop competitors?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
         },
         {

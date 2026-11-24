@@ -62,7 +62,7 @@ export const post: BlogPost = {
       runs: [
         { label: 'RPA bot', answer: 'Its selector for Track no longer matches. The run stops at the first shipment and the queue waits for a developer.', verdict: { tone: 'fail', text: 'Stopped' } },
         { label: 'AI agent', answer: 'Finds Track under the new menu, reads all 340 statuses and saves a screenshot of each.', verdict: { tone: 'ok', text: 'Done' } },
-        { label: 'Either, at a CAPTCHA', answer: 'Stops there and leaves the step for a person on your team.', verdict: { tone: 'info', text: 'Handed back' } },
+        { label: 'Either, at a payment page', answer: 'Stops there and leaves the step for a person on your team.', verdict: { tone: 'info', text: 'Handed back' } },
       ],
       foot: 'Example: Keelson, a freight broker, its carrier portal and the counts are invented.',
     },
@@ -200,7 +200,7 @@ export const post: BlogPost = {
         '**Count the breaks.** Pull 90 days of failed runs for each bot and the hours spent repairing it. A pass is a list of bots ranked by repair hours.',
         '**Pick one portal job with a clear finish,** such as reading claim status or downloading an invoice. A pass is a job whose result fits one row per case.',
         '**Run the agent beside the bot for 2 weeks** on the same cases. A pass is an agent that matches the bot on the cases the bot finished, and finishes the cases it dropped.',
-        '**Set the stops before go-live:** CAPTCHAs, identity checks, payments and submissions. A pass is every stop landing in a named person’s queue, with a screenshot of the page.',
+        '**Set the stops before go-live:** payments, submissions and anything that needs approval. A pass is every stop landing in a named person’s queue, with a screenshot of the page.',
         '**Compare after a month.** Retire the bot when the agent wins on cost per case and straight-through rate. For a revenue cycle team, add denial rate and days in A/R, the days a claim waits for payment.',
       ],
     },
@@ -208,7 +208,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'portals', text: 'What does portal work need from an AI agent?' },
     {
       kind: 'p',
-      text: 'An agent working in another company’s portal needs more than a model. It needs a browser that stays signed in between runs and an inbox and phone number of its own, so each login code reaches it. It also needs a screenshot of every page as a check on what it saw, and firm stops at CAPTCHAs, identity checks and payment. [Browser automation tools for AI agents](/blog/browser-automation-tools-for-ai-agents) compares the libraries, frameworks and cloud browsers that supply the browser, and [can AI agents log in to websites?](/blog/can-ai-agents-log-in-to-websites) covers sessions, codes and the law.',
+      text: 'An agent working in another company’s portal needs more than a model. It needs a browser that stays signed in between runs and an inbox and phone number of its own, so each login code reaches it. It also needs a screenshot of every page as a check on what it saw, and a firm stop before payment. [Browser automation tools for AI agents](/blog/browser-automation-tools-for-ai-agents) compares the libraries, frameworks and cloud browsers that supply the browser, and [can AI agents log in to websites?](/blog/can-ai-agents-log-in-to-websites) covers sessions, codes and the law.',
     },
     {
       kind: 'p',
@@ -271,7 +271,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can an AI agent work in a portal that sends a login code?',
-          a: 'Yes, if the code reaches an inbox or number the agent controls and its browser keeps the login between runs. Obsession gives each agent its own inbox and number for codes and a browser that stays signed in for weeks. It stops at any CAPTCHA or identity check.',
+          a: 'Yes, if the code reaches an inbox or number the agent controls and its browser keeps the login between runs. Obsession gives each agent its own inbox and number for codes and a browser that stays signed in for weeks. It stops before payment unless you give it your card.',
           link: { label: 'Work behind logins', to: '/blueprints/work-behind-logins' },
         },
       ],

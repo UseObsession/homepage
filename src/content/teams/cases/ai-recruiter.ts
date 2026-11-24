@@ -130,7 +130,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Does it tell candidates it’s an AI?',
-        a: 'Yes, on every call, text and email. It stops at any identity check, and the event log keeps what the check asked for.',
+        a: 'Yes, on every call, text and email. It calls and texts only people who gave you their number, and the event log keeps each conversation.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

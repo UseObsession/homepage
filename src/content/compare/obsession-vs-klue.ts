@@ -128,7 +128,7 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Does Klue sign up to competitors’ products?',
-          a: 'Its pages don’t describe it. They describe a Compete Agent, buyer interviews and win-loss stories built from CRM data and call recordings. Obsession’s personas sign up the way any customer can and keep what each competitor shows, from the first screen to the cancel offer. They stop before payment and at any identity check.',
+          a: 'Its pages don’t describe it. They describe a Compete Agent, buyer interviews and win-loss stories built from CRM data and call recordings. Obsession’s personas sign up the way any customer can and keep what each competitor shows, from the first screen to the cancel offer, dated.',
         },
         {
           q: 'Can Obsession replace Klue?',

@@ -159,11 +159,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Identify your agent, and stop where a site says no. Cloudflare’s [Web Bot Auth](' +
+      text: 'Identify your agent. Cloudflare’s [Web Bot Auth](' +
         BOT_AUTH +
         ') lets bots and agents sign their requests with HTTP message signatures, and [Shopify’s Storefront API](' +
         SHOPIFY_STOREFRONT +
-        ') gives signed traffic higher rate limits than unsigned bots. An agent on Obsession never gets round a CAPTCHA or a bot block, and the event log names the step where it stopped.',
+        ') gives signed traffic higher rate limits than unsigned bots.',
     },
 
     { kind: 'h3', id: 'waiting', text: 'Durable waiting' },
@@ -223,7 +223,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The rules hold at any scale. An agent on Obsession says it’s an AI when it talks to a person, stops before payment unless given the customer’s own card, never uses fake payment details, never gets round a CAPTCHA or a bot block and stops at any identity check. It never clicks paid ads at volume, because [Google Ads treats automated clicks as invalid](' +
+      text: 'The rules hold at any scale. An agent on Obsession says it’s an AI when it talks to a person, stops before payment unless given the customer’s own card, never uses fake payment details, and works within a monthly spend limit you set on its key. It never clicks paid ads at volume, because [Google Ads treats automated clicks as invalid](' +
         INVALID_CLICKS +
         ').',
     },
@@ -285,7 +285,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Email](/email), [Phone](/phone), [Browser](/browser) and [Personas](/personas) on one API, an SDK and MCP',
           'An inbox, a number and a browser under one identity\nFree while it waits\nEvery email, text and page as an event',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at any CAPTCHA, identity check and payment, unless given your own card',
+          'Stops before payment unless given your own card',
           'Agents that need to be a real customer at many companies',
         ],
       ],
@@ -366,7 +366,6 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**A bot wall, a CAPTCHA or an identity check stops it,** and the event log names the step where it stopped.',
         '**A new customer sees what new customers get.** Long standing customers may receive other emails and other inbox placement.',
         '**It keeps what arrives.** Why a company sent something sits in that company’s own systems.',
         '**Some journeys need a real purchase,** and the agent stops before payment unless given its owner’s own card.',

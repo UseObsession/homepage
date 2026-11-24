@@ -569,7 +569,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Microsoft’s post would not load directly, so we read it through a text reader. Milled’s pricing page showed a bot check on 23 October, so its prices are as the search result for that page showed them that day, and the Internet Archive’s copy of the page from 10 February 2026 shows them as the monthly cost of a yearly plan. MailCharts’ pricing link now leads to Litmus’s contact sales page, and Validity’s Everest page now presents Validity Engage. Netalico’s page marked its $1,000 audit as sold out. The r/Klaviyo and r/agency threads were checked live on 3 October 2026. We did not run any of the tools in the table. harbourline.example, its competitors and every figure in the 2 illustrations and the worked example are invented.',
+      text: 'Microsoft’s post would not load directly, so we read it through a text reader. Milled’s pricing page would not load on 23 October, so its prices are as the search result for that page showed them that day, and the Internet Archive’s copy of the page from 10 February 2026 shows them as the monthly cost of a yearly plan. MailCharts’ pricing link now leads to Litmus’s contact sales page, and Validity’s Everest page now presents Validity Engage. Netalico’s page marked its $1,000 audit as sold out. The r/Klaviyo and r/agency threads were checked live on 3 October 2026. We did not run any of the tools in the table. harbourline.example, its competitors and every figure in the 2 illustrations and the worked example are invented.',
     },
   ],
 

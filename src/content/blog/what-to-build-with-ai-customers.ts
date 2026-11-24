@@ -316,7 +316,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Email](/email), [Phone](/phone), [Browser](/browser), [Sandbox](/sandbox) and [Personas](/personas)',
           'Every piece on one key, webhook and bill\nPersonas that wait free for weeks',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment unless given your own card\nNever gets round a CAPTCHA',
+          'Stops before payment unless given your own card',
           'Builds that need several pieces under one identity, for weeks',
         ],
       ],
@@ -330,7 +330,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**An agent on Obsession never gets round a CAPTCHA or a bot block, and stops at any identity check.** The event log keeps the step where it stopped.',
+        '**An agent on Obsession stops before payment unless given your own card.** The event log keeps the basket and every step before it.',
         '**A new customer sees what new customers get.** Long standing customers can receive other emails and other inbox placement.',
         '**Some builds need a real purchase.** The agent stops before payment unless it is given the team’s own card.',
         '**It keeps what a company sends and shows.** Why the company sent it sits in that company’s own systems.',

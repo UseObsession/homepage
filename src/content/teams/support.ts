@@ -148,7 +148,7 @@ export const team: TeamPage = {
       },
       {
         q: 'Does it say it’s an AI?',
-        a: 'Yes, whenever it talks to a person, on chat, phone, email or text. It stops before payment and at any identity check, and never gets round a CAPTCHA or a bot block.',
+        a: 'Yes, whenever it talks to a person, on chat, phone, email or text. It stops before payment, and signs in only with the logins you give it.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
     ],

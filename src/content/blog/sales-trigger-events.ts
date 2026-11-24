@@ -412,7 +412,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Account watch](/blueprints/account-watch), [Prospect intelligence](/blueprints/prospect-intelligence), [Price watch](/blueprints/price-watch)',
           'What each target account sends a customer, each dated: offers, prices, emails, texts, support answers, the email platform',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'History starts the day a persona signs up\nStops before payment and at any identity check',
+          'History starts the day a persona signs up\nStops before payment unless given your card',
           'Triggers in what an account sends its customers, for as long as you follow it',
         ],
       ],
@@ -428,7 +428,7 @@ export const post: BlogPost = {
       items: [
         '**A trigger is a reason to reach out, never a signed deal.** Weigh it with fit, intent and what the account says on the first call.',
         '**One customer profile sees one customer’s view.** A US subscriber sees what the account shows US subscribers. Record the profile and the country with every trigger.',
-        '**A persona stops before payment unless it is given your own card, and stops at any identity check.** Emails after a first order stay with real customers and your own customer research.',
+        '**A persona stops before payment unless it is given your own card.** Emails after a first order stay with real customers and your own customer research.',
         '**Read each site’s terms first.** Nothing here is legal advice.',
       ],
     },

@@ -396,7 +396,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Account watch](/blueprints/account-watch), [Prospect intelligence](/blueprints/prospect-intelligence), [Email](/email)',
           'What each account sends its own customers, dated, as CRM fields',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at any identity check and before payment',
+          'Stops before payment unless given your card',
           'Behaviour fields that route and score',
         ],
       ],

@@ -229,7 +229,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The outside world sets its own pace. Cap concurrency per domain so sign ups arrive at a customer’s pace, and record a CAPTCHA or bot wall as a step the agent couldn’t test, never one it gets round. Where 2 users follow the same company, 1 shared agent can give the second user the history the first one built.',
+      text: 'The outside world sets its own pace. Cap concurrency per domain so sign ups arrive at a customer’s pace, and keep every step with its time. Where 2 users follow the same company, 1 shared agent can give the second user the history the first one built.',
     },
 
     { kind: 'h3', id: 'learn-once', text: '5. Learning a site once and running it as code' },
@@ -473,7 +473,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Personas](/personas), [Email](/email), [Phone](/phone), [Browser](/browser), [Sandbox](/sandbox)',
           'An inbox, a number and a browser per agent, under one identity\nFree while it waits, awake in about 50 ms\nEvery event in one log, with replay',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at bot walls, CAPTCHAs and identity checks',
+          'Stops before payment unless given your card',
           'Agents that stay a customer of many companies, every event kept',
         ],
       ],

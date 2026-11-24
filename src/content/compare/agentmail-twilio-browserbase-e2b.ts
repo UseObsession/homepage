@@ -150,7 +150,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): email, phone, messaging, browser, sandbox, personas',
           'Every piece under one identity, with one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Agents that need more than one piece',
         ],
       ],
@@ -275,7 +275,7 @@ export const ref: ReferencePage = {
         },
         {
           q: 'What will an Obsession agent never do?',
-          a: 'It says it’s an AI when it talks to a person. It stops before payment unless given the customer’s own card, and never uses fake payment details. It never gets round a CAPTCHA or a bot block, stops at any identity check, and never clicks paid ads at volume.',
+          a: 'It says it’s an AI when it talks to a person. It stops before payment unless given the customer’s own card, and never uses fake payment details or clicks paid ads at volume. Each agent signs in only with the logins you give it and works within a monthly spend limit you set on its key. Enterprise adds an account per team and SSO.',
           link: { label: 'Every line an agent keeps', to: '/agents' },
         },
       ],

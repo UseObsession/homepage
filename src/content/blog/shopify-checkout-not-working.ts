@@ -28,7 +28,7 @@ import type { BlogPost } from './types'
    store theme; Editing theme code. Shoptest's App Store listing and Checkly's pricing page opened the same day.
    Obsession is described in the live pages' words: the line with the uses, the definition word for word, the Website audit recipe
    and the store leak checks page, the 1,500 line word for word, 300, 1,000 or 5,000 brands a month and built for
-   millions, the /agents words, the CAPTCHA line, flexible reading times, credit-based plans like Claude's, and the store
+   millions, the /agents words, flexible reading times, credit-based plans like Claude's, and the store
    offer in the site's words. ashcombe.example and everything in both pictures are invented, and the cost table is worked
    from the floor of each revenue band. No store, brand, agency or person we've worked with is named. No Gartner, PilotX
    figure, 93% or 128 stores. No dashes. */
@@ -350,11 +350,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '[Competitor tracking](/blueprints/competitor-tracking) runs the same checks at competitors’ stores, so the store’s team sees every welcome offer, price and reminder a competitor sends its new customers. The team reads the results at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants. A CAPTCHA is the puzzle a site shows to stop automated visitors. Where a store puts a CAPTCHA or a bot check in front of a step, the event log names the step it couldn’t reach.',
+      text: '[Competitor tracking](/blueprints/competitor-tracking) runs the same checks at competitors’ stores, so the store’s team sees every welcome offer, price and reminder a competitor sends its new customers. The team reads the results at 4, 12, 24 or 48 hours, or keeps watching for as long as it wants.',
     },
     {
       kind: 'p',
-      text: 'Every persona says it’s an AI when it talks to a person, stops before payment unless given the customer’s own card, never uses fake payment details and never gets round a CAPTCHA or a bot block. It keeps every email and page in the event log exactly as it arrived, as the [agents page](/agents) sets out. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, with a persona waiting at each store between runs.',
+      text: 'Every persona says it’s an AI when it talks to a person, stops before payment unless given the customer’s own card and never uses fake payment details. It keeps every email and page in the event log exactly as it arrived, as the [agents page](/agents) sets out. Obsession runs these checks at 300, 1,000 or 5,000 brands a month, with a persona waiting at each store between runs.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to catch a broken Shopify checkout, compared', compare: true },

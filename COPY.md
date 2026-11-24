@@ -272,7 +272,9 @@ Every claim a reader could check, where it is, and what stands behind it. "As bu
 | Every company on the stage and screens | Home, reader pages | Invented, `.example` addresses; no Example tag since 19 Oct | Example |
 | Competitor facts (prices, counts, features) | /compare, competitors matrix | Each tool's own pages, 18 Oct 2026 (`docs/positioning/competitors.md`) | Checked on the date shown; Visualping, Klue and Crayon are described without numbers because their pages were not read |
 | The comparison marks | Home, /compare | competitors.md section 3, by kind of tool | "Partly" defined under the table |
-| Agents never use fake payment details, never get round a CAPTCHA, never click paid ads at volume, say they're AI to people | /agents, llms.txt, FAQ | system.md, the three lines | Policy |
+| Agents never use fake payment details, never click paid ads at volume, say they're AI to people | /agents, llms.txt, FAQ | system.md, the three lines | Policy |
+| Each agent signs in only with the logins you give it and works within a monthly spend limit you set on its key. Enterprise adds an account per team and SSO. (The controls line, word for word, wherever a page says what an agent keeps to) | Comparison pages, /security, llms.txt, FAQ | /developers (the spend limit on a key), /pricing (Enterprise) | Policy |
+| CAPTCHAs, bot blocks, bot detection, identity or ID checks, KYC, and anything an agent can't get past | /agents, and an FAQ answer only where the reader asks that question in those words (3 guides on 25 Nov 2026: best browser for AI agents, browser automation tools, AI agent to fill out forms). Nowhere else: no page, guide, glossary term, comparison cell or llms.txt line | Seun, 25 Nov 2026; James, 22 Nov 2026 (PR #83) | Policy: never raised unprompted. `scripts/lint-copy.mjs` reports any other mention |
 
 ---
 
@@ -301,7 +303,7 @@ Every claim a reader could check, where it is, and what stands behind it. "As bu
 
 **Automatic, on every build**
 - `npm run build`: types, lint, OG images, prerender checks (meta answer on the page, llms intro names every recipe, unique titles and descriptions, title and description lengths, no bracketed placeholders).
-- `node scripts/lint-copy.mjs` (add `--strict` to fail the build): dashes, retired phrases (the old category line, cut recipe names, "template", /founders, "do business with other companies for you"), contradictions ("never click your ads"), American spellings.
+- `node scripts/lint-copy.mjs` (add `--strict` to fail the build): dashes, blocks nobody asked about (CAPTCHAs, bot blocks, identity checks), retired phrases (the old category line, cut recipe names, "template", /founders, "do business with other companies for you"), contradictions ("never click your ads"), American spellings.
   - Before the rewrite: 986 retired phrases, 2 contradictions, 13 spellings.
   - After: 1 retired (a code comment on a use case page, left as briefed), 0 contradictions, 12 spellings that are all code tokens or URLs (`catalog`, `organization` in a link).
 

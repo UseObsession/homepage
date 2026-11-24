@@ -11,8 +11,8 @@ import type { Recipe } from '../types'
    reordering system" (Google suggestions, 23 Nov); "ai procurement agent", "ai buying agent" and "agentic ai
    procurement" stay with the purchasing guide (article 5), which this page should link once it ships. Rules kept: it
    signs in only with supplier accounts the customer owns, pays only with the card the customer gives it and stops
-   before payment without one; a bank check waits for the cardholder; it stops at any identity check; a CAPTCHA or bot
-   block stops the order and is reported; it says it's an AI to a person. No competitor or competitor's customer is
+   before payment without one; a bank check waits for the cardholder; a step that needs a person goes to one;
+   it says it's an AI to a person. No competitor or competitor's customer is
    named. */
 
 export const recipe: Recipe = {
@@ -139,7 +139,7 @@ obsession.on('email.received', async (e) => {
       items: [
         { title: 'Your accounts', line: 'It signs in only with supplier accounts your company owns.' },
         { title: 'Payment', line: 'It pays only with the card you give it, and stops before payment without one. When the card’s bank asks for approval, the order waits for the cardholder.' },
-        { title: 'Identity and bot checks', line: 'It stops at any identity check and never gets round a CAPTCHA or a bot block. That order goes to a person with the screenshot.' },
+        { title: 'Steps for your team', line: 'An order that needs someone on your team goes to them with the basket, the page and its screenshot.' },
         { title: 'People', line: 'When it writes to a supplier, it says it’s an AI ordering for your company.' },
       ],
     },
@@ -199,7 +199,7 @@ obsession.on('email.received', async (e) => {
       },
       {
         q: 'Whose supplier accounts does it use?',
-        a: 'Only accounts your company owns. Each supplier’s login codes reach the persona’s own inbox or number, so ordering never waits on one person’s phone. It stops at any identity check and never gets round a CAPTCHA or a bot block.',
+        a: 'Only accounts your company owns. Each supplier’s login codes reach the persona’s own inbox or number, so ordering never waits on one person’s phone.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

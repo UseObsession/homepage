@@ -5,7 +5,7 @@ import { ENTITY } from '../site'
 /* /compare/obsession-vs-browserbase (22 Nov 2026 rewrite, the pieces position). Browserbase's facts: its home and
    identity pages as read for _research/commercial-view-21nov/research/B_browsers_web_agents.json (21 Nov 2026), its
    pricing page re-read 22 Nov 2026. The angle: the browser piece against theirs, home connection included with no
-   charge per GB, then the inbox and number for every login code, under one identity. Its CAPTCHA claim is stated as its
+   charge per GB, then the inbox and number for every login code, under one identity. Its claims are stated as its
    own; Obsession's lines are /agents'. Obsession's prices come from prices.ts. */
 
 const BB = 'https://www.browserbase.com/'
@@ -21,7 +21,7 @@ export const ref: ReferencePage = {
     path: '/compare/obsession-vs-browserbase',
     title: 'Obsession vs Browserbase (2026): browsers or the whole agent',
     description: `Obsession vs Browserbase: both give AI agents a cloud browser. Obsession’s is ${prices.browser.amount} an hour, no charge per GB, with an inbox and number for codes.`,
-    answer: `Browserbase and Obsession both give AI agents a cloud browser that your code drives and that keeps its logins. Browserbase adds search, fetch and tools to get past bot checks. Obsession adds the agent’s own inbox and phone number for every login code, under one identity. Its browser hour is ${prices.browser.amount}, home connection included, with no charge per GB.`,
+    answer: `Browserbase and Obsession both give AI agents a cloud browser that your code drives and that keeps its logins. Browserbase adds search, fetch and session replays. Obsession adds the agent’s own inbox and phone number for every login code, under one identity. Its browser hour is ${prices.browser.amount}, home connection included, with no charge per GB.`,
     ogImage: '/og/compare-obsession-vs-browserbase.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -60,7 +60,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: `[Its identity page](${BB_IDENTITY}) lists Web Bot Auth, a signature that tells a site which company’s agent is visiting. It also lists logins through 1Password and a Contexts API that keeps a session’s logins between runs. The home page says Agent Identity gets agents “past anti-bot systems, CAPTCHAs, and authentication walls”. Its pages don’t describe an email inbox or a phone number for the agent.`,
+      text: `[Its identity page](${BB_IDENTITY}) lists Web Bot Auth, a signature that tells a site which company’s agent is visiting. It also lists logins through 1Password and a Contexts API that keeps a session’s logins between runs. Its paid plans add stealth modes. Its pages don’t describe an email inbox or a phone number for the agent.`,
     },
     {
       kind: 'p',
@@ -87,7 +87,7 @@ export const ref: ReferencePage = {
       rows: [
         [
           'Browserbase: Browsers, Stagehand, Search, Fetch, Sandboxes, Agent Identity',
-          'Browsers at high volume, with logins kept, session replays and tools for bot checks',
+          'Browsers at high volume, with logins kept, session replays and stealth modes',
           'Free: 1 browser hour\nDeveloper $20 a month\nStartup $99 a month\nProxy data $10 to $12 a GB',
           'No email inbox or phone number on its pages',
           'Agents that live in the browser',
@@ -96,7 +96,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): Browser, Email, Phone, Messaging, Sandbox, Personas',
           'A browser that stays signed in, plus the inbox and number for every code',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Never gets round a CAPTCHA or a bot block',
+          'Stops before payment unless given your card',
           'Agents that sign up, confirm a code and come back',
         ],
       ],
@@ -106,7 +106,7 @@ export const ref: ReferencePage = {
     {
       kind: 'list',
       items: [
-        '**Use Browserbase** when your agent lives in the browser at high volume and needs tools to get past bot checks and CAPTCHAs, which its pages describe.',
+        '**Use Browserbase** when your agent lives in the browser at high volume and needs search, fetch and session replays beside it.',
         '**Use Obsession** when the agent also needs its own email address and phone number. It signs up, reads the confirmation code and comes back next week still signed in.',
         '**Watch the bill per GB.** A browser agent that loads heavy pages pays for proxy data on Browserbase past its plan. On Obsession the home connection is part of the hour.',
       ],
@@ -124,7 +124,7 @@ export const ref: ReferencePage = {
     {
       kind: 'note',
       title: 'What every Obsession agent keeps to',
-      text: 'It says it’s an AI when it talks to a person. It stops before payment unless given the customer’s own payment card, and never uses fake payment details. It never gets round a CAPTCHA or a bot block, stops at any identity check and never clicks paid ads at volume. The full lines are on [the page for companies an agent visits](/agents).',
+      text: 'Each agent signs in only with the logins you give it and works within a monthly spend limit you set on its key. Enterprise adds an account per team and SSO. Every agent says it’s an AI when it talks to a person, stops before payment unless given the customer’s own payment card, never uses fake payment details and never clicks paid ads at volume. The full lines are on [the page for companies an agent visits](/agents).',
     },
 
     {
@@ -132,7 +132,7 @@ export const ref: ReferencePage = {
       items: [
         {
           q: 'Is Obsession a Browserbase alternative?',
-          a: 'For the browser, yes. Both give an AI agent a cloud browser that keeps its logins. Obsession adds the agent’s own inbox and phone number on the same key. If your agent must get past CAPTCHAs or bot checks, Browserbase describes tools for that, and an Obsession agent never does it.',
+          a: 'For the browser, yes. Both give an AI agent a cloud browser that keeps its logins. Obsession adds the agent’s own inbox and phone number on the same key. For search and fetch APIs or session replays on the same account, Browserbase describes them on its pages.',
         },
         {
           q: 'Does Browserbase charge for proxy data?',

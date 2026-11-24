@@ -136,7 +136,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): Trial teardown and Competitor tracking blueprints',
           'A persona in each trial: limits, emails, prompts, offers',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Evidence of what competitors show new users',
         ],
       ],

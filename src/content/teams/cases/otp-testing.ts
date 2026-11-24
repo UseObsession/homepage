@@ -6,8 +6,8 @@ import type { TeamPage } from '../types'
    login code after each release, on real US and UK numbers and inboxes, with a browser that keeps the session after the
    code. Modelled on the testing pattern in the Product Marketing book, job 2 (QA personas that wait for codes and day-7
    emails; login codes and alerts tested end to end in more countries) and Commercial View research C. Persona: QA leads
-   and auth engineers, measured on escaped defects, time to detect and test coverage. Never gets round a CAPTCHA or an
-   identity check. Ledgerly is invented, at a .example address. */
+   and auth engineers, measured on escaped defects, time to detect and test coverage.
+   Ledgerly is invented, at a .example address. */
 
 const path = '/use-cases/otp-testing'
 
@@ -133,8 +133,8 @@ export const useCase: TeamPage = {
         link: { label: 'Test sign-up and agents', to: kitPathOf.test },
       },
       {
-        q: 'Does it get past CAPTCHAs or identity checks?',
-        a: 'No. It never gets round a CAPTCHA or a bot block, and it stops at any identity check. The event log keeps what the check asked for.',
+        q: 'What happens at a step that needs a person?',
+        a: 'The event log keeps the page, what it asked for and a screenshot, so a failed run names the exact step.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

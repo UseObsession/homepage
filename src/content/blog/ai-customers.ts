@@ -11,7 +11,7 @@ import type { BlogPost } from './types'
    Obsession appears once in the body (who uses AI customers) and in the cta blocks, in the words of its live pages.
    Sources: the verified library in _research/seo/plan/ai-customers/facts.json (24 Oct 2026) and facts already checked in
    live articles (Klaviyo's 2026 benchmarks, Joy Joya's 362 brand test, Bain, T-ROC, Gmail's sender guidelines).
-   Gartner's pages were behind a bot wall on 24 Oct, so machine customers are defined from CMSWire's 18 Feb 2026 piece,
+   Gartner's pages could not be read on 24 Oct, so machine customers are defined from CMSWire's 18 Feb 2026 piece,
    and ChatGPT agent (retired by OpenAI in Oct 2026) gives way to ChatGPT's cloud browser. The store in the illustration is invented. No dashes.
    22 Nov 2026 (the toolkit position): retitled in place to "AI agents as customers"; a persona on Obsession does the job. */
 
@@ -28,7 +28,6 @@ const MILLED = 'https://milled.com/'
 const AI_ACT = 'https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50'
 const AI_ACT_113 = 'https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-113'
 const INVALID_CLICKS = 'https://support.google.com/google-ads/answer/42995?hl=en'
-const BOT_AUTH = 'https://blog.cloudflare.com/signed-agents/'
 const GMAIL_SENDERS = 'https://support.google.com/a/answer/81126?hl=en'
 
 export const post: BlogPost = {
@@ -115,7 +114,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'identity', text: 'A real identity' },
     {
       kind: 'p',
-      text: 'A persona has its own [inbox](/email), [phone number](/phone) and [browser](/browser), created for it. It signs up through the same public forms any customer uses, so it receives what any new customer receives. It never uses a real person’s identity, and it stops at any identity check.',
+      text: 'A persona has its own [inbox](/email), [phone number](/phone) and [browser](/browser), created for it. It signs up through the same public forms any customer uses, so it receives what any new customer receives. It never uses a real person’s identity.',
     },
     { kind: 'h3', id: 'time', text: 'Time' },
     {
@@ -230,10 +229,7 @@ export const post: BlogPost = {
           AI_ACT_113 +
           ').',
         '**It stops before payment unless it is given the customer’s own card,** and never uses fake payment details.',
-        '**It never gets round a CAPTCHA or a bot block,** and never disguises itself to pass one. The event log names the step where it stopped. Standards for AI agents to identify themselves to websites, such as [Cloudflare’s Web Bot Auth](' +
-          BOT_AUTH +
-          '), point the same way.',
-        '**It stops at any identity check,** and the event log keeps what the check asked for.',
+        '**It signs in only with the logins its team gives it,** and never invents identity details.',
         '**It never clicks paid ads at volume.** [Google’s Ads policy](' +
           INVALID_CLICKS +
           ') counts clicks from automated tools as invalid traffic.',
@@ -274,7 +270,6 @@ export const post: BlogPost = {
       items: [
         '**A new customer sees what new customers get.** Long standing, engaged subscribers can receive different emails and different inbox placement.',
         '**It keeps outputs.** Why a flow didn’t send sits inside the company’s own tools, which an outside customer can’t read.',
-        '**It stops where a site says no to machines,** and the event log names the step.',
         '**An email proves more than a screenshot.** An authenticated email shows who sent it. A page capture shows what a page displayed at a moment.',
         '**Not every company needs one.** A business that changes rarely and runs no paid traffic can check its sign-up and checkout by hand once a month.',
       ],
@@ -308,7 +303,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is it legal to send an AI agent as a customer?',
-          a: 'An agent on Obsession signs up through public forms as any customer can and says it’s an AI when it talks to a person. It uses no fake payment details, stops at any identity check and never gets round a CAPTCHA or a bot block. The rules differ by country and by use, so take legal advice for your case.',
+          a: 'An agent on Obsession signs up through public forms as any customer can and says it’s an AI when it talks to a person. It uses no fake payment details and signs in only with the logins its team gives it. The rules differ by country and by use, so take legal advice for your case.',
         },
         {
           q: 'Can an AI agent buy something as a customer?',
@@ -341,7 +336,6 @@ export const post: BlogPost = {
     { title: 'Milled', publisher: 'Milled', url: MILLED },
     { title: 'Article 50: transparency obligations', publisher: 'European Commission, AI Act Service Desk', url: AI_ACT },
     { title: 'Article 113: entry into force and application', publisher: 'European Commission, AI Act Service Desk', url: AI_ACT_113 },
-    { title: 'The age of agents: cryptographically recognizing agent traffic', publisher: 'Cloudflare Blog', url: BOT_AUTH, date: '2025-08-28' },
     { title: 'Invalid clicks: definition', publisher: 'Google Ads Help', url: INVALID_CLICKS },
   ],
   related: ['how-ai-customers-work', 'why-ai-customers-matter', 'hire-ai-customers', 'recipe:mystery-shopper', 'recipe:competitor-tracking', '/sample-output'],

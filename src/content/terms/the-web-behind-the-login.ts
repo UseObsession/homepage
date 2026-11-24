@@ -64,7 +64,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'An Obsession agent signs up as any customer can, says it’s an AI when it talks to a person, goes every step short of paying, never invents identity details and never gets round a CAPTCHA or a bot block ([what every agent keeps to](/agents)). How it compares with search APIs, scrapers and email archives is on [the compare page](/compare), and one real run is in [the sample data](/sample-output).',
+      text: 'An Obsession agent signs up as any customer can, says it’s an AI when it talks to a person, goes every step short of paying and never invents identity details ([what every agent keeps to](/agents)). How it compares with search APIs, scrapers and email archives is on [the compare page](/compare), and one real run is in [the sample data](/sample-output).',
     },
     {
       kind: 'faq',

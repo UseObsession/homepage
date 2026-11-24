@@ -135,7 +135,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): Competitor tracking, Email and SMS tracking and Ad tracking blueprints',
           'A persona at each competitor: emails, texts, offers, member prices',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'The whole customer side, in your tools',
         ],
       ],

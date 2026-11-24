@@ -140,7 +140,7 @@ export const team: TeamPage = {
       },
       {
         q: 'Does the persona say it’s an AI?',
-        a: 'Yes, whenever it talks to a person, and who asked is never shown. It stops before payment and at any identity check.',
+        a: 'Yes, whenever it talks to a person, and who asked is never shown. It stops before payment, and works within a monthly spend limit you set on its key.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
     ],

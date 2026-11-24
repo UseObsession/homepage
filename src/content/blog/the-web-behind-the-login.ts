@@ -135,7 +135,7 @@ export const post: BlogPost = {
         ['Checkout', 'Fees, delivery promises, stock limits, payment options, order and returns emails', 'Delivery £4.95 at the last step'],
         ['Cancel', 'Cancel flows, the offer to stay, renewal and price rise notices, what arrives after an unsubscribe', '50% off for 3 months to stay'],
         ['Chat', 'What a support bot or chatbot tells a customer, word for word, and how long it takes', 'Chat says fixed, terms say variable'],
-        ['A person or an identity check', 'Sales calls and demos, credit checks, identity documents, insurance details', 'Automated collection stops here'],
+        ['A person', 'Sales calls and demos, underwriting and other decisions a person makes', 'A salesperson quotes a price on the call'],
       ],
     },
     {
@@ -300,7 +300,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Every email, text and page lands in one event log, dated, with a screenshot of each page, so a history builds from the first day. Teams who don’t code pick a blueprint such as [competitor tracking](/blueprints/competitor-tracking), [price watch](/blueprints/price-watch) or [trial teardown](/blueprints/trial-teardown), and Obsession runs it. An agent on Obsession says it’s an AI when it talks to a person, never gets round a CAPTCHA or a bot block and stops at any identity check ([the lines every agent keeps](/agents)). Worked examples are in [the web behind the login use case](/use-cases/web-behind-the-login) and [work behind logins](/blueprints/work-behind-logins).',
+      text: 'Every email, text and page lands in one event log, dated, with a screenshot of each page, so a history builds from the first day. Teams who don’t code pick a blueprint such as [competitor tracking](/blueprints/competitor-tracking), [price watch](/blueprints/price-watch) or [trial teardown](/blueprints/trial-teardown), and Obsession runs it. An agent on Obsession says it’s an AI when it talks to a person and stops before payment unless given your card ([the lines every agent keeps](/agents)). Worked examples are in [the web behind the login use case](/use-cases/web-behind-the-login) and [work behind logins](/blueprints/work-behind-logins).',
     },
     {
       kind: 'cta',
@@ -367,7 +367,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Trial teardown](/blueprints/trial-teardown)',
           'A browser that stays signed in for weeks, with an inbox and number that catch every code, email and text, under one persona',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at any identity check, at a CAPTCHA and before payment',
+          'Stops before payment unless given your card',
           'An agent that has to sign up, stay signed in and keep what arrives',
         ],
       ],
@@ -436,7 +436,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is it legal to collect data behind a login?',
-          a: 'Collection stays on the customer’s side of the line when it signs up through public forms as any customer can. It should also say it’s an AI when it talks to a person, use no fake details and never get round a CAPTCHA. Signing in to someone else’s account, or getting past an identity check, crosses it. Laws differ by country and use, so take legal advice for your own case.',
+          a: 'Collection stays on the customer’s side of the line when it signs up through public forms as any customer can. It should also say it’s an AI when it talks to a person and use no fake details. Signing in to someone else’s account crosses it. Laws differ by country and use, so take legal advice for your own case.',
         },
         {
           q: 'How big is the deep web?',

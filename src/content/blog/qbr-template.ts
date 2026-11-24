@@ -356,7 +356,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Account watch](/blueprints/account-watch), [Email and SMS tracking](/blueprints/email-sms-tracking), [Delivery monitoring](/blueprints/delivery-monitoring)',
           'Keeps what each account sends a new customer: emails, texts, support answers and codes, dated with screenshots',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'History starts the day a persona signs up\nStops before payment and at any identity check',
+          'History starts the day a persona signs up\nStops before payment unless given your card',
           'Slides 4 and 6 for every account, every quarter',
         ],
       ],

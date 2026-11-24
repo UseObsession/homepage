@@ -242,8 +242,8 @@ export const post: BlogPost = {
           link: { label: 'See pricing', to: '/pricing' },
         },
         {
-          q: 'What does the agent do at a CAPTCHA or an identity check?',
-          a: 'It stops. An agent on Obsession says it’s an AI when it talks to a person, never gets round a CAPTCHA or a bot block, and stops at any identity check. It stops before payment unless given the customer’s own payment card.',
+          q: 'What limits does the agent keep to?',
+          a: 'An agent on Obsession says it’s an AI when it talks to a person, signs in only with the logins you give it, and works within a monthly spend limit you set on its key. It stops before payment unless given the customer’s own payment card.',
           link: { label: 'How our agents behave', to: '/agents' },
         },
       ],

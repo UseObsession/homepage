@@ -251,7 +251,6 @@ export const post: BlogPost = {
       items: [
         '**A new customer sees what new customers get.** Engaged subscribers and past buyers may receive other emails.',
         '**It records what arrived, and not why.** The cause sits in the company’s own tools.',
-        '**It stops at a bot wall or a CAPTCHA,** and names the step it couldn’t test.',
         '**Some teams can wait.** A team with few competitors, no paid traffic and rare changes covers its questions by hand once a month.',
         '**Client stores need the client’s OK, and prospects get only the public sign up.** This is not legal advice.',
       ],
@@ -283,7 +282,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is it legal to sign up to a competitor’s emails with an AI agent?',
-          a: 'An agent on Obsession uses the public sign up any customer can use, says it’s an AI when it talks to a person, uses no fake payment details and stops at any identity check. Rules differ by country and by use, so take legal advice for your case.',
+          a: 'An agent on Obsession uses the public sign up any customer can use, says it’s an AI when it talks to a person, and uses no fake payment details. Rules differ by country and by use, so take legal advice for your case.',
         },
       ],
     },

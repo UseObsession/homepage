@@ -83,7 +83,7 @@ export const useCase: TeamPage = {
       {
         kit: 'test',
         name: 'Your application, tried as a new applicant',
-        line: 'A persona applies after every release, up to the identity check and never past it, with a screenshot of each step.',
+        line: 'A persona starts an application after every release and keeps each step, with its time and a screenshot.',
         blueprint: 'website-audit',
         pieces: ['personas', 'browser', 'email'],
       },
@@ -174,7 +174,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Does the agent tell customers it’s an AI, and where does it stop?',
-        a: 'Yes, whenever it talks to a person, by phone, text or email. It calls and texts only people who gave you their number, stops at any identity check and never passes one, and stops before payment unless it’s given the customer’s own card.',
+        a: 'Yes, whenever it talks to a person, by phone, text or email. It calls and texts only people who gave you their number, signs in only with the logins you give it, and stops before payment unless it’s given the customer’s own card.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

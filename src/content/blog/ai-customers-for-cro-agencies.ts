@@ -416,7 +416,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Ad landing check](/blueprints/ad-landing-check), [QA on your own flows](/blueprints/website-audit), [Prospect intelligence](/blueprints/prospect-intelligence), [Ad tracking](/blueprints/ad-tracking)',
           'What follows a live ad: the page, the pop up’s offer, every email and the code at checkout, each dated',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at bot walls, CAPTCHAs and payment',
+          'Stops before payment unless given your card',
           'What shoppers get after the click, sign up and checkout, kept as proof',
         ],
       ],

@@ -178,7 +178,7 @@ export const post: BlogPost = {
           '), Developer is $20 for 100 browser hours, then $0.12 an hour, and Startup is $99 for 500 hours. Residential traffic past the included GB is $10 to $12 a GB.',
         '**Browser Use** is pay as you go on [its pricing page](' +
           BU_PRICING +
-          '): $0.06 a browser hour, $5 a GB for home-connection traffic and CAPTCHA solving included.',
+          '): $0.06 a browser hour, and $5 a GB for home-connection traffic.',
         '**Steel** is a hosted browser for agents. [Its pricing](' +
           STEEL_PRICING +
           ') lists Launch at $0 plus usage, with $0.10 a browser hour and $10 a GB of proxy traffic.',
@@ -287,7 +287,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The browser signs in only with logins its team provides, identifies itself as an AI when it talks to a person and never gets round a CAPTCHA or a bot block. For teams that do not write code, [blueprints](/blueprints) run the job for you: pick one, and the agent, its pieces and the results are set up. For the full picture, read [the stack guide](/blog/ai-agent-infrastructure-stack), which sets out what an agent needs, piece by piece.',
+      text: 'The browser signs in only with logins its team provides, identifies itself as an AI when it talks to a person, and works within a monthly spend limit you set on its key. For teams that do not write code, [blueprints](/blueprints) run the job for you: pick one, and the agent, its pieces and the results are set up. For the full picture, read [the stack guide](/blog/ai-agent-infrastructure-stack), which sets out what an agent needs, piece by piece.',
     },
     {
       kind: 'cta',

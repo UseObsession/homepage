@@ -12,8 +12,8 @@ import type { Explorer, ExRead, ExView } from './types'
    12 Nov (James): the examples show the kinds the schema's event_kind holds, not mostly emails and pages: screens,
    texts, ads, push, in-app, chat, calls and a call that rang out, letters, receipts, parcels, statement lines,
    documents, a rate board, job posts, DNS and a register. Each event's `look` draws it as it arrived. Public data
-   nobody asked for (ads, job posts, DNS, registers) sits in a '*' view behind the Open wall. A bank stops at the
-   identity check, never past it. Personas past the first ones have no views yet, so they show `none`. */
+   nobody asked for (ads, job posts, DNS, registers) sits in a '*' view behind the Open wall. A bank's application
+   opens no account. Personas past the first ones have no views yet, so they show `none`. */
 
 /* The readers that write the reads, by program and version, as read.reader holds them. */
 const LLM = 'gemini-read@2026-11-09'
@@ -747,7 +747,7 @@ export const explorer: Explorer = {
       kind: 'Bank',
       covered: true,
       personas: ['New saver · UK', 'Joint applicants · UK', 'New saver · IE'],
-      walls: ['Open', 'Conversation', 'Form', 'Identity check'],
+      walls: ['Open', 'Conversation', 'Form', 'After the form'],
       kinds: [
         { label: 'Screens', kind: 'Page' },
         { label: 'Emails', kind: 'Email' },
@@ -779,23 +779,23 @@ export const explorer: Explorer = {
         },
         {
           persona: 'New saver · UK',
-          wall: 'Identity check',
+          wall: 'After the form',
           events: [
             {
               at: '4 Nov 10:33',
               dir: 'shown',
               kind: 'Page',
-              text: 'Identity check: passport and a selfie',
-              facts: [form('Passport photo · selfie', ['passport_photo', 'selfie'])],
+              text: 'Application, summary: 4.6% with a bonus for 12 months',
+              facts: [prices('4.6% AER, including a 0.1% bonus for 12 months', [{ name: 'Easy Access Saver', price: '4.6% AER' }])],
               evidence: {
-                head: [['Page', 'online-bank.example/apply/verify'], ['Shown', 'Wed 4 Nov 2026 10:33:02']],
-                body: ['Confirm it’s you', 'We need a photo of your passport and a selfie.', '[ Start ]'],
+                head: [['Page', 'online-bank.example/apply/summary'], ['Shown', 'Wed 4 Nov 2026 10:33:02']],
+                body: ['Your summary', 'Easy Access Saver, 4.6% AER, including a 0.1% bonus for 12 months.', '[ Continue ]'],
                 proof: ['Clean copy of screenshot sha256:0f4d…'],
-                look: { t: 'screen', url: 'online-bank.example/apply/verify', brand: 'Online Bank', title: 'Confirm it’s you', lines: ['We need a photo of your passport and a selfie.'], fields: ['Upload passport photo', 'Take a selfie'], button: 'Start' },
+                look: { t: 'screen', url: 'online-bank.example/apply/summary', brand: 'Online Bank', title: 'Your summary', lines: ['Easy Access Saver, 4.6% AER', 'Includes a 0.1% bonus for 12 months'], fields: ['Interest paid monthly', 'Withdraw at any time'], button: 'Continue' },
               },
-              row: { kind: 'page', channel: 'web', wall: ['form', 'identity_check'], at: '2026-11-04T10:33:02Z', visit: 'apply · 4 Nov 10:28', ref: 'https://online-bank.example/apply/verify', digest: 'sha256:83e1…', raw: { screenshot: 'sha256:0f4d…', html: 'sha256:6b2f…' } },
+              row: { kind: 'page', channel: 'web', wall: ['form'], at: '2026-11-04T10:33:02Z', visit: 'apply · 4 Nov 10:28', ref: 'https://online-bank.example/apply/summary', digest: 'sha256:83e1…', raw: { screenshot: 'sha256:0f4d…', html: 'sha256:6b2f…' } },
             },
-            { at: '4 Nov 10:33', dir: 'act', kind: 'Act', text: 'Stopped at the identity check' },
+            { at: '4 Nov 10:33', dir: 'act', kind: 'Act', text: 'Left the application at its summary' },
             {
               at: '6 Nov 10:33',
               dir: 'shown',
@@ -808,7 +808,7 @@ export const explorer: Explorer = {
                 proof: ['dkim=pass d=online-bank.example spf=pass dmarc=pass', 'Received 10:33:23 · clean copy of sha256:6e2d…'],
                 look: { t: 'email', from: 'Online Bank <hello@online-bank.example>', subject: 'Finish your application', lines: ['You’re one step away from 4.6% AER.', 'It takes about 5 minutes.'], button: 'Finish now' },
               },
-              row: { kind: 'email', channel: 'email', wall: ['form', 'identity_check'], at: '2026-11-06T10:33:23Z', t_firm: '2026-11-06T10:33:20Z', visit: 'apply · 4 Nov 10:28', after: 'leave · 4 Nov 10:33:10', subject: 'Finish your application', auth: 'dkim=pass d=online-bank.example spf=pass dmarc=pass', digest: 'sha256:b5a8…', raw: { mime: 'sha256:6e2d…' } },
+              row: { kind: 'email', channel: 'email', wall: ['form'], at: '2026-11-06T10:33:23Z', t_firm: '2026-11-06T10:33:20Z', visit: 'apply · 4 Nov 10:28', after: 'leave · 4 Nov 10:33:10', subject: 'Finish your application', auth: 'dkim=pass d=online-bank.example spf=pass dmarc=pass', digest: 'sha256:b5a8…', raw: { mime: 'sha256:6e2d…' } },
             },
             {
               at: '6 Nov 10:40',
@@ -822,7 +822,7 @@ export const explorer: Explorer = {
                 proof: ['Clean copy of sha256:a812…'],
                 look: { t: 'sms', from: 'OnlineBank', msgs: [{ text: 'Online Bank: your savings application is waiting. Finish it in 5 minutes in the app.', at: 'Fri 10:40' }] },
               },
-              row: { kind: 'sms', channel: 'sms', wall: ['form', 'identity_check'], at: '2026-11-06T10:40:05Z', visit: 'apply · 4 Nov 10:28', after: 'leave · 4 Nov 10:33:10', fields: { sender: 'OnlineBank' }, digest: 'sha256:1c9e…', raw: { text: 'sha256:a812…' } },
+              row: { kind: 'sms', channel: 'sms', wall: ['form'], at: '2026-11-06T10:40:05Z', visit: 'apply · 4 Nov 10:28', after: 'leave · 4 Nov 10:33:10', fields: { sender: 'OnlineBank' }, digest: 'sha256:1c9e…', raw: { text: 'sha256:a812…' } },
             },
           ],
         },

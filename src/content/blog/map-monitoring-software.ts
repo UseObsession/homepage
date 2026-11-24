@@ -205,7 +205,7 @@ export const post: BlogPost = {
       items: [
         '**Open the product page signed out.** Note the price and any “see price in cart” or “log in for price” label.',
         '**Add the product to the cart.** Note the cart total with delivery, and stop before payment.',
-        '**Create a free account where the reseller offers one,** and note the price shown once signed in. Stop at any identity check.',
+        '**Create a free account where the reseller offers one,** and note the price shown once signed in.',
         '**Sign up for emails and texts.** Note the welcome code, the price it leaves at checkout, and every offer over the next 2 weeks.',
       ],
     },
@@ -425,7 +425,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'For a brand’s MAP team, that means the price a signed-up customer is shown at each reseller. The persona keeps the member price after a login and each code and offer that arrives by email or text, each beside the public price, and, if you choose, the basket total with delivery. It tells your team the morning a reseller’s price drops below yours, behind the login as well as on the page, and sends each change by webhook, a message to your system the day a price moves. Each persona joins the way any customer can, says it’s an AI when it talks to a person, stops at any identity check and stops before payment. Every price lands in your event log, dated.',
+      text: 'For a brand’s MAP team, that means the price a signed-up customer is shown at each reseller. The persona keeps the member price after a login and each code and offer that arrives by email or text, each beside the public price, and, if you choose, the basket total with delivery. It tells your team the morning a reseller’s price drops below yours, behind the login as well as on the page, and sends each change by webhook, a message to your system the day a price moves. Each persona joins the way any customer can, says it’s an AI when it talks to a person, and stops before payment. Every price lands in your event log, dated.',
     },
 
     { kind: 'h2', id: 'your-store-and-resellers', text: 'How do you track hidden prices at your store, the category leaders and every reseller?' },
@@ -508,7 +508,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Price watch](/blueprints/price-watch), [Member prices](/use-cases/member-prices-for-price-intelligence)',
           'The price a signed-up customer is shown after the basket, the login and the email, dated with the screenshot or the email',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check, with notices left to your MAP tool',
+          'Stops before payment, with notices left to your MAP tool',
           'Codes and member prices at every reseller, every morning',
         ],
       ],

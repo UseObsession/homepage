@@ -145,8 +145,8 @@ obsession.on('blueprint.result', async (e) => {
       group: 'Where it stops',
       items: [
         { title: 'Your own accounts', line: 'Test accounts you own, or a client’s with their written OK.' },
-        { title: 'CAPTCHAs', line: 'It never gets round a CAPTCHA or a bot block, and reports where one appeared.' },
-        { title: 'Identity checks', line: 'It stops at any identity check and keeps what the check asked for.' },
+        { title: 'What each step asked for', line: 'Every question and field on the way in, kept with its screenshot.' },
+        { title: 'Spend', line: 'It works within a monthly spend limit you set on its key.' },
         { title: 'The codes it sees', line: 'Kept in your event log only, for as long as your plan keeps events.' },
       ],
     },
@@ -206,8 +206,8 @@ obsession.on('blueprint.result', async (e) => {
         link: { label: 'See the API and MCP', to: '/developers' },
       },
       {
-        q: 'Does it get past CAPTCHAs or identity checks?',
-        a: 'No. It never gets round a CAPTCHA or a bot block, and it stops at any identity check. The event log keeps what the check asked for, so you see where a customer would stop too.',
+        q: 'What happens at a step that needs a person?',
+        a: 'The event log keeps the page, what it asked for and a screenshot, so you see the step a customer meets there too.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

@@ -160,7 +160,7 @@ export const post: BlogPost = {
         '**It sends the list and the deadline,** by email and by text, in the client’s preferred order.',
         '**It reminds on a schedule,** for example on day 2, day 5 and day 9, then tells the paralegal that a client has gone quiet.',
         '**It checks each file when it arrives,** for the right document, the right name and a readable scan, and asks again with the reason if not.',
-        '**It reads portals.** With the logins you give it, the agent’s browser signs in to a client portal or an e-filing site, reads the status and writes the change into the matter. It stops at any identity check and never gets round a CAPTCHA.',
+        '**It reads portals.** With the logins you give it, the agent’s browser signs in to a client portal or an e-filing site, reads the status and writes the change into the matter, with the page kept beside it.',
         '**It sends a morning summary** of who still owes what, per matter and per fee earner.',
       ],
     },
@@ -283,7 +283,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s AI agents each have their own phone number, inbox and browser, so they make the call, answer the email and sign in to the website for you, every day, with no code. Pick a blueprint, or describe the job in your own words and Obsession sets it up and spins up the agent, for one firm or every office of a national one. Developers get the API, SDKs or MCP, the standard way for an AI tool such as Claude to call outside services: one `obsession.personas.create` call with an inbox, a US number and a browser creates the identity, and a webhook receives each `email.received` and `sms.received` event. The agent follows [the agents page](/agents) rules: it says it’s an AI, texts and calls only people who gave the business their number, signs in only with logins you provide, stops at any identity check and never gets round a CAPTCHA. The same persona can then do more: text a client when a matter changes in the portal, remind clients of a court date, or collect forms for a new hire. One agent or ten thousand, each with its own identity.',
+      text: 'Obsession’s AI agents each have their own phone number, inbox and browser, so they make the call, answer the email and sign in to the website for you, every day, with no code. Pick a blueprint, or describe the job in your own words and Obsession sets it up and spins up the agent, for one firm or every office of a national one. Developers get the API, SDKs or MCP, the standard way for an AI tool such as Claude to call outside services: one `obsession.personas.create` call with an inbox, a US number and a browser creates the identity, and a webhook receives each `email.received` and `sms.received` event. The agent follows [the agents page](/agents) rules: it says it’s an AI, texts and calls only people who gave the business their number, signs in only with logins you provide and works within a monthly spend limit you set on its key. The same persona can then do more: text a client when a matter changes in the portal, remind clients of a court date, or collect forms for a new hire. One agent or ten thousand, each with its own identity.',
     },
     {
       kind: 'cta',

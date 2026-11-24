@@ -15,7 +15,8 @@ import type { SecurityPage } from './types'
    - results deleted when the time the customer sets runs out; the event log's days on each plan, read from prices.ts,
      and model tokens at their markup or free with your own key (prices.ts tokens);
    - the sign-up form's 12 months and deletion on request (/privacy, content/site.ts);
-   - agents stop at any identity check, and no person completes one for them.
+   - an agent signs in only with the logins its team gives it, and every key has a monthly spend limit (pages/developers.ts);
+   - Enterprise adds an account per team and SSO (pricing.ts).
    The suppliers are listed by name (James approved a public list, 21 Nov): only those live today, with where each runs
    only when known. No telecom carrier, iMessage or outbound email provider until one is live. The data processing
    agreement is being drafted, so the page offers it on request and links no document. */
@@ -38,7 +39,7 @@ export const securityPage: SecurityPage = {
 
   headline: 'We store your data encrypted, and name every supplier that handles it.',
   sub: 'Obsession stores what its agents collect in a Postgres database hosted by Supabase, and the files behind it in Cloudflare R2, both in the EU and encrypted at rest. Only the 2 founders can reach customer data, and we answer security questionnaires by email.',
-  updated: '22 November 2026',
+  updated: '25 November 2026',
 
   sections: [
     {
@@ -107,11 +108,11 @@ export const securityPage: SecurityPage = {
       lines: [`Write to ${CONTACT_EMAIL}. Our privacy notice lists what the form keeps and every right you have over it.`],
     },
     {
-      id: 'identity',
-      heading: 'Our agents stop at every identity check.',
+      id: 'controls',
+      heading: 'Each agent signs in only with the logins you give it.',
       lines: [
-        'When a site asks for proof of who someone is, such as a photo of an ID document, the agent stops there.',
-        'No person ever completes an identity check for an agent.',
+        'It works within a monthly spend limit you set on its key.',
+        'Enterprise adds an account per team and SSO.',
       ],
     },
   ],

@@ -148,7 +148,7 @@ export const team: TeamPage = {
       },
       {
         q: 'Where does the evidence come from?',
-        a: 'From real subscriptions. A persona signs up, cancels, unsubscribes and texts STOP the way any customer can, and keeps each step’s screenshot and every message exactly as it arrived. It says it’s an AI when it talks to a person, never invents identity details and stops at any identity check.',
+        a: 'From real subscriptions. A persona signs up, cancels, unsubscribes and texts STOP the way any customer can, and keeps each step’s screenshot and every message exactly as it arrived. It says it’s an AI when it talks to a person and never invents identity details.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

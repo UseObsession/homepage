@@ -129,7 +129,7 @@ export const study: UseCaseStudy = {
       { title: 'A broken release', line: 'A step that worked last week fails: a sign-up button, a verify email, a payment page.' },
       { title: 'A new programme', line: 'An account launches texts, loyalty, an AI chat or a new market.' },
       { title: 'A competitor’s price change', line: 'A competitor emails its customers a price rise, a retired plan or a new limit.' },
-      { title: 'A new step at the door', line: 'An account adds a CAPTCHA, an identity check or a longer form to its sign-up.' },
+      { title: 'A new step at the door', line: 'An account adds a phone code, a plan choice or a longer form to its sign-up.' },
     ],
     answer: 'Each signal arrives dated, with the email or screenshot behind it. It covers every account on your list, every day, for as long as you sell to them.',
   },
@@ -145,7 +145,7 @@ export const study: UseCaseStudy = {
       { title: 'QA, testing and monitoring', line: 'Broken steps in sign-up, verification and checkout, each with a screenshot. You hear when a release breaks a sign-up button.' },
       { title: 'Onboarding and product analytics', line: 'Every screen and email from sign-up to the first week. You hear when onboarding emails stop after day 2.' },
       { title: 'Messaging APIs and identity', line: 'Login codes, password resets and receipts, and how fast each arrives. You hear when a reset email starts taking 6 minutes.' },
-      { title: 'Software for banks, insurers and telecoms', line: 'Account opening up to the identity check, offers after the form and quotes from forms. You hear when a new switching offer appears after the form.' },
+      { title: 'Software for banks, insurers and telecoms', line: 'Application steps, offers after the form and quotes from forms. You hear when a new switching offer appears after the form.' },
       { title: 'Sales tech, developer tools, security, HR and finance', line: 'Every competitor’s trial, plans, limits, prices and offers to stay. You hear when a competitor emails its customers a price rise.' },
     ],
   },
@@ -269,7 +269,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'Where does the data come from, and is it legal?',
-        a: 'From real sign-ups. A persona joins through each company’s public sign-up page, like any new subscriber, and keeps the account open for months. It does only what any customer can, says it’s an AI when it talks to a person, stops before payment and stops at any identity check.',
+        a: 'From real sign-ups. A persona joins through each company’s public sign-up page, like any new subscriber, and keeps the account open for months. It does only what any customer can, says it’s an AI when it talks to a person, and stops before payment.',
         link: { label: 'The rules every agent keeps', to: '/agents' },
       },
       {

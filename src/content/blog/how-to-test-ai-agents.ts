@@ -286,7 +286,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check), [Drift watch](/blueprints/drift-watch), [Personas](/personas)',
           'Calls, chats and emails your live agent as a customer, then waits days for each follow-up',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Keeps each answer beside your policy page, and stops at any identity check',
+          'Keeps each answer beside your policy page',
           'The live agent on every channel, every morning',
         ],
       ],
@@ -316,7 +316,7 @@ export const post: BlogPost = {
         '**The golden set ages.** New products, policies and seasons bring questions it doesn’t hold, so it grows every week.',
         '**Simulated customers are polite.** A model playing a customer rarely rambles or changes its mind the way people do, so read real transcripts as well.',
         '**Graders drift.** A model grader can change when its own model updates, so recalibrate it against a person after each update.',
-        '**Live tests stop at payment and identity checks.** Score those steps on your own systems, with test accounts your payment and identity providers supply.',
+        '**Live tests stop at payment.** Score that step on your own systems, with test cards your payment provider supplies.',
       ],
     },
     {

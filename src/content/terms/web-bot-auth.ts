@@ -70,7 +70,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'what-a-signature-tells-a-site', text: 'What a signed request tells a website' },
     {
       kind: 'p',
-      text: 'A valid signature tells a site which operator sent the request, so it can allow a known agent, slow it down or block it. The working group’s charter names the weakness of the old methods, IP allowlists and user agent strings. It also keeps authenticating the end user out of scope, along with tracking bots or scoring their reputation.',
+      text: 'A valid signature tells a site which operator sent the request, so it can recognise a known agent and apply its own rule to it. The working group’s charter names the weakness of the old methods, IP allowlists and user agent strings. It also keeps authenticating the end user out of scope, along with tracking bots or scoring their reputation.',
     },
     {
       kind: 'p',
@@ -87,7 +87,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'An Obsession agent never gets round a CAPTCHA or a bot block. Where a site puts one in front of a step, the event log names the step it couldn’t reach. The full set of lines is on [the page for companies an Obsession agent visits](/agents).',
+      text: 'In chat, by email or on the phone, it also links to [the page for companies an Obsession agent visits](/agents), which lists every line it keeps and how to reach us.',
     },
     {
       kind: 'faq',

@@ -509,8 +509,8 @@ export const noCodePage: NoCodePage = {
       { icon: 'person', text: 'It says it’s an AI to anyone it speaks to.' },
       { icon: 'phone', text: 'It texts and calls only people who gave your business their number.' },
       { icon: 'key', text: 'It signs in only with logins you provide.' },
-      { icon: 'stop', text: 'It stops at any identity check, and before payment unless you give it your card.' },
-      { icon: 'domain', text: 'It never gets round a CAPTCHA or a bot block.' },
+      { icon: 'stop', text: 'It stops before payment unless you give it your card.' },
+      { icon: 'check', text: 'It works within a monthly spend limit you set on its key.' },
       { icon: 'record', text: 'It keeps every step in your event log, with the email, screenshot or recording behind it.' },
     ],
   },
@@ -546,7 +546,7 @@ export const noCodePage: NoCodePage = {
       },
       {
         q: 'Can an AI agent sign in to websites for me?',
-        a: 'Yes. Its browser stays signed in with the logins you give it, and its own inbox and number receive the sign-in codes. It fills forms, downloads files and checks pages, and it stops at any identity check, and before payment unless you give it your card.',
+        a: 'Yes. Its browser stays signed in with the logins you give it, and its own inbox and number receive the sign-in codes. It fills forms, downloads files and checks pages, and it stops before payment unless you give it your card.',
         link: { label: 'Can AI agents log in to websites?', to: '/blog/can-ai-agents-log-in-to-websites' },
       },
       {
@@ -582,7 +582,7 @@ export const noCodePage: NoCodePage = {
       },
       {
         q: 'Is it safe to let an agent contact people for us?',
-        a: 'Every agent says it’s an AI, contacts only people who gave your business their number, uses only the logins you provide and stops at any identity check. Every step is kept in your event log with its evidence.',
+        a: 'Every agent says it’s an AI, contacts only people who gave your business their number, uses only the logins you provide and works within a monthly spend limit you set on its key. Every step is kept in your event log with its evidence.',
         link: { label: 'How Obsession agents behave', to: '/agents' },
       },
     ],

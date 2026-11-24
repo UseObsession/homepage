@@ -221,7 +221,7 @@ export const post: BlogPost = {
         BU_BROWSERS +
         ') is an open source library in which an AI model drives the browser from a task written in plain words. It can attach to the Chrome you already have open, with your logins, or start a new Chrome on a temporary copy of one of your Chrome profiles. Its docs warn that code the model writes can read the cookies in those profiles, and advise running untrusted tasks in a container or virtual machine. Cloud browsers keep logins in [a profile](' +
         BU_PROFILES +
-        ') of cookies and local storage, which the docs say to sync again when a site’s login expires. Cloud browsers also solve CAPTCHAs automatically unless the solver is turned off.',
+        ') of cookies and local storage, which the docs say to sync again when a site’s login expires.',
     },
     { kind: 'h3', id: 'n8n', text: 'n8n web scraping with login' },
     {
@@ -361,7 +361,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Developers start with obsession.personas.create({ inbox: true, phone: "US", browser: true }), over MCP, the standard way AI agents call tools, the API, or SDKs in TypeScript and Python. Each page arrives as a page.visited event with its screenshot, and each email as email.received with its DKIM result, a signature checked on arrival to prove which company sent it. Events post to a webhook, an address on your server, the moment they land. A browser hour costs $0.10, with no charge per GB. Each persona uses accounts of its own and tells any person it talks to that it’s an AI. It stops at any identity check and never gets round a CAPTCHA or a bot block, as [the rules every Obsession agent keeps](/agents) set out.',
+      text: 'Developers start with obsession.personas.create({ inbox: true, phone: "US", browser: true }), over MCP, the standard way AI agents call tools, the API, or SDKs in TypeScript and Python. Each page arrives as a page.visited event with its screenshot, and each email as email.received with its DKIM result, a signature checked on arrival to prove which company sent it. Events post to a webhook, an address on your server, the moment they land. A browser hour costs $0.10, with no charge per GB. Each persona uses accounts of its own and tells any person it talks to that it’s an AI, as [the rules every Obsession agent keeps](/agents) set out.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Tools for scraping behind a login, compared', compare: true },
@@ -423,7 +423,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Trial teardown](/blueprints/trial-teardown)',
           'A browser that keeps its logins, with its own inbox and number for every code, each event dated',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Never gets round a CAPTCHA; stops at any identity check',
+          'Stops before payment unless given your card',
           'Many sign-ins kept alive for months, by API or MCP',
         ],
       ],
@@ -482,11 +482,11 @@ export const post: BlogPost = {
         },
         {
           q: 'Can web scraping be detected?',
-          a: 'Yes. Every request a logged-in scraper sends carries the account’s session, so the site knows which account made it, how often and from which network. Sites slow fast accounts with 429 responses and many run bot checks such as CAPTCHAs. Scrape at a person’s pace, keep one session per account, and stop when the site asks.',
+          a: 'Yes. Every request a logged-in scraper sends carries the account’s session, so the site knows which account made it, how often and from which network. Sites slow fast accounts with 429 responses. Scrape at a person’s pace, keep one session per account, and stop when the site asks.',
         },
         {
           q: 'When does a scraper need an inbox and a phone number?',
-          a: 'When the site sends a one-time code, a magic link or the data itself by email or text, such as welcome emails, renewal notices and cancel offers. Obsession gives the agent its own inbox and number beside a browser that keeps its logins, and each code and message lands in one event log. It never gets round a CAPTCHA and stops at any identity check.',
+          a: 'When the site sends a one-time code, a magic link or the data itself by email or text, such as welcome emails, renewal notices and cancel offers. Obsession gives the agent its own inbox and number beside a browser that keeps its logins, and each code and message lands in one event log.',
           link: { label: 'Browser for AI agents', to: '/browser' },
         },
       ],

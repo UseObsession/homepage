@@ -9,7 +9,7 @@ import type { Recipe } from '../types'
    (Google suggestions, 23 Nov: people search it vendor by vendor, with "invoice retrieval", "receipt collection
    software" and "ap automation software" beside it); "AI agent that chases invoices" stays with the Get paid
    redirect's owner, and "invoice collection software" is left alone because searchers mean debt collection. Logins the
-   customer owns only, stops at any identity check, stops before payment and never pays a bill. */
+   customer owns only, stops before payment and never pays a bill. */
 
 export const recipe: Recipe = {
   id: 'invoices',
@@ -135,8 +135,8 @@ obsession.on('blueprint.result', async (e) => {
       items: [
         { title: 'Payment', line: 'It stops before payment. It never pays a bill or saves a payment card.' },
         { title: 'Your logins', line: 'Only logins your company owns, kept in a browser that stays signed in.' },
-        { title: 'Identity checks', line: 'It stops at any identity check and hands that portal back to your team.' },
-        { title: 'Bot checks', line: 'It never gets round a CAPTCHA or a bot block.' },
+        { title: 'Steps for your team', line: 'A portal that needs someone on your team goes to them with the page and its screenshot.' },
+        { title: 'Spend', line: 'It works within a monthly spend limit you set on its key.' },
       ],
     },
   ],
@@ -193,7 +193,7 @@ obsession.on('blueprint.result', async (e) => {
       },
       {
         q: 'Where does it stop?',
-        a: 'It signs in only with logins your company owns, stops at any identity check and before any payment, and never gets round a CAPTCHA or a bot block.',
+        a: 'It signs in only with logins your company owns, works within a monthly spend limit you set on its key, and stops before any payment.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

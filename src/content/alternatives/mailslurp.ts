@@ -139,7 +139,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): Email, Phone, Messaging, Browser, Sandbox, Personas',
           'An inbox and a phone number for each test persona, with every code in one event log',
           PLANS,
-          'Stops at any identity check, and before payment without your own payment card',
+          'Stops before payment unless given your own payment card',
           'Tests and agents that email, text and sign in',
         ],
       ],

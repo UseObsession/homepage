@@ -288,7 +288,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Email](/email), [Phone](/phone), [Browser](/browser), [Inbox agent](/blueprints/inbox-agent)',
           'An inbox per agent, plus a number and a browser under one identity, every event in one log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Says it’s an AI to a person; stops at identity checks and CAPTCHAs',
+          'Says it’s an AI to a person; stops before payment unless given your card',
           'Agents that sign up, take text codes and read every reply',
         ],
       ],

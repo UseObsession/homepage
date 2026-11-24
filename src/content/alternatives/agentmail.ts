@@ -168,7 +168,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): Email, Phone, Messaging, Browser, Sandbox, Personas',
           'An inbox, plus a number, messaging, a browser and a sandbox under one identity',
           PLANS,
-          'Stops at any identity check, and before payment without your own payment card',
+          'Stops before payment unless given your own payment card',
           'Agents that email, text, browse and run code',
         ],
       ],

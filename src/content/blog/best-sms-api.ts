@@ -181,7 +181,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'vonage', text: 'Vonage' },
     {
       kind: 'p',
-      text: 'Vonage sells an SMS API with virtual numbers, toll-free numbers and short codes. Its pricing pages refused our automated reader on 24 November, so we state no price. Check [its SMS pricing page](https://www.vonage.com/communications-apis/sms/pricing/) before you compare.',
+      text: 'Vonage sells an SMS API with virtual numbers, toll-free numbers and short codes. Its pricing pages would not load for us on 24 November, so we state no price. Check [its SMS pricing page](https://www.vonage.com/communications-apis/sms/pricing/) before you compare.',
     },
 
     { kind: 'h3', id: 'sinch', text: 'Sinch' },
@@ -287,7 +287,7 @@ export const post: BlogPost = {
         [
           'Vonage',
           'An SMS API with several number types',
-          'Not stated: its pricing pages refused our reader',
+          'Not stated: its pricing pages would not load',
           'We could not read its price',
           'Teams already on Vonage',
         ],
@@ -449,7 +449,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Every line about another provider comes from its own pricing and documentation pages as read on 24 November 2026, in US dollars. Vonage’s pages refused our reader, so we state no price for it. We did not run the services. The monthly costs apply listed prices to example inputs. This is general information, not legal advice, and prices and rules change.',
+      text: 'Every line about another provider comes from its own pricing and documentation pages as read on 24 November 2026, in US dollars. Vonage’s pages would not load, so we state no price for it. We did not run the services. The monthly costs apply listed prices to example inputs. This is general information, not legal advice, and prices and rules change.',
     },
   ],
 

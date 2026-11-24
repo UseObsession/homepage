@@ -388,7 +388,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking), [Delivery monitoring](/blueprints/delivery-monitoring), [Account watch](/blueprints/account-watch)',
           'What every store on the list and every account sends its customers, each email and text dated',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at bot walls, CAPTCHAs and identity checks',
+          'Stops before payment unless given your card',
           'What each store’s customers receive, as proof for the first email',
         ],
       ],

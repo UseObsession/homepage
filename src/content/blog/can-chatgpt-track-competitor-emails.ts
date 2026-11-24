@@ -428,7 +428,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'OpenAI blocks direct fetches, so its pages were read through a text proxy. Most help pages show no date, so the sources list gives none for them. Milled blocked automated fetches, so only its homepage title is used. No archive counts or prices are quoted, because Panoramata’s page gives 2 different counts and MailCharts’ page gives none. Where a page was silent, the table says so, and the assistant may still do that job. Nothing here is legal advice.',
+      text: 'OpenAI’s pages were read through a text proxy. Most help pages show no date, so the sources list gives none for them. Milled’s pages would not load, so only its homepage title is used. No archive counts or prices are quoted, because Panoramata’s page gives 2 different counts and MailCharts’ page gives none. Where a page was silent, the table says so, and the assistant may still do that job. Nothing here is legal advice.',
     },
   ],
 

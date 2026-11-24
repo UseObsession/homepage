@@ -283,7 +283,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Email](/email), [Phone](/phone), [Messaging](/messaging), [Browser](/browser)',
           'One server for an inbox, a number, messaging and a browser under one identity, every event in one log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Does not read your repositories or databases; says it is an AI to a person; stops at identity checks and CAPTCHAs',
+          'Does not read your repositories or databases; says it is an AI to a person',
           'Agents that act with the outside world',
         ],
       ],

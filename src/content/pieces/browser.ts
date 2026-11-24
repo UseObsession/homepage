@@ -116,7 +116,7 @@ export const browser: PiecePage = {
       },
       {
         q: 'Is it a headless browser for AI agents?',
-        a: 'The standard browser runs headless, the cheapest way to run many sessions. The stealth browser runs a full desktop browser, for sites built to work only in one. Neither gets round a CAPTCHA or a bot block.',
+        a: 'The standard browser runs headless, the cheapest way to run many sessions. The stealth browser runs a full desktop browser, for sites built to work only in one.',
       },
       {
         q: 'What does a browser cost?',

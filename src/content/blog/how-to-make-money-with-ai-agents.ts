@@ -184,7 +184,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**Spam.** Mass texts and cold calls to people who never gave a number break the rules on [what an agent may do](/agents), and carriers block unregistered senders.',
-        '**Scraping behind logins you don’t own.** An agent signs in only with logins the customer provides, and stops at any identity check.',
+        '**Scraping behind logins you don’t own.** An agent signs in only with logins the customer provides.',
         '**Fake reviews and ticket scalping.** They fail on ethics and on the terms of every site they touch.',
         '**Selling the idea, not the job.** A pitch about AI with no job named loses to a price list for a job someone already pays for.',
         '**No check on the work.** Agents make mistakes. Read the log every day for the first month.',

@@ -499,8 +499,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**Bot checks.** A CAPTCHA is a puzzle that blocks automated visitors. The agent never gets round a CAPTCHA or a bot block, and the event log names the step where it stopped.',
-        '**Identity checks.** It stops at any identity check.',
+        '**Logins and spend.** It signs in only with the logins you give it, and works within a monthly spend limit you set on its key.',
         '**Payment.** It stops before payment unless the brand gives it its own card, such as for a test order on its own store. It never uses fake payment details.',
         '**People.** It says it’s an AI whenever it talks to a person, by chat, email or phone.',
         '**The cause.** It sees what any shopper sees. Why a store sent something sits in the store’s own tools: the Klaviyo flow, the Shopify settings, the app.',
@@ -573,7 +572,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [QA on your own flows](/blueprints/website-audit), [Ad landing check](/blueprints/ad-landing-check), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch), [Listings and AI answers](/blueprints/listings-ai-answers)',
           'A persona per store with its own inbox, number and browser, every email, page and price kept in one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any CAPTCHA, and leaves the fix to the store’s team',
+          'Stops before payment, and leaves the fix to the store’s team',
           'Every store a brand or agency names, checked as a customer',
         ],
       ],

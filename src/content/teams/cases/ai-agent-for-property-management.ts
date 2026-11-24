@@ -128,7 +128,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Does the agent say it’s an AI?',
-        a: 'Yes, whenever it talks to a person, by phone, text or email. It stops before payment and at any identity check, so the application fee and the screening stay with the renter and your team.',
+        a: 'Yes, whenever it talks to a person, by phone, text or email. It stops before payment, so the application fee and the screening stay with the renter and your team.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

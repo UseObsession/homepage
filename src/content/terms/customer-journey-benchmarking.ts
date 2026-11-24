@@ -63,7 +63,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s [Mystery shopping](/blueprints/mystery-shopper) blueprint turns a journey benchmark into a standing comparison, with every step up to an identity check logged with its screenshot and every email after it dated as it lands.',
+      text: 'Obsession’s [Mystery shopping](/blueprints/mystery-shopper) blueprint turns a journey benchmark into a standing comparison, with every step of the application forms logged with its screenshot and every email after it dated as it lands.',
     },
     {
       kind: 'p',
@@ -82,7 +82,7 @@ export const ref: ReferencePage = {
         },
         {
           q: 'Can an automated agent run a bank’s account opening?',
-          a: 'Up to the identity check. An Obsession agent never goes past one. The event log names the step it stopped at, and every screen and email before it is kept.',
+          a: 'It fills in the application forms the way any applicant can, as the customer profile you choose. The event log keeps every screen, rate and question, then each email and text that follows, and no account is opened.',
           link: { label: 'What every Obsession agent keeps to', to: '/agents' },
         },
       ],

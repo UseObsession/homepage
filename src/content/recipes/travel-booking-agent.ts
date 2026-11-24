@@ -11,7 +11,7 @@ import type { Recipe } from '../types'
    stay with the builder guide (article 6), which this page should link once it ships. Rules kept: it pays only with
    the company card the customer gives it and stops before payment without one; a bank check waits for the cardholder;
    traveller details come only from the company's travel profiles and it never invents one (James to confirm, PLAN §5
-   decision 3); it stops at any identity check; a CAPTCHA or bot block stops the run and is reported; it says it's an
+   decision 3); a step that needs a person goes to one; it says it's an
    AI to a person. No competitor or competitor's customer is named. */
 
 export const recipe: Recipe = {
@@ -136,9 +136,9 @@ obsession.on('email.received', async (e) => {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Identity checks', line: 'It stops at any identity check and hands that booking to the traveller.' },
+        { title: 'The traveller’s own steps', line: 'Anything only the traveller can do, such as uploading a document, goes to them with the page it reached.' },
         { title: 'Bank checks', line: 'When the card’s bank asks for approval, the booking waits for the cardholder.' },
-        { title: 'Bot checks', line: 'A site that shows a CAPTCHA or blocks the agent stops the run, and the trip goes to a person with the screenshot.' },
+        { title: 'Spend', line: 'It works within a monthly spend limit you set on its key.' },
         { title: 'People', line: 'When it writes to an airline or a hotel, it says it’s an AI booking for your company.' },
       ],
     },
@@ -201,8 +201,8 @@ obsession.on('email.received', async (e) => {
         a: 'It’s left out of the options. When nothing inside policy fits, the best fare goes to the approver you name in Slack with its price and the reason, and nothing over policy is booked without a yes.',
       },
       {
-        q: 'What if a booking site blocks the agent?',
-        a: 'A site that shows a CAPTCHA or blocks agents stops the run, and the trip goes to a person with the screenshot. The agent never gets round a bot check, and it stops at any identity check.',
+        q: 'What happens when a booking needs a person?',
+        a: 'The trip goes to the person you name, with the fare, the page it reached and a screenshot. Every other trip carries on.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

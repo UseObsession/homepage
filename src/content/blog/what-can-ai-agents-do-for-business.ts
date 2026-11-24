@@ -166,12 +166,12 @@ export const post: BlogPost = {
         'Download invoices and remittances from every supplier portal on the first of the month.',
         'Track shipments and book collections in carrier portals.',
         'Update stock and prices in marketplace seller centres.',
-        'Fill in routine renewal forms on government sites, stopping at any identity check.',
+        'Fill in routine renewal forms on government sites with the details you provide.',
       ],
     },
     {
       kind: 'p',
-      text: 'The agent needs a browser that keeps its session for weeks, so it signs in once, and an inbox and number for the login codes. It stops at any CAPTCHA, the puzzle a site uses to tell people from software. It follows each site’s terms, and the guide to [whether AI agents can log in to websites](/blog/can-ai-agents-log-in-to-websites) covers what sites allow. Teams watch staff hours, days to get paid and denial rates.',
+      text: 'The agent needs a browser that keeps its session for weeks, so it signs in once, and an inbox and number for the login codes. It follows each site’s terms, and the guide to [whether AI agents can log in to websites](/blog/can-ai-agents-log-in-to-websites) covers what sites allow. Teams watch staff hours, days to get paid and denial rates.',
     },
 
     { kind: 'h2', id: 'watch-the-market', text: 'Watch competitors as a customer' },
@@ -258,8 +258,8 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**Money:** the agent stops before payment unless it holds the customer’s own payment card, and never uses made-up payment details.',
-        '**Identity:** it stops at any identity check, such as a passport upload or a bank’s verification step.',
-        '**Site rules:** it never gets round a CAPTCHA or a bot block, and it follows each site’s terms.',
+        '**Logins and spend:** it signs in only with the logins you give it, and works within a monthly spend limit you set on its key.',
+        '**Site rules:** it follows each site’s terms.',
         '**Honesty:** it says it’s an AI when it talks to a person, and [chatbot disclosure laws](/blog/chatbot-disclosure-laws) shows where the law requires it.',
         '**Review:** a person checks anything that commits money, a refund or a policy for the first weeks, because the business answers for its agent, as the Air Canada decision showed.',
       ],
@@ -353,7 +353,7 @@ export const post: BlogPost = {
           'Obsession (ours): seven types of blueprints, from [Talk to customers](/blueprints/talk-to-customers) to [Buy, book and order](/blueprints/buy-book-and-order)',
           'An inbox, number, browser and sandbox per agent, or a blueprint that runs the job',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Jobs where an agent must reach customers, portals or competitors',
         ],
       ],
@@ -375,7 +375,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What should an AI agent not do on its own?',
-          a: 'An agent should stop before payment unless it holds the customer’s own payment card, and stop at any identity check. It should never get round a CAPTCHA or bot block, and it should say it’s an AI when it talks to a person. A person reviews anything that commits money, a refund or a policy until the agent has a track record. The Air Canada tribunal decision of February 2024 showed that the business answers for what its agent says.',
+          a: 'An agent should stop before payment unless it holds the customer’s own payment card, sign in only with the logins it is given, and say it’s an AI when it talks to a person. A person reviews anything that commits money, a refund or a policy until the agent has a track record. The Air Canada tribunal decision of February 2024 showed that the business answers for what its agent says.',
           link: { label: 'AI chatbot fails', to: '/blog/ai-chatbot-fails' },
         },
         {
