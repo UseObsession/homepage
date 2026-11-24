@@ -6,8 +6,8 @@
    It reads the visible text of every prerendered page (every HTML file under dist, scripts and styles stripped) and the raw content
    files, and reports:
    - dashes: em and en dashes anywhere in visible text (the house style uses commas, colons and full stops);
-   - blocks: CAPTCHAs, bot blocks and identity checks raised where no reader asked (Seun, 25 Nov 2026), outside /agents
-     and the 3 FAQ answers COPY.md lists;
+   - blocks: CAPTCHAs, bot blocks and identity checks raised where no reader asked (Seun, 25 Nov 2026), outside
+     the 3 FAQ answers COPY.md lists;
    - retired: phrases the rewrite retired (the old category line, the seller's-representative recipes, Founders as a
      reader, "template", counts of recipes);
    - spelling: American spellings where the site writes British English;
@@ -48,7 +48,7 @@ const RULES = [
     id: 'blocks',
     re: /\b(?:re)?captchas?\b|(?<!support[ -])\bbot[ -](?:blocks?|walls?|checks?|detection|protection)\b|\b(?:identity|id) checks?\b|\bkyc\b/gi,
     why: 'the site raises no block a reader didn’t ask about (Seun, 25 Nov 2026; COPY.md, claims register)',
-    except: /agents\.html$|content\/site\.ts$|blog\/archive\/|blog\/(best-browser-for-ai-agents|browser-automation-tools-for-ai-agents|ai-agent-fill-out-forms)\.(html|ts)$/,
+    except: /blog\/archive\/|blog\/(best-browser-for-ai-agents|browser-automation-tools-for-ai-agents|ai-agent-fill-out-forms)\.(html|ts)$/,
   },
   { id: 'retired', re: /intelligence infrastructure for commercial teams/gi, why: 'the retired category line' },
   { id: 'retired', re: /do business with other companies for you/gi, why: 'the retired seller framing' },
