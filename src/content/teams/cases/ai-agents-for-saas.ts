@@ -177,7 +177,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Do agents tell people they are an AI?',
-        a: 'Yes, whenever they talk to a person by phone, text or email. They call and text only people who gave you their number, use only logins they are given, and stop at any identity check and before payment unless given a card.',
+        a: 'Yes, whenever they talk to a person by phone, text or email. They call and text only people who gave you their number, use only logins they are given, work within a monthly spend limit you set on their key, and stop before payment unless given a card.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {
@@ -192,7 +192,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Can it check competitors’ trials?',
-        a: 'Yes, for trials that need only an email. The agent signs up as itself, records what it sees and stops at any identity check.',
+        a: 'Yes, for trials that need only an email. The agent signs up as itself and keeps every screen and email, dated.',
         link: { label: 'Sales intelligence', to: '/use-cases/sales-intelligence-behind-the-login' },
       },
     ],

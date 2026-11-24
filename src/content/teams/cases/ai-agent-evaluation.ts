@@ -140,8 +140,8 @@ export const useCase: TeamPage = {
         link: { label: 'See pricing', to: '/pricing' },
       },
       {
-        q: 'Can a task include checkout or a CAPTCHA?',
-        a: 'Up to the payment step. An agent on Obsession stops before payment unless given your own payment card, never gets round a CAPTCHA or a bot block, and stops at any identity check. Score those stops as expected outcomes.',
+        q: 'Can a task include checkout?',
+        a: 'Yes, up to the payment step. An agent on Obsession stops before payment unless given your own payment card, so score that stop as an expected outcome.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

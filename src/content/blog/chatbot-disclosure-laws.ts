@@ -323,7 +323,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s own agents keep the rule they check. Each one says it’s an AI when it talks to a person, uses no fake payment details, never gets round a CAPTCHA or a bot block and stops at any identity check. The [Obsession agents page](/agents) sets out what each one will and won’t do, and [Voice agent check](/blueprints/voice-agent-check) shows how the same agents call an AI receptionist.',
+      text: 'Obsession’s own agents keep the rule they check. Each one says it’s an AI when it talks to a person, uses no fake payment details and stops before payment unless given the customer’s own card. The [Obsession agents page](/agents) sets out what each one will and won’t do, and [Voice agent check](/blueprints/voice-agent-check) shows how the same agents call an AI receptionist.',
     },
     {
       kind: 'p',

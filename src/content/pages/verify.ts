@@ -437,7 +437,7 @@ export const page: Page = {
       },
       {
         q: 'Does it say it’s an AI?',
-        a: 'Yes, at the start of every chat and call, and it says calls are recorded. Each check is tagged as a test, agreed with your vendor first. It stops before payment and at any identity check.',
+        a: 'Yes, at the start of every chat and call, and it says calls are recorded. Each check is tagged as a test, agreed with your vendor first. It stops before payment.',
       },
       {
         q: 'Which blueprints check our sign-up too?',

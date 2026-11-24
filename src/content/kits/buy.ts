@@ -6,7 +6,7 @@ import type { KitPage } from './types'
    confirmation, receipt and delivery update lands in the event log. The seventh type, from the Product Marketing book's
    job 7 and Seun's yes to own agentic commerce (_research/seo/agentic-commerce-23nov/PLAN.md). Owns "ai agents that
    buy" and its neighbours; the head term "agentic commerce" belongs to its guide. Stops before payment without a card,
-   stops at any identity check, and a store that blocks agents is a finding (the product lines on /agents). */
+   stops before payment without a card (the product lines on /agents). */
 
 const sub =
   'Your agent buys supplies, books travel and places orders with its own identity, inbox, number and browser. It pays with the card you give it, and every confirmation, receipt and delivery update lands in your event log.'
@@ -106,8 +106,8 @@ export const buy: KitPage = {
     items: [
       { q: 'Can the agent pay?', a: 'Yes, with a card you give it. Without one, it stops before payment and hands the order to a person on your team.' },
       { q: 'Where do receipts go?', a: 'To the agent’s own inbox, then your event log, a sheet or your finance tool, each matched to its order.' },
-      { q: 'What if a store blocks AI agents?', a: 'The agent never gets round a CAPTCHA or a bot block. The blocked step is reported, so you know which stores your agents can buy from.' },
-      { q: 'Does it need traveller or buyer details?', a: 'Only the ones you give it, such as a travel profile. It never invents identity details and stops at any identity check.' },
+      { q: 'What happens when an order needs a person?', a: 'The order goes to someone on your team with its basket and a screenshot of the step, and every other order carries on.' },
+      { q: 'Does it need traveller or buyer details?', a: 'Only the ones you give it, such as a travel profile. It never invents any.' },
       { q: 'How do I start?', a: 'Pick a blueprint, or create a persona from code and give it the job. Both start on the Free plan.' },
     ],
   },

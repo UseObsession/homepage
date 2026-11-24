@@ -176,7 +176,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The agent also stops at any identity check and before payment, unless you give it your own card, and it never gets round a CAPTCHA or a bot block. [What every agent keeps to](/agents) lists the rest.',
+      text: 'The agent also stops before payment unless you give it your own card, and it works within a monthly spend limit you set on its key. [What every agent keeps to](/agents) lists the rest.',
     },
 
     { kind: 'h2', id: 'options', text: 'Real estate CRMs, voice receptionists and assistants compared', compare: true },

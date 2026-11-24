@@ -19,7 +19,7 @@ import type { BlogPost } from './types'
    - FCA blog, Alison Walters, 29 Oct 2026: the one quote, under 15 words.
    Obsession is described in the words of /use-cases/journey-checks-for-banks-and-fintechs (signed-in rates, offers
    after the form, chat answers, never invents identity details), the member prices page (stops where a programme needs
-   identity details) and site.ts (ENTITY, the 1,500 line). No claim past an identity check. Fernbank, Kestrel,
+   identity details) and site.ts (ENTITY, the 1,500 line). No account is opened. Fernbank, Kestrel,
    Larchmont and Quayside are invented, with every rate and fee. British English, no dashes. */
 
 const PS22_9 = 'https://www.fca.org.uk/publications/policy-statements/ps22-9-new-consumer-duty'
@@ -41,7 +41,7 @@ export const post: BlogPost = {
   description:
     'A Consumer Duty fair value assessment template tied to PRIN 2A.4, and how to evidence what customers are shown, from fee wording to renewal notices.',
   answer:
-    'A Consumer Duty fair value assessment is a UK financial firm’s documented test, under PRIN 2A.4 of the FCA Handbook, that a product’s expected total price is reasonable for the benefits each group of its customers can expect. The FCA’s October 2026 findings say the weakest assessments rest on assumptions, outdated fee lists and headline price comparisons. On Obsession, a persona goes through your firm’s and competitors’ applications up to the identity check, and keeps fee wording, application rates and every email after in one event log, each dated with its screenshot.',
+    'A Consumer Duty fair value assessment is a UK financial firm’s documented test, under PRIN 2A.4 of the FCA Handbook, that a product’s expected total price is reasonable for the benefits each group of its customers can expect. The FCA’s October 2026 findings say the weakest assessments rest on assumptions, outdated fee lists and headline price comparisons. On Obsession, a persona goes through your firm’s and competitors’ application forms, and keeps fee wording, application rates and every email after in one event log, each dated with its screenshot.',
   primaryKeyword: 'consumer duty fair value assessment',
   keywords: [
     'consumer duty fair value assessment template',
@@ -292,9 +292,9 @@ export const post: BlogPost = {
         ['Mystery shopping by people', 'Branch, phone and adviser journeys', 'Per brief, quoted by the agency', 'Each visit is one moment in a sample', 'Journeys that need a person'],
         [
           'Obsession (ours): [Support bot check](/blueprints/support-bot-check), [Competitor tracking](/blueprints/competitor-tracking)',
-          'Each step customers are shown up to the identity check, every email after, application rates and chat answers, at your firm and competitors, dated',
+          'Each application step customers are shown, every email after, rates and chat answers, at your firm and competitors, dated',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at the identity check, and never invents identity details',
+          'Opens no account, and never invents identity details',
           'Dated evidence across many firms, after every change',
         ],
       ],
@@ -311,11 +311,11 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: `Search engines and comparison sites stop at the public rate page, the edge of [the web behind the login](/blog/the-web-behind-the-login). A persona on Obsession goes through a firm’s application up to the identity check, with its own inbox and number for every email and text that follows. For [banks and fintechs](${BANKS}), that means each step of account opening up to the identity check, what the check asks for, the rates the application shows beside public ones and what chat tells a customer. It runs at your own firm and every competitor you name, for as long as you follow them. The same event log shows what a customer meets when they leave: each cancel step, and every email or text after an unsubscribe ([opt-out and cancel checks for compliance teams](/use-cases/opt-out-and-cancel-checks-for-compliance-teams)). The [sample data](/sample-output) shows everything kept from one real store.`,
+      text: `Search engines and comparison sites stop at the public rate page, the edge of [the web behind the login](/blog/the-web-behind-the-login). A persona on Obsession goes through a firm’s application forms, with its own inbox and number for every email and text that follows. For [banks and fintechs](${BANKS}), that means each step of the application forms and what it asks for, the rates the application shows beside public ones and what chat tells a customer. It runs at your own firm and every competitor you name, for as long as you follow them. The same event log shows what a customer meets when they leave: each cancel step, and every email or text after an unsubscribe ([opt-out and cancel checks for compliance teams](/use-cases/opt-out-and-cancel-checks-for-compliance-teams)). The [sample data](/sample-output) shows everything kept from one real store.`,
     },
     {
       kind: 'cta',
-      text: 'Account opening up to the identity check, application rates, offers and chat answers, at your firm and your competitors. Each is dated with its screenshot or transcript, ready for the fair value file and the governing body report.',
+      text: 'Application steps, rates, offers and chat answers, at your firm and your competitors. Each is dated with its screenshot or transcript, ready for the fair value file and the governing body report.',
       to: BANKS,
       label: 'See how it works',
     },
@@ -351,7 +351,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Where does Obsession’s data about competitors come from?',
-          a: 'From real applications and sign-ups. A persona, an AI agent with its own inbox, number and browser, goes through each firm’s application and asks chat the way any customer can, as the customer profiles and countries a team chooses. It stops at any identity check, never invents identity details, never signs in to an account that isn’t its own and says it’s an AI when it talks to a person.',
+          a: 'From real applications and sign-ups. A persona, an AI agent with its own inbox, number and browser, goes through each firm’s application and asks chat the way any customer can, as the customer profiles and countries a team chooses. It opens no account, never invents identity details, never signs in to an account that isn’t its own and says it’s an AI when it talks to a person.',
           link: { label: 'Journey checks for banks and fintechs', to: BANKS },
         },
       ],

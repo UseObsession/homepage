@@ -173,8 +173,8 @@ export const recipe: Recipe = {
         a: 'No. Every persona is labelled as a test, so you can filter it out of your lists and reports.',
       },
       {
-        q: 'What if it meets an ID check?',
-        a: 'The persona stops at that step, and your event log keeps what the check asked for, so you see where a new user would have to prove who they are.',
+        q: 'How far does a run go?',
+        a: 'Through your sign-up, trial and checkout, up to payment. Your event log keeps each page and what it asked a new user for, with a screenshot.',
       },
       {
         q: 'Can an agency run it on client sites?',

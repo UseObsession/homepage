@@ -180,7 +180,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Do our users’ agents tell people they’re an AI?',
-        a: 'Yes, whenever an agent talks to a person. It texts and calls only people who gave your user their number, uses only the logins it’s given, stops at any identity check and never gets round a CAPTCHA.',
+        a: 'Yes, whenever an agent talks to a person. It texts and calls only people who gave your user their number, uses only the logins it’s given and works within a monthly spend limit you set on its key.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

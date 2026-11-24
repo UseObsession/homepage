@@ -16,7 +16,7 @@ import type { BlogPost } from './types'
    Verified bots docs and the CMA's 9 March 2026 guidance; the rest from the verified library in
    _research/seo/plan/ai-customers/facts.json (Shopify agentic storefronts, OpenAI shopping help, ACP, UCP, Shopify's
    Storefront API, HubSpot, Sierra, McKinsey, Adobe 2025 and 2026, Product.ai, the EU AI Act).
-   Left out on purpose: every Gartner figure (bot wall), including the 20% contact volume forecast CMSWire repeats;
+   Left out on purpose: every Gartner figure (pages not readable), including the 20% contact volume forecast CMSWire repeats;
    ChatGPT agent (retired); Mastercard's 2025 usage figures; the merchant settings and readiness test, which
    agentic-commerce-for-merchants covers. hollowmere.example and the money example are invented. No dashes. */
 
@@ -282,7 +282,7 @@ export const post: BlogPost = {
         AI_ACT +
         ') requires of AI systems that talk to people, with duties that [apply from 2 August 2026](' +
         AI_ACT_113 +
-        '). It stops at a CAPTCHA, a bot wall or an identity check, and names the step it couldn’t test. How one signs up, sleeps and keeps every email and answer is in [how AI agents work as customers](/blog/how-ai-customers-work).',
+        '). How one signs up, sleeps and keeps every email and answer is in [how AI agents work as customers](/blog/how-ai-customers-work).',
     },
     {
       kind: 'cta',
@@ -313,7 +313,7 @@ export const post: BlogPost = {
       items: [
         '**Put a number on your AI channel.** Count last month’s sessions from AI assistants and the orders placed inside AI checkouts, with the method in [agentic commerce for merchants](/blog/agentic-commerce-for-merchants). Revenue exposed to a wrong answer is your AI revenue a day × the days until you would notice. With invented figures, £350 a day for 21 days is £7,350 of orders placed while an answer was wrong.',
         '**Decide your channels.** In Shopify, under Sales channels, then Agentic, check which AI channels list your products and where each order is placed.',
-        '**Write a rule for agent traffic.** Decide which agents may browse, build a basket and check out, and set it in your bot management. Cloudflare’s Verified bots and Shopify’s higher limits for signed traffic are 2 controls that exist today.',
+        '**Write a rule for agent traffic.** Decide which agents may browse, build a basket and check out, and set it in your site’s own settings. Cloudflare’s Verified bots and Shopify’s higher limits for signed traffic are 2 controls that exist today.',
         '**Ask your own agent what a shopper’s agent would ask.** Price, stock, a delivery date, the returns window and cancelling an order, each in a new chat 3 times, and again after every update. A pass is an answer that matches your pages every time. The method is in [how to test your store’s chatbot](/blog/test-store-chatbot-returns-policy). To run it every day, use Obsession’s [support bot check](/blueprints/support-bot-check), which keeps each answer word for word and dated.',
         '**Make your agent say it is an AI** and hand over to a person when asked. In the EU, Article 50 transparency duties apply from 2 August 2026.',
         '**Keep what your agent said,** with the time of each turn, so a dispute about a promise can be settled from the record.',

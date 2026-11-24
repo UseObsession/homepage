@@ -150,7 +150,7 @@ export const team: TeamPage = {
       },
       {
         q: 'Is it allowed to start a competitor’s trial?',
-        a: 'A persona does only what any user can, through the sign-up anyone can use. It says it’s an AI when it talks to a person, stops before payment unless given your own payment card and never gets round a CAPTCHA.',
+        a: 'A persona does only what any user can, through the sign-up anyone can use. It says it’s an AI when it talks to a person, stops before payment unless given your own payment card and works within a monthly spend limit you set on its key.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
     ],

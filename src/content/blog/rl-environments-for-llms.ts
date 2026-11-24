@@ -174,7 +174,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Real services bring rules with them. Point training rollouts at services you run or have permission to test. Keep volumes within each site’s terms. End the episode at a CAPTCHA, an identity check or a payment page, and score that as the right place to stop.',
+      text: 'Real services bring rules with them. Point training rollouts at services you run or have permission to test. Keep volumes within each site’s terms. End the episode at a payment page, and score that as the right place to stop.',
     },
 
     { kind: 'h2', id: 'score-and-replay', text: 'How to score and replay runs from logs' },
@@ -293,7 +293,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Train and test agents blueprints](/blueprints/train-and-test-agents), [Sandbox](/sandbox), [Browser](/browser), [Personas](/personas)',
           'A fresh inbox, US or UK number, browser and sandbox per episode, under one identity, with every event in one ordered log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment, at any identity check and at any CAPTCHA, which your reward scores as correct endings',
+          'Stops before payment unless given your card, which your reward scores as a correct ending',
           'Episodes whose steps happen in a real inbox, phone or browser, and evaluation runs replayed from the log',
         ],
       ],
@@ -351,7 +351,7 @@ export const post: BlogPost = {
         '**A reset clears your side of the task.** A fresh inbox and number start clean, but the site on the other end keeps its own records and may change its page tomorrow. Read every failure against the screenshot of the page the agent saw.',
         '**Each episode costs more.** Messages, numbers and browser hours are priced per use, so keep real services for the task families that need them.',
         '**Waiting takes real time.** A task that waits for a day-3 reply takes 3 days, so run those episodes in parallel and outside the training loop’s fastest path.',
-        '**Some steps end the episode.** A CAPTCHA, an identity check or a payment page is a hard stop. Score stopping there as correct, so the agent learns where the boundary is.',
+        '**Some steps end the episode.** A payment page is a hard stop. Score stopping there as correct, so the agent learns where the boundary is.',
         '**Other companies’ sites have terms.** Read them, keep volumes low and run high-volume training against services you control.',
       ],
     },
@@ -375,7 +375,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can you train an LLM agent with RL on live websites?',
-          a: 'Yes, with care. Live sites change, can’t be reset and have terms of use. Most teams train on simulated or self-hosted copies, and keep live services for the tasks that depend on them and for evaluation. A CAPTCHA or an identity check should end the episode, scored as the right place to stop.',
+          a: 'Yes, with care. Live sites change, can’t be reset and have terms of use. Most teams train on simulated or self-hosted copies, and keep live services for the tasks that depend on them and for evaluation. A payment page should end the episode, scored as the right place to stop.',
           link: { label: 'Can AI agents log in to websites?', to: '/blog/can-ai-agents-log-in-to-websites' },
         },
         {

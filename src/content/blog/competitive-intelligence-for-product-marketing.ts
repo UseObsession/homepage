@@ -85,7 +85,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'That second half matters most for software that sits close to your prospects’ own customers: email and SMS platforms, help desks with AI support, checkout and payments, identity checks and onboarding tools. Buyers in those markets run a trial before they sign, so what each competitor’s trial shows them weighs on the deal as much as its launch page. Take the pipeline where your main competitor is in the deal. On $500m of it a year, 1 point of win rate is worth $5m. On $50m it is worth $500,000, and on $5m it is worth $50,000 (example pipelines).',
+      text: 'That second half matters most for software that sits close to your prospects’ own customers: email and SMS platforms, help desks with AI support, checkout and payments, and identity and onboarding tools. Buyers in those markets run a trial before they sign, so what each competitor’s trial shows them weighs on the deal as much as its launch page. Take the pipeline where your main competitor is in the deal. On $500m of it a year, 1 point of win rate is worth $5m. On $50m it is worth $500,000, and on $5m it is worth $50,000 (example pipelines).',
     },
 
     { kind: 'h2', id: 'what-it-covers', text: 'What competitive intelligence for product marketing covers' },

@@ -413,7 +413,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Account watch](/blueprints/account-watch), [Prospect intelligence](/blueprints/prospect-intelligence), [Email and SMS tracking](/blueprints/email-sms-tracking)',
           'What each account sends its own customers, dated with the email or screenshot',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at any identity check and before payment',
+          'Stops before payment unless given your card',
           'Signals about the problem your product fixes',
         ],
       ],

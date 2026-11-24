@@ -272,7 +272,7 @@ export const page: Page = {
         { icon: 'persona', name: 'Its own phone number, inbox and browser', line: 'One identity, so every reply, call and sign-in code comes back to the agent.' },
         { icon: 'record', name: 'Evidence behind every result', line: 'The original email, screenshot or call recording, timestamped.' },
         { icon: 'webhook', name: 'Delivered in any format', line: 'Slack, email, your CRM, Clay, Google Sheets, a PDF report or your AI assistant. For any other tool, we build the integration.' },
-        { icon: 'stop', name: 'Clear operating rules', line: 'It identifies itself as an AI, uses only the logins you provide and stops at any identity check.' },
+        { icon: 'stop', name: 'Clear operating rules', line: 'It identifies itself as an AI, uses only the logins you provide and works within a monthly spend limit you set on its key.' },
       ],
     },
     primary: { label: 'Browse blueprints', to: '/blueprints' },

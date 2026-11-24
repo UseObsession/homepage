@@ -7,7 +7,7 @@ import type { BlogPost } from './types'
    Readers: developers and teams choosing a browser agent for work on sites with no API.
    Every other product is described only from its own pages, read on 24 Nov 2026: Browser Use's pricing page ($0.06 a
    browser hour, $5 a GB home-IP traffic, bu-ultrafast $0.006 a task median, MIT harness), Skyvern's home and pricing pages
-   (Hobby $29 with 30,000 credits, Pro $149 with 150,000, 14-day trial, logins, 2FA and CAPTCHAs, no licence named),
+   (Hobby $29 with 30,000 credits, Pro $149 with 150,000, 14-day trial, logins and 2FA, no licence named),
    Stagehand's home page (Browserbase's SDK, TypeScript, Python, Go, act, observe, extract; no licence or price stated),
    OpenAI's help pages (the cloud browser page: paid plans except Free and Go, sign-in through a secure form, cookies persist),
    Anthropic's Claude in Chrome help page (paid plans Pro, Max, Ultra, Team and Enterprise, Chrome only), Perplexity's
@@ -125,7 +125,7 @@ export const post: BlogPost = {
         BU +
         ') pairs an open source agent with hosted browsers. [Its pricing page](' +
         BU_PRICING +
-        ') is pay as you go with no subscription: a browser hour is $0.06, billed by the minute, with CAPTCHA solving included, and traffic through home-IP proxies is $5 a GB. Its fast agent, bu-ultrafast, costs $0.006 a task at the median, and the page puts typical runs for scraping, forms, logins or checkout at about $0.03 to $0.05.',
+        ') is pay as you go with no subscription: a browser hour is $0.06, billed by the minute, and traffic through home-IP proxies is $5 a GB. Its fast agent, bu-ultrafast, costs $0.006 a task at the median, and the page puts typical runs for scraping, forms, logins or checkout at about $0.03 to $0.05.',
     },
     {
       kind: 'list',
@@ -142,7 +142,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '[Skyvern](' +
         SKYVERN +
-        ') calls itself an AI agent platform for browser-based workflows. Its page says it logs in to portals that need credentials, handles two-factor codes, including time-based ones, and solves CAPTCHAs itself, and that it keeps credentials in an encrypted vault. It reports more than 10 million workflows run, SOC 2 Type II and HIPAA compliance, and a self-hosted open source version. [Its pricing page](' +
+        ') calls itself an AI agent platform for browser-based workflows. Its page says it logs in to portals that need credentials, handles two-factor codes, including time-based ones, and keeps credentials in an encrypted vault. It reports more than 10 million workflows run, SOC 2 Type II and HIPAA compliance, and a self-hosted open source version. [Its pricing page](' +
         SKYVERN_PRICING +
         ') lists Hobby at $29 a month for 30,000 credits and Pro at $149 for 150,000, each with a 14-day trial, and a dedicated agent phone number at $10 a month.',
     },
@@ -210,7 +210,7 @@ export const post: BlogPost = {
       items: [
         '**What it does well:** a person asks in plain words and signs in once.',
         '**Price as listed:** included in paid ChatGPT plans, which the page does not price.',
-        '**Where it stops:** it asks you to take over when it gets stuck, asks for confirmation before payments, and some sites block it.',
+        '**Where it stops:** it asks you to take over when it gets stuck, and asks for confirmation before payments.',
         '**Best for:** one person’s errands and research.',
       ],
     },
@@ -264,14 +264,14 @@ export const post: BlogPost = {
         ['Skyvern', 'Logins, two-factor codes, a vault', '$29 or $149 a month', 'No inbox mentioned; licence not named', 'Portals with stored credentials'],
         ['Notte', 'Personas, cheap sessions', '$0.01 a session hour; plans from $0 to $100', 'Sessions up to 300 minutes', 'Scheduled automations'],
         ['Stagehand', 'Plain-word steps inside your code', 'No price listed; browser hours bill separately', 'You build and run the task', 'Developers who want control'],
-        ['ChatGPT cloud browser', 'Plain-word tasks, one sign-in', 'Included in paid plans', 'Takeover when stuck; some sites block it', 'One person’s errands'],
+        ['ChatGPT cloud browser', 'Plain-word tasks, one sign-in', 'Included in paid plans', 'Takeover when stuck; asks before payments', 'One person’s errands'],
         ['Claude in Chrome', 'Works in your own Chrome', 'Included in paid plans', 'Chrome only; machine stays on', 'An individual’s daily work'],
         ['Perplexity Comet', 'An AI browser on every device', 'Not stated', 'Works for one person', 'Personal research'],
         [
           'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Work behind logins](/blueprints/work-behind-logins)',
           'A browser that keeps its logins, an inbox and a number for codes, a record of every page',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Says it’s an AI to a person; stops at identity checks and CAPTCHAs',
+          'Says it’s an AI to a person; stops before payment unless given your card',
           'Agents that sign in to portals and stay signed in',
         ],
       ],
@@ -324,7 +324,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A persona puts them under one identity, free while it waits, so the code that arrives by text reaches the same agent whose browser is at the login page. Obsession signs in only with logins its team provides, identifies itself as an AI when it talks to a person and never gets round a CAPTCHA or a bot block. At an identity check it stops, and the event log keeps what the check asked for. The usual alternative is one vendor for the browser, another for email and a third for numbers, and the seams between them are where a login breaks. For a job on one public site, a plain browser agent can be enough. [The side-by-side](/compare/agentmail-twilio-browserbase-e2b) sets out the options.',
+      text: 'A persona puts them under one identity, free while it waits, so the code that arrives by text reaches the same agent whose browser is at the login page. Obsession signs in only with logins its team provides, identifies itself as an AI when it talks to a person, and works within a monthly spend limit you set on its key. The usual alternative is one vendor for the browser, another for email and a third for numbers, and the seams between them are where a login breaks. For a job on one public site, a plain browser agent can be enough. [The side-by-side](/compare/agentmail-twilio-browserbase-e2b) sets out the options.',
     },
     {
       kind: 'list',
@@ -376,7 +376,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What are the best AI agents for browser automation?',
-          a: 'Browser Use, Skyvern and Notte run agents on cloud browsers through an API, and Stagehand adds plain-word steps to your own code. Check how each handles logins, codes and CAPTCHAs.',
+          a: 'Browser Use, Skyvern and Notte run agents on cloud browsers through an API, and Stagehand adds plain-word steps to your own code. Check how each handles logins and codes.',
           link: { label: 'Browser automation tools', to: '/blog/browser-automation-tools-for-ai-agents' },
         },
         {

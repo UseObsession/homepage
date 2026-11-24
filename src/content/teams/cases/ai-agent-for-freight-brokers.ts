@@ -134,7 +134,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Will carriers know they’re talking to an AI?',
-        a: 'Yes. The agent says it’s an AI when it talks to a person, on every call and text. It stops before payment unless given your own payment card, and never gets round a CAPTCHA or a bot block.',
+        a: 'Yes. The agent says it’s an AI when it talks to a person, on every call and text. It stops before payment unless given your own payment card, and signs in only with the logins you give it.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

@@ -217,10 +217,10 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**Rules for outreach.** The [FTC’s CAN-SPAM guide](' + FTC + ') says “the law makes no exception for business-to-business email”, and opt-outs must be honoured within 10 business days. Read [what AI agents may and won’t do](/agents) before you design a sending idea.',
-        '**Identity checks and payment.** The agents stop at any identity check, and stop before payment unless the customer gives them a card. Ideas that depend on passing either are not ideas for this toolkit.',
+        '**Payment.** The agents stop before payment unless the customer gives them a card, so make handing over the card a clear step in your product.',
         '**Texting in the US.** Carriers require registration, and a rejected filing costs $15 to send again. File early.',
         '**Logins.** An agent signs in only with logins the customer provides. Make the hand-off a clear step in your onboarding.',
-        '**Ideas to leave out.** Job-application bots, slot sniping, ticket scalping, fake reviews and anything that gets around a login or a check.',
+        '**Ideas to leave out.** Job-application bots, slot sniping, ticket scalping and fake reviews.',
       ],
     },
 

@@ -203,7 +203,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Rules shape which jobs you can offer. On [/agents](/agents), every Obsession agent says it is an AI to anyone it speaks to, texts and calls only people who gave the business their number, signs in only with logins you provide, stops at any identity check, and stops before payment unless you give it your card. It never gets round a CAPTCHA or a bot block. In the US, the FCC ruled in February 2024 that voices made with AI count as artificial under the telephone consumer protection law, which brings consent rules into play ([FCC 24-17](' +
+      text: 'Rules shape which jobs you can offer. On [/agents](/agents), every Obsession agent says it is an AI to anyone it speaks to, texts and calls only people who gave the business their number, signs in only with logins you provide, and stops before payment unless you give it your card. In the US, the FCC ruled in February 2024 that voices made with AI count as artificial under the telephone consumer protection law, which brings consent rules into play ([FCC 24-17](' +
         FCC_24_17 +
         ')). This is general information, never legal advice; check the rules for your trade and country.',
     },

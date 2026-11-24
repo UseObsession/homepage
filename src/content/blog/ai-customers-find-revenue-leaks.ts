@@ -436,7 +436,7 @@ export const post: BlogPost = {
         '**A test shows what arrived.** The cause of a silent step sits in your own tools: the flow, the trigger, the routing rule or the pages the bot reads.',
         '**A new customer sees what new customers get.** A long standing subscriber can receive other emails, in another Gmail tab.',
         '**1 run is 1 customer at 1 moment.** Repeat runs show whether a failure happens every time or now and then.',
-        '**An AI agent on Obsession never gets round a CAPTCHA or a bot block, and stops at any identity check.** The event log keeps the step where it stopped.',
+        '**An AI agent on Obsession stops before payment unless given your own card.** The event log keeps the basket and every step before it.',
       ],
     },
     {

@@ -4,7 +4,7 @@ import type { BlogPost } from './types'
    Readers: developers and QA teams who want an agent to join a company the way a customer does, and anyone asking
    whether an agent can sign up, hold an email address or a phone number. It owns "ai agent sign up".
    The body walks one persona: inbox and number made, the sign-up in a browser that keeps its session, the code by text,
-   every email after, each event in the log, and where it stops (payment, identity checks, CAPTCHAs). Obsession prices
+   every email after, each event in the log, and where it stops (payment). Obsession prices
    are from src/content/prices.ts (22 Nov 2026). Read on 24 Oct 2026: Cloudflare's Durable Objects pricing, Google's
    sender guidelines, RFC 6376, Gmail's header help, Shopify's abandoned checkout help, Mailchimp on double opt-in.
    The store in the illustrations is invented. No dashes. */
@@ -26,7 +26,7 @@ export const post: BlogPost = {
   description:
     'How an AI agent signs up as a customer: its own inbox and number, a browser that keeps the session, the code by text, and every email the company sends.',
   answer:
-    'An AI agent signs up as a customer with an inbox, a phone number and a browser of its own, and enters the code the company sends like any new customer. It then waits for free, and every email that follows lands in one event log, dated. It stops before payment, at any identity check and at any CAPTCHA.',
+    'An AI agent signs up as a customer with an inbox, a phone number and a browser of its own, and enters the code the company sends like any new customer. It then waits for free, and every email that follows lands in one event log, dated. It stops before payment unless given your own card.',
   primaryKeyword: 'ai agent sign up',
   keywords: [
     'can ai agents sign up',
@@ -83,7 +83,7 @@ export const post: BlogPost = {
         '**The code.** The company texts or emails a code or a link, and the persona enters it.',
         '**The wait.** Nothing runs while it waits, for a day or for months.',
         '**Every email after.** The welcome, the reminder, the offer and the renewal each land in its inbox and wake it.',
-        '**Where it stops.** Payment, an identity check or a CAPTCHA ends the run, and the log names the step.',
+        '**Where it stops.** Before payment, unless you give it your own card, with every step before it in the log.',
       ],
     },
 
@@ -223,8 +223,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**Payment.** It stops before payment unless you give it your own payment card, and never uses fake payment details.',
-        '**Identity checks.** It stops at any identity check, and the log keeps what the check asked for.',
-        '**CAPTCHAs and bot blocks.** It never gets round one, and the log names the step it couldn’t reach.',
+        '**Logins and spend.** It signs in only with the logins you give it, and works within a monthly spend limit you set on its key.',
         '**People.** It says it’s an AI when it talks to a person.',
         '**New customers see what new customers get.** Long-standing customers can receive other emails and other inbox placement.',
         '**Countries differ.** Prices, offers and delivery messages vary by market, so each market needs its own number.',
@@ -243,7 +242,7 @@ export const post: BlogPost = {
       items: [
         {
           q: 'Can AI agents sign up for newsletters and accounts?',
-          a: 'Yes. An agent with its own inbox and phone number signs up through public forms as any customer can, and confirms by email or text where the company asks. It stops at a CAPTCHA, a bot block or an identity check.',
+          a: 'Yes. An agent with its own inbox and phone number signs up through public forms as any customer can, and confirms by email or text where the company asks.',
         },
         {
           q: 'Can an AI agent have its own email address?',

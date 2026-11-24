@@ -273,7 +273,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'What about loyalty cards that need a tax code or a card from the store?',
-        a: 'A persona never invents identity details and stops at any identity check. Where a programme needs a codice fiscale or an in store card, it stops there and says so, so you know which programmes it can read.',
+        a: 'A persona joins with its own details and never invents any. The event log names each programme that asks for a codice fiscale or an in store card, so you know which ones it reads.',
       },
       {
         q: 'What does it cost?',

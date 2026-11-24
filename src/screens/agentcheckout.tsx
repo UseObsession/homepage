@@ -3,8 +3,8 @@
    by the page, never imported here. Every morning at 07:00, 3 personas shop haldane.example (invented) the way
    shoppers' AI agents do: a UK desktop, a UK phone and a US desktop, each buying the merino crew in navy, size M, with
    the code WELCOME10. Top: the 3 shoppers on 1 step rail (Product, Basket, Code, Checkout, Payment; 60px a step, the
-   rail starts 144px into the card). Both UK shoppers reach payment (3:04, 3:21); the US shopper meets a CAPTCHA at
-   checkout (3:10) and the run stops there. Below: that step as evidence, the checkout page beside the events it wrote,
+   rail starts 144px into the card). Both UK shoppers reach payment (3:04, 3:21); a sign-up pop-up covers the US shopper's
+   Continue button at checkout (3:10) and the run stops there. Below: that step as evidence, the checkout page beside the events it wrote,
    and the 2 abandoned checkout emails that came after (07:44, 07:46). */
 
 const Sig = ({ cls }: { cls: string }) => (
@@ -29,7 +29,7 @@ const steps = ['Product', 'Basket', 'Code', 'Checkout', 'Payment']
 
 export function AgentcheckoutScreen() {
   return (
-    <div className="il appx-il app-agentcheckout"><div className="appx-fit"><div className="appx" role="img" aria-label="An Agent checkout test on Haldane’s own online store, every morning at 07:00. 3 personas shop it the way shoppers’ AI agents do, each buying the merino crew in navy, size M, with the code WELCOME10: a UK shopper on a desktop, a UK shopper on a phone and a US shopper on a desktop. On one step rail of product, basket, code, checkout and payment, both UK shoppers reach payment, at 3 minutes 4 seconds and 3 minutes 21 seconds. The US shopper meets a CAPTCHA on the checkout page at 3 minutes 10 seconds, and the run stops there without attempting it. Below, the checkout page with the CAPTCHA is kept beside the events it wrote, and the two UK shoppers’ abandoned checkout emails arrive at 07:44 and 07:46. Payment is never reached without the store’s own card. An alert goes to Slack #ecommerce at 07:05.">
+    <div className="il appx-il app-agentcheckout"><div className="appx-fit"><div className="appx" role="img" aria-label="An Agent checkout test on Haldane’s own online store, every morning at 07:00. 3 personas shop it the way shoppers’ AI agents do, each buying the merino crew in navy, size M, with the code WELCOME10: a UK shopper on a desktop, a UK shopper on a phone and a US shopper on a desktop. On one step rail of product, basket, code, checkout and payment, both UK shoppers reach payment, at 3 minutes 4 seconds and 3 minutes 21 seconds. A sign-up pop-up covers the Continue button on the US shopper’s checkout page at 3 minutes 10 seconds, and the run stops there. Below, the checkout page with the pop-up is kept beside the events it wrote, and the two UK shoppers’ abandoned checkout emails arrive at 07:44 and 07:46. Payment is never reached without the store’s own card. An alert goes to Slack #ecommerce at 07:05.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Haldane</b><span>/</span>Watches<span>/</span>Checkout, as AI agents</span>
@@ -81,7 +81,7 @@ export function AgentcheckoutScreen() {
               <span className="ac-tr">
                 <i className="ac-w" />
                 {steps.slice(0, 3).map((s, i) => <i key={s} className="ac-d" style={{ '--ac-i': String(i) }} />)}
-                <span className="ac-blk">CAPTCHA</span>
+                <span className="ac-blk">Pop-up</span>
                 <i className="ac-d ac-no" style={{ '--ac-i': '4' }} />
               </span>
               <span className="ac-rs"><span className="ac-mk"><Sig cls="st-working w0" /><Sig cls="st-needs w1" /></span><span className="ac-v">3:10</span></span>
@@ -100,19 +100,19 @@ export function AgentcheckoutScreen() {
                 <span className="ac-pg">
                   <span className="ac-pt">Checkout</span>
                   <span className="ac-fd"><i /><i /></span>
-                  <span className="ac-cap"><i className="ac-box" aria-hidden="true" /><span>Confirm you’re human</span></span>
+                  <span className="ac-cap"><span>Sign up for 10% off</span><i className="ac-box" aria-hidden="true" /></span>
                 </span>
               </div>
               <ul className="ac-log">
-                <li><span className="ac-ek">page.visited · 07:03:10</span><span>Checkout opened. A CAPTCHA covers the form.</span></li>
-                <li className="ac-stop"><span className="ac-ek">blueprint.result · 07:03:10</span><span>Stopped at checkout. The CAPTCHA was not attempted.</span></li>
+                <li><span className="ac-ek">page.visited · 07:03:10</span><span>Checkout opened. A pop-up covers Continue.</span></li>
+                <li className="ac-stop"><span className="ac-ek">blueprint.result · 07:03:10</span><span>Stopped at checkout: Continue is covered.</span></li>
                 <li><span className="ac-ek">email.received · 07:44 and 07:46</span><span>Both UK shoppers’ abandoned checkout emails.</span></li>
               </ul>
             </div>
           </section>
 
-          <p className="ac-note ax-fade" style={{ '--d': '.18s' }}><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="3.25" y="7" width="9.5" height="6.5" rx="1.5" /><path d="M5.5 7V5.25a2.5 2.5 0 0 1 5 0V7" /></svg><span>Haldane’s own store</span><span>Never gets round a CAPTCHA</span></p>
-          <div className="ax-toast ac-toast"><Sig cls="st-needs" /><p><b>1 checkout blocked</b><span>#ecommerce 07:05</span></p><span className="ax-btn">Review</span></div>
+          <p className="ac-note ax-fade" style={{ '--d': '.18s' }}><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="3.25" y="7" width="9.5" height="6.5" rx="1.5" /><path d="M5.5 7V5.25a2.5 2.5 0 0 1 5 0V7" /></svg><span>Haldane’s own store</span><span>Stops before payment</span></p>
+          <div className="ax-toast ac-toast"><Sig cls="st-needs" /><p><b>1 checkout stopped</b><span>#ecommerce 07:05</span></p><span className="ax-btn">Review</span></div>
         </div>
       </div>
     </div></div></div>

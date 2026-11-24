@@ -186,7 +186,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'Where does the evidence come from?',
-        a: 'From real subscriptions. A persona signs up, cancels, unsubscribes and texts STOP the way any customer can, in the country and plan you choose, and keeps each account open for months. It says it’s an AI when it talks to a person, never invents identity details and stops at an identity check.',
+        a: 'From real subscriptions. A persona signs up, cancels, unsubscribes and texts STOP the way any customer can, in the country and plan you choose, and keeps each account open for months. It says it’s an AI when it talks to a person and never invents identity details.',
         link: { label: 'The lines every agent keeps', to: '/agents' },
       },
       {

@@ -1,7 +1,7 @@
 /* app-agentcheckout: Haldane / Watches / Checkout, as AI agents. Agent checkout test (Buy, book and order, 23 Nov 2026).
    Every morning at 07:00, 3 personas shop haldane.example the way shoppers' AI agents do (a UK desktop, a UK phone, a US
    desktop). Top: the 3 shoppers on 1 step rail, Product to Payment, 60px a step (dots at 30, 90, 150, 210 and 270px; the
-   rail starts 144px into the card). Both UK shoppers reach payment; the US shopper meets a CAPTCHA at checkout, drawn
+   rail starts 144px into the card). Both UK shoppers reach payment; a pop-up covers the US shopper's checkout, drawn
    as a hatched cell over that step, and the run stops there. Below: that step as evidence, the checkout page beside the
    events it wrote and the 2 abandoned checkout emails that followed.
    Story (4 s): the 3 shoppers move along the rail together, a step every .55 s, each a little behind the one above;
@@ -74,7 +74,7 @@
 .app-agentcheckout .ac-tm{margin-left:auto;font:400 11px/1 var(--mono);color:var(--fg-3);font-variant-numeric:tabular-nums}
 .app-agentcheckout .ac-eb{display:grid;grid-template-columns:200px minmax(0,1fr);gap:14px;padding:10px 12px 12px}
 
-/* the checkout page as the shopper saw it: a small window, the form under a CAPTCHA card */
+/* the checkout page as the shopper saw it: a small window, the form under a pop-up */
 .app-agentcheckout .ac-shot{display:flex;flex-direction:column;min-width:0}
 .app-agentcheckout .ac-url{display:flex;align-items:center;height:18px;padding:0 8px;border-radius:7px 7px 0 0;background:var(--bg-2);box-shadow:0 0 0 1px var(--line-2) inset;
   font:400 11px/1 var(--mono);color:var(--fg-3);white-space:nowrap}
@@ -84,7 +84,8 @@
 .app-agentcheckout .ac-fd i{display:block;height:12px;border-radius:4px;box-shadow:0 0 0 1px var(--line-2) inset}
 .app-agentcheckout .ac-cap{display:flex;align-items:center;gap:8px;height:26px;padding:0 9px;border-radius:6px;background:var(--panel-3);
   box-shadow:0 0 0 1px var(--fg) inset,0 8px 16px -10px rgb(0 0 0 / calc(.7 * var(--sh-k,1)));font:500 12px/1 var(--sans);color:var(--fg);white-space:nowrap}
-.app-agentcheckout .ac-box{width:12px;height:12px;flex:none;border-radius:3px;box-shadow:0 0 0 1.4px var(--fg) inset}
+.app-agentcheckout .ac-box{margin-left:auto;width:9px;height:9px;flex:none;
+  background:linear-gradient(45deg,transparent calc(50% - .7px),var(--fg) calc(50% - .7px) calc(50% + .7px),transparent calc(50% + .7px)),linear-gradient(-45deg,transparent calc(50% - .7px),var(--fg) calc(50% - .7px) calc(50% + .7px),transparent calc(50% + .7px))}
 
 /* the events that step wrote, and what came after */
 .app-agentcheckout .ac-log{display:grid;gap:9px;align-content:start;min-width:0}
@@ -131,7 +132,7 @@
   /* 2. both UK shoppers land on payment */
   .appx-il.play.app-agentcheckout .ac-l1 .ac-rs,.appx-il.play.app-agentcheckout .ac-l2 .ac-rs{animation:ac-in .3s var(--ease) calc(2.75s + var(--ac-o)) both}
 
-  /* 3. the US shopper stops at checkout: the CAPTCHA cell, its mark goes hollow, the band lights */
+  /* 3. the US shopper stops at checkout: the pop-up cell, its mark goes hollow, the band lights */
   .appx-il.play.app-agentcheckout .ac-l3 .w0{animation:ac-on .01s linear both,ac-hide .2s var(--ob-ease-in) 2.45s forwards}
   .appx-il.play.app-agentcheckout .ac-l3 .w0 .sig-rot{animation:ac-spin .9s linear .5s 2 both}
   .appx-il.play.app-agentcheckout .ac-blk{animation:ac-blk .4s var(--snap) 2.4s both}

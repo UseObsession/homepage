@@ -390,7 +390,7 @@ export const post: BlogPost = {
           VEND +
           '), published on 27 June 2025, an AI agent ran a shop in the company’s San Francisco office. It sold items below cost, gave away discounts when asked and for a period told customers to pay into a payment account it had made up. The shop did not make money. Give an agent a job with written rules, and keep pricing and policy decisions with a person.',
         '**Prove its own value.** Pick a job you can count, such as bookings or late invoices, and compare it with last month before adding a second.',
-        '**Get round a check.** On Obsession an agent never gets round a CAPTCHA or a bot block, and it stops at any identity check. A job that depends on beating one is not an agent job.',
+        '**Pay without your card.** On Obsession an agent stops before payment unless you give it your own card, and works within a monthly spend limit you set on its key.',
         '**Spend without limits.** It stops before payment unless you give it your card, and it works inside the limits you set.',
         '**Pretend to be a person.** It says it is an AI to anyone it speaks to, and it texts or calls only people who gave the business their number. [The agent rules](/agents) set this out.',
         '**Use logins you did not give it.** It signs in only with logins you provide.',
@@ -495,7 +495,7 @@ export const post: BlogPost = {
         },
         {
           q: 'What can AI agents not do yet?',
-          a: 'They struggle with open-ended judgement, such as pricing, and they stop at checks that exist to keep bots out. On Obsession an agent never gets round a CAPTCHA, stops at any identity check and stops before payment unless you give it your card.',
+          a: 'They struggle with open-ended judgement, such as pricing, and with decisions a person should own, such as a refund outside policy. On Obsession an agent stops before payment unless you give it your card.',
           link: { label: 'The agent rules', to: '/agents' },
         },
         {

@@ -7,7 +7,7 @@ import type { Recipe } from '../types'
    /use-cases/ai-agent-evaluation (linked in the questions) and "how to evaluate ai agent performance" with its guide, so
    neither phrase is used in a title, heading or question here.
    Rules kept on the page: tasks run on the team's own staging apps and test accounts first, and on public sites a task
-   needs as any customer can; a persona stops at any identity check, never gets round a CAPTCHA and stops before payment
+   needs as any customer can; a persona says it's an AI to a person and stops before payment
    unless given the team's own card; it says it's an AI to a person. The agent under test runs on the team's own model
    keys. The run is an example (screen: evalrun): build 4.12 of a support agent, 200 tasks from 02:00, 50 at a time;
    186 pass against 194 on build 4.11 (9 newly fail, 1 newly passes: 194 - 9 + 1 = 186); task 077 accepts a retention
@@ -148,7 +148,7 @@ obsession.on("blueprint.result", async (e) => {
       group: 'The ground rules',
       items: [
         { title: 'Your sites first', line: 'Tasks run on your own staging apps and test accounts, and on public sites a task needs, as any customer can.' },
-        { title: 'Stops where it should', line: 'A persona stops at any identity check, never gets round a CAPTCHA, and stops before payment unless you give it your own payment card.' },
+        { title: 'Stops where it should', line: 'A persona signs in only with the test accounts you give it, and stops before payment unless you give it your own payment card.' },
         { title: 'Says it’s an AI', line: 'If a task reaches a person by chat, email or phone, the persona says it’s an AI.' },
         { title: 'Clean every run', line: 'Each run starts from a fresh sandbox, browser and inbox, so last night never leaks into tonight.' },
       ],
@@ -208,7 +208,7 @@ obsession.on("blueprint.result", async (e) => {
       },
       {
         q: 'Which sites do the tasks run on?',
-        a: 'Your own staging apps and test accounts first, and public sites a task needs. A persona signs up and acts as any customer can, says it’s an AI to a person, stops at any identity check and stops before payment.',
+        a: 'Your own staging apps and test accounts first, and public sites a task needs. A persona signs up and acts as any customer can, says it’s an AI to a person and stops before payment.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

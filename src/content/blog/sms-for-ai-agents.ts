@@ -139,7 +139,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'compared', text: 'SMS API providers for AI agents compared', compare: true },
     {
       kind: 'p',
-      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 23 November 2026. Prices are US dollars for US texts. Vonage’s pricing pages refused automated reads on 23 November, so its price is not stated here: check its own page.',
+      text: 'We make Obsession, so every other option is described from its provider’s own pages as of 23 November 2026. Prices are US dollars for US texts. Vonage’s pricing pages would not load on 23 November, so its price is not stated here: check its own page.',
     },
     {
       kind: 'table',

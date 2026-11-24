@@ -499,7 +499,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Competitor tracking](/blueprints/competitor-tracking), [Price watch](/blueprints/price-watch)',
           'A browser that stays signed in for weeks, with its own inbox and number for codes and replies',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Pairs with a search API for the public web; stops at identity checks and CAPTCHAs',
+          'Pairs with a search API for the public web',
           'Agents that sign up, stay signed in and read what arrives',
         ],
       ],
@@ -577,7 +577,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Agents that sign in for themselves meet one-time codes, two-step checks and bot defences, and [can AI agents log in to websites](/blog/can-ai-agents-log-in-to-websites) sets out what works and what’s allowed. [The web behind the login](/blog/the-web-behind-the-login) describes what sits behind each step, from the sign-up to the cancel flow.',
+      text: 'Agents that sign in for themselves meet one-time codes and two-step checks, and [can AI agents log in to websites](/blog/can-ai-agents-log-in-to-websites) sets out what works and what’s allowed. [The web behind the login](/blog/the-web-behind-the-login) describes what sits behind each step, from the sign-up to the cancel flow.',
     },
     {
       kind: 'p',

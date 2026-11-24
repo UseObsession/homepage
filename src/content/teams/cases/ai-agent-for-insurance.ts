@@ -130,7 +130,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Does the agent say it’s an AI?',
-        a: 'Yes, whenever it talks to a person, by phone, text or email. It stops before payment unless it’s given the customer’s own payment card, and it stops at any identity check.',
+        a: 'Yes, whenever it talks to a person, by phone, text or email. It stops before payment unless it’s given the customer’s own payment card.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

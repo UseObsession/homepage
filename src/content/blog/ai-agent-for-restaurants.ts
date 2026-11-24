@@ -157,7 +157,7 @@ export const post: BlogPost = {
         '**It says it is an AI.** The FCC treats AI-generated voices on calls as artificial voices under the [Telephone Consumer Protection Act](' + FCC + '), and a guest should always know who they are speaking to.',
         '**Texts and calls go only to people who gave you their number.** A guest who booked or texted you has done so. A purchased list has not. The [phone-calling guide](/blog/can-ai-make-phone-calls) covers the law.',
         '**US texting needs registering first.** A US business that texts on an ordinary 10-digit number files a registration, known as 10DLC, before it sends ([The Campaign Registry](' + TCR + ')). Each business that texts needs its own; the steps are in [10DLC registration](/blog/10dlc-registration).',
-        '**Logins are yours to give.** The agent signs in to your booking and supplier accounts only with the credentials you provide, stops at any identity check and never gets round a CAPTCHA.',
+        '**Logins are yours to give.** The agent signs in to your booking and supplier accounts only with the credentials you provide, and works within a monthly spend limit you set on its key.',
       ],
     },
 

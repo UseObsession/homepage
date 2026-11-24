@@ -69,7 +69,7 @@ export const ref: ReferencePage = {
         '**One identity:** the inbox, number and browser belong together, so a code sent to the number can be used in the browser.',
         '**Long-lived:** it keeps its sign-ins and history for months.',
         '**Logged:** every page, email, text and call it handles lands in the event log, dated, with screenshots.',
-        '**Limits:** it stops at any identity check, and before payment unless you give it your own payment card.',
+        '**Limits:** it signs in only with the logins you give it, works within a monthly spend limit you set on its key, and stops before payment unless you give it your own payment card.',
       ],
     },
     {

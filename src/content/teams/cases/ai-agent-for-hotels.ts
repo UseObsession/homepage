@@ -178,7 +178,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Does the agent tell guests it’s an AI?',
-        a: 'Yes, whenever it talks to a person, by phone, text or email. It texts and calls only people who gave the hotel their number, uses only the logins it’s given and stops at any identity check. It stops before payment unless it’s given the guest’s own card.',
+        a: 'Yes, whenever it talks to a person, by phone, text or email. It texts and calls only people who gave the hotel their number, uses only the logins it’s given and works within a monthly spend limit you set on its key. It stops before payment unless it’s given the guest’s own card.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {
@@ -193,7 +193,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Which competitors’ sites can it read?',
-        a: 'Public rates, and the member prices it sees after signing up as a new member in a persona’s own name. It never gets round a CAPTCHA, and a bot block is reported as a finding.',
+        a: 'Public rates, and the member prices it sees after signing up as a new member in a persona’s own name. Each price is kept with its date and a screenshot.',
         link: { label: 'See the blueprint', to: '/blueprints/price-watch' },
       },
     ],

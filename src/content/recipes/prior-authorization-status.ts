@@ -7,7 +7,7 @@ import type { Recipe } from '../types'
    no figure is borrowed. Owns "check prior authorization status" and "prior authorization status check" (Google
    suggestions, 23 Nov); "prior authorization ai agent" and "prior authorization ai automation" stay with the use case,
    which the FAQ links. The searched US spelling "authorization" is kept throughout, as the trade writes it. Logins the
-   customer owns only, stops at any identity check, stops before payment, reads and reports only; runs only after a
+   customer owns only, stops before payment, reads and reports only; runs only after a
    business associate agreement (BAA) is signed. */
 
 export const recipe: Recipe = {
@@ -132,10 +132,10 @@ obsession.on('blueprint.result', async (e) => {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Identity checks', line: 'It stops at any identity check and hands that portal back to your team.' },
+        { title: 'Steps for your team', line: 'A portal that needs someone on your team goes to them with the page and its screenshot.' },
         { title: 'Decisions', line: 'It reads and reports. Filing, appealing and every clinical decision stay with your team.' },
         { title: 'Patient data', line: 'It runs only after a business associate agreement is signed.' },
-        { title: 'Bot checks', line: 'It never gets round a CAPTCHA or a bot block.' },
+        { title: 'Spend', line: 'It works within a monthly spend limit you set on its key.' },
       ],
     },
   ],
@@ -194,7 +194,7 @@ obsession.on('blueprint.result', async (e) => {
       },
       {
         q: 'Where does it stop?',
-        a: 'It signs in only with logins your organisation owns, stops at any identity check and before any payment, and never gets round a CAPTCHA or a bot block. It reads and reports; filing, appealing and clinical decisions stay with your team.',
+        a: 'It signs in only with logins your organisation owns, works within a monthly spend limit you set on its key, and stops before any payment. It reads and reports; filing, appealing and clinical decisions stay with your team.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

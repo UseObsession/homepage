@@ -481,7 +481,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Account watch](/blueprints/account-watch)',
           'What each account you name sends its customers: welcome, cart and trial emails, texts, codes, support replies, sending platform',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'History starts the day a persona signs up\nStops before payment and at any identity check',
+          'History starts the day a persona signs up\nStops before payment unless given your card',
           'Openers and account order for vendors whose product touches their prospects’ customers',
         ],
       ],

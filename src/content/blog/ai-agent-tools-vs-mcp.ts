@@ -156,7 +156,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Email](/email), [Phone](/phone), [Browser](/browser) and [Sandbox](/sandbox) over API, SDK and MCP',
           'An inbox, a number, a browser and a sandbox as tools, under one identity',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Agents that must receive email, texts and calls',
         ],
       ],
@@ -180,7 +180,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'as-a-skill', text: 'As a skill' },
     {
       kind: 'p',
-      text: 'A skill holds the procedure: create an inbox, open the portal in a browser, wait for the login code, enter it, and stop at any identity check. It calls those tools and owns none of the pieces itself. That makes it the right place for your rules and the wrong place to keep an inbox.',
+      text: 'A skill holds the procedure: create an inbox, open the portal in a browser, wait for the login code, enter it, and keep a screenshot of each page. It calls those tools and owns none of the pieces itself. That makes it the right place for your rules and the wrong place to keep an inbox.',
     },
     {
       kind: 'p',

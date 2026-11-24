@@ -146,7 +146,7 @@ export const team: TeamPage = {
       },
       {
         q: 'Will competitors know it’s us?',
-        a: 'Not from the persona. Each one has its own name, inbox and number, and never names who asked. It says it’s an AI when it talks to a person. It stops before payment, never gets round a CAPTCHA or a bot block, and never clicks paid ads at volume.',
+        a: 'Not from the persona. Each one has its own name, inbox and number, and never names who asked. It says it’s an AI when it talks to a person. It stops before payment and never clicks paid ads at volume.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
     ],

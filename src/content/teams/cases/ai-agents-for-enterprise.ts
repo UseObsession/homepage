@@ -172,7 +172,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Do the agents tell people they are an AI?',
-        a: 'Yes, whenever one talks to a person, by phone, text or email. Each texts and calls only people who gave your business their number, uses only the logins it is given, stops at any identity check and never gets round a CAPTCHA. It stops before payment unless it is given the card.',
+        a: 'Yes, whenever one talks to a person, by phone, text or email. Each texts and calls only people who gave your business their number, uses only the logins it is given and works within a monthly spend limit you set on its key. It stops before payment unless it is given the card.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

@@ -203,7 +203,7 @@ export const post: BlogPost = {
         ['Your own team: by hand', 'Knows the brand and its context', 'Your hours at your rate', 'Time for every check, every week', '1 to 3 companies, once'],
         ['AI browser agent: ChatGPT cloud browser', 'Completes one web task on request', 'Paid ChatGPT plans', 'No inbox or number described', 'One-off lookups'],
         ['Agents you build: retail services, one at a time', 'Every email and page for months, kept', 'About $2 a month each at retail', 'An inbox, a browser and a log from separate vendors', 'Developers watching a few hundred companies'],
-        ['Obsession (ours): [Personas](/personas), [Mystery shopping](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking)', 'A fleet of personas, free while they wait, every event in one log', 'Free, then $20, $99 or $499 a month; usage per piece', 'Stops at payment, identity checks and CAPTCHAs', 'What customers get at many companies, for months'],
+        ['Obsession (ours): [Personas](/personas), [Mystery shopping](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking)', 'A fleet of personas, free while they wait, every event in one log', 'Free, then $20, $99 or $499 a month; usage per piece', 'Stops before payment unless given your card', 'What customers get at many companies, for months'],
       ],
     },
     {
@@ -284,7 +284,7 @@ export const post: BlogPost = {
         '**Volumes are examples.** A brand that sends 60 emails a month triples the reading line, which still rounds to cents.',
         '**Texts carry carrier fees** on top of Twilio’s rate, and sending from a US long code needs A2P 10DLC registration.',
         '**Gmail tab placement needs a Gmail inbox,** which is priced separately from an API inbox.',
-        '**A persona stops at payment, identity checks, CAPTCHAs and bot blocks.** The event log names the step it couldn’t reach, and no cost line removes the block.',
+        '**A persona stops before payment** unless it is given your own card, so card costs sit outside these lines.',
       ],
     },
 

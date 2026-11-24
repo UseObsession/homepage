@@ -32,7 +32,7 @@ const ROWS: { id: string; payer: string; now: string; note: string; waited: stri
 
 export function PriorauthScreen() {
   return (
-    <div className="il appx-il app-priorauth"><div className="appx-fit"><div className="appx" role="img" aria-label="The Prior authorization status watch for Ashbrook Clinics, an invented clinic group, on Tuesday at 06:00. A persona per payer signs in to 5 payer portals with the clinic group’s own logins; Payer C asks for a login code, which reaches the persona’s own number in 9 seconds. By 06:38 all 120 pending requests are read, each status page saved with a screenshot. 9 changed overnight: 6 approved, such as PA-30418 at Payer A after 3 days; 2 sent back for more information, PA-30577 at Payer B asking for the last 2 clinic notes and PA-30640 at Payer E asking for a signed order form; and 1 denied, PA-30611 at Payer D after 6 days, its reason on the screenshot. The 3 that need a person go to the work queue at 06:45. It signs in only with the clinic group’s own logins, stops at any identity check, and runs under a signed business associate agreement.">
+    <div className="il appx-il app-priorauth"><div className="appx-fit"><div className="appx" role="img" aria-label="The Prior authorization status watch for Ashbrook Clinics, an invented clinic group, on Tuesday at 06:00. A persona per payer signs in to 5 payer portals with the clinic group’s own logins; Payer C asks for a login code, which reaches the persona’s own number in 9 seconds. By 06:38 all 120 pending requests are read, each status page saved with a screenshot. 9 changed overnight: 6 approved, such as PA-30418 at Payer A after 3 days; 2 sent back for more information, PA-30577 at Payer B asking for the last 2 clinic notes and PA-30640 at Payer E asking for a signed order form; and 1 denied, PA-30611 at Payer D after 6 days, its reason on the screenshot. The 3 that need a person go to the work queue at 06:45. It signs in only with the clinic group’s own logins, stops before any payment, and runs under a signed business associate agreement.">
       <div className="ax-bar">
         <span className="ax-dots" aria-hidden="true"><i /><i /><i /></span>
         <span className="ax-crumb"><b>Your company</b><span>/</span>Watches<span>/</span>Prior authorization</span>
@@ -101,7 +101,7 @@ export function PriorauthScreen() {
             ))}
             <footer className="pa-f"><span>4 more approved · 3 past the 5 day target</span><span><i className="pa-pf" />A screenshot behind every status</span></footer>
           </section>
-          <p className="pa-note"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="3.25" y="7" width="9.5" height="6.5" rx="1.5" /><path d="M5.5 7V5.25a2.5 2.5 0 0 1 5 0V7" /></svg><span>BAA signed · your logins only</span><span>Stops at any identity check</span></p>
+          <p className="pa-note"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" aria-hidden="true"><rect x="3.25" y="7" width="9.5" height="6.5" rx="1.5" /><path d="M5.5 7V5.25a2.5 2.5 0 0 1 5 0V7" /></svg><span>BAA signed · your logins only</span><span>Stops before any payment</span></p>
           <div className="ax-toast pa-toast"><Sig cls="st-needs" /><p><b>3 need a person</b><span>Work queue · 06:45</span></p><span className="ax-btn">Open queue</span></div>
         </div>
       </div>

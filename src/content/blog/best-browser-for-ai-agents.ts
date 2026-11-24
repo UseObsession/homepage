@@ -113,7 +113,7 @@ export const post: BlogPost = {
       items: [
         '**How the agent drives it.** Most connect over the Chrome DevTools Protocol (CDP), the interface Playwright and Puppeteer use to control Chrome, so existing scripts move with one changed URL.',
         '**Headless or full screen.** A headless browser runs without drawing a window, the cheapest way to run many sessions. Some sites behave differently in one, so several providers sell a full desktop browser at a higher rate.',
-        '**Residential traffic.** A residential or home connection reaches websites from a home internet address. Sites that slow or block traffic from data centres load as they do for a person. Most providers bill it per GB, and a page heavy with images and scripts can weigh several MB.',
+        '**Residential traffic.** A residential or home connection reaches websites from a home internet address. Sites that treat data centre traffic differently load as they do for a person. Most providers bill it per GB, and a page heavy with images and scripts can weigh several MB.',
         '**Logins that last.** A profile or context saves the browser’s cookies and storage, so the next session starts signed in. Check how long a saved login is kept when no session uses it.',
         '**Session length and concurrency.** How long one session may run before it closes, and how many browsers can run at once on each plan.',
         '**Codes.** Sites send a one-time code by email or text at sign-up and at new-device logins. The browser opens the page, and something has to receive the code.',
@@ -138,7 +138,7 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**What it does well:** the largest scale stated here, with saved contexts, stealth modes and CAPTCHA solving on paid plans.',
+        '**What it does well:** the largest scale stated here, with saved contexts and stealth modes on paid plans.',
         '**Price as listed:** on [its pricing page](' +
           BB_PRICING +
           '), Free is $0 for 1 browser hour. Developer is $20 for 100 hours, then $0.12 an hour, with 1 GB of proxy traffic and $12 a GB after. Startup is $99 for 500 hours, then $0.10, with 5 GB and $10 a GB after.',
@@ -159,10 +159,10 @@ export const post: BlogPost = {
     {
       kind: 'list',
       items: [
-        '**What it does well:** the same browser open source and hosted, with CAPTCHA solves priced per 1,000.',
+        '**What it does well:** the same browser open source and hosted, so a team can move between the two.',
         '**Price as listed:** on [its pricing page](' +
           STEEL_PRICING +
-          '), Launch is $0 plus usage with a one-time $30 credit: $0.10 a browser hour, $10 a GB of proxy traffic and $3 per 1,000 CAPTCHA solves. Scale is $250 a month plus usage with $100 of monthly credit: $0.08 an hour and $6 a GB.',
+          '), Launch is $0 plus usage with a one-time $30 credit: $0.10 a browser hour, $10 a GB of proxy traffic. Scale is $250 a month plus usage with $100 of monthly credit: $0.08 an hour and $6 a GB.',
         '**Where it stops:** sessions run 15 minutes on Launch and 1 hour on Scale, and Steel deletes a profile no session has used for 30 days.',
         '**Best for:** teams that want to self-host, or start on the hosted version and move later.',
       ],
@@ -225,7 +225,7 @@ export const post: BlogPost = {
         '**What it does well:** a task written in plain words, run end to end, at a median of $0.006 a task.',
         '**Price as listed:** on [its pricing page](' +
           BU_PRICING +
-          '), it is pay as you go with no subscription. A browser hour is $0.06, billed by the minute, and home-IP traffic $5 a GB, with CAPTCHA solving included.',
+          '), it is pay as you go with no subscription. A browser hour is $0.06, billed by the minute, and home-IP traffic $5 a GB.',
         '**Where it stops:** 10 browsers at once to start, rising to 1,000 as the total a team has paid grows.',
         '**Best for:** teams that want the agent and the browser from one provider.',
       ],
@@ -236,7 +236,7 @@ export const post: BlogPost = {
       kind: 'p',
       text: '[Notte’s home page](' +
         NOTTE +
-        ') calls it “a full-stack browser platform for AI agents”: browser sessions with residential proxies and CAPTCHA solving, vaults that keep passwords away from the model, and browser automations run as endpoints on a schedule. Each [persona](' +
+        ') calls it “a full-stack browser platform for AI agents”: browser sessions with residential proxies, vaults that keep passwords away from the model, and browser automations run as endpoints on a schedule. Each [persona](' +
         NOTTE_PERSONAS +
         ') has its own email address and an SMS-capable number for sign-up and two-step codes.',
     },
@@ -312,7 +312,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Browser](/browser), [Email](/email), [Phone](/phone), [Work behind logins](/blueprints/work-behind-logins)',
           'A browser that keeps its logins for weeks, home connection included, with its own inbox and number for codes',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Says it’s an AI to a person; stops at identity checks and CAPTCHAs',
+          'Says it’s an AI to a person; stops before payment unless given your card',
           'Agents that sign in to portals and stay signed in',
         ],
       ],
@@ -371,7 +371,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession’s browser runs under clear operating rules. It signs in only with logins its team provides, identifies itself as an AI when it talks to a person and never gets round a CAPTCHA or a bot block. At an identity check it stops, and the event log keeps what the check asked for.',
+      text: 'Obsession’s browser runs under clear operating rules. It signs in only with logins its team provides, identifies itself as an AI when it talks to a person and works within a monthly spend limit you set on its key. Enterprise adds an account per team and SSO.',
     },
     {
       kind: 'list',
@@ -432,7 +432,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Do AI agents need residential proxies?',
-          a: 'Some sites slow or block traffic from data centres, so a browser on a home connection loads them as a person sees them. Most providers bill that traffic at $5 to $12 a GB. Kernel and Obsession include it with no charge per GB.',
+          a: 'Some sites treat data centre traffic differently, so a browser on a home connection loads them as a person sees them. Most providers bill that traffic at $5 to $12 a GB. Kernel and Obsession include it with no charge per GB.',
         },
         {
           q: 'How much does a browser for AI agents cost?',
@@ -440,7 +440,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can a browser for AI agents solve CAPTCHAs?',
-          a: 'Browserbase, Steel, Browser Use and Notte list CAPTCHA solving on their own pages. Obsession’s browser never gets round a CAPTCHA or a bot block, identifies itself as an AI when it talks to a person and stops at identity checks.',
+          a: 'Browserbase, Steel, Browser Use and Notte list it on their own pages. Obsession’s browser signs in with the logins you give it and stays signed in for weeks, and each login code reaches the agent’s own inbox or number.',
         },
       ],
     },

@@ -279,7 +279,7 @@ export const post: BlogPost = {
       kind: 'list',
       items: [
         '**A service agent sees the conversations that reach it.** The welcome email that never arrived, the code refused at checkout and every competitor sit outside its view.',
-        '**An AI agent as a customer sees what any customer sees.** Why the company sent something sits in the company’s own systems. It never gets round a CAPTCHA or a bot block, stops at any identity check, and the event log keeps the step where it stopped.',
+        '**An AI agent as a customer sees what any customer sees.** Why the company sent something sits in the company’s own systems.',
         '**Neither replaces the other.** One answers for the company; the other meets it as a customer.',
       ],
     },

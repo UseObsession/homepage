@@ -8,7 +8,7 @@ import type { BlogPost } from './types'
    The case: the 10-column template, where each column's data comes from today (rate pages, regulators' data,
    comparison sites, panels, research firms, people by hand), what each source misses (the rate an applicant is offered,
    rates after sign-up and in the app, existing customer rates, messages after an application, chat answers), and how
-   to fill it with dated evidence, up to the identity check and never past it.
+   to fill it with dated evidence, without opening an account.
    Read at the source on 11 Nov 2026: the FCA's cash savings update (18 Sep 2024, updated 4 Aug 2026); FCA CP26/15 (the
    PDF, 29 Apr 2026: the representative APR definition and the 51% background); the Bank of England's quoted and
    effective rate notes; Moneyfacts' about page and its closed-rate release (30 Jun 2025); Family Building Society's
@@ -55,7 +55,7 @@ export const post: BlogPost = {
   description:
     'Bank competitor analysis template for product and journey teams: rates, offers, onboarding and chat answers, where each comes from and what it misses.',
   answer:
-    'A bank competitor analysis compares competing banks’, card issuers’ and fintechs’ products, rates, fees, offers, onboarding steps, apps and service answers, each dated with its screenshot or email. Rate tables and regulators’ data cover advertised rates, while the rate an applicant is offered, offers after the application form and the emails that follow reach only someone who applies. On Obsession, the toolkit for AI agents, a persona applies at each bank you name up to the identity check and keeps those offers, emails and chat answers, dated.',
+    'A bank competitor analysis compares competing banks’, card issuers’ and fintechs’ products, rates, fees, offers, onboarding steps, apps and service answers, each dated with its screenshot or email. Rate tables and regulators’ data cover advertised rates, while the rate an applicant is offered, offers after the application form and the emails that follow reach only someone who applies. On Obsession, the toolkit for AI agents, a persona starts an application at each bank you name and keeps those offers, emails and chat answers, dated.',
   primaryKeyword: 'bank competitor analysis',
   keywords: [
     'bank competitor analysis template',
@@ -82,12 +82,12 @@ export const post: BlogPost = {
       rows: [
         { time: 'Mon 09:00', text: 'Rate page: easy access 4.10% AER', detail: 'Public, and the rate on comparison tables', tone: 'info' },
         { time: 'Mon 09:07', text: 'Form step 3: 4.60% with a bonus', detail: 'A 12-month bonus, shown after the form', tone: 'ok' },
-        { time: 'Mon 09:10', text: 'Stopped at the identity check', detail: 'It asks for a passport photo and a selfie', tone: 'info' },
+        { time: 'Mon 09:10', text: 'Summary: bonus ends 2 Nov 2027', detail: 'A date on no public page', tone: 'info' },
         { time: 'Mon 09:12', text: 'Email: finish opening your account', detail: 'Sent to the address given at step 1', tone: 'ok' },
         { time: 'Wed 09:12', text: 'Email: £100 if you open by Friday', detail: 'On no public page or comparison table', tone: 'info' },
         { time: 'Thu 10:30', text: 'Chat: “Yes, 4.60% is fixed”', detail: 'The terms say variable, plus a bonus', tone: 'fail' },
       ],
-      foot: 'Invented bank, rates and offer. Rows 2, 4 and 5 appeared only once the application had started.',
+      foot: 'Invented bank, rates and offer. Rows 2 to 5 appeared only once the application had started.',
     },
   },
 
@@ -133,7 +133,7 @@ export const post: BlogPost = {
         ['Existing customer rate', 'The rate after a bonus ends, or on closed accounts', 'Monthly'],
         ['Fees and terms', 'Fees, notice periods, bonus conditions', 'Monthly'],
         ['Offers', 'Switching bonuses, boosted rates, card welcome offers', 'Weekly'],
-        ['Onboarding steps', 'Steps, fields, time taken, what the identity check asks for', 'Monthly, and after an app update'],
+        ['Onboarding steps', 'Steps, fields, time taken, documents asked for', 'Monthly, and after an app update'],
         ['Messages after applying', 'Every email, text and push, with its time', 'As they arrive'],
         ['The app', 'Store rating, the screens before and after sign-in', 'Quarterly'],
         ['Service answers', 'Chat and phone answers to set questions, word for word', 'Weekly, and after a bot update'],
@@ -297,14 +297,14 @@ export const post: BlogPost = {
       kind: 'p',
       text: 'Take a dated screenshot of each competitor’s rate and offer pages, and read the market from Moneyfacts or Bankrate. Set the FDIC national rate or the Bank of England series as the benchmark, and save the CFPB agreement for each card. A pass is a row per product with a date and a screenshot link.',
     },
-    { kind: 'h3', id: 'walk-application', text: '3. Walk each application, up to the identity check' },
+    { kind: 'h3', id: 'walk-application', text: '3. Walk each application, step by step' },
     {
       kind: 'p',
-      text: 'Give each competitor its own email address and phone number. Screenshot every step and record the time it takes, the fields asked for, any rate or offer shown after the form and what the identity check asks for. Then stop. In the US, the [customer identification rule](' +
+      text: 'Give each competitor its own email address and phone number. Screenshot every step and record the time it takes, the fields and documents asked for, and any rate or offer shown after the form. Stop before an account is opened. In the US, the [customer identification rule](' +
         US_CIP +
         ') requires a bank to collect a name, date of birth, address and identification number before opening an account. In the UK, [the Money Laundering Regulations 2017](' +
         UK_MLR +
-        ') require identity checks before a business relationship begins. A bank may open an account first only if no transactions happen until the check is done. Never enter details that aren’t true. The guide [is it legal to mystery shop competitors](/blog/is-it-legal-to-mystery-shop-competitors) sets out what decides whether a method is allowed; none of this is legal advice.',
+        ') set what a bank must verify about a customer before the relationship begins. Never enter details that aren’t true. The guide [is it legal to mystery shop competitors](/blog/is-it-legal-to-mystery-shop-competitors) sets out what decides whether a method is allowed; none of this is legal advice.',
     },
     { kind: 'h3', id: 'keep-messages', text: '4. Keep every message that follows' },
     {
@@ -348,7 +348,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession is the toolkit for AI agents, through one API and one bill. For [journey checks at banks and fintechs](/use-cases/journey-checks-for-banks-and-fintechs), a persona, an AI agent with its own inbox, number and browser under one name, keeps each competitor’s offers after the form, every email and text that follows, account opening up to the identity check and chat answers, word for word. [Exa](' +
+      text: 'Obsession is the toolkit for AI agents, through one API and one bill. For [journey checks at banks and fintechs](/use-cases/journey-checks-for-banks-and-fintechs), a persona, an AI agent with its own inbox, number and browser under one name, keeps each competitor’s offers after the form, every email and text that follows, each step of the application forms and chat answers, word for word. [Exa](' +
         EXA +
         ') and [Firecrawl](' +
         FIRECRAWL +
@@ -356,7 +356,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'cta',
-      text: 'Every step of account opening up to the identity check, each email and text after it and every chat answer, at your bank and your competitors. Each one is dated with its screenshot or transcript.',
+      text: 'Every step of the application forms, each email and text after them and every chat answer, at your bank and your competitors. Each one is dated with its screenshot or transcript.',
       to: '/use-cases/journey-checks-for-banks-and-fintechs',
       label: 'See how it works',
     },
@@ -381,7 +381,7 @@ export const post: BlogPost = {
         ],
         [
           'By hand: an analyst, plus an inbox and phone per competitor',
-          'Sees what a new customer sees, up to the identity check',
+          'Sees what a new customer sees',
           'Free, plus about 45 minutes a week per competitor and profile',
           'Hours grow with every competitor, and history starts the day you begin',
           '3 to 5 competitors',
@@ -416,23 +416,23 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Competitor tracking](/blueprints/competitor-tracking), [Support bot check](/blueprints/support-bot-check)',
-          'Keeps what each bank and fintech you name shows only to its customers: offers after the form, every email and text, account opening up to the identity check, chat answers',
+          'Keeps what each bank and fintech you name shows only to its customers: offers after the form, every email and text, each step of the application forms, chat answers',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'History starts the day a persona applies\nStops at the identity check, so credit-file offers stay with panels',
+          'History starts the day a persona applies\nCredit-file offers stay with panels',
           'What a new customer gets from each competitor, on every channel, for as long as you follow it',
         ],
       ],
     },
     {
       kind: 'p',
-      text: 'For what each competitor shows only to its customers, use Obsession’s competitor tracking blueprint, which keeps it dated for every bank and fintech you name, for as long as you follow them. That covers the offer after the application form, every email after it, each step of account opening up to the identity check and chat answers. Moneyfacts and Bankrate answer advertised rate questions directly, and the FDIC, the CFPB and the Bank of England give official benchmarks and card terms for free. Comperemedia and Competiscan cover the mail and prescreened offers their panels receive, and Corporate Insight benchmarks competitors’ websites and apps through its analysts.',
+      text: 'For what each competitor shows only to its customers, use Obsession’s competitor tracking blueprint, which keeps it dated for every bank and fintech you name, for as long as you follow them. That covers the offer after the application form, every email after it, each step of the application forms and chat answers. Moneyfacts and Bankrate answer advertised rate questions directly, and the FDIC, the CFPB and the Bank of England give official benchmarks and card terms for free. Comperemedia and Competiscan cover the mail and prescreened offers their panels receive, and Corporate Insight benchmarks competitors’ websites and apps through its analysts.',
     },
 
     { kind: 'h2', id: 'limits', text: 'Limits and next steps' },
     {
       kind: 'list',
       items: [
-        '**Credit-file pricing and established accounts sit past the identity check.** The rate an applicant is finally offered and what a long-standing customer sees once signed in stay with panels of real customers and with your own customer research.',
+        '**Credit-file pricing and established accounts come from real customers.** The rate an applicant is finally offered and what a long-standing customer sees once signed in stay with panels of real customers and with your own customer research.',
         '**1 profile sees 1 customer’s view.** A new saver sees what competitors show new savers. Record the profile, the country and the device with every entry.',
         '**The template is general information,** not regulatory or compliance advice. What goes into a fair value assessment or a board report stays your firm’s call.',
       ],
@@ -474,7 +474,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is it legal to open an account at a competitor bank to research it?',
-          a: 'It depends on the bank’s terms and the law where you are, and this is general information, not legal advice. Never enter details that aren’t true, and stop at the identity check unless you are opening a real account in your own name.',
+          a: 'It depends on the bank’s terms and the law where you are, and this is general information, not legal advice. Never enter details that aren’t true, and stop before the account opens unless you want a real one in your own name.',
           link: { label: 'Is it legal to mystery shop competitors?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
         },
         {

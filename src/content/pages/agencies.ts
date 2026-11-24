@@ -155,8 +155,8 @@ export const page: Page = {
         a: 'Yes. Give each user inboxes, phone numbers, messaging, a browser and a sandbox through one API. Or put all of it under one name as a persona, in an account under your brand.',
       },
       {
-        q: 'What does an agent do at a payment or an identity check?',
-        a: 'It stops before payment, so nothing is bought, unless the client gives it a payment card of their own. At an identity check it stops too, and the event log keeps what the check asked for.',
+        q: 'What can an agent do in a client’s name?',
+        a: 'It signs in only with the logins the client gives it and works within a monthly spend limit you set on its key. It stops before payment, so nothing is bought, unless the client gives it a payment card of their own.',
       },
     ],
   },

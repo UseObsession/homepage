@@ -106,7 +106,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Where it stops matters more than what it does. It never gives medical advice or clinical judgement, and filing appeals, denials and treatment decisions stay with your team. It signs in only with logins you provide, stops at any identity check, and never gets round a CAPTCHA or a bot block. It texts and calls only people who gave your practice their number. Dental practices have their own version of this day, covered in [AI agent for dental practices](/use-cases/ai-agent-for-dental-practices). The same agent can also [sign in to websites](/blog/can-ai-agents-log-in-to-websites) your team uses.',
+      text: 'Where it stops matters more than what it does. It never gives medical advice or clinical judgement, and filing appeals, denials and treatment decisions stay with your team. It signs in only with logins you provide and works within a monthly spend limit you set on its key. It texts and calls only people who gave your practice their number. Dental practices have their own version of this day, covered in [AI agent for dental practices](/use-cases/ai-agent-for-dental-practices). The same agent can also [sign in to websites](/blog/can-ai-agents-log-in-to-websites) your team uses.',
     },
 
     { kind: 'h2', id: 'patient-data', text: 'Patient data: what to ask any vendor first' },
@@ -210,7 +210,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Prior authorization status](/blueprints/prior-authorization-status), [Missed call text back](/blueprints/missed-call-text-back) and [Appointment reminders](/blueprints/appointment-reminders)',
           'A phone number, inbox and browser for each agent, running the calls, texts and portal checks, with every step in one log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at any identity check, never gives medical advice, and runs patient jobs only once a business associate agreement is in place',
+          'Never gives medical advice, and runs patient jobs only once a business associate agreement is in place',
           'Front desk and portal work, for one clinic or every location in a group',
         ],
       ],
@@ -283,7 +283,7 @@ export const post: BlogPost = {
       items: [
         '**Clinical questions.** Decide the line in writing: the agent never answers symptoms, medication or results, and hands over or points to the emergency number. Test it by asking.',
         '**Wrong slots or services.** It can only book what your system shows. Read 10 bookings a week against the schedule.',
-        '**A portal changes.** A redesign or a new security step stops a sign-in. Check the morning list shows every payer, and that any portal handed back for an identity check is picked up the same day.',
+        '**A portal changes.** A redesign or a new security step stops a sign-in. Check the morning list shows every payer, and that any portal handed back to your team is picked up the same day.',
         '**Unanswered texts.** A reply that needs a person should reach one within minutes. Test it with a message out of hours.',
         '**Data kept too long.** Set how long recordings and screenshots are kept, and who can open them.',
       ],
@@ -313,7 +313,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How does an AI agent check prior authorization status?',
-          a: 'It signs in to each payer portal with a login your practice owns, reads every pending request and records the status with a dated screenshot. The sign-in code reaches the agent’s own inbox or number, and it stops at any identity check and hands that portal back to your team. It reads and reports; filing and appeals stay with your team.',
+          a: 'It signs in to each payer portal with a login your practice owns, reads every pending request and records the status with a dated screenshot. The sign-in code reaches the agent’s own inbox or number, so it signs in on its own and keeps the session. It reads and reports; filing and appeals stay with your team.',
           link: { label: 'Prior authorization status', to: '/blueprints/prior-authorization-status' },
         },
         {

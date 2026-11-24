@@ -175,7 +175,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): Phone, Email, Messaging, Browser, Sandbox, Personas',
           'A number with an inbox, WhatsApp, iMessage, a browser and a sandbox under one identity',
           `Number ${prices.number.amount} a month\nTexts ${prices.sms.amount}, carrier fees included\nCalls ${prices.voice.amount} a minute\n${PLANS}`,
-          'Calls run through the voice agent you bring or connect; stops at any identity check',
+          'Calls run through the voice agent you bring or connect',
           'Agents that text, call, email and browse',
         ],
       ],

@@ -12,7 +12,7 @@ export const defaultRules = [
   { title: 'It says what it is', line: 'Every AI customer is marked as automated. It never pretends to be a person.' },
   { title: 'It stops before paying', line: 'Checkouts end before payment. Nothing is bought on anyone else’s store.' },
   { title: 'Public journeys only', line: 'Sign ups, pages, ads and contact forms that anyone can use. Nothing behind a login it wasn’t given.' },
-  { title: 'It backs off', line: 'It follows robots.txt and stops at CAPTCHAs instead of trying to get round them.' },
+  { title: 'It backs off', line: 'It follows robots.txt.' },
 ]
 
 export const inputs = ['Paste a list', 'Upload a CSV', 'Connect Clay', 'API']
@@ -30,7 +30,7 @@ export const verdicts = [
   { tag: 'Delivered', tone: 'ok', line: 'What should happen did, and here’s the proof.' },
   { tag: 'Silent', tone: 'bad', line: 'Nothing arrived inside the window, and the checks below confirm it.' },
   { tag: 'No verdict', tone: 'idle', line: 'Something arrived, but not enough to decide either way.' },
-  { tag: 'Couldn’t test', tone: 'warn', line: 'A CAPTCHA, a block or a login stopped the step. It says which.' },
+  { tag: 'Couldn’t test', tone: 'warn', line: 'A login stopped the step. It says which.' },
 ] as const
 
 export const silentRule = ['The sign up was confirmed', 'A control message reached the same inbox', 'The spam folder was checked', 'A second run agreed']

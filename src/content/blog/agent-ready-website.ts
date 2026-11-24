@@ -411,7 +411,7 @@ export const post: BlogPost = {
           'Obsession (ours): [QA on your own flows](/blueprints/website-audit), [Support bot check](/blueprints/support-bot-check), [Voice agent check](/blueprints/voice-agent-check), [Listings and AI answers](/blueprints/listings-ai-answers)',
           'QA on your own flows: what the site shows and sends a new customer, after every release\nSupport bot check: your support bot’s answers on every channel, dated\nVoice agent check: calls to your AI receptionist, recorded and dated\nListings and AI answers: what AI assistants tell buyers, every Monday',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check\nBot and fraud settings stay with the security team',
+          'Stops before payment\nBot and fraud settings stay with the security team',
           'What a customer gets on the site, phone and chat, every answer kept and dated',
         ],
       ],

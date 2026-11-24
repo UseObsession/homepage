@@ -4,7 +4,7 @@ import type { UseCaseStudy } from '../types'
 
 /* Journey checks for banks and fintechs (/use-cases/journey-checks-for-banks-and-fintechs), 22 Nov 2026 rewrite for the
    toolkit position: a persona (its own browser, inbox and number) starts account applications at the reader's bank and
-   its competitors, up to the identity check and never past it (James, 11 Nov), and keeps every step, rate, email, text and
+   its competitors and opens no account (James, 11 Nov), and keeps every step, rate, email, text and
    chat answer in the event log. QA on your own flows runs the bank's own application; Mystery shopping runs the
    competitors'. Part of the Test sign-up and agents kit. Kittiwake Bank's chat calling a variable rate fixed is
    invented, like every name, rate and figure here, and `fine` says so. Prices come from prices.ts. */
@@ -14,15 +14,15 @@ const planWords = `the Free plan, then ${fees.slice(0, -1).join(', ')} or ${fees
 
 export const study: UseCaseStudy = {
   name: 'Journey checks for banks and fintechs',
-  line: 'Account opening up to the identity check, rates, offers and chat answers, at your bank and your competitors.',
+  line: 'Account opening, rates, offers and chat answers, at your bank and your competitors.',
 
   meta: {
     path: '/use-cases/journey-checks-for-banks-and-fintechs',
-    title: 'Banks and fintechs: test account opening up to the ID check',
+    title: 'Banks and fintechs: test account opening, codes and chat',
     description:
-      'AI agents apply at your bank and your competitors up to the identity check, and keep every step, rate, email, text and chat answer, dated with its proof.',
+      'AI agents start applications at your bank and your competitors, and keep every step, rate, email, text and chat answer, dated with its proof.',
     answer:
-      'Obsession gives banks and fintechs AI agents that start account applications at your bank and your competitors, up to the identity check and never past it. Each is a persona with its own browser, inbox and number. Every step, rate, email, text and chat answer lands in your event log, dated, with its screenshot or transcript.',
+      'Obsession gives banks and fintechs AI agents that start account applications at your bank and your competitors. Each is a persona with its own browser, inbox and number. Every step, rate, email, text and chat answer lands in your event log, dated, with its screenshot or transcript.',
     ogImage: '/og/journey-checks-for-banks-and-fintechs.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -35,19 +35,19 @@ export const study: UseCaseStudy = {
   hero: {
     pill: 'Test sign-up and agents blueprints',
     headline: 'The rates, offers and answers banks show only to people who apply.',
-    sub: 'Obsession gives banks and fintechs AI agents that start account applications at your bank and your competitors, up to the identity check and never past it. Every step, rate, email, text and chat answer lands in your event log, dated, with its screenshot or transcript.',
+    sub: 'Obsession gives banks and fintechs AI agents that start account applications at your bank and your competitors. Every step, rate, email, text and chat answer lands in your event log, dated, with its screenshot or transcript.',
     example: { chips: ['Kittiwake Bank, a savings bank', '3 competitors', 'Applications and chat'] },
     flow: [
       {
         label: 'What you name',
         title: 'Your bank and 3 competitors',
-        items: ['Account opening, up to the identity check', 'Rate pages and the application', 'Chat and the help centre', 'Who applies: a new saver or a switcher'],
+        items: ['Account opening, step by step', 'Rate pages and the application', 'Chat and the help centre', 'Who applies: a new saver or a switcher'],
         foot: 'On the web or in the app',
       },
       {
         label: 'Obsession',
         title: 'A persona at each bank',
-        items: ['A browser for the application', 'An inbox and a number for what follows', 'Stops at the identity check', 'Says it’s an AI in chat'],
+        items: ['A browser for the application', 'An inbox and a number for what follows', 'A dated screenshot of every step', 'Says it’s an AI in chat'],
         foot: 'Free while it waits',
       },
       {
@@ -94,18 +94,18 @@ export const study: UseCaseStudy = {
       },
       {
         title: 'The personas start the applications',
-        line: 'Up to the identity check, never past it. Each keeps its inbox and number, so every email, text and offer after arrives as it happens.',
+        line: 'Each fills in the forms a new applicant meets, and keeps its inbox and number, so every email, text and offer after arrives as it happens.',
         screen: 'botcheck',
         chips: ['Its own browser', 'Its own inbox', 'Its own number', 'Says it’s an AI'],
         steps: [
           {
             title: 'Account opening, step by step',
-            line: 'Every form up to the identity check, what that check asks for, and the emails after it, each with the time it arrived.',
-            example: '1 Nov, 14:22 at Dunmere: the application stops at the identity check, which asks for a passport photo and a selfie. At 48 hours: “Finish your application”.',
+            line: 'Every form and what it asks for, and the emails after it, each with the time it arrived.',
+            example: '1 Nov, 14:22 at Dunmere: the summary step shows 4.6% with a 0.1% bonus for 12 months. At 48 hours: “Finish your application”.',
           },
           {
             title: 'Application rates beside public ones',
-            line: 'The rate and bonus the application shows before the identity check, beside the ones on the public page.',
+            line: 'The rate and bonus the application shows, beside the ones on the public page.',
             example: 'Sedgefield: 4.8% on the public page, 4.5% on the application’s summary page.',
           },
           {
@@ -184,7 +184,7 @@ export const study: UseCaseStudy = {
     items: [
       {
         q: 'Where does the data come from?',
-        a: 'From real applications. A persona starts an application and asks chat the way any customer can, as the profile and country you choose, and keeps its inbox and number for months. It stops at the identity check and never invents identity details. It never signs in to an account that isn’t its own, and says it’s an AI when it talks to a person.',
+        a: 'From real applications. A persona starts an application and asks chat the way any customer can, as the profile and country you choose, and keeps its inbox and number for months. It opens no account and never invents identity details. It never signs in to an account that isn’t its own, and says it’s an AI when it talks to a person.',
         link: { label: 'The lines every agent keeps', to: '/agents' },
       },
       {
@@ -208,7 +208,7 @@ export const study: UseCaseStudy = {
   },
 
   final: {
-    heading: 'Apply at every competitor, up to the identity check.',
+    heading: 'See every competitor’s application the way a new customer does.',
     sub: 'Start with your own application and one competitor’s, so you can see what it does to application completion and drop-off.',
     capture: {
       kind: 'waitlist',

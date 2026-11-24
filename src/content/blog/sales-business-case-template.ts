@@ -239,7 +239,7 @@ export const post: BlogPost = {
     { kind: 'h3', id: 'identity', text: 'An identity and onboarding vendor selling to a savings app' },
     {
       kind: 'p',
-      text: 'Page 1 is at pennant.example. On a phone, the application stopped at the address page, the third of 6 steps, where the Continue button didn’t respond. No email followed in 48 hours to help the applicant finish. Walk it as yourself, and stop at the identity check. The cost line is applications started a month × the share lost at that step × the value of a funded account, from their finance team. The proof is the same application on the same phone after go-live.',
+      text: 'Page 1 is at pennant.example. On a phone, the application stopped at the address page, the third of 6 steps, where the Continue button didn’t respond. No email followed in 48 hours to help the applicant finish. Walk it as yourself. The cost line is applications started a month × the share lost at that step × the value of a funded account, from their finance team. The proof is the same application on the same phone after go-live.',
     },
     {
       kind: 'table',
@@ -276,7 +276,7 @@ export const post: BlogPost = {
       kind: 'list',
       ordered: true,
       items: [
-        '**Pick the journey your product touches.** Email and SMS: sign-up, browse and basket. Help desk and AI support: a question through the chat and the contact form. Identity and onboarding: the application, up to the identity check. Pass: 1 journey for each product you sell them.',
+        '**Pick the journey your product touches.** Email and SMS: sign-up, browse and basket. Help desk and AI support: a question through the chat and the contact form. Onboarding: the application, step by step. Pass: 1 journey for each product you sell them.',
         '**Sign up as yourself, with a fresh address for each prospect,** through the public form any customer uses. Pass: every message in that inbox comes from one company.',
         '**Do what a customer does, and stop where a customer pays or proves who they are.** Pass: each step has a screenshot with the date and time visible.',
         '**Wait for the full window, then check spam and Promotions.** Pass: the window has closed before you write “none arrived”.',
@@ -322,7 +322,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Prospect intelligence](/blueprints/prospect-intelligence), [Account watch](/blueprints/account-watch), API and MCP',
           'What each account sends and shows its customers, dated with screenshots, in one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at an identity check, a CAPTCHA or payment, and names the step',
+          'Stops before payment unless given your card',
           'A dated page 1 for every open deal',
         ],
       ],
@@ -384,7 +384,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is it all right to sign up to a prospect’s product to build the case?',
-          a: 'Sign-up forms and free trials are open to any customer. Sign up as yourself, buy nothing you don’t intend to keep, stop at any identity check and read the company’s terms, which differ by company and country. This is general information, not legal advice.',
+          a: 'Sign-up forms and free trials are open to any customer. Sign up as yourself, buy nothing you don’t intend to keep and read the company’s terms, which differ by company and country. This is general information, not legal advice.',
           link: { label: 'Is it legal to mystery shop competitors?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
         },
         {

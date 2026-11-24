@@ -232,7 +232,7 @@ export const post: BlogPost = {
         '**Say it is an AI:** an agent that speaks to a person tells them it is an AI.',
         '**Consent for texts and calls:** text and call only people who gave the business their number. In the US the FCC’s February 2024 ruling treats an AI voice as an artificial voice, so calls that use one to mobiles and home lines need the called person’s prior express consent, with some exceptions ([FCC 24-17](' + FCC_24_17 + ')).',
         '**Register US texting:** business texts in the US go through a registered campaign before the first one is sent. See the [10DLC guide](/blog/10dlc-registration).',
-        '**Stay inside logins and checks:** an agent signs in only with logins the client provides, stops at any identity check and never gets round a CAPTCHA.',
+        '**Stay inside logins and limits:** an agent signs in only with logins the client provides and works within a monthly spend limit you set on its key.',
         '**Keep a log:** every call, text and email lands in one event log with the email, screenshot or recording behind it.',
       ],
     },

@@ -136,7 +136,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Where does prior authorization AI automation stop?',
-        a: 'At clinical judgement, payment and identity checks. The agent reads and fills what your team decides, stops at any identity check and never gets round a CAPTCHA. When it talks to a person, it says it’s an AI.',
+        a: 'At clinical judgement and payment, which stay with your team. The agent reads and fills what your team decides, and signs in only with the logins you give it. When it talks to a person, it says it’s an AI.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

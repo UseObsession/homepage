@@ -176,7 +176,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Does the agent tell applicants it’s an AI?',
-        a: 'Yes, whenever it talks to a person, by phone, text, email or WhatsApp. It texts and calls only people who gave the university their number, and it stops at any identity check. This is general information, not legal advice: student data rules differ by country and institution, so check yours before you share applicant records.',
+        a: 'Yes, whenever it talks to a person, by phone, text, email or WhatsApp. It texts and calls only people who gave the university their number, and it signs in only with the logins you give it. This is general information, not legal advice: student data rules differ by country and institution, so check yours before you share applicant records.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

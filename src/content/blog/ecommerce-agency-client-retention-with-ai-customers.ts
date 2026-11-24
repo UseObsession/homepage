@@ -159,7 +159,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'On Obsession, each client store gets up to 4 journeys: sign up, browse, leave a basket and start a checkout. Each journey is its own persona, an AI agent with its own inbox, number and browser under one name. A reminder that never came, came 10 hours late or dropped the price shows up with its time. Where a store puts a CAPTCHA or bot check in front of a step, the result names the step it couldn’t reach.',
+      text: 'On Obsession, each client store gets up to 4 journeys: sign up, browse, leave a basket and start a checkout. Each journey is its own persona, an AI agent with its own inbox, number and browser under one name. A reminder that never came, came 10 hours late or dropped the price shows up with its time.',
     },
     {
       kind: 'p',
@@ -331,7 +331,6 @@ export const post: BlogPost = {
       items: [
         '**A persona for each job at each store.** Each has its own inbox, phone number and browser, so every email traces back to the one action that triggered it.',
         '**Everything a customer meets.** The emails, the page behind each ad, prices and offers, the basket, checkout and codes, the store’s chat and AI agent, and what AI assistants say about the brand.',
-        '**Bot checks.** Where a store puts a CAPTCHA in front of a step, the report names the step it couldn’t test, so the agency knows exactly what to check by hand.',
         '**Scale.** It runs at 300, 1,000 or 5,000 brands a month, and each persona is free while it waits, so every store stays followed for as long as the agency wants.',
         '**Pricing.** Free to start, then $20, $99 or $499 a month, with each blueprint billed on the pieces it uses, up to any spend cap the agency sets.',
       ],

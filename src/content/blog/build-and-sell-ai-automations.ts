@@ -197,7 +197,7 @@ export const post: BlogPost = {
           'Obsession (ours): [blueprints](/blueprints), [your own brand](/agencies), [describe your job](/no-code)',
           'Agents with their own number, inbox and browser, every step in an event log; run blueprints for clients under your brand',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Jobs that call, text, email and sign in, for many clients',
         ],
       ],
@@ -230,7 +230,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'limits', text: 'What to leave out of an automation business' },
     {
       kind: 'p',
-      text: 'Obsession’s agents say they are an AI to anyone they speak to, text and call only people who gave the business their number, sign in only with logins you provide and stop at any identity check. They stop before payment unless you give the card, and never get round a CAPTCHA or a bot block. Choose jobs that fit those rules, such as those in [AI voice agents for small businesses](/blog/ai-voice-agent-for-small-business). Job application bots, appointment slot sniping, ticket scalping and fake reviews do not fit, and buyers who ask for them are not the clients to build around. The full rules are on [the agents page](/agents).',
+      text: 'Obsession’s agents say they are an AI to anyone they speak to, text and call only people who gave the business their number, and sign in only with logins you provide. They stop before payment unless you give the card, and work within a monthly spend limit you set on their key. Choose jobs that fit those rules, such as those in [AI voice agents for small businesses](/blog/ai-voice-agent-for-small-business). Job application bots, appointment slot sniping, ticket scalping and fake reviews do not fit, and buyers who ask for them are not the clients to build around. The full rules are on [the agents page](/agents).',
     },
 
     { kind: 'h2', id: 'one-identity', text: 'One agent, one identity, every piece the job needs' },

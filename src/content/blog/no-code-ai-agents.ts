@@ -210,7 +210,7 @@ export const post: BlogPost = {
           'Obsession (ours): [blueprints](/blueprints) such as [Lead response checks](/blueprints/lead-leaks), [Support bot check](/blueprints/support-bot-check) and [Competitor tracking](/blueprints/competitor-tracking)',
           'Runs the job on agents with their own inbox, number and browser, waiting days and keeping every email, text and screenshot',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Runs the jobs on its list, and developers build others on the same pieces; stops before payment and at any identity check',
+          'Runs the jobs on its list, and developers build others on the same pieces; stops before payment',
           'Jobs where an agent acts as a new customer or lead',
         ],
       ],
@@ -288,8 +288,7 @@ export const post: BlogPost = {
       items: [
         '**It says it’s an AI** when it talks to a person.',
         '**It stops before payment** unless it has the customer’s own payment card, and never uses made-up payment details.',
-        '**It treats a CAPTCHA or a bot block as a hard stop.**',
-        '**It stops at any identity check.**',
+        '**It signs in only with the logins it is given,** and works within a monthly spend limit you set on its key.',
         '**A person approves anything that can’t be undone**, such as a payment, a deletion or a first email to someone new.',
       ],
     },

@@ -89,8 +89,8 @@ export const test: KitPage = {
       { q: 'Can it receive login codes?', a: 'Yes, by email, text or call, at its own inbox and number. Each code reaches your test as it lands.' },
       { q: 'Where do results go?', a: 'To Slack, a sheet, your CI or your own code, through one signed webhook.' },
       {
-        q: 'Does it get past CAPTCHAs or identity checks?',
-        a: 'No. It never gets round a CAPTCHA or a bot block, and it stops at any identity check. The event log keeps what the check asked for.',
+        q: 'What happens at a step that needs a person?',
+        a: 'The event log keeps the page, what it asked for and a screenshot, so your test names the exact step.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
     ],

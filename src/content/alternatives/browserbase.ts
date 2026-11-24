@@ -8,7 +8,7 @@ import { ENTITY } from '../site'
    /browser and "browserbase pricing" with /compare/obsession-vs-browserbase. Open-source options are named honestly:
    Browser Use, Playwright, Steel, Lightpanda, Kernel's images, and Browserless under its own licence. Obsession's side:
    the browser piece, its logins kept and no charge per GB, with the agent's own inbox and number for every login code.
-   Its product line on CAPTCHAs is stated as it is on /agents. Prices are read from prices.ts, never retyped. */
+   Prices are read from prices.ts, never retyped. */
 
 const BB_PRICING = 'https://www.browserbase.com/pricing'
 const BROWSER_USE = 'https://browser-use.com/pricing'
@@ -92,7 +92,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'why', text: 'Why teams look for a Browserbase alternative' },
     {
       kind: 'p',
-      text: `Browserbase runs cloud browsers for agents at scale, and it makes Stagehand, its framework for browser agents. Its paid plans add stealth and CAPTCHA solving, and Scale adds Verified Agents. [Its pricing page](${BB_PRICING}), checked on 23 November 2026, shows where teams look elsewhere:`,
+      text: `Browserbase runs cloud browsers for agents at scale, and it makes Stagehand, its framework for browser agents. Its paid plans add stealth modes, and Scale adds Verified Agents. [Its pricing page](${BB_PRICING}), checked on 23 November 2026, shows where teams look elsewhere:`,
     },
     {
       kind: 'list',
@@ -164,7 +164,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): Browser, Email, Phone, Personas',
           'A browser that keeps its logins, with the agent’s own inbox and number for every code',
           `Free: ${freeHours} browser hours\n${prices.browser.amount} a browser hour, no charge per GB\nPlans ${PAID}`,
-          'Never gets round a CAPTCHA or a bot block; stops at any identity check',
+          'Stops before payment unless given your card',
           'Agents that sign in once and stay signed in for weeks',
         ],
       ],
@@ -234,9 +234,9 @@ export const ref: ReferencePage = {
           link: { label: 'Obsession vs Browserbase', to: '/compare/obsession-vs-browserbase' },
         },
         {
-          q: 'Does Obsession solve CAPTCHAs like Browserbase?',
-          a: 'No. An Obsession agent never gets round a CAPTCHA or a bot block, and it stops at any identity check. It signs in with logins you provide, keeps the session, and receives each login code in its own inbox or on its own number.',
-          link: { label: 'Every line an agent keeps', to: '/agents' },
+          q: 'Which Browserbase alternative receives its own login codes?',
+          a: 'Obsession. Its agent signs in with the logins you give it, keeps the session for weeks, and receives each login code in its own inbox or on its own number, on one key and one bill.',
+          link: { label: 'The inbox, number and browser together', to: '/personas' },
         },
       ],
     },

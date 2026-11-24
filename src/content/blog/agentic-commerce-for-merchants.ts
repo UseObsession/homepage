@@ -399,7 +399,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Record whether it found your product or another seller’s, picked the right variant, read the right price, stock and delivery date, applied the code, and reached checkout with the basket intact. **A pass:** all 5. **If it stops,** note the page and the element, and look first at pop ups, variant pickers and bot checks. Agents that shop through UCP or Shopify Catalog read the same product data that step 2 checks.',
+      text: 'Record whether it found your product or another seller’s, picked the right variant, read the right price, stock and delivery date, applied the code, and reached checkout with the basket intact. **A pass:** all 5. **If it stops,** note the page and the element, and look first at pop ups, variant pickers and forced accounts. Agents that shop through UCP or Shopify Catalog read the same product data that step 2 checks.',
     },
 
     { kind: 'h3', id: 'fix', text: '4. Fix each wrong answer at its source' },

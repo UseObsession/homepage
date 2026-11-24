@@ -12,7 +12,7 @@ import type { BlogPost } from './types'
    yesterday" on 29 Oct), Shopify Help (Recovering abandoned checkouts, the legacy page's 10 minute rule), Klaviyo's
    flow audit checklist (31 Mar 2026: first basket send 30 to 45 minutes, exclude started checkout), Joy Joya's 362 brand
    test (158 with no welcome email, 20 offers that didn't match, the 5 to 15 minute window) and Netalico's published
-   pricing (now at /pages/shopify-klaviyo-agency). Upwork's job listing pages showed a bot check, so no job post is
+   pricing (now at /pages/shopify-klaviyo-agency). Upwork's job listing pages could not be read, so no job post is
    described; nothing about how Upwork ranks or how fast clients hire is claimed beyond its help pages.
    Our own facts are only the brief's: the 14 online stores 4 agencies sent us (21 to 26 Oct 2026), anonymised, and the
    1,500 stores line word for word. No agency, store or person is named, and nothing from any call is used. Obsession's
@@ -293,7 +293,7 @@ export const post: BlogPost = {
           'Browser agent: [ChatGPT’s cloud browser](' + CLOUD_BROWSER + ')',
           'Fills in forms and keeps working after you leave',
           'Paid ChatGPT plans in supported regions, excluding Free and Go',
-          'Pauses for sign-ins and confirmations, and some websites block it',
+          'Pauses for sign-ins and confirmations',
           'A one-off sign-up you can watch',
         ],
         [
@@ -311,7 +311,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession runs as many agents as a prospect list needs, each with its own inbox, phone number and browser, and each doing one thing. One signs up, one browses, one leaves a basket and one starts a checkout, each shopping from the US or the UK to match the brand’s market. Where a store puts a CAPTCHA in front of a step, the event log names the step it couldn’t pass, so you know exactly what to check by hand. It runs at 300 brands a month, 1,000 or 5,000, with a persona waiting at each brand between reads.',
+      text: 'Obsession runs as many agents as a prospect list needs, each with its own inbox, phone number and browser, and each doing one thing. One signs up, one browses, one leaves a basket and one starts a checkout, each shopping from the US or the UK to match the brand’s market. Every step is kept with its time and a screenshot, so you can show the brand exactly what its customer met. It runs at 300 brands a month, 1,000 or 5,000, with a persona waiting at each brand between reads.',
     },
     {
       kind: 'p',

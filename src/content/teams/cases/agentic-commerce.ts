@@ -7,7 +7,7 @@ import type { TeamPage } from '../types'
    "agentic commerce infrastructure" and "ai agent payment infrastructure" (Google suggestions, 23 Nov); the head term
    "agentic commerce" stays with /blog/agentic-commerce-for-merchants until the plan's Search Console check. Payment
    follows the product lines: the agent pays only with a card the customer gives it, stops before payment without one,
-   stops at any identity or bank check, never issues cards or holds money, and a store that blocks agents is a finding.
+   waits for the cardholder when a bank asks for approval, and never issues cards or holds money.
    Protocols are named only to say what they cover, as in the merchant guide; no partnership is claimed. No competitor or
    competitor's customer is named, and no figure is borrowed. Corrin, its clinics and its supplier are invented. */
 
@@ -148,15 +148,15 @@ export const useCase: TeamPage = {
       },
       {
         q: 'How does a buying agent pay?',
-        a: 'With the card you give it: a company card, a virtual card your finance team issues, or a card saved in an account you own. Without one, it stops before payment and the event log keeps the basket. It stops at any identity or bank check on the payment, and never uses fake payment details. Obsession never issues cards or holds money.',
+        a: 'With the card you give it: a company card, a virtual card your finance team issues, or a card saved in an account you own. Without one, it stops before payment and the event log keeps the basket. When the card’s bank asks for approval, the order waits for the cardholder. It never uses fake payment details. Obsession never issues cards or holds money.',
       },
       {
         q: 'Whose details does the agent book and order with?',
         a: 'Yours. Traveller names, delivery addresses and loyalty numbers come from the travel profile or account you give it, and it never invents identity details. Order confirmations still reach the agent’s own inbox, so every receipt sits beside its order.',
       },
       {
-        q: 'What happens when a store blocks agents?',
-        a: 'The run stops there, and the blocked step is reported as a finding, with a screenshot of what the agent saw. It never gets round a CAPTCHA or a bot block, and it says it’s an AI when it talks to a person.',
+        q: 'What happens when an order needs a person?',
+        a: 'The order goes to someone on your team with its basket and a screenshot of the step, and every other order carries on. When the agent talks to a person, it says it’s an AI.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

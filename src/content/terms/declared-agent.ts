@@ -53,7 +53,7 @@ export const ref: ReferencePage = {
     { kind: 'h2', id: 'obsession', text: 'Where Obsession’s agents fit' },
     {
       kind: 'p',
-      text: 'Every Obsession agent runs as a [persona](/personas), an AI agent with its own inbox, number and browser under one name. Each is a [declared AI agent](/agents): it says it’s an AI agent from Obsession when it talks to a person, links to the page that explains it and never gets round a CAPTCHA or a bot block.',
+      text: 'Every Obsession agent runs as a [persona](/personas), an AI agent with its own inbox, number and browser under one name. Each is a [declared AI agent](/agents): it says it’s an AI agent from Obsession when it talks to a person, links to the page that explains it and signs in only with the logins its team gives it.',
     },
     {
       kind: 'faq',

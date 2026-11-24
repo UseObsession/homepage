@@ -287,7 +287,7 @@ export const post: BlogPost = {
     { kind: 'h2', id: 'ai-agents', text: 'AI agents that shop for people' },
     {
       kind: 'p',
-      text: 'Some visits now come from AI agents shopping on a person’s behalf. [Shopify says its agentic storefronts](' + AGENTIC + ') let customers discover and buy a store’s products in AI channels such as ChatGPT, Google AI Mode and Gemini, Microsoft Copilot and Meta, and they are on by default for eligible stores. A CAPTCHA, the puzzle that blocks automated visitors, or another bot check can turn such an agent away before it reaches the cart. [Is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for what such an agent gets on a store, and when to block or allow one.',
+      text: 'Some visits now come from AI agents shopping on a person’s behalf. [Shopify says its agentic storefronts](' + AGENTIC + ') let customers discover and buy a store’s products in AI channels such as ChatGPT, Google AI Mode and Gemini, Microsoft Copilot and Meta, and they are on by default for eligible stores. [Is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for what such an agent gets on a store, and when to block or allow one.',
     },
 
     { kind: 'h2', id: 'cost', text: 'What a broken step costs in a week' },
@@ -371,7 +371,7 @@ export const post: BlogPost = {
         ],
         [
           'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [Ad landing check](/blueprints/ad-landing-check), [QA on your own flows](/blueprints/website-audit)',
-          'Every page and email a new customer meets from the ad to the basket, kept with its time. A step behind a CAPTCHA is named as untested',
+          'Every page and email a new customer meets from the ad to the basket, kept with its time',
           'Free, then $20, $99 or $499 a month; usage per piece',
           'Stops before payment, so the payment step needs a test order',
           'What a new customer meets and receives, every week and after every change',

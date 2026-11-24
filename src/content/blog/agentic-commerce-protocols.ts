@@ -134,7 +134,7 @@ export const post: BlogPost = {
         '**Checkout:** the agent builds a basket, gets tax and delivery costs and places the order in the store’s own system, and the store stays the seller.',
         '**Authorisation:** a signed digital contract, called a mandate, shows what the shopper asked for and the exact basket they approved, so a bank or a store can check it in a dispute.',
         '**Payment credential:** the card or wallet the agent pays with, usually as a token, a stand-in for the card number that works only for that agent or store.',
-        '**Agent identity:** a cryptographic signature on each request tells a website which known agent is visiting, so the store can let it through instead of blocking it as a bot.',
+        '**Agent identity:** a cryptographic signature on each request tells a website which known agent is visiting, so the store can let it through as a known agent.',
       ],
     },
 
@@ -322,7 +322,7 @@ export const post: BlogPost = {
       items: [
         '**An inbox.** Order confirmations, receipts, booking changes and refund notices arrive by email at the address given at checkout.',
         '**A phone number.** Delivery updates, and the one-time codes some stores send at sign-in, arrive by text.',
-        '**A browser.** At a store that supports none of the protocols, the agent fills in the checkout pages itself, and a store that shows a CAPTCHA stops it there.',
+        '**A browser.** At a store that supports none of the protocols, the agent fills in the checkout pages itself, the way a customer does.',
         '**One place for every order.** ACP and UCP send order updates to the agent’s own server, one store at a time. Matching each confirmation and receipt to its order across every store falls to the team running the agents, who track orders completed, receipts matched and cost per order.',
       ],
     },
@@ -345,7 +345,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession is the toolkit for AI agents: each buying agent gets its own inbox, phone number and signed-in browser under one identity, on one API and one bill. It pays with the card you give it, stops before payment without one or at any identity check, and reports a store that blocks agents instead of getting round it. Every confirmation, receipt and delivery text lands in one event log, and the [Order and receipt ledger](/blueprints/order-receipt-ledger) blueprint matches each to its order in one sheet.',
+      text: 'Obsession is the toolkit for AI agents: each buying agent gets its own inbox, phone number and signed-in browser under one identity, on one API and one bill. It pays with the card you give it, stops before payment without one, and works within a monthly spend limit you set on its key. Every confirmation, receipt and delivery text lands in one event log, and the [Order and receipt ledger](/blueprints/order-receipt-ledger) blueprint matches each to its order in one sheet.',
     },
     {
       kind: 'cta',
@@ -361,7 +361,7 @@ export const post: BlogPost = {
         '**Versions change every few months.** ACP and UCP name each version by its date, and ACP’s 2026-04-17 version deprecated the one before it, so pin the version your code speaks.',
         '**Fees, liability and dispute rules** come from your payment provider and card network, and they differ by country.',
         '**Card programmes reach shoppers through their banks,** so which cards an agent can use differs by issuer and country.',
-        '**A store can still block agents.** A signed agent is easier to let through, and the store decides.',
+        '**Each store sets its own rules for agents.** A signed agent is easier to let through, and the store decides.',
       ],
     },
     {

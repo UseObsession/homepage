@@ -32,7 +32,7 @@ export const recipe: Recipe = {
     'A persona for each journey: sign up, browse, basket and checkout',
     'Its own inbox, phone number and home connection',
     'Your store, or each client store with its owner’s OK',
-    'Stops before payment and at any identity check',
+    'Stops before payment unless given your card',
     'Waiting as long as you choose, waking on each email and text',
     'A report per store, every message dated',
   ],
@@ -155,7 +155,7 @@ export const recipe: Recipe = {
           title: 'Before payment',
           line: 'By default. Give it your own card, or a client’s with their OK, and it completes the order.',
         },
-        { title: 'At an ID check', line: 'It stops there, and the event log keeps what the check asked for.' },
+        { title: 'At your spend limit', line: 'It works within a monthly spend limit you set on its key.' },
         { title: 'With a person', line: 'If anyone writes or calls, it says it’s an AI.' },
       ],
     },
@@ -222,7 +222,7 @@ export const recipe: Recipe = {
       },
       {
         q: 'Do my clients need to agree?',
-        a: 'Yes. Each client store is shopped with its owner’s OK. The personas shop the way anyone can, stop before payment and at any identity check, and say they’re an AI when they talk to a person.',
+        a: 'Yes. Each client store is shopped with its owner’s OK. The personas shop the way anyone can, stop before payment, and say they’re an AI when they talk to a person.',
         link: { label: 'Obsession for agencies', to: '/agencies' },
       },
       {

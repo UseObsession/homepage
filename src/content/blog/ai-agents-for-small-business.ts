@@ -141,7 +141,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**10. Collect bills from supplier portals.** Many suppliers, utilities and software vendors make you sign in to download each invoice. The agent signs in with your logins each week, downloads the PDF and adds the vendor, amount and due date to a sheet. Your sum: portals times 5 minutes a month. 20 portals is about 1.7 hours a month. Cost: 20 portals at 3 minutes a visit, weekly, is about 4 browser-hours, which is $0.43, plus model tokens. The [Invoice collector](/blueprints/invoice-collector) blueprint runs it, up to any identity check and never paying a bill.',
+      text: '**10. Collect bills from supplier portals.** Many suppliers, utilities and software vendors make you sign in to download each invoice. The agent signs in with your logins each week, downloads the PDF and adds the vendor, amount and due date to a sheet. Your sum: portals times 5 minutes a month. 20 portals is about 1.7 hours a month. Cost: 20 portals at 3 minutes a visit, weekly, is about 4 browser-hours, which is $0.43, plus model tokens. The [Invoice collector](/blueprints/invoice-collector) blueprint runs it, and never pays a bill.',
     },
     {
       kind: 'p',
@@ -149,7 +149,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**12. Fill the same form on many sites.** Quotes for insurance, utilities or supplies mean typing the same details into several sites. The agent fills each, with details you provide, up to any identity check, and returns a table. Your sum: forms a month times 15 minutes. Cost: browser time at $0.10 an hour.',
+      text: '**12. Fill the same form on many sites.** Quotes for insurance, utilities or supplies mean typing the same details into several sites. The agent fills each, with details you provide, and returns a table. Your sum: forms a month times 15 minutes. Cost: browser time at $0.10 an hour.',
     },
 
     { kind: 'h3', id: 'suppliers', text: 'Suppliers and the market: reordering and watching' },
@@ -241,7 +241,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Phone](/phone), [Email](/email), [Browser](/browser), [blueprints](/blueprints)',
           'An agent with its own number, inbox and browser under one identity, running ready-made jobs, with every email, text, call and page in one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Asks you for logins and consent, stops at any identity check, and says it is an AI',
+          'Asks you for logins and consent, and says it is an AI',
           'Jobs that need a phone, an inbox or a login, done every day',
         ],
       ],
@@ -320,7 +320,7 @@ export const post: BlogPost = {
         '**Register for US texting.** The Campaign Registry says [any business that texts customers from a 10-digit number must register](' + TCR + '). Your provider files it, and it takes up to a few weeks.',
         '**Keep marketing separate from service messages.** In the UK the ICO says you [must not send marketing emails or texts without specific consent](' + ICO + '), with a limited exception for existing customers who got a clear opt-out. A reminder for a booking is a service message. A promotion is marketing.',
         '**Always give a way out.** Every text should say how to stop, and a stop must end the messages.',
-        '**Use only your own logins.** The agent signs in with logins you give it, stops at any identity check and stops before payment unless you give it your card.',
+        '**Use only your own logins.** The agent signs in with logins you give it, works within a monthly spend limit you set on its key, and stops before payment unless you give it your card.',
       ],
     },
 

@@ -298,7 +298,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Email](/email), [Phone](/phone), [Sign-in code check](/blueprints/sign-in-code-check)',
           'An inbox and a number per test persona, so a sign-up gets the email code and the text code, each logged with its time',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Says it’s an AI to a person; stops at identity checks and CAPTCHAs; no previews or spam scores',
+          'Says it’s an AI to a person; no previews or spam scores',
           'Sign-up and sign-in tests that use both an email and a text',
         ],
       ],

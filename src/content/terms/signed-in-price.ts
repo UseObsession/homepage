@@ -59,7 +59,7 @@ export const ref: ReferencePage = {
     },
     {
       kind: 'p',
-      text: 'An Obsession agent never signs in to an account that isn’t its own and never goes past an identity check, as [the page for companies an agent visits](/agents) sets out.',
+      text: 'An Obsession agent never signs in to an account that isn’t its own, as [the page for companies an agent visits](/agents) sets out.',
     },
     {
       kind: 'faq',

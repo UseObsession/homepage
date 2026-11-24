@@ -225,7 +225,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Mystery shopping](/blueprints/mystery-shopper), [Competitor tracking](/blueprints/competitor-tracking), [Prospect intelligence](/blueprints/prospect-intelligence), [Email](/email), [Browser](/browser)',
           'A persona per company with its own inbox, number and browser, keeping every email, offer and price for months, dated',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment, at any CAPTCHA and at any identity check',
+          'Stops before payment unless given your card',
           'What a real customer gets at any company, for months',
         ],
       ],
@@ -359,8 +359,7 @@ export const post: BlogPost = {
       items: [
         '**A new customer sees what new customers get.** Long standing subscribers and past buyers may receive other emails.',
         '**It reports what arrived, and not why.** The cause of a missing email sits in the company’s own tools.',
-        '**It never gets round a bot wall or a CAPTCHA,** and the event log names the step where it stopped.',
-        '**It stops at any identity check and before payment,** unless you give it your own card, and it never uses fake payment details.',
+        '**It stops before payment,** unless you give it your own card, and it never uses fake payment details.',
         '**It says it’s an AI** whenever it talks to a person.',
         '**Client stores need the client’s OK.** Competitors and prospects get only the public sign up any customer can use. This is not legal advice.',
       ],

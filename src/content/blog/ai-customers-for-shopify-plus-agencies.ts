@@ -430,7 +430,7 @@ export const post: BlogPost = {
           'Obsession (ours): [QA on your own flows](/blueprints/website-audit), [Mystery shopping](/blueprints/mystery-shopper), [Delivery monitoring](/blueprints/delivery-monitoring), [Partner checks](/blueprints/partner-checks)',
           'What each client store sends a new customer from launch day, every email, text and code kept as it arrived',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment, and at CAPTCHAs and bot blocks',
+          'Stops before payment unless given your card',
           'What a client’s customers get after launch and every release, dated',
         ],
       ],

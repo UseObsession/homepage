@@ -196,7 +196,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Email](/email), [Personas](/personas) and the [Inbox agent blueprint](/blueprints/inbox-agent), over MCP',
           'An inbox of its own in one call, plus a number and a browser on the same key\nEvery email in one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Agents and tests that need their own address',
         ],
       ],

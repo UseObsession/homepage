@@ -152,7 +152,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): Sandbox, Email, Phone, Browser, Personas',
           'A sandbox per task, billed only while the CPU works, beside the agent’s inbox, number and browser',
           `Free: ${freeHours} sandbox hours\n${prices.sandbox.amount} an active vCPU hour\n${prices.memory.amount} a GiB hour\nPlans ${PAID}`,
-          'Stops at any identity check, and before payment without your own payment card',
+          'Stops before payment unless given your own payment card',
           'Agents whose code runs on what they receive by email, text and browser',
         ],
       ],

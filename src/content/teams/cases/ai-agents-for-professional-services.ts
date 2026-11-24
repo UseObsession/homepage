@@ -183,7 +183,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Does the agent give legal or tax advice?',
-        a: 'No. It chases documents, books meetings, reminds clients, checks portals and reports what it found, and a person at your firm gives every piece of advice. It says it is an AI whenever it talks to a person, texts and calls only people who gave your firm their number, and stops at any identity check.',
+        a: 'No. It chases documents, books meetings, reminds clients, checks portals and reports what it found, and a person at your firm gives every piece of advice. It says it is an AI whenever it talks to a person, texts and calls only people who gave your firm their number, and signs in only with the logins you give it.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

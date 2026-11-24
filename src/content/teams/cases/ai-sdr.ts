@@ -133,7 +133,7 @@ export const useCase: TeamPage = {
       },
       {
         q: 'Does the rep say it’s an AI?',
-        a: 'Yes, whenever it talks to a person, on a call, by text or by email. It stops before payment and at any identity check.',
+        a: 'Yes, whenever it talks to a person, on a call, by text or by email. It stops before payment, and works within a monthly spend limit you set on its key.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {

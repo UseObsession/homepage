@@ -277,7 +277,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Sandbox](/sandbox), [Email](/email), [Browser](/browser), [Train and test agents](/blueprints/train-and-test-agents)',
           'A sandbox billed by active CPU time, beside the agent’s inbox, number and browser, every run in one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Says it’s an AI to a person; stops at identity checks and CAPTCHAs',
+          'Says it’s an AI to a person; stops before payment unless given your card',
           'Agents that work on the files their inbox and browser bring in',
         ],
       ],

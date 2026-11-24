@@ -292,7 +292,7 @@ export const post: BlogPost = {
       ordered: true,
       items: [
         '**Choose the basket and the profile.** Name the products and the store or postcode. Then pick the customer profile: a new member, a long-standing member, an app user or a paying member. A pass: one written profile per competitor, kept the same every week.',
-        '**Join each competitor the way any customer can.** Read its terms first, use a real inbox and phone number, and stop where a scheme asks for an identity document or an in-store card. A pass: an account per competitor and profile, with the date it opened.',
+        '**Join each competitor the way any customer can.** Read its terms first, use a real inbox and phone number, and skip any scheme that needs an in-store card. A pass: an account per competitor and profile, with the date it opened.',
         '**Read every product twice, minutes apart.** Read the page signed out, then signed in, from the same store, with a screenshot of each. A pass: a member price counts when both readings agree on the product and the store.',
         '**Write down the conditions.** Valid dates, minimum spend, card or app, and whether the price is personalised. A pass: every member price has its conditions beside it.',
         '**Keep the account open.** Welcome offers, weekly personalised prices, emails and texts arrive over days and weeks; keep each as it lands. A pass: every message kept with the time it arrived.',
@@ -366,7 +366,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Price watch](/blueprints/price-watch), [Browser](/browser), [Personas](/personas)',
           'Member and public prices side by side, per store and profile, with every later offer',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Product matching stays with your team; stops at any identity check and before payment',
+          'Product matching stays with your team; stops before payment',
           'Competitors’ member prices, kept as proof over time',
         ],
       ],
@@ -433,7 +433,7 @@ export const post: BlogPost = {
         },
         {
           q: 'How does Obsession read competitors’ member prices?',
-          a: 'A persona joins each competitor the way any customer can, from the customer profile and city your team picks, and its browser stays signed in. It reads every price signed out and signed in on the same page, with a screenshot of each, and its inbox and number keep every email and text as they arrive. It says it’s an AI when it talks to a person, never invents identity details and stops at any identity check.',
+          a: 'A persona joins each competitor the way any customer can, from the customer profile and city your team picks, and its browser stays signed in. It reads every price signed out and signed in on the same page, with a screenshot of each, and its inbox and number keep every email and text as they arrive. It says it’s an AI when it talks to a person, and never invents identity details.',
           link: { label: 'What every Obsession agent does', to: '/agents' },
         },
       ],

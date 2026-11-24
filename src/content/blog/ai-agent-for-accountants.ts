@@ -107,7 +107,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: '**2. Download files from portals.** Supplier, utility, bank and software accounts make someone sign in to fetch each invoice or statement. The agent signs in with the logins the firm provides, downloads the PDF, and adds the vendor, amount and due date to a sheet. It stops at any identity check, never pays a bill and keeps its browser logged in between visits. The [Invoice collector](/blueprints/invoice-collector) blueprint runs this. Whether a portal allows a login held by the firm on a client’s behalf is the portal’s own rule, so check its terms first.',
+      text: '**2. Download files from portals.** Supplier, utility, bank and software accounts make someone sign in to fetch each invoice or statement. The agent signs in with the logins the firm provides, downloads the PDF, and adds the vendor, amount and due date to a sheet. It never pays a bill, and keeps its browser logged in between visits. The [Invoice collector](/blueprints/invoice-collector) blueprint runs this. Whether a portal allows a login held by the firm on a client’s behalf is the portal’s own rule, so check its terms first.',
     },
     {
       kind: 'p',
@@ -216,7 +216,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Phone](/phone), [Email](/email), [Browser](/browser), [blueprints](/blueprints)',
           'An agent with its own number, inbox and browser under one identity, chasing by email and text and fetching from portals, with every step in one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Needs the logins and consent you give it, stops at any identity check and says it is an AI',
+          'Needs the logins and consent you give it, and says it is an AI',
           'The follow-up that happens outside your practice software',
         ],
       ],
@@ -282,7 +282,7 @@ export const post: BlogPost = {
         '**Say it’s an AI.** The agent tells anyone it speaks to that it is an AI assistant. The US Federal Communications Commission ruled in February 2024 that [AI-generated voices count as artificial voices](' + FCC + ') under the Telephone Consumer Protection Act, so calls to mobiles need the person’s consent first.',
         '**Keep marketing separate from service messages.** In the UK the ICO says you [must not send marketing emails or texts without specific consent](' + ICO + '). A reminder about a deadline is a service message; a promotion for another service is marketing.',
         '**Always give a way out.** Every text says how to stop, and a stop ends the messages.',
-        '**Use only logins you provide.** The agent signs in with the logins you give it, stops at any identity check, stops before payment unless you give it your card and never gets round a CAPTCHA or a bot block.',
+        '**Use only logins you provide.** The agent signs in with the logins you give it, works within a monthly spend limit you set on its key, and stops before payment unless you give it your card.',
       ],
     },
 
@@ -318,7 +318,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Is it safe to give an AI agent client logins?',
-          a: 'The agent signs in only with logins you provide, stops at any identity check and never gets round a CAPTCHA or bot block. Every sign-in lands in the event log. Check each portal’s terms on shared or delegated logins and your professional body’s rules on client data first.',
+          a: 'The agent signs in only with logins you provide and works within a monthly spend limit you set on its key. Every sign-in lands in the event log. Check each portal’s terms on shared or delegated logins and your professional body’s rules on client data first.',
         },
         {
           q: 'Can I use an AI agent without writing code?',

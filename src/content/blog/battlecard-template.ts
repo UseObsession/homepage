@@ -390,7 +390,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Trial teardown](/blueprints/trial-teardown), [Competitor tracking](/blueprints/competitor-tracking), API and MCP',
           'Trial limits, upgrade prompts, emails and save offers, dated, in one event log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Section 5 on every card',
         ],
       ],

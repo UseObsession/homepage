@@ -178,7 +178,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Email](/email), [Phone](/phone) and [Personas](/personas) through the SDK',
           'An inbox and a number in two calls\nEvery reply as an event, in one log',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Agents with their own address and number',
         ],
       ],

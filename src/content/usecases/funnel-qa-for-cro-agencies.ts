@@ -314,7 +314,7 @@ export const study: UseCaseStudy = {
       },
       {
         q: 'Is it legal, and does it buy anything?',
-        a: 'A persona does only what any customer can, on the pages and forms anyone can use. It says it’s an AI when it talks to a person and stops before payment unless given your own card. It never uses fake payment details, never gets round a CAPTCHA or a bot block, stops at any identity check and never clicks paid ads at volume. This isn’t legal advice.',
+        a: 'A persona does only what any customer can, on the pages and forms anyone can use. It says it’s an AI when it talks to a person and stops before payment unless given your own card. It never uses fake payment details and never clicks paid ads at volume. This isn’t legal advice.',
         link: { label: 'Is it legal to sign up to a competitor?', to: '/blog/is-it-legal-to-mystery-shop-competitors' },
       },
     ],

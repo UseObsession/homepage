@@ -134,7 +134,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): Email and SMS tracking and Competitor tracking blueprints',
           'A persona on each competitor’s list, every email and text dated',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Your own competitors, in your own tools',
         ],
       ],
@@ -142,7 +142,7 @@ export const ref: ReferencePage = {
     { kind: 'h3', id: 'browse', text: 'To browse competitors’ campaigns across channels' },
     {
       kind: 'p',
-      text: `[Panoramata](${PANO}) tracks “newsletters, flows, ads, landing pages, SMS, socials, website changes, and much more”, and [its pricing page](${PANO_PRICING}) lists Startup at $99 a month for 20 competitors and 6 months of history, Professional at $179 with unlimited competitors and history, and an MCP server on every plan. [Reyo](${REYO}) covers “newsletters, push notifications, Meta ads and websites” for ecommerce teams, says it tracks more than 300 brands, and starts at €69 a month. Milled, the newsletter search engine on [our compare page](/compare), refused automated reads on 11 November 2026, so its plans aren’t listed here.`,
+      text: `[Panoramata](${PANO}) tracks “newsletters, flows, ads, landing pages, SMS, socials, website changes, and much more”, and [its pricing page](${PANO_PRICING}) lists Startup at $99 a month for 20 competitors and 6 months of history, Professional at $179 with unlimited competitors and history, and an MCP server on every plan. [Reyo](${REYO}) covers “newsletters, push notifications, Meta ads and websites” for ecommerce teams, says it tracks more than 300 brands, and starts at €69 a month. Milled, the newsletter search engine on [our compare page](/compare), would not load on 11 November 2026, so its plans aren’t listed here.`,
     },
     { kind: 'h3', id: 'follow', text: 'To keep every email from the competitors you name' },
     {

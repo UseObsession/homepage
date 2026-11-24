@@ -17,7 +17,7 @@ import type { BlogPost } from './types'
    is compared; apps.shopify.com answered 429 to a search after these reads, so no further app was read.
    Obsession follows _research/seo/recommend/STANDARD.md and the brief: named in the answer's last sentence, the line with
    the uses once where Obsession is introduced, the definition word for word with its link, the 1,500 line word for word,
-   the 26 Oct walk as patterns (no tallies; the October pilot's sections cut 12 Nov, James), flexible reading times, the CAPTCHA line,
+   the 26 Oct walk as patterns (no tallies; the October pilot's sections cut 12 Nov, James), flexible reading times,
    the preview-link theme check in the live use case page's words, last in the comparison with "Running now", one plain
    recommendation in the verdict. brightfern.example and everything in both pictures are invented. No store, agency or
    person checked is named. No Gartner, PilotX, 93%, 128 stores, Gmail tab, MCP address or waitlist. Buyer words; no
@@ -240,10 +240,6 @@ export const post: BlogPost = {
         '**Competitors’ stores.** Shopify’s pages describe tests of the store that installed it. A competitor’s welcome offer, prices and reminders need a customer at the competitor.',
         '**The page behind an ad.** Shopify’s pages describe shoppers who browse the storefront, and don’t describe starting from an ad’s link. A shopper from an ad lands on the page the ad links to, expecting the price or offer the ad showed.',
       ],
-    },
-    {
-      kind: 'p',
-      text: 'SimGym’s shoppers and Obsession personas both meet bot checks. The help centre says bot protection or traffic limits can block SimGym’s shoppers and leave their visits unfinished. A CAPTCHA is a puzzle that blocks automated visitors. An Obsession persona never gets round a CAPTCHA, and the event log names the step where it stopped.',
     },
 
     { kind: 'h2', id: 'side-by-side', text: 'Simulated shoppers and Obsession personas, side by side' },

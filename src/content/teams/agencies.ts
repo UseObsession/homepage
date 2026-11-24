@@ -192,8 +192,8 @@ export const team: TeamPage = {
         a: 'Yes. Every result lands in the client’s event log. From there it reaches you at a webhook, through the API or MCP, or in Zapier, Make and n8n.',
       },
       {
-        q: 'What does an agent do at a payment or an identity check?',
-        a: 'It stops before payment unless the client gives it their own payment card, and it stops at any identity check. It says it’s an AI whenever it talks to a person.',
+        q: 'What can an agent do in a client’s name?',
+        a: 'It signs in only with the logins the client gives it, works within a monthly spend limit you set on its key, and stops before payment unless the client gives it their own payment card. It says it’s an AI whenever it talks to a person.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
     ],

@@ -11,7 +11,7 @@ import type { BlogPost } from './types'
    stack with Obsession in its own layer, last. Every company is described from its own pages, read on 23 Nov 2026; the
    facts and the dates each was read are in notes_agentic-commerce.md beside the plan. Obsession's lines are the live
    site's (/agents, the Buy, book and order type page, /use-cases/agentic-commerce): pays only with the card it is given,
-   stops before payment without one, stops at any identity check, never gets round a CAPTCHA or bot block, says it's an
+   stops before payment without one, says it's an
    AI. No competitor named; card networks, payment companies and AI platforms appear only for what they do. Brindle
    Clinics, its supplier and every figure in the illustrations are invented. British English, no dashes. */
 
@@ -182,7 +182,7 @@ export const post: BlogPost = {
           ') through a shopper’s Shop account. Instead of approving each order, a shopper can switch on Allow agent to pay for me and set a weekly, monthly or total budget.',
         '**Walmart** [announced an Agent Gateway](' +
           TC_WALMART +
-          ') on 21 October 2026, through which approved agents search and buy. Its Agent Profiles, rolling out from November, let a customer approve each purchase or set a spending limit. The same TechCrunch report says Amazon has started blocking agents from buying for shoppers on its own site.',
+          ') on 21 October 2026, through which approved agents search and buy. Its Agent Profiles, rolling out from November, let a customer approve each purchase or set a spending limit.',
       ],
     },
     { kind: 'h3', id: 'travel', text: 'Agents that book travel' },
@@ -269,18 +269,17 @@ export const post: BlogPost = {
       ],
     },
 
-    { kind: 'h2', id: 'where-agents-get-stuck', text: 'Where buying agents get stuck' },
+    { kind: 'h2', id: 'where-agents-get-stuck', text: 'What buying agents need at the store' },
     {
       kind: 'p',
-      text: 'Most failed purchases stop before payment, at the store’s front door.',
+      text: 'Between the product page and the receipt, a store asks a buying agent for an account, a code, a card and an address, as it asks any customer.',
     },
     {
       kind: 'list',
       items: [
-        '**Bot checks:** a CAPTCHA or a “verify you’re human” step stops an agent. [TechCrunch reported on 6 October 2026](' +
+        '**Rules for agents:** each company sets its own. [TechCrunch reported on 6 October 2026](' +
           TC_BLOCKS +
-          ') that Walmart called the blocks Muse met unintentional, and that Yelp lets in non-human traffic only through its paid data licensing programme.',
-        '**Rules for agents:** Shopify stores such as [Allbirds](' +
+          ') that Yelp takes non-human traffic through its paid data licensing programme. Shopify stores such as [Allbirds](' +
           ALLBIRDS +
           ') publish an agents.md file with rules for visiting agents. It asks them to mark their requests as agent-initiated, to sign hosted browsers with Web Bot Auth and to place orders only with the buyer’s authorisation.',
         '**Signing in:** Sierra and Meta published the [Personal Agent Protocol](' +
@@ -288,7 +287,7 @@ export const post: BlogPost = {
           ') on 6 October 2026, with Shopify, Stripe and Walmart among its partners. It sets out how a personal agent starts as a guest or signs in through OAuth, the standard way an app gets permission to an account. The customer chooses read-only or write access.',
         '**Sign-in codes:** a store that sends a one-time code by email or text needs an inbox or a number the agent can read.',
         '**Scattered receipts:** when agents check out with one shared mailbox, confirmations from every supplier land together with nothing tying each to its order.',
-        '**Identity and bank checks:** an identity check, or a bank’s extra check at payment such as 3-D Secure, asks for the real buyer. A well-built agent stops there and asks them.',
+        '**Bank approval:** a bank’s extra step at payment, such as 3-D Secure, asks for the real buyer. A well-built agent pauses there and asks them.',
       ],
     },
 
@@ -330,7 +329,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession, the toolkit for AI agents, covers the act and keep layers: each buying agent gets a persona, one identity with its own inbox, phone number and cloud browser. It pays only with the card you give it, stops before payment without one and at any identity check, reports a store that blocks agents as a finding, and says it’s an AI to a person. Every page, confirmation, receipt and delivery text lands in one event log on one bill, whether you run 1 agent or 10,000.',
+      text: 'Obsession, the toolkit for AI agents, covers the act and keep layers: each buying agent gets a persona, one identity with its own inbox, phone number and cloud browser. It pays only with the card you give it, stops before payment without one, works within a monthly spend limit you set on its key, and says it’s an AI to a person. Every page, confirmation, receipt and delivery text lands in one event log on one bill, whether you run 1 agent or 10,000.',
     },
     {
       kind: 'cta',
@@ -359,7 +358,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can AI agents buy online today?',
-          a: 'Yes, within limits. Most ask the buyer to approve each purchase, and some let the buyer set a budget instead, such as Shop’s weekly, monthly or total budget. Bot checks still stop agents at many stores, and an identity check or a bank’s security step waits for the real buyer.',
+          a: 'Yes. Most ask the buyer to approve each purchase, and some let the buyer set a budget instead, such as Shop’s weekly, monthly or total budget. A bank’s extra step at payment waits for the real buyer.',
         },
         {
           q: 'How do AI agents pay?',
@@ -376,8 +375,8 @@ export const post: BlogPost = {
           a: 'In ecommerce a person searches, clicks and pays on the store’s site. In agentic commerce an AI agent does those steps for them, through the store’s pages or its agent tools, and the store’s emails and texts go to the address and number the agent checked out with.',
         },
         {
-          q: 'Do stores block AI agents?',
-          a: 'Some do. TechCrunch reported in October 2026 that Amazon has started blocking agents from buying for shoppers, while Walmart is letting approved agents in through its Agent Gateway. Shopify stores ask agents to identify themselves with Web Bot Auth and to order only with the buyer’s authorisation.',
+          q: 'Which stores let AI agents buy?',
+          a: 'Each store sets its own rules. Walmart lets approved agents in through its Agent Gateway, announced on 21 October 2026. Shopify stores ask agents to identify themselves with Web Bot Auth and to order only with the buyer’s authorisation.',
           link: { label: 'Agentic commerce for merchants', to: '/blog/agentic-commerce-for-merchants' },
         },
       ],
@@ -385,7 +384,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'Sources and dates',
-      text: 'Every company is described from its own announcement, help page or protocol site as it stood on 23 November 2026. Walmart’s Agent Gateway, Amazon’s blocking of agents and the Walmart and Yelp comments on blocked agents come from TechCrunch’s reports of 6 and 21 October 2026. Forrester’s 75% figure is the headline of its 2027 predictions. McKinsey’s figures count goods alone. Brindle Clinics, its supplier and every figure in the opening illustration are invented.',
+      text: 'Every company is described from its own announcement, help page or protocol site as it stood on 23 November 2026. Walmart’s Agent Gateway and Yelp’s data licensing programme come from TechCrunch’s reports of 6 and 21 October 2026. Forrester’s 75% figure is the headline of its 2027 predictions. McKinsey’s figures count goods alone. Brindle Clinics, its supplier and every figure in the opening illustration are invented.',
     },
   ],
 

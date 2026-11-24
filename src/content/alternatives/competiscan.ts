@@ -4,7 +4,7 @@ import { ENTITY } from '../site'
 /* /alternatives/competiscan. Every tool fact is from the tool's own pages, read 11 Nov 2026
    (_research/seo/pagetypes-11nov/research/ci_panels.json; Competiscan, Mintel Comperemedia, Corporate Insight,
    Panoramata and MailCharts re-read the same day). For banks, card issuers, insurers and telecoms. Obsession's side
-   (22 Nov): a persona applies up to the identity check, never past it (James, 11 Nov). */
+   (22 Nov): a persona starts applications and opens no account (James, 11 Nov). */
 
 const COMPETISCAN = 'https://www.competiscan.com/'
 const COMPEREMEDIA = 'https://www.mintel.com/mintel-comperemedia/'
@@ -16,14 +16,14 @@ export const ref: ReferencePage = {
   kind: 'alternatives',
   name: 'Competiscan alternatives',
   company: 'Competiscan',
-  line: 'Consumer panels, analyst journey research, email archives and a persona that applies up to the identity check, by job.',
+  line: 'Consumer panels, analyst journey research, email archives and a persona that starts applications, by job.',
   meta: {
     path: '/alternatives/competiscan',
     title: 'Competiscan alternatives (2026): 5 options for banks',
     description:
-      'Competiscan alternatives by job: consumer panels, journey research, email archives, and a persona that applies to banks up to the identity check.',
+      'Competiscan alternatives by job: consumer panels, journey research, email archives, and a persona that applies at the banks you name.',
     answer:
-      'The best Competiscan alternative depends on the job: Mintel Comperemedia for another panel of competitors’ marketing with expert analysis, Corporate Insight for analyst research on digital customer journeys in banking, insurance and investing, and Panoramata or MailCharts for competitors’ emails. For what a bank, card issuer, insurer or telecom shows an applicant, Obsession’s Competitor tracking blueprint sends a persona through each application up to the identity check. It keeps every step, rate, quote, email and text, dated.',
+      'The best Competiscan alternative depends on the job: Mintel Comperemedia for another panel of competitors’ marketing with expert analysis, Corporate Insight for analyst research on digital customer journeys in banking, insurance and investing, and Panoramata or MailCharts for competitors’ emails. For what a bank, card issuer, insurer or telecom shows an applicant, Obsession’s Competitor tracking blueprint sends a persona through each application’s forms. It keeps every step, rate, quote, email and text, dated.',
     ogImage: '/og/alternatives-competiscan.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -33,7 +33,7 @@ export const ref: ReferencePage = {
     ],
   },
   title: 'Competiscan alternatives: every option by job, for banks and insurers',
-  dek: 'Competiscan’s panels show what members of the public are sent. These tools cover parts of that job differently, and one applies as a customer up to the identity check.',
+  dek: 'Competiscan’s panels show what members of the public are sent. These tools cover parts of that job differently, and one starts applications as a customer.',
   primaryKeyword: 'competiscan alternatives',
   keywords: ['competiscan alternative', 'competiscan competitors', 'comperemedia alternative', 'financial services competitive intelligence'],
   checked: '2026-11-11',
@@ -64,7 +64,7 @@ export const ref: ReferencePage = {
       {
         name: 'Obsession',
         who: 'Competitor tracking blueprint',
-        nodes: ['Banks you name', 'Up to the identity check', 'Your event log'],
+        nodes: ['Banks you name', 'Each application step', 'Your event log'],
         links: ['a persona applies', 'kept in'],
         lit: 1,
         ours: true,
@@ -126,7 +126,7 @@ export const ref: ReferencePage = {
           'Obsession (ours): Competitor tracking and Email and SMS tracking blueprints',
           'Application steps, rates, quotes, offer emails and texts',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops before payment and at any identity check',
+          'Stops before payment unless given your card',
           'Any bank or insurer you name, by profile',
         ],
       ],
@@ -150,7 +150,7 @@ export const ref: ReferencePage = {
     { kind: 'p', text: ENTITY },
     {
       kind: 'p',
-      text: 'For a bank, card issuer, insurer or telecom, teams pick the [Competitor tracking blueprint](/blueprints/competitor-tracking). A persona, an AI agent with its own inbox and number under one name, starts each application as the customer profile you pick. It keeps every step up to the identity check, what that check asks for, the rates and quotes the forms show, and the emails and texts that follow, each dated with its screenshot. It never goes past the identity check.',
+      text: 'For a bank, card issuer, insurer or telecom, teams pick the [Competitor tracking blueprint](/blueprints/competitor-tracking). A persona, an AI agent with its own inbox and number under one name, starts each application as the customer profile you pick. It keeps every step and question, the rates and quotes the forms show, and the emails and texts that follow, each dated with its screenshot.',
     },
     {
       kind: 'p',
@@ -178,7 +178,7 @@ export const ref: ReferencePage = {
       items: [
         {
           q: 'What is the best Competiscan alternative?',
-          a: 'It depends on the job: Mintel Comperemedia for a panel with expert analysis, Corporate Insight for digital journey research, Panoramata or MailCharts for email campaigns, and Obsession for what a company shows a persona that applies, up to the identity check.',
+          a: 'It depends on the job: Mintel Comperemedia for a panel with expert analysis, Corporate Insight for digital journey research, Panoramata or MailCharts for email campaigns, and Obsession for what a company shows a persona that applies.',
         },
         {
           q: 'How much does Competiscan cost?',
@@ -186,11 +186,11 @@ export const ref: ReferencePage = {
         },
         {
           q: 'How is Obsession different from a consumer panel?',
-          a: 'A panel collects what its members are sent, for the sectors it covers. Obsession signs a persona up at any company you name, as the customer profile and country you pick. It keeps what that company sends and shows, up to any identity check, each event dated.',
+          a: 'A panel collects what its members are sent, for the sectors it covers. Obsession signs a persona up at any company you name, as the customer profile and country you pick. It keeps what that company sends and shows, each event dated.',
         },
         {
           q: 'Does Obsession cover banks and insurers?',
-          a: 'Yes. A persona applies as the profile you pick and keeps every step up to the identity check, the rates and quotes the forms show, and the offer emails and texts that follow, each dated with its screenshot or the original email.',
+          a: 'Yes. A persona applies as the profile you pick and keeps every step, the rates and quotes the forms show, and the offer emails and texts that follow, each dated with its screenshot or the original email.',
           link: { label: 'Banks and fintechs use case', to: '/use-cases/journey-checks-for-banks-and-fintechs' },
         },
       ],

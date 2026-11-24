@@ -181,7 +181,7 @@ export const page: Page = {
       },
       {
         q: 'Will competitors know it’s us?',
-        a: 'No. Each persona has its own name, inbox and number. When it talks to a person, it says it’s an AI. It stops before payment, never gets round a CAPTCHA or a bot block, and never clicks paid ads at volume.',
+        a: 'No. Each persona has its own name, inbox and number. When it talks to a person, it says it’s an AI. It stops before payment and never clicks paid ads at volume.',
       },
       {
         q: 'What does it cost?',

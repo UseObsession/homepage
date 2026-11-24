@@ -26,7 +26,7 @@ export const post: BlogPost = {
   description:
     'An AI agent to fill out forms signs in, completes the form, downloads files and checks statuses on 10 or 5,000 portals. Cost per visit and tools compared.',
   answer:
-    'An AI agent to fill out forms uses a browser that stays signed in, plus its own inbox and phone number for sign-in codes, to complete forms, download files and check statuses in portals. At list rates one portal visit of five minutes costs under a cent, against about $1.50 of a data entry keyer’s time. It stops at any identity check, any CAPTCHA or bot block, and before payment unless you give it your card.',
+    'An AI agent to fill out forms uses a browser that stays signed in, plus its own inbox and phone number for sign-in codes, to complete forms, download files and check statuses in portals. At list rates one portal visit of five minutes costs under a cent, against about $1.50 of a data entry keyer’s time. It works within a monthly spend limit you set on its key, and stops before payment unless you give it your card.',
   primaryKeyword: 'ai agent to fill out forms',
   keywords: [
     'ai agent to automate data entry',
@@ -52,7 +52,7 @@ export const post: BlogPost = {
         { time: '06:41', text: 'Login code arrived by text at 3 portals', detail: 'Read from its own number, typed into the browser', tone: 'info' },
         { time: '07:05', text: 'Filed 62 November invoices', detail: 'Each PDF named by vendor and month', tone: 'ok' },
         { time: '07:12', text: 'Submitted 9 delivery forms', detail: 'Each confirmation page saved as a screenshot', tone: 'ok' },
-        { time: '07:20', text: 'Stopped at 1 identity check', detail: 'Left for a named person, with the page saved', tone: 'late' },
+        { time: '07:20', text: '1 form needs a signature', detail: 'Left for a named person, with the page saved', tone: 'late' },
         { time: '07:41', text: 'Posted the summary to #finance', detail: '2 vendors yet to post, 1 portal changed its layout', tone: 'fail' },
       ],
       foot: 'Every page the agent touched lands in one log, each with its screenshot.',
@@ -118,15 +118,15 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Portals that block automated visits may need the stealth browser at $0.85 an hour, so 500 five-minute visits would be about $35 a round instead of $4.17. Add the persona’s own costs: a US or UK number at $2 a month, an inbox at $0.50 a month and any texts at $0.015 each, plus the AI model’s own charges. Four weekly rounds of 500 portals come to about $17 of browser time a month, with the number and inbox on top. A keyer doing the same weekly round by hand costs about $757 a round, or about $39,400 a year of time at the BLS median wage, which is a full-time post, so the sum shows the order of size. Ten times that, 5,000 portals a week, is about $394,000 a year of keyer time against $42 of browser time a round. Visits that need judgement still need a person.',
+      text: 'Portals built to work only in a full desktop browser use the stealth browser at $0.85 an hour, so 500 five-minute visits would be about $35 a round instead of $4.17. Add the persona’s own costs: a US or UK number at $2 a month, an inbox at $0.50 a month and any texts at $0.015 each, plus the AI model’s own charges. Four weekly rounds of 500 portals come to about $17 of browser time a month, with the number and inbox on top. A keyer doing the same weekly round by hand costs about $757 a round, or about $39,400 a year of time at the BLS median wage, which is a full-time post, so the sum shows the order of size. Ten times that, 5,000 portals a week, is about $394,000 a year of keyer time against $42 of browser time a round. Visits that need judgement still need a person.',
     },
 
     { kind: 'h2', id: 'where-it-stops', text: 'Where an agent stops' },
     {
       kind: 'list',
       items: [
-        '**Identity checks.** It stops at any step that verifies who a person is, and hands the page to a named person.',
-        '**CAPTCHAs and bot blocks.** It never gets round them. A portal that blocks automated visits shows up as a failed visit in the log.',
+        '**Steps for a person.** A signature or an approval goes to a named person, with the page saved.',
+        '**Your spend limit.** It works within a monthly limit you set on its key.',
         '**Payment.** It stops before payment unless you give it your card. Filing a form is different from paying for it.',
         '**Accounts you did not give it.** It signs in only with logins you provide.',
         '**Terms of use.** Some portals forbid automated access. Check the terms and ask the portal for an approved route where one exists.',
@@ -144,7 +144,7 @@ export const post: BlogPost = {
         '**A portal changes its layout.** The “Submit” button moves or a field is renamed. A model reading the page copes with small moves, but a big redesign can break a step. The log shows a failed visit with its screenshot the same morning, so you see it within a day, not at month end.',
         '**A new code or a new check appears.** A portal adds a text code, or an identity step, after a security update. Keep one inbox and one number for the agent so a new code has somewhere to land, and expect a few portals a quarter to need a person.',
         '**A form is filled with wrong data.** Start from a clean sheet, test on one portal and compare the first ten submissions with the confirmation pages before running 500.',
-        '**A session expires.** The agent signs in again with the stored login. If the portal now asks for an identity check, the visit stops and tells you.',
+        '**A session expires.** The agent signs in again with the stored login, and the new code reaches its own inbox or number.',
         '**Nobody reads the results.** Name one owner and one place, such as a Slack channel, for each round.',
       ],
     },
@@ -192,7 +192,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Work behind logins](/blueprints/work-behind-logins) blueprints, such as [invoice collector](/blueprints/invoice-collector)',
           'A browser that stays signed in, an inbox and number for codes, and one log with a screenshot of every page, for 10 or 500 portals',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'Stops at any identity check, CAPTCHA or bot block, and before payment unless you give it your card',
+          'Stops before payment unless you give it your card',
           'Many portals with their own logins and codes, checked every day',
         ],
       ],
@@ -262,7 +262,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can an AI agent automate data entry?',
-          a: 'Yes, where the data is entered on a website. The agent reads your sheet, completes the form on each portal and reports what was accepted. Judgement calls, identity checks and any portal that blocks automated visits go to a person.',
+          a: 'Yes, where the data is entered on a website. The agent reads your sheet, completes the form on each portal and reports what was accepted. Judgement calls, signatures and approvals go to a person.',
           link: { label: 'Invoice collector', to: '/blueprints/invoice-collector' },
         },
         {
@@ -276,7 +276,7 @@ export const post: BlogPost = {
         },
         {
           q: 'Can an AI agent get past a CAPTCHA or an identity check?',
-          a: 'No. Obsession’s agents never get round a CAPTCHA or a bot block, and they stop at any identity check. The visit is logged as stopped, with the page saved, so a named person can finish it.',
+          a: 'A step that asks for a person goes to one: the visit is logged with the page saved, a named person on your team finishes it, and the agent carries on with the rest.',
           link: { label: 'The agent rules', to: '/agents' },
         },
         {

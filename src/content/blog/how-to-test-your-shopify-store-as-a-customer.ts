@@ -375,7 +375,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'A CAPTCHA is the puzzle a site shows to stop automated visitors. Where a store puts a CAPTCHA in front of a step, the event log names the step it couldn’t pass. Some visits now come from AI agents shopping for a person, and [is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for them.',
+      text: 'Some visits now come from AI agents shopping for a person, and [is your website ready for AI agents](/blog/agent-ready-website) gives 10 checks for them.',
     },
 
     { kind: 'h2', id: 'compared', text: 'Ways to test your Shopify store, compared', compare: true },

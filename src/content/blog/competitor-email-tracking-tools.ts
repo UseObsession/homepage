@@ -433,7 +433,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The inbox can be read at 4, 12, 24 or 48 hours, or watched for as long as you want, and an email is called missing only once the window you chose has closed. Where a store puts a CAPTCHA or bot check, a puzzle that blocks automated visitors, in front of a step, the event log names the step it couldn’t reach.',
+      text: 'The inbox can be read at 4, 12, 24 or 48 hours, or watched for as long as you want, and an email is called missing only once the window you chose has closed.',
     },
     {
       kind: 'p',
@@ -570,7 +570,7 @@ export const post: BlogPost = {
           'Obsession (ours): [Email and SMS tracking](/blueprints/email-sms-tracking), [Competitor tracking](/blueprints/competitor-tracking)',
           'Every email and text any competitor you name sends a new customer, basket reminders included, dated as it arrived',
           'Free, then $20, $99 or $499 a month; usage per piece',
-          'History from the day each competitor is added\nStops at a CAPTCHA or bot block',
+          'History from the day each competitor is added',
           'Every email a new subscriber gets from any competitor, and the reminders that never came, in one event log',
         ],
       ],

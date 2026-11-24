@@ -7,7 +7,7 @@ import type { Recipe } from '../types'
    for, carrier portal by carrier portal. No competitor or customer is named and no figure is borrowed. Owns "load
    tracking" and "load tracking software" (Google suggestions, 23 Nov; "freight tracking software" and "shipment tracking
    software" sit beside them); "ai agent for freight broker" stays with the use case, which the FAQ links. Logins the
-   customer owns only, stops at any identity check and before payment, reads loads and never books or changes one. */
+   customer owns only, stops before payment, reads loads and never books or changes one. */
 
 export const recipe: Recipe = {
   id: 'loads',
@@ -131,10 +131,10 @@ obsession.on('blueprint.result', async (e) => {
     {
       group: 'Where it stops',
       items: [
-        { title: 'Identity checks', line: 'It stops at any identity check and hands that portal back to your team.' },
+        { title: 'Steps for your team', line: 'A portal that needs someone on your team goes to them with the page and its screenshot.' },
         { title: 'Payment', line: 'It stops before payment, so it never pays a carrier invoice or a fee.' },
         { title: 'Bookings', line: 'It reads loads. Booking, cancelling or changing one stays with your team.' },
-        { title: 'Bot checks', line: 'It never gets round a CAPTCHA or a bot block.' },
+        { title: 'Spend', line: 'It works within a monthly spend limit you set on its key.' },
       ],
     },
   ],
@@ -190,7 +190,7 @@ obsession.on('blueprint.result', async (e) => {
       },
       {
         q: 'Where does it stop?',
-        a: 'It signs in only with logins your company owns, stops at any identity check and before any payment, and never gets round a CAPTCHA or a bot block. It reads loads; booking and changing them stays with your team.',
+        a: 'It signs in only with logins your company owns, works within a monthly spend limit you set on its key, and stops before any payment. It reads loads; booking and changing them stays with your team.',
         link: { label: 'What every agent keeps to', to: '/agents' },
       },
       {
