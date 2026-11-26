@@ -216,6 +216,8 @@ const menus = {
       items: [
         { label: 'Look up your site', to: '/lookup' },
         { label: 'Every resource', to: '/resources' },
+        /* 26 Nov 2026: the company buyer's security answer, one click from every page. */
+        { label: 'Security', to: '/security' },
         { label: 'Saw an Obsession agent?', to: '/agents' },
         { label: 'Contact', to: `mailto:${catalog.contact}` },
         { label: 'Privacy', to: '/privacy' },

@@ -10,6 +10,9 @@ import { kitLinks } from '../content/kitPaths'
 import { pieces } from '../content/pieces'
 import { teamAt, teamUi as ui, type TeamPage } from '../content/teams'
 import { dollars, monthOf } from '../content/teams/sizes'
+import { plans } from '../content/prices'
+
+const enterpriseFrom = plans.find((p) => p.id === 'enterprise')?.from ?? null
 import { connectionsFor } from '../lib/connections'
 import { useInView } from '../hooks/useReveal'
 import { BlueprintGrid, KitPrices, SceneHero, WhoSection } from './Kit'
@@ -153,6 +156,8 @@ function TeamSizes({ sizes }: { sizes: NonNullable<TeamPage['sizes']> }) {
   const hid = useId()
   const months = sizes.items.map((s) => monthOf(s.usage))
   const top = Math.log10(Math.max(...months.map((m) => m.list), 10))
+  /* The largest size is lit, wherever it sits in the list (26 Nov 2026: some pages list the largest first). */
+  const topI = months.reduce((b, m, k) => (m.list > months[b].list ? k : b), 0)
   /* The bars fill in order once the cards come into view, smallest to largest: the same work, growing. Before the app
      arrives they are drawn full. */
   const { ref, inView } = useInView<HTMLOListElement>(0.25)
@@ -174,7 +179,7 @@ function TeamSizes({ sizes }: { sizes: NonNullable<TeamPage['sizes']> }) {
             const m = months[i]
             const fill = Math.max(0.12, Math.log10(Math.max(m.list, 1.5)) / top)
             return (
-              <li className="t-size ob-lit ob-lit--lift" key={s.label} style={{ ['--fill' as string]: fill.toFixed(3), ['--i' as string]: i }}>
+              <li className={'t-size ob-lit ob-lit--lift' + (i === topI ? ' is-top' : '')} key={s.label} style={{ ['--fill' as string]: fill.toFixed(3), ['--i' as string]: i }}>
                 <span className="t-size__bar" aria-hidden="true">
                   <i />
                 </span>
@@ -187,7 +192,11 @@ function TeamSizes({ sizes }: { sizes: NonNullable<TeamPage['sizes']> }) {
                 </ul>
                 <span className="t-size__cost">
                   <b>{`About ${dollars(m.list)} a month`}</b>
-                  <span>{`in usage at list rates · on ${m.plan.name}, about ${dollars(m.plan.total)} a month, before model tokens`}</span>
+                  <span>
+                    {s.enterprise && enterpriseFrom != null
+                      ? `in usage at list rates · on Enterprise, from ${dollars(enterpriseFrom)} a month, before model tokens`
+                      : `in usage at list rates · on ${m.plan.name}, about ${dollars(m.plan.total)} a month, before model tokens`}
+                  </span>
                 </span>
               </li>
             )
@@ -201,7 +210,7 @@ function TeamSizes({ sizes }: { sizes: NonNullable<TeamPage['sizes']> }) {
 export function Team({ team }: { team: TeamPage }) {
   return (
     <>
-      <SceneHero pill={team.hero.pill} headline={team.hero.headline} sub={team.hero.sub} second={ui.second} scene={team.scene} place={team.name} />
+      <SceneHero pill={team.hero.pill} headline={team.hero.headline} sub={team.hero.sub} primary={team.hero.primary} second={team.hero.second ?? ui.second} scene={team.scene} place={team.name} />
       {team.checks && <TeamChecksSection checks={team.checks} />}
       {team.kinds && <TeamKindsSection kinds={team.kinds} />}
       {team.uses && <TeamUses uses={team.uses} />}

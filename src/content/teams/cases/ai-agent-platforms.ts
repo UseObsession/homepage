@@ -1,4 +1,5 @@
 import { plans, prices, registration } from '../../prices'
+import { CONTACT_EMAIL } from '../../site'
 import type { TeamPage } from '../types'
 
 /* AI agent platforms (/use-cases/ai-agent-platforms, 23 Nov 2026, _research/seo/use-cases-23nov): for the developer or
@@ -23,7 +24,7 @@ export const useCase: TeamPage = {
   meta: {
     path,
     /* 26 Nov 2026: Google reads “ai agent platform” as agent builders; the job this page sells is searched as “multi tenant ai agents”. */
-    title: 'Multi-tenant AI agents: an inbox, number and browser per user',
+    title: 'Multi-tenant AI agents: inbox, number and browser per user',
     description:
       'Multi-tenant AI agents on one API: every user’s agent gets its own inbox, number and signed-in browser in one call. From 100 users to 100 million.',
     answer: sub,
@@ -36,8 +37,11 @@ export const useCase: TeamPage = {
 
   hero: {
     pill: 'Agent platforms',
-    headline: 'Give every user’s AI agent its own inbox, phone number and browser the moment they sign up.',
+    headline: 'Multi-tenant AI agents: an inbox, number and browser for every user’s agent.',
     sub,
+    /* 26 Nov 2026: platforms reach a person, by email, then Start free. */
+    primary: { label: 'Talk to us', to: `mailto:${CONTACT_EMAIL}?subject=Platform` },
+    second: { label: 'Start free', to: '#join' },
   },
 
   scene: {
@@ -132,6 +136,7 @@ export const useCase: TeamPage = {
         agents: '1,000,000 personas · 1,000,000 inboxes · 400,000 numbers · 2,000 iMessage lines',
         jobs: ['White label under your own brand, on Enterprise', 'Every event to one signed webhook, kept longer', 'Blueprints your users start from'],
         usage: { inbox: 1000000, number: 400000, email: 50000000, sms: 8000000, voice: 1000000, browser: 400000, sandbox: 200000, imessage: 2000, register: 200 },
+        enterprise: true,
       },
       {
         label: 'A platform with 10,000 customers',

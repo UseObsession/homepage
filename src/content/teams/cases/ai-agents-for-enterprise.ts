@@ -16,7 +16,7 @@ const orList = (items: string[]) => (items.length < 2 ? items.join('') : `${item
 /* 26 Nov 2026 (the copy plan): the borrowed login named, then the live controls line, then the event log; the headline
    stays (ten cold B2B readers picked it over both new ones). */
 const sub =
-  'Give every agent in your company its own phone number, inbox and browser, so supplier calls, customer emails and portal work happen under its own name instead of a person’s. Each one signs in only with the logins you give it and works within a monthly spend limit you set. Every call, email and page lands in one event log your security team can audit, from one team’s first agents to a million.'
+  'Every agent in your company gets its own phone number, inbox and browser, so it works under its own name, not a person’s. It signs in only with the logins you give it, and every call, email and page lands in one event log your security team can audit.'
 
 export const useCase: TeamPage = {
   id: 'ai-agents-for-enterprise',
@@ -27,7 +27,7 @@ export const useCase: TeamPage = {
     path,
     title: 'AI agents for enterprise: a number, inbox and browser each',
     description:
-      'An AI agent for enterprise teams, each with its own phone, inbox and browser, one event log for audit and one bill. From 10 agents to a million. Start free.',
+      'AI agents for enterprise teams, each with its own phone, inbox and browser, one event log for audit and one bill. From 10 agents to a million. Start free.',
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -36,7 +36,13 @@ export const useCase: TeamPage = {
     ],
   },
 
-  hero: { pill: 'Enterprise', headline: 'AI agents for enterprise: every agent an identity, every call, text and email on the record.', sub },
+  hero: {
+    pill: 'Enterprise',
+    headline: 'AI agents for enterprise: every agent an identity, every call, text and email on the record.',
+    sub,
+    primary: { label: 'Talk to us', to: `mailto:${CONTACT_EMAIL}?subject=Enterprise` },
+    second: { label: 'Start free', to: '#join' },
+  },
 
   scene: {
     steps: [
@@ -118,23 +124,25 @@ export const useCase: TeamPage = {
   },
 
   sizes: {
-    heading: 'One platform, from a team’s first ten agents to a million.',
-    line: 'Three sizes, largest first, each with a month’s usage worked out at list rates.',
+    heading: 'The same agents, from a team’s first ten to a million.',
+    line: 'Three sizes, each with a month’s usage worked out at list rates.',
     items: [
       {
         label: 'A company of 100,000 agents',
         agents: '100,000 agents · every one a persona · one bill',
         jobs: ['Every department’s agents on one platform', 'Agents evaluated nightly and your own sign-up tested', 'White label and an account per team'],
+        enterprise: true,
         usage: { number: 20000, inbox: 100000, voice: 1500000, personaVoice: 300000, sms: 2000000, email: 10000000, browser: 80000, sandbox: 150000, register: 40 },
       },
       {
         label: 'A business unit',
         agents: '1,000 agents · 1,000 inboxes · an account per team',
         jobs: ['Customer calls and texts on their own numbers', 'Vendor and payer portals worked every day', 'Competitors and the market watched every week'],
+        enterprise: true,
         usage: { number: 400, inbox: 1000, voice: 40000, personaVoice: 10000, sms: 60000, email: 200000, browser: 2000, sandbox: 3000, register: 5 },
       },
       {
-        label: 'One team’s first agents, paid monthly by card',
+        label: 'A team’s first 10 agents',
         agents: '10 agents · 10 numbers · 10 inboxes · one event log',
         jobs: ['Supplier calls answered and logged', 'Vendor invoices downloaded each week', 'One portal checked every morning'],
         usage: { number: 10, inbox: 10, voice: 600, sms: 800, email: 3000, browser: 40, register: 1 },

@@ -108,7 +108,7 @@ export const page: Page = {
     capture: { ...access, source: 'home-hero' },
     /* The scale and the proof, under the form. */
     /* 26 Nov 2026 (Seun): scale is shown to 100 million, never a lower top. */
-    note: 'From one agent to 100 million, each asleep for free until a message wakes it in about 50 ms.',
+    note: 'From one agent to 100 million, each under its own name.',
     secondary: { label: 'Browse blueprints', to: '/blueprints' },
     /* 3 facts, true by design: no prices, no country. 50 ms is James's figure (20 Nov). */
     proof: [
@@ -151,8 +151,9 @@ export const page: Page = {
      types of blueprints and the two Home sections became this one (components/persona/HomeBlueprints). The heading keeps
      James's words from 22 Nov; blueprints serve developers too, so it no longer opens "For teams without engineers". */
   homeBlueprints: {
-    heading: 'Pick a blueprint. We run the job, you get the report.',
-    line: 'Seven types of blueprints, one for each job AI agents do. Results are delivered in any format: Slack, email, your CRM, Clay, Google Sheets, a PDF or your own Claude agent.',
+    /* 26 Nov 2026: the problem section already says "Not building agents? Pick a blueprint.", so this one names the seven. */
+    heading: 'Seven types of blueprints, one for each job AI agents do.',
+    line: 'We run each one. Results arrive in any format: Slack, email, your CRM, Clay, Google Sheets, a PDF or your own Claude agent.',
     unit: { one: 'blueprint', many: 'blueprints' },
     more: 'more',
     all: { label: 'Browse blueprints', to: '/blueprints' },
@@ -324,7 +325,7 @@ export const page: Page = {
         at: '09:41:07',
         name: 'booking.changed',
         text: 'By juno@larkfield.example, with the original',
-        borrowed: { at: '09:41:07', name: 'maya@', text: 'Changed a booking. Maya, or the agent?' },
+        borrowed: { at: '09:41:07', name: 'booking.changed', text: 'By maya@larkfield.example. Maya, or the agent?' },
       },
     },
     blueprints: {
@@ -339,18 +340,8 @@ export const page: Page = {
     link: { label: 'See every piece', to: '#pieces' },
   },
 
-  personaAnatomy: {
-    heading: 'A persona is one AI agent with its own inbox, number and browser.',
-    line: 'Every piece shares one name, and the persona waits on our runtime for free until something arrives.',
-    link: { label: 'See how personas work', to: '/personas' },
-    parts: [
-      { name: 'One identity', line: 'Each email, text and page belongs to the same agent.', eg: 'Juno, bookings at Larkfield' },
-      { name: 'An inbox and a phone number', line: 'Its own address and number, for email, texts and calls.', eg: 'juno@larkfield.example · +1 415 555 0142' },
-      { name: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram, on the same identity.', eg: 'iMessage · WhatsApp · Slack' },
-      { name: 'A browser and a sandbox', line: 'A browser that stays signed in, and a computer for code when a task needs one.', eg: 'US home connection, signed in · python report.py' },
-      { name: 'Its events in your event log', line: 'Every page, email, text and call it saw, dated, with screenshots.', eg: '14 pages · 4 emails · 2 texts · 1 call' },
-    ],
-  },
+  /* 26 Nov 2026: the persona section ("A persona is one AI agent with its own inbox, number and browser.") left the home
+     page, so each idea is told once: Juno's card and the Personas piece carry the persona (Vega, Drew, Miles). */
 
   /* A blueprint is a job that runs on Obsession beside the pieces and writes its results to the event log: one of ours,
      ready to run, or your own. Mystery shopping is the big tile and 4 sit beside it, so the 3 column grid closes
@@ -421,10 +412,10 @@ export const page: Page = {
           kind: 'job',
           tabsLabel: 'See a job for',
           jobs: [
-            { team: 'Marketing', sentence: ['Track ', { v: '40 competitors' }, ' every ', { v: 'Monday' }, ' and post to ', { v: '#marketing' }], where: 'Slack · #marketing', at: 'Mon 08:00', result: 'Competitor 12 started 25% off' },
             { team: 'Sales', sentence: ['Test ', { v: 'our 3 demo forms' }, ' every ', { v: 'morning' }, ' and flag ', { v: 'any reply over 5 minutes' }], where: 'Slack · #sales', at: 'Tue 09:30', result: 'UK form: no call after 2 hours' },
             { team: 'Support', sentence: ['Call ', { v: 'our AI receptionist' }, ' as ', { v: '3 new patients' }, ' every ', { v: 'morning' }], where: 'Slack · #support', at: 'Wed 09:00', result: 'Call 2 quoted the wrong price' },
             { team: 'Finance', sentence: ['Download ', { v: 'every invoice' }, ' from ', { v: '12 vendor portals' }, ' every ', { v: 'Friday' }], where: 'Google Sheets · Invoices', at: 'Fri 17:00', result: '12 invoices filed, none missed' },
+            { team: 'Marketing', sentence: ['Track ', { v: '40 competitors' }, ' every ', { v: 'Monday' }, ' and post to ', { v: '#marketing' }], where: 'Slack · #marketing', at: 'Mon 08:00', result: 'Competitor 12 started 25% off' },
             { team: 'Operations', sentence: ['Read ', { v: 'every load' }, ' in ', { v: 'our carrier portals' }, ' ', { v: '4 times a day' }], where: 'Google Sheets · Loads', at: 'Thu 14:00', result: 'Load 4471 delayed, now Friday 06:00' },
             { team: 'Founders', sentence: ['Call ', { v: 'every new lead' }, ' within ', { v: 'a minute' }, ', ', { v: 'day and night' }], where: 'Your CRM', at: 'Sat 23:40', result: 'New lead called in 38 s, demo booked' },
           ],
@@ -446,13 +437,13 @@ export const page: Page = {
           sub: '4,000 people · 1,200 agents · 14 teams',
           rows: [
             { name: 'Priya Shah', id: 'priya@kestrel.example', meta: 'Finance lead' },
-            { name: 'Accounts agent', id: 'ap-0417@kestrel.example · +1 312 555 0148', meta: 'Finance · 2 portal logins · $300 a month limit', lit: true },
+            { name: 'Otto, accounts agent', id: 'otto@kestrel.example', meta: '+1 312 555 0148 · Finance · 2 logins · $300 a month limit', lit: true },
             { name: 'Supplier desk agent', id: 'suppliers@kestrel.example', meta: 'Operations · every call and email in the event log', lit: true },
           ],
         },
       },
-      /* 26 Nov 2026: the resell door. Its picture is a partner's own client list under the partner's brand, each client with
-         its agent's number and its week (invented clinics; the live white label words). */
+      /* 26 Nov 2026: the resell door. Its picture is an agency's client stores under the agency's brand, each with what a
+         new customer got this week (invented stores), the job /agencies leads with. */
       {
         id: 'resell',
         reader: 'agencies',
@@ -463,12 +454,12 @@ export const page: Page = {
         cta: { label: 'See white label for agencies', to: '/agencies' },
         demo: {
           kind: 'roster',
-          head: 'Brightline Front Desk · Clients · Example',
+          head: 'Harbour & Co · Client stores · Example',
           sub: 'Your brand on every report',
           rows: [
-            { name: 'Desert Smiles Dental', id: '+1 602 555 0141', meta: 'This week: 41 missed calls texted back, 17 booked', lit: true },
-            { name: 'Camelback Physio', id: '+1 480 555 0177', meta: 'This week: 28 missed calls texted back, 11 booked', lit: true },
-            { name: 'Mesa Family Dental', id: '+1 480 555 0123', meta: 'This week: 35 missed calls texted back, 14 booked', lit: true },
+            { name: 'Fernway Home', id: 'fernway.example', meta: 'This week: welcome email in 2 minutes, no basket reminder', lit: true },
+            { name: 'Lumen Skincare', id: 'lumenskin.example', meta: 'This week: welcome code worked, basket reminder at 4 hours', lit: true },
+            { name: 'Oak & Ember', id: 'oakandember.example', meta: 'This week: no welcome email in 48 hours', lit: true },
           ],
         },
       },

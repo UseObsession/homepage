@@ -46,7 +46,7 @@ obsession.on('blueprint.result', async (e) => {
     path: '/blueprints/load-tracking',
     title: 'Track every load across carrier portals, 4 times a day',
     description:
-      'Load tracking signs in to every carrier portal with the logins you give it, 4 times a day, and puts each load’s status, ETA and proof of delivery in one sheet.',
+      'Load tracking signs in to every carrier portal with the logins you give it, 4 times a day, and puts each load’s status, ETA and delivery proof in one sheet.',
     answer:
       'Load tracking signs in to each carrier portal with the logins you give it 4 times a day and reads every load’s status and ETA. It updates one sheet or your transportation management system, with each page saved as a screenshot.',
     ogImage: '/og/load-tracking.png',

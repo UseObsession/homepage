@@ -182,7 +182,7 @@ const planWords: Record<PlanId, Omit<PlanCard, 'id' | 'name' | 'price' | 'per' |
   /* Companies running agents across teams and platforms that resell (26 Nov 2026, the copy plan); white label and volume
      after it (James, 21 Nov); monthly with nothing up front (founder, 21 Nov). */
   enterprise: {
-    for: 'For companies running agents across teams, and platforms that resell Obsession to clients.',
+    for: 'For companies running agents across teams, and resellers.',
     includes: [
       'An account per team or per client',
       'White label for resellers',

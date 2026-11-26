@@ -280,7 +280,7 @@
 
 /* ---- The near-real list (RosterDemo, 26 Nov 2026): a directory or a partner's clients. Rows in a quiet stack; the agents'
    rows lit in the card's colour; rows rise in turn once the card is seen. ---- */
-.h-dr__ros-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px var(--ob-space-12); margin: 0; font: var(--ob-type-caption); color: var(--ob-text-2); }
+.h-dr__ros-head { display: grid; gap: 2px; margin: 0; font: var(--ob-type-caption); color: var(--ob-text-2); }
 .h-dr__ros-head > span:first-child { font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
 .h-dr__ros-sub { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); }
 .h-dr__ros-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
@@ -307,5 +307,5 @@
 .h-dr__ros-meta { grid-area: meta; min-width: 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
 @media (prefers-reduced-motion: no-preference) {
   .h-dr__roster.is-waiting .h-dr__ros-row { opacity: 0; }
-  .h-dr__roster.is-seen .h-dr__ros-row { animation: h-dr-rise 440ms var(--ob-ease-out) both; animation-delay: calc(120ms + var(--d, 0) * 220ms); }
+  .h-dr__roster.is-seen .h-dr__ros-row { animation: h-dr-rise 440ms var(--ob-ease-out) both; animation-delay: calc(120ms + var(--d, 0) * 130ms); }
 }

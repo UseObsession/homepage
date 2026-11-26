@@ -67,7 +67,9 @@
 .h-pr__online i { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--ob-success); }
 .h-pr__online i::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--ob-success); opacity: 0; }
 
-.h-pr__ids { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--ob-space-8); margin: 0; }
+.h-pr__ids { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-8); margin: 0; }
+/* The address gets the full width, so a person's address and the agent's own both read whole; phone and logins below. */
+.h-pr__ids > div:first-child:nth-last-child(3) { grid-column: 1 / -1; }
 .h-pr__ids > div { display: grid; gap: 2px; padding: var(--ob-space-12); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-md); background: var(--ob-bg); min-width: 0; }
 .h-pr__ids dt { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; color: var(--ob-text-3); }
 .h-pr__ids dd { display: grid; margin: 0; min-width: 0; }
@@ -233,6 +235,14 @@
   .h-pr__ability { grid-template-columns: 18px minmax(0, 1fr) 16px; row-gap: 2px; padding-block: var(--ob-space-8); }
   .h-pr__via { grid-column: 2; grid-row: 2; justify-items: start; }
   .h-pr__ability .h-pr__chev { grid-column: 3; grid-row: 1 / span 2; }
+  /* 26 Nov 2026: the event ("Maya, or the agent?") right under the address, phone and logins, whole, on the card's first
+     screen; the switch's two labels stay on one line. */
+  .h-pr__card { display: flex; flex-direction: column; }
+  .h-pr__event { order: 3; margin-top: 0; grid-template-columns: minmax(0, 1fr); gap: var(--ob-space-4); }
+  .h-pr__cols { order: 4; }
+  .h-pr__event-row { flex-wrap: wrap; row-gap: 2px; }
+  .h-pr__event-text { flex-basis: 100%; white-space: normal; }
+  .h-pr__opt { white-space: nowrap; padding-inline: 10px; }
 }
 
 /* ---- Motion: the switch to equipped unlocks the abilities in turn; one quiet loop, the ready light ---- */
@@ -269,6 +279,8 @@
 .h-pr__stage[data-state='alone'] .h-pr__ids > div:has(.is-borrowed) { border-color: color-mix(in srgb, var(--ob-warning) 38%, var(--ob-line)); background: color-mix(in srgb, var(--ob-warning-bg) 60%, var(--ob-bg)); }
 .h-pr__ids > div { transition: border-color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out); }
 .h-pr__event-row.is-borrowed i { background: var(--ob-warning); }
-.h-pr__event-row.is-borrowed .h-pr__event-name { color: var(--ob-warning); }
 .h-pr__stage[data-state='alone'] .h-pr__online { color: var(--ob-warning); box-shadow: inset 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--ob-warning) 45%, var(--ob-line)); }
 .h-pr__stage[data-state='alone'] .h-pr__online i { background: var(--ob-warning); }
+
+/* The heading, one sentence a line (26 Nov 2026), so "think. Obsession" never shares a line. */
+.h-pr__h-line { display: block; }

@@ -65,10 +65,8 @@ import { Obsession } from "obsession"
 
 const obsession = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
 
-const inbox = await obsession.inboxes.create()
-const number = await obsession.numbers.create({ country: "US" })
-const browser = await obsession.browsers.create({ home: "US" })
-const sandbox = await obsession.sandboxes.create()`
+// One call: an agent with its own inbox, number and browser, under one identity (26 Nov 2026)
+const agent = await obsession.personas.create({ inbox: true, phone: "US", browser: true })`
 
 const pieces: ApiPiece[] = [
   {

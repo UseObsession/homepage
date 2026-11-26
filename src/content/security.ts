@@ -113,6 +113,7 @@ export const securityPage: SecurityPage = {
       heading: 'Each agent signs in only with the logins you give it.',
       lines: [
         'It works within a monthly spend limit you set on its key.',
+        'Every email, text, call and page it handles lands in your event log, dated, with the original.',
         'Enterprise adds an account per team and SSO.',
       ],
     },

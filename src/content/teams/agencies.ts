@@ -1,4 +1,5 @@
 import { plans } from '../prices'
+import { CONTACT_EMAIL } from '../site'
 import type { TeamPage } from './types'
 
 /* Agencies and resellers (/agencies): agencies, voice AI builders and mystery shopping firms run Obsession's blueprints
@@ -16,7 +17,7 @@ const ENTERPRISE_FROM = enterprise?.from != null ? `from ${usd(enterprise.from)}
 /* 26 Nov 2026 (the copy plan): the Resell door. The paid job leads (open every pitch with what a brand never sent), then
    any blueprint for every client under the agency's brand; the title takes the searched white label words. */
 const sub =
-  'Name the brands you want to win, and get a pitch list sorted by what each never sent its new customers. Then run any blueprint for every client under your own brand, with an account per client and every result in a dashboard and report that carry your name.'
+  'Name the brands you want to win and get a pitch list sorted by the gap, then check every client again each week. Run any blueprint for every client under your own brand, with an account per client and every report in your name.'
 
 export const team: TeamPage = {
   id: 'agencies',
@@ -24,7 +25,7 @@ export const team: TeamPage = {
   card: 'Mystery shops, CRO and ad checks, run for every client under your brand.',
   meta: {
     path: '/agencies',
-    title: 'White label AI agents for agencies: every client under your brand',
+    title: 'White label AI agents for agencies: every client, your brand',
     description:
       'White label AI agents for agencies: run mystery shops, lead response checks and AI agent checks for every client under your brand, an account per client.',
     answer: sub,
@@ -34,7 +35,14 @@ export const team: TeamPage = {
     ],
   },
 
-  hero: { pill: 'Agencies and resellers', headline: 'Open every pitch with what the brand never sent its new customers, and check every client again each week.', sub },
+  hero: {
+    pill: 'Agencies and resellers',
+    headline: 'White label AI agents for agencies: open every pitch with what a brand never sent.',
+    sub,
+    /* 26 Nov 2026: the Resell door reaches a person, by email, then Start free. */
+    primary: { label: 'Talk to us', to: `mailto:${CONTACT_EMAIL}?subject=White%20label` },
+    second: { label: 'Start free', to: '#join' },
+  },
 
   scene: {
     steps: [

@@ -48,7 +48,7 @@ obsession.on('blueprint.result', async (e) => {
     path: '/blueprints/invoice-collector',
     title: 'Download invoices from every vendor portal, each week',
     description:
-      'Invoice collector downloads invoices from every vendor portal each week with the logins you give it, files each PDF and adds its amount and due date to a sheet.',
+      'Invoice collector downloads invoices from every vendor portal each week with the logins you give it, files each PDF and logs its amount and due date.',
     answer:
       'Invoice collector signs in to each vendor portal with the logins you give it every week and downloads every new invoice and receipt. It files each PDF and adds its vendor, number, amount and due date to a sheet or your accounting system.',
     ogImage: '/og/invoice-collector.png',

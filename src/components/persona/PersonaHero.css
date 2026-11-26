@@ -5,10 +5,12 @@
   position: relative;
   display: grid;
   min-height: calc(100svh - var(--ob-nav-h, 64px));
-  padding-block: clamp(24px, 4vh, 56px) clamp(32px, 5vh, 56px);
+  padding-block: clamp(16px, 2vh, 48px) clamp(32px, 5vh, 56px);
   overflow-x: clip;
 }
-.s-ph-wrap { display: grid; grid-template-rows: 1fr auto; align-items: center; row-gap: var(--ob-space-24); }
+.s-ph-wrap { display: grid; grid-template-rows: 1fr auto; align-items: center; row-gap: var(--ob-space-16); }
+/* The label sits close over the headline (26 Nov 2026), so the hero with its label still fits the first screen. */
+.s-ph-tag + .s-ph-h { margin-top: calc(-1 * var(--ob-space-8)); }
 /* 1 soft light behind the headline on ink; paper has none (--s-spot is transparent there, styles/tones.css). */
 .s-ph::before {
   content: "";

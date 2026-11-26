@@ -25,7 +25,7 @@ import './HomeProblem.css'
 type State = 'alone' | 'equipped'
 /* 26 Nov 2026: on a borrowed login (Maya's address, her password, the event under her name) every ability reads
    "Not as itself"; the hold is long enough to read it before the card switches to equipped. */
-const HOLD = 2400
+const HOLD = 3200
 
 const nameOf = Object.fromEntries(catalog.recipes.map((r) => [r.slug, r]))
 /* Each blueprint wears its type's reader colour (content/kitPaths), as on Home's blueprints section. */
@@ -52,7 +52,8 @@ const Lock = () => (
 export function HomeProblem({ problem, id, tone }: { problem: Words; id?: string; tone?: 'alt' }) {
   const hid = useId()
   const p = problem
-  const { ref, inView } = useInView<HTMLDivElement>(0.3)
+  /* Watched on the event row, fully in view, so the reader sees "Maya, or the agent?" before the card switches. */
+  const { ref, inView } = useInView<HTMLDivElement>(1)
   const [state, setState] = useState<State>('equipped')
   const [motion, setMotion] = useState(false)
   const played = useRef(false)
@@ -82,13 +83,17 @@ export function HomeProblem({ problem, id, tone }: { problem: Words; id?: string
       <div className="s-wrap">
         <div className="s-bp-head h-pr__head">
           <h2 className="s-bp-h" id={`${hid}-h`}>
-            {p.heading}
+            {p.heading.split(/(?<=\.)\s+/).map((l) => (
+              <span className="h-pr__h-line" key={l}>
+                {l}{' '}
+              </span>
+            ))}
           </h2>
           <p className="s-bp-line">{p.line}</p>
         </div>
 
         <figure className="h-pr__fig">
-          <div ref={ref} className={'h-pr__stage' + (motion ? ' has-motion' : '')} data-state={state}>
+          <div className={'h-pr__stage' + (motion ? ' has-motion' : '')} data-state={state}>
             {/* The agent's ID card. */}
             <div className="h-pr__card">
               <div className="h-pr__switch" role="group" aria-label={p.states.label}>
@@ -166,7 +171,7 @@ export function HomeProblem({ problem, id, tone }: { problem: Words; id?: string
                 </div>
               </div>
 
-              <div className="h-pr__event">
+              <div ref={ref} className="h-pr__event">
                 <span className="h-pr__event-label">{p.card.event.label}</span>
                 <span className="h-pr__event-body">
                   {p.card.event.borrowed ? (

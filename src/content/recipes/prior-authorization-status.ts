@@ -47,7 +47,7 @@ obsession.on('blueprint.result', async (e) => {
     path: '/blueprints/prior-authorization-status',
     title: 'Check prior authorization status in every payer portal',
     description:
-      'Check prior authorization status in every payer portal each morning, with the logins you give it. Approvals, denials and requests for more information reach you.',
+      'Check prior authorization status in every payer portal each morning, with the logins you give it. Approvals, denials and requests for more reach you.',
     answer:
       'Prior authorization status signs in to each payer portal with the logins you give it every morning, reads every pending request and sends what changed to your work queue, each with a screenshot.',
     ogImage: '/og/prior-authorization-status.png',

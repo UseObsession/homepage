@@ -80,7 +80,9 @@
 }
 .t-size__bar { display: block; height: 4px; border-radius: 2px; background: var(--ob-line); overflow: hidden; }
 .t-size__bar i { display: block; height: 100%; width: calc(var(--fill) * 100%); border-radius: inherit; background: var(--ob-text-2); }
-.t-size:last-child .t-size__bar i { background: var(--ob-success); }
+.t-size.is-top .t-size__bar i { background: var(--ob-success); }
+/* Every card's cost row on one line across the row, whatever the jobs list's length (26 Nov 2026). */
+.t-size { grid-template-rows: auto auto auto 1fr auto; }
 .t-size__label { font: var(--ob-type-title); letter-spacing: var(--ob-type-title-tracking); color: var(--ob-text); }
 .t-size__agents { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-2); }
 .t-size__jobs { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--ob-space-8); }

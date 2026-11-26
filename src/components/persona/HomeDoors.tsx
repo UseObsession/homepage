@@ -158,7 +158,7 @@ function RosterDemo({ demo }: { demo: Extract<HomeDoorDemo, { kind: 'roster' }> 
     <div ref={ref} className={'h-dr__demo h-dr__roster' + state}>
       <p className="h-dr__ros-head">
         <span>{demo.head}</span>
-        <span className="h-dr__ros-sub">{demo.sub}</span>
+        <span className="h-dr__ros-sub">{tie(demo.sub)}</span>
       </p>
       <ul className="h-dr__ros-list">
         {demo.rows.map((r, n) => (
