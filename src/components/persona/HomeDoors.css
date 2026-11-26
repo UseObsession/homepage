@@ -439,3 +439,7 @@
 @media (prefers-reduced-motion: reduce) {
   .h-db__item, .h-db__more, .h-db__go { transition: none; }
 }
+
+/* The doors heading names all four ways in, so it gets a wider measure: two lines at desktop widths (26 Nov 2026). */
+.h-dr .s-bp-head { max-width: 1040px; }
+.h-dr .s-bp-head .s-bp-h { max-width: 40ch; }
