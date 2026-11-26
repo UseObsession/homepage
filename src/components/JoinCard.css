@@ -91,6 +91,8 @@
 .s-join__glabel { margin: 0; font: var(--ob-type-caption); font-weight: var(--ob-weight-medium); color: var(--ob-text-3); }
 .s-join__group .ob-chips { gap: var(--ob-space-8); }
 .s-join__case .ob-textarea { min-height: 88px; resize: vertical; }
+/* What "Something else" or "Somewhere else" is: a box under the chips that opened it. */
+.s-join__other { margin-top: var(--ob-space-12); }
 
 /* The actions: Back to the start, the step's own button at the end. */
 .s-join__acts { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--ob-space-8); padding-top: var(--ob-space-4); }

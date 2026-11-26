@@ -57,8 +57,8 @@ const VERSION = 3
 const SHEET_NAME = 'Sign ups'
 /* Header, JSON key, longest value kept. In reading order: the order of a new sheet's columns. Received, Updated and
    Finished are the script's own times. A question that takes any number sends every pick, joined with ", " in the
-   order they were ticked, "Something else (what they typed)": its column keeps 400 characters, enough for every
-   option at once (waitlist/test/signup.test.mjs checks the longest the site can send). */
+   order they were ticked, "Something else (what they typed)". Recipes keeps 1,000 characters, enough for every blueprint
+   ticked at once (waitlist/test/setup.test.mjs checks the longest the site can send against these limits). */
 const FIELDS = [
   ['Received', '', 0],
   ['Step reached', 'step', 20],
@@ -69,7 +69,7 @@ const FIELDS = [
   ['Agency type', 'agency_type', 60],
   ['Offer', 'offer', 60],
   ['Brands to check', 'brands', 400],
-  ['Recipes', 'recipes', 600],
+  ['Recipes', 'recipes', 1000],
   ['Use case', 'use_case', 1000],
   ['Reader', 'reader', 200],
   ['First job', 'first_job', 400],

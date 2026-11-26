@@ -2,8 +2,8 @@ import { useEffect, useId, useRef, useState, type FormEvent, type InputHTMLAttri
 import { Link } from 'react-router-dom'
 import { catalog } from '../content/catalog'
 import { kitLinks } from '../content/kitPaths'
-import { destinations, doors, pieces, setup as copy, sizes, tools, type DoorId } from '../content/setup'
-import { STEPS, blueprintNames, go, patch, picksOf, pieceNames, setupStore, useSave, useSetup, type SetupState, type SetupStep } from '../lib/setup'
+import { OTHER_DEST, OTHER_TOOL, destinations, doors, pieces, setup as copy, sizes, tools, type DoorId } from '../content/setup'
+import { STEPS, blueprintNames, destNames, go, patch, picksOf, pieceNames, setupStore, useSave, useSetup, type SetupState, type SetupStep } from '../lib/setup'
 import { hostOf, isAddress } from '../lib/waitlist'
 import { StatusMark } from './Logo'
 import { PersonaGlyph } from './persona/icons'
@@ -224,6 +224,15 @@ export function SetupCard({ owner }: { owner: boolean }) {
         <textarea className="ob-textarea" id={id('use')} rows={3} maxLength={1000} placeholder={placeholder} value={s.use} onChange={(e) => patch({ use: e.target.value })} />
       </div>
     )
+    /* "Something else" or "Somewhere else" ticked: a box for what it is, kept with the pick. */
+    const other = (k: 'toolOther' | 'destOther', label: string, placeholder: string) => (
+      <div className="ob-field s-join__other">
+        <label className="ob-label" htmlFor={id(k)}>
+          {label}
+        </label>
+        <input className="ob-input" id={id(k)} maxLength={120} placeholder={placeholder} value={s[k] ?? ''} onChange={(e) => patch({ [k]: e.target.value })} />
+      </div>
+    )
     let body: ReactNode = null
     let q = ''
     let help = ''
@@ -259,6 +268,7 @@ export function SetupCard({ owner }: { owner: boolean }) {
               {copy.blueprint.dest} <span className="ob-field-optional">{copy.optional}</span>
             </legend>
             <Picks name="dest" items={destinations.map((d) => ({ id: d, label: d }))} picked={s.dest} onToggle={(v) => patch({ dest: toggleIn(s.dest, v) })} />
+            {s.dest.includes(OTHER_DEST) && other('destOther', copy.blueprint.destOther.label, copy.blueprint.destOther.placeholder)}
           </fieldset>
         </>
       )
@@ -268,6 +278,7 @@ export function SetupCard({ owner }: { owner: boolean }) {
       body = (
         <>
           <Picks name="tools" items={tools.map((t) => ({ id: t, label: t }))} picked={s.tools} onToggle={(v) => patch({ tools: toggleIn(s.tools, v) })} />
+          {s.tools.includes(OTHER_TOOL) && other('toolOther', copy.connect.other.label, copy.connect.other.placeholder)}
           {err('need')}
           {use(copy.connect.use.label, copy.connect.use.placeholder)}
         </>
@@ -323,6 +334,7 @@ export function SetupCard({ owner }: { owner: boolean }) {
           name={k === 'site' ? 'url' : k === 'company' ? 'organization' : 'name'}
           autoComplete={auto}
           required
+          maxLength={k === 'name' ? 100 : 200}
           placeholder={copy.about[k].placeholder}
           value={s[k]}
           onChange={(e) => patch({ [k]: e.target.value })}
@@ -373,7 +385,7 @@ export function SetupCard({ owner }: { owner: boolean }) {
   const door = (s.door || 'build') as DoorId
   const picks = picksOf(s)
   const first = s.name.trim().split(/\s+/)[0] ?? ''
-  const dest = door === 'blueprint' && s.dest.length ? copy.done.dest(listOf(s.dest)) : ''
+  const dest = door === 'blueprint' && s.dest.length ? copy.done.dest(listOf(destNames(s))) : ''
   const nextLink = door === 'blueprint' && s.blueprints[0] ? { label: `See ${blueprintNames([s.blueprints[0]])[0]}`, to: `/blueprints/${catalog.recipes.find((r) => r.id === s.blueprints[0])?.slug ?? ''}` } : copy.done.next[door]
   return (
     <section className="s-join s-join--done" aria-labelledby={id('q')}>
@@ -404,7 +416,7 @@ export function SetupCard({ owner }: { owner: boolean }) {
         {door === 'blueprint' && s.dest.length > 0 && (
           <div>
             <dt>{copy.sum.dest}</dt>
-            <dd>{listOf(s.dest)}</dd>
+            <dd>{listOf(destNames(s))}</dd>
           </div>
         )}
       </dl>
