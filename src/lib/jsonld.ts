@@ -69,7 +69,8 @@ const organization: Node = {
   logo: { '@type': 'ImageObject', url: `${SITE}/logo/obsession-app-icon-1024.png`, width: 1024, height: 1024 },
   alternateName: 'useobsession',
   description: llms.summary,
-  slogan: 'Kit up your AI agents.',
+  /* 26 Nov 2026 (both founders' yes needed): the name line every cold reader would repeat. */
+  slogan: 'Give every AI agent its own phone, inbox and browser.',
   /* 26 Nov 2026: what Obsession is now (the index-era list retired). */
   knowsAbout: ['AI agent infrastructure', 'Email inboxes for AI agents', 'Phone numbers for AI agents', 'Browsers for AI agents', 'Sandboxes for AI agents', 'AI agent templates'],
   email: CONTACT_EMAIL,
