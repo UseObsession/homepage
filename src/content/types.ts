@@ -605,13 +605,16 @@ export type HomeDoorDemo =
   /* A near-real list in a small window (26 Nov 2026): a company's directory with its agents beside its people, or a partner's
      clients under the partner's brand. `lit` rows are the agents; rows rise in turn once the card is seen. */
   | { kind: 'roster'; head: string; sub: string; rows: { name: string; id: string; meta: string; lit?: boolean }[] }
+/* The four ways in (26 Nov 2026): James's curtain band, a panel per door, each its name, one short line when it opens,
+   and one link. No section line, card titles or body lines (James: the rest of the page already says them). */
 export type HomeDoors = {
   heading: string
-  line: string
-  /* The scale under the cards (23 Nov 2026): from 1 agent to 10 million, each step a bar and one line of who runs that
+  line?: string
+  /* The scale under the slide (23 Nov 2026): from 1 agent to 100 million, each step a bar and one line of who runs that
      many, so one person and a large company both see where they fit. */
   scale?: { heading: string; line: string; label: string; steps: { n: number; short: string; case: string }[] }
-  doors: { id: string; reader: string; icon: PersonaIcon; label: string; title: string; line: string; cta: Cta; demo: HomeDoorDemo }[]
+  /* Each door: its name, one short line that shows when its panel opens, and the link to its page. */
+  doors: { id: string; reader: string; label: string; line: string; cta: Cta }[]
 }
 export type PersonaBuild = {
   heading: string

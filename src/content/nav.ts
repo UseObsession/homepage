@@ -230,6 +230,8 @@ const menus = {
      individual angle"): the page serves a freelancer or founder as much as a team, "No code" and "Developers" read as
      the two ways in, and the label matches the address and the searched words. */
   noCode: { label: 'No code', to: '/no-code' } satisfies NavPage,
+  /* 26 Nov 2026 (Seun: "Enterprise in the top bar"): the company door, from every page. */
+  enterprise: { label: 'Enterprise', to: '/use-cases/ai-agents-for-enterprise' } satisfies NavPage,
   pricing: { label: 'Pricing', to: '/pricing' } satisfies NavPage,
 }
 

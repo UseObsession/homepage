@@ -309,3 +309,133 @@
   .h-dr__roster.is-waiting .h-dr__ros-row { opacity: 0; }
   .h-dr__roster.is-seen .h-dr__ros-row { animation: h-dr-rise 440ms var(--ob-ease-out) both; animation-delay: calc(120ms + var(--d, 0) * 130ms); }
 }
+
+/* ---- The four ways in as one slide (26 Nov 2026): a row of tabs, each in its door's colour, the chosen one raised with a
+   soft glow; under it one window with that door's working picture and one link. Aligned with the heading and narrower
+   than the page, so the section stays small. ---- */
+.h-dr__slide { display: grid; gap: var(--ob-space-16); max-width: 880px; }
+.h-dr__ways { display: flex; flex-wrap: wrap; gap: var(--ob-space-8); }
+.h-dr__way {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ob-space-8);
+  min-height: 44px;
+  padding: 6px 16px 6px 8px;
+  border: var(--ob-border-hair) solid var(--ob-line);
+  border-radius: var(--ob-radius-pill);
+  background: transparent;
+  color: var(--ob-text-2);
+  font: var(--ob-type-small);
+  font-weight: var(--ob-weight-medium, 500);
+  cursor: pointer;
+  transition: background-color var(--ob-dur-base) var(--ob-ease-out), color var(--ob-dur-base) var(--ob-ease-out), box-shadow var(--ob-dur-base) var(--ob-ease-out), border-color var(--ob-dur-base) var(--ob-ease-out);
+}
+.h-dr__way .h-dr__ic { width: 28px; height: 28px; }
+.h-dr__way[aria-selected='true'] {
+  border-color: color-mix(in srgb, var(--s-accent, var(--ob-line-strong)) 55%, var(--ob-line-strong));
+  background: var(--ob-surface);
+  color: var(--ob-text);
+  box-shadow: 0 10px 30px -14px color-mix(in srgb, var(--s-accent-glow, var(--s-accent, transparent)) 80%, transparent), var(--ob-shadow-1, none);
+}
+.h-dr__way:focus-visible { outline: var(--ob-focus-width) solid var(--ob-focus); outline-offset: 2px; }
+.h-dr__way .h-dr__tab-prog { left: 16px; right: 16px; bottom: 5px; }
+@media (hover: hover) and (pointer: fine) { .h-dr__way[aria-selected='false']:hover { color: var(--ob-text); background: rgb(var(--ob-tint-rgb) / 0.05); } }
+.h-dr__panel { cursor: default; padding: var(--ob-space-24); }
+.h-dr__panel[hidden] { display: none; }
+.h-dr__go--link { align-self: flex-start; text-decoration: none; }
+.h-dr__go--link:hover, .h-dr__go--link:focus-visible { background: var(--ob-solid); color: var(--ob-text-inverse); box-shadow: none; outline: none; }
+.h-dr__go--link:hover .h-dr__chev { translate: 3px 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .h-dr__panel:not([hidden]) { animation: h-dr-swap 360ms var(--ob-ease-out) both; }
+}
+@media (max-width: 560px) {
+  .h-dr__ways { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .h-dr__way { justify-content: flex-start; padding-right: 12px; text-align: left; line-height: 1.25; font: var(--ob-type-caption); font-weight: var(--ob-weight-medium, 500); }
+  .h-dr__panel { padding: var(--ob-space-16); }
+}
+
+/* ---- The four ways in: James's curtain band (26 Nov 2026), on the design system's tokens. Four panels in one row cut
+   on the slant (a clip path, a 5px seam), each its door's colour as a glow rising from its foot, never a flat fill or a
+   coloured word. At rest: the number, the name, the circled arrow. Under the pointer or keyboard focus the panel widens,
+   its glow rises, its line and link words come in, and the arrow fills and turns. Touch screens see everything; under
+   760px the panels stack. ---- */
+@property --h-db-glow {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+.h-db {
+  --slant: 44px;
+  --seam: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 calc(var(--slant) - var(--seam));
+  display: flex;
+}
+.h-db__item {
+  --h-db-glow: var(--s-accent-glow-rest, 50%);
+  flex: 1 1 0;
+  min-width: 0;
+  margin-left: calc(-1 * var(--slant) + var(--seam));
+  clip-path: polygon(var(--slant) 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
+  /* The glow lives on the panel itself (its custom property doesn't inherit), rising from the foot. */
+  background:
+    radial-gradient(135% 105% at 50% 100%, color-mix(in srgb, var(--s-accent-glow, transparent) var(--h-db-glow), transparent), transparent 75%),
+    var(--ob-surface);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  transition: flex-grow 600ms var(--ob-ease-out), --h-db-glow 400ms var(--ob-ease-out);
+}
+.h-db__link {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-content: start;
+  gap: var(--ob-space-12);
+  min-height: clamp(220px, 19vw, 260px);
+  padding: var(--ob-space-24) calc(var(--slant) + 12px) var(--ob-space-24) calc(var(--slant) * 0.55 + 16px);
+  color: var(--ob-text);
+  text-decoration: none;
+  outline: none;
+}
+.h-db__n { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); }
+.h-db__name { align-self: end; font: 500 clamp(19px, 1.7vw, 24px) / 1.15 var(--ob-font-sans); letter-spacing: -0.02em; text-wrap: balance; }
+.h-db__more { display: grid; grid-template-rows: 1fr; }
+.h-db__more-in { display: grid; gap: var(--ob-space-8); min-height: 0; overflow: hidden; }
+.h-db__line { font: var(--ob-type-small); color: var(--ob-text-2); text-wrap: pretty; max-width: 30ch; }
+.h-db__cta { font: var(--ob-type-caption); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.h-db__go {
+  position: absolute;
+  top: var(--ob-space-20);
+  right: calc(var(--slant) + 4px);
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--s-accent, var(--ob-line-strong)) 60%, var(--ob-line-strong));
+  color: var(--s-accent, var(--ob-text));
+  transition: background-color 400ms var(--ob-ease-out), color 400ms var(--ob-ease-out), rotate 400ms var(--ob-ease-out);
+}
+.h-db__go svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.h-db__item:hover, .h-db__item:focus-within { --h-db-glow: var(--s-accent-glow-hover, 66%); }
+.h-db__item:hover .h-db__go, .h-db__item:focus-within .h-db__go { background: var(--s-accent, var(--ob-solid)); color: var(--ob-bg); rotate: -45deg; }
+.h-db__link:focus-visible { box-shadow: inset 0 0 0 var(--ob-focus-width) var(--ob-focus); }
+
+/* With a pointer, the curtain: the panel widens and its line comes in. */
+@media (hover: hover) and (pointer: fine) and (min-width: 760px) {
+  .h-db__item:hover, .h-db__item:focus-within { flex-grow: 1.9; }
+  .h-db__more { grid-template-rows: 0fr; opacity: 0; translate: 0 6px; transition: grid-template-rows 500ms var(--ob-ease-out), opacity 300ms var(--ob-ease-out), translate 400ms var(--ob-ease-out); }
+  .h-db__item:hover .h-db__more, .h-db__item:focus-within .h-db__more { grid-template-rows: 1fr; opacity: 1; translate: 0 0; transition-delay: 120ms; }
+}
+@media (max-width: 759.98px) {
+  .h-db { flex-direction: column; gap: var(--seam); padding: 0; }
+  .h-db__item { margin: 0; clip-path: none; }
+  .h-db__item { border-radius: var(--ob-radius-lg); }
+  .h-db__link { min-height: 0; padding: var(--ob-space-20); padding-right: 72px; gap: var(--ob-space-8); }
+  .h-db__go { right: var(--ob-space-20); top: var(--ob-space-20); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .h-db__item, .h-db__more, .h-db__go { transition: none; }
+}

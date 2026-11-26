@@ -367,99 +367,12 @@ export const page: Page = {
         { n: 100000000, short: '100M', case: 'A platform gives every user’s assistant its own number and inbox.' },
       ],
     },
-    line: 'Every way in runs on the same pieces, the same identity and the same event log.',
+    /* 26 Nov 2026: James's curtain band. Each line shows when its panel opens; nothing the rest of the page already says. */
     doors: [
-      {
-        id: 'dev',
-        reader: 'developers',
-        icon: 'code',
-        label: 'For developers',
-        title: 'Every piece your agent needs, in one call.',
-        line: 'Inboxes, numbers, messaging, browsers and sandboxes through the API, the SDK or MCP. One webhook carries every event, from one agent to a fleet.',
-        cta: { label: 'Start building', to: '/developers' },
-        demo: {
-          kind: 'code',
-          tabsLabel: 'Build with',
-          tabs: [
-            { label: 'SDK', code: 'await obsession.personas.create({ inbox: true, phone: "US", browser: true })' },
-            { label: 'Webhook', code: 'await obsession.events.subscribe({ url: "https://api.larkfield.example/hooks", events: ["*"] })' },
-            { label: 'MCP', code: 'claude mcp add obsession' },
-          ],
-          events: [
-            { at: '09:41:07', event: 'email.received', text: 'Sign-in code 482 913' },
-            { at: '09:41:12', event: 'page.visited', text: 'Supplier portal, signed in' },
-            { at: '09:42:30', event: 'sms.received', text: '“Running 10 minutes late”' },
-            { at: '09:44:05', event: 'call.ended', text: '2 min 17 s, transcript saved' },
-            { at: '09:45:51', event: 'sandbox.finished', text: 'report.py done in 2.4 s' },
-          ],
-          ms: '50 ms',
-        },
-      },
-      {
-        id: 'team',
-        reader: 'marketing',
-        icon: 'check',
-        label: 'For anyone who doesn’t code',
-        title: 'Pick the job. Get the results where you work.',
-        line: 'Teams, founders and freelancers pick a blueprint or describe their own job. Obsession spins up an agent to run it every day, across one company or thousands.',
-        cta: { label: 'See how it works', to: '/no-code' },
-        /* One job a team or a person would hand over, from a blueprint on the site: competitor tracking, lead response
-           checks, the voice agent check, the invoice collector, load tracking and the speed-to-lead callback. */
-        demo: {
-          kind: 'job',
-          tabsLabel: 'See a job for',
-          jobs: [
-            { team: 'Sales', sentence: ['Test ', { v: 'our 3 demo forms' }, ' every ', { v: 'morning' }, ' and flag ', { v: 'any reply over 5 minutes' }], where: 'Slack · #sales', at: 'Tue 09:30', result: 'UK form: no call after 2 hours' },
-            { team: 'Support', sentence: ['Call ', { v: 'our AI receptionist' }, ' as ', { v: '3 new patients' }, ' every ', { v: 'morning' }], where: 'Slack · #support', at: 'Wed 09:00', result: 'Call 2 quoted the wrong price' },
-            { team: 'Finance', sentence: ['Download ', { v: 'every invoice' }, ' from ', { v: '12 vendor portals' }, ' every ', { v: 'Friday' }], where: 'Google Sheets · Invoices', at: 'Fri 17:00', result: '12 invoices filed, none missed' },
-            { team: 'Marketing', sentence: ['Track ', { v: '40 competitors' }, ' every ', { v: 'Monday' }, ' and post to ', { v: '#marketing' }], where: 'Slack · #marketing', at: 'Mon 08:00', result: 'Competitor 12 started 25% off' },
-            { team: 'Operations', sentence: ['Read ', { v: 'every load' }, ' in ', { v: 'our carrier portals' }, ' ', { v: '4 times a day' }], where: 'Google Sheets · Loads', at: 'Thu 14:00', result: 'Load 4471 delayed, now Friday 06:00' },
-            { team: 'Founders', sentence: ['Call ', { v: 'every new lead' }, ' within ', { v: 'a minute' }, ', ', { v: 'day and night' }], where: 'Your CRM', at: 'Sat 23:40', result: 'New lead called in 38 s, demo booked' },
-          ],
-        },
-      },
-      /* 26 Nov 2026: the company door. Its picture is a directory with agents beside people, each agent with its own address
-         and number, the logins it was given and its spend limit (the live controls line; nothing about owners or approvals). */
-      {
-        id: 'companies',
-        reader: 'sales',
-        icon: 'users',
-        label: 'For companies running agents across teams',
-        title: 'Hand AI agents the work that touches customers and suppliers.',
-        line: 'Each agent works under its own name, signs in only with the logins you give it and stays within a monthly spend limit you set. Every step lands in one event log, and Enterprise adds an account per team and SSO.',
-        cta: { label: 'See AI agents for enterprise', to: '/use-cases/ai-agents-for-enterprise' },
-        demo: {
-          kind: 'roster',
-          head: 'Kestrel Group · Directory · Example',
-          sub: '4,000 people · 1,200 agents · 14 teams',
-          rows: [
-            { name: 'Priya Shah', id: 'priya@kestrel.example', meta: 'Finance lead' },
-            { name: 'Otto, accounts agent', id: 'otto@kestrel.example', meta: '+1 312 555 0148 · Finance · 2 logins · $300 a month limit', lit: true },
-            { name: 'Supplier desk agent', id: 'suppliers@kestrel.example', meta: 'Operations · every call and email in the event log', lit: true },
-          ],
-        },
-      },
-      /* 26 Nov 2026: the resell door. Its picture is an agency's client stores under the agency's brand, each with what a
-         new customer got this week (invented stores), the job /agencies leads with. */
-      {
-        id: 'resell',
-        reader: 'agencies',
-        icon: 'home',
-        label: 'For platforms and agencies with many clients',
-        title: 'Run it for every client, under your brand.',
-        line: 'Give every client’s AI agent its own number, inbox and browser, with an account per client and wholesale rates that drop as your volume grows.',
-        cta: { label: 'See white label for agencies', to: '/agencies' },
-        demo: {
-          kind: 'roster',
-          head: 'Harbour & Co · Client stores · Example',
-          sub: 'Your brand on every report',
-          rows: [
-            { name: 'Fernway Home', id: 'fernway.example', meta: 'This week: welcome email in 2 minutes, no basket reminder', lit: true },
-            { name: 'Lumen Skincare', id: 'lumenskin.example', meta: 'This week: welcome code worked, basket reminder at 4 hours', lit: true },
-            { name: 'Oak & Ember', id: 'oakandember.example', meta: 'This week: no welcome email in 48 hours', lit: true },
-          ],
-        },
-      },
+      { id: 'dev', reader: 'developers', label: 'Developers', line: 'Every piece in one call, every event at one webhook.', cta: { label: 'See the API and MCP', to: '/developers' } },
+      { id: 'team', reader: 'marketing', label: 'Teams that don’t code', line: 'Pick the job, and results land where you work.', cta: { label: 'See how it works', to: '/no-code' } },
+      { id: 'companies', reader: 'sales', label: 'Companies', line: 'Every agent under its own name, every step logged.', cta: { label: 'AI agents for enterprise', to: '/use-cases/ai-agents-for-enterprise' } },
+      { id: 'resell', reader: 'agencies', label: 'Agencies and platforms', line: 'Every client’s agents, under your brand.', cta: { label: 'White label for agencies', to: '/agencies' } },
     ],
   },
 
