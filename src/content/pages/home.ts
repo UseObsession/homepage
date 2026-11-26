@@ -84,31 +84,28 @@ export const page: Page = {
     path: '/',
     title: 'Obsession: inboxes, phone numbers and browsers for AI agents',
     description:
-      'An inbox, a phone number and a browser for every AI agent, on one API and one bill, with every action in one event log. Build on it, or pick a blueprint.',
+      'An inbox, a phone number and a browser for every AI agent, on one API and one bill. Build with the API, or pick a blueprint and Obsession runs the job.',
     /* The sentence AI assistants quote. Its first sentence opens the first answer below (scripts/prerender.mjs). */
     /* Its first sentence must be on the page (scripts/prerender.mjs): since Home's questions went (23 Nov 2026), it opens
        with the headline's first line. */
     answer:
-      'The toolkit for AI agents. Obsession gives every AI agent its own inbox, phone number and browser, so no agent runs on a person’s borrowed login, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
+      'The toolkit for AI agents. Obsession gives every agent an inbox, a phone number and a browser, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
     ogLine: 'An inbox, a phone number and a browser for every agent.',
     ogImage: '/og/home.png',
   },
 
   hero: {
-    /* 26 Nov 2026 (the copy plan; both founders' yes needed): the toolkit moves to the label, the headline names the problem
-       every buyer already has, and the line under it names the pieces and the record. Ten cold B2B readers: best for 5,
-       worst for none, highest trust. James's 21 Nov headline was "The toolkit for AI agents. One API, one bill." */
-    pill: 'The toolkit for AI agents',
-    pillTo: '#pieces',
-    headline: 'Stop running AI agents on borrowed logins.',
+    /* No pill: the form's own line under the box says "Free plan, no credit card", so the hero says it once. */
+    /* Locked by James, 21 Nov: "toolkit" leads, the sub names what is in the kit at once. */
+    headline: 'The toolkit for AI agents. One API, one bill.',
     /* 23 Nov 2026 (Seun, version 1 of the hero copy): the whole toolkit in one sentence (every piece, under one identity),
        then both ways in, so a developer and a team that doesn't code each see their door on the first screen. */
-    sub: 'Give every AI agent its own phone number, inbox and browser under one identity, on one API and one bill. Every email, text, call and page lands in one event log your security team can audit.',
+    sub: 'Give every AI agent its own inbox, phone number and browser, plus messaging and a computer to run code, all under one identity. Developers build on them in code. Every other team picks a blueprint, and Obsession runs the job.',
     /* The hero's main action (23 Nov 2026): the email form, then the sign-up card asks which way in. */
     capture: { ...access, source: 'home-hero' },
     /* The scale and the proof, under the form. */
-    /* 26 Nov 2026 (Seun): scale is shown to 100 million, never a lower top. */
-    note: 'From one agent to 100 million, each under its own name.',
+    /* 26 Nov 2026 (Seun): scale is shown to 100 million, never a lower top; the hero itself stays as James set it. */
+    note: 'One agent or 100 million. Every email, text, call and page lands in your event log.',
     secondary: { label: 'Browse blueprints', to: '/blueprints' },
     /* 3 facts, true by design: no prices, no country. 50 ms is James's figure (20 Nov). */
     proof: [
