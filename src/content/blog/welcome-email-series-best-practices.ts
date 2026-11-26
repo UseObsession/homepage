@@ -251,7 +251,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'If the welcome or a later email never arrives, [welcome email not sending](/blog/welcome-basket-email-not-sending) lists the settings to check in Klaviyo and Shopify Email. Black Friday is Friday 27 November 2026, so run the test before your code freeze and check the welcome code beside your sale codes.',
+      text: 'If the welcome or a later email never arrives, [welcome email not sending](/blog/welcome-basket-email-not-sending) lists the settings to check in Klaviyo and Shopify Email. Black Friday is Friday 27 November 2026, so run the test before your code freeze and check the welcome code beside your sale codes. For the rest of the programme, from forms to deliverability, use the [email marketing audit checklist](/blog/email-marketing-audit).',
     },
     {
       kind: 'p',
