@@ -115,6 +115,11 @@ export const personas: PiecePage = {
         link: { label: 'What an AI employee needs', to: '/blueprints#ai-employees' },
       },
       {
+        q: 'Can a company give every team’s agents their own personas?',
+        a: 'Yes. Each agent gets its own persona, so it works under its own name on only the logins you give it, and every step lands in your event log. Enterprise adds an account per team and SSO.',
+        link: { label: 'AI agents for enterprise', to: '/use-cases/ai-agents-for-enterprise' },
+      },
+      {
         q: 'How can a persona be free while it waits?',
         a: 'Our runtime stores each persona’s state as an actor, and no machine runs while nothing happens, so there is nothing to bill. When an email, text or call arrives, it wakes in 50 ms and your handler runs.',
       },

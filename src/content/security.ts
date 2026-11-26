@@ -114,7 +114,7 @@ export const securityPage: SecurityPage = {
       lines: [
         'It works within a monthly spend limit you set on its key.',
         'Every email, text, call and page it handles lands in your event log, dated, with the original.',
-        'Enterprise adds an account per team and SSO.',
+        'Enterprise adds an account per team and SSO, for [AI agents across a company](/use-cases/ai-agents-for-enterprise).',
       ],
     },
   ],

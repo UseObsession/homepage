@@ -939,7 +939,8 @@ export type AgentsPage = {
 /* /security: the privacy notice's shape, closed by the agents page's contact (content/security.ts). */
 export type SecurityPage = PrivacyPage & { contact: AgentsPage['contact'] }
 export type NotFoundPage = { meta: Meta; headline: string; sub: string; links: Cta[]; capture: Capture }
-export type Llms = { summary: string; intro: string }
+/* `companies` (26 Nov 2026): the questions companies ask before a rollout, each answered in a line, for llms.txt. */
+export type Llms = { summary: string; intro: string; companies: { q: string; a: string }[] }
 
 /* ---- Use case studies (/use-cases/SLUG, content/usecases): James's worked examples, 1 job from start to finish for
    1 kind of customer, with invented names and numbers. Appended 2 Oct; nothing above changes.

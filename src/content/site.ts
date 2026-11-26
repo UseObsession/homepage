@@ -496,6 +496,7 @@ export const llms: Llms = {
   summary: ENTITY,
   intro: [
     'Obsession gives AI agents the pieces they need on the web, through one API and one bill. Email: inboxes agents send and receive from. Phone: numbers, texts and calls. Messaging: iMessage lines, WhatsApp for support, sales, bookings and notifications, Slack and Telegram. Browser: a cloud browser whose sessions keep their logins, with a home connection. Sandbox: a computer to run code, started only when a task needs one. A company can take one piece, such as email, or all of them.',
+    'Think of it as what a new employee gets on day one (an email address, a phone and logins that stay signed in), for every AI agent a company runs.',
     'A persona puts the pieces under one identity: an inbox, a number, its channels, a browser profile and a sandbox when needed. It lives on an actor runtime, so it costs nothing while it waits, answers a new message in about 50 ms without starting a machine, runs on a schedule, stops before payment unless you give it your own payment card, and every page, email, text and call it sees lands in your event log, each dated, with screenshots. It says it’s an AI when it talks to a person.',
     `Developers use the pieces through the API, SDKs and MCP, so their own agents call them as tools. Events reach webhooks, Clay, Zapier, HubSpot, Baserow and Supabase. Each piece is priced on its own (useobsession.com/pricing): an inbox costs ${prices.inbox.amount} a month (the Free plan includes ${plans.find((pl) => pl.id === 'free')?.allowances.inbox}), a US number ${prices.number.amount} a month, a browser ${prices.browser.amount} an hour and a sandbox ${prices.sandbox.amount} a vCPU hour, and an idle persona costs nothing. Every plan pays the same list rates, and a paid plan’s fee covers a set amount of that usage, from $${plans.find((pl) => pl.id === 'developer')?.monthly} a month, which covers $${plans.find((pl) => pl.id === 'developer')?.covers}, to $${plans.find((pl) => pl.id === 'scale')?.monthly}, which covers $${plans.find((pl) => pl.id === 'scale')?.covers}. Model tokens are priced per million like any piece, from ${prices.tokensIn.amount} per million input tokens on Auto, or nothing with your own key.`,
     'Blueprints are jobs that run on Obsession beside the pieces: ours, ready to run for teams with no engineers, or your own task, with nothing to host. Try any blueprint on the Free plan. After that, its runs count toward what your plan covers at list rates, and each blueprint’s page shows what a typical month costs. Every result lands in the same event log developers subscribe to, and reaches Slack, email, a CRM, Clay, a spreadsheet, a PDF report or a Claude agent; for any other tool, Obsession builds the integration. Blueprints come in seven types. Talk to customers: missed call text back, appointment reminders, speed-to-lead callback, document chaser, voice agent check, support bot check, AI disclosure check. Test sign-up and agents: mystery shopping for ecommerce brands and their agencies, QA on your own flows, sign-in code check, delivery monitoring, lead response checks, ad landing check, partner checks. Build agent products: inbox agent, iMessage assistant, outbound agent check, sales agent check. Work behind logins: prior authorization status, load tracking, invoice collector, price watch, trial teardown, account watch. Watch the market: competitor tracking, email and SMS tracking, ad tracking, prospect intelligence, listings and AI answers. Train and test agents: nightly agent evaluation, drift watch, vendor agent check, resolution check. Buy, book and order: agent checkout test, travel booking agent, supplier reorder agent, order and receipt matching.',
@@ -503,4 +504,31 @@ export const llms: Llms = {
     'The sample data at useobsession.com/sample-output is a real mystery shopping run at a UK skincare store in September 2026: every email, text, screen and price the run kept, in each format a result can land in.',
     'Teams start on the Free plan, with no credit card, and Obsession sets up their API key and MCP with them.',
   ].join(' '),
+  /* 26 Nov 2026 (the copy plan, Scout): what a company asks before it rolls agents out, in the site's own words. */
+  companies: [
+    {
+      q: 'How does a company give each AI agent its own email address and phone number?',
+      a: 'It gives each agent a persona: its own inbox, phone number and browser under one identity, made in one API call or set up by Obsession for a blueprint. Customers, suppliers and staff see the agent’s own address and number, never a person’s.',
+    },
+    {
+      q: 'How do we see what every agent did?',
+      a: 'Every email, text, call and page an agent handles lands in one event log, dated, with the original. The same events can reach your webhook, Slack or CRM.',
+    },
+    {
+      q: 'Which logins can an agent use?',
+      a: 'Only the logins you give it. Its browser keeps those sessions signed in, so it works a portal without anyone sharing their own password, and each key has a monthly spend limit you set.',
+    },
+    {
+      q: 'Can we run agents for many teams or clients and keep them apart?',
+      a: 'Yes. Enterprise gives an account per team or per client, and SSO. Agencies and platforms that resell Obsession run it under their own brand, with wholesale rates that drop as their volume grows.',
+    },
+    {
+      q: 'Where is our data held, and who can reach it?',
+      a: 'In the EU, encrypted at rest: Postgres hosted by Supabase in Ireland, and Cloudflare R2 for files such as screenshots. Only named staff can reach it, each signing in with two-step verification. The security page names every supplier.',
+    },
+    {
+      q: 'What does it cost a company, and how do we start?',
+      a: `Every plan pays the same list rates for each piece, from one agent to a million, and Enterprise adds wholesale rates agreed with you. Start on the Free plan with no credit card, or write to ${CONTACT_EMAIL} to plan a rollout across teams.`,
+    },
+  ],
 }

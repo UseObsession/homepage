@@ -1,4 +1,5 @@
 import { Fragment, type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import { Crumbs } from '../components/Crumbs'
 import { Mark } from '../components/Logo'
 import type { NoticeSection } from '../content/types'
@@ -44,8 +45,9 @@ export function NoticeHero({
   )
 }
 
-/* Email addresses and the regulator's site become links; every other word stays as the content gives it. */
-const LINKABLE = /([\w.+-]+@[\w-]+(?:\.[\w-]+)+)|\b(ico\.org\.uk)\b/g
+/* Email addresses, the regulator's site and [words](/a-page) on this site become links; every other word stays as
+   the content gives it. */
+const LINKABLE = /([\w.+-]+@[\w-]+(?:\.[\w-]+)+)|\b(ico\.org\.uk)\b|\[([^\]]+)\]\((\/[^)\s]*)\)/g
 
 export function Linked({ text }: { text: string }) {
   const parts: ReactNode[] = []
@@ -53,12 +55,20 @@ export function Linked({ text }: { text: string }) {
   for (const m of text.matchAll(LINKABLE)) {
     const i = m.index ?? 0
     if (i > at) parts.push(text.slice(at, i))
-    const href = m[1] ? `mailto:${m[1]}` : `https://${m[2]}`
-    parts.push(
-      <a key={i} className="ob-btn ob-btn--link ob-btn--inline s-notice__link" href={href}>
-        <span className="ob-btn-label">{m[0]}</span>
-      </a>,
-    )
+    if (m[3] && m[4])
+      parts.push(
+        <Link key={i} className="ob-btn ob-btn--link ob-btn--inline s-notice__link" to={m[4]}>
+          <span className="ob-btn-label">{m[3]}</span>
+        </Link>,
+      )
+    else {
+      const href = m[1] ? `mailto:${m[1]}` : `https://${m[2]}`
+      parts.push(
+        <a key={i} className="ob-btn ob-btn--link ob-btn--inline s-notice__link" href={href}>
+          <span className="ob-btn-label">{m[0]}</span>
+        </a>,
+      )
+    }
     at = i + m[0].length
   }
   if (at < text.length) parts.push(text.slice(at))

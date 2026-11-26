@@ -363,8 +363,13 @@ function llmsParts() {
    no pages is left out (the blog's, while every post is archived), so the file never has an empty heading. ---- */
 const link = (e) => `- [${e.name}](${absolute(e.meta.path)}): ${e.meta.answer}`
 const ofKind = (...kinds) => entries.filter((e) => kinds.includes(e.kind)).map(link)
+/* Pages by address, in the order given (26 Nov 2026: the For companies section). */
+const byPath = (...paths) => paths.map((p) => entries.find((e) => e.meta.path === p)).filter(Boolean).map(link)
 const llmsSections = [
   ['Pages', ofKind('home', 'audience', 'developers', 'no-code', 'pricing', 'verify', 'recipes', 'sample', 'lookup', 'resources')],
+  /* 26 Nov 2026: companies running agents across teams, platforms with many users, agencies that resell, and the trust pages they read first. */
+  ['For companies', byPath('/use-cases/ai-agents-for-enterprise', '/use-cases/ai-agent-platforms', '/agencies', '/security', '/pricing')],
+  ['Questions companies ask', llms.companies.map((c) => `- ${c.q} ${c.a}`)],
   /* Each piece an agent can take on its own (content/pieces). */
   ['Pieces', ofKind('piece')],
   /* Each job agents do, as the pieces and blueprints it uses (content/kits). */

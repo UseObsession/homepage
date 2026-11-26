@@ -534,6 +534,7 @@ export const pricingPage: PricingPage = {
       {
         q: `What’s in ${named('enterprise')}?`,
         a: `An account per team or per client and SSO, for companies running agents across teams. Platforms that resell Obsession also get white label, with their brand on every dashboard and report, and wholesale rates that drop as their volume grows. ${enterpriseStart}. ${enterpriseYearly}`.trim(),
+        link: { label: 'AI agents for enterprise', to: '/use-cases/ai-agents-for-enterprise' },
       },
       {
         q: 'Where is my data kept, and who handles it?',

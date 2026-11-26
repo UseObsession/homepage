@@ -118,7 +118,7 @@ export const post: BlogPost = {
   blocks: [
     {
       kind: 'p',
-      text: 'Engineers and technical founders build agents that deal with other companies: they sign up, wait, receive mail and texts, and act weeks later. Each needs an identity that lasts as long as the job, such as a persona: an AI agent with its own inbox, phone number and browser under one name. [AI agents as customers](/blog/ai-customers) explains the idea, and [why AI agents as customers matter](/blog/why-ai-customers-matter) makes the case for every company.',
+      text: 'Engineers and technical founders build agents that deal with other companies: they sign up, wait, receive mail and texts, and act weeks later. Each needs an identity that lasts as long as the job, such as a persona: an AI agent with its own inbox, phone number and browser under one name. [AI agents as customers](/blog/ai-customers) explains the idea, and [why AI agents as customers matter](/blog/why-ai-customers-matter) makes the case for every company. Companies running them across many teams start from [AI agents for enterprise](/use-cases/ai-agents-for-enterprise).',
     },
 
     { kind: 'h2', id: 'in-production', text: 'Long running AI agents in production' },
