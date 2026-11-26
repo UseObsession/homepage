@@ -1,11 +1,11 @@
 import { createElement, useEffect, useId, useRef, useState, useSyncExternalStore, type ComponentType, type FormEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 import { capture as copy } from '../content/capture'
-import { setup } from '../content/setup'
+import { setup, type DoorId } from '../content/setup'
 import type { Capture } from '../content/types'
 import { track } from '../lib/analytics'
 import { arrivedFrom, newId } from '../lib/join'
-import { begin, doorOf, useSetup } from '../lib/setup'
+import { begin, doorOf, patch, useSetup } from '../lib/setup'
 import { WAITLIST_URL, isEmail, isWorkEmail, submitSignup } from '../lib/waitlist'
 import { StatusMark } from './Logo'
 import './CaptureForm.css'
@@ -66,12 +66,14 @@ const useCard = () =>
 /* The form the reader typed in: its card takes the focus as they go. */
 let ownerId = ''
 
-export function CaptureForm({ capture, className = '' }: { capture: Capture; className?: string }) {
+/* `door` sets the card's starting answer when the form sits somewhere other than its page (the sign-up panel opened
+   from a link to /developers#join on a comparison page starts on build). */
+export function CaptureForm({ capture, className = '', door: doorAsked }: { capture: Capture; className?: string; door?: DoorId | '' }) {
   const uid = useId()
   const { pathname } = useLocation()
   /* The page's starting answer for the card (build, blueprint, connect, or none). Since 23 Nov 2026 (Seun) no line sits
      under the box, and no privacy line under the form: the footer links the privacy notice on every page. */
-  const door = doorOf(pathname, capture.interest)
+  const door = doorAsked ?? doorOf(pathname, capture.interest)
 
   const hydrated = useHydrated()
   const signup = useSetup()
@@ -178,6 +180,8 @@ export function CaptureForm({ capture, className = '' }: { capture: Capture; cla
       interest: capture.interest,
       arrivedFrom: from,
     })
+    /* The sign-up panel's starting answer, when the page's own would be none. */
+    if (doorAsked) patch({ door: doorAsked })
   }
 
   const status = (

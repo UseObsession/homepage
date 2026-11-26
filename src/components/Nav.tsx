@@ -279,6 +279,8 @@ function CtaLink({ cta, className, label, onClick }: { cta: Cta; className: stri
 
   function go(e: MouseEvent<HTMLAnchorElement>) {
     onClick?.()
+    /* The page's form opens as the sign-up panel where the reader is (components/SignupPanel). */
+    if (cta.to === '#join') return
     const target = formFor(cta.to)
     if (!target) return
     if (target.id !== cta.to.slice(1)) {
