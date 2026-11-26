@@ -27,9 +27,8 @@ const SENTENCE =
 /* What Obsession is, as an entity: the line every engine and profile repeats (llms.txt's summary, the Organization and
    WebSite JSON-LD, docs/SEARCH.md 2). Since 21 Nov the pieces an agent needs through one API, plus blueprints; never AI
    customers. */
-/* 26 Nov 2026 (the copy plan; both founders' yes needed): the category word buyers budget for, then the pieces at once. */
 export const ENTITY =
-  'Obsession is AI agent infrastructure: every AI agent gets its own email inbox, phone number and browser under one identity, on one API and one bill. Messaging on iMessage, WhatsApp, Slack and Telegram, and a sandbox to run code, share that identity. Every email, text, call and page lands in one event log you can audit, with the original. Developers build on the pieces, and teams that don’t code pick a blueprint that Obsession runs, from one agent to 100 million.'
+  'Obsession is the toolkit for AI agents, through one API and one bill. Its pieces are email inboxes, phone numbers and texts, iMessage, WhatsApp, Slack and Telegram, a cloud browser and a sandbox to run code. A persona puts the pieces under one identity, free while it waits. Teams with no engineers pick a blueprint, and Obsession runs the job and sends them the results. Every event and result lands in one event log developers subscribe to.'
 
 /* /recipes. Since 20 Nov (the persona rewrite) each recipe is a job personas already know how to do: who the persona
    is, where it goes, what it brings back and how it reaches your event log. Grouped by job as in the nav; the groups render the

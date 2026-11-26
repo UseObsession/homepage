@@ -18,7 +18,7 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | browser for ai agents, headless browser for ai agents | `/browser` | Title, H1, description, a question |
 | sandbox for ai agents, code sandbox for ai agents | `/sandbox` | Title, H1, a question |
 | api for ai agents, api for ai agents mcp, sdk for ai agents | `/developers` | Title, H1, description, the MCP H2, a question |
-| ai agent toolkit, tools for ai agents | `/` | The title tag and description carry the pieces; the H1 names the work (proposed 26 Nov, both founders to agree); "toolkit" stays in the answer and the entity line |
+| ai agent toolkit, tools for ai agents | `/` | The H1 (locked brand line), description, the entity line |
 | ai agent templates | `/blueprints` | Title, description, first sentence, the questions H2 |
 | mystery shopping software, mystery shopper software | `/blueprints/mystery-shopper` | Title, description, a question; `/blog/best-ai-mystery-shopping-tools` dropped both and links here |
 | ai agent inbox | `/blog/ai-customers-for-developers` | Retitled 21 Nov; it hands "email api for ai agents" to `/email` and links it |
