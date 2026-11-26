@@ -104,7 +104,8 @@ export const page: Page = {
     /* The hero's main action (23 Nov 2026): the email form, then the sign-up card asks which way in. */
     capture: { ...access, source: 'home-hero' },
     /* The scale and the proof, under the form. */
-    note: 'One agent or 10,000. Every email, text, call and page lands in your event log.',
+    /* 26 Nov 2026 (Seun): scale is shown to 100 million, never a lower top; the hero itself stays as James set it. */
+    note: 'One agent or 100 million. Every email, text, call and page lands in your event log.',
     secondary: { label: 'Browse blueprints', to: '/blueprints' },
     /* 3 facts, true by design: no prices, no country. 50 ms is James's figure (20 Nov). */
     proof: [
@@ -147,8 +148,10 @@ export const page: Page = {
      types of blueprints and the two Home sections became this one (components/persona/HomeBlueprints). The heading keeps
      James's words from 22 Nov; blueprints serve developers too, so it no longer opens "For teams without engineers". */
   homeBlueprints: {
-    heading: 'Pick a blueprint. We run the job, you get the report.',
-    line: 'Seven types of blueprints, one for each job AI agents do. Results are delivered in any format: Slack, email, your CRM, Clay, Google Sheets, a PDF or your own Claude agent.',
+    /* 26 Nov 2026: the problem section already says "Not building agents? Pick a blueprint.", so this one names the seven. */
+    heading: 'Seven types of blueprints, one for each job AI agents do.',
+    /* The one place Home defines a blueprint (26 Nov 2026, Seun: picture it as a package, the container idea). */
+    line: 'Each blueprint packages a job with the agent that does it: what to do, the agent’s own phone number, inbox and browser, how often it runs and where results go. Stack several on one agent and it covers a whole role, like a front desk, at one location or 20,000. The work gets done every day, and each result lands in Slack, your CRM or a sheet.',
     unit: { one: 'blueprint', many: 'blueprints' },
     more: 'more',
     all: { label: 'Browse blueprints', to: '/blueprints' },
@@ -160,7 +163,8 @@ export const page: Page = {
      and the KPIs it moves. Every company, number and message is an example. */
   homeTeams: {
     heading: 'Your team defines the job. Obsession runs it, every day.',
-    line: 'Each blueprint is a finished job you configure in plain language: what to watch or answer, how often, and where results go. Obsession runs it on an agent with its own phone number, inbox and browser, across one company or thousands. Or describe a job of your own, and we spin up an agent to run it.',
+    /* 26 Nov 2026: the blueprints section above defines a blueprint, so this line shows the team using one. */
+    line: 'Choose your team’s blueprint, fill in its blanks in plain language, and each result arrives where you already work. Or describe a job of your own, and we package it as a blueprint for you.',
     own: { name: 'Your own job', sub: 'Described in your words', crumb: 'New blueprint' },
     teamsLabel: 'Your team',
     steps: { pick: 'Choose a blueprint', fill: 'Set it up in plain language', get: 'Receive results where you work' },
@@ -270,7 +274,7 @@ export const page: Page = {
       heading: 'Included with every blueprint',
       items: [
         { icon: 'persona', name: 'Its own phone number, inbox and browser', line: 'One identity, so every reply, call and sign-in code comes back to the agent.' },
-        { icon: 'record', name: 'Evidence behind every result', line: 'The original email, screenshot or call recording, timestamped.' },
+        { icon: 'record', name: 'The original behind every result', line: 'The original email, screenshot or call recording, timestamped.' },
         { icon: 'webhook', name: 'Delivered in any format', line: 'Slack, email, your CRM, Clay, Google Sheets, a PDF report or your AI assistant. For any other tool, we build the integration.' },
         { icon: 'stop', name: 'Clear operating rules', line: 'It identifies itself as an AI, uses only the logins you provide and works within a monthly spend limit you set on its key.' },
       ],
@@ -285,16 +289,18 @@ export const page: Page = {
      and one bill as the problem; that is the pieces section's line). Juno at Larkfield is the persona section's example,
      invented. */
   homeProblem: {
-    heading: 'Your AI agent can think. Obsession equips it to act.',
-    line: 'An AI agent can plan and write, but without its own inbox, phone number and browser it can’t receive a login code, take a call or stay signed in to a portal. Obsession gives it all three under one identity, or runs the whole job for you as a blueprint.',
-    states: { alone: 'On its own', equipped: 'Equipped by Obsession', label: 'Show the agent' },
+    /* 26 Nov 2026 (the copy plan, Seun's yes): the problem is the borrowed login. A new hire gets their own address,
+       number and logins on day one; most agents borrow a person's, so nobody can tell who did what. */
+    heading: 'Your AI agent can think. Obsession equips it to act as itself.',
+    line: 'A new hire gets an email address, a phone number and logins of their own on day one. Most AI agents borrow a person’s, so every email and sign-in looks like theirs and nobody can tell who did what. Obsession gives each agent its own, under one identity, with every action in one event log.',
+    states: { alone: 'On a borrowed login', equipped: 'Equipped by Obsession', label: 'Show the agent' },
     card: {
       name: 'Juno',
       role: 'AI agent, bookings at Larkfield',
       think: { label: 'Can think', items: ['Plan the steps', 'Write the reply', 'Decide what’s next'] },
       act: {
         label: 'Can act',
-        locked: 'Can’t yet',
+        locked: 'Not as itself',
         with: 'with',
         items: [
           { ability: 'Get a login code', piece: 'email', name: 'Email', to: '/email' },
@@ -306,37 +312,35 @@ export const page: Page = {
         ],
       },
       ids: [
-        { label: 'Email', none: 'None', value: 'juno@larkfield.example' },
+        { label: 'Email', none: 'maya@larkfield.example', value: 'juno@larkfield.example', borrowed: true },
         { label: 'Phone', none: 'None', value: '+1 415 555 0142' },
+        { label: 'Logins', none: 'Maya’s password', value: 'Only the ones you give it', borrowed: true },
       ],
       online: 'Ready for work',
-      offline: 'Not set up',
-      event: { label: 'Latest event', none: 'No events yet', at: '09:41:07', name: 'email.received', text: 'Login code from a supplier portal' },
+      offline: 'On Maya’s login',
+      event: {
+        label: 'Latest event',
+        none: 'No events yet',
+        at: '09:41:07',
+        name: 'booking.changed',
+        text: 'By juno@larkfield.example, with the original',
+        borrowed: { at: '09:41:07', name: 'booking.changed', text: 'By maya@larkfield.example. Maya, or the agent?' },
+      },
     },
     blueprints: {
       title: 'Not building agents? Pick a blueprint.',
-      line: 'Obsession runs the job on the same pieces and sends you the results.',
-      slugs: ['mystery-shopper', 'voice-agent-check', 'competitor-tracking'],
+      line: 'A blueprint is a job, or a whole role, packaged with the agent that does it. Obsession runs it and sends you each result.',
+      slugs: ['document-chaser', 'voice-agent-check', 'mystery-shopper'],
       runs: 'Runs on',
       out: 'Results land in Slack, a sheet, your CRM or our dashboard.',
       link: { label: 'Browse blueprints', to: '/blueprints' },
     },
-    caption: 'One example AI agent before and after Obsession equips it. Larkfield is invented.',
+    caption: 'One example AI agent on a person’s login, then equipped by Obsession. Larkfield and Maya are invented.',
     link: { label: 'See every piece', to: '#pieces' },
   },
 
-  personaAnatomy: {
-    heading: 'A persona is one AI agent with its own inbox, number and browser.',
-    line: 'Every piece shares one name, and the persona waits on our runtime for free until something arrives.',
-    link: { label: 'See how personas work', to: '/personas' },
-    parts: [
-      { name: 'One identity', line: 'Each email, text and page belongs to the same agent.', eg: 'Juno, bookings at Larkfield' },
-      { name: 'An inbox and a phone number', line: 'Its own address and number, for email, texts and calls.', eg: 'juno@larkfield.example · +1 415 555 0142' },
-      { name: 'Messaging', line: 'iMessage, WhatsApp, Slack and Telegram, on the same identity.', eg: 'iMessage · WhatsApp · Slack' },
-      { name: 'A browser and a sandbox', line: 'A browser that stays signed in, and a computer for code when a task needs one.', eg: 'US home connection, signed in · python report.py' },
-      { name: 'Its events in your event log', line: 'Every page, email, text and call it saw, dated, with screenshots.', eg: '14 pages · 4 emails · 2 texts · 1 call' },
-    ],
-  },
+  /* 26 Nov 2026: the persona section ("A persona is one AI agent with its own inbox, number and browser.") left the home
+     page, so each idea is told once: Juno's card and the Personas piece carry the persona (Vega, Drew, Miles). */
 
   /* A blueprint is a job that runs on Obsession beside the pieces and writes its results to the event log: one of ours,
      ready to run, or your own. Mystery shopping is the big tile and 4 sit beside it, so the 3 column grid closes
@@ -350,9 +354,11 @@ export const page: Page = {
      don't develop to their own page, and make it clear Obsession works for both; premium, concise, clear to anyone, a
      picture they can see themselves in. Each card is one link: developers to /developers, teams to /no-code. */
   homeDoors: {
-    heading: 'Developers build on Obsession. Everyone else hands it the job.',
+    /* 26 Nov 2026 (the copy plan): four ways in, Build, Run, Companies and Resell, on the same pieces and identity. */
+    /* Seun, 26 Nov 2026: "I like it, it's not vague." */
+    heading: 'Build with it, run it without code, roll it out across teams, or resell it.',
     scale: {
-      heading: 'One agent or ten million, each with its own number, inbox and browser.',
+      heading: 'One agent or 100 million, each with its own number, inbox and browser.',
       line: 'Add agents as the work grows. Each one gets its own identity, and you pay for what each one uses.',
       label: 'Agents',
       steps: [
@@ -361,60 +367,15 @@ export const page: Page = {
         { n: 1000, short: '1,000', case: 'A clinic group gives every front desk an agent that texts back each missed call.' },
         { n: 10000, short: '10,000', case: 'An agency shops 10,000 client and prospect stores every week.' },
         { n: 100000, short: '100,000', case: 'An enterprise runs an agent for each supplier account across 4,000 sites.' },
-        { n: 10000000, short: '10M', case: 'A platform gives every user’s assistant its own number and inbox.' },
+        { n: 100000000, short: '100M', case: 'A platform gives every user’s assistant its own number and inbox.' },
       ],
     },
-    line: 'Build every piece into your own agents, or pick a blueprint and receive the results with no code to write.',
+    /* 26 Nov 2026: James's curtain band. Each line shows when its panel opens; nothing the rest of the page already says. */
     doors: [
-      {
-        id: 'dev',
-        reader: 'developers',
-        icon: 'code',
-        label: 'For developers',
-        title: 'Every piece your agent needs, in one call.',
-        line: 'Inboxes, numbers, messaging, browsers and sandboxes through the API, the SDK or MCP. One webhook carries every event, from one agent to a fleet.',
-        cta: { label: 'Start building', to: '/developers' },
-        demo: {
-          kind: 'code',
-          tabsLabel: 'Build with',
-          tabs: [
-            { label: 'SDK', code: 'await obsession.personas.create({ inbox: true, phone: "US", browser: true })' },
-            { label: 'Webhook', code: 'await obsession.events.subscribe({ url: "https://api.larkfield.example/hooks", events: ["*"] })' },
-            { label: 'MCP', code: 'claude mcp add obsession' },
-          ],
-          events: [
-            { at: '09:41:07', event: 'email.received', text: 'Sign-in code 482 913' },
-            { at: '09:41:12', event: 'page.visited', text: 'Supplier portal, signed in' },
-            { at: '09:42:30', event: 'sms.received', text: '“Running 10 minutes late”' },
-            { at: '09:44:05', event: 'call.ended', text: '2 min 17 s, transcript saved' },
-            { at: '09:45:51', event: 'sandbox.finished', text: 'report.py done in 2.4 s' },
-          ],
-          ms: '50 ms',
-        },
-      },
-      {
-        id: 'team',
-        reader: 'marketing',
-        icon: 'check',
-        label: 'For anyone who doesn’t code',
-        title: 'Pick the job. Get the results where you work.',
-        line: 'Teams, founders and freelancers pick a blueprint or describe their own job. Obsession spins up an agent to run it every day, across one company or thousands.',
-        cta: { label: 'See how it works', to: '/no-code' },
-        /* One job a team or a person would hand over, from a blueprint on the site: competitor tracking, lead response
-           checks, the voice agent check, the invoice collector, load tracking and the speed-to-lead callback. */
-        demo: {
-          kind: 'job',
-          tabsLabel: 'See a job for',
-          jobs: [
-            { team: 'Marketing', sentence: ['Track ', { v: '40 competitors' }, ' every ', { v: 'Monday' }, ' and post to ', { v: '#marketing' }], where: 'Slack · #marketing', at: 'Mon 08:00', result: 'Competitor 12 started 25% off' },
-            { team: 'Sales', sentence: ['Test ', { v: 'our 3 demo forms' }, ' every ', { v: 'morning' }, ' and flag ', { v: 'any reply over 5 minutes' }], where: 'Slack · #sales', at: 'Tue 09:30', result: 'UK form: no call after 2 hours' },
-            { team: 'Support', sentence: ['Call ', { v: 'our AI receptionist' }, ' as ', { v: '3 new patients' }, ' every ', { v: 'morning' }], where: 'Slack · #support', at: 'Wed 09:00', result: 'Call 2 quoted the wrong price' },
-            { team: 'Finance', sentence: ['Download ', { v: 'every invoice' }, ' from ', { v: '12 vendor portals' }, ' every ', { v: 'Friday' }], where: 'Google Sheets · Invoices', at: 'Fri 17:00', result: '12 invoices filed, none missed' },
-            { team: 'Operations', sentence: ['Read ', { v: 'every load' }, ' in ', { v: 'our carrier portals' }, ' ', { v: '4 times a day' }], where: 'Google Sheets · Loads', at: 'Thu 14:00', result: 'Load 4471 delayed, now Friday 06:00' },
-            { team: 'Founders', sentence: ['Call ', { v: 'every new lead' }, ' within ', { v: 'a minute' }, ', ', { v: 'day and night' }], where: 'Your CRM', at: 'Sat 23:40', result: 'New lead called in 38 s, demo booked' },
-          ],
-        },
-      },
+      { id: 'dev', reader: 'developers', label: 'Developers', line: 'Give your agent an inbox, a phone number and a browser in one API call, so it can sign up, call and follow up on its own.', cta: { label: 'See the API and MCP', to: '/developers' } },
+      { id: 'team', reader: 'marketing', label: 'Teams that don’t code', line: 'One job, or a whole role like a front desk, packaged with the agent that does it. Missed calls get texted back and files get chased every day, without your team doing it.', cta: { label: 'See how it works', to: '/no-code' } },
+      { id: 'companies', reader: 'sales', label: 'Companies', line: 'Each agent works under its own address and number, signs in only with the logins you give it, and logs every step, so security can see who did what.', cta: { label: 'AI agents for enterprise', to: '/use-cases/ai-agents-for-enterprise' } },
+      { id: 'resell', reader: 'agencies', label: 'Agencies and platforms', line: 'Run blueprints for every client under your brand, with an account per client, so every result reaches the client as your work.', cta: { label: 'White label for agencies', to: '/agencies' } },
     ],
   },
 

@@ -11,7 +11,8 @@ import type { SecurityPage } from './types'
    - the files: Cloudflare R2 in the EU, written by obsession-index's recorder and recording contract (clients.py R2); R2
      encrypts every object at rest with AES-256 (Cloudflare's R2 data security page);
    - the site on Cloudflare, served over HTTPS only (README, Hosting);
-   - who can reach customer data: only the 2 founders, each signing in with two-step verification (James);
+   - who can reach customer data: only named staff, each signing in with two-step verification (James; worded so on 26 Nov 2026,
+     waiting on his yes);
    - results deleted when the time the customer sets runs out; the event log's days on each plan, read from prices.ts,
      and model tokens at their markup or free with your own key (prices.ts tokens);
    - the sign-up form's 12 months and deletion on request (/privacy, content/site.ts);
@@ -30,7 +31,7 @@ export const securityPage: SecurityPage = {
     title: 'Security at Obsession: where data lives and who handles it',
     description:
       'Where Obsession stores your data in the EU, how it’s encrypted, who can reach it, every supplier that handles it, how long we keep it, and who to email.',
-    answer: `Obsession stores what its agents collect in a Postgres database hosted by Supabase, and the files behind it in Cloudflare R2, both in the EU and encrypted at rest. Only its 2 founders can reach customer data, and it answers security questionnaires by email at ${CONTACT_EMAIL}.`,
+    answer: `Obsession stores what its agents collect in a Postgres database hosted by Supabase, and the files behind it in Cloudflare R2, both in the EU and encrypted at rest. Only named staff can reach customer data, each signing in with two-step verification, and it answers security questionnaires by email at ${CONTACT_EMAIL}.`,
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Security', path: '/security' },
@@ -38,7 +39,7 @@ export const securityPage: SecurityPage = {
   },
 
   headline: 'We store your data encrypted, and name every supplier that handles it.',
-  sub: 'Obsession stores what its agents collect in a Postgres database hosted by Supabase, and the files behind it in Cloudflare R2, both in the EU and encrypted at rest. Only the 2 founders can reach customer data, and we answer security questionnaires by email.',
+  sub: 'Obsession stores what its agents collect in a Postgres database hosted by Supabase, and the files behind it in Cloudflare R2, both in the EU and encrypted at rest. Only named staff can reach customer data, each signing in with two-step verification, and we answer security questionnaires by email.',
   updated: '25 November 2026',
 
   sections: [
@@ -62,8 +63,8 @@ export const securityPage: SecurityPage = {
     },
     {
       id: 'access',
-      heading: 'Only the 2 founders can reach customer data.',
-      lines: ['Each founder signs in with two-step verification.'],
+      heading: 'Only named staff can reach customer data.',
+      lines: ['Each one signs in with two-step verification.'],
     },
     {
       id: 'suppliers',
@@ -112,7 +113,8 @@ export const securityPage: SecurityPage = {
       heading: 'Each agent signs in only with the logins you give it.',
       lines: [
         'It works within a monthly spend limit you set on its key.',
-        'Enterprise adds an account per team and SSO.',
+        'Every email, text, call and page it handles lands in your event log, dated, with the original.',
+        'Enterprise adds an account per team and SSO, for [AI agents across a company](/use-cases/ai-agents-for-enterprise).',
       ],
     },
   ],

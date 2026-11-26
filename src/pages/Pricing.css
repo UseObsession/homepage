@@ -556,3 +556,6 @@
   .s-pr-job__go { transition: transform 200ms var(--ob-ease-out), stroke 200ms var(--ob-ease-out); }
   .s-pr-plan.ob-card:hover { transform: translateY(-2px); }
 }
+
+/* 26 Nov 2026: "From" sits on its own line above the price, so "a month" never wraps alone. */
+.s-pr-plan__lead { flex-basis: 100%; }

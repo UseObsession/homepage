@@ -25,6 +25,9 @@ export type TeamSize = {
   agents: string
   jobs: string[]
   usage: Partial<Record<PriceKey, number>>
+  /* A size that needs Enterprise (white label, an account per team): its cost line names Enterprise and its starting fee
+     from prices.ts instead of the cheapest plan that carries the usage (26 Nov 2026). */
+  enterprise?: boolean
 }
 
 /* The checks a team runs today, set above its use cases (23 Nov 2026, Seun: "put mystery shopping, CRO and ads into the
@@ -50,7 +53,8 @@ export type TeamPage = {
   /* Its card line on /use-cases, when the hero's first sentence would read like every other card's (23 Nov 2026). */
   card?: string
   meta: Meta
-  hero: { pill: string; headline: string; sub: string }
+  /* `primary` and `second` replace the shared buttons on one page (26 Nov 2026: the enterprise page's Talk to us). */
+  hero: { pill: string; headline: string; sub: string; primary?: { label: string; to: string }; second?: { label: string; to: string } }
   scene: KitPage['scene']
   /* The checks run today, above the use cases; optional. */
   checks?: TeamChecks

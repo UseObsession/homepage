@@ -65,10 +65,8 @@ import { Obsession } from "obsession"
 
 const obsession = new Obsession({ apiKey: process.env.OBSESSION_API_KEY })
 
-const inbox = await obsession.inboxes.create()
-const number = await obsession.numbers.create({ country: "US" })
-const browser = await obsession.browsers.create({ home: "US" })
-const sandbox = await obsession.sandboxes.create()`
+// One call: an agent with its own inbox, number and browser, under one identity (26 Nov 2026)
+const agent = await obsession.personas.create({ inbox: true, phone: "US", browser: true })`
 
 const pieces: ApiPiece[] = [
   {
@@ -320,7 +318,7 @@ export const page: Page = {
     description:
       'The API for AI agents, with an SDK and an MCP server. Give your agent inboxes, phone numbers, messaging, browsers and sandboxes on one key and one bill.',
     answer:
-      'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill. Use one piece, such as the email, or put them all under one persona, with every event in your event log. Call it from code, or from your agent over MCP.',
+      'Obsession replaces five vendors with one API. Every agent gets its own inbox, phone number, messaging, browser and sandbox under one identity, on one key and one bill. Use one piece, such as the email, or put them all under one persona, with every event in your event log. Call it from code, or from your agent over MCP.',
     ogImage: '/og/developers.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -332,7 +330,8 @@ export const page: Page = {
     pill: 'Free plan, no credit card',
     pillTo: '#join',
     headline: 'The API for AI agents: inboxes, phone numbers and browsers.',
-    sub: 'Obsession’s API gives AI agents inboxes, phone numbers, messaging, browsers and sandboxes, with one key and one bill.',
+    /* 26 Nov 2026 (the copy plan): the engineering buyer's win first, in the home page's own count of vendors. */
+    sub: 'Obsession replaces five vendors with one API. Every agent gets its own inbox, phone number, messaging, browser and sandbox under one identity, on one key and one bill.',
     capture: { ...access, source: 'developers-hero' },
     secondary: { label: 'See pricing', to: '/pricing' },
     /* The small line under the form, from content/prices.ts. */

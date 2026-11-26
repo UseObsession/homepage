@@ -85,7 +85,7 @@ export const useCasesPage: UseCasesIndexPage = {
   byWho: {
     id: 'any-size',
     heading: 'Any industry, any size.',
-    line: 'From one freelancer to a company running 100,000 agents, each agent with its own number, inbox and browser.',
+    line: 'From one freelancer’s agent to ten million, each with its own number, inbox and browser.',
     groups: [
       {
         label: 'By industry',

@@ -13,6 +13,7 @@ import {
   type PlanId,
   type PriceKey,
 } from './prices'
+import { CONTACT_EMAIL } from './site'
 import type { Cta, Faq, Meta, PersonaIcon } from './types'
 
 /* The words of /pricing (pages/Pricing.tsx) and /pricing/rates (pages/PricingRates.tsx), outside the Page glob
@@ -106,6 +107,8 @@ const enterpriseStart = `${named('enterprise')} is from ${dollars(enterprise.fro
 const enterpriseYearly = enterprise.yearlyFree ? `Pay yearly and get ${enterprise.yearlyFree} months free, if you want to.` : ''
 
 const JOIN = '/#join'
+/* Talk to us reaches a person (26 Nov 2026): an email to the founders, the pattern /security uses, not the Free-plan form. */
+const TALK = `mailto:${CONTACT_EMAIL}?subject=Enterprise`
 const RATES = '/pricing/rates'
 
 /* ---- /pricing: the plans ---- */
@@ -176,17 +179,19 @@ const planWords: Record<PlanId, Omit<PlanCard, 'id' | 'name' | 'price' | 'per' |
     includes: paidCard(scale),
     cta: { label: 'Start free', to: JOIN },
   },
-  /* The reseller programme first, volume after it (James, 21 Nov); monthly with nothing up front (founder, 21 Nov). */
+  /* Companies running agents across teams and platforms that resell (26 Nov 2026, the copy plan); white label and volume
+     after it (James, 21 Nov); monthly with nothing up front (founder, 21 Nov). */
   enterprise: {
-    for: 'For companies that resell Obsession to clients.',
+    for: 'For companies running agents across teams, and resellers.',
     includes: [
-      'White label, with an account per client',
+      'An account per team or per client',
+      'White label for resellers',
       'Wholesale rates that drop with volume',
       'SSO and a support channel of your own',
       'Monthly, with nothing paid up front',
       ...(enterprise.yearlyFree ? [`${enterprise.yearlyFree} months free when paid yearly`] : []),
     ],
-    cta: { label: 'Talk to us', to: JOIN },
+    cta: { label: 'Talk to us', to: TALK },
   },
 }
 
@@ -406,7 +411,7 @@ export const pricingPage: PricingPage = {
     path: '/pricing',
     title: 'Obsession pricing: plans for agent email, phone and browser',
     description: `${andList(plans.map((pl) => pl.name))} plans for AI agent email, phone, a cloud browser and a sandbox: each fee covers a set amount of usage.`,
-    answer: `${openLine} ${named('free')} costs nothing and includes ${andList(freeIncludes)}. ${paidLine}, spent on any piece, model tokens included, and past it you pay as you go at the same list rates. ${enterpriseStart}. It gives resellers wholesale rates.`,
+    answer: `${openLine} ${named('free')} costs nothing and includes ${andList(freeIncludes)}. ${paidLine}, spent on any piece, model tokens included, and past it you pay as you go at the same list rates. ${enterpriseStart}. It adds an account per team or per client and SSO, and gives resellers wholesale rates.`,
     breadcrumb: [
       { name: 'Home', path: '/' },
       { name: 'Pricing', path: '/pricing' },
@@ -475,7 +480,7 @@ export const pricingPage: PricingPage = {
       rows: 'Your month, line by line',
       rest: `WhatsApp messages and the ${registration.once} filing of each new US texting campaign count toward what your plan covers, at their own rates.`,
       cta: { label: 'Start free', to: JOIN },
-      secondary: { label: `Talk to us about ${named('enterprise')}`, to: JOIN },
+      secondary: { label: `Talk to us about ${named('enterprise')}`, to: TALK },
       announce: (plan, total) => `${plan}, ${total} a month.`,
     },
   },
@@ -528,11 +533,12 @@ export const pricingPage: PricingPage = {
       },
       {
         q: `What’s in ${named('enterprise')}?`,
-        a: `White label for companies that resell Obsession: your brand on every dashboard and report, an account per client, and wholesale rates that drop as your volume grows. ${enterpriseStart}. ${enterpriseYearly}`.trim(),
+        a: `An account per team or per client and SSO, for companies running agents across teams. Platforms that resell Obsession also get white label, with their brand on every dashboard and report, and wholesale rates that drop as their volume grows. ${enterpriseStart}. ${enterpriseYearly}`.trim(),
+        link: { label: 'AI agents for enterprise', to: '/use-cases/ai-agents-for-enterprise' },
       },
       {
         q: 'Where is my data kept, and who handles it?',
-        a: 'Encrypted in the EU: in Postgres in Ireland, and in Cloudflare R2 for files such as screenshots. Only the 2 founders can reach it. The security page names every supplier and how long we keep your data.',
+        a: 'Encrypted in the EU: in Postgres in Ireland, and in Cloudflare R2 for files such as screenshots. Only named staff can reach it, each signing in with two-step verification. The security page names every supplier and how long we keep your data.',
         link: { label: 'Read about security', to: '/security' },
       },
     ],

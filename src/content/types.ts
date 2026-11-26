@@ -602,13 +602,19 @@ export type PersonaRecipes = {
 export type HomeDoorDemo =
   | { kind: 'code'; tabsLabel: string; tabs: { label: string; code: string }[]; events: { at: string; event: string; text: string }[]; ms: string }
   | { kind: 'job'; tabsLabel: string; jobs: { team: string; sentence: (string | { v: string })[]; where: string; at: string; result: string }[] }
+  /* A near-real list in a small window (26 Nov 2026): a company's directory with its agents beside its people, or a partner's
+     clients under the partner's brand. `lit` rows are the agents; rows rise in turn once the card is seen. */
+  | { kind: 'roster'; head: string; sub: string; rows: { name: string; id: string; meta: string; lit?: boolean }[] }
+/* The four ways in (26 Nov 2026): James's curtain band, a panel per door, each its name, one short line when it opens,
+   and one link. No section line, card titles or body lines (James: the rest of the page already says them). */
 export type HomeDoors = {
   heading: string
-  line: string
-  /* The scale under the cards (23 Nov 2026): from 1 agent to 10 million, each step a bar and one line of who runs that
+  line?: string
+  /* The scale under the slide (23 Nov 2026): from 1 agent to 100 million, each step a bar and one line of who runs that
      many, so one person and a large company both see where they fit. */
   scale?: { heading: string; line: string; label: string; steps: { n: number; short: string; case: string }[] }
-  doors: { id: string; reader: string; icon: PersonaIcon; label: string; title: string; line: string; cta: Cta; demo: HomeDoorDemo }[]
+  /* Each door: its name, one short line that shows when its panel opens, and the link to its page. */
+  doors: { id: string; reader: string; label: string; line: string; cta: Cta }[]
 }
 export type PersonaBuild = {
   heading: string
@@ -933,7 +939,8 @@ export type AgentsPage = {
 /* /security: the privacy notice's shape, closed by the agents page's contact (content/security.ts). */
 export type SecurityPage = PrivacyPage & { contact: AgentsPage['contact'] }
 export type NotFoundPage = { meta: Meta; headline: string; sub: string; links: Cta[]; capture: Capture }
-export type Llms = { summary: string; intro: string }
+/* `companies` (26 Nov 2026): the questions companies ask before a rollout, each answered in a line, for llms.txt. */
+export type Llms = { summary: string; intro: string; companies: { q: string; a: string }[] }
 
 /* ---- Use case studies (/use-cases/SLUG, content/usecases): James's worked examples, 1 job from start to finish for
    1 kind of customer, with invented names and numbers. Appended 2 Oct; nothing above changes.
@@ -1277,10 +1284,12 @@ export type HomeProblem = {
     role: string
     think: { label: string; items: string[] }
     act: { label: string; locked: string; with: string; items: { ability: string; piece: PieceIdLite; name: string; to: string }[] }
-    ids: { label: string; none: string; value: string }[]
+    /* `borrowed`: on a borrowed login the field shows a person's value (Maya's address, her password), in the warning tone. */
+    ids: { label: string; none: string; value: string; borrowed?: boolean }[]
     online: string
     offline: string
-    event: { label: string; none: string; at: string; name: string; text: string }
+    /* `borrowed`: the event row on a borrowed login, logged under a person's name, so nobody can tell who did it. */
+    event: { label: string; none: string; at: string; name: string; text: string; borrowed?: { at: string; name: string; text: string } }
   }
   blueprints: { title: string; line: string; slugs: string[]; runs: string; out: string; link: Cta }
   caption: string

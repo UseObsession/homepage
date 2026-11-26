@@ -47,9 +47,9 @@ obsession.on('blueprint.result', async (e) => {
     path: '/blueprints/prior-authorization-status',
     title: 'Check prior authorization status in every payer portal',
     description:
-      'Check prior authorization status in every payer portal each morning, with your own logins. Approvals, denials and requests for more information reach you.',
+      'Check prior authorization status in every payer portal each morning, with the logins you give it. Approvals, denials and requests for more reach you.',
     answer:
-      'Prior authorization status signs in to each payer portal with your own logins every morning, reads every pending request and sends what changed to your work queue, each with a screenshot.',
+      'Prior authorization status signs in to each payer portal with the logins you give it every morning, reads every pending request and sends what changed to your work queue, each with a screenshot.',
     ogImage: '/og/prior-authorization-status.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -60,7 +60,7 @@ obsession.on('blueprint.result', async (e) => {
 
   hero: {
     headline: 'Check prior authorization status in every payer portal before clinics open.',
-    sub: 'Prior authorization status signs in to each payer portal with your own logins every morning, reads every pending request and sends what changed to your work queue, each with a screenshot.',
+    sub: 'Prior authorization status signs in to each payer portal with the logins you give it every morning, reads every pending request and sends what changed to your work queue, each with a screenshot.',
     screen: 'priorauth',
     capture: {
       kind: 'waitlist',
@@ -153,7 +153,7 @@ obsession.on('blueprint.result', async (e) => {
   },
 
   settings: [
-    { k: 'Payer portals', v: 'Each portal your team signs in to, with your own logins' },
+    { k: 'Payer portals', v: 'Each portal your team signs in to, with the logins you give it' },
     { k: 'Requests', v: 'Every pending request, from a sheet, your billing system or the API' },
     { k: 'Login codes', v: 'To the persona’s own inbox or number, 1 persona per payer' },
     { k: 'Turnaround target', v: 'The days you expect a decision within, set for each payer' },
@@ -180,7 +180,7 @@ obsession.on('blueprint.result', async (e) => {
     items: [
       {
         q: 'How do we check prior authorization status in every payer portal without logging in to each one?',
-        a: 'Prior authorization status signs in to each portal with your own logins every morning, reads every pending request and sends what changed to your work queue, each with a screenshot. Nobody on your team has to log in to check.',
+        a: 'Prior authorization status signs in to each portal with the logins you give it every morning, reads every pending request and sends what changed to your work queue, each with a screenshot. Nobody on your team has to log in to check.',
         link: { label: 'See the prior authorization AI agent', to: '/use-cases/prior-authorization-ai-agent' },
       },
       {

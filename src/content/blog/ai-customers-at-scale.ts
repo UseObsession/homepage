@@ -179,7 +179,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'Obsession is built on those 3 choices. A persona is free while it waits and wakes in 50 ms when an email, text or call arrives, an inbox is $0.50 a month, and every event from the whole fleet lands in one log.',
+      text: 'Obsession is built on those 3 choices. A persona is free while it waits and wakes in 50 ms when an email, text or call arrives, an inbox is $0.50 a month, and every event from the whole fleet lands in one log. Companies running fleets across many teams start from [AI agents for enterprise](/use-cases/ai-agents-for-enterprise).',
     },
     {
       kind: 'cta',

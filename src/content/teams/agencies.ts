@@ -1,4 +1,5 @@
 import { plans } from '../prices'
+import { CONTACT_EMAIL } from '../site'
 import type { TeamPage } from './types'
 
 /* Agencies and resellers (/agencies): agencies, voice AI builders and mystery shopping firms run Obsession's blueprints
@@ -13,8 +14,10 @@ const enterprise = plans.find((p) => p.id === 'enterprise')
 const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 const ENTERPRISE_FROM = enterprise?.from != null ? `from ${usd(enterprise.from)}${enterprise.fromFirstMonth ? ' for the first month' : ' a month'}` : 'priced with you'
 
+/* 26 Nov 2026 (the copy plan): the Resell door. The paid job leads (open every pitch with what a brand never sent), then
+   any blueprint for every client under the agency's brand; the title takes the searched white label words. */
 const sub =
-  'Obsession gives AI agents inboxes, phone numbers and browsers on one API and one bill. Run its blueprints for every client under your own brand, with each result in a dashboard and report that carry your name.'
+  'Name the brands you want to win and get a pitch list sorted by the gap, then check every client again each week. Run any blueprint for every client under your own brand, with an account per client and every report in your name.'
 
 export const team: TeamPage = {
   id: 'agencies',
@@ -22,9 +25,9 @@ export const team: TeamPage = {
   card: 'Mystery shops, CRO and ad checks, run for every client under your brand.',
   meta: {
     path: '/agencies',
-    title: 'White label mystery shopping and AI agent checks · Obsession',
+    title: 'White label AI agents for agencies: every client, your brand',
     description:
-      'Resell mystery shops, lead response checks and AI agent checks under your own brand. Every client gets an account, a dashboard and reports with your name.',
+      'White label AI agents for agencies: run mystery shops, lead response checks and AI agent checks for every client under your brand, an account per client.',
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -32,7 +35,14 @@ export const team: TeamPage = {
     ],
   },
 
-  hero: { pill: 'Agencies and resellers', headline: 'White label mystery shopping and AI agent checks: run them for every client under your brand.', sub },
+  hero: {
+    pill: 'Agencies and resellers',
+    headline: 'White label AI agents for agencies: open every pitch with what a brand never sent.',
+    sub,
+    /* 26 Nov 2026: the Resell door reaches a person, by email, then Start free. */
+    primary: { label: 'Talk to us', to: `mailto:${CONTACT_EMAIL}?subject=White%20label` },
+    second: { label: 'Start free', to: '#join' },
+  },
 
   scene: {
     steps: [
@@ -87,7 +97,7 @@ export const team: TeamPage = {
       {
         kit: 'watch',
         name: 'Competitor tracking',
-        line: 'Every email, text, offer and price a client’s competitors send a new customer, dated, so each pitch opens on proof.',
+        line: 'Every email, text, offer and price a client’s competitors send a new customer, dated, so each pitch can show the original.',
         links: [
           { label: 'Competitor tracking', to: '/blueprints/competitor-tracking' },
           { label: 'Email and SMS tracking', to: '/blueprints/email-sms-tracking' },

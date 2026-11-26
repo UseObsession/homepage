@@ -1,11 +1,11 @@
-import { useEffect, useId, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
+import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
-import type { HomeDoorDemo, HomeDoors as Words } from '../../content/types'
-import { PersonaGlyph } from './icons'
+import type { HomeDoors as Words } from '../../content/types'
 import './blueprint.css'
 import './HomeDoors.css'
 
-/* The two ways in (#start), Home's last section before the sign-up (23 Nov 2026). Seun: send developers and every team
+/* The four ways in (#start; two until 26 Nov 2026, when companies and partners joined as a second row with a near-real list
+   each: a company's directory, a partner's clients), Home's last section before the sign-up (23 Nov 2026). Seun: send developers and every team
    that doesn't code to their own page, make it plain that Obsession works for both, and let each reader picture using
    it; then "subtle visual cues ... feel interactive and clean ... intelligently animated ... even if a card".
 
@@ -23,15 +23,8 @@ import './HomeDoors.css'
    job and the newest events show, and the tabs still work. Before the page's script runs every word shows. Words:
    content/pages/home.ts (homeDoors). */
 
-const TOUR = 5200
-const NEXT = 2600
 const tie = (s: string) => s.replace(/(\d) /g, '$1 ')
 
-const Chev = () => (
-  <svg className="h-dr__chev" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-    <path d="M6 3.5 10.5 8 6 12.5" />
-  </svg>
-)
 
 /* On screen and allowed to move: the two conditions every loop here waits for. */
 function useLive<T extends Element>() {
@@ -49,110 +42,8 @@ function useLive<T extends Element>() {
   return { ref, live: onScreen && motion, motion, onScreen }
 }
 
-function Tabs({ label, items, pick, chosen, touring, id }: { label: string; items: string[]; pick: (i: number) => void; chosen: number; touring?: boolean; id: string }) {
-  return (
-    <div className="h-dr__tabs" role="group" aria-label={label}>
-      <span className="h-dr__tabs-k" aria-hidden="true">
-        {label}
-      </span>
-      <span className="h-dr__tabs-row">
-        {items.map((t, i) => (
-          <button key={t} type="button" className="h-dr__tab" aria-pressed={i === chosen} aria-controls={id} onClick={() => pick(i)}>
-            {t}
-            {touring && i === chosen && <i className="h-dr__tab-prog" key={`${i}-${chosen}`} aria-hidden="true" style={{ ['--tour' as string]: `${TOUR}ms` } as CSSProperties} />}
-          </button>
-        ))}
-      </span>
-    </div>
-  )
-}
-
-function CodeDemo({ demo }: { demo: Extract<HomeDoorDemo, { kind: 'code' }> }) {
-  const id = useId()
-  const { ref, live } = useLive<HTMLDivElement>()
-  const [tab, setTab] = useState(0)
-  const [k, setK] = useState(1)
-  const n = demo.events.length
-  useEffect(() => {
-    if (!live) return
-    const t = window.setInterval(() => setK((x) => x + 1), NEXT)
-    return () => window.clearInterval(t)
-  }, [live])
-  /* The newest event on top, the one before it under it. */
-  const rows = [k, k - 1].map((i) => ({ i, ...demo.events[((i % n) + n) % n] }))
-  return (
-    <div ref={ref} className="h-dr__demo">
-      <Tabs label={demo.tabsLabel} items={demo.tabs.map((t) => t.label)} pick={setTab} chosen={tab} id={id} />
-      <code className="h-dr__call" id={id} key={tab}>
-        {demo.tabs[tab].code}
-      </code>
-      <ol className="h-dr__stream" aria-hidden="true">
-        {rows.map((r, j) => (
-          <li className={'h-dr__evt' + (j === 0 ? ' is-new' : '')} key={r.i}>
-            <i className="h-dr__dot" />
-            <span className="h-dr__at">{r.at}</span>
-            <span className="h-dr__kind">{r.event}</span>
-            {j === 0 && <span className="h-dr__ms">{demo.ms}</span>}
-            <span className="h-dr__text">{r.text}</span>
-          </li>
-        ))}
-      </ol>
-    </div>
-  )
-}
-
-function JobDemo({ demo }: { demo: Extract<HomeDoorDemo, { kind: 'job' }> }) {
-  const id = useId()
-  const { ref, live } = useLive<HTMLDivElement>()
-  const [i, setI] = useState(0)
-  const [touring, setTouring] = useState(true)
-  useEffect(() => {
-    if (!live || !touring) return
-    const t = window.setTimeout(() => setI((x) => (x + 1) % demo.jobs.length), TOUR)
-    return () => window.clearTimeout(t)
-  }, [live, touring, i, demo.jobs.length])
-  const pick = (n: number) => {
-    setTouring(false)
-    setI(n)
-  }
-  const job = demo.jobs[i]
-  let blank = 0
-  return (
-    <div ref={ref} className="h-dr__demo">
-      <Tabs label={demo.tabsLabel} items={demo.jobs.map((j) => j.team)} pick={pick} chosen={i} touring={live && touring} id={id} />
-      <div className="h-dr__run" id={id} key={i} aria-live="off">
-        <p className="h-dr__job">
-          {job.sentence.map((p, n) =>
-            typeof p === 'string' ? (
-              <span key={n}>{p}</span>
-            ) : (
-              <mark key={n} className="h-dr__blank h-dr__beat" style={{ ['--d' as string]: blank++ } as CSSProperties}>
-                {tie(p.v)}
-              </mark>
-            ),
-          )}
-        </p>
-        <p className="h-dr__evt is-new h-dr__beat" style={{ ['--d' as string]: 3.4 } as CSSProperties}>
-          <i className="h-dr__dot" />
-          <span className="h-dr__kind">{job.where}</span>
-          <span className="h-dr__ms">{job.at}</span>
-          <span className="h-dr__text">{job.result}</span>
-        </p>
-      </div>
-    </div>
-  )
-}
-
-/* The soft light that follows the pointer across a card, set as two custom properties so CSS draws it. */
-const follow = (e: PointerEvent<HTMLLIElement>) => {
-  if (e.pointerType !== 'mouse') return
-  const r = e.currentTarget.getBoundingClientRect()
-  e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
-  e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
-}
-
-/* One agent or ten million: six steps on a log scale, each a bar that grows, the chosen one lit with who runs that many.
-   It climbs once from 1 to 10 million while on screen, a hairline filling under the chosen step, and stops on the
+/* One agent or 100 million: six steps on a log scale, each a bar that grows, the chosen one lit with who runs that many.
+   It climbs once from 1 to 100 million while on screen, a hairline filling under the chosen step, and stops on the
    top step; picking a step stops it. Under reduced motion it rests on the top step and the steps still work. */
 const CLIMB = 2300
 function Scale({ scale }: { scale: NonNullable<Words['scale']> }) {
@@ -214,6 +105,44 @@ function Scale({ scale }: { scale: NonNullable<Words['scale']> }) {
   )
 }
 
+/* The four ways in as James's curtain (26 Nov 2026; Seun: "like the curtain type the old Obsession used to have for
+   sales, marketing, developers and agents ... interactive and the glowing colours"; James: no line the rest of the page
+   already says). His band from the 2 Oct site (src/legacy/james/components/PersonaBand) rebuilt on the design system:
+   four panels in one row, cut on the slant, each its door's colour as a glow rising from its foot. At rest each shows its
+   number, its name and the circled arrow; under the pointer or keyboard focus the panel widens like a curtain, its glow
+   rises and one short line and the link's words come in. Without hover (a touch screen) everything shows; on a phone the
+   panels stack. Each panel is one link to its door's page. */
+function DoorBand({ doors }: { doors: Words['doors'] }) {
+  return (
+    <ul className="h-db">
+      {doors.map((d, i) => (
+        <li className="h-db__item" data-reader={d.reader} key={d.id}>
+          <Link className="h-db__link" to={d.cta.to}>
+            <span className="h-db__n" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span className="h-db__name">
+              {d.label}
+              <span className="s-sr">. </span>
+            </span>
+            <span className="h-db__more">
+              <span className="h-db__more-in">
+                <span className="h-db__line">{tie(d.line)}</span>
+                <span className="h-db__cta">{d.cta.label}</span>
+              </span>
+            </span>
+            <span className="h-db__go" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 export function HomeDoors({ doors, id, tone }: { doors: Words; id?: string; tone?: 'alt' }) {
   const hid = useId()
   return (
@@ -223,32 +152,9 @@ export function HomeDoors({ doors, id, tone }: { doors: Words; id?: string; tone
           <h2 className="s-bp-h" id={`${hid}-h`}>
             {doors.heading}
           </h2>
-          <p className="s-bp-line">{doors.line}</p>
+          {doors.line && <p className="s-bp-line">{doors.line}</p>}
         </div>
-        <ul className="h-dr__grid">
-          {doors.doors.map((d) => (
-            <li className="h-dr__card" key={d.id} data-reader={d.reader} onPointerMove={follow}>
-              <i className="h-dr__spot" aria-hidden="true" />
-              <p className="h-dr__k">
-                <span className="h-dr__ic" aria-hidden="true">
-                  <PersonaGlyph name={d.icon} />
-                </span>
-                {d.label}
-              </p>
-              <h3 className="h-dr__title">
-                <Link className="h-dr__link" to={d.cta.to}>
-                  {d.title}
-                </Link>
-              </h3>
-              {d.demo.kind === 'code' ? <CodeDemo demo={d.demo} /> : <JobDemo demo={d.demo} />}
-              <p className="h-dr__line">{d.line}</p>
-              <span className="h-dr__go" aria-hidden="true">
-                {d.cta.label}
-                <Chev />
-              </span>
-            </li>
-          ))}
-        </ul>
+        <DoorBand doors={doors.doors} />
         {doors.scale && <Scale scale={doors.scale} />}
       </div>
     </section>

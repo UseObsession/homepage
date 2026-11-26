@@ -99,8 +99,13 @@
 
 /* Sample data sits before the call to action where the bar has room for it (from 1080); narrower, it waits in the
    sheet, above the call to action. */
-@container ob-nav (max-width: 1079.98px) {
+@container ob-nav (max-width: 1179.98px) {
   .ob-nav__end > .s-nav__github { display: none; }
+}
+/* Enterprise in the bar (26 Nov 2026) from 960, where it has room; narrower, it waits in Solutions and the sheet. The
+   button above moved from 1080 to 1180 to make that room. */
+@container ob-nav (max-width: 959.98px) {
+  .s-nav__plain--ent { display: none; }
 }
 .s-mnav__foot { display: grid; gap: var(--ob-space-8); }
 

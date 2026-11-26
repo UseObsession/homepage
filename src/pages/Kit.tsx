@@ -42,8 +42,9 @@ export function KitAt({ path }: { path: string }) {
 }
 
 /* The hero every kit and team page shares: the tag, the H1 (the searched phrase, then the claim after its colon), the 2
-   sentences, Start free and the second button, then the scene in its product window. */
-export function SceneHero({ pill, headline, sub, second, scene, place }: { pill: string; headline: string; sub: string; second: { label: string; to: string }; scene: KitPage['scene']; place: string }) {
+   sentences, Start free and the second button, then the scene in its product window. A page can set its own first and
+   second buttons (26 Nov 2026: the enterprise page opens on Talk to us, then Start free). */
+export function SceneHero({ pill, headline, sub, second, primary = ui.primary, scene, place }: { pill: string; headline: string; sub: string; second: { label: string; to: string }; primary?: { label: string; to: string }; scene: KitPage['scene']; place: string }) {
   const id = useId()
   const cut = headline.indexOf(': ')
   const key = cut > 0 ? headline.slice(0, cut + 1) : headline
@@ -63,8 +64,8 @@ export function SceneHero({ pill, headline, sub, second, scene, place }: { pill:
           </h1>
           <p className="s-pk-hero__sub">{sub}</p>
           <div className="s-pk-hero__act">
-            <a className="ob-btn ob-btn--lg" href={ui.primary.to}>
-              <span className="ob-btn-label">{ui.primary.label}</span>
+            <a className="ob-btn ob-btn--lg" href={primary.to}>
+              <span className="ob-btn-label">{primary.label}</span>
             </a>
             <a className="ob-btn ob-btn--lg ob-btn--secondary" href={second.to}>
               <span className="ob-btn-label">{second.label}</span>

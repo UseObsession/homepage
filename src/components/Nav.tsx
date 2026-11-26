@@ -782,8 +782,8 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
             </>,
           )}
 
-          {[nav.menus.developers, nav.menus.noCode, nav.menus.pricing].map((p) => (
-            <li className="s-nav__plain" key={p.to}>
+          {[nav.menus.developers, nav.menus.noCode, nav.menus.enterprise, nav.menus.pricing].map((p) => (
+            <li className={'s-nav__plain' + (p === nav.menus.enterprise ? ' s-nav__plain--ent' : '')} key={p.to}>
               <NavLink className="ob-nav__link" to={p.to} end onClick={close}>
                 {p.label}
               </NavLink>
@@ -872,7 +872,7 @@ export function Nav({ cta = nav.cta, heroForm = false }: { cta?: Cta; heroForm?:
             {resources.label}
           </p>
           <ul className="ob-mnav__list s-mnav__tools">
-            {[...resources.items, nav.menus.developers, nav.menus.noCode, nav.menus.pricing, ...resources.more.items].map((p) => (
+            {[...resources.items, nav.menus.developers, nav.menus.noCode, nav.menus.enterprise, nav.menus.pricing, ...resources.more.items].map((p) => (
               <li key={p.to}>{pageRow(p, ' s-page--sheet')}</li>
             ))}
           </ul>
