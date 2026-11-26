@@ -41,7 +41,7 @@ export const recipesPage: RecipesIndexPage = {
     description:
       'Ready-to-use AI agents and templates, called blueprints: pick one, say where results go, and Obsession runs it, from missed calls to invoices.',
     answer:
-      'Blueprints are ready-made AI agent templates that run on Obsession’s pieces. Pick one, say where results go, and each result lands in your event log, Slack, a sheet or your CRM.',
+      'Blueprints are ready-made AI agent templates: each packages one job with an agent that has its own phone number, inbox and browser, how often it runs and where results go. Pick one, and each result lands in your event log, Slack, a sheet or your CRM.',
     ogImage: '/og/recipes.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -51,7 +51,7 @@ export const recipesPage: RecipesIndexPage = {
 
   hero: {
     headline: 'Pick a blueprint. Obsession runs the job.',
-    sub: 'Blueprints are ready-made AI agent templates that run on Obsession’s pieces. They come in seven types, one for each job AI agents do. Pick one, say where results go, and pay only for the pieces it uses.',
+    sub: 'Blueprints are ready-made AI agent templates: each packages one job with an agent that has its own phone number, inbox and browser, how often it runs and where results go. Several on one agent cover a whole role, like a front desk. They come in seven types, one for each job AI agents do. Pick one, set it up in plain language, and pay only for the pieces it uses.',
   },
 
   /* The recipes' own `group` field, kept for their data; since the 22 Nov call the hub groups by the six types below. */

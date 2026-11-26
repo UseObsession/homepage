@@ -234,7 +234,7 @@ export const noCodePage: NoCodePage = {
 
   jobs: {
     heading: 'Find your team’s first job.',
-    line: 'Each blueprint is a finished job, with its typical month at your volume. Pick one, say what counts and where results go, and it keeps running until you change it.',
+    line: 'Each blueprint packages a job with the agent that does it: what to do, the agent’s own phone number, inbox and browser, how often it runs and where results go. Stack several on one agent for a whole role. Pick one, say what counts, and it keeps running until you change it, with its typical month at your volume.',
     typical: 'Typical month',
     moves: 'Moves',
     teams: [

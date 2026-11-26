@@ -97,7 +97,7 @@ export const team: TeamPage = {
       {
         kit: 'watch',
         name: 'Competitor tracking',
-        line: 'Every email, text, offer and price a client’s competitors send a new customer, dated, so each pitch opens on proof.',
+        line: 'Every email, text, offer and price a client’s competitors send a new customer, dated, so each pitch can show the original.',
         links: [
           { label: 'Competitor tracking', to: '/blueprints/competitor-tracking' },
           { label: 'Email and SMS tracking', to: '/blueprints/email-sms-tracking' },

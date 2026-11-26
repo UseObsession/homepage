@@ -150,7 +150,8 @@ export const page: Page = {
   homeBlueprints: {
     /* 26 Nov 2026: the problem section already says "Not building agents? Pick a blueprint.", so this one names the seven. */
     heading: 'Seven types of blueprints, one for each job AI agents do.',
-    line: 'We run each one. Results arrive in any format: Slack, email, your CRM, Clay, Google Sheets, a PDF or your own Claude agent.',
+    /* The one place Home defines a blueprint (26 Nov 2026, Seun: picture it as a package, the container idea). */
+    line: 'Each blueprint packages a job with the agent that does it: what to do, the agent’s own phone number, inbox and browser, how often it runs and where results go. Stack several on one agent and it covers a whole role, like a front desk, at one location or 20,000. The work gets done every day, and each result lands in Slack, your CRM or a sheet.',
     unit: { one: 'blueprint', many: 'blueprints' },
     more: 'more',
     all: { label: 'Browse blueprints', to: '/blueprints' },
@@ -162,7 +163,8 @@ export const page: Page = {
      and the KPIs it moves. Every company, number and message is an example. */
   homeTeams: {
     heading: 'Your team defines the job. Obsession runs it, every day.',
-    line: 'Each blueprint is a finished job you configure in plain language: what to watch or answer, how often, and where results go. Obsession runs it on an agent with its own phone number, inbox and browser, across one company or thousands. Or describe a job of your own, and we spin up an agent to run it.',
+    /* 26 Nov 2026: the blueprints section above defines a blueprint, so this line shows the team using one. */
+    line: 'Choose your team’s blueprint, fill in its blanks in plain language, and each result arrives where you already work. Or describe a job of your own, and we package it as a blueprint for you.',
     own: { name: 'Your own job', sub: 'Described in your words', crumb: 'New blueprint' },
     teamsLabel: 'Your team',
     steps: { pick: 'Choose a blueprint', fill: 'Set it up in plain language', get: 'Receive results where you work' },
@@ -272,7 +274,7 @@ export const page: Page = {
       heading: 'Included with every blueprint',
       items: [
         { icon: 'persona', name: 'Its own phone number, inbox and browser', line: 'One identity, so every reply, call and sign-in code comes back to the agent.' },
-        { icon: 'record', name: 'Evidence behind every result', line: 'The original email, screenshot or call recording, timestamped.' },
+        { icon: 'record', name: 'The original behind every result', line: 'The original email, screenshot or call recording, timestamped.' },
         { icon: 'webhook', name: 'Delivered in any format', line: 'Slack, email, your CRM, Clay, Google Sheets, a PDF report or your AI assistant. For any other tool, we build the integration.' },
         { icon: 'stop', name: 'Clear operating rules', line: 'It identifies itself as an AI, uses only the logins you provide and works within a monthly spend limit you set on its key.' },
       ],
@@ -327,7 +329,7 @@ export const page: Page = {
     },
     blueprints: {
       title: 'Not building agents? Pick a blueprint.',
-      line: 'Obsession runs the job on the same pieces and sends you the results.',
+      line: 'A blueprint is a job, or a whole role, packaged with the agent that does it. Obsession runs it and sends you each result.',
       slugs: ['document-chaser', 'voice-agent-check', 'mystery-shopper'],
       runs: 'Runs on',
       out: 'Results land in Slack, a sheet, your CRM or our dashboard.',
@@ -353,7 +355,7 @@ export const page: Page = {
      picture they can see themselves in. Each card is one link: developers to /developers, teams to /no-code. */
   homeDoors: {
     /* 26 Nov 2026 (the copy plan): four ways in, Build, Run, Companies and Resell, on the same pieces and identity. */
-    heading: 'Build on it, hand it the job, roll it out across teams, or resell it.',
+    heading: 'Build on the API, hand Obsession the job, roll it out across teams, or resell it to clients.',
     scale: {
       heading: 'One agent or 100 million, each with its own number, inbox and browser.',
       line: 'Add agents as the work grows. Each one gets its own identity, and you pay for what each one uses.',
@@ -369,10 +371,10 @@ export const page: Page = {
     },
     /* 26 Nov 2026: James's curtain band. Each line shows when its panel opens; nothing the rest of the page already says. */
     doors: [
-      { id: 'dev', reader: 'developers', label: 'Developers', line: 'Every piece in one call, every event at one webhook.', cta: { label: 'See the API and MCP', to: '/developers' } },
-      { id: 'team', reader: 'marketing', label: 'Teams that don’t code', line: 'Pick the job, and results land where you work.', cta: { label: 'See how it works', to: '/no-code' } },
-      { id: 'companies', reader: 'sales', label: 'Companies', line: 'Every agent under its own name, every step logged.', cta: { label: 'AI agents for enterprise', to: '/use-cases/ai-agents-for-enterprise' } },
-      { id: 'resell', reader: 'agencies', label: 'Agencies and platforms', line: 'Every client’s agents, under your brand.', cta: { label: 'White label for agencies', to: '/agencies' } },
+      { id: 'dev', reader: 'developers', label: 'Developers', line: 'Give your agent an inbox, a phone number and a browser in one API call, so it can sign up, call and follow up on its own.', cta: { label: 'See the API and MCP', to: '/developers' } },
+      { id: 'team', reader: 'marketing', label: 'Teams that don’t code', line: 'One job, or a whole role like a front desk, packaged with the agent that does it. Missed calls get texted back and files get chased every day, without your team doing it.', cta: { label: 'See how it works', to: '/no-code' } },
+      { id: 'companies', reader: 'sales', label: 'Companies', line: 'Each agent works under its own address and number, signs in only with the logins you give it, and logs every step, so security can see who did what.', cta: { label: 'AI agents for enterprise', to: '/use-cases/ai-agents-for-enterprise' } },
+      { id: 'resell', reader: 'agencies', label: 'Agencies and platforms', line: 'Run blueprints for every client under your brand, with an account per client, so every result reaches the client as your work.', cta: { label: 'White label for agencies', to: '/agencies' } },
     ],
   },
 
