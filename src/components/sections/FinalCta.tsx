@@ -13,7 +13,17 @@ const tie = (s: string) => s.replace(/(\d) /g, '$1\u00a0')
    (`final.link`, the sample report), and may leave out the line (Home: the claim, the form and its link). */
 export function FinalCta({ final, id = 'join', className = '' }: { final: Final; id?: string; className?: string }) {
   return (
-    <section className={`s-section s-final ob-theme-dark ${className}`} data-tone="ink" id={id} aria-labelledby={`${id}-h`}>
+    <section
+      className={`s-section s-final ob-theme-dark ${className}`}
+      data-tone="ink"
+      id={id}
+      aria-labelledby={`${id}-h`}
+      /* The page's form settings, for the sign-up panel a click on #join opens (components/SignupPanel). */
+      data-source={final.capture.source}
+      data-kind={final.capture.kind}
+      data-button={final.capture.button}
+      data-interest={final.capture.interest ?? 'any'}
+    >
       <div className="s-wrap s-final__in">
         <div className="s-final__mark">
           <Mark size={64} />

@@ -1,0 +1,45 @@
+/* The sign-up panel (SignupPanel.tsx): the design system's dialog (surfaces.css .ob-dialog), wide enough for the email
+   form on 1 line and for the sign-up card that follows it. On a phone it is a sheet from the bottom edge, full width,
+   with a grip, so the thumb reaches the form and the page stays in view above it. */
+/* Fixed to the screen: .ob-dialog's position: relative turns an open modal absolute to the document, which opens it
+   off-screen on a page the reader has scrolled. */
+.s-panel {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(100% - 32px, 560px);
+  max-width: none;
+  max-height: min(100% - 48px, 760px);
+  overscroll-behavior: contain;
+}
+/* .ob-dialog sets display: grid, which would show a closed <dialog>; closed, it stays hidden. */
+.s-panel:not([open]) { display: none; }
+.s-panel__title { font-size: clamp(1.25rem, 1.1rem + 0.6cqi, 1.5rem); }
+.s-panel__body { max-width: 52ch; }
+.s-panel__form { width: 100%; }
+.s-panel__grip { display: none; }
+
+@media (max-width: 599px) {
+  .s-panel {
+    margin: auto 0 0;
+    width: 100%;
+    max-height: calc(100dvh - 40px);
+    border-radius: var(--ob-radius-lg) var(--ob-radius-lg) 0 0;
+    padding-bottom: calc(var(--ob-space-24) + env(safe-area-inset-bottom, 0px));
+    --ob-sheet-from: 0 100%;
+    animation: ob-sheet-in var(--ob-dur-slow) var(--ob-ease-out) backwards;
+  }
+  .s-panel__grip {
+    display: block;
+    justify-self: center;
+    width: 40px;
+    height: 4px;
+    margin: calc(var(--ob-space-8) * -1) 0 calc(var(--ob-space-4) * -1);
+    border-radius: 999px;
+    background-color: var(--ob-line);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s-panel { animation: none; }
+}
