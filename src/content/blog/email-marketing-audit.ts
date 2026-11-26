@@ -20,7 +20,12 @@ import type { BlogPost } from './types'
    stores, any PilotX audit figure, retainer price ranges (weak sources), baskets at rival stores. harbourline.example,
    its rivals and every figure in the 2 illustrations and the worked example are invented. Buyer words; no dashes.
    11 Nov 2026 (SEO revamp wave 1): title, description, answer, Obsession's lines, its comparison row and the calls to
-   action moved to the live position (the web behind the login, early access); no free offer. Rewritten 22 Nov 2026 for the toolkit position. */
+   action moved to the live position (the web behind the login, early access); no free offer. Rewritten 22 Nov 2026 for the toolkit position.
+   26 Nov 2026 (Seun, from Search Console: Google tests this page for "email marketing audit checklist", "email audit
+   checklist", "email campaign audit" and "activecampaign audit"): the title and description lead with the checklist,
+   the 19 checks sit under a checklist heading, a table shows where each check lives in Klaviyo, ActiveCampaign,
+   Mailchimp and HubSpot (each from the vendor's own help pages, read 26 Nov), a section audits a single campaign, and
+   3 questions answer the checklist, how often and the campaign audit. Same address, nothing redirected. */
 
 const KL_DELIVERY = 'https://help.klaviyo.com/hc/en-us/articles/35283141315099'
 const KL_BENCH = 'https://www.klaviyo.com/products/email-marketing/benchmarks'
@@ -61,20 +66,36 @@ const PANORAMATA = 'https://www.panoramata.co/pricing'
 const RGE = 'https://reallygoodemails.com/pricing'
 const FLOWIUM = 'https://flowium.com/audit'
 const NETALICO = 'https://netalico.com/pages/services-email-marketing'
+const KL_DOMAIN = 'https://help.klaviyo.com/hc/en-us/articles/115000357752'
+const KL_TEST = 'https://help.klaviyo.com/hc/en-us/articles/115005081907'
+const AC_DOMAIN = 'https://help.activecampaign.com/hc/en-us/articles/13661183927580'
+const AC_ATTR = 'https://help.activecampaign.com/hc/en-us/articles/360009588259'
+const AC_TEST = 'https://help.activecampaign.com/hc/en-us/articles/115001551270'
+const MC_DOMAIN = 'https://mailchimp.com/help/set-up-email-domain-authentication/'
+const MC_ATTR = 'https://mailchimp.com/help/about-mailchimp-attribution/'
+const MC_TEST = 'https://mailchimp.com/help/preview-and-test-your-email-campaign/'
+const HS_DOMAIN = 'https://knowledge.hubspot.com/domains-and-urls/connect-your-email-sending-domain'
+const HS_FREQ = 'https://knowledge.hubspot.com/marketing-email/set-up-an-email-frequency-safeguard'
+const HS_TEST = 'https://knowledge.hubspot.com/marketing-email/how-do-i-send-a-test-email'
 
 export const post: BlogPost = {
   slug: 'email-marketing-audit',
-  title: 'Email marketing audit for agencies and CRM teams: a checklist in 3 layers',
+  title: 'Email marketing audit checklist: 19 checks in 3 layers, for agencies and CRM teams',
   dek: 'One audit template for retention agencies and brand CRM leads: the checks inside the email platform, the deliverability checks, and the first 14 days a new subscriber receives beside 2 or 3 competitors. Each check has a pass mark, where to look when it fails and a priority.',
-  metaTitle: 'Email marketing audit: checklist and template for agencies',
+  metaTitle: 'Email marketing audit checklist: 3 layers, with a template',
   description:
-    'An email marketing audit template for agencies and CRM teams: the account, deliverability and what a new subscriber receives, each with a pass mark.',
+    'An email marketing audit checklist and template: 19 checks across the account, deliverability and what a new subscriber receives, each with a pass mark.',
   answer:
-    'To do an email marketing audit, check 3 layers: inside the account (forms, flows, Smart Sending, segments, campaigns and attribution), deliverability (SPF, DKIM, DMARC, the Gmail, Yahoo and Microsoft sender rules, spam and bounce rates), and the customer’s view (what a new subscriber receives over 14 days, when, in which Gmail tab, beside 2 or 3 competitors). Give every failed check a priority and estimate its cost from the client’s own flow report. For the customer’s view, Obsession’s blueprints keep every email the brand and its competitors send a new subscriber, dated as it arrived.',
+    'To do an email marketing audit, work through a checklist in 3 layers: inside the account (forms, flows, Smart Sending, segments, campaigns and attribution), deliverability (SPF, DKIM, DMARC, the Gmail, Yahoo and Microsoft sender rules, spam and bounce rates), and the customer’s view (what a new subscriber receives over 14 days, when, in which Gmail tab, beside 2 or 3 competitors). Give every failed check a priority and estimate its cost from the client’s own flow report. For the customer’s view, Obsession’s blueprints keep every email the brand and its competitors send a new subscriber, dated as it arrived.',
   primaryKeyword: 'email marketing audit',
   keywords: [
     'email marketing audit checklist',
+    'email audit checklist',
     'email marketing audit template',
+    'email campaign audit',
+    'activecampaign audit',
+    'mailchimp audit',
+    'hubspot email audit',
     'how to do an email marketing audit',
     'what to include in an email marketing audit',
     'klaviyo audit checklist',
@@ -85,8 +106,8 @@ export const post: BlogPost = {
   ],
   category: 'For agencies',
   published: '2026-10-23',
-  updated: '2026-11-22',
-  readingMinutes: 12,
+  updated: '2026-11-26',
+  readingMinutes: 14,
   order: 14,
   authors: [
     { name: 'Seun Akinniranye', role: 'Cofounder' },
@@ -153,7 +174,7 @@ export const post: BlogPost = {
       text: 'A finding in one layer often has its cause in another. A welcome email missing in layer 3 points to the flow’s trigger in layer 1, and a fall in opens at one mailbox provider points to layer 2.',
     },
 
-    { kind: 'h2', id: 'template', text: 'The email marketing audit template' },
+    { kind: 'h2', id: 'template', text: 'The email marketing audit checklist and template' },
     {
       kind: 'p',
       text: 'Mark each check pass or fail, and give every fail a priority.',
@@ -190,6 +211,27 @@ export const post: BlogPost = {
         ['Customer view', 'Basket and checkout reminders', 'Each arrives once, with product, photo and price', '1'],
         ['Customer view', 'Spam folder', 'Nothing from the brand in spam, with the tab recorded for each email', '1'],
         ['Customer view', 'Competitors, same 14 days', 'Counts, timing and first discount set beside 2 or 3 competitors', 'Input to the plan'],
+      ],
+    },
+
+    { kind: 'h2', id: 'platforms', text: 'Where each check lives in Klaviyo, ActiveCampaign, Mailchimp and HubSpot' },
+    {
+      kind: 'p',
+      text: 'The checklist works the same in Klaviyo, ActiveCampaign, Mailchimp, HubSpot and the rest. Only the menu names change. We found no setting in ActiveCampaign’s or Mailchimp’s help pages that limits how many emails one person gets close together, so there that check becomes a read of the send calendar.',
+    },
+    {
+      kind: 'table',
+      caption: 'Where to find each check, from each platform’s own help pages, 26 November 2026',
+      cols: ['Check', 'Klaviyo', 'ActiveCampaign', 'Mailchimp', 'HubSpot'],
+      rows: [
+        ['Sign up forms', 'Sign-up forms, with double opt-in set per list', 'Forms, with double opt-in in each form’s options', 'Signup forms, with double opt-in in form settings', 'Marketing > Forms, with double opt-in in email settings'],
+        ['Automated sequences', 'Flows, each Live, Manual or Draft', 'Automations, filtered Active or Inactive, and the Automations Performance report', 'Automations > All flows, each with its report', 'Automations > Workflows, each with its performance and enrollment history'],
+        ['Frequency rule', '[Smart Sending](' + KL_SMART + '), 16 hours for email by default', 'None found in its help pages', 'None found in its help pages', '[Send Frequency](' + HS_FREQ + ') in email settings, on Marketing Hub Enterprise'],
+        ['Segments', 'Lists & segments', 'Segments built from conditions', 'Audience segments', 'CRM > Segments, active or static'],
+        ['Sending domain', '[Settings > Domains](' + KL_DOMAIN + ')', '[Sending domains](' + AC_DOMAIN + '), in settings', '[Domains](' + MC_DOMAIN + '), in Account & billing', '[Domains & URLs > Email Sending](' + HS_DOMAIN + ')'],
+        ['Bounces and complaints', 'Analytics > Deliverability, and a tab on each send', 'Each campaign’s performance report', 'Each campaign report’s activity', 'The email health tool, and the Delivery report on each email’s Performance tab'],
+        ['Revenue attribution', 'Settings > Attribution, 5 day windows by default', '[Conversion Attribution](' + AC_ATTR + '), with a window from 7 to 365 days', '[Analytics settings](' + MC_ATTR + '): 5 days from an open, 30 from a click, by default', 'Revenue on each email’s performance tab, on Marketing Hub Enterprise'],
+        ['Before a campaign sends', '[Preview and test send](' + KL_TEST + ')', '[The campaign summary](' + AC_TEST + '): a test email and previews', '[The email builder’s checklist](' + MC_TEST + '), with a test send and a link checker', '[Preview & test](' + HS_TEST + '): a test email and email client previews'],
       ],
     },
 
@@ -385,6 +427,29 @@ export const post: BlogPost = {
       text: 'For an online store, layer 3 can start from a [Klaviyo email audit from the customer’s side](/lookup), which shows every email a new customer got after a sign-up, a basket and a checkout, dated and set beside other stores. Agencies run the same check on client and prospect stores with the [mystery shopping](/blueprints/mystery-shopper) blueprint.',
     },
 
+    { kind: 'h2', id: 'campaign-audit', text: 'How to audit a single email campaign' },
+    {
+      kind: 'p',
+      text: 'An email campaign audit checks one send, before it goes and in the 2 days after. Run it on every campaign that carries a code, a launch date or a new segment.',
+    },
+    {
+      kind: 'list',
+      ordered: true,
+      items: [
+        '**Audience:** the segment holds people who opted in and still engage, with anyone the offer would clash with excluded, such as last week’s buyers.',
+        '**Sender:** the From address is on the brand’s own domain, under the name subscribers know, with a reply address someone reads.',
+        '**Subject and preview text:** both read whole on a phone, and the preview text is written for this email.',
+        '**Links and code:** every link opens the right page with its tracking tags, and the code works at checkout on a phone.',
+        '**Rendering:** a test send reads correctly in Gmail, Outlook and Apple Mail, on a phone and a desktop, with images off as well as on.',
+        '**Unsubscribe:** the link is visible, and the one click unsubscribe header is in the message source.',
+        '**Send time:** set for the subscriber’s time zone where the platform offers it, and clear of the brand’s own flows that day.',
+        '**After the send:** at 24 and 48 hours, set bounces, spam complaints, unsubscribes, clicks and placed orders beside the last 3 campaigns.',
+      ],
+    },
+    {
+      kind: 'p',
+      text: 'Each platform’s own check before a send is in the platform table. A test send to real Gmail and Outlook addresses adds what no preview shows: the tab or folder the email reached.',
+    },
     { kind: 'h2', id: 'audit-report', text: 'The report the client reads' },
     {
       kind: 'p',
@@ -541,8 +606,20 @@ export const post: BlogPost = {
           a: 'An email marketing audit reviews how a brand’s email and SMS programme is built, whether its mail reaches the inbox, and what a new subscriber receives, with each finding ranked by priority.',
         },
         {
-          q: 'What should an email marketing audit include?',
-          a: 'Checks inside the account (forms, flows, Smart Sending, SMS rules, segments, campaigns and attribution), deliverability checks (authentication, sender rules, Postmaster Tools, bounces, complaints, a seed test), and a 14 day test as a new subscriber beside 2 or 3 competitors. They work on any email platform.',
+          q: 'What goes on an email marketing audit checklist?',
+          a: 'Checks inside the account (forms, flows, Smart Sending, SMS rules, segments, campaigns and attribution), deliverability checks (authentication, sender rules, Postmaster Tools, bounces, complaints, a seed test), and a 14 day test as a new subscriber beside 2 or 3 competitors. A full checklist runs to about 19 checks, each with a pass mark and a priority, and they work in Klaviyo, ActiveCampaign, Mailchimp, HubSpot or any other email service.',
+        },
+        {
+          q: 'How often should you run an email marketing audit?',
+          a: 'Run the whole checklist when you take on a client and before each peak season, and the customer’s view every week or every month, because a flow can stop or a code can break between audits. Check every campaign that carries a code or a new segment before it sends.',
+        },
+        {
+          q: 'What is an email campaign audit?',
+          a: 'A check of one campaign before it sends and in the 48 hours after: the audience, the sender, the subject and preview text, links and code, rendering, unsubscribe and send time, then bounces, complaints, clicks and orders beside recent campaigns.',
+        },
+        {
+          q: 'How do you audit ActiveCampaign, Mailchimp or HubSpot?',
+          a: 'With the same 3 layers. Only the menu names change: automations in ActiveCampaign, automation flows in Mailchimp and workflows in HubSpot take the place of Klaviyo’s flows, and where a platform’s help pages show no match for Klaviyo’s Smart Sending, as in ActiveCampaign and Mailchimp, the frequency check becomes a read of the send calendar.',
         },
         {
           q: 'What is an email deliverability audit?',
@@ -569,7 +646,7 @@ export const post: BlogPost = {
     {
       kind: 'note',
       title: 'How we checked this',
-      text: 'Microsoft’s post would not load directly, so we read it through a text reader. Milled’s pricing page would not load on 23 October, so its prices are as the search result for that page showed them that day, and the Internet Archive’s copy of the page from 10 February 2026 shows them as the monthly cost of a yearly plan. MailCharts’ pricing link now leads to Litmus’s contact sales page, and Validity’s Everest page now presents Validity Engage. Netalico’s page marked its $1,000 audit as sold out. The r/Klaviyo and r/agency threads were checked live on 3 October 2026. We did not run any of the tools in the table. harbourline.example, its competitors and every figure in the 2 illustrations and the worked example are invented.',
+      text: 'Microsoft’s post would not load directly, so we read it through a text reader. Milled’s pricing page would not load on 23 October, so its prices are as the search result for that page showed them that day, and the Internet Archive’s copy of the page from 10 February 2026 shows them as the monthly cost of a yearly plan. MailCharts’ pricing link now leads to Litmus’s contact sales page, and Validity’s Everest page now presents Validity Engage. Netalico’s page marked its $1,000 audit as sold out. The r/Klaviyo and r/agency threads were checked live on 3 October 2026. ActiveCampaign’s help pages refused our reader on 26 November, so its menu names come from search results for those pages; check the menus in your own account, since every platform renames them over time. We did not run any of the tools in the table. harbourline.example, its competitors and every figure in the 2 illustrations and the worked example are invented.',
     },
   ],
 
@@ -613,6 +690,17 @@ export const post: BlogPost = {
     { title: 'Pricing', publisher: 'Really Good Emails', url: RGE },
     { title: 'Free email marketing audit', publisher: 'Flowium', url: FLOWIUM },
     { title: 'Email marketing services', publisher: 'Netalico', url: NETALICO },
+    { title: 'Set up a branded sending domain', publisher: 'Klaviyo Help Center', url: KL_DOMAIN },
+    { title: 'How to preview and send test emails', publisher: 'Klaviyo Help Center', url: KL_TEST },
+    { title: 'Configure a sending domain', publisher: 'ActiveCampaign Help Center', url: AC_DOMAIN },
+    { title: 'Conversion Attribution report', publisher: 'ActiveCampaign Help Center', url: AC_ATTR },
+    { title: 'Campaign summary page', publisher: 'ActiveCampaign Help Center', url: AC_TEST },
+    { title: 'Set up email domain authentication', publisher: 'Mailchimp Help', url: MC_DOMAIN },
+    { title: 'About Mailchimp attribution', publisher: 'Mailchimp Help', url: MC_ATTR },
+    { title: 'Preview and test your email campaign', publisher: 'Mailchimp Help', url: MC_TEST },
+    { title: 'Connect your email sending domain', publisher: 'HubSpot Knowledge Base', url: HS_DOMAIN },
+    { title: 'Set up an email frequency safeguard', publisher: 'HubSpot Knowledge Base', url: HS_FREQ },
+    { title: 'Send a test email', publisher: 'HubSpot Knowledge Base', url: HS_TEST },
   ],
 
   related: [

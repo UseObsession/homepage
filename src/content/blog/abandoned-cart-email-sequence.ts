@@ -187,7 +187,7 @@ export const post: BlogPost = {
     },
     {
       kind: 'p',
-      text: 'The advice runs from 30 minutes to 10 hours for the first email. The bigger risk is a flow that sends nothing at all, after a basket or after a checkout, because a flow that never starts leaves no row in its report.',
+      text: 'The advice runs from 30 minutes to 10 hours for the first email. The bigger risk is a flow that sends nothing at all, after a basket or after a checkout, because a flow that never starts leaves no row in its report. The [email marketing audit checklist](/blog/email-marketing-audit) puts this check beside the rest of the programme.',
     },
     {
       kind: 'p',
