@@ -355,7 +355,7 @@ export const page: Page = {
      picture they can see themselves in. Each card is one link: developers to /developers, teams to /no-code. */
   homeDoors: {
     /* 26 Nov 2026 (the copy plan): four ways in, Build, Run, Companies and Resell, on the same pieces and identity. */
-    heading: 'Build on the API, hand Obsession the job, roll it out across teams, or resell it to clients.',
+    heading: 'Build with it, run it, roll it out or resell it.',
     scale: {
       heading: 'One agent or 100 million, each with its own number, inbox and browser.',
       line: 'Add agents as the work grows. Each one gets its own identity, and you pay for what each one uses.',
