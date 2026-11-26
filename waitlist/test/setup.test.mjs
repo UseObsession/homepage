@@ -98,5 +98,55 @@ await t('a version 2 script keeps the answers in the columns it has', () => {
   assert.ok(!('start_with' in snap)); assert.match(snap.job_detail, /Start with: Claude, Zapier/); assert.equal(snap.note, 'Call suppliers to confirm deliveries')
 })
 
+await t('"Something else" and "Somewhere else" carry what the reader typed', async () => {
+  posts.length = 0
+  const g = makeGas(CODE)
+  g.post({ email: 'maya@northwind-labs.co.uk', sid: start().sid, step: '1', source: 'no-code', page: '/no-code', interest: 'any', offer: 'none' })
+  S.begin(start({ page: '/no-code', source: 'no-code' }))
+  const row = await run(g, [
+    [{ door: 'connect' }, 'need'],
+    [{ tools: ['Claude', 'Something else'], toolOther: 'Lindy' }, 'about'],
+    [{ name: 'Maya Patel' }, 'done'],
+  ])
+  assert.equal(row['Start with'], 'Claude, Something else (Lindy)')
+  assert.deepEqual(S.picksOf(S.setupStore.get()), ['Claude', 'Lindy'])
+  const bp = S.snapshotOf({ ...S.setupStore.get(), door: 'blueprint', blueprints: [], dest: ['Slack', 'Somewhere else'], destOther: 'HubSpot' })
+  assert.equal(bp.results, 'Slack, Somewhere else (HubSpot)')
+  const blank = S.snapshotOf({ ...S.setupStore.get(), tools: ['Something else'], toolOther: '  ' })
+  assert.equal(blank.start_with, 'Something else')
+})
+
+await t('answers typed but never sent leave by beacon when the page closes', async () => {
+  posts.length = 0
+  const beacons = []
+  Object.defineProperty(globalThis, 'navigator', { configurable: true, value: { sendBeacon: (url, blob) => (beacons.push(blob), true) } })
+  const g = makeGas(CODE)
+  g.post({ email: 'maya@northwind-labs.co.uk', sid: start().sid, step: '1', source: 'home-hero', page: '/', interest: 'any', offer: 'none' })
+  S.begin(start())
+  S.go('need'); await wait(20)
+  S.patch({ door: 'build', pieces: ['email'] }); S.go('about'); await wait(40)
+  assert.equal(S.leaveNow(), false, 'nothing typed since the last step: no beacon')
+  S.patch({ name: 'Maya Patel', company: 'Northwind Labs' })
+  assert.equal(S.leaveNow(), true)
+  assert.equal(S.leaveNow(), false, 'sent once, not again until more is typed')
+  for (const p of posts) g.post(p)
+  for (const b of beacons) g.post(JSON.parse(await b.text()))
+  const row = g.table()[0]
+  assert.equal(row.Name, 'Maya Patel'); assert.equal(row['Start with'], 'Email'); assert.equal(row['Step reached'], '3 Name')
+})
+
+await t('the longest answers the card can send fit the sheet columns', async () => {
+  const code = (await import('node:fs')).readFileSync(CODE, 'utf8')
+  const max = (h) => Number(new RegExp(`\\['${h}', '\\w+', (\\d+)\\]`).exec(code)[1])
+  const Setup = await vite.ssrLoadModule('/src/content/setup.ts')
+  const recipes = Cat.catalog.recipes.map((r) => r.name).join(', ')
+  assert.ok(recipes.length <= max('Recipes'), `every blueprint is ${recipes.length}, Recipes keeps ${max('Recipes')}`)
+  const other = 'x'.repeat(120)
+  const startWith = Setup.tools.map((x) => (x === Setup.OTHER_TOOL ? `${x} (${other})` : x)).join(', ')
+  assert.ok(startWith.length <= max('Start with'), `every tool is ${startWith.length}`)
+  const dest = Setup.destinations.map((x) => (x === Setup.OTHER_DEST ? `${x} (${other})` : x)).join(', ')
+  assert.ok(dest.length <= max('Results to'), `every destination is ${dest.length}`)
+})
+
 console.log(`${n} passed`)
 await vite.close()

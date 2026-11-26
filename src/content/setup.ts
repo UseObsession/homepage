@@ -24,8 +24,11 @@ export const pieces: { id: PieceId; name: string }[] = [
   { id: 'personas', name: 'Personas' },
 ]
 
-export const destinations = ['Slack', 'Email', 'Your CRM', 'Google Sheets', 'Clay', 'A PDF report', 'Your AI assistant', 'Somewhere else']
-export const tools = ['Claude', 'ChatGPT', 'Zapier', 'Make', 'n8n', 'Clay', 'Something else']
+/* The last option of each list opens a box for what it is; the sheet gets "Somewhere else (HubSpot)" (lib/setup). */
+export const OTHER_DEST = 'Somewhere else'
+export const OTHER_TOOL = 'Something else'
+export const destinations = ['Slack', 'Email', 'Your CRM', 'Google Sheets', 'Clay', 'A PDF report', 'Your AI assistant', OTHER_DEST]
+export const tools = ['Claude', 'ChatGPT', 'Zapier', 'Make', 'n8n', 'Clay', OTHER_TOOL]
 export const sizes = ['Just me', '2 to 10', '11 to 50', '51 to 200', 'More than 200']
 
 export const setup = {
@@ -52,12 +55,14 @@ export const setup = {
     /* 23 Nov 2026: a job of the reader's own, in their words; we set it up as a blueprint (content/describe.ts). */
     use: { label: 'Or describe your own job', placeholder: 'For example: every morning, check our booking pages still load the calendar, and text me if one breaks' },
     dest: 'Where should results go?',
+    destOther: { label: 'Where else?', placeholder: 'For example: HubSpot, Notion or a webhook' },
   },
   connect: {
     title: 'Which tools does your team use?',
     help: 'Pick any. We connect Obsession to each one with you.',
     error: 'Pick at least 1.',
     use: { label: 'What should your AI do first?', placeholder: 'For example: call suppliers to confirm deliveries and email me the answer' },
+    other: { label: 'Which tool?', placeholder: 'For example: Relevance AI, Lindy or your own app' },
   },
   about: {
     title: 'Who should we set this up for?',

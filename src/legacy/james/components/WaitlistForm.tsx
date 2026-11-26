@@ -1,4 +1,6 @@
 import { useId, useState, type FormEvent } from 'react'
+import { capture } from '../../../content/capture'
+import { isWorkEmail } from '../../../lib/waitlist'
 import { Mark } from './Logo'
 import './WaitlistForm.css'
 
@@ -43,6 +45,11 @@ export function WaitlistForm({ source, withCompany = false, button = 'Start free
       setError('Enter a work email, like you@company.com')
       return
     }
+    /* Work addresses only (the founders, 11 Nov 2026): the script refuses the rest, so say why here. */
+    if (!isWorkEmail(email)) {
+      setError(capture.errors.emailPersonal)
+      return
+    }
 
     if (ENDPOINT) {
       setBusy(true)
@@ -52,7 +59,12 @@ export function WaitlistForm({ source, withCompany = false, button = 'Start free
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({ email: email.trim(), company: company.trim(), source, page: location.pathname, website: trap }),
         })
-        const body = (await res.json()) as { ok?: boolean }
+        const body = (await res.json()) as { ok?: boolean; error?: string }
+        if (body.error === 'work_email' || body.error === 'rate_limited') {
+          setBusy(false)
+          setError(body.error === 'work_email' ? capture.errors.emailPersonal : capture.errors.limited)
+          return
+        }
         if (!res.ok || !body.ok) throw new Error(String(res.status))
       } catch {
         setBusy(false)
