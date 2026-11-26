@@ -58,8 +58,8 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | ai agent for hotels, ai voice agent for hotels, hotel ai agent | `/use-cases/ai-agent-for-hotels` | Title, H1, first sentence, a question (23 Nov, the range pages) |
 | ai agent for higher education, ai agents for universities, ai admissions agent | `/use-cases/ai-agent-for-higher-education` | Title, H1, first sentence, a question (23 Nov, the range pages) |
 | ai agent for contact centers, ai agents for call centers, contact center ai agent testing | `/use-cases/ai-agent-for-contact-centers` | Title, H1, first sentence, a question (23 Nov, the range pages) |
-| ai agent platform, ai agent platforms, inbox and phone number per user agent | `/use-cases/ai-agent-platforms` | Title, H1, first sentence, a question (23 Nov, the range pages) |
-| ai agents for enterprise, enterprise ai agents, enterprise ai agent identity | `/use-cases/ai-agents-for-enterprise` | Title, H1, first sentence, a question (23 Nov, the range pages) |
+| multi tenant ai agents, multi-tenant ai agents, inbox and phone number per user agent | `/use-cases/ai-agent-platforms` | Title, description, first sentence, a question (26 Nov: “ai agent platform” released, Google reads it as agent builders) |
+| ai agents for enterprise, enterprise ai agents | `/use-cases/ai-agents-for-enterprise` | Title, H1, first sentence, a question (23 Nov, the range pages) |
 | missed call text back, missed call text back software, missed call text back automation | `/blueprints/missed-call-text-back` | Title, H1, first sentence, a question (wave 2, 23 Nov) |
 | appointment reminder text, appointment reminder service, appointment reminder app, automated appointment reminders, appointment confirmation text | `/blueprints/appointment-reminders` | Title, H1, first sentence, a question (wave 2, 23 Nov) |
 | speed to lead automation | `/blueprints/speed-to-lead-callback` | Title, H1, first sentence (wave 2, 23 Nov; speed to lead AI stays with `/blog/ai-customers-for-b2b-sales-teams`) |
@@ -100,7 +100,7 @@ The founders' search plan (22 Nov, Google suggestions read 21 and 22 Nov, US) gi
 | how to make money with ai agents, how to make money selling ai agents, ai agents that make money, do ai agents make money, how to make money building ai agents | `/blog/how-to-make-money-with-ai-agents` | Title, H1, answer (23 Nov) |
 | ai agents that do work for you, ai that can do tasks for you, ai that can do things for you, ai agent that works for you, ai agent that can perform tasks, best ai agents for work | `/blog/ai-agents-that-do-work-for-you` | Title, H1, answer (23 Nov) |
 | start an ai automation agency, ai automation agency, how to start an ai automation agency step by step, ai automation agency business model, ai automation agency for small businesses | `/blog/start-an-ai-automation-agency` | Title, H1, answer (23 Nov) |
-| sell ai agents to local businesses, sell ai agents to businesses, selling ai agents to small businesses, resell ai agents, white label ai agents, white label ai voice agents | `/blog/sell-ai-agents-to-local-businesses` | Title, H1, answer (23 Nov) |
+| sell ai agents to local businesses, sell ai agents to businesses, selling ai agents to small businesses, resell ai agents, white label ai voice agents | `/blog/sell-ai-agents-to-local-businesses` | Title, H1, answer (23 Nov; white label ai agents moved to `/agencies` on 26 Nov) |
 | ai saas ideas, ai micro saas ideas, ai saas business ideas, ai agent app ideas, ai saas ideas 2026 | `/blog/ai-saas-ideas` | Title, H1, answer (23 Nov) |
 | ai agent to fill out forms, ai agent to automate data entry, ai agent that can use browser, ai agent that can interact with websites, ai agent to automate browser | `/blog/ai-agent-fill-out-forms` | Title, H1, answer (23 Nov, week 2; login phrases stay with `/blog/can-ai-agents-log-in-to-websites`) |
 | ai agent for accountants, ai agent for accounting firm, ai agent for accounts payable, ai agent for accounts receivable, best ai agent for accountants, ai agent for bookkeepers | `/blog/ai-agent-for-accountants` | Title, H1, answer (23 Nov, week 2) |
@@ -240,7 +240,7 @@ Two of our pages never target the same query. The non-owner links to the owner w
 
 | Page | Owns |
 |---|---|
-| `/` | Obsession (brand), data behind login |
+| `/` | Obsession (brand) |
 | `/blog/the-web-behind-the-login` | the web behind the login (the category term, 11 Nov 2026), what search engines can’t index, deep web vs surface web |
 | `/blog/exa-vs-tavily-vs-firecrawl` | exa vs tavily, exa vs firecrawl, tavily vs firecrawl, exa vs parallel |
 | `/blog/exa-alternatives` | exa alternatives, exa alternative, exa ai alternatives |
@@ -315,7 +315,7 @@ Two of our pages never target the same query. The non-owner links to the owner w
 | `/blog/agentic-ai-use-cases-in-ecommerce` | agentic ai use cases in ecommerce, ai use cases in ecommerce, ai in ecommerce examples, how to use ai in ecommerce, intelligent agents in ecommerce, AI customer use cases in ecommerce (AI agents for ecommerce stays with `/blog/ai-customers-for-ecommerce-brands`; agentic commerce with `/blog/agentic-commerce-for-merchants`; AI agents for agencies with `/agencies`; the general phrases with `/blog/ai-agent-use-cases-for-business`). Added 31 Oct 2026 (Google autocomplete, US and UK, the same day) |
 | `/blog/is-it-legal-to-mystery-shop-competitors` | is it legal to mystery shop competitors, is mystery shopping legal, is mystery shopping competitors legal, is mystery shopper legal, is competitive intelligence legal, is mystery shopping legal in the UK, is it legal to sign up for a competitor's free trial ("is mystery shopping worth it" and "legit" are job seekers' searches, left alone; AI mystery shopping tools stay with `/blog/best-ai-mystery-shopping-tools`; ecommerce competitive intelligence with `/blog/ecommerce-competitive-intelligence`). Added 1 Nov 2026 (Google autocomplete, US and UK, 31 Oct) |
 | `/blog/chatgpt-shopping-for-brands` | chatgpt shopping, chatgpt shopping research, chatgpt shopping agent, chatgpt shopping assistant, chatgpt shopping feed, chatgpt shopping ads, chatgpt shopping mode, how to get your product recommended by chatgpt (what ChatGPT says about my brand stays with `/blog/what-chatgpt-says-about-your-store`; agentic commerce with `/blog/agentic-commerce-for-merchants`; agent ready website with `/blog/agent-ready-website`). Added 1 Nov 2026 (Google autocomplete, US and UK, 31 Oct); "chatgpt shopping" moved here the same day from the keywords of `/blog/what-chatgpt-says-about-your-store`, which keeps its brand and store phrases |
-| `/agencies` | AI agents for agencies, prove agency value to clients |
+| `/agencies` | white label ai agents, white label ai agents for agencies, ai agent reseller, AI agents for agencies, prove agency value to clients (26 Nov: the Resell door) |
 | `/founders` | ai agents for founders, ai tools for founders, ai tools for startup founders, ai tools for non technical founders (23 Nov 2026: the founders page again, every kind of founder) |
 | `/sales` | account intelligence for sales teams, know each account as its customers do |
 | `/marketing` | check every ad, launch and competitor as a customer; see competitors' emails, ads and prices as a customer |
