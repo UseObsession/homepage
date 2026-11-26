@@ -88,8 +88,9 @@ export const page: Page = {
     /* The sentence AI assistants quote. Its first sentence opens the first answer below (scripts/prerender.mjs). */
     /* Its first sentence must be on the page (scripts/prerender.mjs): since Home's questions went (23 Nov 2026), it opens
        with the headline's first line. */
+    /* 26 Nov 2026: its first sentence is the H1, so it is on the page (scripts/prerender.mjs); "toolkit" stays for search. */
     answer:
-      'The toolkit for AI agents. Obsession gives every agent an inbox, a phone number and a browser, through one API and one bill. Use one piece, like email, or all of them under one identity, with messaging and a sandbox when a job needs them. Every email, text, call and page lands in your event log.',
+      'AI agents that answer every call, chase the paperwork and work the portals. Obsession is the toolkit for AI agents: each agent gets its own phone number, inbox, browser and sandbox on one API and one bill, teams that don’t code pick a blueprint and Obsession runs the job, and every call, email and page lands in one event log.',
     ogLine: 'An inbox, a phone number and a browser for every agent.',
     ogImage: '/og/home.png',
   },
@@ -97,15 +98,19 @@ export const page: Page = {
   hero: {
     /* No pill: the form's own line under the box says "Free plan, no credit card", so the hero says it once. */
     /* Locked by James, 21 Nov: "toolkit" leads, the sub names what is in the kit at once. */
-    headline: 'The toolkit for AI agents. One API, one bill.',
+    /* 26 Nov 2026, proposed (Seun: "toolkit doesn't encapsulate the blueprint and the doors"). Round 4: six council seats
+       wrote 60 heroes from research, the best 10 went to 10 cold B2B readers, and this one (Quill) led: best for 4, top 3
+       for 7, worst for none (council_hero/r4/summary.json). Work first, then the pieces, both ways in, and the trust line.
+       Both founders' yes before it ships. James's 21 Nov headline: "The toolkit for AI agents. One API, one bill." */
+    headline: 'AI agents that answer every call, chase the paperwork and work the portals.',
     /* 23 Nov 2026 (Seun, version 1 of the hero copy): the whole toolkit in one sentence (every piece, under one identity),
        then both ways in, so a developer and a team that doesn't code each see their door on the first screen. */
-    sub: 'Give every AI agent its own inbox, phone number and browser, plus messaging and a computer to run code, all under one identity. Developers build on them in code. Every other team picks a blueprint, and Obsession runs the job.',
+    sub: 'Each agent gets its own phone number, inbox, browser and sandbox. Teams that don’t code pick a blueprint, a ready-made job Obsession runs for them; developers build on the same pieces with one API, one key and one bill.',
     /* The hero's main action (23 Nov 2026): the email form, then the sign-up card asks which way in. */
     capture: { ...access, source: 'home-hero' },
     /* The scale and the proof, under the form. */
     /* 26 Nov 2026 (Seun): scale is shown to 100 million, never a lower top; the hero itself stays as James set it. */
-    note: 'One agent or 100 million. Every email, text, call and page lands in your event log.',
+    note: 'Each agent works under its own name, on only the logins you give it, with every step logged.',
     secondary: { label: 'Browse blueprints', to: '/blueprints' },
     /* 3 facts, true by design: no prices, no country. 50 ms is James's figure (20 Nov). */
     proof: [
