@@ -67,7 +67,7 @@
 .h-pr__online i { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--ob-success); }
 .h-pr__online i::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--ob-success); opacity: 0; }
 
-.h-pr__ids { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ob-space-8); margin: 0; }
+.h-pr__ids { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--ob-space-8); margin: 0; }
 .h-pr__ids > div { display: grid; gap: 2px; padding: var(--ob-space-12); border: var(--ob-border-hair) solid var(--ob-line); border-radius: var(--ob-radius-md); background: var(--ob-bg); min-width: 0; }
 .h-pr__ids dt { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); text-transform: uppercase; color: var(--ob-text-3); }
 .h-pr__ids dd { display: grid; margin: 0; min-width: 0; }
@@ -262,3 +262,13 @@
   .h-pr__stage.has-motion[data-state='alone'] .h-pr__piece { translate: 6px 0; }
   .h-pr__stage[data-state='equipped'] .h-pr__online i::after { animation: h-pr-ready 2.8s var(--ob-ease-out) infinite; }
 }
+
+/* On a borrowed login (26 Nov 2026): a person's address, her password and the event under her name, in the warning tone,
+   so the reader sees whose identity the agent is using before it is equipped with its own. */
+.h-pr__ids dd > .h-pr__none.is-borrowed { font-family: var(--ob-font-mono, ui-monospace, monospace); color: var(--ob-warning); }
+.h-pr__stage[data-state='alone'] .h-pr__ids > div:has(.is-borrowed) { border-color: color-mix(in srgb, var(--ob-warning) 38%, var(--ob-line)); background: color-mix(in srgb, var(--ob-warning-bg) 60%, var(--ob-bg)); }
+.h-pr__ids > div { transition: border-color var(--ob-dur-base) var(--ob-ease-out), background-color var(--ob-dur-base) var(--ob-ease-out); }
+.h-pr__event-row.is-borrowed i { background: var(--ob-warning); }
+.h-pr__event-row.is-borrowed .h-pr__event-name { color: var(--ob-warning); }
+.h-pr__stage[data-state='alone'] .h-pr__online { color: var(--ob-warning); box-shadow: inset 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--ob-warning) 45%, var(--ob-line)); }
+.h-pr__stage[data-state='alone'] .h-pr__online i { background: var(--ob-warning); }

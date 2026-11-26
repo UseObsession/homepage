@@ -13,7 +13,7 @@ const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}
 const orList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} or ${items[items.length - 1]}`)
 
 const sub =
-  'Obsession gives every agent on your AI agent platform its own phone number, inbox and browser, on one API and one bill. A persona holds all three under one identity, created in one call when your user signs up, from 100 users to a million.'
+  'Obsession gives every agent on your AI agent platform its own phone number, inbox and browser, on one API and one bill. A persona holds all three under one identity, created in one call when your user signs up, from 100 users to 100 million.'
 
 export const useCase: TeamPage = {
   id: 'ai-agent-platforms',
@@ -22,9 +22,10 @@ export const useCase: TeamPage = {
   card: 'An inbox, a number and a browser for every user’s agent.',
   meta: {
     path,
-    title: 'AI agent platform: an inbox, number and browser per user',
+    /* 26 Nov 2026: Google reads “ai agent platform” as agent builders; the job this page sells is searched as “multi tenant ai agents”. */
+    title: 'Multi-tenant AI agents: an inbox, number and browser per user',
     description:
-      'Build an AI agent platform on one API: every user’s agent gets its own inbox, number and signed-in browser in one call. Scale from 100 users to a million.',
+      'Multi-tenant AI agents on one API: every user’s agent gets its own inbox, number and signed-in browser in one call. From 100 users to 100 million.',
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -35,7 +36,7 @@ export const useCase: TeamPage = {
 
   hero: {
     pill: 'Agent platforms',
-    headline: 'An AI agent platform where every user’s agent has its own inbox, number and browser.',
+    headline: 'Give every user’s AI agent its own inbox, phone number and browser the moment they sign up.',
     sub,
   },
 
@@ -123,14 +124,14 @@ export const useCase: TeamPage = {
   },
 
   sizes: {
-    heading: 'The same platform, from 100 users to a million agents.',
+    heading: 'The same platform, from 100 users to 100 million agents.',
     line: 'Each agent keeps its own identity at every size. A typical month, worked out at list rates, before model tokens.',
     items: [
       {
-        label: 'A startup with 100 users',
-        agents: '100 personas · 100 inboxes · 100 numbers · one event log',
-        jobs: ['An identity in one call at sign-up', 'Sign-in codes caught for each user’s agent', 'Nightly tests of your own agent'],
-        usage: { inbox: 100, number: 100, email: 20000, sms: 4000, voice: 300, browser: 200, sandbox: 50, register: 1 },
+        label: 'An enterprise platform with 1,000,000 agents',
+        agents: '1,000,000 personas · 1,000,000 inboxes · 400,000 numbers · 2,000 iMessage lines',
+        jobs: ['White label under your own brand, on Enterprise', 'Every event to one signed webhook, kept longer', 'Blueprints your users start from'],
+        usage: { inbox: 1000000, number: 400000, email: 50000000, sms: 8000000, voice: 1000000, browser: 400000, sandbox: 200000, imessage: 2000, register: 200 },
       },
       {
         label: 'A platform with 10,000 customers',
@@ -139,10 +140,10 @@ export const useCase: TeamPage = {
         usage: { inbox: 10000, number: 4000, email: 600000, sms: 200000, voice: 20000, browser: 8000, sandbox: 4000, imessage: 100, register: 1 },
       },
       {
-        label: 'An enterprise platform with 1,000,000 agents',
-        agents: '1,000,000 personas · 1,000,000 inboxes · 400,000 numbers · 2,000 iMessage lines',
-        jobs: ['White label under your own brand, on Enterprise', 'Every event to one signed webhook, kept longer', 'Blueprints your users start from'],
-        usage: { inbox: 1000000, number: 400000, email: 50000000, sms: 8000000, voice: 1000000, browser: 400000, sandbox: 200000, imessage: 2000, register: 200 },
+        label: 'A startup with 100 users',
+        agents: '100 personas · 100 inboxes · 100 numbers · one event log',
+        jobs: ['An identity in one call at sign-up', 'Sign-in codes caught for each user’s agent', 'Nightly tests of your own agent'],
+        usage: { inbox: 100, number: 100, email: 20000, sms: 4000, voice: 300, browser: 200, sandbox: 50, register: 1 },
       },
     ],
   },

@@ -23,7 +23,9 @@ import './HomeProblem.css'
    readers), the card is equipped and every word is in the page. Words: content/pages/home.ts (homeProblem). */
 
 type State = 'alone' | 'equipped'
-const HOLD = 1500
+/* 26 Nov 2026: on a borrowed login (Maya's address, her password, the event under her name) every ability reads
+   "Not as itself"; the hold is long enough to read it before the card switches to equipped. */
+const HOLD = 2400
 
 const nameOf = Object.fromEntries(catalog.recipes.map((r) => [r.slug, r]))
 /* Each blueprint wears its type's reader colour (content/kitPaths), as on Home's blueprints section. */
@@ -119,7 +121,7 @@ export function HomeProblem({ problem, id, tone }: { problem: Words; id?: string
                   <div key={d.label}>
                     <dt>{d.label}</dt>
                     <dd>
-                      <span className="h-pr__none">{d.none}</span>
+                      <span className={'h-pr__none' + (d.borrowed ? ' is-borrowed' : '')}>{d.none}</span>
                       <span className="h-pr__val">{d.value}</span>
                     </dd>
                   </div>
@@ -167,7 +169,16 @@ export function HomeProblem({ problem, id, tone }: { problem: Words; id?: string
               <div className="h-pr__event">
                 <span className="h-pr__event-label">{p.card.event.label}</span>
                 <span className="h-pr__event-body">
-                  <span className="h-pr__none">{p.card.event.none}</span>
+                  {p.card.event.borrowed ? (
+                    <span className="h-pr__none h-pr__event-row is-borrowed">
+                      <i aria-hidden="true" />
+                      <span className="h-pr__event-at">{p.card.event.borrowed.at}</span>
+                      <span className="h-pr__event-name">{p.card.event.borrowed.name}</span>
+                      <span className="h-pr__event-text">{p.card.event.borrowed.text}</span>
+                    </span>
+                  ) : (
+                    <span className="h-pr__none">{p.card.event.none}</span>
+                  )}
                   <span className="h-pr__val h-pr__event-row">
                     <i aria-hidden="true" />
                     <span className="h-pr__event-at">{p.card.event.at}</span>

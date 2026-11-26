@@ -5,7 +5,8 @@ import { PersonaGlyph } from './icons'
 import './blueprint.css'
 import './HomeDoors.css'
 
-/* The two ways in (#start), Home's last section before the sign-up (23 Nov 2026). Seun: send developers and every team
+/* The four ways in (#start; two until 26 Nov 2026, when companies and partners joined as a second row with a near-real list
+   each: a company's directory, a partner's clients), Home's last section before the sign-up (23 Nov 2026). Seun: send developers and every team
    that doesn't code to their own page, make it plain that Obsession works for both, and let each reader picture using
    it; then "subtle visual cues ... feel interactive and clean ... intelligently animated ... even if a card".
 
@@ -143,6 +144,40 @@ function JobDemo({ demo }: { demo: Extract<HomeDoorDemo, { kind: 'job' }> }) {
   )
 }
 
+/* A near-real list: the window's title, one line under it, then the rows rising in turn once the card is seen (26 Nov 2026).
+   Under reduced motion, or before the script runs, every row shows at rest. */
+function RosterDemo({ demo }: { demo: Extract<HomeDoorDemo, { kind: 'roster' }> }) {
+  const { ref, live, motion } = useLive<HTMLDivElement>()
+  const [seen, setSeen] = useState(false)
+  useEffect(() => {
+    if (live) setSeen(true)
+  }, [live])
+  /* Waiting: motion allowed and not yet seen, so the rows rest hidden until they rise. */
+  const state = seen ? ' is-seen' : motion ? ' is-waiting' : ''
+  return (
+    <div ref={ref} className={'h-dr__demo h-dr__roster' + state}>
+      <p className="h-dr__ros-head">
+        <span>{demo.head}</span>
+        <span className="h-dr__ros-sub">{demo.sub}</span>
+      </p>
+      <ul className="h-dr__ros-list">
+        {demo.rows.map((r, n) => (
+          <li key={r.name} className={'h-dr__ros-row' + (r.lit ? ' is-lit' : '')} style={{ ['--d' as string]: n } as CSSProperties}>
+            <span className="h-dr__ros-av" aria-hidden="true">
+              <PersonaGlyph name={r.lit ? 'persona' : 'person'} />
+            </span>
+            <span className="h-dr__ros-main">
+              <b>{r.name}</b>
+              <span className="h-dr__ros-id">{tie(r.id)}</span>
+            </span>
+            <span className="h-dr__ros-meta">{tie(r.meta)}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 /* The soft light that follows the pointer across a card, set as two custom properties so CSS draws it. */
 const follow = (e: PointerEvent<HTMLLIElement>) => {
   if (e.pointerType !== 'mouse') return
@@ -240,7 +275,7 @@ export function HomeDoors({ doors, id, tone }: { doors: Words; id?: string; tone
                   {d.title}
                 </Link>
               </h3>
-              {d.demo.kind === 'code' ? <CodeDemo demo={d.demo} /> : <JobDemo demo={d.demo} />}
+              {d.demo.kind === 'code' ? <CodeDemo demo={d.demo} /> : d.demo.kind === 'job' ? <JobDemo demo={d.demo} /> : <RosterDemo demo={d.demo} />}
               <p className="h-dr__line">{d.line}</p>
               <span className="h-dr__go" aria-hidden="true">
                 {d.cta.label}

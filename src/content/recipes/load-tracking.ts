@@ -46,9 +46,9 @@ obsession.on('blueprint.result', async (e) => {
     path: '/blueprints/load-tracking',
     title: 'Track every load across carrier portals, 4 times a day',
     description:
-      'Load tracking signs in to every carrier portal with your own logins, 4 times a day, and puts each load’s status, ETA and proof of delivery in one sheet.',
+      'Load tracking signs in to every carrier portal with the logins you give it, 4 times a day, and puts each load’s status, ETA and proof of delivery in one sheet.',
     answer:
-      'Load tracking signs in to each carrier portal with your own logins 4 times a day and reads every load’s status and ETA. It updates one sheet or your transportation management system, with each page saved as a screenshot.',
+      'Load tracking signs in to each carrier portal with the logins you give it 4 times a day and reads every load’s status and ETA. It updates one sheet or your transportation management system, with each page saved as a screenshot.',
     ogImage: '/og/load-tracking.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -59,7 +59,7 @@ obsession.on('blueprint.result', async (e) => {
 
   hero: {
     headline: 'Track every load across your carrier portals, before the customer asks where it is.',
-    sub: 'Load tracking signs in to each carrier portal with your own logins 4 times a day and reads every load’s status and ETA. It updates one sheet or your transportation management system, with each page saved as a screenshot.',
+    sub: 'Load tracking signs in to each carrier portal with the logins you give it 4 times a day and reads every load’s status and ETA. It updates one sheet or your transportation management system, with each page saved as a screenshot.',
     screen: 'loads',
     capture: {
       kind: 'waitlist',
@@ -152,7 +152,7 @@ obsession.on('blueprint.result', async (e) => {
   },
 
   settings: [
-    { k: 'Carrier portals', v: 'Every carrier you book, with your own logins' },
+    { k: 'Carrier portals', v: 'Every carrier you book, with the logins you give it' },
     { k: 'Loads', v: 'Every load in transit, from your TMS, a sheet or the API' },
     { k: 'How often', v: '4 times a day by default, or every hour on the loads you choose' },
     { k: 'Login codes', v: 'To each persona’s own inbox or number, 1 persona per carrier' },
@@ -178,7 +178,7 @@ obsession.on('blueprint.result', async (e) => {
     items: [
       {
         q: 'How do we track every load across carrier portals without logging in to each one?',
-        a: 'Load tracking signs in to each carrier portal with your own logins 4 times a day and reads every load’s status and ETA. It updates one sheet or your TMS, with each page saved as a screenshot, so nobody on your team has to log in to check.',
+        a: 'Load tracking signs in to each carrier portal with the logins you give it 4 times a day and reads every load’s status and ETA. It updates one sheet or your TMS, with each page saved as a screenshot, so nobody on your team has to log in to check.',
       },
       {
         q: 'Does it replace our load tracking software?',

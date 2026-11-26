@@ -48,9 +48,9 @@ obsession.on('blueprint.result', async (e) => {
     path: '/blueprints/invoice-collector',
     title: 'Download invoices from every vendor portal, each week',
     description:
-      'Invoice collector downloads invoices from every vendor portal each week with your own logins, files each PDF and adds its amount and due date to a sheet.',
+      'Invoice collector downloads invoices from every vendor portal each week with the logins you give it, files each PDF and adds its amount and due date to a sheet.',
     answer:
-      'Invoice collector signs in to each vendor portal with your own logins every week and downloads every new invoice and receipt. It files each PDF and adds its vendor, number, amount and due date to a sheet or your accounting system.',
+      'Invoice collector signs in to each vendor portal with the logins you give it every week and downloads every new invoice and receipt. It files each PDF and adds its vendor, number, amount and due date to a sheet or your accounting system.',
     ogImage: '/og/invoice-collector.png',
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -61,7 +61,7 @@ obsession.on('blueprint.result', async (e) => {
 
   hero: {
     headline: 'Download every invoice from your vendor portals, without logging in to one.',
-    sub: 'Invoice collector signs in to each vendor portal with your own logins every week and downloads every new invoice and receipt. It files each PDF and adds its vendor, number, amount and due date to a sheet or your accounting system.',
+    sub: 'Invoice collector signs in to each vendor portal with the logins you give it every week and downloads every new invoice and receipt. It files each PDF and adds its vendor, number, amount and due date to a sheet or your accounting system.',
     screen: 'invoicecollect',
     capture: {
       kind: 'waitlist',
@@ -154,7 +154,7 @@ obsession.on('blueprint.result', async (e) => {
   },
 
   settings: [
-    { k: 'Vendor portals', v: 'Every vendor your team logs in to for a bill, with your own logins' },
+    { k: 'Vendor portals', v: 'Every vendor your team logs in to for a bill, with the logins you give it' },
     { k: 'How often', v: 'Every Monday by default, or on the day each vendor bills' },
     { k: 'Where files go', v: 'A Google Drive folder, your shared drive or your bills inbox' },
     { k: 'What to read', v: 'Vendor, invoice number, date, amount, tax and due date' },
@@ -181,7 +181,7 @@ obsession.on('blueprint.result', async (e) => {
     items: [
       {
         q: 'How do we download invoices from every vendor portal without logging in to each one?',
-        a: 'Invoice collector signs in to each portal with your own logins every week and downloads every new invoice and receipt. It files each PDF and adds each one to a sheet or your accounting system, so nobody on your team has to log in.',
+        a: 'Invoice collector signs in to each portal with the logins you give it every week and downloads every new invoice and receipt. It files each PDF and adds each one to a sheet or your accounting system, so nobody on your team has to log in.',
       },
       {
         q: 'Which vendors does it work with?',

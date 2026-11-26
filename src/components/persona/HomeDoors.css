@@ -277,3 +277,35 @@
   .h-dr__bar { transition: none; }
   .h-dr__rung-prog { display: none; }
 }
+
+/* ---- The near-real list (RosterDemo, 26 Nov 2026): a directory or a partner's clients. Rows in a quiet stack; the agents'
+   rows lit in the card's colour; rows rise in turn once the card is seen. ---- */
+.h-dr__ros-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px var(--ob-space-12); margin: 0; font: var(--ob-type-caption); color: var(--ob-text-2); }
+.h-dr__ros-head > span:first-child { font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.h-dr__ros-sub { font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-3); }
+.h-dr__ros-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.h-dr__ros-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  grid-template-areas: 'av main' 'av meta';
+  align-items: center;
+  column-gap: var(--ob-space-10, var(--ob-space-12));
+  row-gap: 2px;
+  padding: 8px 10px;
+  border-radius: var(--ob-radius-md);
+  background: var(--ob-surface);
+  box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line);
+  min-width: 0;
+}
+.h-dr__ros-row.is-lit { box-shadow: inset 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--s-accent, var(--ob-line-strong)) 50%, var(--ob-line)); }
+.h-dr__ros-av { grid-area: av; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; box-shadow: inset 0 0 0 var(--ob-border-hair) var(--ob-line-strong); color: var(--ob-text-3); }
+.h-dr__ros-row.is-lit .h-dr__ros-av { color: var(--s-accent, var(--ob-text-2)); box-shadow: inset 0 0 0 var(--ob-border-hair) color-mix(in srgb, var(--s-accent, var(--ob-line-strong)) 55%, var(--ob-line)); }
+.h-dr__ros-av svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.h-dr__ros-main { grid-area: main; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px var(--ob-space-8); min-width: 0; }
+.h-dr__ros-main b { font: var(--ob-type-small); font-weight: var(--ob-weight-medium, 500); color: var(--ob-text); }
+.h-dr__ros-id { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: var(--ob-type-label-mono); letter-spacing: var(--ob-type-label-mono-tracking); color: var(--ob-text-2); }
+.h-dr__ros-meta { grid-area: meta; min-width: 0; font: var(--ob-type-caption); color: var(--ob-text-3); }
+@media (prefers-reduced-motion: no-preference) {
+  .h-dr__roster.is-waiting .h-dr__ros-row { opacity: 0; }
+  .h-dr__roster.is-seen .h-dr__ros-row { animation: h-dr-rise 440ms var(--ob-ease-out) both; animation-delay: calc(120ms + var(--d, 0) * 220ms); }
+}

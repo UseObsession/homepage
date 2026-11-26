@@ -70,17 +70,28 @@ const organization: Node = {
   alternateName: 'useobsession',
   description: llms.summary,
   slogan: 'Kit up your AI agents.',
-  knowsAbout: ['Competitor emails and texts', 'Member and signed-in prices', 'Trial plans and limits', 'Quotes behind forms'],
+  /* 26 Nov 2026: what Obsession is now (the index-era list retired). */
+  knowsAbout: ['AI agent infrastructure', 'Email inboxes for AI agents', 'Phone numbers for AI agents', 'Browsers for AI agents', 'Sandboxes for AI agents', 'AI agent templates'],
   email: CONTACT_EMAIL,
   founder: FOUNDERS.map(person),
   /* /agents: any company an agent met writes here with a question, or to keep agents off its site. */
-  contactPoint: {
-    '@type': 'ContactPoint',
-    contactType: 'Questions about an Obsession agent',
-    email: CONTACT_EMAIL,
-    url: `${SITE}/agents`,
-    availableLanguage: 'English',
-  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'Questions about an Obsession agent',
+      email: CONTACT_EMAIL,
+      url: `${SITE}/agents`,
+      availableLanguage: 'English',
+    },
+    /* 26 Nov 2026: companies running agents across teams, and platforms that resell, reach a person here. */
+    {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: CONTACT_EMAIL,
+      url: `${SITE}/use-cases/ai-agents-for-enterprise`,
+      availableLanguage: 'English',
+    },
+  ],
   ...sameAs(SAME_AS.organization),
 }
 

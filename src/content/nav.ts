@@ -3,6 +3,7 @@
    the second button and "Start free" as the call to action. Structure: _research/nav/NAV.md. The nav is on every page, so it reads the slim index of the recipes and
    worked examples (content/catalog.ts), never their words. */
 import { catalog, type CatalogRecipe } from './catalog'
+import { CONTACT_EMAIL } from './site'
 import type { Cta, ReaderId, RecipeGroup, RecipeId } from './types'
 import { kitLinks, kitsPath, type KitId } from './kitPaths'
 import { ways } from './ways'
@@ -119,13 +120,14 @@ const KIT_ICONS: Record<KitId, NavIcon> = { talk: 'chat', test: 'check', build: 
    developers) and a slim row to the prices. Solutions holds the kits (each job agents do) and the teams who use them,
    by name only. The integrations left the menu for /developers and the footer. */
 const kitTools: NavTool[] = kitLinks.map((k) => ({ label: k.name, line: k.line, to: k.path, icon: KIT_ICONS[k.id] }))
+/* 26 Nov 2026 (the copy plan): the teams that buy for a company first; founders and freelancers after. */
 const teams: NavPage[] = [
+  { label: 'Sales and RevOps', to: '/sales' },
+  { label: 'Support and AI operations', to: '/verify' },
+  { label: 'Marketing', to: '/marketing' },
+  { label: 'Agencies', to: '/agencies' },
   { label: 'Founders', to: '/founders' },
   { label: 'Freelancers', to: '/use-cases/ai-agents-for-freelancers' },
-  { label: 'Sales and RevOps', to: '/sales' },
-  { label: 'Marketing', to: '/marketing' },
-  { label: 'Support and AI operations', to: '/verify' },
-  { label: 'Agencies', to: '/agencies' },
   { label: 'Online stores', to: '/use-cases/leak-checks-for-ecommerce-stores' },
   { label: 'Compliance', to: '/use-cases/opt-out-and-cancel-checks-for-compliance-teams' },
 ]
@@ -181,13 +183,14 @@ const menus = {
        enterprise; the single-job pages are on /use-cases. */
     useCasesLabel: 'Use cases',
     useCases: [
-      { label: 'Startups', to: '/use-cases/ai-agents-for-startups' },
-      { label: 'SaaS and software', to: '/use-cases/ai-agents-for-saas' },
+      /* 26 Nov 2026: the company door first (Enterprise moves from the last link to the first). */
+      { label: 'Enterprise', to: '/use-cases/ai-agents-for-enterprise' },
+      { label: 'Agent platforms', to: '/use-cases/ai-agent-platforms' },
       { label: 'Financial services', to: '/use-cases/ai-agents-for-financial-services' },
+      { label: 'SaaS and software', to: '/use-cases/ai-agents-for-saas' },
       { label: 'Healthcare', to: '/use-cases/healthcare-ai-agents' },
       { label: 'Professional services', to: '/use-cases/ai-agents-for-professional-services' },
-      { label: 'Agent platforms', to: '/use-cases/ai-agent-platforms' },
-      { label: 'Enterprise', to: '/use-cases/ai-agents-for-enterprise' },
+      { label: 'Startups', to: '/use-cases/ai-agents-for-startups' },
     ] satisfies NavPage[],
     useCasesAll: { label: 'Every use case', to: '/use-cases' } satisfies NavPage,
     /* The 2 columns as the footer and the phone sheet list them. */
@@ -201,9 +204,9 @@ const menus = {
     button: 'Resources menu',
     items: [
       { label: 'Sample data', line: 'One real store run, every event end to end', to: '/sample-output' },
-      { label: 'Use cases', line: 'What each team looks up, and where it lands', to: '/use-cases' },
+      { label: 'Use cases', line: 'Every job by industry and size, from one agent to ten million', to: '/use-cases' },
       ...(catalog.blogLive ? [{ label: 'Blog', line: 'Guides and research', to: '/blog' }] : []),
-      { label: 'Compare', line: 'Every other source, and where it stops', to: '/compare' },
+      { label: 'Compare', line: 'Obsession beside each single-piece tool', to: '/compare' },
       { label: 'Glossary', line: 'Plain definitions of the words we use', to: '/glossary' },
     ] satisfies (NavPage & { line: string })[],
     more: {
@@ -323,6 +326,8 @@ export const pageCtas: Record<string, Cta> = {
   '/': { label: 'Start free', to: '#join', bar: 'Start free' },
   /* The resellers page (21 Nov): the bar's button matches its forms' (early access), to its own form. */
   '/agencies': { label: 'Start free', to: '#join', bar: 'Start free' },
+  /* The company door (26 Nov 2026): Talk to us reaches a person, by email, not the Free-plan form. */
+  '/use-cases/ai-agents-for-enterprise': { label: 'Talk to us', to: `mailto:${CONTACT_EMAIL}?subject=Enterprise`, bar: 'Talk to us' },
 }
 
 export function ctaFor(path: string): Cta {

@@ -1,4 +1,5 @@
 import { plans, prices, registration } from '../../prices'
+import { CONTACT_EMAIL } from '../../site'
 import type { TeamPage } from '../types'
 
 /* AI agents for enterprise (/use-cases/ai-agents-for-enterprise, 23 Nov 2026): the whole range across departments, from
@@ -12,19 +13,21 @@ const path = '/use-cases/ai-agents-for-enterprise'
 const fees = plans.filter((p) => (p.monthly ?? 0) > 0).map((p) => `$${p.monthly}`)
 const orList = (items: string[]) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} or ${items[items.length - 1]}`)
 
+/* 26 Nov 2026 (the copy plan): the borrowed login named, then the live controls line, then the event log; the headline
+   stays (ten cold B2B readers picked it over both new ones). */
 const sub =
-  'Obsession gives every AI agent in your company its own phone number, inbox and browser, on one API and one bill. A persona holds them under one identity, and every call, text, email and page lands in one event log you can audit.'
+  'Give every agent in your company its own phone number, inbox and browser, so supplier calls, customer emails and portal work happen under its own name instead of a person’s. Each one signs in only with the logins you give it and works within a monthly spend limit you set. Every call, email and page lands in one event log your security team can audit, from one team’s first agents to a million.'
 
 export const useCase: TeamPage = {
   id: 'ai-agents-for-enterprise',
   kind: 'case',
   name: 'AI agents for enterprise',
-  card: 'Up to 100,000 agents, each its own identity, on one bill.',
+  card: 'From one team’s agents to a million, each its own identity, on one bill.',
   meta: {
     path,
     title: 'AI agents for enterprise: a number, inbox and browser each',
     description:
-      'An AI agent for enterprise teams, each with its own phone, inbox and browser, one event log for audit and one bill. From 10 agents to 100,000. Start free.',
+      'An AI agent for enterprise teams, each with its own phone, inbox and browser, one event log for audit and one bill. From 10 agents to a million. Start free.',
     answer: sub,
     breadcrumb: [
       { name: 'Home', path: '/' },
@@ -115,14 +118,14 @@ export const useCase: TeamPage = {
   },
 
   sizes: {
-    heading: 'From one team’s pilot to the whole company.',
-    line: 'The same agents at three sizes, with a month’s usage worked out at list rates.',
+    heading: 'One platform, from a team’s first ten agents to a million.',
+    line: 'Three sizes, largest first, each with a month’s usage worked out at list rates.',
     items: [
       {
-        label: 'One department’s pilot',
-        agents: '10 agents · 10 numbers · 10 inboxes · one event log',
-        jobs: ['Supplier calls answered and logged', 'Vendor invoices downloaded each week', 'One portal checked every morning'],
-        usage: { number: 10, inbox: 10, voice: 600, sms: 800, email: 3000, browser: 40, register: 1 },
+        label: 'A company of 100,000 agents',
+        agents: '100,000 agents · every one a persona · one bill',
+        jobs: ['Every department’s agents on one platform', 'Agents evaluated nightly and your own sign-up tested', 'White label and an account per team'],
+        usage: { number: 20000, inbox: 100000, voice: 1500000, personaVoice: 300000, sms: 2000000, email: 10000000, browser: 80000, sandbox: 150000, register: 40 },
       },
       {
         label: 'A business unit',
@@ -131,10 +134,10 @@ export const useCase: TeamPage = {
         usage: { number: 400, inbox: 1000, voice: 40000, personaVoice: 10000, sms: 60000, email: 200000, browser: 2000, sandbox: 3000, register: 5 },
       },
       {
-        label: 'A company of 100,000 agents',
-        agents: '100,000 agents · every one a persona · one bill',
-        jobs: ['Every department’s agents on one platform', 'Agents evaluated nightly and your own sign-up tested', 'White label and an account per team'],
-        usage: { number: 20000, inbox: 100000, voice: 1500000, personaVoice: 300000, sms: 2000000, email: 10000000, browser: 80000, sandbox: 150000, register: 40 },
+        label: 'One team’s first agents, paid monthly by card',
+        agents: '10 agents · 10 numbers · 10 inboxes · one event log',
+        jobs: ['Supplier calls answered and logged', 'Vendor invoices downloaded each week', 'One portal checked every morning'],
+        usage: { number: 10, inbox: 10, voice: 600, sms: 800, email: 3000, browser: 40, register: 1 },
       },
     ],
   },
@@ -165,6 +168,15 @@ export const useCase: TeamPage = {
   faq: {
     heading: 'Before your first department goes live.',
     items: [
+      {
+        q: 'Why not let an agent use a staff member’s login?',
+        a: 'Because every email and sign-in then looks like that person’s, and nobody can tell who did what. Each agent here works under its own identity, signs in only with the logins you give it, and every action lands in one event log your security team can read.',
+      },
+      {
+        q: 'How do we talk to you about a rollout?',
+        a: `Email ${CONTACT_EMAIL} with the teams and the work you want agents to take first. Enterprise adds an account per team or per client and SSO, and it starts monthly with nothing paid up front.`,
+        link: { label: 'Email us about a rollout', to: `mailto:${CONTACT_EMAIL}?subject=Enterprise` },
+      },
       {
         q: 'What do AI agents for enterprise cost?',
         a: `Start on the Free plan, with no credit card. Paid plans are ${orList(fees)} a month, and Enterprise is set with you, with an account per team. Usage is billed at list rates: a number is ${prices.number.amount} a month, calls ${prices.voice.amount} a minute, texts ${prices.sms.amount} each and an inbox ${prices.inbox.amount} a month. ${registration.line}`,

@@ -104,7 +104,8 @@ export const page: Page = {
     /* The hero's main action (23 Nov 2026): the email form, then the sign-up card asks which way in. */
     capture: { ...access, source: 'home-hero' },
     /* The scale and the proof, under the form. */
-    note: 'One agent or 10,000. Every email, text, call and page lands in your event log.',
+    /* 26 Nov 2026 (Seun): scale is shown to 100 million, never a lower top. */
+    note: 'From one agent to 100 million, each asleep for free until a message wakes it in about 50 ms.',
     secondary: { label: 'Browse blueprints', to: '/blueprints' },
     /* 3 facts, true by design: no prices, no country. 50 ms is James's figure (20 Nov). */
     proof: [
@@ -285,16 +286,18 @@ export const page: Page = {
      and one bill as the problem; that is the pieces section's line). Juno at Larkfield is the persona section's example,
      invented. */
   homeProblem: {
-    heading: 'Your AI agent can think. Obsession equips it to act.',
-    line: 'An AI agent can plan and write, but without its own inbox, phone number and browser it can’t receive a login code, take a call or stay signed in to a portal. Obsession gives it all three under one identity, or runs the whole job for you as a blueprint.',
-    states: { alone: 'On its own', equipped: 'Equipped by Obsession', label: 'Show the agent' },
+    /* 26 Nov 2026 (the copy plan, Seun's yes): the problem is the borrowed login. A new hire gets their own address,
+       number and logins on day one; most agents borrow a person's, so nobody can tell who did what. */
+    heading: 'Your AI agent can think. Obsession equips it to act as itself.',
+    line: 'A new hire gets an email address, a phone number and logins of their own on day one. Most AI agents borrow a person’s, so every email and sign-in looks like theirs and nobody can tell who did what. Obsession gives each agent its own, under one identity, with every action in one event log.',
+    states: { alone: 'On a borrowed login', equipped: 'Equipped by Obsession', label: 'Show the agent' },
     card: {
       name: 'Juno',
       role: 'AI agent, bookings at Larkfield',
       think: { label: 'Can think', items: ['Plan the steps', 'Write the reply', 'Decide what’s next'] },
       act: {
         label: 'Can act',
-        locked: 'Can’t yet',
+        locked: 'Not as itself',
         with: 'with',
         items: [
           { ability: 'Get a login code', piece: 'email', name: 'Email', to: '/email' },
@@ -306,22 +309,30 @@ export const page: Page = {
         ],
       },
       ids: [
-        { label: 'Email', none: 'None', value: 'juno@larkfield.example' },
+        { label: 'Email', none: 'maya@larkfield.example', value: 'juno@larkfield.example', borrowed: true },
         { label: 'Phone', none: 'None', value: '+1 415 555 0142' },
+        { label: 'Logins', none: 'Maya’s password', value: 'Only the ones you give it', borrowed: true },
       ],
       online: 'Ready for work',
-      offline: 'Not set up',
-      event: { label: 'Latest event', none: 'No events yet', at: '09:41:07', name: 'email.received', text: 'Login code from a supplier portal' },
+      offline: 'On Maya’s login',
+      event: {
+        label: 'Latest event',
+        none: 'No events yet',
+        at: '09:41:07',
+        name: 'booking.changed',
+        text: 'By juno@larkfield.example, with the original',
+        borrowed: { at: '09:41:07', name: 'maya@', text: 'Changed a booking. Maya, or the agent?' },
+      },
     },
     blueprints: {
       title: 'Not building agents? Pick a blueprint.',
       line: 'Obsession runs the job on the same pieces and sends you the results.',
-      slugs: ['mystery-shopper', 'voice-agent-check', 'competitor-tracking'],
+      slugs: ['document-chaser', 'voice-agent-check', 'mystery-shopper'],
       runs: 'Runs on',
       out: 'Results land in Slack, a sheet, your CRM or our dashboard.',
       link: { label: 'Browse blueprints', to: '/blueprints' },
     },
-    caption: 'One example AI agent before and after Obsession equips it. Larkfield is invented.',
+    caption: 'One example AI agent on a person’s login, then equipped by Obsession. Larkfield and Maya are invented.',
     link: { label: 'See every piece', to: '#pieces' },
   },
 
@@ -350,9 +361,10 @@ export const page: Page = {
      don't develop to their own page, and make it clear Obsession works for both; premium, concise, clear to anyone, a
      picture they can see themselves in. Each card is one link: developers to /developers, teams to /no-code. */
   homeDoors: {
-    heading: 'Developers build on Obsession. Everyone else hands it the job.',
+    /* 26 Nov 2026 (the copy plan): four ways in, Build, Run, Companies and Resell, on the same pieces and identity. */
+    heading: 'Build on it, hand it the job, roll it out across teams, or resell it.',
     scale: {
-      heading: 'One agent or ten million, each with its own number, inbox and browser.',
+      heading: 'One agent or 100 million, each with its own number, inbox and browser.',
       line: 'Add agents as the work grows. Each one gets its own identity, and you pay for what each one uses.',
       label: 'Agents',
       steps: [
@@ -361,10 +373,10 @@ export const page: Page = {
         { n: 1000, short: '1,000', case: 'A clinic group gives every front desk an agent that texts back each missed call.' },
         { n: 10000, short: '10,000', case: 'An agency shops 10,000 client and prospect stores every week.' },
         { n: 100000, short: '100,000', case: 'An enterprise runs an agent for each supplier account across 4,000 sites.' },
-        { n: 10000000, short: '10M', case: 'A platform gives every user’s assistant its own number and inbox.' },
+        { n: 100000000, short: '100M', case: 'A platform gives every user’s assistant its own number and inbox.' },
       ],
     },
-    line: 'Build every piece into your own agents, or pick a blueprint and receive the results with no code to write.',
+    line: 'Every way in runs on the same pieces, the same identity and the same event log.',
     doors: [
       {
         id: 'dev',
@@ -412,6 +424,48 @@ export const page: Page = {
             { team: 'Finance', sentence: ['Download ', { v: 'every invoice' }, ' from ', { v: '12 vendor portals' }, ' every ', { v: 'Friday' }], where: 'Google Sheets · Invoices', at: 'Fri 17:00', result: '12 invoices filed, none missed' },
             { team: 'Operations', sentence: ['Read ', { v: 'every load' }, ' in ', { v: 'our carrier portals' }, ' ', { v: '4 times a day' }], where: 'Google Sheets · Loads', at: 'Thu 14:00', result: 'Load 4471 delayed, now Friday 06:00' },
             { team: 'Founders', sentence: ['Call ', { v: 'every new lead' }, ' within ', { v: 'a minute' }, ', ', { v: 'day and night' }], where: 'Your CRM', at: 'Sat 23:40', result: 'New lead called in 38 s, demo booked' },
+          ],
+        },
+      },
+      /* 26 Nov 2026: the company door. Its picture is a directory with agents beside people, each agent with its own address
+         and number, the logins it was given and its spend limit (the live controls line; nothing about owners or approvals). */
+      {
+        id: 'companies',
+        reader: 'sales',
+        icon: 'users',
+        label: 'For companies running agents across teams',
+        title: 'Hand AI agents the work that touches customers and suppliers.',
+        line: 'Each agent works under its own name, signs in only with the logins you give it and stays within a monthly spend limit you set. Every step lands in one event log, and Enterprise adds an account per team and SSO.',
+        cta: { label: 'See AI agents for enterprise', to: '/use-cases/ai-agents-for-enterprise' },
+        demo: {
+          kind: 'roster',
+          head: 'Kestrel Group · Directory · Example',
+          sub: '4,000 people · 1,200 agents · 14 teams',
+          rows: [
+            { name: 'Priya Shah', id: 'priya@kestrel.example', meta: 'Finance lead' },
+            { name: 'Accounts agent', id: 'ap-0417@kestrel.example · +1 312 555 0148', meta: 'Finance · 2 portal logins · $300 a month limit', lit: true },
+            { name: 'Supplier desk agent', id: 'suppliers@kestrel.example', meta: 'Operations · every call and email in the event log', lit: true },
+          ],
+        },
+      },
+      /* 26 Nov 2026: the resell door. Its picture is a partner's own client list under the partner's brand, each client with
+         its agent's number and its week (invented clinics; the live white label words). */
+      {
+        id: 'resell',
+        reader: 'agencies',
+        icon: 'home',
+        label: 'For platforms and agencies with many clients',
+        title: 'Run it for every client, under your brand.',
+        line: 'Give every client’s AI agent its own number, inbox and browser, with an account per client and wholesale rates that drop as your volume grows.',
+        cta: { label: 'See white label for agencies', to: '/agencies' },
+        demo: {
+          kind: 'roster',
+          head: 'Brightline Front Desk · Clients · Example',
+          sub: 'Your brand on every report',
+          rows: [
+            { name: 'Desert Smiles Dental', id: '+1 602 555 0141', meta: 'This week: 41 missed calls texted back, 17 booked', lit: true },
+            { name: 'Camelback Physio', id: '+1 480 555 0177', meta: 'This week: 28 missed calls texted back, 11 booked', lit: true },
+            { name: 'Mesa Family Dental', id: '+1 480 555 0123', meta: 'This week: 35 missed calls texted back, 14 booked', lit: true },
           ],
         },
       },

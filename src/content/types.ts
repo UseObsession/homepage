@@ -602,6 +602,9 @@ export type PersonaRecipes = {
 export type HomeDoorDemo =
   | { kind: 'code'; tabsLabel: string; tabs: { label: string; code: string }[]; events: { at: string; event: string; text: string }[]; ms: string }
   | { kind: 'job'; tabsLabel: string; jobs: { team: string; sentence: (string | { v: string })[]; where: string; at: string; result: string }[] }
+  /* A near-real list in a small window (26 Nov 2026): a company's directory with its agents beside its people, or a partner's
+     clients under the partner's brand. `lit` rows are the agents; rows rise in turn once the card is seen. */
+  | { kind: 'roster'; head: string; sub: string; rows: { name: string; id: string; meta: string; lit?: boolean }[] }
 export type HomeDoors = {
   heading: string
   line: string
@@ -1277,10 +1280,12 @@ export type HomeProblem = {
     role: string
     think: { label: string; items: string[] }
     act: { label: string; locked: string; with: string; items: { ability: string; piece: PieceIdLite; name: string; to: string }[] }
-    ids: { label: string; none: string; value: string }[]
+    /* `borrowed`: on a borrowed login the field shows a person's value (Maya's address, her password), in the warning tone. */
+    ids: { label: string; none: string; value: string; borrowed?: boolean }[]
     online: string
     offline: string
-    event: { label: string; none: string; at: string; name: string; text: string }
+    /* `borrowed`: the event row on a borrowed login, logged under a person's name, so nobody can tell who did it. */
+    event: { label: string; none: string; at: string; name: string; text: string; borrowed?: { at: string; name: string; text: string } }
   }
   blueprints: { title: string; line: string; slugs: string[]; runs: string; out: string; link: Cta }
   caption: string
